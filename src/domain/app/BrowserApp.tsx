@@ -1,21 +1,43 @@
 import React, { FunctionComponent } from 'react';
+import { ApolloProvider } from '@apollo/react-hooks';
 import { BrowserRouter } from 'react-router-dom';
-import { Switch, Route, Redirect } from 'react-router';
-import { Provider } from 'react-redux';
+import { gql } from 'apollo-boost';
 import { OidcProvider } from 'redux-oidc';
+import { Provider } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router';
 
 import App from './App';
-import userManager from '../auth/userManager';
+import graphqlClient from '../graphql/client';
 import enableOidcLogging from '../auth/enableOidcLogging';
 import OidcCallback from '../auth/OidcCallback';
 import { SUPPORT_LANGUAGES } from '../../common/translation/constants';
 import store from './state/AppStore';
+import userManager from '../auth/userManager';
+import submitChild from '../registration/mutations/submitChild';
 
 const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})`;
 
 if (process.env.NODE_ENV !== 'production') {
   enableOidcLogging();
 }
+
+const variables = {
+  birthdate: '2019-10-11',
+  firstName: 'a child',
+  lastName: 'b',
+  guardianLastName: 'c',
+  guardianFirstName: 'd',
+  email: 'e@example.com',
+};
+
+const z = graphqlClient;
+
+z.mutate({
+  mutation: submitChild,
+  variables: variables,
+})
+  .then(result => console.log(result))
+  .catch(err => console.error(err));
 
 // Export for testing purpose
 export const appRoutes = (
@@ -33,7 +55,9 @@ const BrowserApp: FunctionComponent = () => {
   return (
     <Provider store={store}>
       <OidcProvider store={store} userManager={userManager}>
-        <BrowserRouter>{appRoutes}</BrowserRouter>
+        <ApolloProvider client={graphqlClient}>
+          <BrowserRouter>{appRoutes}</BrowserRouter>
+        </ApolloProvider>
       </OidcProvider>
     </Provider>
   );
