@@ -1,19 +1,20 @@
 import React, { FunctionComponent } from 'react';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { BrowserRouter } from 'react-router-dom';
-import { gql } from 'apollo-boost';
-import { OidcProvider } from 'redux-oidc';
-import { Provider } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router';
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { OidcProvider } from 'redux-oidc';
 
 import App from './App';
 import graphqlClient from '../graphql/client';
 import enableOidcLogging from '../auth/enableOidcLogging';
 import OidcCallback from '../auth/OidcCallback';
 import { SUPPORT_LANGUAGES } from '../../common/translation/constants';
-import store from './state/AppStore';
 import userManager from '../auth/userManager';
 import submitChild from '../registration/mutations/submitChild';
+import { persistor, store } from './state/AppStore';
+import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 
 const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})`;
 
@@ -23,11 +24,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 const variables = {
   birthdate: '2019-10-11',
-  firstName: 'a child',
-  lastName: 'b',
-  guardianLastName: 'c',
-  guardianFirstName: 'd',
   email: 'e@example.com',
+  firstName: 'a child',
+  guardianFirstName: 'd',
+  guardianLastName: 'c',
+  lastName: 'b',
 };
 
 const z = graphqlClient;
@@ -54,11 +55,16 @@ export const appRoutes = (
 const BrowserApp: FunctionComponent = () => {
   return (
     <Provider store={store}>
-      <OidcProvider store={store} userManager={userManager}>
-        <ApolloProvider client={graphqlClient}>
-          <BrowserRouter>{appRoutes}</BrowserRouter>
-        </ApolloProvider>
-      </OidcProvider>
+      <PersistGate
+        loading={<LoadingSpinner isLoading={true} />}
+        persistor={persistor}
+      >
+        <OidcProvider store={store} userManager={userManager}>
+          <ApolloProvider client={graphqlClient}>
+            <BrowserRouter>{appRoutes}</BrowserRouter>
+          </ApolloProvider>
+        </OidcProvider>
+      </PersistGate>
     </Provider>
   );
 };

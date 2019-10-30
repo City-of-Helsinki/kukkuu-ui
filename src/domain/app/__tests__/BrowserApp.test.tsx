@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
 import { Provider } from 'react-redux';
 
-import store from '../state/AppStore';
+import { store } from '../state/AppStore';
 import BrowserApp, { appRoutes } from '../BrowserApp';
 import App from '../App';
 
