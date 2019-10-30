@@ -15,6 +15,9 @@ import {
 import BirthdayFormField from './partial/BirthdayFormField';
 import { setFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
+import { StoreState } from '../../app/types/stateTypes';
+import { DEFAULT_DATE_FORMAT } from '../../../common/time/constants';
+import { newMoment } from '../../../common/time/utils';
 
 interface HomeFormValues {
   childBirthdayDay: number | string;
@@ -27,7 +30,9 @@ interface HomeFormValues {
 
 interface Props {
   setFormValues: (values: RegistrationFormValues) => void;
+  submittedFormValues: RegistrationFormValues;
 }
+
 const validate = (values: HomeFormValues) => {
   const errors: FormikErrors<HomeFormValues> = {};
 
@@ -49,14 +54,28 @@ const validate = (values: HomeFormValues) => {
   return errors;
 };
 const HomePreliminaryForm: FunctionComponent<Props> = props => {
+  const day = newMoment(
+    props.submittedFormValues.childBirthday,
+    DEFAULT_DATE_FORMAT
+  );
+
+  const submittedFormValues: HomeFormValues = {
+    childBirthday: props.submittedFormValues.childBirthday,
+    childBirthdayDay: day.date(),
+    childBirthdayMonth: day.month() + 1,
+    childBirthdayYear: day.year(),
+    childHomeCity: props.submittedFormValues.childHomeCity,
+    verifyInformation: false,
+  };
+
   return (
     <div className={styles.homeForm}>
       <Formik
         initialValues={{
-          childBirthdayDay: '',
-          childBirthdayMonth: '',
-          childBirthdayYear: '',
-          childHomeCity: '',
+          childBirthdayDay: submittedFormValues.childBirthdayDay || '',
+          childBirthdayMonth: submittedFormValues.childBirthdayMonth || '',
+          childBirthdayYear: submittedFormValues.childBirthdayYear || '',
+          childHomeCity: submittedFormValues.childHomeCity || '',
           verifyInformation: false,
         }}
         onSubmit={(values: HomeFormValues) => {
@@ -143,7 +162,12 @@ const actions = {
 
 export const UnconnectedHomePreliminaryForm = HomePreliminaryForm;
 
+const mapStateToProps = (state: StoreState) => ({
+  //isAuthenticated: isAuthenticatedSelector(state),
+  submittedFormValues: state.registration.formValues,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(HomePreliminaryForm);
