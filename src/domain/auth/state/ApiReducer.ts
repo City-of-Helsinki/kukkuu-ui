@@ -1,8 +1,8 @@
 import { createSlice } from 'redux-starter-kit';
 
-import { AppThunk } from '../../domain/app/state/AppStore';
-import { RootState } from '../../domain/app/state/AppReducers';
-import fetchApiToken from './fetchApiToken';
+import { AppThunk } from '../../../domain/app/state/AppStore';
+import { RootState } from '../../../domain/app/state/AppReducers';
+import fetchApiToken from '../fetchApiToken';
 
 interface AuthState {
   apiTokens: { [key: string]: string };
@@ -37,4 +37,6 @@ export const fetchApiTokenThunk = (
 };
 
 export const profileApiTokenSelector = (state: RootState) =>
-  state.auth.apiTokens[process.env.REACT_APP_PROFILE_AUDIENCE as string];
+  state.authentication.apiTokens[
+    process.env.REACT_APP_PROFILE_AUDIENCE as string
+  ];

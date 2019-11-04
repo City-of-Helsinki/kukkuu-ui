@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 
+import authenticate from '../auth/authenticate';
 import Layout from '../app/layout/Layout';
 import { formatMessage } from '../../common/translation/utils';
 import styles from './home.module.scss';
@@ -14,6 +15,9 @@ const Home: FunctionComponent = () => {
             <h1>{formatMessage('homePage.hero.heading')}</h1>
             <p className={styles.description}>
               {formatMessage('homePage.hero.descriptionText')}
+              <span onClick={authenticate} role="button">
+                Login using tunnistamo
+              </span>
             </p>
             <HomePreliminaryForm />
           </div>

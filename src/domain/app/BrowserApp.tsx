@@ -22,6 +22,13 @@ if (process.env.NODE_ENV !== 'production') {
 // Export for testing purpose
 export const appRoutes = (
   <Switch>
+    <Route
+      path="/silent_renew"
+      render={() => {
+        userManager.signinSilentCallback();
+        return null;
+      }}
+    />
     <Route exact path="/callback" component={OidcCallback} />
     <Redirect exact path="/" to="/fi/home" />
     <Route path={`/${localeParam}/*`} component={App} />
