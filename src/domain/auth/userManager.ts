@@ -2,7 +2,7 @@ import { createUserManager } from 'redux-oidc';
 import { UserManagerSettings } from 'oidc-client';
 
 import { store } from '../app/state/AppStore';
-import { fetchApiTokenThunk } from './redux';
+import { fetchApiTokenThunk } from './state/ApiReducer';
 import getAuthenticatedUser from './getAuthenticatedUser';
 
 const location = `${window.location.protocol}//${window.location.hostname}${

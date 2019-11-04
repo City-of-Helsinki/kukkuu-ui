@@ -4,21 +4,19 @@ import { AppThunk } from '../../../domain/app/state/AppStore';
 import { RootState } from '../../../domain/app/state/AppReducers';
 import fetchApiToken from '../fetchApiToken';
 
-interface AuthState {
+interface ApiAuthenticationState {
   apiTokens: { [key: string]: string };
-  error: string | null;
-  loading: boolean;
+  loadingApiToken: boolean;
 }
 
-const initialState: AuthState = {
+const initialState: ApiAuthenticationState = {
   apiTokens: {},
-  error: null,
-  loading: false,
+  loadingApiToken: false,
 };
 
 const authSlice = createSlice({
   initialState: initialState,
-  name: 'auth',
+  name: 'ApiAuthentication',
   reducers: {
     receiveApiToken: (state, action) => {
       state.apiTokens = action.payload;
@@ -37,6 +35,6 @@ export const fetchApiTokenThunk = (
 };
 
 export const profileApiTokenSelector = (state: RootState) =>
-  state.authentication.apiTokens[
+  state.authentication.apiAuthentication.apiTokens[
     process.env.REACT_APP_PROFILE_AUDIENCE as string
   ];

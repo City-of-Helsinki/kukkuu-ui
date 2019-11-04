@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux-starter-kit';
 import { reducer as oidcReducer } from 'redux-oidc';
 
-import apiReducer from '../../auth/state/ApiReducer';
+import ApiReducer from '../../auth/state/ApiReducer';
 import registrationReducer from '../../registration/state/RegistrationReducers';
 
-const authenticationReducer = combineReducers(oidcReducer, ApiReducer);
+const authenticationReducer = combineReducers({
+  apiAuthentication: ApiReducer,
+  oidcReducer,
+});
 
 const rootReducer = combineReducers({
-  authentication: authReducer,
-  oidc: oidcReducer,
+  authentication: authenticationReducer,
   registration: registrationReducer,
 });
 

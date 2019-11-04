@@ -1,7 +1,6 @@
 import {
   Action,
   configureStore,
-  ConfigureStoreOptions,
   getDefaultMiddleware,
 } from 'redux-starter-kit';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -10,29 +9,12 @@ import storage from 'redux-persist/lib/storage';
 import { loadUser, USER_FOUND } from 'redux-oidc';
 
 import userManager from '../../auth/userManager';
-import { fetchApiTokenThunk } from '../../auth/redux';
+import { fetchApiTokenThunk } from '../../auth/state/ApiReducer';
 import rootReducer, { RootState } from './AppReducers';
 
 const isProd = process.env.NODE_ENV === 'production';
 
 export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
-
-export function configureAppStore(options: Partial<ConfigureStoreOptions>) {
-  const store = configureStore({
-    reducer: rootReducer,
-    ...options,
-  });
-
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  if (!isProd && (module as any).hot) {
-    (module as any).hot.accept('./rootReducer', () => {
-      store.replaceReducer(rootReducer);
-    });
-  }
-  /* eslint-enable @typescript-eslint/no-explicit-any */
-
-  return store;
-}
 
 const persistConfig = {
   key: 'root',
@@ -42,7 +24,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureAppStore({
+const store = configureStore({
   devTools: !isProd,
   middleware: getDefaultMiddleware({
     serializableCheck: {
