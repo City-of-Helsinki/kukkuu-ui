@@ -1,10 +1,17 @@
-import { configureStore, getDefaultMiddleware, Store } from 'redux-starter-kit';
+import { Action,
+  configureStore,
+  ConfigureStoreOptions,
+  getDefaultMiddleware
+} from 'redux-starter-kit';
 import { persistStore, persistReducer } from 'redux-persist';
+import { ThunkAction } from 'redux-thunk';
 import storage from 'redux-persist/lib/storage';
 import { loadUser, USER_FOUND } from 'redux-oidc';
 
 import userManager from '../../auth/userManager';
-import rootReducer from './AppReducers';
+import rootReducer, { RootState } from './AppReducers';
+
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
 
 const persistConfig = {
   key: 'root',

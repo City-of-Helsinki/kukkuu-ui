@@ -73,9 +73,16 @@ Follow the instructions for setting up tunnistamo locally. Before running `docke
 - SOCIAL_AUTH_GITHUB_KEY: **Client ID** from the GitHub OAuth app
 - SOCIAL_AUTH_GITHUB_SECRET: **Client Secret** from the GitHub OAuth app
 
-After you've got tunnistamo running locally, login to tunnistamo admin and add the following Redirect URI to the [*Profiles* client](http://tunnistamo-backend:8000/admin/oidc_provider/client/1/change/#id__redirect_uris):
+After you've got tunnistamo running locally, run these commands inside the tunnistamo docker container to add Kukkuu UI and Kukkuu as clients:
 
-    http://localhost:3000/callback
+(ssh to the container with `sudo docker exec -it <container id> /bin/bash)`
+
+```
+./manage.py add_oidc_client -n kukkuu-ui -t "id_token token" -u http://localhost:3000/callback,http://localhost:3000/silent_renew -i https://api.hel.fi/auth/kukkuu-ui -m github -s dev
+./manage.py add_oidc_client -n kukkuu-api -t "code" -u http://localhost:8001/return -i https://api.hel.fi/auth/kukkuu -m github -s dev -c
+./manage.py add_oidc_api -n kukkuu -d https://api.hel.fi/auth -s email -c https://api.hel.fi/auth/kukkuu
+./manage.py add_oidc_api_scope -an kukkuu -c https://api.hel.fi/auth/kukkuu-ui -n "Kulttuurin kummilapset" -d"Lorem ipsum"
+```
 
 ### Install kukkuu locally
 Clone the repository (https://github.com/City-of-Helsinki/kukkuu). Follow the instructions for running kukkuu with docker. Before running `docker-compose up` set the following settings in kukkuu roots `docker-compose up`:
