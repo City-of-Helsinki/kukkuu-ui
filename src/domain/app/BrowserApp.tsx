@@ -10,9 +10,9 @@ import App from './App';
 import graphqlClient from '../graphql/client';
 import enableOidcLogging from '../auth/enableOidcLogging';
 import OidcCallback from '../auth/OidcCallback';
-import { SUPPORT_LANGUAGES } from '../../common/translation/constants';
+import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import userManager from '../auth/userManager';
-import submitChild from '../registration/mutations/submitChild';
+import PageLayout from './layout/Layout';
 import { persistor, store } from './state/AppStore';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 
@@ -22,35 +22,19 @@ if (process.env.NODE_ENV !== 'production') {
   enableOidcLogging();
 }
 
-const variables = {
-  birthdate: '2019-10-11',
-  email: 'e@example.com',
-  firstName: 'a child',
-  guardianFirstName: 'd',
-  guardianLastName: 'c',
-  lastName: 'b',
-};
-
-const z = graphqlClient;
-
-z.mutate({
-  mutation: submitChild,
-  variables: variables,
-})
-  .then(result => console.log(result))
-  .catch(err => console.error(err));
-
 // Export for testing purpose
 export const appRoutes = (
-  <Switch>
-    <Route exact path="/callback" component={OidcCallback} />
-    <Redirect exact path="/" to="/fi/home" />
-    <Route path={`/${localeParam}/*`} component={App} />
-    <Route exact path={`/${localeParam}/callback`} component={OidcCallback} />
-    <Route
-      render={props => <Redirect to={`/fi${props.location.pathname}`} />}
-    />
-  </Switch>
+  <PageLayout>
+    <Switch>
+      <Route exact path="/callback" component={OidcCallback} />
+      <Redirect exact path="/" to="/fi/home" />
+      <Route path={`/${localeParam}/*`} component={App} />
+      <Route exact path={`/${localeParam}/callback`} component={OidcCallback} />
+      <Route
+        render={props => <Redirect to={`/fi${props.location.pathname}`} />}
+      />
+    </Switch>
+  </PageLayout>
 );
 const BrowserApp: FunctionComponent = () => {
   return (

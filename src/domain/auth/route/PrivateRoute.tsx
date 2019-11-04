@@ -13,7 +13,7 @@ export type PrivateRouteProps = RouteProps & AuthProps;
 
 const PrivateRoute: FunctionComponent<PrivateRouteProps> = ({
   isAuthenticated,
-  component,
+  children,
   ...rest
 }) => {
   const currentLanguage = getCurrentLanguage();
@@ -23,7 +23,7 @@ const PrivateRoute: FunctionComponent<PrivateRouteProps> = ({
       {...rest}
       render={({ location }) =>
         isAuthenticated ? (
-          component
+          children
         ) : (
           <Redirect
             to={{

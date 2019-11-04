@@ -23,7 +23,7 @@
         text-align: left;
 
         input {
-            min-height: $inputHeight;  
+            height: $inputHeight;  
         }  
     }
 }
@@ -40,17 +40,5 @@
         label {
             text-align: left;
         }  
-    }
-}
-
-.inputError {
-    input {
-        border:1px solid $red;
-    }
-    
-    small {
-        text-align: left;
-        color: $red;
-        margin-top: $sm-margin;
     }
 }

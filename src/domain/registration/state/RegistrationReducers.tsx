@@ -5,8 +5,19 @@ import { REGISTRATION_ACTIONS } from '../constants/RegistrationActionConstants';
 
 export const defaultRegistrationData: RegistrationData = {
   formValues: {
-    childBirthday: '',
-    childHomeCity: '',
+    child: {
+      birthday: '',
+      firstName: '',
+      homeCity: '',
+      lastName: '',
+    },
+    guardian: {
+      email: '',
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      relationship: '',
+    },
     verifyInformation: false,
   },
 };

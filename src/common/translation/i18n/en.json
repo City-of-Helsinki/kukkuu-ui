@@ -10,7 +10,7 @@
       "buttonText": "Ilmoittaudu mukaan"
     },
     "preliminaryForm": {
-      "childBirthDay": {
+      "childBirthday": {
         "input": {
           "label": "Child's birthday",
           "day": {
@@ -37,6 +37,73 @@
           "required": {
             "label": "This checkbox has to be ticked to continue"
           }
+        }
+      }
+    }
+  },
+  "registration": {
+    "form": {
+      "child": {
+        "homeCity": {
+          "input": {
+            "label": "Child home city",
+            "placeholder": "Please put child home city"
+          }
+        },
+        "birthday": {
+          "input": {
+            "label": "Child birthday",
+            "placeholder": "Please put child birthday"
+          }
+        },
+        "firstName": {
+          "input": {
+            "label": "Child first name",
+            "placeholder": "Please put child first name"
+          }
+        },
+        "lastName": {
+          "input": {
+            "label": "Child last name",
+            "placeholder": "Please put child last name"
+          }
+        }
+      },
+      "guardian": {
+        "email": {
+          "input": {
+            "label": "Guardian email",
+            "placeholder": "Please put guardian email"
+          }
+        },
+        "phoneNumber": {
+          "input": {
+            "label": "Guardian phone number",
+            "placeholder": "Please put guardian phone number"
+          }
+        },
+        "firstName": {
+          "input": {
+            "label": "Guardian first name",
+            "placeholder": "Please put guardian first name"
+          }
+        },
+        "lastName": {
+          "input": {
+            "label": "Guardian last name",
+            "placeholder": "Please put guardian last name"
+          }
+        },
+        "relationship": {
+          "input": {
+            "label": "Guardian relation with child",
+            "placeholder": "Please put guardian relation"
+          }
+        }
+      },
+      "verifyInformation": {
+        "input": {
+          "label": "Agree to continue"
         }
       }
     }

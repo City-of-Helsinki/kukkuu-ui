@@ -1,38 +1,41 @@
-import React from 'react';
-import { Field } from 'formik';
+import React, { FunctionComponent } from 'react';
+import { Field, FieldArrayRenderProps } from 'formik';
 
 import InputField from '../../../../common/components/form/fields/input/InputField';
 import { formatMessage } from '../../../../common/translation/utils';
 import styles from './birthdayFormField.module.scss';
+import { validateRequire } from '../../../../common/components/form/validationUtils';
 
-export default function BirthdayFormField({
-  error,
-}: {
-  error: string | undefined;
-}) {
+const BirthdayFormField: FunctionComponent<FieldArrayRenderProps> = ({
+  form: { errors },
+}) => {
+  const error = errors['childBirthDay'];
+
   return (
     <div className={styles.birthdayField}>
       <label>
-        {formatMessage('homePage.preliminaryForm.childBirthDay.input.label')}
+        {formatMessage('homePage.preliminaryForm.childBirthday.input.label')}
       </label>
       <div className={styles.inputWrapper}>
         <Field
           type="number"
-          name="childBirthdayDay"
+          name="child.birthday.day"
           component={InputField}
           placeholder={formatMessage(
-            'homePage.preliminaryForm.childBirthDay.input.day.placeholder'
+            'homePage.preliminaryForm.childBirthday.input.day.placeholder'
           )}
+          validate={(value: number) => validateRequire(value)}
           min={1}
           max={31}
         />
         <div className={styles.dot}>.</div>
         <Field
           type="number"
-          name="childBirthdayMonth"
+          name="child.birthday.month"
           component={InputField}
+          validate={(value: number) => validateRequire(value)}
           placeholder={formatMessage(
-            'homePage.preliminaryForm.childBirthDay.input.month.placeholder'
+            'homePage.preliminaryForm.childBirthday.input.month.placeholder'
           )}
           min={1}
           max={12}
@@ -40,15 +43,18 @@ export default function BirthdayFormField({
         <div className={styles.dot}>.</div>
         <Field
           type="number"
-          name="childBirthdayYear"
+          name="child.birthday.year"
           component={InputField}
+          validate={(value: number) => validateRequire(value)}
           placeholder={formatMessage(
-            'homePage.preliminaryForm.childBirthDay.input.year.placeholder'
+            'homePage.preliminaryForm.childBirthday.input.year.placeholder'
           )}
           min={2019}
         />
       </div>
-      <small className={styles.error}>{error}</small>
+      <div className={styles.error}>{error}</div>
     </div>
   );
-}
+};
+
+export default BirthdayFormField;

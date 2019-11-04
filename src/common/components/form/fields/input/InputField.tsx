@@ -1,5 +1,6 @@
 import React from 'react';
-import { FieldProps } from 'formik';
+import { FieldProps, getIn } from 'formik';
+import classnames from 'classnames';
 
 import Input from '../../../input/Input';
 import styles from './inputField.module.scss';
@@ -12,14 +13,21 @@ interface InputField extends FieldProps {
 
 const InputField: React.ComponentType<InputField> = ({
   field,
-  form: { touched, errors },
+  form: { errors, touched },
   ...rest
 }) => {
-  const validationError = touched[field.name] && errors[field.name];
+  const error = getIn(errors, field.name);
+  const touch = getIn(touched, field.name);
+  const inputError = touch && error ? error : null;
 
   return (
-    <div className={styles.formInputField}>
-      <Input {...field} {...rest} validationError={validationError} />
+    <div
+      className={classnames(styles.inputField, {
+        [styles.inputError]: !!inputError,
+      })}
+    >
+      <Input {...field} {...rest} />
+      <div className={styles.inputErrorMessage}>{inputError}</div>
     </div>
   );
 };

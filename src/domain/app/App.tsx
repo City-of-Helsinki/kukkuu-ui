@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Home from '../home/Home';
 import NotFound from '../notFound/NotFound';
 import { changeLanguage } from '../../common/translation/utils';
-import { SUPPORT_LANGUAGES } from '../../common/translation/constants';
+import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import PrivateRoute from '../auth/route/PrivateRoute';
 import RegistrationForm from '../registration/form/RegistrationForm';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
@@ -28,11 +28,9 @@ const App: FunctionComponent<
       <Switch>
         <Redirect exact path={`/${locale}/`} to={`/${locale}/home`} />
         <Route exact path={`/${locale}/home`} component={Home} />
-        <PrivateRoute
-          component={RegistrationForm}
-          exact
-          path={`/${locale}/registration/form`}
-        />
+        <PrivateRoute exact path={`/${locale}/registration/form`}>
+          <RegistrationForm />
+        </PrivateRoute>
         <Route component={NotFound} />
       </Switch>
     </LoadingSpinner>

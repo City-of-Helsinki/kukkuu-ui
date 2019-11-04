@@ -1,7 +1,7 @@
 import { FormatFunction } from 'i18next';
 
 import i18n from './i18n/i18nInit';
-import { SUPPORT_LANGUAGES } from './constants';
+import { SUPPORT_LANGUAGES } from './TranslationConstants';
 
 /**
  * formatMessage()

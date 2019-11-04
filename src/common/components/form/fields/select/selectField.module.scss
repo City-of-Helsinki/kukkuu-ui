@@ -1,0 +1,16 @@
+@import 'fonts';
+@import 'variables';
+
+.selectField {
+    display: flex;
+    flex-direction: column;
+    label {
+        font-size: $font-size-sm;
+        margin-bottom: $baseMargin * 0.25;
+        font-weight: $font-weight-bold;
+    }
+    
+    select {
+        height: $inputHeight;
+    }
+}
