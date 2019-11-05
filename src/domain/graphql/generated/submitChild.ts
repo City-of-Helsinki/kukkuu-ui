@@ -3,34 +3,34 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: sC
+// GraphQL mutation operation: submitChild
 // ====================================================
 
-export interface sC_submitChild_child {
+export interface submitChild_submitChild_child {
   __typename: "ChildType";
   birthdate: any;
   firstName: string;
   lastName: string;
 }
 
-export interface sC_submitChild_guardian {
+export interface submitChild_submitChild_guardian {
   __typename: "GuardianType";
   firstName: string;
   lastName: string;
   email: string;
 }
 
-export interface sC_submitChild {
+export interface submitChild_submitChild {
   __typename: "SubmitChildMutationPayload";
-  child: sC_submitChild_child | null;
-  guardian: sC_submitChild_guardian | null;
+  child: submitChild_submitChild_child | null;
+  guardian: submitChild_submitChild_guardian | null;
 }
 
-export interface sC {
-  submitChild: sC_submitChild | null;
+export interface submitChild {
+  submitChild: submitChild_submitChild | null;
 }
 
-export interface sCVariables {
+export interface submitChildVariables {
   birthdate: any;
   firstName?: string | null;
   lastName?: string | null;

@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 const submitChild = gql`
-  mutation sC(
+  mutation submitChild(
     $birthdate: Date!
     $firstName: String
     $lastName: String
