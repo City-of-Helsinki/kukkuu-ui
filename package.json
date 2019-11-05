@@ -40,7 +40,7 @@
   "scripts": {
     "build": "react-scripts build",
     "ci": "CI=true yarn test --verbose --runInBand --coverage",
-    "graphql-types": "apollo client:codegen --target=typescript --outputFlat src/domain/graphql/generated",
+    "graphql-types": "apollo client:codegen --target=typescript --outputFlat src/domain/api/generatedTypes",
     "lint": "eslint --ext js,ts,tsx src",
     "start": "react-scripts start",
     "update-translations": "ts-node  -P ./scripts/tsconfig.json -r dotenv/config scripts/update-translations.ts",
