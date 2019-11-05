@@ -4,6 +4,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
     "@sentry/browser": "^5.7.1",
     "@types/classnames": "^2.2.9",
     "@types/enzyme": "^3.10.3",
@@ -25,7 +26,6 @@
     "node-sass": "^4.12.0",
     "oidc-client": "^1.9.1",
     "react": "^16.9.0",
-    "react-apollo": "^3.1.3",
     "react-dom": "^16.9.0",
     "react-i18next": "^11.0.1",
     "react-redux": "^7.1.1",
@@ -40,7 +40,7 @@
   "scripts": {
     "build": "react-scripts build",
     "ci": "CI=true yarn test --verbose --runInBand --coverage",
-    "graphql-types": "apollo client:codegen --target=typescript --outputFlat src/domain/api/generatedTypes --globalTypesFile=types/globalTypes.ts",
+    "graphql-types": "apollo client:codegen --target=typescript --outputFlat src/domain/api/generatedTypes",
     "lint": "eslint --ext js,ts,tsx src",
     "start": "react-scripts start",
     "update-translations": "ts-node  -P ./scripts/tsconfig.json -r dotenv/config scripts/update-translations.ts",
