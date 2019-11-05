@@ -4,7 +4,7 @@ import client from '../client';
 
 jest.mock('../../auth/getAuthenticatedUser');
 
-describe('graphql client', () => {
+describe.only('graphql client', () => {
   beforeEach(() => {
     global.fetch.resetMocks();
   });
@@ -13,7 +13,7 @@ describe('graphql client', () => {
     global.fetch.mockResponse(
       JSON.stringify({
         data: {
-          profile: null,
+          dummy: null,
         },
       })
     );
@@ -21,8 +21,8 @@ describe('graphql client', () => {
     try {
       await client.query({
         query: gql`
-          query FooQuery {
-            profile
+          query DummyQuery {
+            dummy
           }
         `,
       });

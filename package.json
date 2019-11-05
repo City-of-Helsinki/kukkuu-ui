@@ -40,6 +40,7 @@
   "scripts": {
     "build": "react-scripts build",
     "ci": "CI=true yarn test --verbose --runInBand --coverage",
+    "graphql-types": "apollo client:codegen --target=typescript --globalTypesFile='src/domain/app/types/globalTypes.ts'",
     "lint": "eslint --ext js,ts,tsx src",
     "start": "react-scripts start",
     "update-translations": "ts-node  -P ./scripts/tsconfig.json -r dotenv/config scripts/update-translations.ts",
@@ -63,6 +64,7 @@
   },
   "devDependencies": {
     "@types/node-fetch": "^2.5.2",
+    "apollo": "^2.21.0",
     "codecov": "^3.6.1",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-prettier": "^3.1.1",

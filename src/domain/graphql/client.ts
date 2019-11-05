@@ -8,7 +8,7 @@ export default new ApolloClient({
       const user = await getAuthenticatedUser();
       operation.setContext({
         headers: {
-          Authorization: `Bearer ${user.id_token}`,
+          Authorization: `Bearer ${user.access_token}`,
         },
       });
     } catch (e) {
