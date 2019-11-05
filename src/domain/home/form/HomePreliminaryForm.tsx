@@ -16,7 +16,6 @@ import BirthdayFormField from './partial/BirthdayFormField';
 import { setFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { defaultRegistrationData } from '../../registration/state/RegistrationReducers';
-import { StoreState } from '../../app/types/stateTypes';
 
 interface HomeFormValues {
   child: {
@@ -33,7 +32,6 @@ interface HomeFormValues {
 
 interface Props {
   setFormValues: (values: RegistrationFormValues) => void;
-  submittedFormValues: RegistrationFormValues;
 }
 
 class HomePreliminaryForm extends Component<Props> {
@@ -165,12 +163,7 @@ const actions = {
 
 export const UnconnectedHomePreliminaryForm = HomePreliminaryForm;
 
-const mapStateToProps = (state: StoreState) => ({
-  //isAuthenticated: isAuthenticatedSelector(state),
-  submittedFormValues: state.registration.formValues,
-});
-
 export default connect(
-  mapStateToProps,
+  null,
   actions
 )(HomePreliminaryForm);
