@@ -44,6 +44,10 @@ Fetches translation data from our Google Spreadsheet and updates translation fil
 
 You still need to update jest snapshots and add the translation files to the git repository manually. 
 
+### `yarn graphql-types`
+
+Generate static types for GraphQL queries by using the schema from the backend server.
+
 ## Docker
 
 `docker-compose up` to start the dockerized dev-environment. Not for production!!!  
