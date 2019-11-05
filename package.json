@@ -79,7 +79,7 @@
       "src/**/*.{ts,tsx}",
       "!<rootDir>/node_modules/",
       "!src/index.tsx",
-      "!src/domain/graphql/generated",
+      "!src/domain/api/generatedTypes",
       "!src/serviceWorker.ts",
       "!src/setupTests.ts"
     ]
