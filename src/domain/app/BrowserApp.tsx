@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { OidcProvider } from 'redux-oidc';
 
 import App from './App';
-import graphqlClient from '../graphql/client';
+import graphqlClient from '../api/client';
 import enableOidcLogging from '../auth/enableOidcLogging';
 import OidcCallback from '../auth/OidcCallback';
 import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
