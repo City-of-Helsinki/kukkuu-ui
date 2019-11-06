@@ -39,22 +39,41 @@ interface Props {
 }
 
 class HomePreliminaryForm extends Component<Props> {
-  day = newMoment(
-    this.props.submittedFormValues.child.birthday,
-    DEFAULT_DATE_FORMAT
-  );
-
-  submittedFormValues: HomeFormValues = {
-    child: {
-      birthday: {
-        day: this.day.date(),
-        month: this.day.month() + 1,
-        year: this.day.year(),
+  initialFormValues = () => {
+    // submittedFormValues: HomeFormValues = {
+    //   verifyInformation: false,
+    // };
+    let values: HomeFormValues = {
+      child: {
+        birthday: {
+          day: '',
+          month: '',
+          year: '',
+        },
+        homeCity: '',
       },
-      homeCity: this.props.submittedFormValues.child.homeCity,
-    },
-    childBirthday: this.props.submittedFormValues.child.birthday || '',
-    verifyInformation: false,
+      verifyInformation: false,
+    };
+    if (this.props.submittedFormValues) {
+      const day = newMoment(
+        this.props.submittedFormValues.child.birthday,
+        DEFAULT_DATE_FORMAT
+      );
+      if (day.isValid()) {
+        values = {
+          child: {
+            birthday: {
+              day: day.date(),
+              month: day.month() + 1,
+              year: day.year(),
+            },
+            homeCity: this.props.submittedFormValues.child.homeCity,
+          },
+          verifyInformation: this.props.submittedFormValues.verifyInformation,
+        };
+      }
+    }
+    return values;
   };
 
   handleSubmit = (values: HomeFormValues) => {
@@ -93,17 +112,7 @@ class HomePreliminaryForm extends Component<Props> {
   };
 
   render() {
-    const initialValues = this.submittedFormValues || {
-      child: {
-        birthday: {
-          day: '',
-          month: '',
-          year: '',
-        },
-        homeCity: '',
-      },
-      verifyInformation: false,
-    };
+    const initialValues: HomeFormValues = this.initialFormValues();
     return (
       <div className={styles.homeForm}>
         <Formik
