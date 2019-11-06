@@ -16,6 +16,9 @@ import BirthdayFormField from './partial/BirthdayFormField';
 import { setFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { defaultRegistrationData } from '../../registration/state/RegistrationReducers';
+import { StoreState } from '../../app/types/stateTypes';
+import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
+import { newMoment } from '../../../common/time/utils';
 
 interface HomeFormValues {
   child: {
@@ -32,9 +35,28 @@ interface HomeFormValues {
 
 interface Props {
   setFormValues: (values: RegistrationFormValues) => void;
+  submittedFormValues: RegistrationFormValues;
 }
 
 class HomePreliminaryForm extends Component<Props> {
+  day = newMoment(
+    this.props.submittedFormValues.child.birthday,
+    DEFAULT_DATE_FORMAT
+  );
+
+  submittedFormValues: HomeFormValues = {
+    child: {
+      birthday: {
+        day: this.day.date(),
+        month: this.day.month() + 1,
+        year: this.day.year(),
+      },
+      homeCity: this.props.submittedFormValues.child.homeCity,
+    },
+    childBirthday: this.props.submittedFormValues.child.birthday || '',
+    verifyInformation: false,
+  };
+
   handleSubmit = (values: HomeFormValues) => {
     const { setFormValues } = this.props;
 
@@ -71,20 +93,21 @@ class HomePreliminaryForm extends Component<Props> {
   };
 
   render() {
+    const initialValues = this.submittedFormValues || {
+      child: {
+        birthday: {
+          day: '',
+          month: '',
+          year: '',
+        },
+        homeCity: '',
+      },
+      verifyInformation: false,
+    };
     return (
       <div className={styles.homeForm}>
         <Formik
-          initialValues={{
-            child: {
-              birthday: {
-                day: '',
-                month: '',
-                year: '',
-              },
-              homeCity: '',
-            },
-            verifyInformation: false,
-          }}
+          initialValues={initialValues}
           onSubmit={this.handleSubmit}
           validate={this.validate}
         >
@@ -161,9 +184,14 @@ const actions = {
   setFormValues,
 };
 
+const mapStateToProps = (state: StoreState) => ({
+  //isAuthenticated: isAuthenticatedSelector(state),
+  submittedFormValues: state.registration.formValues,
+});
+
 export const UnconnectedHomePreliminaryForm = HomePreliminaryForm;
 
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(HomePreliminaryForm);
