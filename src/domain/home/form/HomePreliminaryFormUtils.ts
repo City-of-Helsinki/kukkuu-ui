@@ -6,14 +6,14 @@ import { newMoment } from '../../../common/time/utils';
 import { HomeFormValues } from './types/HomeFormTypes';
 
 /**
- * Convert FormValues fetched from state to initialValues used by formi
+ * Convert FormValues fetched from state to initialValues used by formik
  * @param {RegistrationFormValues} stateFormValues Values from state.
  * @returns {HomeFormValues} initialValues used in form.
  */
 export const convertFormValues = (
   stateFormValues: RegistrationFormValues
 ): HomeFormValues => {
-  if (get(stateFormValues, 'child.birthDay')) {
+  if (get(stateFormValues, 'child.birthday')) {
     const birthdayMoment = newMoment(
       stateFormValues.child.birthday,
       DEFAULT_DATE_FORMAT
