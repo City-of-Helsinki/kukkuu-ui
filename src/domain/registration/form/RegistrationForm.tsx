@@ -9,7 +9,7 @@ import InputField from '../../../common/components/form/fields/input/InputField'
 import SelectField from '../../../common/components/form/fields/select/SelectField';
 import { setFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
-import { StoreState } from '../../app/types/stateTypes';
+import { StoreState } from '../../app/types/AppTypes';
 import { registrationFormDataSelector } from '../state/RegistrationSelectors';
 
 interface Props {

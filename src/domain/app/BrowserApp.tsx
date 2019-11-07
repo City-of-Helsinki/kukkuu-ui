@@ -26,10 +26,16 @@ if (process.env.NODE_ENV !== 'production') {
 export const appRoutes = (
   <PageLayout>
     <Switch>
+      <Route
+        path="/silent_renew"
+        render={() => {
+          userManager.signinSilentCallback();
+          return null;
+        }}
+      />
       <Route exact path="/callback" component={OidcCallback} />
       <Redirect exact path="/" to="/fi/home" />
       <Route path={`/${localeParam}/*`} component={App} />
-      <Route exact path={`/${localeParam}/callback`} component={OidcCallback} />
       <Route
         render={props => <Redirect to={`/fi${props.location.pathname}`} />}
       />

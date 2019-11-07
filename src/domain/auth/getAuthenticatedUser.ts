@@ -9,6 +9,7 @@ export default function(): Promise<User> {
       resolve(user);
     } else {
       reject();
+      // TODO: add error-handler
     }
   });
 }

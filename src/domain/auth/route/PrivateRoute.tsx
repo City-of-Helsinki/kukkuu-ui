@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { isAuthenticatedSelector } from '../state/authSelectors';
-import { StoreState } from '../../app/types/stateTypes';
+import { isAuthenticatedSelector } from '../state/AuthenticationSelectors';
+import { StoreState } from '../../app/types/AppTypes';
 import { getCurrentLanguage } from '../../../common/translation/utils';
 
 interface AuthProps {
