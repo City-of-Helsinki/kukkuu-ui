@@ -1,4 +1,4 @@
-export interface HomeFormValues {
+export interface HomeFormTypes {
   child: {
     birthday: {
       day: string | number;

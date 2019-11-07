@@ -3,35 +3,42 @@ import { get } from 'lodash';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import { newMoment } from '../../../common/time/utils';
-import { HomeFormValues } from './types/FormTypes';
+import { HomeFormTypes } from './types/FormTypes';
 
+/**
+ * Convert FormValues fetched from state to initialValues used by formi
+ * @param {RegistrationFormValues} stateFormValues Values from state.
+ * @returns {HomeFormTypes} initialValues used in form.
+ */
 export const convertFormValues = (
   stateFormValues: RegistrationFormValues
-): HomeFormValues => {
+): HomeFormTypes => {
   if (get(stateFormValues, 'child.birthDay')) {
-    const day = newMoment(stateFormValues.child.birthday, DEFAULT_DATE_FORMAT);
+    const birthdayMoment = newMoment(
+      stateFormValues.child.birthday,
+      DEFAULT_DATE_FORMAT
+    );
     return {
       child: {
         birthday: {
-          day: day.date(),
-          month: day.month() + 1,
-          year: day.year(),
+          day: birthdayMoment.date(),
+          month: birthdayMoment.month() + 1,
+          year: birthdayMoment.year(),
         },
         homeCity: stateFormValues.child.homeCity,
       },
       verifyInformation: stateFormValues.verifyInformation,
     };
-  } else {
-    return {
-      child: {
-        birthday: {
-          day: '',
-          month: '',
-          year: '',
-        },
-        homeCity: '',
-      },
-      verifyInformation: false,
-    };
   }
+  return {
+    child: {
+      birthday: {
+        day: '',
+        month: '',
+        year: '',
+      },
+      homeCity: '',
+    },
+    verifyInformation: false,
+  };
 };
