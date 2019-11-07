@@ -16,8 +16,8 @@ import BirthdayFormField from './partial/BirthdayFormField';
 import { setFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { defaultRegistrationData } from '../../registration/state/RegistrationReducers';
-import { StoreState } from '../../app/types/stateTypes';
-import { HomeFormTypes } from './types/FormTypes';
+import { StoreState } from '../../app/types/AppTypes';
+import { HomeFormValues } from './types/HomeFormTypes';
 import { convertFormValues } from './HomePreliminaryFormUtils';
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
 }
 
 class HomePreliminaryForm extends Component<Props> {
-  handleSubmit = (values: HomeFormTypes) => {
+  handleSubmit = (values: HomeFormValues) => {
     const { setFormValues } = this.props;
 
     const defaultFormValues = defaultRegistrationData.formValues;
@@ -42,13 +42,13 @@ class HomePreliminaryForm extends Component<Props> {
     authenticate();
   };
 
-  validate = (values: HomeFormTypes) => {
+  validate = (values: HomeFormValues) => {
     const {
       child: {
         birthday: { day, month, year },
       },
     } = values;
-    const errors: FormikErrors<HomeFormTypes> = {};
+    const errors: FormikErrors<HomeFormValues> = {};
 
     if (day && month && year) {
       errors.childBirthday = validateBirthday(`${day}.${month}.${year}`);
