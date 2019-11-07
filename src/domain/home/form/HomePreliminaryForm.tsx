@@ -17,65 +17,15 @@ import { setFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { defaultRegistrationData } from '../../registration/state/RegistrationReducers';
 import { StoreState } from '../../app/types/stateTypes';
-import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
-import { newMoment } from '../../../common/time/utils';
-
-interface HomeFormValues {
-  child: {
-    birthday: {
-      day: string | number;
-      month: string | number;
-      year: string | number;
-    };
-    homeCity: string;
-  };
-  verifyInformation: boolean;
-  childBirthday?: string;
-}
+import { HomeFormValues } from './types/FormTypes';
+import { convertFormValues } from './HomePreliminaryFormUtils';
 
 interface Props {
   setFormValues: (values: RegistrationFormValues) => void;
-  submittedFormValues: RegistrationFormValues;
+  stateFormValues: RegistrationFormValues;
 }
 
 class HomePreliminaryForm extends Component<Props> {
-  initialFormValues = () => {
-    // submittedFormValues: HomeFormValues = {
-    //   verifyInformation: false,
-    // };
-    let values: HomeFormValues = {
-      child: {
-        birthday: {
-          day: '',
-          month: '',
-          year: '',
-        },
-        homeCity: '',
-      },
-      verifyInformation: false,
-    };
-    if (this.props.submittedFormValues) {
-      const day = newMoment(
-        this.props.submittedFormValues.child.birthday,
-        DEFAULT_DATE_FORMAT
-      );
-      if (day.isValid()) {
-        values = {
-          child: {
-            birthday: {
-              day: day.date(),
-              month: day.month() + 1,
-              year: day.year(),
-            },
-            homeCity: this.props.submittedFormValues.child.homeCity,
-          },
-          verifyInformation: this.props.submittedFormValues.verifyInformation,
-        };
-      }
-    }
-    return values;
-  };
-
   handleSubmit = (values: HomeFormValues) => {
     const { setFormValues } = this.props;
 
@@ -112,11 +62,11 @@ class HomePreliminaryForm extends Component<Props> {
   };
 
   render() {
-    const initialValues: HomeFormValues = this.initialFormValues();
+    const { stateFormValues } = this.props;
     return (
       <div className={styles.homeForm}>
         <Formik
-          initialValues={initialValues}
+          initialValues={convertFormValues(stateFormValues)}
           onSubmit={this.handleSubmit}
           validate={this.validate}
         >
@@ -194,8 +144,7 @@ const actions = {
 };
 
 const mapStateToProps = (state: StoreState) => ({
-  //isAuthenticated: isAuthenticatedSelector(state),
-  submittedFormValues: state.registration.formValues,
+  stateFormValues: state.registration.formValues,
 });
 
 export const UnconnectedHomePreliminaryForm = HomePreliminaryForm;
