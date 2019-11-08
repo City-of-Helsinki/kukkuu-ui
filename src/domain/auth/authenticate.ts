@@ -10,8 +10,10 @@ import {
 import { TUNNISTAMO_API_TOKEN_ENDPOINT } from '../api/constants/ApiConstants';
 import { BackendTokenResponse } from './types/BackendAuthenticationTypes';
 
-export default function(): void {
-  userManager.signinRedirect();
+export default function(path: string): void {
+  let data: object = {};
+  if (path) data = { data: { path: path } };
+  userManager.signinRedirect(data);
 }
 
 export const authenticateWithBackend = (

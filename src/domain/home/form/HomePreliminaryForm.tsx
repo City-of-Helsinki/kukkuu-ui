@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Formik, Field, FieldArray, FormikErrors } from 'formik';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
 
 import authenticate from '../../auth/authenticate';
 import styles from './homePreliminaryForm.module.scss';
@@ -17,17 +19,19 @@ import { setFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { defaultRegistrationData } from '../../registration/state/RegistrationReducers';
 import { StoreState } from '../../app/types/AppTypes';
+import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelectors';
 import { HomeFormValues } from './types/HomeFormTypes';
 import { convertFormValues } from './HomePreliminaryFormUtils';
 
 interface Props {
+  isAuthenticated: boolean;
   setFormValues: (values: RegistrationFormValues) => void;
   stateFormValues: RegistrationFormValues;
 }
 
-class HomePreliminaryForm extends Component<Props> {
+class HomePreliminaryForm extends Component<Props & RouteComponentProps> {
   handleSubmit = (values: HomeFormValues) => {
-    const { setFormValues } = this.props;
+    const { history, isAuthenticated, setFormValues } = this.props;
 
     const defaultFormValues = defaultRegistrationData.formValues;
     const payload = Object.assign({}, defaultFormValues, {
@@ -39,7 +43,8 @@ class HomePreliminaryForm extends Component<Props> {
     });
 
     setFormValues(payload);
-    authenticate();
+    if (isAuthenticated) history.push('/registration/form');
+    else authenticate(`/registration/form`);
   };
 
   validate = (values: HomeFormValues) => {
@@ -144,6 +149,7 @@ const actions = {
 };
 
 const mapStateToProps = (state: StoreState) => ({
+  isAuthenticated: isAuthenticatedSelector(state),
   stateFormValues: state.registration.formValues,
 });
 
@@ -152,4 +158,4 @@ export const UnconnectedHomePreliminaryForm = HomePreliminaryForm;
 export default connect(
   mapStateToProps,
   actions
-)(HomePreliminaryForm);
+)(withRouter(HomePreliminaryForm));
