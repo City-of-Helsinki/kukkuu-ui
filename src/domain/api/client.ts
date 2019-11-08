@@ -18,5 +18,5 @@ export default new ApolloClient({
       // TODO: add error-handler
     }
   },
-  uri: process.env.REACT_APP_PROFILE_GRAPHQL,
+  uri: process.env.REACT_APP_API_URI,
 });
