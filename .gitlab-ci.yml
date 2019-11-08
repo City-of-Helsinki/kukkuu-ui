@@ -14,7 +14,7 @@ review:
     DOCKER_IMAGE_NAME: "$CI_PROJECT_NAME-review"
     DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: "https://tunnistamo.test.kuva.hel.ninja"
     DOCKER_BUILD_ARG_REACT_APP_OIDC_REDIRECT_URI: "https://kukkuu-ui.test.kuva.hel.ninja/callback" # FIXME This is a reference to the UI environment itself, is there a gitlab ci variable for this? 
-    DOCKER_BUILD_ARG_REACT_APP_PROFILE_GRAPHQL: "https://kukkuu.test.hel.ninja/graphql"
+    DOCKER_BUILD_ARG_REACT_APP_API_URI: "https://kukkuu.test.hel.ninja/graphql"
   only:
     refs:
       - external_pull_requests
@@ -25,7 +25,7 @@ staging:
     DOCKER_IMAGE_NAME: "$CI_PROJECT_NAME-staging"
     DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: "https://tunnistamo.test.kuva.hel.ninja"
     DOCKER_BUILD_ARG_REACT_APP_OIDC_REDIRECT_URI: "https://kukkuu-ui.test.kuva.hel.ninja/callback" # FIXME (see above)
-    DOCKER_BUILD_ARG_REACT_APP_PROFILE_GRAPHQL: "https://kukkuu.test.hel.ninja/graphql"
+    DOCKER_BUILD_ARG_REACT_APP_API_URI: "https://kukkuu.test.hel.ninja/graphql"
   only:
     refs:
       - develop
@@ -36,7 +36,7 @@ production:
     DOCKER_IMAGE_NAME: "$CI_PROJECT_NAME-production"
     DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: "https://tunnistamo.test.kuva.hel.ninja"
     DOCKER_BUILD_ARG_REACT_APP_OIDC_REDIRECT_URI: "https://kukkuu-ui.test.kuva.hel.ninja/callback" # FIXME (see above)
-    DOCKER_BUILD_ARG_REACT_APP_PROFILE_GRAPHQL: "https://kukkuu.test.hel.ninja/graphql"
+    DOCKER_BUILD_ARG_REACT_APP_API_URI: "https://kukkuu.test.hel.ninja/graphql"
   only:
     refs:
       - master
@@ -44,7 +44,7 @@ production:
 review:
   variables:
     DOCKER_IMAGE_NAME: "$CI_PROJECT_NAME-review"
-    POSTGRES_ENABLED: 0 #What is this for? This is a react project? 
+    POSTGRES_ENABLED: 0
 
 # This will enable staging ci-pipeline
 staging:
