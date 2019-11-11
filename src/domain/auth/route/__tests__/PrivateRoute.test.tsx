@@ -33,7 +33,7 @@ it('Redirect user to home if not authed', () => {
   const expectation = (
     <Redirect
       to={{
-        pathname: '/en/home',
+        pathname: '/home',
         state: { from: 'foo' },
       }}
     />

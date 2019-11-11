@@ -1,0 +1,11 @@
+@import 'variables';
+
+.imgWrapper {
+    height: $imgHeight;
+    width: $imgHeight;
+
+    img {
+        height: inherit;
+        width: inherit;
+    }
+}

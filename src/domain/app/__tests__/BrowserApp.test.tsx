@@ -4,13 +4,15 @@ import { MemoryRouter } from 'react-router';
 import { Provider } from 'react-redux';
 
 import { store } from '../state/AppStore';
-import BrowserApp, { appRoutes } from '../BrowserApp';
+import BrowserApp, { AppRoutes } from '../BrowserApp';
 import App from '../App';
 
 const wrapperCreator = (route: string) =>
   mount(
     <Provider store={store}>
-      <MemoryRouter initialEntries={[route]}>{appRoutes}</MemoryRouter>
+      <MemoryRouter initialEntries={[route]}>
+        <AppRoutes />
+      </MemoryRouter>
     </Provider>
   );
 

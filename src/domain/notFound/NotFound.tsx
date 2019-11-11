@@ -1,11 +1,12 @@
 import React, { FunctionComponent } from 'react';
-
-import { formatMessage } from '../../common/translation/utils';
+import { useTranslation } from 'react-i18next';
 
 const NotFound: FunctionComponent = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="not-found">
-      <p>{formatMessage('notFound.text')}</p>
+      <p>{t('notFound.text')}</p>
     </div>
   );
 };

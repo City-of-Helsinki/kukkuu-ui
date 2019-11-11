@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { isAuthenticatedSelector } from '../state/AuthenticationSelectors';
 import { StoreState } from '../../app/types/AppTypes';
-import { getCurrentLanguage } from '../../../common/translation/utils';
 
 interface AuthProps {
   isAuthenticated: boolean;
@@ -16,8 +15,6 @@ const PrivateRoute: FunctionComponent<PrivateRouteProps> = ({
   children,
   ...rest
 }) => {
-  const currentLanguage = getCurrentLanguage();
-
   return (
     <Route
       {...rest}
@@ -27,7 +24,7 @@ const PrivateRoute: FunctionComponent<PrivateRouteProps> = ({
         ) : (
           <Redirect
             to={{
-              pathname: `/${currentLanguage}/home`,
+              pathname: `/home`,
               state: { from: location },
             }}
           />

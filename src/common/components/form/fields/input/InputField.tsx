@@ -1,6 +1,7 @@
 import React from 'react';
 import { FieldProps, getIn } from 'formik';
 import classnames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 import Input from '../../../input/Input';
 import styles from './inputField.module.scss';
@@ -20,6 +21,8 @@ const InputField: React.ComponentType<InputField> = ({
   const touch = getIn(touched, field.name);
   const inputError = touch && error ? error : null;
 
+  const { t } = useTranslation();
+
   return (
     <div
       className={classnames(styles.inputField, {
@@ -27,7 +30,7 @@ const InputField: React.ComponentType<InputField> = ({
       })}
     >
       <Input {...field} {...rest} />
-      <div className={styles.inputErrorMessage}>{inputError}</div>
+      <div className={styles.inputErrorMessage}>{t(inputError)}</div>
     </div>
   );
 };

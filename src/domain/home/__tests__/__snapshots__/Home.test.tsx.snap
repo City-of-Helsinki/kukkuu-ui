@@ -1,3 +1,902 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders snapshot correctly 1`] = `"<div class=\\"home\\"><div class=\\"hero\\"><div class=\\"heroContainer\\"><h1>Godchildren of Culture 2020</h1><p class=\\"description\\">Helsingin Kaupunginorkesteri kutsuu kummilapsikseen kaikki vuonna 2020 syntyneet Helsinkiläislapset! Lapsi perheineen kutsutaan kahdesti vuodessa nauttimaan KHO:n järjestämästä kulttuurista täysin ilmaiseksi! Liity mukaan!</p><div class=\\"homeForm\\"><form><div class=\\"inputWrapper\\"><div class=\\"birthdayField\\"><label>Child's birthday</label><div class=\\"inputWrapper\\"><div class=\\"inputField\\"><div class=\\"inputWrapper numberInput\\"><div class=\\"inputTypeWrapper\\"><input type=\\"number\\" name=\\"child.birthday.day\\" placeholder=\\"day\\" min=\\"1\\" max=\\"31\\" value=\\"\\"></div></div><div class=\\"inputErrorMessage\\"></div></div><div class=\\"dot\\">.</div><div class=\\"inputField\\"><div class=\\"inputWrapper numberInput\\"><div class=\\"inputTypeWrapper\\"><input type=\\"number\\" name=\\"child.birthday.month\\" placeholder=\\"month\\" min=\\"1\\" max=\\"12\\" value=\\"\\"></div></div><div class=\\"inputErrorMessage\\"></div></div><div class=\\"dot\\">.</div><div class=\\"inputField\\"><div class=\\"inputWrapper numberInput\\"><div class=\\"inputTypeWrapper\\"><input type=\\"number\\" name=\\"child.birthday.year\\" placeholder=\\"year\\" min=\\"2019\\" value=\\"\\"></div></div><div class=\\"inputErrorMessage\\"></div></div></div><div class=\\"error\\"></div></div><div class=\\"inputField\\"><div class=\\"inputWrapper textInput\\"><div class=\\"inputTypeWrapper\\"><label>Child's home town</label><input type=\\"text\\" name=\\"child.homeCity\\" placeholder=\\"Enter hometown city, currently only Helsinki is supported\\" value=\\"\\"></div></div><div class=\\"inputErrorMessage\\"></div></div></div><div class=\\"inputField\\"><div class=\\"inputWrapper checkboxInput\\"><div class=\\"inputTypeWrapper\\"><label>I assure that the information I provide is correct</label><input type=\\"checkbox\\" name=\\"verifyInformation\\" value=\\"false\\"></div></div><div class=\\"inputErrorMessage\\"></div></div><div class=\\"submitButton buttonWrapper\\"><button type=\\"submit\\">Ilmoittaudu mukaan</button></div></form></div></div></div></div>"`;
+exports[`renders snapshot correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
+    }
+  }
+>
+  <Home>
+    <div
+      className="home"
+    >
+      <div
+        className="hero"
+      >
+        <div
+          className="heroContainer"
+        >
+          <h1>
+            Kulttuurin Kummilapset 2020
+          </h1>
+          <p
+            className="description"
+          >
+            Helsingin Kaupunginorkesteri kutsuu kummilapsikseen kaikki vuonna 2020 syntyneet Helsinkiläislapset! Lapsi perheineen kutsutaan kahdesti vuodessa nauttimaan KHO:n järjestämästä kulttuurista täysin ilmaiseksi! Liity mukaan!
+          </p>
+          <Connect(HomePreliminaryForm)>
+            <HomePreliminaryForm
+              isAuthenticated={false}
+              setFormValues={[Function]}
+              stateFormValues={
+                Object {
+                  "child": Object {
+                    "birthday": "",
+                    "firstName": "",
+                    "homeCity": "",
+                    "lastName": "",
+                  },
+                  "guardian": Object {
+                    "email": "",
+                    "firstName": "",
+                    "lastName": "",
+                    "phoneNumber": "",
+                    "relationship": "",
+                  },
+                  "verifyInformation": false,
+                }
+              }
+            >
+              <div
+                className="homeForm"
+              >
+                <Formik
+                  initialValues={
+                    Object {
+                      "child": Object {
+                        "birthday": Object {
+                          "day": "",
+                          "month": "",
+                          "year": "",
+                        },
+                        "homeCity": "",
+                      },
+                      "verifyInformation": false,
+                    }
+                  }
+                  onSubmit={[Function]}
+                  validate={[Function]}
+                >
+                  <form
+                    onSubmit={[Function]}
+                  >
+                    <div
+                      className="inputWrapper"
+                    >
+                      <FormikConnect(FieldArrayInner)
+                        name="child.birthday"
+                        render={[Function]}
+                      >
+                        <FieldArrayInner
+                          formik={
+                            Object {
+                              "dirty": false,
+                              "errors": Object {},
+                              "getFieldMeta": [Function],
+                              "getFieldProps": [Function],
+                              "handleBlur": [Function],
+                              "handleChange": [Function],
+                              "handleReset": [Function],
+                              "handleSubmit": [Function],
+                              "initialErrors": Object {},
+                              "initialStatus": undefined,
+                              "initialTouched": Object {},
+                              "initialValues": Object {
+                                "child": Object {
+                                  "birthday": Object {
+                                    "day": "",
+                                    "month": "",
+                                    "year": "",
+                                  },
+                                  "homeCity": "",
+                                },
+                                "verifyInformation": false,
+                              },
+                              "isSubmitting": false,
+                              "isValid": true,
+                              "isValidating": false,
+                              "registerField": [Function],
+                              "resetForm": [Function],
+                              "setErrors": [Function],
+                              "setFieldError": [Function],
+                              "setFieldTouched": [Function],
+                              "setFieldValue": [Function],
+                              "setFormikState": [Function],
+                              "setStatus": [Function],
+                              "setSubmitting": [Function],
+                              "setTouched": [Function],
+                              "setValues": [Function],
+                              "status": undefined,
+                              "submitCount": 0,
+                              "submitForm": [Function],
+                              "touched": Object {},
+                              "unregisterField": [Function],
+                              "validateField": [Function],
+                              "validateForm": [Function],
+                              "validateOnBlur": true,
+                              "validateOnChange": true,
+                              "validateOnMount": false,
+                              "values": Object {
+                                "child": Object {
+                                  "birthday": Object {
+                                    "day": "",
+                                    "month": "",
+                                    "year": "",
+                                  },
+                                  "homeCity": "",
+                                },
+                                "verifyInformation": false,
+                              },
+                            }
+                          }
+                          name="child.birthday"
+                          render={[Function]}
+                          validateOnChange={true}
+                        >
+                          <BirthdayFormField
+                            form={
+                              Object {
+                                "dirty": false,
+                                "errors": Object {},
+                                "getFieldMeta": [Function],
+                                "getFieldProps": [Function],
+                                "handleBlur": [Function],
+                                "handleChange": [Function],
+                                "handleReset": [Function],
+                                "handleSubmit": [Function],
+                                "initialErrors": Object {},
+                                "initialStatus": undefined,
+                                "initialTouched": Object {},
+                                "initialValues": Object {
+                                  "child": Object {
+                                    "birthday": Object {
+                                      "day": "",
+                                      "month": "",
+                                      "year": "",
+                                    },
+                                    "homeCity": "",
+                                  },
+                                  "verifyInformation": false,
+                                },
+                                "isSubmitting": false,
+                                "isValid": true,
+                                "isValidating": false,
+                                "registerField": [Function],
+                                "resetForm": [Function],
+                                "setErrors": [Function],
+                                "setFieldError": [Function],
+                                "setFieldTouched": [Function],
+                                "setFieldValue": [Function],
+                                "setFormikState": [Function],
+                                "setStatus": [Function],
+                                "setSubmitting": [Function],
+                                "setTouched": [Function],
+                                "setValues": [Function],
+                                "status": undefined,
+                                "submitCount": 0,
+                                "submitForm": [Function],
+                                "touched": Object {},
+                                "unregisterField": [Function],
+                                "validateField": [Function],
+                                "validateForm": [Function],
+                                "validateOnBlur": true,
+                                "validateOnChange": true,
+                                "validateOnMount": false,
+                                "values": Object {
+                                  "child": Object {
+                                    "birthday": Object {
+                                      "day": "",
+                                      "month": "",
+                                      "year": "",
+                                    },
+                                    "homeCity": "",
+                                  },
+                                  "verifyInformation": false,
+                                },
+                              }
+                            }
+                            handleInsert={[Function]}
+                            handleMove={[Function]}
+                            handlePop={[Function]}
+                            handlePush={[Function]}
+                            handleRemove={[Function]}
+                            handleReplace={[Function]}
+                            handleSwap={[Function]}
+                            handleUnshift={[Function]}
+                            insert={[Function]}
+                            move={[Function]}
+                            name="child.birthday"
+                            pop={[Function]}
+                            push={[Function]}
+                            remove={[Function]}
+                            replace={[Function]}
+                            swap={[Function]}
+                            unshift={[Function]}
+                          >
+                            <div
+                              className="birthdayField"
+                            >
+                              <label>
+                                Lapsen syntymäaika
+                              </label>
+                              <div
+                                className="inputWrapper"
+                              >
+                                <Field
+                                  component={[Function]}
+                                  max={31}
+                                  min={1}
+                                  name="child.birthday.day"
+                                  placeholder="pv"
+                                  type="number"
+                                  validate={[Function]}
+                                >
+                                  <InputField
+                                    field={
+                                      Object {
+                                        "name": "child.birthday.day",
+                                        "onBlur": [Function],
+                                        "onChange": [Function],
+                                        "value": "",
+                                      }
+                                    }
+                                    form={
+                                      Object {
+                                        "dirty": false,
+                                        "errors": Object {},
+                                        "getFieldMeta": [Function],
+                                        "getFieldProps": [Function],
+                                        "handleBlur": [Function],
+                                        "handleChange": [Function],
+                                        "handleReset": [Function],
+                                        "handleSubmit": [Function],
+                                        "initialErrors": Object {},
+                                        "initialStatus": undefined,
+                                        "initialTouched": Object {},
+                                        "initialValues": Object {
+                                          "child": Object {
+                                            "birthday": Object {
+                                              "day": "",
+                                              "month": "",
+                                              "year": "",
+                                            },
+                                            "homeCity": "",
+                                          },
+                                          "verifyInformation": false,
+                                        },
+                                        "isSubmitting": false,
+                                        "isValid": true,
+                                        "isValidating": false,
+                                        "registerField": [Function],
+                                        "resetForm": [Function],
+                                        "setErrors": [Function],
+                                        "setFieldError": [Function],
+                                        "setFieldTouched": [Function],
+                                        "setFieldValue": [Function],
+                                        "setFormikState": [Function],
+                                        "setStatus": [Function],
+                                        "setSubmitting": [Function],
+                                        "setTouched": [Function],
+                                        "setValues": [Function],
+                                        "status": undefined,
+                                        "submitCount": 0,
+                                        "submitForm": [Function],
+                                        "touched": Object {},
+                                        "unregisterField": [Function],
+                                        "validateField": [Function],
+                                        "validateForm": [Function],
+                                        "validateOnBlur": true,
+                                        "validateOnChange": true,
+                                        "validateOnMount": false,
+                                        "values": Object {
+                                          "child": Object {
+                                            "birthday": Object {
+                                              "day": "",
+                                              "month": "",
+                                              "year": "",
+                                            },
+                                            "homeCity": "",
+                                          },
+                                          "verifyInformation": false,
+                                        },
+                                      }
+                                    }
+                                    max={31}
+                                    min={1}
+                                    placeholder="pv"
+                                    type="number"
+                                  >
+                                    <div
+                                      className="inputField"
+                                    >
+                                      <Input
+                                        max={31}
+                                        min={1}
+                                        name="child.birthday.day"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        placeholder="pv"
+                                        type="number"
+                                        value=""
+                                      >
+                                        <div
+                                          className="inputWrapper numberInput"
+                                        >
+                                          <div
+                                            className="inputTypeWrapper"
+                                          >
+                                            <input
+                                              max={31}
+                                              min={1}
+                                              name="child.birthday.day"
+                                              onBlur={[Function]}
+                                              onChange={[Function]}
+                                              placeholder="pv"
+                                              type="number"
+                                              value=""
+                                            />
+                                          </div>
+                                        </div>
+                                      </Input>
+                                      <div
+                                        className="inputErrorMessage"
+                                      />
+                                    </div>
+                                  </InputField>
+                                </Field>
+                                <div
+                                  className="dot"
+                                >
+                                  .
+                                </div>
+                                <Field
+                                  component={[Function]}
+                                  max={12}
+                                  min={1}
+                                  name="child.birthday.month"
+                                  placeholder="kk"
+                                  type="number"
+                                  validate={[Function]}
+                                >
+                                  <InputField
+                                    field={
+                                      Object {
+                                        "name": "child.birthday.month",
+                                        "onBlur": [Function],
+                                        "onChange": [Function],
+                                        "value": "",
+                                      }
+                                    }
+                                    form={
+                                      Object {
+                                        "dirty": false,
+                                        "errors": Object {},
+                                        "getFieldMeta": [Function],
+                                        "getFieldProps": [Function],
+                                        "handleBlur": [Function],
+                                        "handleChange": [Function],
+                                        "handleReset": [Function],
+                                        "handleSubmit": [Function],
+                                        "initialErrors": Object {},
+                                        "initialStatus": undefined,
+                                        "initialTouched": Object {},
+                                        "initialValues": Object {
+                                          "child": Object {
+                                            "birthday": Object {
+                                              "day": "",
+                                              "month": "",
+                                              "year": "",
+                                            },
+                                            "homeCity": "",
+                                          },
+                                          "verifyInformation": false,
+                                        },
+                                        "isSubmitting": false,
+                                        "isValid": true,
+                                        "isValidating": false,
+                                        "registerField": [Function],
+                                        "resetForm": [Function],
+                                        "setErrors": [Function],
+                                        "setFieldError": [Function],
+                                        "setFieldTouched": [Function],
+                                        "setFieldValue": [Function],
+                                        "setFormikState": [Function],
+                                        "setStatus": [Function],
+                                        "setSubmitting": [Function],
+                                        "setTouched": [Function],
+                                        "setValues": [Function],
+                                        "status": undefined,
+                                        "submitCount": 0,
+                                        "submitForm": [Function],
+                                        "touched": Object {},
+                                        "unregisterField": [Function],
+                                        "validateField": [Function],
+                                        "validateForm": [Function],
+                                        "validateOnBlur": true,
+                                        "validateOnChange": true,
+                                        "validateOnMount": false,
+                                        "values": Object {
+                                          "child": Object {
+                                            "birthday": Object {
+                                              "day": "",
+                                              "month": "",
+                                              "year": "",
+                                            },
+                                            "homeCity": "",
+                                          },
+                                          "verifyInformation": false,
+                                        },
+                                      }
+                                    }
+                                    max={12}
+                                    min={1}
+                                    placeholder="kk"
+                                    type="number"
+                                  >
+                                    <div
+                                      className="inputField"
+                                    >
+                                      <Input
+                                        max={12}
+                                        min={1}
+                                        name="child.birthday.month"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        placeholder="kk"
+                                        type="number"
+                                        value=""
+                                      >
+                                        <div
+                                          className="inputWrapper numberInput"
+                                        >
+                                          <div
+                                            className="inputTypeWrapper"
+                                          >
+                                            <input
+                                              max={12}
+                                              min={1}
+                                              name="child.birthday.month"
+                                              onBlur={[Function]}
+                                              onChange={[Function]}
+                                              placeholder="kk"
+                                              type="number"
+                                              value=""
+                                            />
+                                          </div>
+                                        </div>
+                                      </Input>
+                                      <div
+                                        className="inputErrorMessage"
+                                      />
+                                    </div>
+                                  </InputField>
+                                </Field>
+                                <div
+                                  className="dot"
+                                >
+                                  .
+                                </div>
+                                <Field
+                                  component={[Function]}
+                                  min={2019}
+                                  name="child.birthday.year"
+                                  placeholder="vuosi"
+                                  type="number"
+                                  validate={[Function]}
+                                >
+                                  <InputField
+                                    field={
+                                      Object {
+                                        "name": "child.birthday.year",
+                                        "onBlur": [Function],
+                                        "onChange": [Function],
+                                        "value": "",
+                                      }
+                                    }
+                                    form={
+                                      Object {
+                                        "dirty": false,
+                                        "errors": Object {},
+                                        "getFieldMeta": [Function],
+                                        "getFieldProps": [Function],
+                                        "handleBlur": [Function],
+                                        "handleChange": [Function],
+                                        "handleReset": [Function],
+                                        "handleSubmit": [Function],
+                                        "initialErrors": Object {},
+                                        "initialStatus": undefined,
+                                        "initialTouched": Object {},
+                                        "initialValues": Object {
+                                          "child": Object {
+                                            "birthday": Object {
+                                              "day": "",
+                                              "month": "",
+                                              "year": "",
+                                            },
+                                            "homeCity": "",
+                                          },
+                                          "verifyInformation": false,
+                                        },
+                                        "isSubmitting": false,
+                                        "isValid": true,
+                                        "isValidating": false,
+                                        "registerField": [Function],
+                                        "resetForm": [Function],
+                                        "setErrors": [Function],
+                                        "setFieldError": [Function],
+                                        "setFieldTouched": [Function],
+                                        "setFieldValue": [Function],
+                                        "setFormikState": [Function],
+                                        "setStatus": [Function],
+                                        "setSubmitting": [Function],
+                                        "setTouched": [Function],
+                                        "setValues": [Function],
+                                        "status": undefined,
+                                        "submitCount": 0,
+                                        "submitForm": [Function],
+                                        "touched": Object {},
+                                        "unregisterField": [Function],
+                                        "validateField": [Function],
+                                        "validateForm": [Function],
+                                        "validateOnBlur": true,
+                                        "validateOnChange": true,
+                                        "validateOnMount": false,
+                                        "values": Object {
+                                          "child": Object {
+                                            "birthday": Object {
+                                              "day": "",
+                                              "month": "",
+                                              "year": "",
+                                            },
+                                            "homeCity": "",
+                                          },
+                                          "verifyInformation": false,
+                                        },
+                                      }
+                                    }
+                                    min={2019}
+                                    placeholder="vuosi"
+                                    type="number"
+                                  >
+                                    <div
+                                      className="inputField"
+                                    >
+                                      <Input
+                                        min={2019}
+                                        name="child.birthday.year"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        placeholder="vuosi"
+                                        type="number"
+                                        value=""
+                                      >
+                                        <div
+                                          className="inputWrapper numberInput"
+                                        >
+                                          <div
+                                            className="inputTypeWrapper"
+                                          >
+                                            <input
+                                              min={2019}
+                                              name="child.birthday.year"
+                                              onBlur={[Function]}
+                                              onChange={[Function]}
+                                              placeholder="vuosi"
+                                              type="number"
+                                              value=""
+                                            />
+                                          </div>
+                                        </div>
+                                      </Input>
+                                      <div
+                                        className="inputErrorMessage"
+                                      />
+                                    </div>
+                                  </InputField>
+                                </Field>
+                              </div>
+                              <div
+                                className="error"
+                              />
+                            </div>
+                          </BirthdayFormField>
+                        </FieldArrayInner>
+                      </FormikConnect(FieldArrayInner)>
+                      <Field
+                        className="childHomeCity"
+                        component={[Function]}
+                        label="Lapsen kotipaikkakunta"
+                        name="child.homeCity"
+                        onChange={[Function]}
+                        placeholder="Enter hometown city, currently only Helsinki supported"
+                        type="text"
+                        value=""
+                      >
+                        <InputField
+                          className="childHomeCity"
+                          field={
+                            Object {
+                              "name": "child.homeCity",
+                              "onBlur": [Function],
+                              "onChange": [Function],
+                              "value": "",
+                            }
+                          }
+                          form={
+                            Object {
+                              "dirty": false,
+                              "errors": Object {},
+                              "getFieldMeta": [Function],
+                              "getFieldProps": [Function],
+                              "handleBlur": [Function],
+                              "handleChange": [Function],
+                              "handleReset": [Function],
+                              "handleSubmit": [Function],
+                              "initialErrors": Object {},
+                              "initialStatus": undefined,
+                              "initialTouched": Object {},
+                              "initialValues": Object {
+                                "child": Object {
+                                  "birthday": Object {
+                                    "day": "",
+                                    "month": "",
+                                    "year": "",
+                                  },
+                                  "homeCity": "",
+                                },
+                                "verifyInformation": false,
+                              },
+                              "isSubmitting": false,
+                              "isValid": true,
+                              "isValidating": false,
+                              "registerField": [Function],
+                              "resetForm": [Function],
+                              "setErrors": [Function],
+                              "setFieldError": [Function],
+                              "setFieldTouched": [Function],
+                              "setFieldValue": [Function],
+                              "setFormikState": [Function],
+                              "setStatus": [Function],
+                              "setSubmitting": [Function],
+                              "setTouched": [Function],
+                              "setValues": [Function],
+                              "status": undefined,
+                              "submitCount": 0,
+                              "submitForm": [Function],
+                              "touched": Object {},
+                              "unregisterField": [Function],
+                              "validateField": [Function],
+                              "validateForm": [Function],
+                              "validateOnBlur": true,
+                              "validateOnChange": true,
+                              "validateOnMount": false,
+                              "values": Object {
+                                "child": Object {
+                                  "birthday": Object {
+                                    "day": "",
+                                    "month": "",
+                                    "year": "",
+                                  },
+                                  "homeCity": "",
+                                },
+                                "verifyInformation": false,
+                              },
+                            }
+                          }
+                          label="Lapsen kotipaikkakunta"
+                          onChange={[Function]}
+                          placeholder="Enter hometown city, currently only Helsinki supported"
+                          type="text"
+                          value=""
+                        >
+                          <div
+                            className="inputField"
+                          >
+                            <Input
+                              className="childHomeCity"
+                              label="Lapsen kotipaikkakunta"
+                              name="child.homeCity"
+                              onBlur={[Function]}
+                              onChange={[Function]}
+                              placeholder="Enter hometown city, currently only Helsinki supported"
+                              type="text"
+                              value=""
+                            >
+                              <div
+                                className="inputWrapper textInput"
+                              >
+                                <div
+                                  className="inputTypeWrapper"
+                                >
+                                  <label>
+                                    Lapsen kotipaikkakunta
+                                  </label>
+                                  <input
+                                    name="child.homeCity"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    placeholder="Enter hometown city, currently only Helsinki supported"
+                                    type="text"
+                                    value=""
+                                  />
+                                </div>
+                              </div>
+                            </Input>
+                            <div
+                              className="inputErrorMessage"
+                            />
+                          </div>
+                        </InputField>
+                      </Field>
+                    </div>
+                    <Field
+                      checked={false}
+                      className="verifyInformationCheckbox"
+                      component={[Function]}
+                      label="Vakuutan antamani tiedot oikeaksi."
+                      name="verifyInformation"
+                      onChange={[Function]}
+                      type="checkbox"
+                      validate={[Function]}
+                      value={false}
+                    >
+                      <InputField
+                        checked={false}
+                        className="verifyInformationCheckbox"
+                        field={
+                          Object {
+                            "checked": false,
+                            "name": "verifyInformation",
+                            "onBlur": [Function],
+                            "onChange": [Function],
+                            "value": false,
+                          }
+                        }
+                        form={
+                          Object {
+                            "dirty": false,
+                            "errors": Object {},
+                            "getFieldMeta": [Function],
+                            "getFieldProps": [Function],
+                            "handleBlur": [Function],
+                            "handleChange": [Function],
+                            "handleReset": [Function],
+                            "handleSubmit": [Function],
+                            "initialErrors": Object {},
+                            "initialStatus": undefined,
+                            "initialTouched": Object {},
+                            "initialValues": Object {
+                              "child": Object {
+                                "birthday": Object {
+                                  "day": "",
+                                  "month": "",
+                                  "year": "",
+                                },
+                                "homeCity": "",
+                              },
+                              "verifyInformation": false,
+                            },
+                            "isSubmitting": false,
+                            "isValid": true,
+                            "isValidating": false,
+                            "registerField": [Function],
+                            "resetForm": [Function],
+                            "setErrors": [Function],
+                            "setFieldError": [Function],
+                            "setFieldTouched": [Function],
+                            "setFieldValue": [Function],
+                            "setFormikState": [Function],
+                            "setStatus": [Function],
+                            "setSubmitting": [Function],
+                            "setTouched": [Function],
+                            "setValues": [Function],
+                            "status": undefined,
+                            "submitCount": 0,
+                            "submitForm": [Function],
+                            "touched": Object {},
+                            "unregisterField": [Function],
+                            "validateField": [Function],
+                            "validateForm": [Function],
+                            "validateOnBlur": true,
+                            "validateOnChange": true,
+                            "validateOnMount": false,
+                            "values": Object {
+                              "child": Object {
+                                "birthday": Object {
+                                  "day": "",
+                                  "month": "",
+                                  "year": "",
+                                },
+                                "homeCity": "",
+                              },
+                              "verifyInformation": false,
+                            },
+                          }
+                        }
+                        label="Vakuutan antamani tiedot oikeaksi."
+                        onChange={[Function]}
+                        type="checkbox"
+                        value={false}
+                      >
+                        <div
+                          className="inputField"
+                        >
+                          <Input
+                            checked={false}
+                            className="verifyInformationCheckbox"
+                            label="Vakuutan antamani tiedot oikeaksi."
+                            name="verifyInformation"
+                            onBlur={[Function]}
+                            onChange={[Function]}
+                            type="checkbox"
+                            value={false}
+                          >
+                            <div
+                              className="inputWrapper checkboxInput"
+                            >
+                              <div
+                                className="inputTypeWrapper"
+                              >
+                                <label>
+                                  Vakuutan antamani tiedot oikeaksi.
+                                </label>
+                                <input
+                                  checked={false}
+                                  name="verifyInformation"
+                                  onBlur={[Function]}
+                                  onChange={[Function]}
+                                  type="checkbox"
+                                  value={false}
+                                />
+                              </div>
+                            </div>
+                          </Input>
+                          <div
+                            className="inputErrorMessage"
+                          />
+                        </div>
+                      </InputField>
+                    </Field>
+                    <Button
+                      className="submitButton"
+                      disabled={false}
+                      type="submit"
+                    >
+                      <div
+                        className="submitButton buttonWrapper"
+                      >
+                        <button
+                          disabled={false}
+                          type="submit"
+                        >
+                          Ilmoittaudu mukaan
+                        </button>
+                      </div>
+                    </Button>
+                  </form>
+                </Formik>
+              </div>
+            </HomePreliminaryForm>
+          </Connect(HomePreliminaryForm)>
+        </div>
+      </div>
+    </div>
+  </Home>
+</Provider>
+`;

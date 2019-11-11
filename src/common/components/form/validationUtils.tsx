@@ -1,4 +1,3 @@
-import { formatMessage } from '../../translation/utils';
 import { newMoment } from '../../time/utils';
 import {
   SUPPORTED_START_BIRTHDAY,
@@ -12,9 +11,9 @@ import {
  * @param customMessage
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const validateRequire = (value?: any, customMessage?: string) => {
+const validateRequire = (value: any, customMessage?: string) => {
   if (!value) {
-    return customMessage || formatMessage('validation.general.required');
+    return customMessage || 'validation.general.required';
   }
 };
 
@@ -24,22 +23,22 @@ const validateRequire = (value?: any, customMessage?: string) => {
  * Input time which come from future is not accepted
  * @param value Input value.
  */
-const validateBirthday = (value?: string | number) => {
+const validateBirthday = (value: string | number) => {
   if (!value) {
-    return formatMessage('validation.general.required');
+    return 'validation.general.required';
   }
 
   const inputMoment = newMoment(value, DEFAULT_DATE_FORMAT);
   const nowMoment = newMoment();
 
   if (!inputMoment.isValid()) {
-    return formatMessage('validation.date.invalidFormat');
+    return 'validation.date.invalidFormat';
   }
 
   const supportedStart = newMoment(SUPPORTED_START_BIRTHDAY);
 
   if (inputMoment < supportedStart || inputMoment > nowMoment) {
-    return formatMessage('validation.date.unSupported');
+    return 'validation.date.unSupported';
   }
 };
 
@@ -62,7 +61,7 @@ const validateEqual = (
   let cloneComparedValue = comparedValue;
 
   if (!value) {
-    return formatMessage('validation.general.required');
+    return 'validation.general.required';
   }
 
   if (typeof value === 'string' && typeof comparedValue === 'string') {

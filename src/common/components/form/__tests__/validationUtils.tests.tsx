@@ -9,22 +9,22 @@ describe('Form validation utilities - ', () => {
     test('return require text if value is empty', () => {
       const error = validateBirthday('');
 
-      expect(error).toEqual('Required');
+      expect(error).toEqual('validation.general.required');
     });
 
     test('return wrong format error if user try to input number, or general text', () => {
       const error = validateBirthday('foo');
-      expect(error).toEqual('Invalid date input');
+      expect(error).toEqual('validation.date.invalidFormat');
     });
 
     test('return wrong format error if user try to wrong format date', () => {
       const error = validateBirthday('1f10.149.13');
-      expect(error).toEqual('Invalid date input');
+      expect(error).toEqual('validation.date.invalidFormat');
     });
 
     test('return wrong unsupported message if kid birthday is in future or before supported year', () => {
       const error = validateBirthday('12.12.2100');
-      expect(error).toEqual('Input date is not supported');
+      expect(error).toEqual('validation.date.unSupported');
     });
   });
 
@@ -32,7 +32,7 @@ describe('Form validation utilities - ', () => {
     test('return require text if value is empty', () => {
       const error = validateEqual('', 'foo', 'bar');
 
-      expect(error).toEqual('Required');
+      expect(error).toEqual('validation.general.required');
     });
 
     test('return error text if value is not equal', () => {

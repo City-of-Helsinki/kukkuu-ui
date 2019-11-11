@@ -1,5 +1,5 @@
-export enum SUPPORT_LANGUAGES {
-  EN = 'en',
-  FI = 'fi',
-  SV = 'sv',
-}
+export const SUPPORT_LANGUAGES = {
+  EN: 'en',
+  FI: 'fi',
+  SV: 'sv',
+};
