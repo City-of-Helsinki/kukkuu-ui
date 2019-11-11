@@ -5,7 +5,6 @@ include:
 
 variables:
   SERVICE_PORT: 80
-  DOCKER_BUILD_ARG_REACT_APP_OIDC_CLIENT_ID: "https://api.hel.fi/auth/kukkuu-ui"
 
 build-review:
   # These variables are available only for review env and are merged with the general variables defined above.
