@@ -1,3 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders snapshot correctly 1`] = `"<header class=\\"headerWrapper\\"><div class=\\"container\\"><div class=\\"navbarTop\\"><div class=\\"logo\\"></div><h3 class=\\"appName\\">Godchildren of Culture</h3></div></div></header>"`;
+exports[`renders snapshot correctly 1`] = `
+<header
+  className="headerWrapper"
+>
+  <Container>
+    <Navbar />
+  </Container>
+</header>
+`;

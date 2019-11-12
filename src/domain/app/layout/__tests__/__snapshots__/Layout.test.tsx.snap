@@ -1,3 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders snapshot correctly 1`] = `"<div class=\\"pageWrapper\\"><header class=\\"headerWrapper\\"><div class=\\"container\\"><div class=\\"navbarTop\\"><div class=\\"logo\\"></div><h3 class=\\"appName\\">Godchildren of Culture</h3></div></div></header><div class=\\"pageBody\\"><div class=\\"container\\"></div></div><footer class=\\"footerWrapper\\"><div class=\\"container\\"><div class=\\"footer\\"><div class=\\"helsinkiLogo\\"></div><div class=\\"copyright\\"><p>© Copyright 2019 • All right reserved •</p></div></div></div></footer></div>"`;
+exports[`renders snapshot correctly 1`] = `
+<div
+  className="pageWrapper"
+>
+  <Header />
+  <div
+    className="pageBody"
+  >
+    <Container />
+  </div>
+  <Footer />
+</div>
+`;

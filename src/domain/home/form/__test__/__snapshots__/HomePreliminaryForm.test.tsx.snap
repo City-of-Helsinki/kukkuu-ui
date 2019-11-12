@@ -1,3 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders snapshot correctly 1`] = `"<div class=\\"homeForm\\"><form><div class=\\"inputWrapper\\"><div class=\\"birthdayField\\"><label>Child&#x27;s birthday</label><div class=\\"inputWrapper\\"><div class=\\"inputField\\"><div class=\\"inputWrapper numberInput\\"><div class=\\"inputTypeWrapper\\"><input type=\\"number\\" name=\\"child.birthday.day\\" value=\\"\\" placeholder=\\"day\\" min=\\"1\\" max=\\"31\\"/></div></div><div class=\\"inputErrorMessage\\"></div></div><div class=\\"dot\\">.</div><div class=\\"inputField\\"><div class=\\"inputWrapper numberInput\\"><div class=\\"inputTypeWrapper\\"><input type=\\"number\\" name=\\"child.birthday.month\\" value=\\"\\" placeholder=\\"month\\" min=\\"1\\" max=\\"12\\"/></div></div><div class=\\"inputErrorMessage\\"></div></div><div class=\\"dot\\">.</div><div class=\\"inputField\\"><div class=\\"inputWrapper numberInput\\"><div class=\\"inputTypeWrapper\\"><input type=\\"number\\" name=\\"child.birthday.year\\" value=\\"\\" placeholder=\\"year\\" min=\\"2019\\"/></div></div><div class=\\"inputErrorMessage\\"></div></div></div><div class=\\"error\\"></div></div><div class=\\"inputField\\"><div class=\\"inputWrapper textInput\\"><div class=\\"inputTypeWrapper\\"><label>Child&#x27;s home town</label><input type=\\"text\\" name=\\"child.homeCity\\" value=\\"\\" placeholder=\\"Enter hometown city, currently only Helsinki is supported\\"/></div></div><div class=\\"inputErrorMessage\\"></div></div></div><div class=\\"inputField\\"><div class=\\"inputWrapper checkboxInput\\"><div class=\\"inputTypeWrapper\\"><label>I assure that the information I provide is correct</label><input type=\\"checkbox\\" name=\\"verifyInformation\\" value=\\"false\\"/></div></div><div class=\\"inputErrorMessage\\"></div></div><div class=\\"submitButton buttonWrapper\\"><button type=\\"submit\\">Ilmoittaudu mukaan</button></div></form></div>"`;
+exports[`renders snapshot correctly 1`] = `
+<div
+  className="homeForm"
+>
+  <Formik
+    initialValues={
+      Object {
+        "child": Object {
+          "birthday": Object {
+            "day": "",
+            "month": "",
+            "year": "",
+          },
+          "homeCity": "",
+        },
+        "verifyInformation": false,
+      }
+    }
+    onSubmit={[Function]}
+    validate={[Function]}
+  >
+    <Component />
+  </Formik>
+</div>
+`;
