@@ -37,7 +37,7 @@ exports[`renders snapshot correctly 1`] = `
               stateFormValues={
                 Object {
                   "child": Object {
-                    "birthday": "",
+                    "birthdate": "",
                     "firstName": "",
                     "homeCity": "",
                     "lastName": "",
@@ -60,7 +60,7 @@ exports[`renders snapshot correctly 1`] = `
                   initialValues={
                     Object {
                       "child": Object {
-                        "birthday": Object {
+                        "birthdate": Object {
                           "day": "",
                           "month": "",
                           "year": "",
@@ -80,7 +80,7 @@ exports[`renders snapshot correctly 1`] = `
                       className="inputWrapper"
                     >
                       <FormikConnect(FieldArrayInner)
-                        name="child.birthday"
+                        name="child.birthdate"
                         render={[Function]}
                       >
                         <FieldArrayInner
@@ -99,7 +99,7 @@ exports[`renders snapshot correctly 1`] = `
                               "initialTouched": Object {},
                               "initialValues": Object {
                                 "child": Object {
-                                  "birthday": Object {
+                                  "birthdate": Object {
                                     "day": "",
                                     "month": "",
                                     "year": "",
@@ -134,7 +134,7 @@ exports[`renders snapshot correctly 1`] = `
                               "validateOnMount": false,
                               "values": Object {
                                 "child": Object {
-                                  "birthday": Object {
+                                  "birthdate": Object {
                                     "day": "",
                                     "month": "",
                                     "year": "",
@@ -145,11 +145,11 @@ exports[`renders snapshot correctly 1`] = `
                               },
                             }
                           }
-                          name="child.birthday"
+                          name="child.birthdate"
                           render={[Function]}
                           validateOnChange={true}
                         >
-                          <BirthdayFormField
+                          <BirthdateFormField
                             form={
                               Object {
                                 "dirty": false,
@@ -165,7 +165,7 @@ exports[`renders snapshot correctly 1`] = `
                                 "initialTouched": Object {},
                                 "initialValues": Object {
                                   "child": Object {
-                                    "birthday": Object {
+                                    "birthdate": Object {
                                       "day": "",
                                       "month": "",
                                       "year": "",
@@ -200,7 +200,7 @@ exports[`renders snapshot correctly 1`] = `
                                 "validateOnMount": false,
                                 "values": Object {
                                   "child": Object {
-                                    "birthday": Object {
+                                    "birthdate": Object {
                                       "day": "",
                                       "month": "",
                                       "year": "",
@@ -221,7 +221,7 @@ exports[`renders snapshot correctly 1`] = `
                             handleUnshift={[Function]}
                             insert={[Function]}
                             move={[Function]}
-                            name="child.birthday"
+                            name="child.birthdate"
                             pop={[Function]}
                             push={[Function]}
                             remove={[Function]}
@@ -230,7 +230,7 @@ exports[`renders snapshot correctly 1`] = `
                             unshift={[Function]}
                           >
                             <div
-                              className="birthdayField"
+                              className="birthdateField"
                             >
                               <label>
                                 Lapsen syntymäaika
@@ -242,7 +242,7 @@ exports[`renders snapshot correctly 1`] = `
                                   component={[Function]}
                                   max={31}
                                   min={1}
-                                  name="child.birthday.day"
+                                  name="child.birthdate.day"
                                   placeholder="pv"
                                   type="number"
                                   validate={[Function]}
@@ -250,7 +250,7 @@ exports[`renders snapshot correctly 1`] = `
                                   <InputField
                                     field={
                                       Object {
-                                        "name": "child.birthday.day",
+                                        "name": "child.birthdate.day",
                                         "onBlur": [Function],
                                         "onChange": [Function],
                                         "value": "",
@@ -271,7 +271,7 @@ exports[`renders snapshot correctly 1`] = `
                                         "initialTouched": Object {},
                                         "initialValues": Object {
                                           "child": Object {
-                                            "birthday": Object {
+                                            "birthdate": Object {
                                               "day": "",
                                               "month": "",
                                               "year": "",
@@ -306,7 +306,7 @@ exports[`renders snapshot correctly 1`] = `
                                         "validateOnMount": false,
                                         "values": Object {
                                           "child": Object {
-                                            "birthday": Object {
+                                            "birthdate": Object {
                                               "day": "",
                                               "month": "",
                                               "year": "",
@@ -328,7 +328,7 @@ exports[`renders snapshot correctly 1`] = `
                                       <Input
                                         max={31}
                                         min={1}
-                                        name="child.birthday.day"
+                                        name="child.birthdate.day"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         placeholder="pv"
@@ -344,7 +344,7 @@ exports[`renders snapshot correctly 1`] = `
                                             <input
                                               max={31}
                                               min={1}
-                                              name="child.birthday.day"
+                                              name="child.birthdate.day"
                                               onBlur={[Function]}
                                               onChange={[Function]}
                                               placeholder="pv"
@@ -369,7 +369,7 @@ exports[`renders snapshot correctly 1`] = `
                                   component={[Function]}
                                   max={12}
                                   min={1}
-                                  name="child.birthday.month"
+                                  name="child.birthdate.month"
                                   placeholder="kk"
                                   type="number"
                                   validate={[Function]}
@@ -377,7 +377,7 @@ exports[`renders snapshot correctly 1`] = `
                                   <InputField
                                     field={
                                       Object {
-                                        "name": "child.birthday.month",
+                                        "name": "child.birthdate.month",
                                         "onBlur": [Function],
                                         "onChange": [Function],
                                         "value": "",
@@ -398,7 +398,7 @@ exports[`renders snapshot correctly 1`] = `
                                         "initialTouched": Object {},
                                         "initialValues": Object {
                                           "child": Object {
-                                            "birthday": Object {
+                                            "birthdate": Object {
                                               "day": "",
                                               "month": "",
                                               "year": "",
@@ -433,7 +433,7 @@ exports[`renders snapshot correctly 1`] = `
                                         "validateOnMount": false,
                                         "values": Object {
                                           "child": Object {
-                                            "birthday": Object {
+                                            "birthdate": Object {
                                               "day": "",
                                               "month": "",
                                               "year": "",
@@ -455,7 +455,7 @@ exports[`renders snapshot correctly 1`] = `
                                       <Input
                                         max={12}
                                         min={1}
-                                        name="child.birthday.month"
+                                        name="child.birthdate.month"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         placeholder="kk"
@@ -471,7 +471,7 @@ exports[`renders snapshot correctly 1`] = `
                                             <input
                                               max={12}
                                               min={1}
-                                              name="child.birthday.month"
+                                              name="child.birthdate.month"
                                               onBlur={[Function]}
                                               onChange={[Function]}
                                               placeholder="kk"
@@ -495,7 +495,7 @@ exports[`renders snapshot correctly 1`] = `
                                 <Field
                                   component={[Function]}
                                   min={2019}
-                                  name="child.birthday.year"
+                                  name="child.birthdate.year"
                                   placeholder="vuosi"
                                   type="number"
                                   validate={[Function]}
@@ -503,7 +503,7 @@ exports[`renders snapshot correctly 1`] = `
                                   <InputField
                                     field={
                                       Object {
-                                        "name": "child.birthday.year",
+                                        "name": "child.birthdate.year",
                                         "onBlur": [Function],
                                         "onChange": [Function],
                                         "value": "",
@@ -524,7 +524,7 @@ exports[`renders snapshot correctly 1`] = `
                                         "initialTouched": Object {},
                                         "initialValues": Object {
                                           "child": Object {
-                                            "birthday": Object {
+                                            "birthdate": Object {
                                               "day": "",
                                               "month": "",
                                               "year": "",
@@ -559,7 +559,7 @@ exports[`renders snapshot correctly 1`] = `
                                         "validateOnMount": false,
                                         "values": Object {
                                           "child": Object {
-                                            "birthday": Object {
+                                            "birthdate": Object {
                                               "day": "",
                                               "month": "",
                                               "year": "",
@@ -579,7 +579,7 @@ exports[`renders snapshot correctly 1`] = `
                                     >
                                       <Input
                                         min={2019}
-                                        name="child.birthday.year"
+                                        name="child.birthdate.year"
                                         onBlur={[Function]}
                                         onChange={[Function]}
                                         placeholder="vuosi"
@@ -594,7 +594,7 @@ exports[`renders snapshot correctly 1`] = `
                                           >
                                             <input
                                               min={2019}
-                                              name="child.birthday.year"
+                                              name="child.birthdate.year"
                                               onBlur={[Function]}
                                               onChange={[Function]}
                                               placeholder="vuosi"
@@ -615,7 +615,7 @@ exports[`renders snapshot correctly 1`] = `
                                 className="error"
                               />
                             </div>
-                          </BirthdayFormField>
+                          </BirthdateFormField>
                         </FieldArrayInner>
                       </FormikConnect(FieldArrayInner)>
                       <Field
@@ -653,7 +653,7 @@ exports[`renders snapshot correctly 1`] = `
                               "initialTouched": Object {},
                               "initialValues": Object {
                                 "child": Object {
-                                  "birthday": Object {
+                                  "birthdate": Object {
                                     "day": "",
                                     "month": "",
                                     "year": "",
@@ -688,7 +688,7 @@ exports[`renders snapshot correctly 1`] = `
                               "validateOnMount": false,
                               "values": Object {
                                 "child": Object {
-                                  "birthday": Object {
+                                  "birthdate": Object {
                                     "day": "",
                                     "month": "",
                                     "year": "",
@@ -783,7 +783,7 @@ exports[`renders snapshot correctly 1`] = `
                             "initialTouched": Object {},
                             "initialValues": Object {
                               "child": Object {
-                                "birthday": Object {
+                                "birthdate": Object {
                                   "day": "",
                                   "month": "",
                                   "year": "",
@@ -818,7 +818,7 @@ exports[`renders snapshot correctly 1`] = `
                             "validateOnMount": false,
                             "values": Object {
                               "child": Object {
-                                "birthday": Object {
+                                "birthdate": Object {
                                   "day": "",
                                   "month": "",
                                   "year": "",

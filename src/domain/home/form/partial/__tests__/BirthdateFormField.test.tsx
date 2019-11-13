@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { FieldArray } from 'formik';
 
-import BirthdayFormField from '../BirthdayFormField';
+import BirthdateFormField from '../BirthdateFormField';
 import TestForm from '../../../../../common/test/TestForm';
 
 it('renders snapshot correctly', () => {
@@ -11,7 +11,7 @@ it('renders snapshot correctly', () => {
       {() => (
         <FieldArray
           name="foo"
-          render={props => <BirthdayFormField {...props} />}
+          render={props => <BirthdateFormField {...props} />}
         />
       )}
     </TestForm>

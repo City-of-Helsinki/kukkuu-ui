@@ -6,7 +6,7 @@ import { REGISTRATION_ACTIONS } from '../constants/RegistrationActionConstants';
 export const defaultRegistrationData: RegistrationData = {
   formValues: {
     child: {
-      birthday: '',
+      birthdate: '',
       firstName: '',
       homeCity: '',
       lastName: '',

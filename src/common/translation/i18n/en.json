@@ -10,9 +10,9 @@
       "buttonText": "Ilmoittaudu mukaan"
     },
     "preliminaryForm": {
-      "childBirthday": {
+      "childBirthdate": {
         "input": {
-          "label": "Child's birthday",
+          "label": "Child's birthdate",
           "day": {
             "placeholder": "day"
           },
@@ -50,10 +50,10 @@
             "placeholder": "Please put child home city"
           }
         },
-        "birthday": {
+        "birthdate": {
           "input": {
-            "label": "Child birthday",
-            "placeholder": "Please put child birthday"
+            "label": "Child birthdate",
+            "placeholder": "Please put child birthdate"
           }
         },
         "firstName": {

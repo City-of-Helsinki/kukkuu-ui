@@ -8,7 +8,7 @@ exports[`renders snapshot correctly 1`] = `
     initialValues={
       Object {
         "child": Object {
-          "birthday": Object {
+          "birthdate": Object {
             "day": "",
             "month": "",
             "year": "",

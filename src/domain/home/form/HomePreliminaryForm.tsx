@@ -10,9 +10,9 @@ import Button from '../../../common/components/button/Button';
 import InputField from '../../../common/components/form/fields/input/InputField';
 import {
   validateRequire,
-  validateBirthday,
+  validateBirthdate,
 } from '../../../common/components/form/validationUtils';
-import BirthdayFormField from './partial/BirthdayFormField';
+import BirthdateFormField from './partial/BirthdateFormField';
 import { setFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { defaultRegistrationData } from '../../registration/state/RegistrationReducers';
@@ -39,7 +39,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
     const defaultFormValues = defaultRegistrationData.formValues;
     const payload = Object.assign({}, defaultFormValues, {
       child: {
-        birthday: `${values.child.birthday.day}.${values.child.birthday.month}.${values.child.birthday.year}`,
+        birthdate: `${values.child.birthdate.day}.${values.child.birthdate.month}.${values.child.birthdate.year}`,
         homeCity: values.child.homeCity,
       },
       verifyInformation: values.verifyInformation,
@@ -53,17 +53,17 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
   const validate = (values: HomeFormValues) => {
     const {
       child: {
-        birthday: { day, month, year },
+        birthdate: { day, month, year },
       },
     } = values;
     const errors: FormikErrors<HomeFormValues> = {};
 
     if (day && month && year) {
-      errors.childBirthday = validateBirthday(`${day}.${month}.${year}`);
+      errors.childBirthdate = validateBirthdate(`${day}.${month}.${year}`);
 
-      if (!errors.childBirthday) {
+      if (!errors.childBirthdate) {
         // Delete the property manually so form will be valid when this is undefined.
-        delete errors.childBirthday;
+        delete errors.childBirthdate;
       }
     }
     return errors;
@@ -79,8 +79,8 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
           <form onSubmit={handleSubmit}>
             <div className={styles.inputWrapper}>
               <FieldArray
-                name="child.birthday"
-                render={props => <BirthdayFormField {...props} />}
+                name="child.birthdate"
+                render={props => <BirthdateFormField {...props} />}
               />
 
               <Field

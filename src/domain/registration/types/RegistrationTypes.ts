@@ -1,6 +1,6 @@
 export interface RegistrationFormValues {
   child: {
-    birthday: string;
+    birthdate: string;
     firstName: string;
     lastName: string;
     homeCity: string;

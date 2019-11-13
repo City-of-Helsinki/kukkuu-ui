@@ -13,17 +13,17 @@ import { HomeFormValues } from './types/HomeFormTypes';
 export const convertFormValues = (
   stateFormValues: RegistrationFormValues
 ): HomeFormValues => {
-  if (get(stateFormValues, 'child.birthday')) {
-    const birthdayMoment = newMoment(
-      stateFormValues.child.birthday,
+  if (get(stateFormValues, 'child.birthdate')) {
+    const birthdateMoment = newMoment(
+      stateFormValues.child.birthdate,
       DEFAULT_DATE_FORMAT
     );
     return {
       child: {
-        birthday: {
-          day: birthdayMoment.date(),
-          month: birthdayMoment.month() + 1,
-          year: birthdayMoment.year(),
+        birthdate: {
+          day: birthdateMoment.date(),
+          month: birthdateMoment.month() + 1,
+          year: birthdateMoment.year(),
         },
         homeCity: stateFormValues.child.homeCity,
       },
@@ -32,7 +32,7 @@ export const convertFormValues = (
   }
   return {
     child: {
-      birthday: {
+      birthdate: {
         day: '',
         month: '',
         year: '',

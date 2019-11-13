@@ -1,6 +1,6 @@
 export interface HomeFormValues {
   child: {
-    birthday: {
+    birthdate: {
       day: string | number;
       month: string | number;
       year: string | number;
@@ -8,5 +8,5 @@ export interface HomeFormValues {
     homeCity: string;
   };
   verifyInformation: boolean;
-  childBirthday?: string;
+  childBirthdate?: string;
 }
