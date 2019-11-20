@@ -15,6 +15,7 @@ import { store } from './state/AppStore';
 import userManager from '../auth/userManager';
 import { authenticateWithBackend } from '../auth/authenticate';
 import { fetchTokenError } from '../auth/state/BackendAuthenticationActions';
+import Welcome from '../registration/welcome/Welcome';
 
 type AppProps = RouteComponentProps<{ locale: string }> & {
   isLoadingUser: boolean;
@@ -55,6 +56,9 @@ class App extends React.Component<AppProps> {
           />
           <PrivateRoute exact path={`/${locale}/registration/form`}>
             <RegistrationForm />
+          </PrivateRoute>
+          <PrivateRoute exact path={`/${locale}/registration/welcome`}>
+            <Welcome />
           </PrivateRoute>
           <Route component={NotFound} />
         </Switch>

@@ -1,0 +1,21 @@
+@import 'variables';
+@import 'colors';
+@import 'layout';
+h1 {text-align: center}
+.submitButton {
+    button {
+        background: lighten($hel-summer, 20%);
+
+        border: none !important;
+        width: 100%;
+
+        &:disabled {
+            background: $hel-gray;
+        }
+    }
+}
+.tada {
+  background-color: pink;
+  height: 300px;
+  width: 300px;
+}
