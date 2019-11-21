@@ -3,17 +3,7 @@
 @import 'layout';
 
 .welcome {
-    display: grid;
     text-align: center;
-    .hero {
-        display: grid;
-        @include respond-above(sm) {
-            grid-template-columns: 1fr 10fr 1fr;
-            .heroContainer {
-                grid-column: 2;
-            }
-        }
-     }
     .submitButton {
         display: grid;
         width: 100%;

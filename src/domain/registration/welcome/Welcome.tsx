@@ -10,17 +10,13 @@ const Welcome: FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <div className={styles.welcome}>
-      <div className={styles.hero}>
-        <div className={styles.heroContainer}>
-          <h1>{t('registration.welcome.hero.header')}</h1>
-          <Icon src={tadaImage} className={styles.tada} alt="Tada!" />
-          <form>
-            <Button className={styles.submitButton} type="submit">
-              {t('common.profile.goToProfile.buttonText')}
-            </Button>
-          </form>
-        </div>
-      </div>
+      <h1>{t('registration.welcome.hero.header')}</h1>
+      <Icon src={tadaImage} className={styles.tada} alt="Tada!" />
+      <form>
+        <Button className={styles.submitButton} type="submit">
+          {t('common.profile.goToProfile.buttonText')}
+        </Button>
+      </form>
     </div>
   );
 };
