@@ -4,29 +4,21 @@ exports[`renders snapshot correctly 1`] = `
 <div
   className="welcome"
 >
-  <div
-    className="hero"
-  >
-    <div
-      className="heroContainer"
+  <h1>
+    Tervetuloa kulttuurin kummilapseksi!
+  </h1>
+  <Icon
+    alt="Tada!"
+    className="tada"
+    src="tada.svg"
+  />
+  <form>
+    <Button
+      className="submitButton"
+      type="submit"
     >
-      <h1>
-        Tervetuloa kulttuurin kummilapseksi!
-      </h1>
-      <Icon
-        alt="Tada!"
-        className="tada"
-        src="tada.svg"
-      />
-      <form>
-        <Button
-          className="submitButton"
-          type="submit"
-        >
-          Profiilillesi
-        </Button>
-      </form>
-    </div>
-  </div>
+      Profiilillesi
+    </Button>
+  </form>
 </div>
 `;
