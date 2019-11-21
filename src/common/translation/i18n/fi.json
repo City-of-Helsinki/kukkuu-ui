@@ -1,21 +1,44 @@
 {
   "appName": "Kulttuurin Kummilapset",
+  "authentication": {
+    "login": {
+      "text": "Login"
+    },
+    "logout": {
+      "text": "Logout"
+    },
+    "redirect": {
+      "text": "Ohjataan tunnistautumiseen..."
+    }
+  },
+  "common": {
+    "profile": {
+      "goToProfile": {
+        "buttonText": "Profiilillesi"
+      }
+    },
+    "select": {
+      "default": {
+        "text": "Valitse"
+      }
+    }
+  },
   "footer": {
     "copyrightText": "© Copyright 2019 • All right reserved •"
   },
   "homePage": {
     "hero": {
-      "heading": "Kulttuurin Kummilapset 2020",
+      "buttonText": "Ilmoittaudu mukaan",
       "descriptionText": "Helsingin Kaupunginorkesteri kutsuu kummilapsikseen kaikki vuonna 2020 syntyneet Helsinkiläislapset! Lapsi perheineen kutsutaan kahdesti vuodessa nauttimaan KHO:n järjestämästä kulttuurista täysin ilmaiseksi! Liity mukaan!",
-      "buttonText": "Ilmoittaudu mukaan"
+      "heading": "Kulttuurin Kummilapset 2020"
     },
     "preliminaryForm": {
       "childBirthdate": {
         "input": {
-          "label": "Lapsen syntymäaika",
           "day": {
             "placeholder": "pv"
           },
+          "label": "Lapsen syntymäaika",
           "month": {
             "placeholder": "kk"
           },
@@ -40,17 +63,22 @@
       }
     }
   },
+  "navbar": {
+    "profileDropdown": {
+      "openCityProfile": {
+        "text": "Open user profile on omaHelsinki"
+      }
+    }
+  },
+  "notFound": {
+    "text": "Oletko hukassa?"
+  },
   "registration": {
-    "notEligible": {
-      "text": "Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä kulttuurin kummilapset toimintaan."
-    },
+    "heading": "Sign up",
     "form": {
       "child": {
-        "homeCity": {
-          "input": {
-            "label": "Child home city",
-            "placeholder": "Please put child home city"
-          }
+        "info": {
+          "heading": "Child's information"
         },
         "birthdate": {
           "input": {
@@ -64,24 +92,33 @@
             "placeholder": "Please put child first name"
           }
         },
+        "homeCity": {
+          "input": {
+            "label": "Child home city",
+            "placeholder": "Please put child home city"
+          }
+        },
         "lastName": {
           "input": {
             "label": "Child last name",
             "placeholder": "Please put child last name"
           }
+        },
+        "relationship": {
+          "input": {
+            "label": "Guardian relation with child",
+            "placeholder": "Please put guardian relation"
+          }
         }
       },
       "guardian": {
+        "info": {
+          "heading": "Guardian's information"
+        },
         "email": {
           "input": {
             "label": "Guardian email",
             "placeholder": "Please put guardian email"
-          }
-        },
-        "phoneNumber": {
-          "input": {
-            "label": "Guardian phone number",
-            "placeholder": "Please put guardian phone number"
           }
         },
         "firstName": {
@@ -96,10 +133,16 @@
             "placeholder": "Please put guardian last name"
           }
         },
-        "relationship": {
+        "phoneNumber": {
           "input": {
-            "label": "Guardian relation with child",
-            "placeholder": "Please put guardian relation"
+            "label": "Guardian phone number",
+            "placeholder": "Please put guardian phone number"
+          }
+        },
+        "language": {
+          "input": {
+            "label": "Guardian application prefer language",
+            "placeholder": "Please put guardian prefer language"
           }
         }
       },
@@ -107,30 +150,24 @@
         "input": {
           "label": "Agree to continue"
         }
+      },
+      "agree": {
+        "input": {
+          "placeholder": "Accept this to continue",
+          "label": "I accept terms and conditions of the service"
+        }
+      }
+    },
+    "notEligible": {
+      "text": "Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä kulttuurin kummilapset toimintaan."
+    },
+    "welcome": {
+      "hero": {
+        "header": "Tervetuloa kulttuurin kummilapseksi!"
       }
     }
   },
-  "authentication": {
-    "redirect": {
-      "text": "Ohjataan tunnistautumiseen..."
-    },
-    "login": {
-      "text": "Login"
-    },
-    "logout": {
-      "text": "Logout"
-    }
-  },
-  "navbar": {
-    "profileDropdown": {
-      "openCityProfile": {
-        "text": "Open user profile on omaHelsinki"
-      }
-    }
-  },
-  "notFound": {
-    "text": "Oletko hukassa?"
-  },
+  "sanityCheck": "kukkuu.fi",
   "validation": {
     "date": {
       "invalidFormat": "Invalid date input",
@@ -140,6 +177,5 @@
       "required": "Required",
       "unSupportedCity": "Unsupported city"
     }
-  },
-  "sanityCheck": "kukkuu.fi"
+  }
 }

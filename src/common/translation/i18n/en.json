@@ -1,21 +1,44 @@
 {
   "appName": "Godchildren of Culture",
+  "authentication": {
+    "login": {
+      "text": "Login"
+    },
+    "logout": {
+      "text": "Logout"
+    },
+    "redirect": {
+      "text": "Redirecting..."
+    }
+  },
+  "common": {
+    "profile": {
+      "goToProfile": {
+        "buttonText": "Go to your profile"
+      }
+    },
+    "select": {
+      "default": {
+        "text": "Choose"
+      }
+    }
+  },
   "footer": {
     "copyrightText": "© Copyright 2019 • All right reserved •"
   },
   "homePage": {
     "hero": {
-      "heading": "Godchildren of Culture 2020",
+      "buttonText": "Ilmoittaudu mukaan",
       "descriptionText": "Helsingin Kaupunginorkesteri kutsuu kummilapsikseen kaikki vuonna 2020 syntyneet Helsinkiläislapset! Lapsi perheineen kutsutaan kahdesti vuodessa nauttimaan KHO:n järjestämästä kulttuurista täysin ilmaiseksi! Liity mukaan!",
-      "buttonText": "Ilmoittaudu mukaan"
+      "heading": "Godchildren of Culture 2020"
     },
     "preliminaryForm": {
       "childBirthdate": {
         "input": {
-          "label": "Child's birthdate",
           "day": {
             "placeholder": "day"
           },
+          "label": "Child's birthdate",
           "month": {
             "placeholder": "month"
           },
@@ -40,17 +63,22 @@
       }
     }
   },
+  "navbar": {
+    "profileDropdown": {
+      "openCityProfile": {
+        "text": "Open user profile on omaHelsinki"
+      }
+    }
+  },
+  "notFound": {
+    "text": "You lost?"
+  },
   "registration": {
-    "notEligible": {
-      "text": "Your child is unfortunately not eligible for the Godchildren of Culture program due to their birthdate or home town."
-    },
+    "heading": "Sign up",
     "form": {
       "child": {
-        "homeCity": {
-          "input": {
-            "label": "Child home city",
-            "placeholder": "Please put child home city"
-          }
+        "info": {
+          "heading": "Child's information"
         },
         "birthdate": {
           "input": {
@@ -64,24 +92,33 @@
             "placeholder": "Please put child first name"
           }
         },
+        "homeCity": {
+          "input": {
+            "label": "Child home city",
+            "placeholder": "Please put child home city"
+          }
+        },
         "lastName": {
           "input": {
             "label": "Child last name",
             "placeholder": "Please put child last name"
           }
+        },
+        "relationship": {
+          "input": {
+            "label": "Guardian relation with child",
+            "placeholder": "Please put guardian relation"
+          }
         }
       },
       "guardian": {
+        "info": {
+          "heading": "Guardian's information"
+        },
         "email": {
           "input": {
             "label": "Guardian email",
             "placeholder": "Please put guardian email"
-          }
-        },
-        "phoneNumber": {
-          "input": {
-            "label": "Guardian phone number",
-            "placeholder": "Please put guardian phone number"
           }
         },
         "firstName": {
@@ -96,10 +133,16 @@
             "placeholder": "Please put guardian last name"
           }
         },
-        "relationship": {
+        "phoneNumber": {
           "input": {
-            "label": "Guardian relation with child",
-            "placeholder": "Please put guardian relation"
+            "label": "Guardian phone number",
+            "placeholder": "Please put guardian phone number"
+          }
+        },
+        "language": {
+          "input": {
+            "label": "Guardian application prefer language",
+            "placeholder": "Please put guardian prefer language"
           }
         }
       },
@@ -107,30 +150,24 @@
         "input": {
           "label": "Agree to continue"
         }
+      },
+      "agree": {
+        "input": {
+          "placeholder": "Accept this to continue",
+          "label": "I accept terms and conditions of the service"
+        }
+      }
+    },
+    "notEligible": {
+      "text": "Your child is unfortunately not eligible for the Godchildren of Culture program due to their birthdate or home town."
+    },
+    "welcome": {
+      "hero": {
+        "header": "Welcome as a Godchild of Culture!"
       }
     }
   },
-  "authentication": {
-    "redirect": {
-      "text": "Redirecting..."
-    },
-    "login": {
-      "text": "Login"
-    },
-    "logout": {
-      "text": "Logout"
-    }
-  },
-  "navbar": {
-    "profileDropdown": {
-      "openCityProfile": {
-        "text": "Open user profile on omaHelsinki"
-      }
-    }
-  },
-  "notFound": {
-    "text": "You lost?"
-  },
+  "sanityCheck": "kukkuu.en",
   "validation": {
     "date": {
       "invalidFormat": "Invalid date input",
@@ -140,6 +177,5 @@
       "required": "Required",
       "unSupportedCity": "Unsupported city"
     }
-  },
-  "sanityCheck": "kukkuu.en"
+  }
 }
