@@ -3,6 +3,7 @@ import { Formik } from 'formik';
 import { connect } from 'react-redux';
 import { useMutation } from '@apollo/react-hooks';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 
 import styles from './registrationForm.module.scss';
 import Button from '../../../common/components/button/Button';
@@ -28,6 +29,7 @@ const RegistrationForm: FunctionComponent<Props> = ({
   // TODO: Do something with the data we get from the backend.
   const [submitChild] = useMutation(submitChildMutationQuery);
   const { t } = useTranslation();
+  const history = useHistory();
 
   return (
     <div className={styles.registrationForm}>
@@ -46,6 +48,7 @@ const RegistrationForm: FunctionComponent<Props> = ({
                 email: values.guardian.email,
               },
             });
+            history.push('/registration/welcome');
           } catch (err) {
             // TODO: Error handling.
             // eslint-disable-next-line no-console

@@ -8,16 +8,17 @@ import styles from './welcome.module.scss';
 
 const Welcome: FunctionComponent = () => {
   const { t } = useTranslation();
-  //const rest = { width: '100px' };
   return (
-    <div className={styles.home}>
+    <div className={styles.welcome}>
       <div className={styles.hero}>
         <div className={styles.heroContainer}>
           <h1>{t('registration.welcome.hero.header')}</h1>
           <Icon src={tadaImage} className={styles.tada} alt="Tada!" />
-          <Button className={styles.submitButton} type="submit">
-            {t('common.profile.goToProfile.buttonText')}
-          </Button>
+          <form>
+            <Button className={styles.submitButton} type="submit">
+              {t('common.profile.goToProfile.buttonText')}
+            </Button>
+          </form>
         </div>
       </div>
     </div>
