@@ -57,7 +57,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
   };
 
   const handleRedirect = (payload: RegistrationFormValues) => {
-    if (isChildEligible(payload)) {
+    if (!isChildEligible(payload)) {
       history.push('/registration/not-eligible');
     } else if (isAuthenticated) {
       history.push('/registration/form');
