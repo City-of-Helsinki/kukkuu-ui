@@ -1,21 +1,15 @@
 import { gql } from 'apollo-boost';
 
-const submitChildMutationQuery = gql`
-  mutation submitChild(
-    $birthdate: Date!
-    $firstName: String
-    $lastName: String
+const submitChildrenAndGuardianMutation = gql`
+  mutation submitChildrenAndGuardian(
+    $children: [ChildInput]
     $guardianFirstName: String!
     $guardianLastName: String!
     $email: String!
   ) {
-    submitChild(
+    submitChildrenAndGuardian(
       input: {
-        child: {
-          birthdate: $birthdate
-          firstName: $firstName
-          lastName: $lastName
-        }
+        children: $children
         guardian: {
           lastName: $guardianLastName
           firstName: $guardianFirstName
@@ -23,10 +17,11 @@ const submitChildMutationQuery = gql`
         }
       }
     ) {
-      child {
+      children {
         birthdate
         firstName
         lastName
+        firstName
       }
       guardian {
         firstName
@@ -37,4 +32,4 @@ const submitChildMutationQuery = gql`
   }
 `;
 
-export default submitChildMutationQuery;
+export default submitChildrenAndGuardianMutation;

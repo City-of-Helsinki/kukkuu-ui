@@ -9,7 +9,7 @@ import styles from './registrationForm.module.scss';
 import Button from '../../../common/components/button/Button';
 import InputField from '../../../common/components/form/fields/input/InputField';
 import SelectField from '../../../common/components/form/fields/select/SelectField';
-import submitChildMutationQuery from '../mutations/submitChild';
+import submitChildrenAndGuardianMutation from '../mutations/submitChildrenAndGuardianMutation';
 import { setFormValues } from '../state/RegistrationActions';
 import { RegistrationFormValues } from '../types/RegistrationTypes';
 import { StoreState } from '../../app/types/AppTypes';
@@ -31,7 +31,9 @@ const RegistrationForm: FunctionComponent<Props> = ({
   initialValues,
 }) => {
   // TODO: Do something with the data we get from the backend.
-  const [submitChild] = useMutation(submitChildMutationQuery);
+  const [submitChildrenAndGuardian] = useMutation(
+    submitChildrenAndGuardianMutation
+  );
   const { t } = useTranslation();
   const history = useHistory();
 
@@ -48,12 +50,17 @@ const RegistrationForm: FunctionComponent<Props> = ({
           }
           onSubmit={values => {
             setFormValues(values);
+            const childInput = [
+              {
+                birthdate: values.child.birthdate,
+                firstName: values.child.firstName,
+                lastName: values.child.lastName,
+              },
+            ];
             try {
-              submitChild({
+              submitChildrenAndGuardian({
                 variables: {
-                  birthdate: values.child.birthdate,
-                  firstName: values.child.firstName,
-                  lastName: values.child.lastName,
+                  children: childInput,
                   guardianFirstName: values.guardian.firstName,
                   guardianLastName: values.guardian.lastName,
                   email: values.guardian.email,
