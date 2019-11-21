@@ -19,8 +19,17 @@ describe('graphql client', () => {
     try {
       await client.query({
         query: gql`
-          query DummyQuery {
-            dummy
+          query ChildrenQuery {
+            children {
+              pageInfo {
+                hasNextPage
+              }
+              edges {
+                node {
+                  firstName
+                }
+              }
+            }
           }
         `,
       });
