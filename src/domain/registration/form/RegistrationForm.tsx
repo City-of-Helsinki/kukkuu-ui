@@ -48,7 +48,7 @@ const RegistrationForm: FunctionComponent<Props> = ({
                 email: values.guardian.email,
               },
             });
-            history.push('/registration/welcome');
+            history.push('/registration/success');
           } catch (err) {
             // TODO: Error handling.
             // eslint-disable-next-line no-console

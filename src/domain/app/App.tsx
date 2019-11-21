@@ -57,7 +57,7 @@ class App extends React.Component<AppProps> {
           <PrivateRoute exact path={`/${locale}/registration/form`}>
             <RegistrationForm />
           </PrivateRoute>
-          <PrivateRoute exact path={`/${locale}/registration/welcome`}>
+          <PrivateRoute exact path={`/${locale}/registration/success`}>
             <Welcome />
           </PrivateRoute>
           <Route component={NotFound} />
