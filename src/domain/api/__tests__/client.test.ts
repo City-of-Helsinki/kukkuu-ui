@@ -11,7 +11,7 @@ describe('graphql client', () => {
     global.fetch.mockResponse(
       JSON.stringify({
         data: {
-          dummy: null,
+          children: { __typename: 'ChildNodeConnection' },
         },
       })
     );
@@ -21,14 +21,7 @@ describe('graphql client', () => {
         query: gql`
           query ChildrenQuery {
             children {
-              pageInfo {
-                hasNextPage
-              }
-              edges {
-                node {
-                  firstName
-                }
-              }
+              __typename
             }
           }
         `,
