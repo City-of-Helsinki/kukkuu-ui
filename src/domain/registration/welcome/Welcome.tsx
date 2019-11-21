@@ -5,6 +5,7 @@ import tadaImage from '../../../assets/icons/svg/tada.svg';
 import Button from '../../../common/components/button/Button';
 import Icon from '../../../common/components/icon/Icon';
 import styles from './welcome.module.scss';
+import homeFormStyles from '../../home/form/homePreliminaryForm.module.scss';
 
 const Welcome: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -13,7 +14,7 @@ const Welcome: FunctionComponent = () => {
       <h1>{t('registration.welcome.hero.header')}</h1>
       <Icon src={tadaImage} className={styles.tada} alt="Tada!" />
       <form>
-        <Button className={styles.submitButton} type="submit">
+        <Button className={homeFormStyles.submitButton} type="submit">
           {t('common.profile.goToProfile.buttonText')}
         </Button>
       </form>

@@ -4,17 +4,6 @@
 
 .welcome {
     text-align: center;
-    .submitButton {
-        display: grid;
-        width: 100%;
-        button {
-            background: lighten($hel-summer, 20%);
-            border: none !important;
-            &:disabled {
-                background: $hel-gray;
-            }
-        }
-    }
     .tada {
         margin: 1em;
     }
