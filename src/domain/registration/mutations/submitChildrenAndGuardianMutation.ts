@@ -21,7 +21,6 @@ const submitChildrenAndGuardianMutation = gql`
         birthdate
         firstName
         lastName
-        firstName
       }
       guardian {
         firstName
