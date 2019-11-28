@@ -224,5 +224,11 @@
         }
       }
     }
+  },
+  "CHILD_RELATIONSHIP_OPTIONS": {
+    "ADVOCATE": "Verge",
+    "OTHER_GUARDIAN": "Annen verge",
+    "OTHER_RELATION": "Annen nær relasjon",
+    "PARENT": "Forelder"
   }
 }

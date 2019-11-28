@@ -10,7 +10,7 @@ import EnhancedInputField from '../../../../common/components/form/fields/input/
 import InputField from '../../../../common/components/form/fields/input/InputField';
 import SelectField from '../../../../common/components/form/fields/select/SelectField';
 import { Child } from '../../../child/types/ChildTypes';
-import { CHILD_RELATIONSHIP_OPTIONS } from '../../../child/constants/ChildRelationshipConstants';
+import { getTranslatedRelationshipOptions } from '../../../child/childUtils';
 import Icon from '../../../../common/components/icon/Icon';
 import happyChildIcon from '../../../../assets/icons/svg/happyChild.svg';
 import deleteIcon from '../../../../assets/icons/svg/delete.svg';
@@ -96,7 +96,7 @@ const ChildFormField: React.FunctionComponent<ChildFormFieldProps> = ({
           label={t('registration.form.child.relationship.input.label')}
           component={SelectField}
           id="registration.form.child.relationship.select"
-          options={CHILD_RELATIONSHIP_OPTIONS}
+          options={getTranslatedRelationshipOptions(t)}
           placeholder={t(
             'registration.form.child.relationship.input.placeholder'
           )}

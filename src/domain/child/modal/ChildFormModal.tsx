@@ -9,8 +9,8 @@ import EnhancedInputField from '../../../common/components/form/fields/input/Enh
 import InputField from '../../../common/components/form/fields/input/InputField';
 import Button from '../../../common/components/button/Button';
 import SelectField from '../../../common/components/form/fields/select/SelectField';
-import { CHILD_RELATIONSHIP_OPTIONS } from '../constants/ChildRelationshipConstants';
 import { Child } from '../types/ChildTypes';
+import { getTranslatedRelationshipOptions } from '../childUtils';
 
 export interface ChildFormModalValues extends Omit<Child, 'birthdate'> {
   birthdate: {
@@ -35,6 +35,7 @@ const ChildFormModal: React.FunctionComponent<ChildFormModalProps> = ({
   setIsOpen,
 }) => {
   const { t } = useTranslation();
+
   return (
     <div className={styles.childFormModalWrapper}>
       <Modal isOpen={isOpen} label={label} toggleModal={setIsOpen}>
@@ -97,7 +98,7 @@ const ChildFormModal: React.FunctionComponent<ChildFormModalProps> = ({
                 label={t('registration.form.child.relationship.input.label')}
                 component={SelectField}
                 id="registration.form.child.relationship.select"
-                options={CHILD_RELATIONSHIP_OPTIONS}
+                options={getTranslatedRelationshipOptions(t)}
                 placeholder={t(
                   'registration.form.child.relationship.input.placeholder'
                 )}

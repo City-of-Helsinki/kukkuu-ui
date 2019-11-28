@@ -224,5 +224,11 @@
         }
       }
     }
+  },
+  "CHILD_RELATIONSHIP_OPTIONS": {
+    "ADVOCATE": "Puolesta asioija",
+    "OTHER_GUARDIAN": "Muu huoltaja",
+    "OTHER_RELATION": "Muu läheinen",
+    "PARENT": "Vanhempi"
   }
 }
