@@ -10,7 +10,7 @@ import InputField from '../../../common/components/form/fields/input/InputField'
 import Button from '../../../common/components/button/Button';
 import SelectField from '../../../common/components/form/fields/select/SelectField';
 import { Child } from '../types/ChildTypes';
-import { getTranslatedRelationshipOptions } from '../childUtils';
+import { getTranslatedRelationshipOptions } from '../ChildUtils';
 
 export interface ChildFormModalValues extends Omit<Child, 'birthdate'> {
   birthdate: {

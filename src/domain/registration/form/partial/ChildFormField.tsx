@@ -10,7 +10,7 @@ import EnhancedInputField from '../../../../common/components/form/fields/input/
 import InputField from '../../../../common/components/form/fields/input/InputField';
 import SelectField from '../../../../common/components/form/fields/select/SelectField';
 import { Child } from '../../../child/types/ChildTypes';
-import { getTranslatedRelationshipOptions } from '../../../child/childUtils';
+import { getTranslatedRelationshipOptions } from '../../../child/ChildUtils';
 import Icon from '../../../../common/components/icon/Icon';
 import happyChildIcon from '../../../../assets/icons/svg/happyChild.svg';
 import deleteIcon from '../../../../assets/icons/svg/delete.svg';
