@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 import Icon from '../../../../common/components/icon/Icon';
 import envelopeWithStars from '../../../../assets/icons/svg/envelopeWithStars.svg';
@@ -9,9 +9,9 @@ const NoUpcomingEvents: FunctionComponent = () => {
   return (
     <div>
       <h1>{t('profile.noupcomingevents.hero.heading')}</h1>
-      <p>{t('profile.noupcomingevents.text1')}</p>
       <Icon src={envelopeWithStars} alt="Envelope with stars" />
-      <p>{t('profile.noupcomingevents.text2')}</p>
+      <Trans i18nKey="multiline">{t('profile.noupcomingevents.text')}</Trans>
+      <p></p>
     </div>
   );
 };

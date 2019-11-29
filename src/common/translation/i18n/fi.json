@@ -204,8 +204,7 @@
       "hero": {
         "heading": "Tapahtumakutsut"
       },
-      "text1": "Tänne ilmaantuvat sinulle lähetetyt tapahtumakutsut.",
-      "text2": "Pääset myös ilmoittautumaan tapahtumiin ja perumaan ilmoittautumisesi mikäli et jostain syystä pääsekään tapahtumaan."
+      "text": "Tänne ilmaantuvat sinulle lähetetyt tapahtumakutsut. <br/> Pääset myös ilmoittautumaan tapahtumiin ja perumaan ilmoittautumisesi mikäli et jostain syystä pääsekään tapahtumaan."
     }
   },
   "child": {

@@ -3,6 +3,6 @@ import {
   profileQuery_guardians_edges_node_children_edges_node as GeneratedProfileChild,
 } from '../../api/generatedTypes/profileQuery';
 
-export interface Profile extends Omit<GeneratedProfile, 'children'> {
-  children: (GeneratedProfileChild | null)[];
+export interface ProfileType extends Omit<GeneratedProfile, 'children'> {
+  children: GeneratedProfileChild[] | null;
 }
