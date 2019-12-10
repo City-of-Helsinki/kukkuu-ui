@@ -47,9 +47,12 @@ const RegistrationForm: FunctionComponent<Props> = ({
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
 
-  // if isFilling is true, means that user is have started filling out the form
-  // without finishing it yet, changing page URL / reload will make user lose all
-  // his/her local form state
+  // For new users preferLanguage defaults to their chosen UI language.
+  initialValues.preferLanguage = initialValues.preferLanguage || currentLocale;
+
+  // isFilling is true when user has started filling out the form.
+  // They will lose all their local form state if they change URL
+  // or reload the page unless they submit first.
   const [isFilling, setFormIsFilling] = useState(false);
   return (
     <PageWrapper
@@ -217,7 +220,7 @@ const RegistrationForm: FunctionComponent<Props> = ({
                   </div>
 
                   <EnhancedInputField
-                    value={values.preferLanguage || currentLocale}
+                    value={values.preferLanguage}
                     name="preferLanguage"
                     label={t('registration.form.guardian.language.input.label')}
                     required={true}
