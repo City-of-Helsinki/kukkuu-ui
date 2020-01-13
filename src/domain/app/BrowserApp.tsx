@@ -13,7 +13,7 @@ import graphqlClient from '../api/client';
 import enableOidcLogging from '../auth/enableOidcLogging';
 import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import userManager from '../auth/userManager';
-import PageLayout from './layout/Layout';
+import PageLayout from './layout/PageLayout';
 import { persistor, store } from './state/AppStore';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
