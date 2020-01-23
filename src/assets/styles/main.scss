@@ -17,6 +17,10 @@ body {
   flex: 1;
 }
 
+* {
+  font-family: var(--hds-theme-primary-font);
+}
+
 button {
   &:focus {
     outline: 1px solid var(--hds-brand-color-coat-of-arms-blue);

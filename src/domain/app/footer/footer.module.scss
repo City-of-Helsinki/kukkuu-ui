@@ -24,7 +24,7 @@ $logoWidth: 5rem;
 }
 
 .footerWrapper {
-  @include divider(var(--hds-ui-color-black-5));
+  @include divider($hel-light);
   position: relative;
   display: grid;
   align-items: center;
