@@ -1,6 +1,5 @@
 @import 'colors';
 @import 'variables';
-@import 'fonts';
 
 .childWrapper {
   background: $white;
@@ -32,7 +31,7 @@
     margin-left: 1rem;
     p {
       text-transform: capitalize;
-      font-size: $font-size-lg;
+      font-size: var(--hds-text-lg);
       margin: 0;
       margin-bottom: $baseMargin;
     }

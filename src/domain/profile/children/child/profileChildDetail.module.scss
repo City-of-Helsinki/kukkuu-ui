@@ -1,82 +1,80 @@
 @import 'variables';
-@import 'mixins';
-@import 'colors';
 @import 'layout';
-
+@import 'colors';
 .wrapper {
-    @include background($hel-light)
+  background: var(--hds-ui-color-black-5);
 }
 
 .childDetailWrapper {
-    display: grid;
-    grid-template-rows: 3rem auto;
-    padding: 0 $basePadding;
-    @include respond-above(sm) {
-        padding: 0;
-        grid-template-columns: auto auto;
-        gap: $baseMargin;
-    }
+  display: grid;
+  grid-template-rows: 3rem auto;
+  padding: 0 $basePadding;
+  @include respond-above(sm) {
+    padding: 0;
+    grid-template-columns: auto auto;
+    gap: $baseMargin;
+  }
 }
 
 .backButton {
-    height: $largeMargin;
-    width: $largeMargin;
-    padding-top: $baseMargin;
+  height: $largeMargin;
+  width: $largeMargin;
+  padding-top: $baseMargin;
 }
 
 button.backButton {
-    border: 0;
-    background: transparent;
+  border: 0;
+  background: transparent;
 }
 
 .backButtonIcon {
-    @include respond-above(sm) {
-        height: inherit;
-        width: inherit;
-    }
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    img {
-        height: $baseMargin;
-        width: $baseMargin;
-    }
-    &:hover {
-        background: $white;
-        border-radius: 50%;
-    }
+  @include respond-above(sm) {
+    height: inherit;
+    width: inherit;
+  }
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  img {
+    height: $baseMargin;
+    width: $baseMargin;
+  }
+  &:hover {
+    background: $white;
+    border-radius: 50%;
+  }
 }
 
 .childIcon {
-    height: $largeMargin;
-    width: $largeMargin;
+  height: $largeMargin;
+  width: $largeMargin;
 }
 
 .childInfo {
-    display: grid;
-    grid-auto-flow: row;
-    margin-bottom: $baseMargin;
-    .childInfoRow {
-        h1 {
-            margin: 0;
-            align-self: center;
-            text-transform: capitalize;
-        }
-        display: grid;
-        grid-template-columns: $largeMargin 1fr;
-        gap: $baseMargin;
-        padding-bottom: $baseMargin;
-
-        > span {
-            line-height: $baseMargin;
-            align-self: center;
-        }
-
-        > div {
-            justify-self: center;
-        }
-        &:first-child {
-            padding-top: $baseMargin;
-        }
+  display: grid;
+  grid-auto-flow: row;
+  margin-bottom: $baseMargin;
+  .childInfoRow {
+    h1 {
+      margin: 0;
+      align-self: center;
+      text-transform: capitalize;
     }
+    display: grid;
+    grid-template-columns: $largeMargin 1fr;
+    gap: $baseMargin;
+    padding-bottom: $baseMargin;
+
+    > span {
+      line-height: $baseMargin;
+      align-self: center;
+    }
+
+    > div {
+      justify-self: center;
+    }
+    &:first-child {
+      padding-top: $baseMargin;
+    }
+  }
 }

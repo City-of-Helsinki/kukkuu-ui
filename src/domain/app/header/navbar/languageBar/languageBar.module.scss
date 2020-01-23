@@ -1,16 +1,15 @@
 @import 'colors';
 @import 'variables';
-@import 'fonts';
 
 .languageBar {
-    a {
-        text-decoration: none;
-        margin: 0 $baseMargin;
-        color: $black;
+  a {
+    text-decoration: none;
+    margin: 0 $baseMargin;
+    color: $black;
 
-        &:visited {
-            color: $black;
-        }
+    &:visited {
+      color: $black;
     }
-    margin-right: $largeMargin;
+  }
+  margin-right: $largeMargin;
 }

@@ -1,62 +1,63 @@
 @import 'variables';
 @import 'layout';
-@import 'fonts';
 
 .childImage {
-    height: $largeMargin;
-    width: $largeMargin;
-    padding-right: $basePadding;
+  height: $largeMargin;
+  width: $largeMargin;
+  padding-right: $basePadding;
 }
 
 .childField {
-    margin-top: $baseMargin;
-    margin-bottom: $largeMargin;
+  margin-top: $baseMargin;
+  margin-bottom: $largeMargin;
 }
 
-.childName, .childFixedInfo {
-    @include respond-above(md) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: $baseMargin;
-    }
+.childName,
+.childFixedInfo {
+  @include respond-above(md) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $baseMargin;
+  }
 }
 
-.childBirthdate, .childHomeCity {
-    display: flex;
-    flex-direction: column;
-    
-    label {
-        font-size: $font-size-sm;
-        margin-bottom: $baseMargin * 0.25;
-        font-weight: $font-weight-bold;
-    }
+.childBirthdate,
+.childHomeCity {
+  display: flex;
+  flex-direction: column;
 
-    p {
-        padding: $buttonPadding;
-        padding-left: 0;
-        line-height: $inputHeight;
-        margin: 0;
-    }
+  label {
+    font-size: var(--hds-text-sm);
+    margin-bottom: $baseMargin * 0.25;
+    font-weight: bold;
+  }
+
+  p {
+    padding: $buttonPadding;
+    padding-left: 0;
+    line-height: $inputHeight;
+    margin: 0;
+  }
 }
 
 .heading {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  h2 {
+    flex-grow: 1;
+  }
+  button {
+    padding: 0;
+    border: none;
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-weight: bold;
 
-    h2 {
-        flex-grow: 1;
+    > div {
+      padding-left: 5px;
     }
-    button {
-        padding: 0;
-        border: none;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        font-weight: $font-weight-bold;
-        
-        > div {
-            padding-left: 5px;
-        }
-    }
+  }
 }

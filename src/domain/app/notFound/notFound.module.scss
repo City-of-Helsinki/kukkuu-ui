@@ -14,7 +14,7 @@
 
     display: block;
     margin: $largeMargin auto auto auto;
-    background: $hel-summer;
+    background: var(--hds-brand-color-summer);
     box-sizing: border-box;
     text-decoration: none;
     padding: $basePadding;

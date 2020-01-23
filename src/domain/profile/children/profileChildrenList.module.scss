@@ -1,6 +1,6 @@
-@import 'mixins';
 @import 'layout';
-@import 'colors';
+@import 'variables';
+
 .childrenList {
   .thisYearPartner {
     p {
@@ -24,7 +24,7 @@
 }
 
 .wrapper {
-  @include background($hel-light);
+  background: var(--hds-ui-color-black-5);
 }
 
 .heading {
@@ -47,7 +47,7 @@
     background: transparent;
     border: 0;
     &:focus {
-      outline: 1px solid $focusOutline;
+      outline: 1px solid var(--hds-brand-color-coat-of-arms-blue);
     }
   }
 }

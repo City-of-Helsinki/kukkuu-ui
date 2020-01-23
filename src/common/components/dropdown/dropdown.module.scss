@@ -4,64 +4,63 @@
 $navbarIconSize: 1rem;
 
 .dropdownWrapper {
-    float: left;
-    position: relative;
-    button {
-        display: flex;
-        justify-items: center;
-        border: none;
-        background-color: inherit;
-        margin: 0;
-        align-items: center;
-        
-        span {
-            margin-right: 0.25rem;
-            font-weight: 500;
-        }
-        
-        div {
-            img {
-                height: $navbarIconSize;
-                width: $navbarIconSize;
-            }
-        }
+  float: left;
+  position: relative;
+  button {
+    display: flex;
+    justify-items: center;
+    border: none;
+    background-color: inherit;
+    margin: 0;
+    align-items: center;
+
+    span {
+      margin-right: 0.25rem;
+      font-weight: 500;
     }
+
+    div {
+      img {
+        height: $navbarIconSize;
+        width: $navbarIconSize;
+      }
+    }
+  }
 }
 
 .dropdownContent {
-    position: absolute;
-    right: 0;
-    border: 1px solid $hel-gray;
-    background: $white;
-    z-index: 1;
-    width: 256px;
-    .dropdownContentOption {
-
-        &:not(:last-child) {
-            border-bottom: 1px solid $hel-gray;
-        }
-
-        button {
-            width: 100%;
-            min-height: $inputHeight;
-            padding: $buttonPadding;
-            display: flex;
-            span {
-                flex-basis: calc(100% - 1rem);
-                text-align: left;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-            }
-        }
-
-        display: block;
-        &:hover {
-            background-color: $hel-gray;
-        }
+  position: absolute;
+  right: 0;
+  border: 1px solid var(--hds-ui-color-black-30);
+  background: $white;
+  z-index: 1;
+  width: 256px;
+  .dropdownContentOption {
+    &:not(:last-child) {
+      border-bottom: 1px solid var(--hds-ui-color-black-30);
     }
+
+    button {
+      width: 100%;
+      min-height: $inputHeight;
+      padding: $buttonPadding;
+      display: flex;
+      span {
+        flex-basis: calc(100% - 1rem);
+        text-align: left;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+
+    display: block;
+    &:hover {
+      background-color: var(--hds-ui-color-black-30);
+    }
+  }
 }
 
 .dropdownOpen {
-    display: block !important;
+  display: block !important;
 }

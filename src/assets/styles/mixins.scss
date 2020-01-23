@@ -1,5 +1,4 @@
 @import 'variables';
-@import 'colors';
 
 // **** Mixins
 
@@ -74,8 +73,8 @@
 */
 @mixin add_spinner(
   $size: $spinnerHeight,
-  $main-color: $hel-gray,
-  $alt-color: $hel-black,
+  $main-color: var(--hds-ui-color-black-30),
+  $alt-color: var(--hds-ui-color-black-80),
   $thickness: 2px
 ) {
   content: '';
@@ -96,21 +95,17 @@
  */
 @mixin button() {
   button {
-    background: $hel-summer;
+    background: var(--hds-brand-color-summer);
 
     border: none !important;
     width: 100%;
 
     &:disabled {
-      background: $hel-gray;
+      background: var(--hds-ui-color-black-30);
     }
 
     &:focus {
-      border: 2px solid $focusOutline !important;
+      border: 2px solid var(--hds-brand-color-coat-of-arms-blue) !important;
     }
   }
-}
-
-@mixin background($color) {
-  background: lighten($color, 3%);
 }

@@ -1,76 +1,76 @@
-@import 'fonts';
 @import 'variables';
 @import 'colors';
 
 .inputWrapper {
-    display: grid;
-    input {
-        padding: $buttonPadding;
-    }
+  display: grid;
+  input {
+    padding: $buttonPadding;
+  }
 }
 
 .inputTypeWrapper {
-    display: grid;
+  display: grid;
 }
 
-.textInput, .numberInput {
-    .inputTypeWrapper {
-        label {
-            font-size: $font-size-sm;
-            margin-bottom: $baseMargin * 0.25;
-            font-weight: $font-weight-bold;
-        }
-        text-align: left;
-
-        input {
-            height: $inputHeight;  
-        }  
+.textInput,
+.numberInput {
+  .inputTypeWrapper {
+    label {
+      font-size: var(--hds-text-sm);
+      margin-bottom: $baseMargin * 0.25;
+      font-weight: bold;
     }
+    text-align: left;
+
+    input {
+      height: $inputHeight;
+    }
+  }
 }
 
 .checkboxInput {
-    .inputTypeWrapper {    
-        padding: $buttonPadding;
-        padding-left: 0;
-        display: inline-grid;
-        position: relative;
-        // Ensure that this custom item has a focus indicator when it is focused
-        &:focus-within {
-            // Would be great to copy style from focus so it would be consistent with other fields for each browser
-            // This is better than nothing
-            outline: $hel-metro auto 2px;
-        }
-
-        input {
-            opacity: 0;
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-        label {
-            position: relative;
-            padding-left: $checkboxPaddingLeft;
-            line-height: $inputHeight;
-
-            &:before {
-                display: inline-block;
-                content: '';
-                left: 0;
-                top: 25%;
-                width: $checkboxHeight;
-                height: $checkboxHeight;
-                position: absolute;
-                background-color: $white;
-                border: 1px solid $black;
-            }
-        }
-
-        input[type=checkbox]:checked + label:before {
-            background-image: url('../../../assets/icons/svg/checkbox.svg');
-            background-size: contain;
-            text-align: center;
-            background-color: $hel-summer;
-            border: none;
-        }
+  .inputTypeWrapper {
+    padding: $buttonPadding;
+    padding-left: 0;
+    display: inline-grid;
+    position: relative;
+    // Ensure that this custom item has a focus indicator when it is focused
+    &:focus-within {
+      // Would be great to copy style from focus so it would be consistent with other fields for each browser
+      // This is better than nothing
+      outline: var(--hds-brand-color-metro) auto 2px;
     }
+
+    input {
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    label {
+      position: relative;
+      padding-left: $checkboxPaddingLeft;
+      line-height: $inputHeight;
+
+      &:before {
+        display: inline-block;
+        content: '';
+        left: 0;
+        top: 25%;
+        width: $checkboxHeight;
+        height: $checkboxHeight;
+        position: absolute;
+        background-color: $white;
+        border: 1px solid $black;
+      }
+    }
+
+    input[type='checkbox']:checked + label:before {
+      background-image: url('../../../assets/icons/svg/checkbox.svg');
+      background-size: contain;
+      text-align: center;
+      background-color: var(--hds-brand-color-summer);
+      border: none;
+    }
+  }
 }

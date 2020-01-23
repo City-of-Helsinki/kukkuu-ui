@@ -1,69 +1,69 @@
-@import "layout";
-@import "variables";
-@import "colors";
-@import "mixins";
+@import 'layout';
+@import 'variables';
+@import 'colors';
+@import 'mixins';
 
 .heroWrapper {
-    background-color: $hel-summer;
-    display: grid;
-    position: relative;
-    overflow: visible;
+  background-color: var(--hds-brand-color-summer);
+  display: grid;
+  position: relative;
+  overflow: visible;
 }
 
 .kidsImageContainer {
-    grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
-    display: grid;
-    @include respond-above(lg) {
-        background-image: url('../../../assets/icons/svg/Culture_kids_background@2x.png');
-        background-repeat: repeat-x;
-        background-position: center bottom -2px;
-        background-size: 100% 321px;
-    }
+  grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+  display: grid;
+  @include respond-above(lg) {
+    background-image: url('../../../assets/icons/svg/Culture_kids_background@2x.png');
+    background-repeat: repeat-x;
+    background-position: center bottom -2px;
+    background-size: 100% 321px;
+  }
 }
 
 .kidsImage {
-    grid-column: 2;
-    min-height: calc(0.265 * 100vw);
-    @media (min-width: map-get($breakpoints, lg)) {
-        min-height: calc(0.265 * #{$containerMaxWidth});
-    }
-    background-image: url('../../../assets/icons/svg/Culture_kids@2x.png');
-    background-repeat: no-repeat;
-    background-position: center bottom -2px;
-    background-size: 100% auto;
+  grid-column: 2;
+  min-height: calc(0.265 * 100vw);
+  @media (min-width: map-get($breakpoints, lg)) {
+    min-height: calc(0.265 * #{$containerMaxWidth});
+  }
+  background-image: url('../../../assets/icons/svg/Culture_kids@2x.png');
+  background-repeat: no-repeat;
+  background-position: center bottom -2px;
+  background-size: 100% auto;
 }
 
 .heroContainer {
-    display: grid;
-    text-align: center;
+  display: grid;
+  text-align: center;
 
-    @include heroContainer();
+  @include heroContainer();
 }
 
 .hero {
-    h1 {
-        margin-top: $largeMargin;
-        margin-bottom: 0;
-    }
-    p {
-        line-height: $largeLineHeight;
-        margin: $largeMargin 0;
+  h1 {
+    margin-top: $largeMargin;
+    margin-bottom: 0;
+  }
+  p {
+    line-height: $largeLineHeight;
+    margin: $largeMargin 0;
+  }
+
+  .buttonGroup {
+    @include button();
+    width: 40%;
+    margin: 0 auto;
+
+    .authenticateButton {
+      border: 1px solid $white;
     }
 
-    .buttonGroup {
-        @include button();
-        width: 40%;
-        margin: 0 auto;
-
-        .authenticateButton {
-            border: 1px solid $white;
-        }
-
-        .registerButton {
-            button {
-                background-color: $white;
-                margin-bottom: $baseMargin;
-            }
-        }
+    .registerButton {
+      button {
+        background-color: $white;
+        margin-bottom: $baseMargin;
+      }
     }
+  }
 }

@@ -1,88 +1,88 @@
 @import 'colors';
-@import 'fonts';
+
 @import 'mixins';
 @import 'layout';
 @import 'variables';
 
 .modal {
-    background-color: $white;
-    position: relative;
+  background-color: $white;
+  position: relative;
 
-    // Make tab-key jump between fields
-    @include respond-below(md) {
-        position: fixed;
-        top:0;
-        left:0;
-        right:0;
-        bottom:0;
-    }
-}
-
-.overlay {
+  // Make tab-key jump between fields
+  @include respond-below(md) {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba($hel-gray, 0.75);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(var(--hds-ui-color-black-30), 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modalContent {
-    background-color: $white;
-    @include respond-below(md) {
-        // Ensure that modal is vertically scrollable on mobile
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: $basePadding 0;
-        overflow: auto;
-    }
+  background-color: $white;
+  @include respond-below(md) {
+    // Ensure that modal is vertically scrollable on mobile
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $basePadding 0;
+    overflow: auto;
+  }
 
-    .closeButton {
-        text-align: right;
-        button {
-            padding: 0;
-            border: none;
-            height: $largeMargin;
-            width: $largeMargin;
-            font-weight: $font-weight-bold;
-            font-size: $font-size-lg;
-            margin-right: $baseMargin;
-        }
+  .closeButton {
+    text-align: right;
+    button {
+      padding: 0;
+      border: none;
+      height: $largeMargin;
+      width: $largeMargin;
+      font-weight: bold;
+      font-size: var(--hds-text-lg);
+      margin-right: $baseMargin;
     }
+  }
 }
 
 .modalChildren {
-    padding: 0 $basePadding;
-    @include respond-above(sm) {
-        padding: $xlargeMargin;
-    }
-    padding-top: 0;
+  padding: 0 $basePadding;
+  @include respond-above(sm) {
+    padding: $xlargeMargin;
+  }
+  padding-top: 0;
 }
 
 .heading {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: $baseMargin 0;
-    padding: 0 $basePadding;
-    @include respond-above(sm) {
-        padding: 0 $xlargeMargin;
-    }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: $baseMargin 0;
+  padding: 0 $basePadding;
+  @include respond-above(sm) {
+    padding: 0 $xlargeMargin;
+  }
 
-    .happyChild {
-        height: $largeMargin;
-        width: $largeMargin;
-        margin-right: $baseMargin;
-    }
+  .happyChild {
+    height: $largeMargin;
+    width: $largeMargin;
+    margin-right: $baseMargin;
+  }
 
-    h1 {
-        margin: 0;
-        flex-grow: 1;
-    }
+  h1 {
+    margin: 0;
+    flex-grow: 1;
+  }
 }

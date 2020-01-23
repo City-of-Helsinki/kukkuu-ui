@@ -1,9 +1,8 @@
-@import 'fonts';
 @import 'variables';
 @import 'colors';
 
 .selectError {
-    color: $red;
-    margin-top: $sm-margin;
-    font-size: $font-size-sm;
+  color: $red;
+  margin-top: $sm-margin;
+  font-size: var(--hds-text-sm);
 }

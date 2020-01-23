@@ -1,44 +1,43 @@
-@import "layout";
-@import "mixins";
-@import "variables";
+@import 'layout';
+@import 'variables';
 
 .wrapper {
-    @include background($hel-light);
-    text-align: center;
-    padding-bottom: $largeMargin;
+  background: var(--hds-ui-color-black-5);
+  text-align: center;
+  padding-bottom: $largeMargin;
 
-    display: grid;
-    grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
 
-    .instructions {
-        grid-column: 2;
+  .instructions {
+    grid-column: 2;
 
-        h2 {
-            margin: 0;
-            padding: $largeMargin 0;
-        }
-
-        .icon {
-            height: $xlargeMargin;
-            width: $xlargeMargin;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .iconContainer {
-            display: grid;
-            padding: 0 $basePadding;
-
-            @include respond-above(sm) {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: $baseMargin;
-            }
-
-            .iconBox {
-                p {
-                    line-height: $largeLineHeight;
-                }
-            }
-        }
+    h2 {
+      margin: 0;
+      padding: $largeMargin 0;
     }
+
+    .icon {
+      height: $xlargeMargin;
+      width: $xlargeMargin;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .iconContainer {
+      display: grid;
+      padding: 0 $basePadding;
+
+      @include respond-above(sm) {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: $baseMargin;
+      }
+
+      .iconBox {
+        p {
+          line-height: $largeLineHeight;
+        }
+      }
+    }
+  }
 }

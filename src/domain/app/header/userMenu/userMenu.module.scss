@@ -1,17 +1,16 @@
 @import 'variables';
-@import 'fonts';
 
 .userMenu {
-    li {
-        padding: 0;
-        list-style: none;
-        margin-bottom: $largeMargin;
-        button {
-            border: 0;
-            font-weight: $font-weight-bold;
-        }
+  li {
+    padding: 0;
+    list-style: none;
+    margin-bottom: $largeMargin;
+    button {
+      border: 0;
+      font-weight: bold;
     }
+  }
 }
 ul.userMenu {
-    padding: 0;
+  padding: 0;
 }

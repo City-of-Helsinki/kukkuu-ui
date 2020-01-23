@@ -1,6 +1,5 @@
 @import 'variables';
 @import 'layout';
-@import 'fonts';
 
 .wrapper {
   padding-bottom: $largeMargin;
@@ -24,7 +23,7 @@
 
     p {
       &:first-child {
-        font-size: $font-size-lg;
+        font-size: var(--hds-text-lg);
       }
     }
   }

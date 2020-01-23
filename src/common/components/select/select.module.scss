@@ -1,4 +1,3 @@
-@import 'fonts';
 @import 'variables';
 
 .selectWrapper {
@@ -6,9 +5,9 @@
   flex-direction: column;
 
   label {
-    font-size: $font-size-sm;
+    font-size: var(--hds-text-sm);
     margin-bottom: $baseMargin * 0.25;
-    font-weight: $font-weight-bold;
+    font-weight: bold;
   }
 
   select {

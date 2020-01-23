@@ -1,4 +1,3 @@
-@import 'colors';
 @import 'layout';
 @import 'mixins';
 @import 'variables';
@@ -26,7 +25,7 @@ $logoWidth: 5.5rem;
 }
 
 .logo {
-  @include helsinki-logo($hel-black);
+  @include helsinki-logo(var(--hds-ui-color-black-80));
   background-position: center;
   height: $logoHeight;
   width: $logoWidth;

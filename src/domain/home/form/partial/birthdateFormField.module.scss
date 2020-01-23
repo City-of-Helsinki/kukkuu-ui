@@ -1,33 +1,33 @@
 @import 'layout';
 @import 'variables';
-@import 'fonts';
+
 @import 'colors';
 
 .birthdateField {
-    text-align: left;
+  text-align: left;
+  display: grid;
+
+  label {
+    font-size: var(--hds-text-sm);
+    font-weight: bold;
+    margin-bottom: $baseMargin * 0.25;
+    display: inline-block;
+  }
+
+  .inputWrapper {
     display: grid;
+    grid-template-columns: 1fr 0.2fr 1fr 0.2fr 1fr;
+    align-items: baseline;
+  }
 
-    label {
-        font-size: $font-size-sm;
-        font-weight: $font-weight-bold;
-        margin-bottom: $baseMargin * 0.25;
-        display: inline-block;
-    }
+  .dot {
+    text-align: center;
+  }
 
-    .inputWrapper {
-        display: grid;
-        grid-template-columns: 1fr 0.2fr 1fr 0.2fr 1fr;
-        align-items: baseline;
-    }
-    
-    .dot {
-        text-align: center;
-    }
-
-    .error {
-        text-align: left;
-        color: $red;
-        margin-top: $sm-margin;
-        font-size: $font-size-sm;
-    }
+  .error {
+    text-align: left;
+    color: $red;
+    margin-top: $sm-margin;
+    font-size: var(--hds-text-sm);
+  }
 }

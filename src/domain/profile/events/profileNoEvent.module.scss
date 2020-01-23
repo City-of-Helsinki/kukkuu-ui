@@ -2,22 +2,22 @@
 @import 'layout';
 @import 'variables';
 
-$iconSize: 2*$xlargeMargin;
+$iconSize: 2 * $xlargeMargin;
 
 .noEvent {
-    padding: $largeMargin;
-    display: grid;
-    background: $white;
-    @include respond-above(sm) {
-        grid-template-columns: $iconSize 1fr;
-        grid-gap: $baseMargin;
-    }
-    p {
-        align-self: center;
-        line-height: $baseLineHeight;
-    }
-    .envelopIcon {
-        height: $iconSize ;
-        width: $iconSize;
-    }   
+  padding: $largeMargin;
+  display: grid;
+  background: $white;
+  @include respond-above(sm) {
+    grid-template-columns: $iconSize 1fr;
+    grid-gap: $baseMargin;
+  }
+  p {
+    align-self: center;
+    line-height: $baseLineHeight;
+  }
+  .envelopIcon {
+    height: $iconSize;
+    width: $iconSize;
+  }
 }

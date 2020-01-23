@@ -1,43 +1,41 @@
 @import 'variables';
-@import 'colors';
 @import 'layout';
 @import 'mixins';
 
-.homeForm {    
-    padding: $largeMargin 0;
+.homeForm {
+  padding: $largeMargin 0;
 
-    form {
-        display: grid;
-        gap: $baseMargin 0;
-    }
+  form {
+    display: grid;
+    gap: $baseMargin 0;
+  }
 
-    .inputWrapper {
-        display: grid;
-        
-        @include respond-above(md) {
-            grid-template-columns: 1fr 1fr;
-            gap: 0 $baseMargin;
-        }
+  .inputWrapper {
+    display: grid;
+
+    @include respond-above(md) {
+      grid-template-columns: 1fr 1fr;
+      gap: 0 $baseMargin;
     }
+  }
 }
 
 .wrapper {
-    @include formContainer();
+  @include formContainer();
 
-    @include respond-below(md) {
-        padding: 0 $baseMargin;
-    }
-
+  @include respond-below(md) {
+    padding: 0 $baseMargin;
+  }
 }
 
 .submitButton {
-    @include button();
+  @include button();
 }
 
 .heading {
-    text-align: center;
-    p {
-        line-height: $largeLineHeight;
-        margin-bottom: $largeMargin;
-    }
+  text-align: center;
+  p {
+    line-height: $largeLineHeight;
+    margin-bottom: $largeMargin;
+  }
 }

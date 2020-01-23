@@ -1,97 +1,97 @@
-@import 'fonts';
 @import 'variables';
-@import 'colors';
 @import 'layout';
 @import 'mixins';
+@import 'colors';
 @import './partial/childFormField.module.scss';
 
 .registrationFormContainer {
-    display: grid;
+  display: grid;
 }
 
 .registrationWhiteContainer,
 .registrationGrayContainer {
-    display: grid;
-    @include respond-above(md) {
-        grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
-    }
+  display: grid;
+  @include respond-above(md) {
+    grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
+  }
 
-    @include respond-below(md) {
-        grid-template-columns: 1fr 10fr 1fr;
-    }
-};
+  @include respond-below(md) {
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+}
 
 .childBirthdate,
 .guardianEmail {
-    display: flex;
-    flex-direction: column;
-    
-    label {
-        font-size: $font-size-sm;
-        margin-bottom: $baseMargin * 0.25;
-        font-weight: $font-weight-bold;
-    }
+  display: flex;
+  flex-direction: column;
 
-    p {
-        padding: $buttonPadding;
-        padding-left: 0;
-        line-height: $inputHeight;
-        margin: 0;
-    }
+  label {
+    font-size: var(--hds-text-sm);
+    margin-bottom: $baseMargin * 0.25;
+    font-weight: bold;
+  }
+
+  p {
+    padding: $buttonPadding;
+    padding-left: 0;
+    line-height: $inputHeight;
+    margin: 0;
+  }
 }
 
 .guardianName {
-    @include respond-above(md) {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: $baseMargin;
-    }
+  @include respond-above(md) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $baseMargin;
+  }
 }
 
 .submitButton {
-    @include button();
-    margin: $largeMargin 0;
+  @include button();
+  margin: $largeMargin 0;
 }
 
 .addNewChildButton {
+  display: flex;
+
+  button {
+    background: transparent;
+    margin: $baseMargin 0;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: none;
+    width: 100%;
 
-    button {
-        background: transparent;
-        margin: $baseMargin 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        border: none;
-        width: 100%;
-
-        > div {
-            padding-right: 5px;
-        }
-        img {
-            transform: rotate(45deg);
-        }
+    > div {
+      padding-right: 5px;
     }
+    img {
+      transform: rotate(45deg);
+    }
+  }
 }
 
-.grayBackground, .registrationGrayContainer {
-    @include background($hel-light);
+.grayBackground,
+.registrationGrayContainer {
+  background: var(--hds-ui-color-black-5);
 }
 
 .registrationWhiteContainer {
-    background: $white;
+  background: $white;
 
-    > * {
-        grid-column: 2;
-    }
+  > * {
+    grid-column: 2;
+  }
 }
 
 .registrationGrayContainer {
-    > * {
-        grid-column: 2;
-    }
+  > * {
+    grid-column: 2;
+  }
 }
 
 .guardianInfo {
-    padding-top: $baseMargin;
+  padding-top: $baseMargin;
 }

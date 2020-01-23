@@ -1,22 +1,21 @@
 @import 'colors';
 @import 'variables';
-@import 'fonts';
 
 .inputField {
-    text-align: left;
-    
-    .inputErrorMessage {
-        min-height: $font-size-sm;
-    }
+  text-align: left;
+
+  .inputErrorMessage {
+    min-height: var(--hds-text-sm);
+  }
 }
 .inputError {
-    input {
-        border:1px solid $red;
-    }
-    
-    .inputErrorMessage {
-        color: $red;
-        margin-top: $sm-margin;
-        font-size: $font-size-sm;
-    }
+  input {
+    border: 1px solid $red;
+  }
+
+  .inputErrorMessage {
+    color: $red;
+    margin-top: $sm-margin;
+    font-size: var(--hds-text-sm);
+  }
 }

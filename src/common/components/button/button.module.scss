@@ -8,7 +8,7 @@
     text-align: center;
     height: $buttonHeight;
     &:focus {
-      outline: 1px solid $focusOutline;
+      outline: 1px solid var(--hds-brand-color-coat-of-arms-blue);
     }
   }
 }
