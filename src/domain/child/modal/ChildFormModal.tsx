@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Formik, FieldArray } from 'formik';
+import { Formik, FieldArray, FormikErrors } from 'formik';
 import { useTranslation } from 'react-i18next';
 
 import Modal from '../../../common/components/modal/Modal';
@@ -12,7 +12,10 @@ import SelectField from '../../../common/components/form/fields/select/SelectFie
 import { Child } from '../types/ChildTypes';
 import { getTranslatedRelationshipOptions } from '../ChildUtils';
 import NavigationPropmt from '../../../common/components/prompt/NavigationPrompt';
-import { validatePostalCode } from '../../../common/components/form/validationUtils';
+import {
+  validatePostalCode,
+  validateDate,
+} from '../../../common/components/form/validationUtils';
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import { isChildEligible } from '../../registration/notEligible/NotEligibleUtils';
@@ -25,6 +28,7 @@ export interface ChildFormModalValues extends Omit<Child, 'birthdate'> {
     month: number | string;
     year: number | string;
   };
+  childBirthdate?: string;
 }
 interface ChildFormModalProps {
   initialValues: ChildFormModalValues;
@@ -79,10 +83,25 @@ const ChildFormModal: React.FunctionComponent<ChildFormModalProps> = ({
           </div>
         ) : (
           <Formik
-            validate={() => {
+            validate={(values: ChildFormModalValues) => {
+              const {
+                birthdate: { day, month, year },
+              } = values;
               if (!isFilling) {
                 setFormIsFilling(true);
               }
+
+              const errors: FormikErrors<ChildFormModalValues> = {};
+
+              if (day && month && year) {
+                errors.childBirthdate = validateDate(`${day}.${month}.${year}`);
+
+                if (!errors.childBirthdate) {
+                  // Delete the property manually so form will be valid when this is undefined.
+                  delete errors.childBirthdate;
+                }
+              }
+              return errors;
             }}
             initialValues={initialValues}
             onSubmit={(values: ChildFormModalValues) => {

@@ -11,7 +11,8 @@ const BirthdateFormField: FunctionComponent<FieldArrayRenderProps> = ({
   name,
   form: { errors, touched },
 }) => {
-  const fieldTouched = getIn(touched, 'child.birthdate.day');
+  const fieldTouched =
+    getIn(touched, 'child.birthdate.day') || getIn(touched, 'birthdate.day');
   const error = getIn(errors, 'childBirthdate');
   const { t } = useTranslation();
 

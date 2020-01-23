@@ -9,6 +9,14 @@ $logoWidth: 5rem;
 
 .footer {
   display: grid;
+  color: $footerGray;
+
+  .links {
+    margin: $baseMargin 0;
+    a {
+      color: $footerGray;
+    }
+  }
 
   @include respond-below(sm) {
     padding: 0 $basePadding;
@@ -39,13 +47,6 @@ $logoWidth: 5rem;
 
   p {
     margin: 0;
-    color: $footerGray;
-  }
-}
-
-.accessibilityStatement {
-  margin: $baseMargin 0;
-  a {
     color: $footerGray;
   }
 }

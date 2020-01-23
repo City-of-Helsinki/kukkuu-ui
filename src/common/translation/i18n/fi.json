@@ -393,5 +393,9 @@
   },
   "accessibilityStatement": {
     "title": "Saavutettavuusseloste"
+  },
+  "descriptionOfTheFile": {
+    "title": "Rekisteriseloste",
+    "url": "https://www.hel.fi/static/liitteet/kanslia/rekisteriselosteet/Kuva/Kuva-EU-Kaupunginorkesterin-kummiperherekisteri.pdf"
   }
 }
