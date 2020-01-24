@@ -5,22 +5,36 @@ import classnames from 'classnames';
 
 import styles from './pageWrapper.module.scss';
 import Container from './Container';
+import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 const PageWrapper: FunctionComponent<{
   className?: string;
   title?: string;
   containerClassName?: string;
-}> = ({ children, className, containerClassName, title }) => {
-  const { t } = useTranslation();
-  const translatedTitle: string = title
-    ? `${t(title)} - ${t('appName')}`
-    : t('appName');
+  description?: string;
+}> = ({
+  children,
+  className,
+  containerClassName,
+  title = 'appName',
+  description = 'homePage.hero.descriptionText',
+}) => {
+  const { i18n, t } = useTranslation();
+  const lang = getCurrentLanguage(i18n);
+
+  const translatedTitle =
+    title !== 'appName' ? `${t(title)} - ${t('appName')}` : t('appName');
+  const translatedDescription =
+    title !== 'homePage.hero.descriptionText'
+      ? t(description)
+      : t('homePage.hero.descriptionText');
+
   return (
     <div className={classnames(styles.pageWrapper, className)}>
-      {title && (
-        <Helmet>
-          <title>{translatedTitle}</title>
-        </Helmet>
-      )}
+      <Helmet>
+        <html lang={lang} />
+        <title>{translatedTitle}</title>
+        <meta name="description" content={translatedDescription} />
+      </Helmet>
       <Container className={containerClassName}>{children}</Container>
     </div>
   );

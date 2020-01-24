@@ -27,6 +27,7 @@ const LanguageBar: React.FunctionComponent<{ className?: string }> = ({
             location.pathname.includes(`/${language}/`)
           }
           to={updateLocaleParam(location.pathname, currentLanguage, language)}
+          lang={language}
         >
           {t(`common.language.${language}`)}
         </NavLink>
