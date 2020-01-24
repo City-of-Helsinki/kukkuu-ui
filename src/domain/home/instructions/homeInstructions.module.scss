@@ -1,8 +1,9 @@
 @import 'layout';
 @import 'variables';
+@import 'colors';
 
 .wrapper {
-  background: var(--hds-ui-color-black-5);
+  background: $hel-light;
   text-align: center;
   padding-bottom: $largeMargin;
 

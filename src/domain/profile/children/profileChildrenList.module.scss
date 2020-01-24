@@ -1,5 +1,6 @@
 @import 'layout';
 @import 'variables';
+@import 'colors';
 
 .childrenList {
   .thisYearPartner {
@@ -24,7 +25,7 @@
 }
 
 .wrapper {
-  background: var(--hds-ui-color-black-5);
+  background: $hel-light;
 }
 
 .heading {
