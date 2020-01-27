@@ -1,5 +1,4 @@
 import { createAction } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios';
 
 import { API_AUTHENTICATION_ACTIONS } from '../constants/BackendAuthenticationActionConstants';
 import { BackendTokenResponse } from '../types/BackendAuthenticationTypes';
@@ -12,7 +11,7 @@ const fetchTokenSuccess = createAction<BackendTokenResponse>(
   API_AUTHENTICATION_ACTIONS.FETCH_TOKEN_SUCCESS
 );
 
-const fetchTokenError = createAction<AxiosError>(
+const fetchTokenError = createAction<Error>(
   API_AUTHENTICATION_ACTIONS.FETCH_TOKEN_ERROR
 );
 
