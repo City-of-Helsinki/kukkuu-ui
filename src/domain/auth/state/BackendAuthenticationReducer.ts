@@ -4,7 +4,7 @@ import { API_AUTHENTICATION_ACTIONS } from '../constants/BackendAuthenticationAc
 import { BackendAuthenticationData } from '../types/BackendAuthenticationTypes';
 
 export const defaultApiAuthenticationData: BackendAuthenticationData = {
-  isFetchingToken: true,
+  isFetchingToken: false,
   isAuthenticated: false,
   apiToken: null,
   errors: {},

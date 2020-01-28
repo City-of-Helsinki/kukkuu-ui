@@ -5,12 +5,13 @@ import {
   Redirect,
   useParams,
 } from 'react-router';
-import React, { FunctionComponent, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { loadUser } from 'redux-oidc';
-import { toast } from 'react-toastify';
-import * as Sentry from '@sentry/browser';
+// eslint-disable-next-line import/order
+import React, { FunctionComponent } from 'react';
+
 import 'react-toastify/dist/ReactToastify.css';
+
+import { useQuery } from '@apollo/react-hooks';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Home from '../home/Home';
 import NotFound from './notFound/NotFound';
@@ -18,18 +19,13 @@ import NotEligible from '../registration/notEligible/NotEligible';
 import PrivateRoute from '../auth/route/PrivateRoute';
 import RegistrationForm from '../registration/form/RegistrationForm';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import {
-  isLoadingUserSelector,
-  isAuthenticatedSelector,
-} from '../auth/state/AuthenticationSelectors';
-import { store } from './state/AppStore';
-import userManager from '../auth/userManager';
-import i18n from '../../common/translation/i18n/i18nInit';
+import { isLoadingUserSelector } from '../auth/state/AuthenticationSelectors';
 import Welcome from '../registration/welcome/Welcome';
 import Profile from '../profile/Profile';
 import AccessibilityStatement from '../accessibilityStatement/AccessibilityStatement';
-import { authenticateWithBackend } from '../auth/authenticate';
-import { fetchTokenError } from '../auth/state/BackendAuthenticationActions';
+import profileQuery from '../profile/queries/ProfileQuery';
+import { profileQuery as ProfileQueryType } from '../api/generatedTypes/profileQuery';
+import { saveProfile } from '../profile/state/ProfileActions';
 
 type AppProps = RouteComponentProps<{ locale: string }>;
 
@@ -39,35 +35,14 @@ const App: FunctionComponent<AppProps> = () => {
     locale: string;
   }>();
 
+  const { loading, data } = useQuery<ProfileQueryType>(profileQuery);
+
   const dispatch = useDispatch();
 
-  const isAuthenticated = useSelector(isAuthenticatedSelector);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      loadUser(store, userManager)
-        .then(user => {
-          if (user.access_token) {
-            dispatch(authenticateWithBackend(user.access_token));
-          } else {
-            dispatch(
-              fetchTokenError({
-                name: 'fetchTokenError',
-                message: 'No user found',
-              })
-            );
-          }
-        })
-        .catch(error => {
-          // TODO: Clear oidc local storage when this happens.
-          toast(i18n.t('authentication.loadUserError.message'), {
-            type: toast.TYPE.ERROR,
-          });
-          dispatch(fetchTokenError(error));
-          Sentry.captureException(error);
-        });
-    }
-  }, [dispatch, isAuthenticated]);
+  if (loading) return <LoadingSpinner isLoading={true} />;
+  if (data?.myProfile) {
+    dispatch(saveProfile(data.myProfile));
+  }
 
   return (
     <LoadingSpinner isLoading={isLoadingUser}>
