@@ -1,10 +1,13 @@
-import { Route, Switch, RouteComponentProps, Redirect } from 'react-router';
-import React from 'react';
-import { connect } from 'react-redux';
+import { Route, Switch, Redirect, useParams } from 'react-router';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from 'redux-oidc';
 import { toast } from 'react-toastify';
+// eslint-disable-next-line import/order
 import * as Sentry from '@sentry/browser';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { useQuery } from '@apollo/react-hooks';
 
 import Home from '../home/Home';
 import NotFound from './notFound/NotFound';
@@ -12,8 +15,10 @@ import NotEligible from '../registration/notEligible/NotEligible';
 import PrivateRoute from '../auth/route/PrivateRoute';
 import RegistrationForm from '../registration/form/RegistrationForm';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import { StoreState } from './types/AppTypes';
-import { isLoadingUserSelector } from '../auth/state/AuthenticationSelectors';
+import {
+  isLoadingUserSelector,
+  isAuthenticatedSelector,
+} from '../auth/state/AuthenticationSelectors';
 import { store } from './state/AppStore';
 import userManager from '../auth/userManager';
 import i18n from '../../common/translation/i18n/i18nInit';
@@ -22,24 +27,32 @@ import { fetchTokenError } from '../auth/state/BackendAuthenticationActions';
 import Welcome from '../registration/welcome/Welcome';
 import Profile from '../profile/Profile';
 import AccessibilityStatement from '../accessibilityStatement/AccessibilityStatement';
-import { userHasProfileSelector } from '../registration/state/RegistrationSelectors';
 import TermsOfService from '../termsOfService/TermsOfService';
+import profileQuery from '../profile/queries/ProfileQuery';
+import { clearProfile, saveProfile } from '../profile/state/ProfileActions';
+import { profileQuery as ProfileQueryType } from '../api/generatedTypes/profileQuery';
 
-type AppProps = RouteComponentProps<{ locale: string }> & {
-  isLoadingUser: boolean;
-  userHasProfile: boolean;
-  fetchApiToken: (accessToken: string) => void;
-  fetchApiTokenError: (errors: object) => void;
-};
+const App: React.FunctionComponent = () => {
+  const { locale } = useParams<{ locale: string }>();
+  const isLoadingUser = useSelector(isLoadingUserSelector);
+  const isAuthenticated = useSelector(isAuthenticatedSelector);
 
-class App extends React.Component<AppProps> {
-  componentDidMount() {
+  const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery, {
+    skip: !isAuthenticated,
+  });
+  const dispatch = useDispatch();
+  useEffect(() => {
     loadUser(store, userManager)
       .then(user => {
         if (user) {
-          this.props.fetchApiToken(user.access_token || '');
+          dispatch(authenticateWithBackend(user.access_token || ''));
         } else {
-          this.props.fetchApiTokenError({ message: 'No user found' });
+          dispatch(
+            fetchTokenError({
+              name: 'fetchTokenError',
+              message: 'No user found',
+            })
+          );
         }
       })
       .catch(error => {
@@ -47,67 +60,55 @@ class App extends React.Component<AppProps> {
         toast(i18n.t('authentication.loadUserError.message'), {
           type: toast.TYPE.ERROR,
         });
-        this.props.fetchApiTokenError(error);
+        dispatch(fetchTokenError(error));
         Sentry.captureException(error);
       });
+  }, [dispatch]);
+
+  if (!data || error) {
+    dispatch(clearProfile());
+  }
+  if (data?.myProfile) {
+    dispatch(saveProfile(data.myProfile));
   }
 
-  public render() {
-    const {
-      isLoadingUser,
-      userHasProfile,
-      match: {
-        params: { locale },
-      },
-    } = this.props;
+  const userHasProfile = !!data?.myProfile;
 
-    return (
-      <LoadingSpinner isLoading={isLoadingUser}>
-        <Switch>
-          <Redirect exact path={`/${locale}/`} to={`/${locale}/home`} />
-          <Route exact path={`/${locale}/home`} component={Home} />
-          <Route
-            exact
-            path={`/${locale}/registration/not-eligible`}
-            component={NotEligible}
-          />
-          <Route
-            exact
-            path={`/${locale}/accessibility`}
-            component={AccessibilityStatement}
-          />
-          <Route exact path={`/${locale}/terms`} component={TermsOfService} />
-          {!userHasProfile && (
-            <PrivateRoute exact path={`/${locale}/registration/form`}>
-              <RegistrationForm />
-            </PrivateRoute>
-          )}
-          <PrivateRoute exact path={`/${locale}/registration/success`}>
-            <Welcome />
+  return (
+    <LoadingSpinner isLoading={isLoadingUser || loading}>
+      <Switch>
+        <Redirect exact path={`/${locale}/`} to={`/${locale}/home`} />
+        <Route exact path={`/${locale}/home`} component={Home} />
+        <Route
+          exact
+          path={`/${locale}/registration/not-eligible`}
+          component={NotEligible}
+        />
+        <Route
+          exact
+          path={`/${locale}/accessibility`}
+          component={AccessibilityStatement}
+        />
+        <Route exact path={`/${locale}/terms`} component={TermsOfService} />
+        {!userHasProfile && (
+          <PrivateRoute exact path={`/${locale}/registration/form`}>
+            <RegistrationForm />
           </PrivateRoute>
+        )}
+        <PrivateRoute exact path={`/${locale}/registration/success`}>
+          <Welcome />
+        </PrivateRoute>
 
-          <PrivateRoute path={`/${locale}/profile`}>
-            <Profile />
-          </PrivateRoute>
+        <PrivateRoute path={`/${locale}/profile`}>
+          <Profile />
+        </PrivateRoute>
 
-          {userHasProfile && <Redirect to={`/${locale}/profile`} />}
+        {userHasProfile && <Redirect to={`/${locale}/profile`} />}
 
-          <Route component={NotFound} />
-        </Switch>
-      </LoadingSpinner>
-    );
-  }
-}
-
-const mapStateToProps = (state: StoreState) => ({
-  isLoadingUser: isLoadingUserSelector(state),
-  userHasProfile: userHasProfileSelector(state),
-});
-
-const actions = {
-  fetchApiToken: authenticateWithBackend,
-  fetchApiTokenError: fetchTokenError,
+        <Route component={NotFound} />
+      </Switch>
+    </LoadingSpinner>
+  );
 };
 
-export const UnconnectedApp = App;
-export default connect(mapStateToProps, actions)(App);
+export default App;
