@@ -244,7 +244,7 @@
   },
   "profile": {
     "addChildMutation": {
-      "errorMessage": "Error adding child. Please try again"
+      "errorMessage": "Ett fel skedde vid sparande av barnets information. Försök pånytt."
     },
     "child": {
       "default": {
@@ -390,7 +390,7 @@
   },
   "sanityCheck": "kukkuu.sv",
   "termsOfService": {
-    "title": ""
+    "title": "Användningsvillkor"
   },
   "validation": {
     "date": {
