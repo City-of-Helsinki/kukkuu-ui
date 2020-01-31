@@ -12,10 +12,10 @@
       "message": "An error occurred. Please try logging in again. "
     },
     "login": {
-      "text": "Login"
+      "text": "Log in"
     },
     "logout": {
-      "text": "Logout"
+      "text": "Log out"
     },
     "networkError": {
       "message": "Login error: Check your network connection or try again later"
