@@ -10,11 +10,16 @@ build-review:
   # These variables are available only for review env and are merged with the general variables defined above.
   extends: .build
   script:
-    - ls -l $CI_PROJECT_DIR
-    - ls -l /usr/share/nginx/html
-    - echo "and where am I? - $PWD"
-    - cp $CI_PROJECT_DIR/.prod/robots.txt.prod /usr/share/nginx/html/robots.txt
-    - cat /usr/share/nginx/html/robots.txt
+    - echo "CI_PROJECT_DIR:"
+    - echo $CI_PROJECT_DIR
+    - ls -la $CI_PROJECT_DIR
+    - echo "and where am I?"
+    - pwd
+    - echo "CI_BUILDS_DIR:"
+    - echo $CI_BUILDS_DIR
+    - ls -la $CI_BUILDS_DIR
+    - cp $CI_PROJECT_DIR/.prod/robots.txt.prod $CI_BUILDS_DIR
+    - cat $CI_BUILDS_DIR/robots.txt
   variables:
     DOCKER_IMAGE_NAME: '$CI_PROJECT_NAME-review'
     DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.test.kuva.hel.ninja'
