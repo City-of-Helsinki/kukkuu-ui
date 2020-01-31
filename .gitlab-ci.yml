@@ -12,6 +12,7 @@ build-review:
   script:
     - ls -l $CI_PROJECT_DIR
     - ls -l /usr/share/nginx/html
+    - echo "and where am I? - $PWD"
     - cp $CI_PROJECT_DIR/.prod/robots.txt.prod /usr/share/nginx/html/robots.txt
     - cat /usr/share/nginx/html/robots.txt
   variables:
