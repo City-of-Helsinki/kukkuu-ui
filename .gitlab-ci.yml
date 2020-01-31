@@ -15,11 +15,12 @@ build-review:
     - ls -la $CI_PROJECT_DIR
     - echo "and where am I?"
     - pwd
+    - ls -l
     - echo "CI_BUILDS_DIR:"
     - echo $CI_BUILDS_DIR
-    - ls -la $CI_BUILDS_DIR
-    - cp $CI_PROJECT_DIR/.prod/robots.txt.prod $CI_BUILDS_DIR
-    - cat $CI_BUILDS_DIR/robots.txt
+    - find $CI_BUILDS_DIR
+    - cp $CI_PROJECT_DIR/.prod/robots.txt.review robots.txt
+    - cat robots.txt
   variables:
     DOCKER_IMAGE_NAME: '$CI_PROJECT_NAME-review'
     DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.test.kuva.hel.ninja'
