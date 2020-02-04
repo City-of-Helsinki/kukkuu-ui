@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
+import { processSilentRenew } from 'redux-oidc';
 import './assets/styles/main.scss';
 import 'hds-core/lib/helsinki.css';
 import Modal from 'react-modal';
@@ -18,8 +19,11 @@ if (process.env.NODE_ENV !== 'development') {
     release: `${process.env.REACT_APP_APPLICATION_NAME}@${process.env.REACT_APP_VERSION}`,
   });
 }
-
-ReactDOM.render(<BrowserApp />, document.getElementById('root'));
+if (window.location.pathname === '/silent-renew') {
+  processSilentRenew();
+} else {
+  ReactDOM.render(<BrowserApp />, document.getElementById('root'));
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

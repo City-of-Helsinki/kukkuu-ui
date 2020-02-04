@@ -32,14 +32,6 @@ export const AppRoutes: FunctionComponent = () => {
   return (
     <PageLayout>
       <Switch>
-        <Route
-          exact
-          path="/silent_renew"
-          render={() => {
-            userManager.signinSilentCallback();
-            return null;
-          }}
-        />
         <Route exact path="/callback" component={OidcCallback} />
         <Redirect exact path="/" to={`/${currentLocale}/home`} />
         <Route path={`/${localeParam}/*`} component={App} />
