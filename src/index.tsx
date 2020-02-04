@@ -19,7 +19,7 @@ if (process.env.NODE_ENV !== 'development') {
     release: `${process.env.REACT_APP_APPLICATION_NAME}@${process.env.REACT_APP_VERSION}`,
   });
 }
-if (window.location.pathname === '/silent-renew') {
+if (window.location.pathname === '/silent_renew') {
   processSilentRenew();
 } else {
   ReactDOM.render(<BrowserApp />, document.getElementById('root'));
