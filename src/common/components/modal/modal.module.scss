@@ -5,6 +5,7 @@
 @import 'variables';
 
 $modalPadding: 2rem;
+$modalPaddingLarge: 4rem;
 
 .modal {
   background-color: $white;
@@ -67,7 +68,7 @@ $modalPadding: 2rem;
   padding: 0 $modalPadding;
 
   @include respond-above(sm) {
-    padding: 0 $modalPadding;
+    padding: 0 $modalPaddingLarge $basePadding $modalPaddingLarge;
   }
 }
 
