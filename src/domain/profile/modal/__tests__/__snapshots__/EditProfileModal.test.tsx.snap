@@ -1,0 +1,1141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<EditProfileModal
+  initialValues={
+    Object {
+      "children": Object {
+        "edges": Array [],
+      },
+      "email": "email@example.com",
+      "firstName": "asdf",
+      "id": "yuiop",
+      "language": "SV",
+      "lastName": "fdsa",
+      "phoneNumber": "0904422233",
+    }
+  }
+  isOpen={true}
+  onSubmit={[Function]}
+  setIsOpen={[Function]}
+>
+  <div>
+    <Modal
+      isOpen={true}
+      label="Lähiaikuisen tiedot"
+      setFormIsFilling={[Function]}
+      toggleModal={[Function]}
+    >
+      <div
+        className="modalWrapper"
+      >
+        <Modal
+          ariaHideApp={true}
+          bodyOpenClassName="ReactModal__Body--open"
+          className="modal"
+          closeTimeoutMS={0}
+          contentLabel="Lähiaikuisen tiedot"
+          isOpen={true}
+          onRequestClose={[Function]}
+          overlayClassName="overlay"
+          parentSelector={[Function]}
+          portalClassName="ReactModalPortal"
+          role="dialog"
+          shouldCloseOnEsc={true}
+          shouldCloseOnOverlayClick={false}
+          shouldFocusAfterRender={true}
+          shouldReturnFocusAfterClose={true}
+        >
+          <Portal
+            containerInfo={
+              <div
+                class="ReactModalPortal"
+              >
+                <div
+                  class="ReactModal__Overlay ReactModal__Overlay--after-open overlay"
+                >
+                  <div
+                    aria-label="Lähiaikuisen tiedot"
+                    class="ReactModal__Content ReactModal__Content--after-open modal"
+                    role="dialog"
+                    tabindex="-1"
+                  >
+                    <div
+                      class="modalContent"
+                    >
+                      <div
+                        class="closeButton buttonWrapper"
+                      >
+                        <button
+                          aria-label="Sulje"
+                          type="button"
+                        >
+                          <div
+                            class="imgWrapper"
+                          >
+                            <img
+                              alt=""
+                              src="closeWithoutCircle.svg"
+                            />
+                          </div>
+                        </button>
+                      </div>
+                      <div
+                        class="heading"
+                      >
+                        <div
+                          class="imgWrapper happyChild"
+                        >
+                          <img
+                            alt=""
+                            src="childFaceHappy.svg"
+                          />
+                        </div>
+                        <h1>
+                          Lähiaikuisen tiedot
+                        </h1>
+                      </div>
+                      <div
+                        class="modalChildren"
+                      >
+                        <form>
+                          <div
+                            class="email"
+                          >
+                            <label>
+                              Sähköpostiosoite
+                            </label>
+                            <p
+                              class="email"
+                            >
+                              email@example.com
+                            </p>
+                          </div>
+                          <div
+                            class="inputField"
+                          >
+                            <div
+                              class="inputWrapper textInput"
+                            >
+                              <div
+                                class="inputTypeWrapper"
+                              >
+                                <label
+                                  for="guardian.phoneNumber"
+                                >
+                                  Puhelinnumero*
+                                </label>
+                                <input
+                                  aria-required="true"
+                                  id="guardian.phoneNumber"
+                                  name="guardian.phoneNumber"
+                                  placeholder="Lisää puhelinnumero"
+                                  type="text"
+                                  value="0904422233"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="inputErrorMessage"
+                            />
+                          </div>
+                          <div
+                            class="profileName"
+                          >
+                            <div
+                              class="inputField"
+                            >
+                              <div
+                                class="inputWrapper textInput"
+                              >
+                                <div
+                                  class="inputTypeWrapper"
+                                >
+                                  <label
+                                    for="guardian.firstName"
+                                  >
+                                    Etunimi*
+                                  </label>
+                                  <input
+                                    aria-required="true"
+                                    id="guardian.firstName"
+                                    name="guardian.firstName"
+                                    placeholder="Lisää etunimi"
+                                    type="text"
+                                    value="asdf"
+                                  />
+                                </div>
+                              </div>
+                              <div
+                                class="inputErrorMessage"
+                              />
+                            </div>
+                            <div
+                              class="inputField"
+                            >
+                              <div
+                                class="inputWrapper textInput"
+                              >
+                                <div
+                                  class="inputTypeWrapper"
+                                >
+                                  <label
+                                    for="guardian.lastName"
+                                  >
+                                    Sukunimi*
+                                  </label>
+                                  <input
+                                    aria-required="true"
+                                    id="guardian.lastName"
+                                    name="guardian.lastName"
+                                    placeholder="Lisää sukunimi"
+                                    type="text"
+                                    value="fdsa"
+                                  />
+                                </div>
+                              </div>
+                              <div
+                                class="inputErrorMessage"
+                              />
+                            </div>
+                          </div>
+                          <div
+                            class="selectFieldWrapper"
+                          >
+                            <div
+                              class="selectWrapper"
+                            >
+                              <label
+                                for="preferLanguage"
+                              >
+                                Asiointikieli*
+                              </label>
+                              <select
+                                aria-required="true"
+                                id="preferLanguage"
+                                name="preferLanguage"
+                                placeholder="Valitse asiointikieli"
+                              >
+                                <option
+                                  value=""
+                                >
+                                  Valitse
+                                </option>
+                                <option
+                                  value="en"
+                                >
+                                  English
+                                </option>
+                                <option
+                                  value="fi"
+                                >
+                                  Suomi
+                                </option>
+                                <option
+                                  value="sv"
+                                >
+                                  Svenska
+                                </option>
+                              </select>
+                            </div>
+                            <div
+                              class="selectError"
+                            />
+                          </div>
+                          <div
+                            class="buttonsWrapper"
+                          >
+                            <div
+                              class="cancelButton buttonWrapper"
+                            >
+                              <button
+                                type="submit"
+                              >
+                                Peruuta
+                              </button>
+                            </div>
+                            <div
+                              class="submitButton buttonWrapper"
+                            >
+                              <button
+                                type="submit"
+                              >
+                                Ilmoittaudu mukaan
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          >
+            <ModalPortal
+              ariaHideApp={true}
+              bodyOpenClassName="ReactModal__Body--open"
+              className="modal"
+              closeTimeoutMS={0}
+              contentLabel="Lähiaikuisen tiedot"
+              defaultStyles={
+                Object {
+                  "content": Object {
+                    "WebkitOverflowScrolling": "touch",
+                    "background": "#fff",
+                    "border": "1px solid #ccc",
+                    "borderRadius": "4px",
+                    "bottom": "40px",
+                    "left": "40px",
+                    "outline": "none",
+                    "overflow": "auto",
+                    "padding": "20px",
+                    "position": "absolute",
+                    "right": "40px",
+                    "top": "40px",
+                  },
+                  "overlay": Object {
+                    "backgroundColor": "rgba(255, 255, 255, 0.75)",
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "fixed",
+                    "right": 0,
+                    "top": 0,
+                  },
+                }
+              }
+              isOpen={true}
+              onRequestClose={[Function]}
+              overlayClassName="overlay"
+              parentSelector={[Function]}
+              portalClassName="ReactModalPortal"
+              role="dialog"
+              shouldCloseOnEsc={true}
+              shouldCloseOnOverlayClick={false}
+              shouldFocusAfterRender={true}
+              shouldReturnFocusAfterClose={true}
+              style={
+                Object {
+                  "content": Object {},
+                  "overlay": Object {},
+                }
+              }
+            >
+              <div
+                className="ReactModal__Overlay ReactModal__Overlay--after-open overlay"
+                onClick={[Function]}
+                onMouseDown={[Function]}
+                style={Object {}}
+              >
+                <div
+                  aria-label="Lähiaikuisen tiedot"
+                  className="ReactModal__Content ReactModal__Content--after-open modal"
+                  onClick={[Function]}
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                  role="dialog"
+                  style={Object {}}
+                  tabIndex="-1"
+                >
+                  <div
+                    className="modalContent"
+                  >
+                    <Button
+                      aria-label="Sulje"
+                      className="closeButton"
+                      onClick={[Function]}
+                    >
+                      <div
+                        className="closeButton buttonWrapper"
+                      >
+                        <button
+                          aria-label="Sulje"
+                          onClick={[Function]}
+                          type="button"
+                        >
+                          <Icon
+                            src="closeWithoutCircle.svg"
+                          >
+                            <div
+                              className="imgWrapper"
+                            >
+                              <img
+                                alt=""
+                                src="closeWithoutCircle.svg"
+                              />
+                            </div>
+                          </Icon>
+                        </button>
+                      </div>
+                    </Button>
+                    <div
+                      className="heading"
+                    >
+                      <Icon
+                        className="happyChild"
+                        src="childFaceHappy.svg"
+                      >
+                        <div
+                          className="imgWrapper happyChild"
+                        >
+                          <img
+                            alt=""
+                            src="childFaceHappy.svg"
+                          />
+                        </div>
+                      </Icon>
+                      <h1>
+                        Lähiaikuisen tiedot
+                      </h1>
+                    </div>
+                    <div
+                      className="modalChildren"
+                    >
+                      <Formik
+                        initialValues={
+                          Object {
+                            "children": Object {
+                              "edges": Array [],
+                            },
+                            "email": "email@example.com",
+                            "firstName": "asdf",
+                            "id": "yuiop",
+                            "language": "SV",
+                            "lastName": "fdsa",
+                            "phoneNumber": "0904422233",
+                          }
+                        }
+                        onSubmit={[Function]}
+                      >
+                        <form>
+                          <div
+                            className="email"
+                          >
+                            <label>
+                              Sähköpostiosoite
+                            </label>
+                            <p
+                              className="email"
+                            >
+                              email@example.com
+                            </p>
+                          </div>
+                          <EnhancedInputField
+                            component={[Function]}
+                            id="guardian.phoneNumber"
+                            label="Puhelinnumero"
+                            name="guardian.phoneNumber"
+                            placeholder="Lisää puhelinnumero"
+                            required={true}
+                            value="0904422233"
+                          >
+                            <Field
+                              aria-required={true}
+                              component={[Function]}
+                              id="guardian.phoneNumber"
+                              label="Puhelinnumero"
+                              name="guardian.phoneNumber"
+                              placeholder="Lisää puhelinnumero"
+                              required={true}
+                              validate={[Function]}
+                              value="0904422233"
+                            >
+                              <InputField
+                                aria-required={true}
+                                field={
+                                  Object {
+                                    "name": "guardian.phoneNumber",
+                                    "onBlur": [Function],
+                                    "onChange": [Function],
+                                    "value": undefined,
+                                  }
+                                }
+                                form={
+                                  Object {
+                                    "dirty": false,
+                                    "errors": Object {},
+                                    "getFieldHelpers": [Function],
+                                    "getFieldMeta": [Function],
+                                    "getFieldProps": [Function],
+                                    "handleBlur": [Function],
+                                    "handleChange": [Function],
+                                    "handleReset": [Function],
+                                    "handleSubmit": [Function],
+                                    "initialErrors": Object {},
+                                    "initialStatus": undefined,
+                                    "initialTouched": Object {},
+                                    "initialValues": Object {
+                                      "children": Object {
+                                        "edges": Array [],
+                                      },
+                                      "email": "email@example.com",
+                                      "firstName": "asdf",
+                                      "id": "yuiop",
+                                      "language": "SV",
+                                      "lastName": "fdsa",
+                                      "phoneNumber": "0904422233",
+                                    },
+                                    "isSubmitting": false,
+                                    "isValid": true,
+                                    "isValidating": false,
+                                    "registerField": [Function],
+                                    "resetForm": [Function],
+                                    "setErrors": [Function],
+                                    "setFieldError": [Function],
+                                    "setFieldTouched": [Function],
+                                    "setFieldValue": [Function],
+                                    "setFormikState": [Function],
+                                    "setStatus": [Function],
+                                    "setSubmitting": [Function],
+                                    "setTouched": [Function],
+                                    "setValues": [Function],
+                                    "status": undefined,
+                                    "submitCount": 0,
+                                    "submitForm": [Function],
+                                    "touched": Object {},
+                                    "unregisterField": [Function],
+                                    "validateField": [Function],
+                                    "validateForm": [Function],
+                                    "validateOnBlur": true,
+                                    "validateOnChange": true,
+                                    "validateOnMount": false,
+                                    "values": Object {
+                                      "children": Object {
+                                        "edges": Array [],
+                                      },
+                                      "email": "email@example.com",
+                                      "firstName": "asdf",
+                                      "id": "yuiop",
+                                      "language": "SV",
+                                      "lastName": "fdsa",
+                                      "phoneNumber": "0904422233",
+                                    },
+                                  }
+                                }
+                                id="guardian.phoneNumber"
+                                label="Puhelinnumero"
+                                placeholder="Lisää puhelinnumero"
+                                required={true}
+                                value="0904422233"
+                              >
+                                <div
+                                  className="inputField"
+                                >
+                                  <Input
+                                    aria-required={true}
+                                    id="guardian.phoneNumber"
+                                    label="Puhelinnumero"
+                                    name="guardian.phoneNumber"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    placeholder="Lisää puhelinnumero"
+                                    required={true}
+                                    value="0904422233"
+                                  >
+                                    <div
+                                      className="inputWrapper textInput"
+                                    >
+                                      <div
+                                        className="inputTypeWrapper"
+                                      >
+                                        <label
+                                          htmlFor="guardian.phoneNumber"
+                                        >
+                                          Puhelinnumero*
+                                        </label>
+                                        <input
+                                          aria-required={true}
+                                          id="guardian.phoneNumber"
+                                          name="guardian.phoneNumber"
+                                          onBlur={[Function]}
+                                          onChange={[Function]}
+                                          placeholder="Lisää puhelinnumero"
+                                          type="text"
+                                          value="0904422233"
+                                        />
+                                      </div>
+                                    </div>
+                                  </Input>
+                                  <div
+                                    className="inputErrorMessage"
+                                  />
+                                </div>
+                              </InputField>
+                            </Field>
+                          </EnhancedInputField>
+                          <div
+                            className="profileName"
+                          >
+                            <EnhancedInputField
+                              component={[Function]}
+                              id="guardian.firstName"
+                              label="Etunimi"
+                              name="guardian.firstName"
+                              placeholder="Lisää etunimi"
+                              required={true}
+                              type="text"
+                              value="asdf"
+                            >
+                              <Field
+                                aria-required={true}
+                                component={[Function]}
+                                id="guardian.firstName"
+                                label="Etunimi"
+                                name="guardian.firstName"
+                                placeholder="Lisää etunimi"
+                                required={true}
+                                type="text"
+                                validate={[Function]}
+                                value="asdf"
+                              >
+                                <InputField
+                                  aria-required={true}
+                                  field={
+                                    Object {
+                                      "name": "guardian.firstName",
+                                      "onBlur": [Function],
+                                      "onChange": [Function],
+                                      "value": undefined,
+                                    }
+                                  }
+                                  form={
+                                    Object {
+                                      "dirty": false,
+                                      "errors": Object {},
+                                      "getFieldHelpers": [Function],
+                                      "getFieldMeta": [Function],
+                                      "getFieldProps": [Function],
+                                      "handleBlur": [Function],
+                                      "handleChange": [Function],
+                                      "handleReset": [Function],
+                                      "handleSubmit": [Function],
+                                      "initialErrors": Object {},
+                                      "initialStatus": undefined,
+                                      "initialTouched": Object {},
+                                      "initialValues": Object {
+                                        "children": Object {
+                                          "edges": Array [],
+                                        },
+                                        "email": "email@example.com",
+                                        "firstName": "asdf",
+                                        "id": "yuiop",
+                                        "language": "SV",
+                                        "lastName": "fdsa",
+                                        "phoneNumber": "0904422233",
+                                      },
+                                      "isSubmitting": false,
+                                      "isValid": true,
+                                      "isValidating": false,
+                                      "registerField": [Function],
+                                      "resetForm": [Function],
+                                      "setErrors": [Function],
+                                      "setFieldError": [Function],
+                                      "setFieldTouched": [Function],
+                                      "setFieldValue": [Function],
+                                      "setFormikState": [Function],
+                                      "setStatus": [Function],
+                                      "setSubmitting": [Function],
+                                      "setTouched": [Function],
+                                      "setValues": [Function],
+                                      "status": undefined,
+                                      "submitCount": 0,
+                                      "submitForm": [Function],
+                                      "touched": Object {},
+                                      "unregisterField": [Function],
+                                      "validateField": [Function],
+                                      "validateForm": [Function],
+                                      "validateOnBlur": true,
+                                      "validateOnChange": true,
+                                      "validateOnMount": false,
+                                      "values": Object {
+                                        "children": Object {
+                                          "edges": Array [],
+                                        },
+                                        "email": "email@example.com",
+                                        "firstName": "asdf",
+                                        "id": "yuiop",
+                                        "language": "SV",
+                                        "lastName": "fdsa",
+                                        "phoneNumber": "0904422233",
+                                      },
+                                    }
+                                  }
+                                  id="guardian.firstName"
+                                  label="Etunimi"
+                                  placeholder="Lisää etunimi"
+                                  required={true}
+                                  type="text"
+                                  value="asdf"
+                                >
+                                  <div
+                                    className="inputField"
+                                  >
+                                    <Input
+                                      aria-required={true}
+                                      id="guardian.firstName"
+                                      label="Etunimi"
+                                      name="guardian.firstName"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      placeholder="Lisää etunimi"
+                                      required={true}
+                                      type="text"
+                                      value="asdf"
+                                    >
+                                      <div
+                                        className="inputWrapper textInput"
+                                      >
+                                        <div
+                                          className="inputTypeWrapper"
+                                        >
+                                          <label
+                                            htmlFor="guardian.firstName"
+                                          >
+                                            Etunimi*
+                                          </label>
+                                          <input
+                                            aria-required={true}
+                                            id="guardian.firstName"
+                                            name="guardian.firstName"
+                                            onBlur={[Function]}
+                                            onChange={[Function]}
+                                            placeholder="Lisää etunimi"
+                                            type="text"
+                                            value="asdf"
+                                          />
+                                        </div>
+                                      </div>
+                                    </Input>
+                                    <div
+                                      className="inputErrorMessage"
+                                    />
+                                  </div>
+                                </InputField>
+                              </Field>
+                            </EnhancedInputField>
+                            <EnhancedInputField
+                              component={[Function]}
+                              id="guardian.lastName"
+                              label="Sukunimi"
+                              name="guardian.lastName"
+                              placeholder="Lisää sukunimi"
+                              required={true}
+                              type="text"
+                              value="fdsa"
+                            >
+                              <Field
+                                aria-required={true}
+                                component={[Function]}
+                                id="guardian.lastName"
+                                label="Sukunimi"
+                                name="guardian.lastName"
+                                placeholder="Lisää sukunimi"
+                                required={true}
+                                type="text"
+                                validate={[Function]}
+                                value="fdsa"
+                              >
+                                <InputField
+                                  aria-required={true}
+                                  field={
+                                    Object {
+                                      "name": "guardian.lastName",
+                                      "onBlur": [Function],
+                                      "onChange": [Function],
+                                      "value": undefined,
+                                    }
+                                  }
+                                  form={
+                                    Object {
+                                      "dirty": false,
+                                      "errors": Object {},
+                                      "getFieldHelpers": [Function],
+                                      "getFieldMeta": [Function],
+                                      "getFieldProps": [Function],
+                                      "handleBlur": [Function],
+                                      "handleChange": [Function],
+                                      "handleReset": [Function],
+                                      "handleSubmit": [Function],
+                                      "initialErrors": Object {},
+                                      "initialStatus": undefined,
+                                      "initialTouched": Object {},
+                                      "initialValues": Object {
+                                        "children": Object {
+                                          "edges": Array [],
+                                        },
+                                        "email": "email@example.com",
+                                        "firstName": "asdf",
+                                        "id": "yuiop",
+                                        "language": "SV",
+                                        "lastName": "fdsa",
+                                        "phoneNumber": "0904422233",
+                                      },
+                                      "isSubmitting": false,
+                                      "isValid": true,
+                                      "isValidating": false,
+                                      "registerField": [Function],
+                                      "resetForm": [Function],
+                                      "setErrors": [Function],
+                                      "setFieldError": [Function],
+                                      "setFieldTouched": [Function],
+                                      "setFieldValue": [Function],
+                                      "setFormikState": [Function],
+                                      "setStatus": [Function],
+                                      "setSubmitting": [Function],
+                                      "setTouched": [Function],
+                                      "setValues": [Function],
+                                      "status": undefined,
+                                      "submitCount": 0,
+                                      "submitForm": [Function],
+                                      "touched": Object {},
+                                      "unregisterField": [Function],
+                                      "validateField": [Function],
+                                      "validateForm": [Function],
+                                      "validateOnBlur": true,
+                                      "validateOnChange": true,
+                                      "validateOnMount": false,
+                                      "values": Object {
+                                        "children": Object {
+                                          "edges": Array [],
+                                        },
+                                        "email": "email@example.com",
+                                        "firstName": "asdf",
+                                        "id": "yuiop",
+                                        "language": "SV",
+                                        "lastName": "fdsa",
+                                        "phoneNumber": "0904422233",
+                                      },
+                                    }
+                                  }
+                                  id="guardian.lastName"
+                                  label="Sukunimi"
+                                  placeholder="Lisää sukunimi"
+                                  required={true}
+                                  type="text"
+                                  value="fdsa"
+                                >
+                                  <div
+                                    className="inputField"
+                                  >
+                                    <Input
+                                      aria-required={true}
+                                      id="guardian.lastName"
+                                      label="Sukunimi"
+                                      name="guardian.lastName"
+                                      onBlur={[Function]}
+                                      onChange={[Function]}
+                                      placeholder="Lisää sukunimi"
+                                      required={true}
+                                      type="text"
+                                      value="fdsa"
+                                    >
+                                      <div
+                                        className="inputWrapper textInput"
+                                      >
+                                        <div
+                                          className="inputTypeWrapper"
+                                        >
+                                          <label
+                                            htmlFor="guardian.lastName"
+                                          >
+                                            Sukunimi*
+                                          </label>
+                                          <input
+                                            aria-required={true}
+                                            id="guardian.lastName"
+                                            name="guardian.lastName"
+                                            onBlur={[Function]}
+                                            onChange={[Function]}
+                                            placeholder="Lisää sukunimi"
+                                            type="text"
+                                            value="fdsa"
+                                          />
+                                        </div>
+                                      </div>
+                                    </Input>
+                                    <div
+                                      className="inputErrorMessage"
+                                    />
+                                  </div>
+                                </InputField>
+                              </Field>
+                            </EnhancedInputField>
+                          </div>
+                          <EnhancedInputField
+                            component={[Function]}
+                            id="preferLanguage"
+                            label="Asiointikieli"
+                            name="preferLanguage"
+                            options={
+                              Array [
+                                Object {
+                                  "label": "English",
+                                  "value": "en",
+                                },
+                                Object {
+                                  "label": "Suomi",
+                                  "value": "fi",
+                                },
+                                Object {
+                                  "label": "Svenska",
+                                  "value": "sv",
+                                },
+                              ]
+                            }
+                            placeholder="Valitse asiointikieli"
+                            required={true}
+                            value="sv"
+                          >
+                            <Field
+                              aria-required={true}
+                              component={[Function]}
+                              id="preferLanguage"
+                              label="Asiointikieli"
+                              name="preferLanguage"
+                              options={
+                                Array [
+                                  Object {
+                                    "label": "English",
+                                    "value": "en",
+                                  },
+                                  Object {
+                                    "label": "Suomi",
+                                    "value": "fi",
+                                  },
+                                  Object {
+                                    "label": "Svenska",
+                                    "value": "sv",
+                                  },
+                                ]
+                              }
+                              placeholder="Valitse asiointikieli"
+                              required={true}
+                              validate={[Function]}
+                              value="sv"
+                            >
+                              <SelectField
+                                aria-required={true}
+                                field={
+                                  Object {
+                                    "name": "preferLanguage",
+                                    "onBlur": [Function],
+                                    "onChange": [Function],
+                                    "value": undefined,
+                                  }
+                                }
+                                form={
+                                  Object {
+                                    "dirty": false,
+                                    "errors": Object {},
+                                    "getFieldHelpers": [Function],
+                                    "getFieldMeta": [Function],
+                                    "getFieldProps": [Function],
+                                    "handleBlur": [Function],
+                                    "handleChange": [Function],
+                                    "handleReset": [Function],
+                                    "handleSubmit": [Function],
+                                    "initialErrors": Object {},
+                                    "initialStatus": undefined,
+                                    "initialTouched": Object {},
+                                    "initialValues": Object {
+                                      "children": Object {
+                                        "edges": Array [],
+                                      },
+                                      "email": "email@example.com",
+                                      "firstName": "asdf",
+                                      "id": "yuiop",
+                                      "language": "SV",
+                                      "lastName": "fdsa",
+                                      "phoneNumber": "0904422233",
+                                    },
+                                    "isSubmitting": false,
+                                    "isValid": true,
+                                    "isValidating": false,
+                                    "registerField": [Function],
+                                    "resetForm": [Function],
+                                    "setErrors": [Function],
+                                    "setFieldError": [Function],
+                                    "setFieldTouched": [Function],
+                                    "setFieldValue": [Function],
+                                    "setFormikState": [Function],
+                                    "setStatus": [Function],
+                                    "setSubmitting": [Function],
+                                    "setTouched": [Function],
+                                    "setValues": [Function],
+                                    "status": undefined,
+                                    "submitCount": 0,
+                                    "submitForm": [Function],
+                                    "touched": Object {},
+                                    "unregisterField": [Function],
+                                    "validateField": [Function],
+                                    "validateForm": [Function],
+                                    "validateOnBlur": true,
+                                    "validateOnChange": true,
+                                    "validateOnMount": false,
+                                    "values": Object {
+                                      "children": Object {
+                                        "edges": Array [],
+                                      },
+                                      "email": "email@example.com",
+                                      "firstName": "asdf",
+                                      "id": "yuiop",
+                                      "language": "SV",
+                                      "lastName": "fdsa",
+                                      "phoneNumber": "0904422233",
+                                    },
+                                  }
+                                }
+                                id="preferLanguage"
+                                label="Asiointikieli"
+                                options={
+                                  Array [
+                                    Object {
+                                      "label": "English",
+                                      "value": "en",
+                                    },
+                                    Object {
+                                      "label": "Suomi",
+                                      "value": "fi",
+                                    },
+                                    Object {
+                                      "label": "Svenska",
+                                      "value": "sv",
+                                    },
+                                  ]
+                                }
+                                placeholder="Valitse asiointikieli"
+                                required={true}
+                                value="sv"
+                              >
+                                <div
+                                  className="selectFieldWrapper"
+                                >
+                                  <Select
+                                    aria-required={true}
+                                    id="preferLanguage"
+                                    label="Asiointikieli"
+                                    name="preferLanguage"
+                                    onBlur={[Function]}
+                                    onChange={[Function]}
+                                    options={
+                                      Array [
+                                        Object {
+                                          "label": "English",
+                                          "value": "en",
+                                        },
+                                        Object {
+                                          "label": "Suomi",
+                                          "value": "fi",
+                                        },
+                                        Object {
+                                          "label": "Svenska",
+                                          "value": "sv",
+                                        },
+                                      ]
+                                    }
+                                    placeholder="Valitse asiointikieli"
+                                    required={true}
+                                    value="sv"
+                                  >
+                                    <div
+                                      className="selectWrapper"
+                                    >
+                                      <label
+                                        htmlFor="preferLanguage"
+                                      >
+                                        Asiointikieli*
+                                      </label>
+                                      <select
+                                        aria-required={true}
+                                        id="preferLanguage"
+                                        name="preferLanguage"
+                                        onBlur={[Function]}
+                                        onChange={[Function]}
+                                        placeholder="Valitse asiointikieli"
+                                        value="sv"
+                                      >
+                                        <option
+                                          key="no selection"
+                                          value=""
+                                        >
+                                          Valitse
+                                        </option>
+                                        <option
+                                          key="English"
+                                          value="en"
+                                        >
+                                          English
+                                        </option>
+                                        <option
+                                          key="Suomi"
+                                          value="fi"
+                                        >
+                                          Suomi
+                                        </option>
+                                        <option
+                                          key="Svenska"
+                                          value="sv"
+                                        >
+                                          Svenska
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </Select>
+                                  <div
+                                    className="selectError"
+                                  />
+                                </div>
+                              </SelectField>
+                            </Field>
+                          </EnhancedInputField>
+                          <div
+                            className="buttonsWrapper"
+                          >
+                            <Button
+                              className="cancelButton"
+                              disabled={false}
+                              type="submit"
+                            >
+                              <div
+                                className="cancelButton buttonWrapper"
+                              >
+                                <button
+                                  disabled={false}
+                                  type="submit"
+                                >
+                                  Peruuta
+                                </button>
+                              </div>
+                            </Button>
+                            <Button
+                              className="submitButton"
+                              disabled={false}
+                              type="submit"
+                            >
+                              <div
+                                className="submitButton buttonWrapper"
+                              >
+                                <button
+                                  disabled={false}
+                                  type="submit"
+                                >
+                                  Ilmoittaudu mukaan
+                                </button>
+                              </div>
+                            </Button>
+                          </div>
+                        </form>
+                      </Formik>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ModalPortal>
+          </Portal>
+        </Modal>
+      </div>
+    </Modal>
+  </div>
+</EditProfileModal>
+`;
