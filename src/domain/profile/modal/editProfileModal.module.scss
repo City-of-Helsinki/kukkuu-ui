@@ -1,0 +1,52 @@
+@import 'mixins';
+@import 'variables';
+@import 'layout';
+
+.email {
+  label {
+    font-weight: bold;
+  }
+  p {
+    margin-top: 0.25em;
+  }
+}
+
+.buttonsWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: $baseMargin;
+  margin: $baseMargin 0;
+  button: {
+    width: 100%;
+  }
+}
+
+.cancelButton {
+  @include button();
+  button {
+    width: 100%;
+    background-color: $cancelbutton;
+  }
+}
+
+.submitButton {
+  @include button();
+  button {
+    width: 100%;
+  }
+}
+
+.profileName {
+  @include respond-above(sm) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $baseMargin;
+  }
+}
+
+.icon {
+  display: block;
+  margin: $largeMargin auto;
+  height: $largeMargin;
+  width: $largeMargin;
+}

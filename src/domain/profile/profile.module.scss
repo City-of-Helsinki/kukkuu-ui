@@ -39,9 +39,8 @@
       transform: rotate(45deg);
     }
   }
-  button.editProfile {
-    background: transparent;
-    border: 0;
+  button {
+    border: none;
     &:focus {
       outline: 1px solid $focusOutline;
     }
