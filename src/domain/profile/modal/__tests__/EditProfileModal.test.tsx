@@ -1,10 +1,11 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { mount } from 'enzyme';
+import { MockedProvider } from '@apollo/react-testing';
 
 import EditProfileModal from '../EditProfileModal';
 import { ProfileType } from '../../type/ProfileTypes';
 import { Language } from '../../../api/generatedTypes/globalTypes';
+import { shallowWithProvider } from '../../../../common/test/testUtils';
 
 const initialValues: ProfileType = {
   id: 'yuiop',
@@ -18,17 +19,17 @@ const initialValues: ProfileType = {
   },
 };
 
-const onSubmit = () => {};
 const setIsOpen = () => {};
 
 it('renders snapshot correctly', () => {
-  const element = mount(
-    <EditProfileModal
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-      isOpen={true}
-      setIsOpen={setIsOpen}
-    />
+  const element = shallowWithProvider(
+    <MockedProvider>
+      <EditProfileModal
+        initialValues={initialValues}
+        isOpen={true}
+        setIsOpen={setIsOpen}
+      />
+    </MockedProvider>
   );
   expect(toJson(element)).toMatchSnapshot();
 });
