@@ -25,21 +25,34 @@
 }
 
 .heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  h1 {
+    @include respond-below(md) {
+      grid-row: 2/2;
+    }
+    @include respond-above(sm) {
+      grid-column: 1/2;
+    }
+  }
   .editProfile {
-    align-items: center;
-    display: inline-flex;
+    @include respond-below(md) {
+      grid-row: 1/2;
+    }
+    @include respond-above(sm) {
+      grid-column: 2/2;
+    }
+
+    justify-self: right;
+    align-self: center;
+
     span {
       line-height: $baseLineHeight;
       margin-right: $baseMargin;
     }
-    img {
-      transform: rotate(45deg);
-    }
   }
   button {
+    display: inline-flex;
+    align-items: center;
     border: none;
     &:focus {
       outline: 1px solid $focusOutline;

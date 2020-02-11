@@ -53,16 +53,15 @@ const Profile: FunctionComponent = () => {
                 {data.myProfile.firstName} {data.myProfile.lastName}
               </h1>
               <Button
-                ariaLabel={t('profile.edit.label')}
+                className={styles.editProfile}
+                ariaLabel={t('profile.edit.button.text')}
                 onClick={() => setIsOpen(true)}
               >
-                <Icon src={settingsIcon} alt={t('profile.edit.label')} />
+                <span>{t('profile.edit.button.text')}</span>
+                <Icon src={settingsIcon} alt="" />
               </Button>
               {isOpen && (
                 <EditProfileModal
-                  onSubmit={() => {
-                    console.log('submit');
-                  }}
                   isOpen={isOpen}
                   setIsOpen={setIsOpen}
                   initialValues={data.myProfile}
