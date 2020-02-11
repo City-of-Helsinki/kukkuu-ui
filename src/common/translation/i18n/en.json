@@ -267,8 +267,7 @@
         "edit": {
           "text": "Update child information",
           "icon": {
-            "alt": "Edit child's information",
-            "text": "Edit information"
+            "alt": "Edit child's information"
           }
         },
         "page": {
@@ -291,6 +290,11 @@
         "heading": "Event invitations"
       },
       "text": "Event invitations sent to you will be displayed here. You can sign up for events and cancel your attendance if you, for some reason, are unable to attend."
+    },
+    "edit": {
+      "button": {
+        "text": "Edit information"
+      }
     }
   },
   "registration": {

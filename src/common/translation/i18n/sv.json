@@ -267,8 +267,7 @@
         "edit": {
           "text": "Uppdatera barnets uppgifter",
           "icon": {
-            "alt": "Edit child's information",
-            "text": "Edit information"
+            "alt": "Edit child's information"
           }
         },
         "page": {
@@ -291,6 +290,11 @@
         "heading": "Eventinbjudningar"
       },
       "text": "Inbjudningar till evenemang som skickats till dig visas här. Du kan också anmäla dig till evenemang och ångra anmälan om du av någon orsak inte kan delta."
+    },
+    "edit": {
+      "button": {
+        "text": "Edit information"
+      }
     }
   },
   "registration": {

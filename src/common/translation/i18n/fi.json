@@ -267,8 +267,7 @@
         "edit": {
           "text": "Päivitä kummilapsen tiedot",
           "icon": {
-            "alt": "Edit child's information",
-            "text": "Edit information"
+            "alt": "Edit child's information"
           }
         },
         "page": {
@@ -291,6 +290,11 @@
         "heading": "Tapahtumakutsut"
       },
       "text": "Tänne saapuvat sinulle lähetetyt tapahtumakutsut. Pääset myös ilmoittautumaan tapahtumiin ja perumaan ilmoittautumisen, jos et jostain syystä pääsekään osallistumaan tapahtumaan."
+    },
+    "edit": {
+      "button": {
+        "text": "Edit information"
+      }
     }
   },
   "registration": {
