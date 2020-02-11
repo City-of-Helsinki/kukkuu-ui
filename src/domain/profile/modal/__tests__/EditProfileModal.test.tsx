@@ -19,15 +19,13 @@ const initialValues: ProfileType = {
   },
 };
 
-const setIsOpen = () => {};
-
 it('renders snapshot correctly', () => {
   const element = shallowWithProvider(
     <MockedProvider>
       <EditProfileModal
         initialValues={initialValues}
         isOpen={true}
-        setIsOpen={setIsOpen}
+        setIsOpen={jest.fn()}
       />
     </MockedProvider>
   );
