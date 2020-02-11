@@ -5,7 +5,6 @@
 @import 'kukkuu-colors';
 
 $modalPadding: 2rem;
-$modalPaddingLarge: 4rem;
 
 .modal {
   background-color: $white;
@@ -68,7 +67,7 @@ $modalPaddingLarge: 4rem;
   padding: 0 $modalPadding;
 
   @include respond-above(sm) {
-    padding: 0 $modalPaddingLarge $basePadding $modalPaddingLarge;
+    padding: 0 $modalPadding;
   }
 }
 
