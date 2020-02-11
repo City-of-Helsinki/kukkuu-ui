@@ -17,6 +17,7 @@ import Button from '../../../common/components/button/Button';
 import profileQuery from '../queries/ProfileQuery';
 import updateMyProfileMutation from '../mutations/updateMyProfileMutation';
 import { updateMyProfile as UpdateMyProfileData } from '../../api/generatedTypes/updateMyProfile';
+import NavigationPropmt from '../../../common/components/prompt/NavigationPrompt';
 export type EditProfileModalValues = Omit<ProfileType, 'children'>;
 
 interface EditProfileModalProps {
@@ -61,6 +62,9 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
   };
 
   const validate = () => {
+    if (!isFilling) {
+      setFormIsFilling(true);
+    }
     const errors: FormikErrors<EditProfileModalValues> = {};
     return errors;
   };
@@ -69,6 +73,12 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
 
   return (
     <div>
+      {isOpen && (
+        <NavigationPropmt
+          warningMessage={t('common.form.leave.warning.text')}
+          isHalfFilling={isFilling}
+        />
+      )}
       <Modal
         setFormIsFilling={setFormIsFilling}
         label={t('registration.form.guardian.info.heading')}
