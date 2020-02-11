@@ -60,6 +60,14 @@ export interface RelationshipInput {
   type?: RelationshipTypeEnum | null;
 }
 
+export interface UpdateMyProfileMutationInput {
+  firstName?: string | null;
+  lastName?: string | null;
+  phoneNumber?: string | null;
+  language?: Language | null;
+  clientMutationId?: string | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================
