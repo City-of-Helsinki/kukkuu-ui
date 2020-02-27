@@ -1,0 +1,60 @@
+@import 'mixins';
+@import 'fonts';
+
+.wrapper {
+  background: $white;
+  @include respond-above(sm) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    // > :last-child {
+    //   margin-left: auto;
+    // }
+  }
+}
+
+.middle {
+  @include respond-above(sm) {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-grow: 1;
+    margin-left: 20px;
+  }
+}
+
+.end {
+  @include respond-above(sm) {
+    margin-right: 20px;
+    & .actionText {
+      display: none;
+    }
+  }
+}
+
+.primaryActionButton {
+  @include button();
+  text-align: left;
+  /* TODO: button width */
+}
+
+.goto {
+  transform: rotate(-90deg);
+}
+
+.title {
+  margin-top: 0;
+}
+
+.actionWrapper {
+  display: flex;
+  justify-content: normal;
+  flex-direction: row;
+  border: 0;
+  width: 100%;
+  text-align: left;
+  align-items: center;
+}
+
+.actionText {
+  font-weight: $font-weight-bold;
+}

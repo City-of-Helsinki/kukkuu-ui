@@ -17,7 +17,7 @@ import Icon from '../../../../common/components/icon/Icon';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { profileSelector } from '../../state/ProfileSelectors';
-import ProfileNoEvent from '../../events/ProfileNoEvent';
+import ProfileEvents from '../../events/ProfileEvents';
 import Button from '../../../../common/components/button/Button';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import { deleteChild_deleteChild as DeleteChildPayload } from '../../../api/generatedTypes/deleteChild';
@@ -173,15 +173,16 @@ const ProfileChildDetail: React.FunctionComponent = () => {
                 <Icon src={personIcon} />
                 <span>{`${guardian.firstName} ${guardian.lastName}`}</span>
               </div>
+
+              <div className={styles.eventWrapper}>
+                <ProfileEvents child={child} />
+              </div>
             </div>
           ) : (
             <div className={styles.noChild}>
               <p>{t('profile.children.noChild.text')}</p>
             </div>
           )}
-          <div className={styles.eventWrapper}>
-            <ProfileNoEvent />
-          </div>
         </div>
       </div>
     </PageWrapper>
