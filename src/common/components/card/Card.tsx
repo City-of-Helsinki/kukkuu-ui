@@ -34,6 +34,7 @@ const Card: FunctionComponent<CardProps> = ({
       </div>
 
       <div className={styles.middle}>
+        <h3 className={styles.title}>{title}</h3> {/* TODO: children? */}
         {primaryAction && (
           <Button
             className={styles.primaryActionButton}
@@ -42,11 +43,7 @@ const Card: FunctionComponent<CardProps> = ({
             {primaryActionText}
           </Button>
         )}
-
-        <div className={styles.content}>
-          <h3>{title}</h3> {/* TODO: children? */}
-          {children}
-        </div>
+        {children}
       </div>
 
       <div className={styles.end}>
