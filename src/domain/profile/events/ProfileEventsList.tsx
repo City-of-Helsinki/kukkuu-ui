@@ -11,14 +11,15 @@ import {
   childByIdQuery_child_pastEvents as PastEventsTypes,
 } from '../../api/generatedTypes/childByIdQuery';
 import styles from './profileEventsList.module.scss';
-
+import clockIcon from '../../../assets/icons/svg/clock.svg';
 import nullIcon from '../../../assets/icons/svg/close.svg';
+import locationIcon from '../../../assets/icons/svg/location.svg';
 import Icon from '../../../common/components/icon/Icon';
 
 interface ProfileEventsListProps {
-  availableEvents?: AvailableEventsTypes;
-  enrolments?: EnrolmentsTypes;
-  pastEvents?: PastEventsTypes;
+  availableEvents: AvailableEventsTypes | null;
+  enrolments: EnrolmentsTypes;
+  pastEvents: PastEventsTypes | null;
 }
 
 const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
@@ -29,35 +30,30 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
   const history = useHistory();
   const { t } = useTranslation();
 
-  const generatePath = (eventId: string) => {
-    // http://localhost:3000/fi/event/RXZlbnROb2RlOjE=
-    history.push(`/fi/event/${eventId}`); // TODO
+  const gotoEventPage = (eventId: string) => {
+    history.push(`/event/${eventId}`);
   };
-
-  // TODO: normalize?
 
   return (
     <>
-      {availableEvents && (
+      {availableEvents && ( // TODO: empty check
         <>
           <h2>{t('TODO: event invites')}</h2> {/* TODO */}
           {availableEvents.edges.map(
             eventEdge =>
               eventEdge?.node && (
-                <div key={eventEdge.node.id}>
-                  <Card
-                    // TODO: action = ../event/:id?
-                    image={eventEdge.node.image}
-                    title={eventEdge.node.translations[0].name} // TODO
-                    action={'action'} // TODO
-                    actionText={t('TODO: go to event details')}
-                    primaryAction={() => generatePath(eventEdge.node?.id || '')} // TODO
-                    primaryActionText={t('TODO: tickets')} // TODO
-                  >
-                    {/* TODO */}
-                    <p>{eventEdge.node.translations[0].shortDescription}</p>
-                  </Card>
-                </div>
+                <Card
+                  key={eventEdge.node.id}
+                  image={eventEdge.node.image}
+                  title={eventEdge.node.translations[0].name} // TODO
+                  action={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
+                  actionText={t('TODO: go to event details')} // TODO
+                  primaryAction={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
+                  primaryActionText={t('TODO: tickets')} // TODO
+                >
+                  {/* TODO */}
+                  <p>{eventEdge.node.translations[0].shortDescription}</p>
+                </Card>
               )
           )}
         </>
@@ -68,79 +64,79 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
           {enrolments.edges.map(
             enrolmentEdge =>
               enrolmentEdge?.node?.occurrence && (
-                <div key={enrolmentEdge.node.occurrence.event.id}>
-                  <Card
-                    image={enrolmentEdge.node.occurrence.event.image}
-                    title={
-                      enrolmentEdge.node.occurrence.event.translations[0].name
+                <Card
+                  key={enrolmentEdge.node.occurrence.event.id}
+                  image={enrolmentEdge.node.occurrence.event.image}
+                  title={
+                    enrolmentEdge.node.occurrence.event.translations[0].name
+                  }
+                  action={() =>
+                    gotoEventPage(enrolmentEdge.node?.occurrence.event.id || '')
+                  }
+                  actionText={t('TODO: go to event details')}
+                >
+                  <p>
+                    {
+                      enrolmentEdge.node.occurrence.event.translations[0]
+                        .shortDescription
                     }
-                    action={'action'}
-                    actionText={t('TODO: go to event details')}
-                  >
-                    <p>
-                      {
-                        enrolmentEdge.node.occurrence.event.translations[0]
-                          .shortDescription
-                      }
-                    </p>
-                    <div className={styles.row}>
-                      <div className={styles.label}>
-                        <Icon
-                          src={nullIcon}
-                          alt={t('TODO: action')}
-                          className={styles.goto}
-                        />
-                        <div>
-                          {formatTime(
-                            newMoment(enrolmentEdge.node.occurrence.time),
-                            DEFAULT_DATE_FORMAT
-                          )}
-                        </div>
-                      </div>
-                      <div className={styles.label}>
-                        <Icon
-                          src={nullIcon}
-                          alt={t('TODO: action')}
-                          className={styles.goto}
-                        />
-                        <div>
-                          {formatTime(
-                            newMoment(enrolmentEdge.node.occurrence.time),
-                            'HH.MM' // TODO
-                          )}
-                        </div>
-                      </div>
-                      <div className={styles.label}>
-                        <Icon
-                          src={nullIcon}
-                          alt={t('TODO: action')}
-                          className={styles.goto}
-                        />
-                        <div>{enrolmentEdge.node.occurrence.venue.name}</div>
+                  </p>
+                  <div className={styles.row}>
+                    <div className={styles.label}>
+                      <Icon
+                        src={nullIcon}
+                        alt={t('TODO: action')}
+                        className={styles.labelIcon}
+                      />
+                      <div>
+                        {formatTime(
+                          newMoment(enrolmentEdge.node.occurrence.time),
+                          DEFAULT_DATE_FORMAT
+                        )}
                       </div>
                     </div>
-                  </Card>
-                </div>
+                    <div className={styles.label}>
+                      <Icon
+                        src={clockIcon}
+                        alt={t('TODO: action')}
+                        className={styles.labelIcon}
+                      />
+                      <div>
+                        {formatTime(
+                          newMoment(enrolmentEdge.node.occurrence.time),
+                          'HH.MM' // TODO
+                        )}
+                      </div>
+                    </div>
+                    <div className={styles.label}>
+                      <Icon
+                        src={locationIcon}
+                        alt={t('TODO: action')}
+                        className={styles.labelIcon}
+                      />
+                      <div>{enrolmentEdge.node.occurrence.venue.name}</div>
+                    </div>
+                  </div>
+                </Card>
               )
           )}
         </>
       )}
-      {pastEvents && (
+      {pastEvents && ( // TODO: empty check
         <>
           <h2>{t('TODO: past events')}</h2>
           {pastEvents.edges.map(
             pastEventEdge =>
               pastEventEdge?.node && (
-                <div key={pastEventEdge.node.id}>
-                  <Card
-                    image={pastEventEdge.node.image}
-                    title={pastEventEdge.node.translations[0].name}
-                    action={'action'}
-                    actionText={t('TODO: go to event details')}
-                  >
-                    <p>{pastEventEdge.node.translations[0].shortDescription}</p>
-                  </Card>
-                </div>
+                <Card
+                  key={pastEventEdge.node.id}
+                  image={pastEventEdge.node.image}
+                  title={pastEventEdge.node.translations[0].name}
+                  action={() => gotoEventPage(pastEventEdge.node?.id || '')}
+                  actionText={t('TODO: go to event details')}
+                >
+                  <p>{pastEventEdge.node.translations[0].shortDescription}</p>
+                </Card>
               )
           )}
         </>

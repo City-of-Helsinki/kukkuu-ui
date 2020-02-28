@@ -1,9 +1,8 @@
+/* TODO: variables */
+
 .row {
   display: flex;
   flex-direction: row;
-  >:not(last-child) {
-    padding-right: 10px;
-  }
 }
 
 .label {
@@ -11,7 +10,13 @@
   justify-content: normal;
   flex-direction: row;
   border: 0;
-  width: 100%;
   text-align: left;
   align-items: center;
+  & + & {
+    margin-left: 30px;
+  }
+}
+
+.labelIcon {
+  margin-right: 0.5rem;
 }

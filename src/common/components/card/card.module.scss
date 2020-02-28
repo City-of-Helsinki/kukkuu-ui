@@ -1,15 +1,17 @@
 @import 'mixins';
 @import 'fonts';
 
+/* TODO: variables */
+
 .wrapper {
-  background: $white;
   @include respond-above(sm) {
     display: flex;
     flex-direction: row;
     align-items: center;
-    // > :last-child {
-    //   margin-left: auto;
-    // }
+  }
+  background: $white;
+  & + & {
+    margin-top: 20px;
   }
 }
 
@@ -20,6 +22,7 @@
     flex-grow: 1;
     margin-left: 20px;
   }
+  margin: 20px 0;
 }
 
 .end {
@@ -31,18 +34,24 @@
   }
 }
 
+/* TODO: move to caller? */
+.content {
+  >:first-child {
+    margin-top: 0;
+  }
+  >:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .primaryActionButton {
   @include button();
+  @include respond-above(sm) {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
   text-align: left;
-  /* TODO: button width */
-}
-
-.goto {
-  transform: rotate(-90deg);
-}
-
-.title {
-  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 .actionWrapper {
@@ -57,4 +66,8 @@
 
 .actionText {
   font-weight: $font-weight-bold;
+}
+
+.gotoAction {
+  transform: rotate(-90deg);
 }

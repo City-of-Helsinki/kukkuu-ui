@@ -14,11 +14,10 @@ const ProfileEvents: FunctionComponent<ProfileEventsProps> = ({ child }) => {
   };
 
   return hasEvents(child) ? (
-    // TODO: normalize? null?
     <ProfileEventsList
-      availableEvents={child.availableEvents || undefined}
+      availableEvents={child.availableEvents}
       enrolments={child.enrolments}
-      pastEvents={child.pastEvents || undefined}
+      pastEvents={child.pastEvents}
     />
   ) : (
     <ProfileNoEvent />
