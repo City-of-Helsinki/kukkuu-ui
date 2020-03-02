@@ -75,7 +75,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
 
   return (
     <>
-      {availableEvents && ( // TODO: empty check
+      {availableEvents && availableEvents.edges.length !== 0 && (
         <>
           <h2>{t('TODO: event invites')}</h2> {/* TODO */}
           {availableEvents.edges.map(
@@ -90,7 +90,6 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                   primaryAction={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
                   primaryActionText={t('TODO: tickets')} // TODO
                 >
-                  {/* TODO */}
                   <p>{eventEdge.node.shortDescription}</p>
                 </Card>
               )
@@ -119,7 +118,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
           )}
         </>
       )}
-      {pastEvents && ( // TODO: empty check
+      {pastEvents && pastEvents.edges.length !== 0 && (
         <>
           <h2>{t('TODO: past events')}</h2>
           {pastEvents.edges.map(
