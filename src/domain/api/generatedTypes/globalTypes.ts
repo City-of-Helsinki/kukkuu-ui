@@ -10,6 +10,23 @@
 /**
  * An enumeration.
  */
+export enum EventParticipantsPerInvite {
+  CHILD_AND_GUARDIAN = "CHILD_AND_GUARDIAN",
+  FAMILY = "FAMILY",
+}
+
+/**
+ * An enumeration.
+ */
+export enum EventTranslationLanguageCode {
+  EN = "EN",
+  FI = "FI",
+  SV = "SV",
+}
+
+/**
+ * An enumeration.
+ */
 export enum Language {
   EN = "EN",
   FI = "FI",

@@ -122,6 +122,24 @@
   "email": {
     "title": "Welcome to the Culture Kids programme!"
   },
+  "event": {
+    "participantsPerInviteEnum": {
+      "CHILD_AND_GUARDIAN": "1 child + 1 guardian",
+      "FAMILY": "Family"
+    },
+    "register": {
+      "form": {
+        "header": "Register"
+      },
+      "occurrenceTableHeader": {
+        "buttonText": "Sign up",
+        "date": "Date",
+        "freePlaces": "Free Places",
+        "time": "Time",
+        "venue": "Venue"
+      }
+    }
+  },
   "footer": {
     "copyrightText": "© Copyright 2020 • All rights reserved"
   },

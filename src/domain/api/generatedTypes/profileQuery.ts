@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { Language, RelationshipTypeEnum } from "./globalTypes";
+import { Language, RelationshipTypeEnum, EventTranslationLanguageCode } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: profileQuery
@@ -27,6 +27,29 @@ export interface profileQuery_myProfile_children_edges_node_relationships {
   edges: (profileQuery_myProfile_children_edges_node_relationships_edges | null)[];
 }
 
+export interface profileQuery_myProfile_children_edges_node_availableEvents_edges_node_translations {
+  name: string;
+  languageCode: EventTranslationLanguageCode;
+}
+
+export interface profileQuery_myProfile_children_edges_node_availableEvents_edges_node {
+  translations: profileQuery_myProfile_children_edges_node_availableEvents_edges_node_translations[];
+}
+
+export interface profileQuery_myProfile_children_edges_node_availableEvents_edges {
+  /**
+   * The item at the end of the edge
+   */
+  node: profileQuery_myProfile_children_edges_node_availableEvents_edges_node | null;
+}
+
+export interface profileQuery_myProfile_children_edges_node_availableEvents {
+  /**
+   * Contains the nodes in this connection.
+   */
+  edges: (profileQuery_myProfile_children_edges_node_availableEvents_edges | null)[];
+}
+
 export interface profileQuery_myProfile_children_edges_node {
   /**
    * The ID of the object.
@@ -37,6 +60,7 @@ export interface profileQuery_myProfile_children_edges_node {
   birthdate: any;
   postalCode: string;
   relationships: profileQuery_myProfile_children_edges_node_relationships;
+  availableEvents: profileQuery_myProfile_children_edges_node_availableEvents | null;
 }
 
 export interface profileQuery_myProfile_children_edges {

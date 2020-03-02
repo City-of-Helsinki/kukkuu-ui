@@ -122,6 +122,24 @@
   "email": {
     "title": "Välkommen som kulturens fadderbarn!"
   },
+  "event": {
+    "participantsPerInviteEnum": {
+      "CHILD_AND_GUARDIAN": "1 barn + 1 närstående",
+      "FAMILY": "Familj"
+    },
+    "register": {
+      "form": {
+        "header": "Anmäl dig"
+      },
+      "occurrenceTableHeader": {
+        "buttonText": "Anmäl dig",
+        "date": "Datum",
+        "freePlaces": "Free places",
+        "time": "Time",
+        "venue": "Venue"
+      }
+    }
+  },
   "footer": {
     "copyrightText": "© Copyright 2020 • Alla rättigheter förbehållna"
   },

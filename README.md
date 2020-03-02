@@ -1,12 +1,52 @@
 [![codecov](https://codecov.io/gh/City-of-Helsinki/kukkuu-ui/branch/develop/graph/badge.svg)](https://codecov.io/gh/City-of-Helsinki/kukkuu-ui)
 [![Build Status](https://travis-ci.org/City-of-Helsinki/kukkuu-ui.svg?branch=develop)](https://travis-ci.org/City-of-Helsinki/kukkuu-ui)
 
-# UI for Kulttuurin kummilapset / Godchildren of Culture
+# UI for Kulttuurin kummilapset / Culture Kids
 
-## Getting started
+## About
+
+### What?
+
+In the Culture Kids project the City promises that every child born in Helsinki from 2020 on will have an artistic or cultural institution as a “culture guardian”, through which the child and his family will get a personal connection to art. This collaboration is to be continued until the child goes to school.
+
+Participation in the cultural activities planned for the child's age contributes to the artistic development of the child and the well-being of the family, while providing the family with a connection to the society. This action implements the right of the child to art and culture (UNESCO).
+
+### How?
+
+The parents of the child will receive the invitation letter sent by the children´s counselor (Lasten neuvola). Those wishing to participate sign up for the project through this service. The art & culture institute will then send those families information about the events via e-mail. Families will book events suitable for them using this project. Events are free to attend for the families.
+
+### When?
+
+Children born in 2020 will become the children of the Helsinki Philharmonic Orchestra. From 2021 onwards, every year a new form of art will be added to the project.
+
+The cities´ Children´s Councilors (lasten neuvolat) and Early Childhood Education are involved in this project and will communicate as experts.
+
+## Deployments
+
+Production environment:
+https://kummilapset.hel.fi
+
+Testing environment:
+https://kukkuu-ui.test.kuva.hel.ninja/
+
+## See also
+
+The backend:
+https://github.com/City-of-Helsinki/kukkuu
+
+The administration interface:
+https://github.com/City-of-Helsinki/kukkuu-admin
+
+## Issues board
+
+https://helsinkisolutionoffice.atlassian.net/projects/KK/issues/?filter=allissues
+
+## Development
+
+### Getting started
 
 - Clone the repo.
-- Create `.env.local` from default `.env` if you need to modify some environment variable. For more, check [this](https://create-react-app.dev/docs/adding-custom-environment-variables#docsNav)
+- Create `.env.development.local` from `.env.development` if you need to modify some environment variable. For more, check [this](https://create-react-app.dev/docs/adding-custom-environment-variables#docsNav)
 - Run `yarn start`.
 
 For isolated developing environment, you can use our Docker instructions.
@@ -46,7 +86,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 Fetches translation data from our Google Spreadsheet and updates translation files. See `.env` for configuration.
 
-You still need to update jest snapshots and add the translation files to the git repository manually. 
+You still need to update jest snapshots and add the translation files to the git repository manually.
 
 ### `yarn graphql-types`
 
@@ -60,11 +100,13 @@ Generate static types for GraphQL queries by using the schema from the backend s
 ## Setting up development environment locally with docker
 
 ### Set tunnistamo hostname
+
 Add the following line to your hosts file (`/etc/hosts` on mac and linux):
 
     127.0.0.1 tunnistamo-backend
 
 ### Create a new OAuth app on GitHub
+
 Go to https://github.com/settings/developers/ and add a new app with the following settings:
 
 - Application name: can be anything, e.g. local tunnistamo
@@ -74,17 +116,15 @@ Go to https://github.com/settings/developers/ and add a new app with the followi
 Save. You'll need the created **Client ID** and **Client Secret** for configuring tunnistamo in the next step.
 
 ### Install local tunnistamo
-Clone https://github.com/City-of-Helsinki/tunnistamo/. 
+
+Clone https://github.com/City-of-Helsinki/tunnistamo/.
 
 Follow the instructions for setting up tunnistamo locally. Before running `docker-compose up` set the following settings in tunnistamo roots `docker-compose.env.yaml`:
 
 - SOCIAL_AUTH_GITHUB_KEY: **Client ID** from the GitHub OAuth app
 - SOCIAL_AUTH_GITHUB_SECRET: **Client Secret** from the GitHub OAuth app
 
-As of Nov 15 2019 there is a bug in tunnistamo with cors, a workaround is to set this line in `tunnistamo/settings.py`:
-`CORS_URLS_REGEX = r'.*/(\.well-known/openid-configuration|v1|openid|api-tokens|jwt-token).*'`
-
-After you've got tunnistamo running locally, ssh to the tunnistamo docker container: 
+After you've got tunnistamo running locally, ssh to the tunnistamo docker container:
 
 `docker-compose exec django bash`
 
@@ -98,10 +138,16 @@ and execute the following four commands inside your docker container:
 ```
 
 ### Install kukkuu locally
+
 Clone the repository (https://github.com/City-of-Helsinki/kukkuu). Follow the instructions for running kukkuu with docker. Before running `docker-compose up` set the following settings in kukkuu roots `docker-compose.env.yaml`:
 
+- DEBUG=1
 - CORS_ORIGIN_ALLOW_ALL=1
 - TOKEN_AUTH_AUTHSERVER_URL=http://tunnistamo-backend:8000/openid
+- APPLY_MIGRATIONS=1
+- CREATE_SUPERUSER=1
+- TOKEN_AUTH_AUTHSERVER_URL=http://tunnistamo-backend:8000/openid
+- MEDIA_ROOT=/app/var/
 
 ### kukkuu-ui
 
@@ -113,9 +159,11 @@ OR
 Run `yarn && yarn start`
 
 ## Debugging
+
 ### Debugging project in VS Code
 
 To debug in VS Code:
+
 1. Install the "Debugger for Chrome" extension to VS Code
 2. Run `yarn start`
 3. Set a breakpoint
@@ -142,6 +190,7 @@ See more detailed instructions here:
 https://create-react-app.dev/docs/debugging-tests#debugging-tests-in-chrome
 
 ### Debug Redux state
+
 Redux internal state can be visualized with [Redux-devtools](https://github.com/zalmoxisus/redux-devtools-extension)
 
 1. Follow instructions in [here](https://github.com/zalmoxisus/redux-devtools-extension)

@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<table
+  className="eventOccurrenceList"
+>
+  <tbody>
+    <tr>
+      <th
+        className="header"
+      >
+        Päivämäärä
+      </th>
+      <th
+        className="header"
+      >
+        Kellonaika
+      </th>
+      <th
+        className="header"
+      >
+        Tapahtumapaikka
+      </th>
+      <th
+        className="header"
+      >
+        Vapaat paikat
+      </th>
+      <th />
+    </tr>
+    <EventOccurrence
+      key="T2NjdXJyZW5jZU5vZGU6Mg=="
+      occurrence={
+        Object {
+          "id": "T2NjdXJyZW5jZU5vZGU6Mg==",
+          "remainingCapacity": 99,
+          "time": "2020-03-08T04:00:00+00:00",
+          "venue": Object {
+            "address": "Mannerheimintie 13A, Helsinki",
+            "description": "Helsingin oma Musiikkitalo",
+            "name": "Musiikkitalo",
+          },
+        }
+      }
+    />
+    <EventOccurrence
+      key="T2NjdXJyZW5jZU5vZGU6Mg=="
+      occurrence={
+        Object {
+          "id": "T2NjdXJyZW5jZU5vZGU6Mg==",
+          "remainingCapacity": 88,
+          "time": "2020-04-08T04:00:00+00:00",
+          "venue": Object {
+            "address": "Rainbow 123",
+            "description": "Under the",
+            "name": "Somewhere",
+          },
+        }
+      }
+    />
+  </tbody>
+</table>
+`;

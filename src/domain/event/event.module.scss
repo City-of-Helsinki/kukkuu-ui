@@ -1,0 +1,97 @@
+@import 'colors';
+@import 'variables';
+@import 'fonts';
+@import 'mixins';
+
+@include respond-between(sm, xlg) {
+  .heroWrapper {
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+}
+
+@include respond-above(xlg) {
+  .heroWrapper {
+    grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+  }
+}
+
+.backButtonWrapper {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+}
+.backButton {
+  grid-column: 1;
+  padding-top: 2rem;
+  width: $logoWidth;
+  justify-self: left;
+  display: flex;
+  justify-content: center;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    width: 3.9rem;
+    height: 3.9rem;
+    border: none;
+    border-radius: 50%;
+  }
+}
+
+.wrapper {
+  @include background($hel-light);
+  margin-top: 12rem;
+}
+
+.heroWrapper {
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 20rem;
+  position: absolute;
+  display: grid;
+}
+
+.attendees {
+  display: flex;
+  align-items: center;
+  .icon {
+    margin-right: $baseMargin;
+  }
+}
+
+.signup {
+  margin: $baseMargin 0;
+  form {
+    display: grid;
+    grid-gap: $baseMargin;
+    grid-template-columns: 2fr 1fr 50%;
+  }
+}
+
+.dateField {
+  min-width: 15rem;
+}
+
+.eventWrapper {
+  z-index: 1;
+  display: grid;
+  .event {
+    padding: $largePadding;
+    background-color: $white;
+    h1 {
+      margin: 0;
+    }
+  }
+  @include respond-below(md) {
+    padding: 0 $basePadding;
+  }
+  @include respond-above(sm) {
+    grid-template-columns: 1fr 10fr 1fr;
+
+    .event {
+      grid-column: 2;
+    }
+  }
+}

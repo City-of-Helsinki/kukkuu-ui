@@ -122,6 +122,24 @@
   "email": {
     "title": "Tervetuloa Kulttuurin kummilapsiin!"
   },
+  "event": {
+    "participantsPerInviteEnum": {
+      "CHILD_AND_GUARDIAN": "1 lapsi + 1 huoltaja",
+      "FAMILY": "Perhe"
+    },
+    "register": {
+      "form": {
+        "header": "Ilmoittaudu"
+      },
+      "occurrenceTableHeader": {
+        "buttonText": "Ilmoittaudu",
+        "date": "Päivämäärä",
+        "freePlaces": "Vapaat paikat",
+        "time": "Kellonaika",
+        "venue": "Tapahtumapaikka"
+      }
+    }
+  },
   "footer": {
     "copyrightText": "© Copyright 2020 • Kaikki oikeudet pidätetään"
   },

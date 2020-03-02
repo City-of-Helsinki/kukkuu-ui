@@ -24,6 +24,16 @@ const profileQuery = gql`
                 }
               }
             }
+            availableEvents {
+              edges {
+                node {
+                  translations {
+                    name
+                    languageCode
+                  }
+                }
+              }
+            }
           }
         }
       }

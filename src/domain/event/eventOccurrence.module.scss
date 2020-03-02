@@ -1,0 +1,23 @@
+@import 'colors';
+@import 'mixins';
+@import 'variables';
+
+.submitButton {
+  @include button();
+  button {
+    width: 100%;
+  }
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr {
+  border-bottom: 2px solid $hel-light;
+}
+
+th,
+td {
+  padding: $basePadding 0;
+}

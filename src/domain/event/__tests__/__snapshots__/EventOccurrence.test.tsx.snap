@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<tr
+  className="occurrence"
+>
+  <td>
+    Su 3/8/2020
+  </td>
+  <td>
+    06:00
+  </td>
+  <td>
+    Musiikkitalo
+     
+  </td>
+  <td>
+    999
+  </td>
+  <td>
+    <Button
+      className="submitButton"
+      type="submit"
+    >
+      Ilmoittaudu
+    </Button>
+  </td>
+</tr>
+`;
