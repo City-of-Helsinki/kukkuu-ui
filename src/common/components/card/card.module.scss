@@ -1,7 +1,11 @@
 @import 'mixins';
 @import 'fonts';
 
-/* TODO: variables */
+$columnMargin: 2rem;
+$cardMargin: 2rem;
+$cardGutter: 1rem;
+$middleRowMargin: 1rem;
+$focalPointTopMargin: 1rem;
 
 .wrapper {
   @include respond-above(sm) {
@@ -13,10 +17,10 @@
   }
   background: $white;
   & + & {
-    margin-top: 20px;
+    margin-top: $cardMargin;
   }
-  margin: 0 -1rem;
-  padding: 1rem;
+  margin: 0 -$cardGutter;
+  padding: $cardGutter;
 }
 
 .middle {
@@ -24,13 +28,13 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin-left: 20px;
+    margin-left: $columnMargin;
     .title {
       margin-bottom: 0;
     }
     .focalPoint {
       order: 1;
-      margin-top: 1em;
+      margin-top: $focalPointTopMargin;
     }
   }
   >:first-child {
@@ -39,12 +43,12 @@
   >:last-child {
     margin-bottom: 0;
   }
-  margin: 20px 0;
+  margin: $middleRowMargin 0;
 }
 
 .end {
   @include respond-above(sm) {
-    margin-right: 20px;
+    margin-right: $columnMargin;
     & .actionText {
       display: none;
     }

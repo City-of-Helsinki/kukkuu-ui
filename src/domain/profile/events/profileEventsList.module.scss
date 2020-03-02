@@ -1,6 +1,8 @@
 @import 'mixins';
 
-/* TODO: variables */
+$labelIconMargin: .5rem;
+$labelColumnMargin: 2rem;
+$labelRowMargin: 1rem;
 
 .row {
   @include respond-above(sm) {
@@ -13,12 +15,12 @@
 .label {
   @include respond-above(sm) {
     & + & {
-      margin-left: 30px;
+      margin-left: $labelColumnMargin;
     }
   }
   @include respond-below(sm) {
     & + & {
-      margin-top: 10px;
+      margin-top: $labelRowMargin;
     }
   }
   display: flex;
@@ -30,5 +32,5 @@
 }
 
 .labelIcon {
-  margin-right: 0.5rem;
+  margin-right: $labelIconMargin;
 }
