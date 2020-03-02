@@ -2,7 +2,7 @@ module.exports = {
   client: {
     service: {
       name: 'kukkuu',
-      url: 'http://localhost:8081/graphql',
+      url: 'https://kukkuu.test.kuva.hel.ninja/graphql',
     },
   },
 };
