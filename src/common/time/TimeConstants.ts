@@ -6,3 +6,6 @@ export const DEFAULT_DATE_FORMAT = 'DD.MM.YYYY';
 
 // Backend allowed time format
 export const BACKEND_DATE_FORMAT = 'YYYY-MM-DD';
+
+// HH.MM
+export const DEFAULT_TIME_FORMAT = 'HH.MM';

@@ -3,7 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
 import Card from '../../../common/components/card/Card';
-import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
+import {
+  DEFAULT_DATE_FORMAT,
+  DEFAULT_TIME_FORMAT,
+} from '../../../common/time/TimeConstants';
 import { formatTime, newMoment } from '../../../common/time/utils';
 import {
   childByIdQuery_child_availableEvents as AvailableEventsTypes,
@@ -55,10 +58,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
             className={styles.labelIcon}
           />
           <div>
-            {formatTime(
-              newMoment(occurrence.time),
-              'HH.MM' // TODO
-            )}
+            {formatTime(newMoment(occurrence.time), DEFAULT_TIME_FORMAT)}
           </div>
         </div>
         <div className={styles.label}>
