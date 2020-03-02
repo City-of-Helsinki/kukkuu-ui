@@ -26,6 +26,8 @@ interface ProfileEventsListProps {
   pastEvents: PastEventsTypes | null;
 }
 
+const EVENT_DURATION_MINUTES = 30; // TODO: huh?
+
 const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
   availableEvents,
   enrolments,
@@ -36,6 +38,19 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
 
   const gotoEventPage = (eventId: string) => {
     history.push(`/event/${eventId}`);
+  };
+
+  const formatOccurrenceDuration = (occurrenceTime: Date) => {
+    const startTime = formatTime(
+      newMoment(occurrenceTime),
+      DEFAULT_TIME_FORMAT
+    );
+    const endTimeRaw = newMoment(occurrenceTime).add(
+      EVENT_DURATION_MINUTES,
+      'minutes'
+    );
+    const endTime = formatTime(newMoment(endTimeRaw), DEFAULT_TIME_FORMAT);
+    return `${startTime} - ${endTime}`;
   };
 
   const generateInfoRow = (occurrence: OccurrenceTypes) => {
@@ -57,9 +72,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
             alt={t('TODO: action')}
             className={styles.labelIcon}
           />
-          <div>
-            {formatTime(newMoment(occurrence.time), DEFAULT_TIME_FORMAT)}
-          </div>
+          <div>{formatOccurrenceDuration(occurrence.time)}</div>
         </div>
         <div className={styles.label}>
           <Icon
