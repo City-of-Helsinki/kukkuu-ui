@@ -84,14 +84,14 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                 <Card
                   key={eventEdge.node.id}
                   image={eventEdge.node.image}
-                  title={eventEdge.node.translations[0].name} // TODO
+                  title={eventEdge.node.name || ''} // TODO
                   action={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
                   actionText={t('TODO: go to event details')} // TODO
                   primaryAction={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
                   primaryActionText={t('TODO: tickets')} // TODO
                 >
                   {/* TODO */}
-                  <p>{eventEdge.node.translations[0].shortDescription}</p>
+                  <p>{eventEdge.node.shortDescription}</p>
                 </Card>
               )
           )}
@@ -106,21 +106,14 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                 <Card
                   key={enrolmentEdge.node.occurrence.event.id}
                   image={enrolmentEdge.node.occurrence.event.image}
-                  title={
-                    enrolmentEdge.node.occurrence.event.translations[0].name
-                  }
+                  title={enrolmentEdge.node.occurrence.event.name || ''}
                   action={() =>
                     gotoEventPage(enrolmentEdge.node?.occurrence.event.id || '')
                   }
                   actionText={t('TODO: go to event details')}
                   focalContent={generateInfoRow(enrolmentEdge.node.occurrence)}
                 >
-                  <p>
-                    {
-                      enrolmentEdge.node.occurrence.event.translations[0]
-                        .shortDescription
-                    }
-                  </p>
+                  <p>{enrolmentEdge.node.occurrence.event.shortDescription}</p>
                 </Card>
               )
           )}
@@ -135,11 +128,11 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                 <Card
                   key={pastEventEdge.node.id}
                   image={pastEventEdge.node.image}
-                  title={pastEventEdge.node.translations[0].name}
+                  title={pastEventEdge.node.name || ''}
                   action={() => gotoEventPage(pastEventEdge.node?.id || '')}
                   actionText={t('TODO: go to event details')}
                 >
-                  <p>{pastEventEdge.node.translations[0].shortDescription}</p>
+                  <p>{pastEventEdge.node.shortDescription}</p>
                 </Card>
               )
           )}

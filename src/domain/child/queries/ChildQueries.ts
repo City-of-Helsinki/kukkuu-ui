@@ -40,27 +40,12 @@ export const childByIdQuery = gql`
       lastName
       birthdate
       postalCode
-      occurrences {
-        edges {
-          node {
-            event {
-              id
-              translations {
-                name
-                shortDescription
-              }
-            }
-          }
-        }
-      }
       availableEvents {
         edges {
           node {
             id
-            translations {
-              name
-              shortDescription
-            }
+            name
+            shortDescription
             image
           }
         }
@@ -75,10 +60,8 @@ export const childByIdQuery = gql`
               }
               event {
                 id
-                translations {
-                  name
-                  shortDescription
-                }
+                name
+                shortDescription
                 image
               }
             }
@@ -89,10 +72,8 @@ export const childByIdQuery = gql`
         edges {
           node {
             id
-            translations {
-              name
-              shortDescription
-            }
+            name
+            shortDescription
             image
           }
         }

@@ -9,48 +9,13 @@ import { RelationshipTypeEnum } from "./globalTypes";
 // GraphQL query operation: childByIdQuery
 // ====================================================
 
-export interface childByIdQuery_child_occurrences_edges_node_event_translations {
-  name: string;
-  shortDescription: string;
-}
-
-export interface childByIdQuery_child_occurrences_edges_node_event {
-  /**
-   * The ID of the object.
-   */
-  id: string;
-  translations: childByIdQuery_child_occurrences_edges_node_event_translations[];
-}
-
-export interface childByIdQuery_child_occurrences_edges_node {
-  event: childByIdQuery_child_occurrences_edges_node_event;
-}
-
-export interface childByIdQuery_child_occurrences_edges {
-  /**
-   * The item at the end of the edge
-   */
-  node: childByIdQuery_child_occurrences_edges_node | null;
-}
-
-export interface childByIdQuery_child_occurrences {
-  /**
-   * Contains the nodes in this connection.
-   */
-  edges: (childByIdQuery_child_occurrences_edges | null)[];
-}
-
-export interface childByIdQuery_child_availableEvents_edges_node_translations {
-  name: string;
-  shortDescription: string;
-}
-
 export interface childByIdQuery_child_availableEvents_edges_node {
   /**
    * The ID of the object.
    */
   id: string;
-  translations: childByIdQuery_child_availableEvents_edges_node_translations[];
+  name: string | null;
+  shortDescription: string | null;
   image: string;
 }
 
@@ -72,22 +37,18 @@ export interface childByIdQuery_child_enrolments_edges_node_occurrence_venue {
   name: string | null;
 }
 
-export interface childByIdQuery_child_enrolments_edges_node_occurrence_event_translations {
-  name: string;
-  shortDescription: string;
-}
-
 export interface childByIdQuery_child_enrolments_edges_node_occurrence_event {
   /**
    * The ID of the object.
    */
   id: string;
-  translations: childByIdQuery_child_enrolments_edges_node_occurrence_event_translations[];
+  name: string | null;
+  shortDescription: string | null;
   image: string;
 }
 
 export interface childByIdQuery_child_enrolments_edges_node_occurrence {
-  time: any | null;
+  time: any;
   venue: childByIdQuery_child_enrolments_edges_node_occurrence_venue;
   event: childByIdQuery_child_enrolments_edges_node_occurrence_event;
 }
@@ -110,17 +71,13 @@ export interface childByIdQuery_child_enrolments {
   edges: (childByIdQuery_child_enrolments_edges | null)[];
 }
 
-export interface childByIdQuery_child_pastEvents_edges_node_translations {
-  name: string;
-  shortDescription: string;
-}
-
 export interface childByIdQuery_child_pastEvents_edges_node {
   /**
    * The ID of the object.
    */
   id: string;
-  translations: childByIdQuery_child_pastEvents_edges_node_translations[];
+  name: string | null;
+  shortDescription: string | null;
   image: string;
 }
 
@@ -165,7 +122,6 @@ export interface childByIdQuery_child {
   lastName: string;
   birthdate: any;
   postalCode: string;
-  occurrences: childByIdQuery_child_occurrences;
   availableEvents: childByIdQuery_child_availableEvents | null;
   enrolments: childByIdQuery_child_enrolments;
   pastEvents: childByIdQuery_child_pastEvents | null;

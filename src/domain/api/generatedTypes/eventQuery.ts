@@ -20,8 +20,7 @@ export interface eventQuery_event_occurrences_edges_node {
    * The ID of the object.
    */
   id: string;
-  time: any | null;
-  remainingCapacity: number | null;
+  time: any;
   venue: eventQuery_event_occurrences_edges_node_venue;
 }
 

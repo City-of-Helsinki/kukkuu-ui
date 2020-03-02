@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { Language, RelationshipTypeEnum, EventTranslationLanguageCode } from "./globalTypes";
+import { Language, RelationshipTypeEnum } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: profileQuery
@@ -29,7 +29,7 @@ export interface profileQuery_myProfile_children_edges_node_relationships {
 
 export interface profileQuery_myProfile_children_edges_node_availableEvents_edges_node_translations {
   name: string;
-  languageCode: EventTranslationLanguageCode;
+  languageCode: Language | null;
 }
 
 export interface profileQuery_myProfile_children_edges_node_availableEvents_edges_node {
