@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import angleDownIcon from '../../../assets/icons/svg/angleDown.svg';
@@ -9,6 +9,7 @@ import Icon from '../icon/Icon';
 interface CardProps {
   action: () => void;
   actionText: string;
+  focalContent?: ReactNode;
   image: string;
   primaryAction?: () => void;
   primaryActionText?: string;
@@ -19,6 +20,7 @@ const Card: FunctionComponent<CardProps> = ({
   action,
   actionText,
   children,
+  focalContent,
   image,
   primaryAction,
   primaryActionText,
@@ -35,14 +37,17 @@ const Card: FunctionComponent<CardProps> = ({
 
       <div className={styles.middle}>
         <h3 className={styles.title}>{title}</h3> {/* TODO: children? */}
-        {primaryAction && (
-          <Button
-            className={styles.primaryActionButton}
-            onClick={primaryAction}
-          >
-            {primaryActionText}
-          </Button>
-        )}
+        <div className={styles.focalPoint}>
+          {primaryAction && (
+            <Button
+              className={styles.primaryActionButton}
+              onClick={primaryAction}
+            >
+              {primaryActionText}
+            </Button>
+          )}
+          {focalContent && focalContent}
+        </div>
         {children}
       </div>
 

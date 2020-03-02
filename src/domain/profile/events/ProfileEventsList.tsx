@@ -9,6 +9,7 @@ import {
   childByIdQuery_child_availableEvents as AvailableEventsTypes,
   childByIdQuery_child_enrolments as EnrolmentsTypes,
   childByIdQuery_child_pastEvents as PastEventsTypes,
+  childByIdQuery_child_enrolments_edges_node_occurrence as OccurrenceTypes,
 } from '../../api/generatedTypes/childByIdQuery';
 import styles from './profileEventsList.module.scss';
 import clockIcon from '../../../assets/icons/svg/clock.svg';
@@ -32,6 +33,44 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
 
   const gotoEventPage = (eventId: string) => {
     history.push(`/event/${eventId}`);
+  };
+
+  const generateInfoRow = (occurrence: OccurrenceTypes) => {
+    return (
+      <div className={styles.row}>
+        <div className={styles.label}>
+          <Icon
+            src={nullIcon}
+            alt={t('TODO: action')}
+            className={styles.labelIcon}
+          />
+          <div>
+            {formatTime(newMoment(occurrence.time), DEFAULT_DATE_FORMAT)}
+          </div>
+        </div>
+        <div className={styles.label}>
+          <Icon
+            src={clockIcon}
+            alt={t('TODO: action')}
+            className={styles.labelIcon}
+          />
+          <div>
+            {formatTime(
+              newMoment(occurrence.time),
+              'HH.MM' // TODO
+            )}
+          </div>
+        </div>
+        <div className={styles.label}>
+          <Icon
+            src={locationIcon}
+            alt={t('TODO: action')}
+            className={styles.labelIcon}
+          />
+          <div>{occurrence.venue.name}</div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -74,6 +113,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                     gotoEventPage(enrolmentEdge.node?.occurrence.event.id || '')
                   }
                   actionText={t('TODO: go to event details')}
+                  focalContent={generateInfoRow(enrolmentEdge.node.occurrence)}
                 >
                   <p>
                     {
@@ -81,42 +121,6 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                         .shortDescription
                     }
                   </p>
-                  <div className={styles.row}>
-                    <div className={styles.label}>
-                      <Icon
-                        src={nullIcon}
-                        alt={t('TODO: action')}
-                        className={styles.labelIcon}
-                      />
-                      <div>
-                        {formatTime(
-                          newMoment(enrolmentEdge.node.occurrence.time),
-                          DEFAULT_DATE_FORMAT
-                        )}
-                      </div>
-                    </div>
-                    <div className={styles.label}>
-                      <Icon
-                        src={clockIcon}
-                        alt={t('TODO: action')}
-                        className={styles.labelIcon}
-                      />
-                      <div>
-                        {formatTime(
-                          newMoment(enrolmentEdge.node.occurrence.time),
-                          'HH.MM' // TODO
-                        )}
-                      </div>
-                    </div>
-                    <div className={styles.label}>
-                      <Icon
-                        src={locationIcon}
-                        alt={t('TODO: action')}
-                        className={styles.labelIcon}
-                      />
-                      <div>{enrolmentEdge.node.occurrence.venue.name}</div>
-                    </div>
-                  </div>
                 </Card>
               )
           )}

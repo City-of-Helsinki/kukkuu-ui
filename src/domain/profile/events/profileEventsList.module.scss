@@ -1,20 +1,32 @@
+@import 'mixins';
+
 /* TODO: variables */
 
 .row {
+  @include respond-above(sm) {
+    flex-direction: row;
+  }
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .label {
+  @include respond-above(sm) {
+    & + & {
+      margin-left: 30px;
+    }
+  }
+  @include respond-below(sm) {
+    & + & {
+      margin-top: 10px;
+    }
+  }
   display: flex;
   justify-content: normal;
   flex-direction: row;
   border: 0;
   text-align: left;
   align-items: center;
-  & + & {
-    margin-left: 30px;
-  }
 }
 
 .labelIcon {
