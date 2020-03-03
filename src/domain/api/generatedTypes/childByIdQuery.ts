@@ -34,6 +34,10 @@ export interface childByIdQuery_child_availableEvents {
 }
 
 export interface childByIdQuery_child_enrolments_edges_node_occurrence_venue {
+  /**
+   * The ID of the object.
+   */
+  id: string;
   name: string | null;
 }
 
@@ -48,6 +52,10 @@ export interface childByIdQuery_child_enrolments_edges_node_occurrence_event {
 }
 
 export interface childByIdQuery_child_enrolments_edges_node_occurrence {
+  /**
+   * The ID of the object.
+   */
+  id: string;
   time: any;
   venue: childByIdQuery_child_enrolments_edges_node_occurrence_venue;
   event: childByIdQuery_child_enrolments_edges_node_occurrence_event;
@@ -96,6 +104,10 @@ export interface childByIdQuery_child_pastEvents {
 }
 
 export interface childByIdQuery_child_relationships_edges_node {
+  /**
+   * The ID of the object.
+   */
+  id: string;
   type: RelationshipTypeEnum | null;
 }
 

@@ -54,8 +54,10 @@ export const childByIdQuery = gql`
         edges {
           node {
             occurrence {
+              id
               time
               venue {
+                id
                 name
               }
               event {
@@ -81,6 +83,7 @@ export const childByIdQuery = gql`
       relationships {
         edges {
           node {
+            id
             type
           }
         }
