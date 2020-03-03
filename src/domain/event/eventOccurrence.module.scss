@@ -8,16 +8,46 @@
     width: 100%;
   }
 }
-
-table {
-  border-collapse: collapse;
-}
-
 tr {
   border-bottom: 2px solid $hel-light;
 }
 
-th,
-td {
-  padding: $basePadding 0;
+@include respond-above(md) {
+  table {
+    border-collapse: collapse;
+  }
+  th,
+  td {
+    padding: $basePadding 0;
+  }
+}
+@include respond-below(md) {
+  tr {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto 1fr 1fr auto;
+    grid-row-gap: $basePadding;
+    padding: 1rem 0;
+  }
+  td.occurrenceFree {
+    grid-column: 4;
+    grid-row: 1 / span 2;
+    justify-self: end;
+    align-self: center;
+  }
+  td.occurrenceVenue {
+    grid-row: 1;
+    grid-column: 1 / span 3;
+  }
+  td.occurrenceDate {
+    grid-row: 2;
+    grid-column: 1;
+  }
+  td.occurrenceTime {
+    grid-row: 2;
+    grid-column: 2;
+  }
+  td.occurrenceSubmit {
+    grid-column: 1 / span 4;
+  }
 }

@@ -114,11 +114,6 @@
     "title": "Rekisteriseloste",
     "url": "https://www.hel.fi/static/liitteet/kanslia/rekisteriselosteet/Kuva/Kuva-EU-Kaupunginorkesterin-kummiperherekisteri.pdf"
   },
-  "email ": {
-    "heading": "Tervetuloa Kulttuurin kummilapsiin!",
-    "text": "Tervetuloa!"
-  },
-  "HUOM! Tähän viestiin ei voi vastata.": "",
   "email": {
     "title": "Tervetuloa Kulttuurin kummilapsiin!"
   },
@@ -132,8 +127,9 @@
         "header": "Ilmoittaudu"
       },
       "occurrenceTableHeader": {
-        "buttonText": "Ilmoittaudu",
+        "buttonText": "Valitse",
         "date": "Päivämäärä",
+        "eventInformation": "Tapahtuman tiedot",
         "freePlaces": "Vapaat paikat",
         "time": "Kellonaika",
         "venue": "Tapahtumapaikka"

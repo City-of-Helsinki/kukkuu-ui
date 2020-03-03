@@ -5,28 +5,36 @@ exports[`renders snapshot correctly 1`] = `
   className="eventOccurrenceList"
 >
   <tbody>
-    <tr>
-      <th
-        className="header"
-      >
+    <tr
+      className="desktopHeader"
+    >
+      <th>
         Päivämäärä
       </th>
-      <th
-        className="header"
-      >
+      <th>
         Kellonaika
       </th>
-      <th
-        className="header"
-      >
+      <th>
         Tapahtumapaikka
       </th>
-      <th
-        className="header"
-      >
+      <th>
         Vapaat paikat
       </th>
       <th />
+    </tr>
+    <tr
+      className="mobileHeader"
+    >
+      <th
+        className="mobileHeader"
+      >
+        Vapaat paikat
+      </th>
+      <th
+        className="mobileHeader"
+      >
+        Tapahtuman tiedot
+      </th>
     </tr>
     <EventOccurrence
       key="T2NjdXJyZW5jZU5vZGU6Mg=="

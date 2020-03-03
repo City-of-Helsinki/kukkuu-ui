@@ -1,6 +1,32 @@
+@import 'mixins';
+
 .eventOccurrenceList {
   width: 100%;
+
   th {
     text-align: left;
+  }
+
+  @include respond-above(md) {
+    tr.mobileHeader {
+      display: none;
+    }
+  }
+  @include respond-below(md) {
+    padding: 0 0.2rem;
+    table,
+    thead,
+    tbody,
+    th,
+    td {
+      display: block;
+    }
+    tr.mobileHeader {
+      display: flex;
+      justify-content: space-between;
+    }
+    tr.desktopHeader {
+      display: none;
+    }
   }
 }

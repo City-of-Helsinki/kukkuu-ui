@@ -114,11 +114,6 @@
     "title": "Description of the File",
     "url": "https://www.hel.fi/static/liitteet/kanslia/rekisteriselosteet/Kuva/Kuva-EU-Kaupunginorkesterin-kummiperherekisteri.pdf"
   },
-  "email ": {
-    "heading": "Welcome to the Culture Kids programme!",
-    "text": "Welcome!"
-  },
-  " Please note! You cannot reply to this message.": "",
   "email": {
     "title": "Welcome to the Culture Kids programme!"
   },
@@ -132,8 +127,9 @@
         "header": "Register"
       },
       "occurrenceTableHeader": {
-        "buttonText": "Sign up",
+        "buttonText": "Choose",
         "date": "Date",
+        "eventInformation": "Event information",
         "freePlaces": "Free Places",
         "time": "Time",
         "venue": "Venue"

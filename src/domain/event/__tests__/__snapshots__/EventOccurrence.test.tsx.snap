@@ -4,25 +4,34 @@ exports[`renders snapshot correctly 1`] = `
 <tr
   className="occurrence"
 >
-  <td>
+  <td
+    className="occurrenceDate"
+  >
     Su 3/8/2020
   </td>
-  <td>
+  <td
+    className="occurrenceTime"
+  >
     06:00
   </td>
-  <td>
+  <td
+    className="occurrenceVenue"
+  >
     Musiikkitalo
-     
   </td>
-  <td>
+  <td
+    className="occurrenceFree"
+  >
     999
   </td>
-  <td>
+  <td
+    className="occurrenceSubmit"
+  >
     <Button
       className="submitButton"
       type="submit"
     >
-      Ilmoittaudu
+      Valitse
     </Button>
   </td>
 </tr>

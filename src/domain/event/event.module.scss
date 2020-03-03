@@ -3,7 +3,7 @@
 @import 'fonts';
 @import 'mixins';
 
-@include respond-between(sm, xlg) {
+@include respond-between(md, xlg) {
   .heroWrapper {
     grid-template-columns: 1fr 10fr 1fr;
   }
@@ -37,11 +37,17 @@
     border: none;
     border-radius: 50%;
   }
+  @include respond-below(md) {
+    display: none;
+  }
 }
 
 .wrapper {
   @include background($hel-light);
-  margin-top: 12rem;
+  margin-top: 20rem;
+  @include respond-above(md) {
+    margin-top: 12rem;
+  }
 }
 
 .heroWrapper {
@@ -66,26 +72,35 @@
   form {
     display: grid;
     grid-gap: $baseMargin;
-    grid-template-columns: 2fr 1fr 50%;
+    grid-template-columns: auto auto;
+    @include respond-above(md) {
+      grid-template-columns: 2fr 1fr 50%;
+    }
   }
 }
 
 .dateField {
-  min-width: 15rem;
+  @include respond-above(md) {
+    min-width: 15rem;
+  }
 }
 
 .eventWrapper {
   z-index: 1;
   display: grid;
   .event {
-    padding: $largePadding;
-    background-color: $white;
-    h1 {
-      margin: 0;
+    @include respond-above(md) {
+      padding: $largePadding;
+      h1 {
+        margin: 0;
+      }
     }
+    background-color: $white;
   }
   @include respond-below(md) {
     padding: 0 $basePadding;
+    background: $hel-white;
+    padding-bottom: 5rem;
   }
   @include respond-above(sm) {
     grid-template-columns: 1fr 10fr 1fr;

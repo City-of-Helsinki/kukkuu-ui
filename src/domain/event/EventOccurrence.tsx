@@ -21,13 +21,11 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
 
   return (
     <tr className={styles.occurrence}>
-      <td>{date}</td>
-      <td>{time}</td>
-      <td>
-        {occurrence.venue.name} {occurrence.venue.description}
-      </td>
-      <td>999</td>
-      <td>
+      <td className={styles.occurrenceDate}>{date}</td>
+      <td className={styles.occurrenceTime}>{time}</td>
+      <td className={styles.occurrenceVenue}>{occurrence.venue.name}</td>
+      <td className={styles.occurrenceFree}>999</td>
+      <td className={styles.occurrenceSubmit}>
         <Button type="submit" className={styles.submitButton}>
           {t('event.register.occurrenceTableHeader.buttonText')}
         </Button>

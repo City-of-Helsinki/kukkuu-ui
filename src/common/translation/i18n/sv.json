@@ -114,11 +114,6 @@
     "title": "Registerbeskrivning",
     "url": "https://www.hel.fi/static/liitteet/kanslia/rekisteriselosteet/Kuva/Kuva-EU-Kaupunginorkesterin-kummiperherekisteri-SV.pdf"
   },
-  "email ": {
-    "heading": "Välkommen som kulturens fadderbarn!",
-    "text": "Välkommen!"
-  },
-  " Obs! Det går inte att svara på detta meddelande.": "",
   "email": {
     "title": "Välkommen som kulturens fadderbarn!"
   },
@@ -132,8 +127,9 @@
         "header": "Anmäl dig"
       },
       "occurrenceTableHeader": {
-        "buttonText": "Anmäl dig",
+        "buttonText": "Välj",
         "date": "Datum",
+        "eventInformation": "Information on evenemanget",
         "freePlaces": "Free places",
         "time": "Time",
         "venue": "Venue"

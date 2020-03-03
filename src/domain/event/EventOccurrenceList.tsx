@@ -10,20 +10,20 @@ const EventOccurrenceList: React.FunctionComponent<Occurrences> = eventOccurrenc
   return (
     <table className={styles.eventOccurrenceList}>
       <tbody>
-        <tr>
-          <th className={styles.header}>
-            {t('event.register.occurrenceTableHeader.date')}
-          </th>
-          <th className={styles.header}>
-            {t('event.register.occurrenceTableHeader.time')}
-          </th>
-          <th className={styles.header}>
-            {t('event.register.occurrenceTableHeader.venue')}
-          </th>
-          <th className={styles.header}>
+        <tr className={styles.desktopHeader}>
+          <th>{t('event.register.occurrenceTableHeader.date')}</th>
+          <th>{t('event.register.occurrenceTableHeader.time')}</th>
+          <th>{t('event.register.occurrenceTableHeader.venue')}</th>
+          <th>{t('event.register.occurrenceTableHeader.freePlaces')}</th>
+          <th></th>
+        </tr>
+        <tr className={styles.mobileHeader}>
+          <th className={styles.mobileHeader}>
             {t('event.register.occurrenceTableHeader.freePlaces')}
           </th>
-          <th></th>
+          <th className={styles.mobileHeader}>
+            {t('event.register.occurrenceTableHeader.eventInformation')}
+          </th>
         </tr>
 
         {eventOccurrenceEdges.edges.map(edge =>
