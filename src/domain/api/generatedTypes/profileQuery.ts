@@ -10,6 +10,10 @@ import { Language, RelationshipTypeEnum } from "./globalTypes";
 // ====================================================
 
 export interface profileQuery_myProfile_children_edges_node_relationships_edges_node {
+  /**
+   * The ID of the object.
+   */
+  id: string;
   type: RelationshipTypeEnum | null;
 }
 
@@ -27,13 +31,12 @@ export interface profileQuery_myProfile_children_edges_node_relationships {
   edges: (profileQuery_myProfile_children_edges_node_relationships_edges | null)[];
 }
 
-export interface profileQuery_myProfile_children_edges_node_availableEvents_edges_node_translations {
-  name: string;
-  languageCode: Language | null;
-}
-
 export interface profileQuery_myProfile_children_edges_node_availableEvents_edges_node {
-  translations: profileQuery_myProfile_children_edges_node_availableEvents_edges_node_translations[];
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
 }
 
 export interface profileQuery_myProfile_children_edges_node_availableEvents_edges {

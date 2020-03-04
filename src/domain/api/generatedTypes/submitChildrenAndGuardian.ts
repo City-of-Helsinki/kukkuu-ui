@@ -10,6 +10,10 @@ import { ChildInput, GuardianInput, Language, RelationshipTypeEnum } from "./glo
 // ====================================================
 
 export interface submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_children_edges_node_relationships_edges_node {
+  /**
+   * The ID of the object.
+   */
+  id: string;
   type: RelationshipTypeEnum | null;
 }
 

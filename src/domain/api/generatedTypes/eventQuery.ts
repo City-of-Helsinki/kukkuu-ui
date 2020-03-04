@@ -10,6 +10,10 @@ import { EventParticipantsPerInvite } from "./globalTypes";
 // ====================================================
 
 export interface eventQuery_event_occurrences_edges_node_venue {
+  /**
+   * The ID of the object.
+   */
+  id: string;
   name: string | null;
   description: string | null;
   address: string | null;

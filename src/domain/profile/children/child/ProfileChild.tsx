@@ -23,10 +23,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
   const { t } = useTranslation();
 
   // Change to child.availableEvents when API supports it. Change to true to test.
-  const availableEvents = child.availableEvents?.edges[0]?.node?.translations[0]
-    ?.name
-    ? true
-    : false;
+  const availableEvents = child.availableEvents?.edges[0]?.node?.name;
 
   return (
     <button

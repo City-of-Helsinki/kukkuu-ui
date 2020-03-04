@@ -4,6 +4,7 @@ const updateMyProfileMutation = gql`
   mutation updateMyProfile($input: UpdateMyProfileMutationInput!) {
     updateMyProfile(input: $input) {
       myProfile {
+        id
         firstName
         lastName
         language

@@ -18,6 +18,7 @@ const eventQuery = gql`
             id
             time
             venue {
+              id
               name
               description
               address

@@ -20,6 +20,7 @@ const profileQuery = gql`
             relationships {
               edges {
                 node {
+                  id
                   type
                 }
               }
@@ -27,10 +28,8 @@ const profileQuery = gql`
             availableEvents {
               edges {
                 node {
-                  translations {
-                    name
-                    languageCode
-                  }
+                  id
+                  name
                 }
               }
             }

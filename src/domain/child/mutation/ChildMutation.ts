@@ -4,6 +4,7 @@ export const addChildMutation = gql`
   mutation addNewChild($input: AddChildMutationInput!) {
     addChild(input: $input) {
       child {
+        id
         firstName
         lastName
         birthdate
@@ -25,6 +26,7 @@ export const editChildMutation = gql`
   mutation updateChild($input: UpdateChildMutationInput!) {
     updateChild(input: $input) {
       child {
+        id
         firstName
         lastName
         birthdate
@@ -32,6 +34,7 @@ export const editChildMutation = gql`
         relationships {
           edges {
             node {
+              id
               type
             }
           }

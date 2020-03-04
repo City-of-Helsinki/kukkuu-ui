@@ -22,7 +22,17 @@ const ProfileChildDetailEditModal: React.FunctionComponent<{
   const initialFormData = getChildFormModalValues(normalizedChild);
 
   const onSubmit = (payload: Child) => {
-    const supportedChildPayload = omit(payload, ['homeCity', '__typename']);
+    // Ensure that we're using the correct typing when we're updating and querying
+    // children. updateChild_updateChild_child has a different set of fields compared to
+    // childByIdQuery_child
+    const supportedChildPayload = omit(payload, [
+      'homeCity',
+      '__typename',
+      'occurrences',
+      'availableEvents',
+      'enrolments',
+      'pastEvents',
+    ]);
     editChild(supportedChildPayload);
     setIsOpen(false);
   };

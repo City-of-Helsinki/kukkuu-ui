@@ -26,6 +26,7 @@ const submitChildrenAndGuardianMutation = gql`
               relationships {
                 edges {
                   node {
+                    id
                     type
                   }
                 }
