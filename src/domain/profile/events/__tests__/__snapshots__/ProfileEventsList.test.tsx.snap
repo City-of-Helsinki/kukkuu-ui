@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders snapshot correctly 1`] = `
+<Fragment>
+  <h2>
+     event invites
+  </h2>
+   
+  <Card
+    action={[Function]}
+    actionText=" go to event details"
+    image="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+    key="RXZlbnROb2RlOjE="
+    primaryAction={[Function]}
+    primaryActionText=" tickets"
+    title="pentti"
+  >
+    <p>
+      eventti
+    </p>
+  </Card>
+  <h2>
+     upcoming events
+  </h2>
+  <Card
+    action={[Function]}
+    actionText=" go to event details"
+    focalContent={
+      <div
+        className="row"
+      >
+        <div
+          className="label"
+        >
+          <Icon
+            alt=" action"
+            className="labelIcon"
+            src="close.svg"
+          />
+          <div>
+            04.03.2020
+          </div>
+        </div>
+        <div
+          className="label"
+        >
+          <Icon
+            alt=" action"
+            className="labelIcon"
+            src="clock.svg"
+          />
+          <div>
+            15.55 - 16.25
+          </div>
+        </div>
+        <div
+          className="label"
+        >
+          <Icon
+            alt=" action"
+            className="labelIcon"
+            src="location.svg"
+          />
+          <div>
+            
+          </div>
+        </div>
+      </div>
+    }
+    image="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+    key="RXZlbnROb2RlOjE="
+    title="pentti"
+  >
+    <p>
+      eventti
+    </p>
+  </Card>
+  <h2>
+     past events
+  </h2>
+  <Card
+    action={[Function]}
+    actionText=" go to event details"
+    image="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+    key="RXZlbnROb2RlOjE="
+    title="pentti"
+  >
+    <p>
+      eventti
+    </p>
+  </Card>
+</Fragment>
+`;

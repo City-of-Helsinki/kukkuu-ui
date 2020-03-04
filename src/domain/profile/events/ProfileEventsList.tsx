@@ -109,7 +109,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
           )}
         </>
       )}
-      {enrolments && (
+      {enrolments.edges?.[0] && (
         <>
           <h2>{t('TODO: upcoming events')}</h2>
           {enrolments.edges.map(
