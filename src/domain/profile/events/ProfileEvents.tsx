@@ -10,7 +10,17 @@ interface ProfileEventsProps {
 
 const ProfileEvents: FunctionComponent<ProfileEventsProps> = ({ child }) => {
   const hasEvents = (child: ChildByIdResponse) => {
-    return child.availableEvents || child.enrolments || child.pastEvents;
+    let childHasEvents = false;
+
+    if (child.availableEvents && child.availableEvents.edges.length !== 0) {
+      childHasEvents = true;
+    } else if (child.pastEvents && child.pastEvents.edges.length !== 0) {
+      childHasEvents = true;
+    } else if (child.enrolments.edges.length !== 0) {
+      childHasEvents = true;
+    }
+
+    return childHasEvents;
   };
 
   return hasEvents(child) ? (

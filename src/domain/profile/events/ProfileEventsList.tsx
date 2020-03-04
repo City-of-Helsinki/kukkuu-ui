@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 import Card from '../../../common/components/card/Card';
 import {
