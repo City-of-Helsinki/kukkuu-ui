@@ -1,5 +1,4 @@
 import React, { FunctionComponent, ReactNode, ReactElement } from 'react';
-import classnames from 'classnames';
 
 import angleDownIcon from '../../../assets/icons/svg/angleDown.svg';
 import styles from './card.module.scss';
@@ -11,10 +10,9 @@ interface CardProps {
   actionText: string;
   alt?: string;
   children: ReactNode;
-  className?: string;
-  extraElement?: ReactElement;
+  imageElement?: ReactElement;
   focalContent?: ReactNode;
-  image: string;
+  imageSrc?: string;
   primaryAction?: () => void;
   primaryActionText?: string;
   title: string;
@@ -25,20 +23,22 @@ const Card: FunctionComponent<CardProps> = ({
   actionText,
   alt = '',
   children,
-  className,
-  extraElement,
+  imageElement,
   focalContent,
-  image,
+  imageSrc,
   primaryAction,
   primaryActionText,
   title,
 }) => {
   return (
     <div className={styles.wrapper}>
-      <div className={classnames(styles.card, className)}>
+      <div className={styles.start}>
         {/* TODO: size */}
-        <img src={image} alt={alt} width="200" height="200" />
-        {extraElement}
+        {imageSrc ? (
+          <img src={imageSrc} alt={alt} width="200" height="200" />
+        ) : (
+          imageElement && imageElement
+        )}
       </div>
 
       <div className={styles.middle}>

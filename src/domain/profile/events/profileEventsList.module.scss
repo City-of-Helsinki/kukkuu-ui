@@ -34,19 +34,3 @@ $labelRowMargin: 1rem;
 .labelIcon {
   margin-right: $labelIconMargin;
 }
-
-.enrolment {
-  // On mobile and tablet we want to show ticket QR:
-  img {
-    display: none;
-  }
-  // and on desktop we show the event image:
-  @include respond-above(md) {
-    img {
-      display: inherit;
-    }
-    canvas {
-      display: none;
-    }
-  }
-}

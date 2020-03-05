@@ -105,7 +105,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
               eventEdge?.node && (
                 <Card
                   key={eventEdge.node.id}
-                  image={eventEdge.node.image}
+                  imageSrc={eventEdge.node.image}
                   title={eventEdge.node.name || ''} // TODO
                   action={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
                   actionText={t('enrollment.enroll.buttonText')}
@@ -125,11 +125,9 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
             enrolmentEdge =>
               enrolmentEdge?.node?.occurrence && (
                 <Card
-                  className={styles.enrolment}
                   key={enrolmentEdge.node.occurrence.event.id}
-                  image={enrolmentEdge.node.occurrence.event.image}
                   title={enrolmentEdge.node.occurrence.event.name || ''}
-                  extraElement={
+                  imageElement={
                     <QRCode value={'Hello World - this works'} ecLevel={'H'} />
                   }
                   action={() =>
@@ -152,7 +150,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
               pastEventEdge?.node && (
                 <Card
                   key={pastEventEdge.node.id}
-                  image={pastEventEdge.node.image}
+                  imageSrc={pastEventEdge.node.image}
                   title={pastEventEdge.node.name || ''}
                   action={() => gotoEventPage(pastEventEdge.node?.id || '')}
                   actionText={t('enrollment.showEventInfo.buttonText')}
