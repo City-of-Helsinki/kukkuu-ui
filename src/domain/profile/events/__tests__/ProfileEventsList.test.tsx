@@ -16,16 +16,18 @@ const childData = {
   },
 };
 
+const eventData = {
+  id: 'RXZlbnROb2RlOjE=',
+  name: 'pentti',
+  shortDescription: 'eventti',
+  image: 'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
+  duration: 60,
+};
+
 const availableEvents = {
   edges: [
     {
-      node: {
-        id: 'RXZlbnROb2RlOjE=',
-        name: 'pentti',
-        shortDescription: 'eventti',
-        image:
-          'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
-      },
+      node: eventData,
     },
   ],
 };
@@ -35,17 +37,11 @@ const enrolments = {
     {
       node: {
         occurrence: {
-          time: '2020-02-24T07:07:18+00:00',
+          time: '2020-02-24T07:07:18+00:00', // 09.07
           venue: {
             name: '',
           },
-          event: {
-            id: 'RXZlbnROb2RlOjE=',
-            name: 'pentti',
-            shortDescription: 'eventti',
-            image:
-              'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
-          },
+          event: eventData,
         },
       },
     },
@@ -55,13 +51,7 @@ const enrolments = {
 const pastEvents = {
   edges: [
     {
-      node: {
-        id: 'RXZlbnROb2RlOjE=',
-        name: 'pentti',
-        shortDescription: 'eventti',
-        image:
-          'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
-      },
+      node: eventData,
     },
   ],
 };
@@ -92,13 +82,7 @@ const childOnlyEnrolments = {
             venue: {
               name: '',
             },
-            event: {
-              id: 'RXZlbnROb2RlOjE=',
-              name: 'pentti',
-              shortDescription: 'eventti',
-              image:
-                'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
-            },
+            event: eventData,
           },
         },
       },
