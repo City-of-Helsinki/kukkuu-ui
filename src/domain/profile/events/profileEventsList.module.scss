@@ -4,6 +4,11 @@ $labelIconMargin: 0.5rem;
 $labelColumnMargin: 2rem;
 $labelRowMargin: 1rem;
 $qrMargin: 3rem;
+$eventsListMargin: 4rem;
+
+.eventsList {
+  margin-top: $eventsListMargin;
+}
 
 .row {
   @include respond-above(sm) {

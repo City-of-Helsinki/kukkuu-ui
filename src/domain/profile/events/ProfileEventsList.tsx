@@ -100,7 +100,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
   return (
     <>
       {availableEvents?.edges?.[0] && (
-        <>
+        <div className={styles.eventsList}>
           <h2>{t('profile.events.invitations.heading')}</h2>
           {availableEvents.edges.map(
             eventEdge =>
@@ -118,10 +118,10 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                 </Card>
               )
           )}
-        </>
+        </div>
       )}
       {enrolments.edges?.[0] && (
-        <>
+        <div className={styles.eventsList}>
           <h2>{t('profile.events.upcoming.heading')}</h2>
           {enrolments.edges.map(
             enrolmentEdge =>
@@ -149,10 +149,10 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                 </Card>
               )
           )}
-        </>
+        </div>
       )}
       {pastEvents?.edges?.[0] && (
-        <>
+        <div className={styles.eventsList}>
           <h2>{t('profile.events.past.heading')}</h2>
           {pastEvents.edges.map(
             pastEventEdge =>
@@ -168,7 +168,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                 </Card>
               )
           )}
-        </>
+        </div>
       )}
     </>
   );
