@@ -3,6 +3,7 @@
 $labelIconMargin: 0.5rem;
 $labelColumnMargin: 2rem;
 $labelRowMargin: 1rem;
+$qrMargin: 3rem;
 
 .row {
   @include respond-above(sm) {
@@ -40,7 +41,8 @@ $labelRowMargin: 1rem;
     margin: 0;
   }
   height: 100%;
-  margin: 3rem;
+  margin: $qrMargin;
+  margin-top: $qrMargin - 1rem; /* undo top card's top gutter */
   display: flex;
   align-items: center;
   justify-content: center;
