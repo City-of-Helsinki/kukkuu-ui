@@ -22,7 +22,7 @@ $imageMaxSize: 300px;
   & + & {
     margin-top: $cardMargin;
   }
-  margin: 0 -$cardGutter;
+  margin: 0 (-$cardGutter);
   padding: $cardGutter;
 }
 
