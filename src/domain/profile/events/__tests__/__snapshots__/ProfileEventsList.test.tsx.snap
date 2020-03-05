@@ -38,7 +38,7 @@ exports[`Renders snapshot correctly 1`] = `
             src="close.svg"
           />
           <div>
-            04.03.2020
+            24.02.2020
           </div>
         </div>
         <div
@@ -50,7 +50,7 @@ exports[`Renders snapshot correctly 1`] = `
             src="clock.svg"
           />
           <div>
-            15.55 - 16.25
+            09.07 - 09.37
           </div>
         </div>
         <div

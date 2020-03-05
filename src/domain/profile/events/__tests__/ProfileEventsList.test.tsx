@@ -35,6 +35,7 @@ const enrolments = {
     {
       node: {
         occurrence: {
+          time: '2020-02-24T07:07:18+00:00',
           venue: {
             name: '',
           },
@@ -117,14 +118,14 @@ const childOnlyPastEvents = {
 };
 
 test('Renders snapshot correctly', () => {
-  const input = shallow(
+  const wrapper = shallow(
     <ProfileEventsList
       availableEvents={childWithEvents.availableEvents}
       enrolments={childWithEvents.enrolments}
       pastEvents={childWithEvents.pastEvents}
     />
   );
-  expect(toJson(input)).toMatchSnapshot();
+  expect(toJson(wrapper)).toMatchSnapshot();
 });
 
 test('Renders only available events when no other events', () => {
