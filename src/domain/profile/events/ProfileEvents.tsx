@@ -12,11 +12,11 @@ const ProfileEvents: FunctionComponent<ProfileEventsProps> = ({ child }) => {
   const hasEvents = (child: ChildByIdResponse) => {
     let childHasEvents = false;
 
-    if (child.availableEvents && child.availableEvents.edges.length !== 0) {
+    if (child.availableEvents?.edges?.[0]) {
       childHasEvents = true;
-    } else if (child.pastEvents && child.pastEvents.edges.length !== 0) {
+    } else if (child.enrolments.edges?.[0]) {
       childHasEvents = true;
-    } else if (child.enrolments.edges.length !== 0) {
+    } else if (child.pastEvents?.edges?.[0]) {
       childHasEvents = true;
     }
 
