@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+import { QRCode } from 'react-qrcode-logo';
 
 import Card from '../../../common/components/card/Card';
 import {
@@ -27,7 +28,6 @@ interface ProfileEventsListProps {
 }
 
 const EVENT_DURATION_MINUTES = 30; // TODO: huh?
-
 const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
   availableEvents,
   enrolments,
@@ -88,7 +88,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
 
   return (
     <>
-      {availableEvents && availableEvents.edges.length !== 0 && (
+      {availableEvents?.edges?.[0] && (
         <>
           <h2>{t('TODO: event invites')}</h2> {/* TODO */}
           {availableEvents.edges.map(
@@ -116,9 +116,13 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
             enrolmentEdge =>
               enrolmentEdge?.node?.occurrence && (
                 <Card
+                  className={styles.enrolment}
                   key={enrolmentEdge.node.occurrence.event.id}
                   image={enrolmentEdge.node.occurrence.event.image}
                   title={enrolmentEdge.node.occurrence.event.name || ''}
+                  extraElement={
+                    <QRCode value={'Hello World - this works'} ecLevel={'H'} />
+                  }
                   action={() =>
                     gotoEventPage(enrolmentEdge.node?.occurrence.event.id || '')
                   }
@@ -131,7 +135,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
           )}
         </>
       )}
-      {pastEvents && pastEvents.edges.length !== 0 && (
+      {pastEvents?.edges?.[0] && (
         <>
           <h2>{t('TODO: past events')}</h2>
           {pastEvents.edges.map(
