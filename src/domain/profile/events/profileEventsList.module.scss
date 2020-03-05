@@ -34,3 +34,14 @@ $labelRowMargin: 1rem;
 .labelIcon {
   margin-right: $labelIconMargin;
 }
+
+.qrWrapper {
+  @include respond-above(sm) {
+    margin: 0;
+  }
+  height: 100%;
+  margin: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

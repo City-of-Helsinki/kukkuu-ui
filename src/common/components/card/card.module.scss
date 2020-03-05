@@ -6,6 +6,9 @@ $cardMargin: 2rem;
 $cardGutter: 1rem;
 $middleRowMargin: 1rem;
 $focalPointTopMargin: 1rem;
+$imageSize: 20vw;
+$imageMinSize: 200px;
+$imageMaxSize: 300px;
 
 .wrapper {
   @include respond-above(sm) {
@@ -21,6 +24,26 @@ $focalPointTopMargin: 1rem;
   }
   margin: 0 -$cardGutter;
   padding: $cardGutter;
+}
+
+.start {
+  @include respond-above(sm) {
+    width: $imageSize;
+    height: $imageSize;
+    min-width: $imageMinSize;
+    min-height: $imageMinSize;
+    max-width: $imageMaxSize;
+    max-height: $imageMaxSize;
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  & .image {
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 .middle {

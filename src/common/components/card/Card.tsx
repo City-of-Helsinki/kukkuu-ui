@@ -33,9 +33,8 @@ const Card: FunctionComponent<CardProps> = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.start}>
-        {/* TODO: size */}
         {imageSrc ? (
-          <img src={imageSrc} alt={alt} width="200" height="200" />
+          <img src={imageSrc} alt={alt} className={styles.image} />
         ) : (
           imageElement && imageElement
         )}
