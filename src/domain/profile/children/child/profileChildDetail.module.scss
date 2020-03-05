@@ -13,10 +13,8 @@ $childHeadingMargin: 0.65rem;
   display: grid;
   padding: 0 $basePadding;
   @include respond-above(sm) {
-    align-items: start;
     padding: 0;
-    grid-template-columns: auto auto;
-    gap: $baseMargin;
+    grid-template-columns: 1fr 10fr 1fr;
   }
   @include respond-below(sm) {
     grid-auto-rows: min-content;
