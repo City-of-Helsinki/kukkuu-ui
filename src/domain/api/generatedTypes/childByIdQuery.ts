@@ -49,6 +49,10 @@ export interface childByIdQuery_child_enrolments_edges_node_occurrence_event {
   name: string | null;
   shortDescription: string | null;
   image: string;
+  /**
+   * In minutes
+   */
+  duration: number | null;
 }
 
 export interface childByIdQuery_child_enrolments_edges_node_occurrence {

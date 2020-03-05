@@ -65,6 +65,7 @@ export const childByIdQuery = gql`
                 name
                 shortDescription
                 image
+                duration
               }
             }
           }
