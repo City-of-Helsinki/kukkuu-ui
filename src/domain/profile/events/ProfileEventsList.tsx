@@ -17,7 +17,7 @@ import {
 } from '../../api/generatedTypes/childByIdQuery';
 import styles from './profileEventsList.module.scss';
 import clockIcon from '../../../assets/icons/svg/clock.svg';
-import nullIcon from '../../../assets/icons/svg/close.svg';
+import calendarIcon from '../../../assets/icons/svg/calendar.svg';
 import locationIcon from '../../../assets/icons/svg/location.svg';
 import Icon from '../../../common/components/icon/Icon';
 
@@ -65,7 +65,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
       <div className={styles.row}>
         <div className={styles.label}>
           <Icon
-            src={nullIcon}
+            src={calendarIcon}
             alt={t('TODO: action')}
             className={styles.labelIcon}
           />
