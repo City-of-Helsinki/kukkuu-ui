@@ -84,7 +84,6 @@ $modalWidthLg: 800px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
   margin: 0 0 $largeMargin 0;
   padding: 0 $modalPadding;
 
@@ -98,8 +97,5 @@ $modalWidthLg: 800px;
     font-size: 2rem;
     margin: 0;
     flex-grow: 1;
-  }
-  h2 {
-    text-align: center;
   }
 }
