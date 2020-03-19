@@ -118,7 +118,6 @@ const ProfileChildDetail: React.FunctionComponent = () => {
               </div>
               {isOpen && (
                 <ProfileChildDetailEditModal
-                  isOpen={isOpen}
                   setIsOpen={setIsOpen}
                   childBeingEdited={child}
                   editChild={async (payload: ChildDetailEditModalPayload) => {

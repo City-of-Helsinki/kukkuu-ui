@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import omit from 'lodash/omit';
 
@@ -10,16 +10,38 @@ import { getChildFormModalValues } from '../../../../child/ChildUtils';
 import { normalizeProfileChild } from '../../../ProfileUtil';
 import { ChildDetailEditModalPayload } from '../ProfileChildDetail';
 import { childByIdQuery_child as ChildByIdResponse } from '../../../../api/generatedTypes/childByIdQuery';
-const ProfileChildDetailEditModal: React.FunctionComponent<{
-  isOpen: boolean;
+import ChildConfirmDeleteModal from '../../../../child/modal/confirm/delete/ChildConfirmDeleteModal';
+
+const ProfileChildDetailEditModal: FunctionComponent<{
   setIsOpen: (value: boolean) => void;
   editChild: (payload: ChildDetailEditModalPayload) => void;
   deleteChild: () => void;
   childBeingEdited: ChildByIdResponse;
-}> = ({ isOpen, setIsOpen, editChild, childBeingEdited, deleteChild }) => {
+}> = ({ setIsOpen, editChild, deleteChild, childBeingEdited }) => {
   const { t } = useTranslation();
   const normalizedChild = normalizeProfileChild(childBeingEdited);
   const initialFormData = getChildFormModalValues(normalizedChild);
+
+  const [isFormOpen, setIsFormOpen] = useState(true);
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+
+  const onFormModalToggle = (isOpen: boolean) => {
+    if (isOpen === false) {
+      setIsFormOpen(false);
+      setIsOpen(false);
+    }
+  };
+
+  const openDeleteConfirmModal = () => {
+    setIsFormOpen(false);
+    setIsDeleteConfirmOpen(true);
+  };
+
+  const onDeleteConfirmModalToggle = (isOpen: boolean) => {
+    if (isOpen === false) {
+      setIsOpen(false);
+    }
+  };
 
   const onSubmit = (payload: Child) => {
     // Ensure that we're using the correct typing when we're updating and querying
@@ -41,16 +63,23 @@ const ProfileChildDetailEditModal: React.FunctionComponent<{
     deleteChild();
     setIsOpen(false);
   };
-  return (
+
+  return isFormOpen ? (
     <ChildFormModal
       initialValues={initialFormData}
       onSubmit={onSubmit}
-      onDelete={onDelete}
+      onDelete={openDeleteConfirmModal}
       label={t('child.form.modal.edit.label')}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
+      isOpen={isFormOpen}
+      setIsOpen={onFormModalToggle}
       formType={CHILD_FORM_TYPES.EDIT}
     />
-  );
+  ) : isDeleteConfirmOpen ? (
+    <ChildConfirmDeleteModal
+      deleteChild={onDelete}
+      setIsOpen={onDeleteConfirmModalToggle}
+    />
+  ) : null;
 };
+
 export default ProfileChildDetailEditModal;

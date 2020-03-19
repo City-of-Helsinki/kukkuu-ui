@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { Formik, FieldArray, FormikErrors } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
@@ -21,7 +21,7 @@ import { formatTime, newMoment } from '../../../common/time/utils';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import { isChildEligible } from '../../registration/notEligible/NotEligibleUtils';
 import ChildFormModalNonEligible from './prompt/nonEligible/ChildFormModalNonEligible';
-import ChildFormModalDeletePrompt from './prompt/delete/ChildFormModalDeletePrompt';
+
 export interface ChildFormModalValues extends Omit<Child, 'birthdate'> {
   birthdate: {
     day: number | string;
@@ -30,6 +30,7 @@ export interface ChildFormModalValues extends Omit<Child, 'birthdate'> {
   };
   childBirthdate?: string;
 }
+
 interface ChildFormModalProps {
   initialValues: ChildFormModalValues;
   label: string;
@@ -45,7 +46,7 @@ export enum CHILD_FORM_TYPES {
   EDIT = 'EDIT',
 }
 
-const ChildFormModal: React.FunctionComponent<ChildFormModalProps> = ({
+const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
   initialValues,
   label,
   onSubmit,
@@ -55,11 +56,8 @@ const ChildFormModal: React.FunctionComponent<ChildFormModalProps> = ({
   formType = CHILD_FORM_TYPES.ADD,
 }) => {
   const { t } = useTranslation();
-  const [isFilling, setFormIsFilling] = React.useState(false);
-  const [nonEligible, toggleNonEligiblePrompt] = React.useState(false);
-  const [isDeleteChildPromptOpen, toggleDeleteChildPrompt] = React.useState(
-    false
-  );
+  const [isFilling, setFormIsFilling] = useState(false);
+  const [nonEligible, toggleNonEligiblePrompt] = useState(false);
 
   const isEditForm = formType === CHILD_FORM_TYPES.EDIT;
 
@@ -68,22 +66,12 @@ const ChildFormModal: React.FunctionComponent<ChildFormModalProps> = ({
   const isChildHavingRelationship = !!initialValues.relationship?.type;
 
   const getModalLabel = () => {
-    if (nonEligible || isDeleteChildPromptOpen) return '';
-    return label;
+    return nonEligible ? '' : label;
   };
 
   const renderModalContent = () => {
     if (nonEligible) {
       return <ChildFormModalNonEligible setIsOpen={setIsOpen} />;
-    }
-
-    if (onDelete && isDeleteChildPromptOpen) {
-      return (
-        <ChildFormModalDeletePrompt
-          deleteChild={onDelete}
-          setIsOpen={setIsOpen}
-        />
-      );
     }
 
     return (
@@ -228,7 +216,7 @@ const ChildFormModal: React.FunctionComponent<ChildFormModalProps> = ({
               <Button
                 className={styles.deleteChild}
                 ariaLabel={t('profile.child.detail.delete.text')}
-                onClick={() => toggleDeleteChildPrompt(true)}
+                onClick={onDelete}
               >
                 {t('profile.child.detail.delete.text')}
               </Button>
@@ -253,14 +241,10 @@ const ChildFormModal: React.FunctionComponent<ChildFormModalProps> = ({
         toggleModal={(value: boolean) => {
           // Reset prompt state cause hook dont auto-reset
           toggleNonEligiblePrompt(false);
-          toggleDeleteChildPrompt(false);
-
           setIsOpen(value);
         }}
-        showLabelIcon={!nonEligible && !isDeleteChildPromptOpen}
-        showHeading={!isDeleteChildPromptOpen}
+        showLabelIcon={!nonEligible}
         setFormIsFilling={setFormIsFilling}
-        className={isDeleteChildPromptOpen ? styles.modal : ''}
       >
         {renderModalContent()}
       </Modal>

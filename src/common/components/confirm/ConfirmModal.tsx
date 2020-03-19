@@ -20,6 +20,7 @@ const ConfirmModal: FunctionComponent<ConfirmModalProps> = ({
   heading,
   cancel,
   ok,
+  children,
 }) => {
   const onOk = () => {
     setIsOpen(false);
@@ -41,6 +42,7 @@ const ConfirmModal: FunctionComponent<ConfirmModalProps> = ({
       }}
       className={styles.modal}
     >
+      {children}
       <div className={styles.buttonGroup}>
         <Button className={styles.cancelButton} onClick={onCancel}>
           {cancel}

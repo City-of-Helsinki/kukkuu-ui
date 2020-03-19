@@ -17,6 +17,7 @@ interface UnenrolModalProps {
   childId: string;
   occurrenceId: string;
 }
+
 const UnenrolModal: FunctionComponent<UnenrolModalProps> = ({
   isOpen,
   setIsOpen,
