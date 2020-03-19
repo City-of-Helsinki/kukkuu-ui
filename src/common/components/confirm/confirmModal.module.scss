@@ -1,0 +1,42 @@
+@import 'mixins';
+@import 'colors';
+@import 'variables';
+@import 'layout';
+
+.modal {
+  text-align: center;
+}
+
+.buttonGroup {
+  margin: $largeMargin 0;
+
+  button {
+    width: 100% !important;
+  }
+
+  .cancelButton {
+    @include button();
+    button {
+      background: $hel-light;
+    }
+  }
+
+  .okButton {
+    @include button();
+  }
+
+  @include respond-above(sm) {
+    display: grid;
+    grid-gap: $baseMargin;
+
+    grid-auto-flow: column;
+  }
+
+  @include respond-below(sm) {
+    display: flex;
+    flex-direction: column-reverse;
+    .okButton {
+      margin-bottom: $baseMargin;
+    }
+  }
+}

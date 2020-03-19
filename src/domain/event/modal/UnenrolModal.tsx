@@ -6,12 +6,10 @@ import { useHistory } from 'react-router-dom';
 // TODO: KK-300 If the same, find a better/reusable location for this css module
 import { toast } from 'react-toastify';
 
-import styles from '../../child/modal/prompt/delete/childFormModalDeletePrompt.module.scss';
-import Modal from '../../../common/components/modal/Modal';
-import Button from '../../../common/components/button/Button';
 import unenrolOccurrenceMutation from '../mutations/unenrolOccurrenceMutation';
 import profileQuery from '../../profile/queries/ProfileQuery';
 import { unenrolOccurrenceMutationVariables } from '../../api/generatedTypes/unenrolOccurrenceMutation';
+import ConfirmModal from '../../../common/components/confirm/ConfirmModal';
 
 interface UnenrolModalProps {
   isOpen: boolean;
@@ -34,6 +32,7 @@ const UnenrolModal: FunctionComponent<UnenrolModalProps> = ({
       refetchQueries: [{ query: profileQuery }],
     }
   );
+
   const unenrol = async () => {
     try {
       await unenrolOccurrence({
@@ -50,48 +49,23 @@ const UnenrolModal: FunctionComponent<UnenrolModalProps> = ({
       toast(t('registration.submitMutation.errorMessage'), {
         type: toast.TYPE.ERROR,
       });
-
       console.error(error);
     }
   };
 
-  const renderModalContent = () => {
-    return (
-      <div>
-        <div className={styles.deleteButtonGroup}>
-          <Button
-            className={styles.cancelButton}
-            onClick={() => setIsOpen(false)}
-          >
-            {t('event.cancellation.confirmationModal.cancel.buttonText')}
-          </Button>
-
-          <Button
-            className={styles.deleteButton}
-            onClick={() => {
-              setIsOpen(false);
-              unenrol();
-            }}
-          >
-            {t('event.cancellation.confirmationModal.confirm.buttonText')}
-          </Button>
-        </div>
-      </div>
-    );
+  const confirmUnenrol = (answer: boolean) => {
+    if (answer === true) unenrol();
   };
 
   return (
-    <Modal
+    <ConfirmModal
       isOpen={isOpen}
-      label={t('event.cancellation.confirmationModal.heading')}
-      className={styles.modal}
-      showLabelIcon={false}
-      toggleModal={(value: boolean) => {
-        setIsOpen(value);
-      }}
-    >
-      {renderModalContent()}
-    </Modal>
+      setIsOpen={setIsOpen}
+      heading={t('event.cancellation.confirmationModal.heading')}
+      cancel={t('event.cancellation.confirmationModal.cancel.buttonText')}
+      ok={t('event.cancellation.confirmationModal.confirm.buttonText')}
+      answer={confirmUnenrol}
+    />
   );
 };
 
