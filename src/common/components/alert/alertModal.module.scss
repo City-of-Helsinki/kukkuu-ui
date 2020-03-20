@@ -1,0 +1,13 @@
+@import 'mixins';
+@import 'colors';
+@import 'variables';
+@import 'layout';
+
+.modal {
+  text-align: center;
+}
+
+.okButton {
+  margin: $largeMargin 0;
+  @include button();
+}

@@ -19,7 +19,6 @@ import AccessibilityStatement from '../accessibilityStatement/AccessibilityState
 import { userHasProfileSelector } from '../registration/state/RegistrationSelectors';
 import TermsOfService from '../termsOfService/TermsOfService';
 import { authenticateWithBackend } from '../auth/authenticate';
-import SessionPrompt from './sessionPrompt/SessionPrompt';
 import { isSessionExpiredPromptOpen } from './state/ui/UISelectors';
 import {
   tokenFetched,
@@ -27,6 +26,7 @@ import {
 } from '../auth/state/BackendAuthenticationActions';
 import ProfileRoute from '../profile/route/ProfileRoute';
 import EventRoute from '../event/route/EventRoute';
+import SessionAlert from './sessionAlert/SessionAlert';
 
 const App: React.FunctionComponent = props => {
   const isLoadingUser = useSelector(isLoadingUserSelector);
@@ -64,7 +64,7 @@ const App: React.FunctionComponent = props => {
 
   return (
     <LoadingSpinner isLoading={isLoadingUser}>
-      {isSessionPromptOpen && <SessionPrompt isOpen={isSessionPromptOpen} />}
+      {isSessionPromptOpen && <SessionAlert isOpen={isSessionPromptOpen} />}
       <Switch>
         <Redirect exact path={`/${locale}/`} to={`/${locale}/home`} />
         <Route exact path={`/${locale}/home`} component={Home} />
