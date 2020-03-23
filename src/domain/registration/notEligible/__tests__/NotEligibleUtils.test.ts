@@ -27,6 +27,10 @@ describe('notEligibleUtils.test.ts', () => {
     values.children[0].homeCity = 'Yokohama';
     expect(isChildEligible(values.children[0])).toEqual(false);
   });
+  test('A random city should be eligible when editing a child', () => {
+    values.children[0].homeCity = 'Yokohama';
+    expect(isChildEligible(values.children[0], true)).toEqual(true);
+  });
   test('Verify that all cities in REACT_APP_ELIGIBLE_CITIES are eligible', () => {
     const eligibleCities: string = process.env.REACT_APP_ELIGIBLE_CITIES || '';
     const cities = eligibleCities.split(',') || [];

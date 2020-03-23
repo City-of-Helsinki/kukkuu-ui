@@ -38,18 +38,20 @@ const EventEnrol: FunctionComponent<EventEnrolProps> = ({
 
   if (!data?.event) return <div></div>;
 
-  const selectOptionsDate = data.event.occurrences.edges.map(occurrence => {
-    return occurrence?.node?.id && occurrence.node.time
-      ? {
-          value: formatTime(newMoment(occurrence.node.time), 'YYYY-MM-DD'),
-          label: formatTime(
-            newMoment(occurrence.node.time),
-            DEFAULT_DATE_FORMAT
-          ),
-          key: occurrence.node.id,
-        }
-      : {};
-  });
+  const selectOptionsDate = data.event.occurrences.edges
+    .map(occurrence => {
+      return occurrence?.node?.id && occurrence.node.time
+        ? {
+            value: formatTime(newMoment(occurrence.node.time), 'YYYY-MM-DD'),
+            label: formatTime(
+              newMoment(occurrence.node.time),
+              DEFAULT_DATE_FORMAT
+            ),
+            key: occurrence.node.id,
+          }
+        : {};
+    })
+    .filter((v, i, a) => a.findIndex(t => t.value === v.value) === i);
   const selectOptionsTime = data.event.occurrences.edges
     .map(occurrence => {
       return occurrence?.node?.id && occurrence.node.time
@@ -63,7 +65,8 @@ const EventEnrol: FunctionComponent<EventEnrolProps> = ({
           }
         : {};
     })
-    .sort(function(a, b) {
+    .filter((v, i, a) => a.findIndex(t => t.value === v.value) === i)
+    .sort((a, b) => {
       return a.label && b.label
         ? a.label === b.label
           ? 0

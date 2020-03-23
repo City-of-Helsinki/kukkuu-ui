@@ -108,7 +108,7 @@ const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
             ),
           });
 
-          const isEligible = isChildEligible(child);
+          const isEligible = isChildEligible(child, isEditForm);
           if (isEligible) {
             onSubmit(child);
           } else {
