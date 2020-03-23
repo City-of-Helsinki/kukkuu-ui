@@ -17,5 +17,5 @@ export const defaultProfileData: ProfileType = {
 
 export default createReducer(defaultProfileData, {
   [PROFILE_ACTIONS.SAVE_PROFILE]: (state, action) => (state = action.payload),
-  [PROFILE_ACTIONS.CLEAR_PROFILE]: state => (state = defaultProfileData),
+  [PROFILE_ACTIONS.CLEAR_PROFILE]: (state) => (state = defaultProfileData),
 });

@@ -9,7 +9,7 @@ import UserDropdown from '../../userDropdown/UserDropdown';
 import LanguageBar from '../languageBar/LanguageBar';
 import Button from '../../../../../common/components/button/Button';
 
-const SmallScreenNav: React.FunctionComponent = props => {
+const SmallScreenNav: React.FunctionComponent = (props) => {
   const { t } = useTranslation();
 
   const ref = React.useRef<HTMLDivElement>(null);

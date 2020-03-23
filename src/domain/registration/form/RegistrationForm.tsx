@@ -83,11 +83,11 @@ const RegistrationForm: FunctionComponent = () => {
                 setFormIsFilling(true);
               }
             }}
-            onSubmit={values => {
+            onSubmit={(values) => {
               setFormIsFilling(false);
               dispatch(setFormValues(values));
 
-              const backendSupportChildren = values.children.map(child =>
+              const backendSupportChildren = values.children.map((child) =>
                 getSupportedChildData(child)
               );
 
@@ -104,7 +104,7 @@ const RegistrationForm: FunctionComponent = () => {
                   guardian: backendSupportGuardian,
                 },
               })
-                .then(response => {
+                .then((response) => {
                   if (response.data?.submitChildrenAndGuardian?.guardian) {
                     dispatch(
                       saveProfile(
@@ -115,7 +115,7 @@ const RegistrationForm: FunctionComponent = () => {
                   dispatch(resetFormValues());
                   history.push('/registration/success');
                 })
-                .catch(error => {
+                .catch((error) => {
                   toast(t('registration.submitMutation.errorMessage'), {
                     type: toast.TYPE.ERROR,
                   });
@@ -137,13 +137,13 @@ const RegistrationForm: FunctionComponent = () => {
                 >
                   <FieldArray
                     name="children"
-                    render={arrayHelpers => {
+                    render={(arrayHelpers) => {
                       return (
                         <>
                           <AddNewChildFormModal
                             isOpen={isOpen}
                             setIsOpen={setIsOpen}
-                            addChild={payload => {
+                            addChild={(payload) => {
                               // When user add child first instead of other input
                               // validate wont be invoked -> isFilling still false but
                               // user do have unfinished work

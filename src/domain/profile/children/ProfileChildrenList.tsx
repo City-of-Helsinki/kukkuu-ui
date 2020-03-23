@@ -40,13 +40,13 @@ const ProfileChildrenList: React.FunctionComponent = () => {
           <AddNewChildFormModal
             isOpen={isOpen}
             setIsOpen={setIsOpen}
-            addChild={payload => {
+            addChild={(payload) => {
               const supportedChildData = getSupportedChildData(payload);
               addChild({ variables: { input: supportedChildData } })
                 .then(() => {
                   trackEvent({ category: 'action', action: 'Add child' });
                 })
-                .catch(error => {
+                .catch((error) => {
                   toast(t('profile.addChildMutation.errorMessage'), {
                     type: toast.TYPE.ERROR,
                   });
@@ -64,7 +64,7 @@ const ProfileChildrenList: React.FunctionComponent = () => {
               <h3>{t('partners.2020')}</h3>
               {/* TODO: make me dynamic partners after more data came */}
             </div>
-            {children.edges.map(childEdge =>
+            {children.edges.map((childEdge) =>
               childEdge?.node ? (
                 <ProfileChild key={childEdge.node.id} child={childEdge.node} />
               ) : null

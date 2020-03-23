@@ -12,7 +12,7 @@ type StatementProps = {
   lang: string;
 };
 
-const Statement: FunctionComponent<StatementProps> = props => {
+const Statement: FunctionComponent<StatementProps> = (props) => {
   const lang = props.lang;
   switch (lang) {
     case 'en':

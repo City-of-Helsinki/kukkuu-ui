@@ -40,7 +40,7 @@ const Select: React.FunctionComponent<SelectProps> = ({
             {t('common.select.default.text')}
           </option>
         )}
-        {options.map(selectOption => (
+        {options.map((selectOption) => (
           <option value={selectOption.value} key={selectOption.label}>
             {selectOption.label}
           </option>

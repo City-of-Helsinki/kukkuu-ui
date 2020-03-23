@@ -5,7 +5,7 @@ import * as Sentry from '@sentry/browser';
 import i18n from '../../common/translation/i18n/i18nInit';
 import userManager from './userManager';
 
-export default function(): Promise<User> {
+export default function (): Promise<User> {
   return new Promise(async (resolve, reject) => {
     try {
       const user = await userManager.getUser();

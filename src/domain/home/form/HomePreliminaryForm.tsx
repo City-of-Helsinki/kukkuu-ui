@@ -104,7 +104,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                 <div className={styles.inputWrapper}>
                   <FieldArray
                     name="child.birthdate"
-                    render={props => <BirthdateFormField {...props} />}
+                    render={(props) => <BirthdateFormField {...props} />}
                   />
 
                   <EnhancedInputField

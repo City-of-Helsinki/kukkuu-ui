@@ -13,7 +13,7 @@ const LanguageDropdown: React.FunctionComponent = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const languageOptions = Object.values(SUPPORT_LANGUAGES).map(language => {
+  const languageOptions = Object.values(SUPPORT_LANGUAGES).map((language) => {
     return {
       value: language,
       label: language.toUpperCase(),

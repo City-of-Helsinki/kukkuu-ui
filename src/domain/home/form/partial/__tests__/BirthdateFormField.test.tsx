@@ -11,7 +11,7 @@ it('renders snapshot correctly', () => {
       {() => (
         <FieldArray
           name="foo"
-          render={props => <BirthdateFormField {...props} />}
+          render={(props) => <BirthdateFormField {...props} />}
         />
       )}
     </TestForm>

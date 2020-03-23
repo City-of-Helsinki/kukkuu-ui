@@ -60,7 +60,7 @@ export const AppRoutes: FunctionComponent = () => {
         <Redirect exact path="/" to={`/${currentLocale}/home`} />
         <Route path={`/${localeParam}/*`} component={App} />
         <Route
-          render={props => {
+          render={(props) => {
             return (
               <Redirect to={`/${currentLocale}${props.location.pathname}`} />
             );

@@ -30,7 +30,7 @@ const EventOccurrenceList: FunctionComponent<EventOccurrenceListProps> = ({
           <th></th>
         </tr>
 
-        {occurrences.edges.map(edge =>
+        {occurrences.edges.map((edge) =>
           edge?.node ? (
             <EventOccurrence key={edge.node.id} occurrence={edge.node} />
           ) : null

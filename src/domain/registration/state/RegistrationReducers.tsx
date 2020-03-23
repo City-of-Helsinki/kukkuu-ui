@@ -31,7 +31,7 @@ export default createReducer(defaultRegistrationData, {
   [REGISTRATION_ACTIONS.SET_FORM_VALUES]: (state, action) => {
     state.formValues = action.payload;
   },
-  [REGISTRATION_ACTIONS.RESET_FORM_VALUES]: state => {
+  [REGISTRATION_ACTIONS.RESET_FORM_VALUES]: (state) => {
     state.formValues = defaultRegistrationData.formValues;
   },
   [REGISTRATION_ACTIONS.SET_HOME_FORM_VALUES]: (state, action) => {

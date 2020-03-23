@@ -21,7 +21,7 @@ export const loginTunnistamo = (path?: string) => {
       /* eslint-disable @typescript-eslint/camelcase */
       ui_locales: getCurrentLanguage(i18n),
     })
-    .catch(error => {
+    .catch((error) => {
       if (error.message === 'Network Error') {
         toast(i18n.t('authentication.networkError.message'), {
           type: toast.TYPE.ERROR,
@@ -45,7 +45,7 @@ export const logoutTunnistamo = async () => {
 
 export const authenticateWithBackend = (
   accessToken: string
-): StoreThunk => async dispatch => {
+): StoreThunk => async (dispatch) => {
   try {
     dispatch(startFetchingToken());
 

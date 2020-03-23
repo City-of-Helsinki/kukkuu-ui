@@ -7,7 +7,7 @@ import homeTicketIcon from '../../../assets/icons/svg/homeTicket.svg';
 import homeTheaterIcon from '../../../assets/icons/svg/homeTheater.svg';
 import Icon from '../../../common/components/icon/Icon';
 
-const HomeInstructions: React.FunctionComponent = props => {
+const HomeInstructions: React.FunctionComponent = (props) => {
   const { t } = useTranslation();
   return (
     <section className={styles.wrapper}>

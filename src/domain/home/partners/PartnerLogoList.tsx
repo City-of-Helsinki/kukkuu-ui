@@ -10,7 +10,7 @@ type Props = {
   partners: Partner[];
 };
 
-const Partners: React.FunctionComponent<Props> = props => {
+const Partners: React.FunctionComponent<Props> = (props) => {
   const { t } = useTranslation();
 
   const partners = props.partners;

@@ -14,7 +14,7 @@ export const defaultApiAuthenticationData: BackendAuthenticationData = {
 };
 
 export default createReducer(defaultApiAuthenticationData, {
-  [API_AUTHENTICATION_ACTIONS.START_FETCHING_TOKEN]: state =>
+  [API_AUTHENTICATION_ACTIONS.START_FETCHING_TOKEN]: (state) =>
     Object.assign({}, state, { isFetchingToken: true }),
   [API_AUTHENTICATION_ACTIONS.FETCH_TOKEN_SUCCESS]: (state, action) =>
     Object.assign({}, state, {

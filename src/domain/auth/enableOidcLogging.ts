@@ -1,5 +1,5 @@
 import Oidc from 'oidc-client';
 
-export default function() {
+export default function () {
   Oidc.Log.logger = console;
 }

@@ -28,7 +28,7 @@ import ProfileRoute from '../profile/route/ProfileRoute';
 import EventRoute from '../event/route/EventRoute';
 import SessionAlert from './sessionAlert/SessionAlert';
 
-const App: React.FunctionComponent = props => {
+const App: React.FunctionComponent = (props) => {
   const isLoadingUser = useSelector(isLoadingUserSelector);
   const { locale } = useParams<{ locale: string }>();
   const userHasProfile = useSelector(userHasProfileSelector);

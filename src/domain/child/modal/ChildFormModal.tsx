@@ -120,7 +120,7 @@ const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
           <form onSubmit={handleSubmit} id="childModalForm">
             <FieldArray
               name="birthdate"
-              render={props => <BirthdateFormField {...props} />}
+              render={(props) => <BirthdateFormField {...props} />}
             />
 
             <div className={styles.childInfo}>

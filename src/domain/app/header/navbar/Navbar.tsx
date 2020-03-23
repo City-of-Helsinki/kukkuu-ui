@@ -7,7 +7,7 @@ import UserDropdown from '../userDropdown/UserDropdown';
 import LanguageBar from './languageBar/LanguageBar';
 import SmallScreenNav from './smallScreenNav/SmallScreenNav';
 
-const Navbar: React.FunctionComponent = props => {
+const Navbar: React.FunctionComponent = (props) => {
   const { t } = useTranslation();
   const history = useHistory();
   const isSmallScreen = window.innerWidth <= 768;

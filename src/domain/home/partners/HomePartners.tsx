@@ -5,7 +5,7 @@ import styles from './homePartners.module.scss';
 import Partners from './PartnerLogoList';
 import { mainPartnerList, partnerList } from './constants/PartnersConstants';
 
-const HomePartners: React.FunctionComponent = props => {
+const HomePartners: React.FunctionComponent = (props) => {
   const { t } = useTranslation();
 
   return (

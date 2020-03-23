@@ -28,12 +28,9 @@ it('renders snapshot correctly', () => {
 
 it('redirect user from root to /fi/home by default', () => {
   const wrapper = wrapperCreator('/');
-  expect(
-    wrapper
-      .children()
-      .children()
-      .props().history.location.pathname
-  ).toBe('/fi/home');
+  expect(wrapper.children().children().props().history.location.pathname).toBe(
+    '/fi/home'
+  );
 });
 
 it('user from root will be redirect to App with guarantee fi locale', () => {
