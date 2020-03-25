@@ -6,6 +6,7 @@ interface NavigationPropmtProps {
   warningMessage?: string;
 }
 
+// TODO: rename NavigationConfirm
 const NavigationPropmt: React.FunctionComponent<NavigationPropmtProps> = ({
   isHalfFilling,
   warningMessage,

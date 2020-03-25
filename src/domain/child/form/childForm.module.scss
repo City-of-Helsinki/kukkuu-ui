@@ -1,0 +1,72 @@
+@import 'mixins';
+@import 'variables';
+@import 'layout';
+
+.childName,
+.childInfo {
+  @include respond-above(md) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $baseMargin;
+  }
+}
+
+.deleteChild {
+  margin-bottom: $largeMargin;
+  button {
+    border: none;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
+.buttonGroup {
+  margin: $largeMargin 0;
+}
+
+.editChildButtons {
+  display: grid;
+  grid-gap: $baseMargin;
+
+  button {
+    width: 100% !important;
+  }
+  .submitButton {
+    @include button();
+    @include respond-below(sm) {
+      grid-row: 1;
+    }
+  }
+
+  .cancelButton {
+    @include button();
+    button {
+      background: $hel-light;
+    }
+    @include respond-below(sm) {
+      grid-row: 2;
+    }
+  }
+
+  @include respond-above(sm) {
+    grid-auto-flow: column;
+  }
+
+  @include respond-below(sm) {
+    grid-auto-flow: row;
+  }
+}
+
+.addChildButtons {
+  .submitButton {
+    @include button();
+  }
+}
+
+.modal {
+  h2 {
+    width: 100%;
+    text-align: center;
+    margin-top: 0;
+  }
+}
