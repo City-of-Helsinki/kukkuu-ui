@@ -9,6 +9,7 @@ interface ChildFormModalNonEligibleProps {
   setIsOpen: (value: boolean) => void;
 }
 
+// TODO: Make a modal
 const ChildFormModalNonEligible: React.FunctionComponent<ChildFormModalNonEligibleProps> = ({
   setIsOpen,
 }) => {

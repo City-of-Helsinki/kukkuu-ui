@@ -11,6 +11,8 @@ import { normalizeProfileChild } from '../../../ProfileUtil';
 import { ChildDetailEditModalPayload } from '../ProfileChildDetail';
 import { childByIdQuery_child as ChildByIdResponse } from '../../../../api/generatedTypes/childByIdQuery';
 import ChildConfirmDeleteModal from '../../../../child/modal/confirm/delete/ChildConfirmDeleteModal';
+import { isChildEligible } from '../../../../registration/notEligible/NotEligibleUtils';
+import ChildFormModalNonEligible from '../../../../child/modal/prompt/nonEligible/ChildFormModalNonEligible';
 
 const ProfileChildDetailEditModal: FunctionComponent<{
   setIsOpen: (value: boolean) => void;
@@ -24,6 +26,7 @@ const ProfileChildDetailEditModal: FunctionComponent<{
 
   const [isFormOpen, setIsFormOpen] = useState(true);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [isNonEligibleAlertOpen, toggleNonEligiblePrompt] = useState(false);
 
   const onFormModalToggle = (isOpen: boolean) => {
     if (isOpen === false) {
@@ -43,7 +46,20 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     }
   };
 
+  const onNonEligibleAlertToggle = (isOpen: boolean) => {
+    if (isOpen === false) {
+      setIsOpen(false);
+    }
+  };
+
   const onSubmit = (payload: Child) => {
+    const isEligible = isChildEligible(payload, true);
+    if (!isEligible) {
+      toggleNonEligiblePrompt(true);
+      setIsFormOpen(false);
+      return;
+    }
+
     // Ensure that we're using the correct typing when we're updating and querying
     // children. updateChild_updateChild_child has a different set of fields compared to
     // childByIdQuery_child
@@ -79,6 +95,8 @@ const ProfileChildDetailEditModal: FunctionComponent<{
       deleteChild={onDelete}
       setIsOpen={onDeleteConfirmModalToggle}
     />
+  ) : isNonEligibleAlertOpen ? (
+    <ChildFormModalNonEligible setIsOpen={onNonEligibleAlertToggle} />
   ) : null;
 };
 

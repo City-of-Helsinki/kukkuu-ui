@@ -17,7 +17,6 @@ import {
 } from '../../../common/components/form/validationUtils';
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
-// import { isChildEligible } from '../../registration/notEligible/NotEligibleUtils';
 
 export interface ChildFormValues extends Omit<Child, 'birthdate'> {
   birthdate: {
@@ -37,7 +36,7 @@ interface ChildFormProps {
   formType?: CHILD_FORM_TYPES;
 }
 
-// const immutableFields = ['birthdate', 'city'];
+// TODO: const immutableFields = ['birthdate', 'city'];
 
 export enum CHILD_FORM_TYPES {
   ADD = 'ADD',
@@ -53,9 +52,6 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   formType = CHILD_FORM_TYPES.ADD,
 }) => {
   const { t } = useTranslation();
-  // const [isFilling, setFormIsFilling] = useState(false);
-  // const [nonEligible, toggleNonEligiblePrompt] = useState(false);
-
   const isEditForm = formType === CHILD_FORM_TYPES.EDIT;
 
   // Child who already have relationship can not go back to have empty relationship anymore
@@ -63,8 +59,6 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   const isChildHavingRelationship = !!initialValues.relationship?.type;
 
   const onFormSubmit = (values: ChildFormValues) => {
-    console.log('on submit');
-
     setFormIsFilling(false);
     const child: Child = Object.assign({}, values, {
       birthdate: formatTime(
@@ -74,29 +68,13 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
         )
       ),
     });
-
     onSubmit(child);
-
-    /*
-    const isEligible = isChildEligible(child, isEditForm);
-    if (isEligible) {
-      onSubmit(child);
-    } else {
-      toggleNonEligiblePrompt(true);
-    }
-    */
   };
-  const validateForm = (values: ChildFormValues) => {
-    console.log('validate form');
 
+  const validateForm = (values: ChildFormValues) => {
     const {
       birthdate: { day, month, year },
     } = values;
-    /*
-    if (!isFilling) {
-      setFormIsFilling(true);
-    }
-    */
     setFormIsFilling(true);
 
     const errors: FormikErrors<ChildFormValues> = {};
