@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import styles from './childFormModalNonEligible.module.scss';
+import styles from './childAlertNonEligibleModal.module.scss';
 import Icon from '../../../../../common/components/icon/Icon';
 import personIcon from '../../../../../assets/icons/svg/adultFace.svg';
 import Button from '../../../../../common/components/button/Button';
@@ -10,7 +10,7 @@ interface ChildFormModalNonEligibleProps {
 }
 
 // TODO: Make a modal
-const ChildFormModalNonEligible: React.FunctionComponent<ChildFormModalNonEligibleProps> = ({
+const ChildAlertNonEligibleModal: React.FunctionComponent<ChildFormModalNonEligibleProps> = ({
   setIsOpen,
 }) => {
   const { t } = useTranslation();
@@ -31,4 +31,4 @@ const ChildFormModalNonEligible: React.FunctionComponent<ChildFormModalNonEligib
   );
 };
 
-export default ChildFormModalNonEligible;
+export default ChildAlertNonEligibleModal;

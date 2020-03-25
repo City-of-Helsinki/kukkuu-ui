@@ -12,7 +12,7 @@ import { ChildDetailEditModalPayload } from '../ProfileChildDetail';
 import { childByIdQuery_child as ChildByIdResponse } from '../../../../api/generatedTypes/childByIdQuery';
 import ChildConfirmDeleteModal from '../../../../child/modal/confirm/delete/ChildConfirmDeleteModal';
 import { isChildEligible } from '../../../../registration/notEligible/NotEligibleUtils';
-import ChildFormModalNonEligible from '../../../../child/modal/prompt/nonEligible/ChildFormModalNonEligible';
+import ChildAlertNonEligibleModal from '../../../../child/modal/alert/nonEligible/ChildAlertNonEligibleModal';
 
 const ProfileChildDetailEditModal: FunctionComponent<{
   setIsOpen: (value: boolean) => void;
@@ -29,6 +29,7 @@ const ProfileChildDetailEditModal: FunctionComponent<{
   const [isNonEligibleAlertOpen, toggleNonEligiblePrompt] = useState(false);
 
   const onFormModalToggle = (isOpen: boolean) => {
+    console.log('is open', isOpen);
     if (isOpen === false) {
       setIsFormOpen(false);
       setIsOpen(false);
@@ -101,7 +102,7 @@ const ProfileChildDetailEditModal: FunctionComponent<{
       setIsOpen={onDeleteConfirmModalToggle}
     />
   ) : isNonEligibleAlertOpen ? (
-    <ChildFormModalNonEligible setIsOpen={onNonEligibleAlertToggle} />
+    <ChildAlertNonEligibleModal setIsOpen={onNonEligibleAlertToggle} />
   ) : null;
 };
 
