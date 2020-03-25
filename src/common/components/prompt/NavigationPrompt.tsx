@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent } from 'react';
 import { Prompt } from 'react-router-dom';
 
 interface NavigationPropmtProps {
@@ -7,7 +7,7 @@ interface NavigationPropmtProps {
 }
 
 // TODO: rename NavigationConfirm
-const NavigationPropmt: React.FunctionComponent<NavigationPropmtProps> = ({
+const NavigationPropmt: FunctionComponent<NavigationPropmtProps> = ({
   isHalfFilling,
   warningMessage,
 }) => {
