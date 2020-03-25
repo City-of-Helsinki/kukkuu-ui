@@ -1,24 +1,10 @@
 import React, { FunctionComponent, useState } from 'react';
-// import { Formik, FieldArray, FormikErrors } from 'formik';
 import { useTranslation } from 'react-i18next';
-// import classnames from 'classnames';
 
 import Modal from '../../../common/components/modal/Modal';
 import styles from './childFormModal.module.scss';
-// import BirthdateFormField from '../../home/form/partial/BirthdateFormField';
-// import EnhancedInputField from '../../../common/components/form/fields/input/EnhancedInputField';
-// import InputField from '../../../common/components/form/fields/input/InputField';
-// import Button from '../../../common/components/button/Button';
-// import SelectField from '../../../common/components/form/fields/select/SelectField';
 import { Child } from '../types/ChildTypes';
-// import { getTranslatedRelationshipOptions } from '../ChildUtils';
 import NavigationPropmt from '../../../common/components/prompt/NavigationPrompt';
-// import {
-//   validatePostalCode,
-//   validateDate,
-// } from '../../../common/components/form/validationUtils';
-// import { formatTime, newMoment } from '../../../common/time/utils';
-// import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import ChildForm from '../form/ChildForm';
 
 export interface ChildFormModalValues extends Omit<Child, 'birthdate'> {
@@ -34,6 +20,7 @@ interface ChildFormModalProps {
   initialValues: ChildFormModalValues;
   label: string;
   onSubmit: (payload: Child) => void;
+  onCancel: () => void;
   onDelete?: () => void;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
@@ -49,6 +36,7 @@ const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
   initialValues,
   label,
   onSubmit,
+  onCancel,
   onDelete,
   isOpen,
   setIsOpen,
@@ -56,10 +44,6 @@ const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
 }) => {
   const { t } = useTranslation();
   const [isFilling, setFormIsFilling] = useState(false);
-
-  const onCancel = () => {
-    setIsOpen(false);
-  };
 
   return (
     <div className={styles.childFormModalWrapper}>

@@ -75,6 +75,10 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     setIsOpen(false);
   };
 
+  const onCancel = () => {
+    setIsOpen(false);
+  };
+
   const onDelete = () => {
     deleteChild();
     setIsOpen(false);
@@ -84,6 +88,7 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     <ChildFormModal
       initialValues={initialFormData}
       onSubmit={onSubmit}
+      onCancel={onCancel}
       onDelete={openDeleteConfirmModal}
       label={t('child.form.modal.edit.label')}
       isOpen={isFormOpen}

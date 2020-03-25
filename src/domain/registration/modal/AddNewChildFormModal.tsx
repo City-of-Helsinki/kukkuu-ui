@@ -20,10 +20,16 @@ const AddNewChildFormModal: React.FunctionComponent<{
     addChild(payload);
     setIsOpen(false);
   };
+
+  const onCancel = () => {
+    setIsOpen(false);
+  };
+
   return (
     <ChildFormModal
       initialValues={initialFormData}
       onSubmit={onSubmit}
+      onCancel={onCancel}
       label={t('child.form.modal.add.label')}
       isOpen={isOpen}
       setIsOpen={setIsOpen}
