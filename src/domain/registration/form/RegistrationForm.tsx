@@ -141,7 +141,6 @@ const RegistrationForm: FunctionComponent = () => {
                       return (
                         <>
                           <AddNewChildFormModal
-                            isOpen={isOpen}
                             setIsOpen={setIsOpen}
                             addChild={(payload) => {
                               // When user add child first instead of other input

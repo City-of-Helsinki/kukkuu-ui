@@ -38,7 +38,6 @@ const ProfileChildrenList: React.FunctionComponent = () => {
         <h2>{t('profile.heading')}</h2>
         {isOpen && (
           <AddNewChildFormModal
-            isOpen={isOpen}
             setIsOpen={setIsOpen}
             addChild={(payload) => {
               const supportedChildData = getSupportedChildData(payload);
