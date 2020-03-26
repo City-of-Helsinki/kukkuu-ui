@@ -140,17 +140,19 @@ const RegistrationForm: FunctionComponent = () => {
                     render={(arrayHelpers) => {
                       return (
                         <>
-                          <AddNewChildFormModal
-                            setIsOpen={setIsOpen}
-                            addChild={(payload) => {
-                              // When user add child first instead of other input
-                              // validate wont be invoked -> isFilling still false but
-                              // user do have unfinished work
-                              // this function was invoked here to make sure in that case
-                              setFormIsFilling(true);
-                              arrayHelpers.push(payload);
-                            }}
-                          />
+                          {isOpen && (
+                            <AddNewChildFormModal
+                              setIsOpen={setIsOpen}
+                              addChild={(payload) => {
+                                // When user add child first instead of other input
+                                // validate wont be invoked -> isFilling still false but
+                                // user do have unfinished work
+                                // this function was invoked here to make sure in that case
+                                setFormIsFilling(true);
+                                arrayHelpers.push(payload);
+                              }}
+                            />
+                          )}
                           {values.children &&
                             values.children.map((child, index) => (
                               <ChildFormField
