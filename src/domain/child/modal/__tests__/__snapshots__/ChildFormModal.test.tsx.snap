@@ -8,10 +8,10 @@ exports[`renders snapshot correctly 1`] = `
     isOpen={false}
     label="foo"
     setFormIsFilling={[Function]}
-    showLabelIcon={true}
     toggleModal={[Function]}
   >
-    <Formik
+    <ChildForm
+      formType="ADD"
       initialValues={
         Object {
           "birthdate": "01-11-2019",
@@ -24,11 +24,9 @@ exports[`renders snapshot correctly 1`] = `
           },
         }
       }
-      onSubmit={[Function]}
-      validate={[Function]}
-    >
-      <Component />
-    </Formik>
+      onSubmit={[MockFunction]}
+      setFormIsFilling={[Function]}
+    />
   </Modal>
 </div>
 `;
