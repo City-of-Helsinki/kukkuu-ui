@@ -29,7 +29,6 @@ const ProfileChildDetailEditModal: FunctionComponent<{
   const [isNonEligibleAlertOpen, toggleNonEligiblePrompt] = useState(false);
 
   const onFormModalToggle = (isOpen: boolean) => {
-    console.log('is open', isOpen);
     if (isOpen === false) {
       setIsFormOpen(false);
       setIsOpen(false);
