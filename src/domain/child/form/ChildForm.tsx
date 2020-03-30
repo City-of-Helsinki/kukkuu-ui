@@ -36,7 +36,7 @@ interface ChildFormProps {
   formType?: CHILD_FORM_TYPES;
 }
 
-// TODO: const immutableFields = ['birthdate', 'city'];
+const immutableFields = ['birthdate'];
 
 export enum CHILD_FORM_TYPES {
   ADD = 'ADD',
@@ -90,6 +90,10 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
     return errors;
   };
 
+  const isImmutable = (fieldName: string) => {
+    return isEditForm && immutableFields.includes(fieldName);
+  };
+
   return (
     <Formik
       validate={validateForm}
@@ -98,10 +102,16 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
     >
       {({ isSubmitting, handleSubmit }) => (
         <form onSubmit={handleSubmit} id="childForm">
-          <FieldArray
-            name="birthdate"
-            render={(props) => <BirthdateFormField {...props} />}
-          />
+          {isImmutable('birthdate') ? (
+            <label>{`${t(
+              'homePage.preliminaryForm.childBirthdate.input.label'
+            )}*`}</label>
+          ) : (
+            <FieldArray
+              name="birthdate"
+              render={(props) => <BirthdateFormField {...props} />}
+            />
+          )}
 
           <div className={styles.childInfo}>
             <EnhancedInputField
