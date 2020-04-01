@@ -15,6 +15,7 @@ export interface occurrenceQuery_occurrence_event {
    */
   id: string;
   image: string;
+  imageAltText: string | null;
   description: string | null;
   shortDescription: string | null;
   name: string | null;

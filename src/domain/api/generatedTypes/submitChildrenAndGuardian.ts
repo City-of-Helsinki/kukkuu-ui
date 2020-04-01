@@ -66,7 +66,7 @@ export interface submitChildrenAndGuardian_submitChildrenAndGuardian_guardian {
   lastName: string;
   email: string | null;
   phoneNumber: string;
-  language: Language | null;
+  language: Language;
   children: submitChildrenAndGuardian_submitChildrenAndGuardian_guardian_children;
 }
 

@@ -94,7 +94,7 @@ export interface profileQuery_myProfile {
   lastName: string;
   email: string | null;
   phoneNumber: string;
-  language: Language | null;
+  language: Language;
   children: profileQuery_myProfile_children;
 }
 

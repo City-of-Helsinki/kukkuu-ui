@@ -46,6 +46,7 @@ const availableEvents: AvailableEvents = {
         participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
         image:
           'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
+        imageAltText: 'uooo',
       },
     },
   ],
@@ -58,7 +59,6 @@ const enrolments: Enrolments = {
         occurrence: {
           id: '',
           time: '',
-          remainingCapacity: 100,
           venue: {
             id: '',
             address: '',
@@ -74,6 +74,7 @@ const enrolments: Enrolments = {
             shortDescription: 'eventti',
             image:
               'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
+            imageAltText: 'uooo',
           },
         },
       },
@@ -91,6 +92,7 @@ const pastEvents: PastEvents = {
         shortDescription: 'eventti',
         image:
           'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
+        imageAltText: 'uooo',
         occurrences: {
           edges: [],
         },
@@ -125,7 +127,6 @@ const childOnlyEnrolments: Child = {
           occurrence: {
             id: '',
             time: '',
-            remainingCapacity: null,
             venue: {
               id: '',
               address: '',
@@ -138,6 +139,7 @@ const childOnlyEnrolments: Child = {
               shortDescription: 'eventti',
               duration: null,
               participantsPerInvite: EventParticipantsPerInvite.FAMILY,
+              imageAltText: 'uooo',
               image:
                 'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
             },

@@ -14,7 +14,7 @@ function OidcCallback(props: RouteChildrenProps) {
 
   const onSuccess = (user: User) => {
     if (user.state.path) props.history.push(user.state.path);
-    else props.history.push('/profile');
+    else props.history.replace('/profile');
   };
   const onError = (error: object) => {
     toast(t('authentication.errorMessage'), {

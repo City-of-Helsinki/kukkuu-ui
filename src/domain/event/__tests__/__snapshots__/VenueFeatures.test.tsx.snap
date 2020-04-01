@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders snapshot correctly 1`] = `
+<Fragment>
+  <Collapsible
+    item={
+      Object {
+        "body": "zz jk ølk",
+        "header": "Saapuminen",
+      }
+    }
+  />
+  <Collapsible
+    item={
+      Object {
+        "body": "a",
+        "header": "Esteettömyys",
+      }
+    }
+  />
+  <Collapsible
+    item={
+      Object {
+        "body": "zup",
+        "header": "WC-tilat ja lastenhoitohuone",
+      }
+    }
+  />
+  <Collapsible
+    item={
+      Object {
+        "body": "b",
+        "header": "Lisätietoa",
+      }
+    }
+  />
+</Fragment>
+`;

@@ -11,7 +11,7 @@ exports[`Renders snapshot correctly 1`] = `
     <Card
       action={[Function]}
       actionText="Ilmoittaudu tapahtumaan"
-      alt=""
+      alt="huhuu"
       imageSrc="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
       key="RXZlbnROb2RlOjE="
       primaryAction={[Function]}
@@ -69,7 +69,7 @@ exports[`Renders snapshot correctly 1`] = `
               src="person.svg"
             />
             <div>
-              event.participantsPerInviteEnum.undefined
+              1 lapsi + 1 huoltaja
             </div>
           </div>
           <div
@@ -81,7 +81,7 @@ exports[`Renders snapshot correctly 1`] = `
               src="location.svg"
             />
             <div>
-              
+              aa
             </div>
           </div>
         </div>

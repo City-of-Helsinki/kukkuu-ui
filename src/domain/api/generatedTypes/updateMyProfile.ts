@@ -16,7 +16,7 @@ export interface updateMyProfile_updateMyProfile_myProfile {
   id: string;
   firstName: string;
   lastName: string;
-  language: Language | null;
+  language: Language;
   email: string | null;
 }
 

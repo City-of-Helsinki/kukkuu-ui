@@ -4,6 +4,13 @@ import toJson from 'enzyme-to-json';
 
 import ProfileEventsList from '../ProfileEventsList';
 import Card from '../../../../common/components/card/Card';
+import {
+  childByIdQuery_child as ChildType,
+  childByIdQuery_child_availableEvents as AvailableEventsType,
+  childByIdQuery_child_enrolments as EnrolmentsType,
+  childByIdQuery_child_pastEvents as PastEventsType,
+} from '../../../api/generatedTypes/childByIdQuery';
+import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
 const childData = {
   id: '',
@@ -21,10 +28,13 @@ const eventData = {
   name: 'pentti',
   shortDescription: 'eventti',
   image: 'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
+  imageAltText: 'huhuu',
   duration: 60,
+  participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
+  occurrences: { edges: [] },
 };
 
-const availableEvents = {
+const availableEvents: AvailableEventsType = {
   edges: [
     {
       node: eventData,
@@ -32,15 +42,21 @@ const availableEvents = {
   ],
 };
 
-const enrolments = {
+const venueData = {
+  id: 'uuap',
+  name: 'aa',
+  description: 'zzww',
+  address: 'ssfas uus 12',
+};
+
+const enrolments: EnrolmentsType = {
   edges: [
     {
       node: {
         occurrence: {
+          id: '',
           time: '2020-02-24T07:07:18+00:00', // 09.07
-          venue: {
-            name: '',
-          },
+          venue: venueData,
           event: eventData,
         },
       },
@@ -48,7 +64,7 @@ const enrolments = {
   ],
 };
 
-const pastEvents = {
+const pastEvents: PastEventsType = {
   edges: [
     {
       node: eventData,
@@ -72,16 +88,16 @@ const childOnlyAvailableEvents = {
   ...childData,
 };
 
-const childOnlyEnrolments = {
+const childOnlyEnrolments: ChildType = {
   availableEvents: null,
   enrolments: {
     edges: [
       {
         node: {
           occurrence: {
-            venue: {
-              name: '',
-            },
+            id: 'uu',
+            time: '2020-02-24T09:09:09+00:00',
+            venue: venueData,
             event: eventData,
           },
         },
@@ -107,6 +123,7 @@ test('Renders snapshot correctly', () => {
       availableEvents={childWithEvents.availableEvents}
       enrolments={childWithEvents.enrolments}
       pastEvents={childWithEvents.pastEvents}
+      childId="zzaf"
     />
   );
   expect(toJson(wrapper)).toMatchSnapshot();
@@ -118,6 +135,7 @@ test('Renders only available events when no other events', () => {
       availableEvents={childOnlyAvailableEvents.availableEvents}
       enrolments={childOnlyAvailableEvents.enrolments}
       pastEvents={childOnlyAvailableEvents.pastEvents}
+      childId="zzaf"
     />
   );
   expect(wrapper.find('h2').length).toBe(1);
@@ -130,6 +148,7 @@ test('Renders only enrolments when no other events', () => {
       availableEvents={childOnlyEnrolments.availableEvents}
       enrolments={childOnlyEnrolments.enrolments}
       pastEvents={childOnlyEnrolments.pastEvents}
+      childId="zzaf"
     />
   );
   expect(wrapper.find('h2').length).toBe(1);
@@ -142,6 +161,7 @@ test('Renders only past events when no other events', () => {
       availableEvents={childOnlyPastEvents.availableEvents}
       enrolments={childOnlyPastEvents.enrolments}
       pastEvents={childOnlyPastEvents.pastEvents}
+      childId="zzaf"
     />
   );
   expect(wrapper.find('h2').length).toBe(1);

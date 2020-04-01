@@ -98,7 +98,9 @@ const Enrol: FunctionComponent = () => {
     >
       <div className={styles.enrolWrapper} role="main">
         <div className={styles.heading}>
-          <h1>{`${t('enrol to')} ${data.occurrence.event.name}`}</h1>
+          <h1>{`${t('enrollment.confirmationPage.heading')} ${
+            data.occurrence.event.name
+          }`}</h1>
         </div>
         <OccurrenceInfo
           occurrence={data.occurrence}

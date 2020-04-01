@@ -9,6 +9,7 @@ const occurrenceQuery = gql`
       event {
         id
         image
+        imageAltText
         description
         shortDescription
         name

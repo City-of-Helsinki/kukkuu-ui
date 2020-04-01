@@ -1,6 +1,8 @@
 # Change Log
 
-# 0.3.0-pre
+# 1.0.0-rc1
+
+See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 
 ### Fixed
 

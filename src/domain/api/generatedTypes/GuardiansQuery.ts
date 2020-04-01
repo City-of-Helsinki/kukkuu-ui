@@ -61,7 +61,7 @@ export interface GuardiansQuery_guardians_edges_node {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  language: Language | null;
+  language: Language;
   children: GuardiansQuery_guardians_edges_node_children;
   relationships: GuardiansQuery_guardians_edges_node_relationships;
   email: string | null;

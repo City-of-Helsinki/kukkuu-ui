@@ -1,14 +1,11 @@
 import React, { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import * as Sentry from '@sentry/browser';
 
-import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
 import PageWrapper from '../app/layout/PageWrapper';
-import backIcon from '../../assets/icons/svg/arrowLeft.svg';
-import Button from '../../common/components/button/Button';
 import eventQuery from './queries/eventQuery';
 import {
   eventQuery as EventQueryType,
@@ -19,6 +16,7 @@ import { formatOccurrenceTime } from './EventUtils';
 import { formatTime, newMoment } from '../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../common/time/TimeConstants';
 import EventEnrol from './EventEnrol';
+import EventPage from './EventPage';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 
 export interface FilterValues {
@@ -38,7 +36,6 @@ export interface FilterOptions {
 }
 
 const Event: FunctionComponent = () => {
-  const history = useHistory();
   const { t } = useTranslation();
   const params = useParams<{ childId: string; eventId: string }>();
 
@@ -133,53 +130,18 @@ const Event: FunctionComponent = () => {
     setHasFiltered(true);
   }
 
-  const backgroundImageStyle = data.event.image
-    ? {
-        backgroundImage: `url("${data.event.image}")`,
-      }
-    : {};
-
   return (
-    <>
-      <div
-        className={styles.heroWrapper}
-        style={backgroundImageStyle}
-        title={data.event.imageAltText || ''}
-      >
-        <div className={styles.backButtonWrapper}>
-          <Button
-            aria-label={t('common.backButton.label')}
-            className={styles.backButton}
-            onClick={() => history.goBack()}
-          >
-            <Icon
-              src={backIcon}
-              className={styles.backButtonIcon}
-              alt={t('common.backButton.label')}
-            />
-          </Button>
-        </div>
+    <EventPage event={data.event}>
+      <div className={styles.description}>
+        <Paragraph text={data.event.description || ''} />
       </div>
-
-      <PageWrapper className={styles.wrapper} title={data.event.name || ''}>
-        <div className={styles.eventWrapper} role="main">
-          <div className={styles.event}>
-            <div className={styles.heading}>
-              <h1>{data.event.name}</h1>
-            </div>
-            <div className={styles.description}>
-              <Paragraph text={data.event.description || ''} />
-            </div>
-            <EventEnrol
-              data={data}
-              filterValues={selectedFilterValues}
-              options={options}
-              onFilterUpdate={updateFilterValues}
-            />
-          </div>
-        </div>
-      </PageWrapper>
-    </>
+      <EventEnrol
+        data={data}
+        filterValues={selectedFilterValues}
+        options={options}
+        onFilterUpdate={updateFilterValues}
+      />
+    </EventPage>
   );
 };
 
