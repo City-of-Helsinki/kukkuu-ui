@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import Modal from '../../../common/components/modal/Modal';
 import styles from './childFormModal.module.scss';
 import { Child } from '../types/ChildTypes';
-import NavigationPropmt from '../../../common/components/prompt/NavigationPrompt';
 import ChildForm from '../form/ChildForm';
+import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 
 export interface ChildFormModalValues extends Omit<Child, 'birthdate'> {
   birthdate: {
@@ -49,7 +49,7 @@ const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
     <div className={styles.childFormModalWrapper}>
       {isOpen && (
         // FIXME: Edit data -> Close modal -> Refresh
-        <NavigationPropmt
+        <NavigationConfirm
           warningMessage={t('common.form.leave.warning.text')}
           isHalfFilling={isFilling}
         />

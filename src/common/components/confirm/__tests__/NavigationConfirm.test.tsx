@@ -2,9 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
-import NavigationPromt from '../NavigationPrompt';
+import NavigationConfirm from '../NavigationConfirm';
 
 it('renders snapshot correctly', () => {
-  const prompt = shallow(<NavigationPromt isHalfFilling={true} />);
+  const prompt = shallow(<NavigationConfirm isHalfFilling={true} />);
   expect(toJson(prompt)).toMatchSnapshot();
 });

@@ -6,8 +6,7 @@ interface NavigationPropmtProps {
   warningMessage?: string;
 }
 
-// TODO: rename NavigationConfirm
-const NavigationPropmt: FunctionComponent<NavigationPropmtProps> = ({
+const NavigationConfirm: FunctionComponent<NavigationPropmtProps> = ({
   isHalfFilling,
   warningMessage,
 }) => {
@@ -24,4 +23,4 @@ const NavigationPropmt: FunctionComponent<NavigationPropmtProps> = ({
   ) : null;
 };
 
-export default NavigationPropmt;
+export default NavigationConfirm;

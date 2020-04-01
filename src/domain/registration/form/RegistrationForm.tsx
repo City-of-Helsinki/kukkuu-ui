@@ -22,7 +22,6 @@ import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
 import addIcon from '../../../assets/icons/svg/delete.svg';
 import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
-import NavigationPropmt from '../../../common/components/prompt/NavigationPrompt';
 import PageWrapper from '../../app/layout/PageWrapper';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import { getSupportedChildData } from '../../child/ChildUtils';
@@ -32,6 +31,7 @@ import { saveProfile, clearProfile } from '../../profile/state/ProfileActions';
 import profileQuery from '../../profile/queries/ProfileQuery';
 import { profileQuery as ProfileQueryType } from '../../api/generatedTypes/profileQuery';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
+import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 
 const RegistrationForm: FunctionComponent = () => {
   const { i18n, t } = useTranslation();
@@ -69,7 +69,7 @@ const RegistrationForm: FunctionComponent = () => {
       className={styles.grayBackground}
       title={'registration.heading'}
     >
-      <NavigationPropmt
+      <NavigationConfirm
         isHalfFilling={isFilling}
         warningMessage={t('common.form.leave.warning.text')}
       />
