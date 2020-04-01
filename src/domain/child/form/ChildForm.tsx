@@ -90,7 +90,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
     return errors;
   };
 
-  const isImmutable = (fieldName: string) => {
+  const isFieldImmutable = (fieldName: string) => {
     return isEditForm && immutableFields.includes(fieldName);
   };
 
@@ -100,18 +100,21 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
       initialValues={initialValues}
       onSubmit={onFormSubmit}
     >
-      {({ isSubmitting, handleSubmit }) => (
+      {({ isSubmitting, handleSubmit, values }) => (
         <form onSubmit={handleSubmit} id="childForm">
-          {isImmutable('birthdate') ? (
-            <label>{`${t(
-              'homePage.preliminaryForm.childBirthdate.input.label'
-            )}*`}</label>
-          ) : (
-            <FieldArray
-              name="birthdate"
-              render={(props) => <BirthdateFormField {...props} />}
-            />
-          )}
+          <FieldArray
+            name="birthdate"
+            render={(props) => {
+              const isImmutable = isFieldImmutable('birthdate');
+              return (
+                <BirthdateFormField
+                  values={values['birthdate']}
+                  isImmutable={isImmutable}
+                  {...props}
+                />
+              );
+            }}
+          />
 
           <div className={styles.childInfo}>
             <EnhancedInputField
