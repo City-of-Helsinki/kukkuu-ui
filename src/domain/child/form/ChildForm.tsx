@@ -18,12 +18,14 @@ import {
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
 
+export interface Birthdate {
+  day: number | string;
+  month: number | string;
+  year: number | string;
+}
+
 export interface ChildFormValues extends Omit<Child, 'birthdate'> {
-  birthdate: {
-    day: number | string;
-    month: number | string;
-    year: number | string;
-  };
+  birthdate: Birthdate;
   childBirthdate?: string;
 }
 

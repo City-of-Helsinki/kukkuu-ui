@@ -8,14 +8,11 @@ import EnhancedInputField from '../../../../common/components/form/fields/input/
 import NumberInputField from '../../../../common/components/form/fields/input/NumberInputField';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
+import { Birthdate } from '../../../child/form/ChildForm';
 
 interface BirthdateFormFieldProps extends FieldArrayRenderProps {
   isImmutable?: boolean;
-  values?: {
-    day: number | string;
-    month: number | string;
-    year: number | string;
-  };
+  values?: Birthdate;
 }
 
 const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
