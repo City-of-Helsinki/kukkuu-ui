@@ -22,3 +22,11 @@ export const newMoment = (
  */
 export const formatTime = (inputMoment: moment.Moment, format?: string) =>
   inputMoment.format(format || BACKEND_DATE_FORMAT);
+
+/**
+ * Format month to zero indexed for Moment
+ * @param input
+ */
+export const toZeroBasedMonth = (input: number | string) => {
+  return Number(input) - 1;
+};

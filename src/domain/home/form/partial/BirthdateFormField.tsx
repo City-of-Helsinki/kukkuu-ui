@@ -6,7 +6,11 @@ import styles from './birthdateFormField.module.scss';
 import { validateRequire } from '../../../../common/components/form/validationUtils';
 import EnhancedInputField from '../../../../common/components/form/fields/input/EnhancedInputField';
 import NumberInputField from '../../../../common/components/form/fields/input/NumberInputField';
-import { formatTime, newMoment } from '../../../../common/time/utils';
+import {
+  formatTime,
+  newMoment,
+  toZeroBasedMonth,
+} from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { Birthdate } from '../../../child/form/ChildForm';
 
@@ -27,8 +31,9 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
   const { t } = useTranslation();
 
   if (isImmutable && values) {
+    const monthZeroBased = toZeroBasedMonth(values.month);
     const birthdate = formatTime(
-      newMoment([values.year, values.month, values.day]),
+      newMoment([values.year, monthZeroBased, values.day]),
       DEFAULT_DATE_FORMAT
     );
 
