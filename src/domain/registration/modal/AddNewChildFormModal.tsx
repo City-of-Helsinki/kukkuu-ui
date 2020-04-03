@@ -34,7 +34,7 @@ const AddNewChildFormModal: React.FunctionComponent<{
   };
 
   const onSubmit = (payload: Child) => {
-    const isEligible = isChildEligible(payload, true);
+    const isEligible = isChildEligible(payload);
     if (!isEligible) {
       toggleNonEligiblePrompt(true);
       setIsFormOpen(false);

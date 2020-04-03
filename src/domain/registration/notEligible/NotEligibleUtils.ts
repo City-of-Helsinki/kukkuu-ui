@@ -45,10 +45,14 @@ const isChildEligible = (
   child: Pick<Child, 'birthdate' | 'homeCity'>,
   isEditing = false
 ) => {
-  return (
-    isBirthdateEligible(child.birthdate) &&
-    (isEditing || isCityEligible(child.homeCity))
-  );
+  const validators = [
+    { validator: isBirthdateEligible, item: child.birthdate },
+  ];
+
+  if (!isEditing)
+    validators.push({ validator: isCityEligible, item: child.homeCity });
+
+  return validators.every((v) => v.validator(v.item));
 };
 
 export { getEligibleCities, isChildEligible };
