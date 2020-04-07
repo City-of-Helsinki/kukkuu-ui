@@ -11,9 +11,9 @@ export default createReducer(defaultChildEventData, {
   [EVENT_ACTIONS.CLEAR_EVENT]: (state) => (state = defaultChildEventData),
   [EVENT_ACTIONS.SAVE_CHILDREN_EVENTS]: (state, action) => {
     const childrenEvents: ChildEvents[] = [];
-    action.payload.edges.forEach((childEdge: edges) => {
+    action.payload?.edges?.forEach((childEdge: edges) => {
       const events: string[] = [];
-      childEdge?.node?.enrolments.edges.forEach((enrolEdge) => {
+      childEdge?.node?.enrolments?.edges?.forEach((enrolEdge) => {
         if (childEdge?.node?.id && enrolEdge?.node?.occurrence.event.id) {
           events.push(enrolEdge.node.occurrence.event.id);
         }
