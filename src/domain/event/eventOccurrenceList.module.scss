@@ -1,4 +1,4 @@
-@import 'mixins';
+@import 'styles/mixins';
 
 .eventOccurrenceList {
   width: 100%;
@@ -10,6 +10,9 @@
   @include respond-above(md) {
     tr.mobileHeader {
       display: none;
+    }
+    th.freePlaces {
+      text-align: center;
     }
   }
   @include respond-below(md) {

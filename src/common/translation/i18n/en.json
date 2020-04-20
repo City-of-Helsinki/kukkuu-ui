@@ -121,12 +121,11 @@
   "email": {
     "title": "Welcome to the Culture Kids programme!"
   },
-  "enrollment ": {
-    "successToast": {
-      "paragraph": "We sent you a confirmation message by email where you can find more information about the event"
-    }
-  },
   "enrollment": {
+    "successToast": {
+      "paragraph": "We sent you a confirmation message by email where you can find more information about the event",
+      "heading": "Registration for event successful"
+    },
     "button": {
       "occurenceFull": "Full",
       "queue": "Join queue",
@@ -139,7 +138,8 @@
       "confirm": {
         "button": "Register for event"
       },
-      "heading": "Register for event"
+      "heading": "Register for event",
+      "text": "Check that the information below is correct for the event you wish to attend."
     },
     "enroll": {
       "buttonText": "Register for event"
@@ -151,9 +151,6 @@
     "selectTime": "Choose time",
     "showEventInfo": {
       "buttonText": "Show event details"
-    },
-    "successToas": {
-      "heading": "Registration for event successful"
     }
   },
   "event": {

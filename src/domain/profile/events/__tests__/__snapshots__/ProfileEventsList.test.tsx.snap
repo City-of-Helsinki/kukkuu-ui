@@ -36,54 +36,21 @@ exports[`Renders snapshot correctly 1`] = `
         <div
           className="row"
         >
-          <div
+          <InfoItem
             className="label"
-          >
-            <Icon
-              alt=" action"
-              className="labelIcon"
-              src="calendar.svg"
-            />
-            <div>
-              24.02.2020
-            </div>
-          </div>
-          <div
+            iconSrc="calendar.svg"
+            label="24.02.2020"
+          />
+          <InfoItem
             className="label"
-          >
-            <Icon
-              alt=" action"
-              className="labelIcon"
-              src="clock.svg"
-            />
-            <div>
-              09.07 - 10.07
-            </div>
-          </div>
-          <div
+            iconSrc="clock.svg"
+            label="09.07 - 10.07"
+          />
+          <InfoItem
             className="label"
-          >
-            <Icon
-              alt=" action"
-              className="labelIcon"
-              src="person.svg"
-            />
-            <div>
-              1 lapsi + 1 huoltaja
-            </div>
-          </div>
-          <div
-            className="label"
-          >
-            <Icon
-              alt=" action"
-              className="labelIcon"
-              src="location.svg"
-            />
-            <div>
-              aa
-            </div>
-          </div>
+            iconSrc="location.svg"
+            label="aa"
+          />
         </div>
       }
       imageElement={
@@ -98,8 +65,8 @@ exports[`Renders snapshot correctly 1`] = `
             logoOpacity={1}
             qrStyle="squares"
             quietZone={0}
-            size={180}
-            value="Hello World - this works"
+            size={300}
+            value="pentti"
           />
         </div>
       }

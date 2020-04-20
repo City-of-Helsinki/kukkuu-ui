@@ -1,4 +1,4 @@
-@import 'mixins';
+@import 'styles/mixins';
 
 $qrMargin: 3rem;
 $eventsListMargin: 4rem;
@@ -8,13 +8,14 @@ $eventsListMargin: 4rem;
 }
 
 .qrWrapper {
-  @include respond-above(sm) {
-    margin: 0;
-  }
   height: 100%;
-  margin: $qrMargin;
-  margin-top: $qrMargin - 1rem; /* undo top card's top gutter */
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  object-fit: fill;
+  canvas {
+    width: 100% !important; // Override <QRCode /> components inline styles
+    height: 100% !important;
+  }
 }

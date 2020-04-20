@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -16,7 +16,7 @@ export interface UserDropdownProps {
   isSmallScreen?: boolean;
 }
 
-const UserDropdown: React.FunctionComponent<UserDropdownProps> = ({
+const UserDropdown: FunctionComponent<UserDropdownProps> = ({
   isSmallScreen,
 }) => {
   const { t } = useTranslation();

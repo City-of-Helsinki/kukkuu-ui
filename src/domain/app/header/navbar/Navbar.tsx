@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import UserDropdown from '../userDropdown/UserDropdown';
 import LanguageBar from './languageBar/LanguageBar';
 import SmallScreenNav from './smallScreenNav/SmallScreenNav';
 
-const Navbar: React.FunctionComponent = (props) => {
+const Navbar: FunctionComponent = (props) => {
   const { t } = useTranslation();
   const history = useHistory();
   const isSmallScreen = window.innerWidth <= 768;

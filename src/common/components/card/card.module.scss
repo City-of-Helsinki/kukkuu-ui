@@ -1,5 +1,5 @@
-@import 'mixins';
-@import 'fonts';
+@import 'styles/mixins';
+@import 'styles/fonts';
 
 $columnMargin: 2rem;
 $cardMargin: 2rem;
@@ -12,9 +12,10 @@ $imageMaxSize: 300px;
 
 .wrapper {
   @include respond-above(sm) {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 2fr 10fr 1fr;
     align-items: center;
+
     margin: 0;
     padding: 0;
   }
@@ -71,7 +72,7 @@ $imageMaxSize: 300px;
 
 .end {
   @include respond-above(sm) {
-    margin-right: $columnMargin;
+    justify-self: center;
     & .actionText {
       display: none;
     }
@@ -91,6 +92,9 @@ $imageMaxSize: 300px;
 .primaryActionButton {
   @include button();
   button {
+    white-space: nowrap;
+    min-width: fit-content;
+    padding: 0 2rem;
     @include respond-below(sm) {
       width: 100%;
     }

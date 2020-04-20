@@ -1,3 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders snapshot correctly 1`] = `"<div class=\\"wrapper\\"><div class=\\"start\\"></div><div class=\\"middle\\"><h3 class=\\"title\\"></h3> <div class=\\"focalPoint\\"></div>foo</div><div class=\\"end\\"><button class=\\"actionWrapper\\"><div class=\\"actionText\\"></div><div class=\\"imgWrapper gotoAction\\"><img src=\\"angleDown.svg\\" alt=\\"\\"/></div></button></div></div>"`;
+exports[`renders snapshot correctly 1`] = `"<div class=\\"wrapper\\"><div class=\\"start\\"></div><div class=\\"middle\\"><h3 class=\\"title\\"></h3><div class=\\"focalPoint\\"></div>foo</div><div class=\\"end\\"><button class=\\"actionWrapper\\"><div class=\\"actionText\\"></div><div class=\\"imgWrapper gotoAction\\"><img src=\\"angleDown.svg\\" alt=\\"\\"/></div></button></div></div>"`;

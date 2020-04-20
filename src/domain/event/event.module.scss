@@ -1,7 +1,7 @@
-@import 'colors';
-@import 'variables';
-@import 'fonts';
-@import 'mixins';
+@import 'styles/colors';
+@import 'styles/variables';
+@import 'styles/fonts';
+@import 'styles/mixins';
 
 @include respond-between(md, xlg) {
   .heroWrapper {
@@ -104,7 +104,7 @@
     background: $hel-white;
     padding-bottom: 5rem;
   }
-  @include respond-above(sm) {
+  @include respond-above(lg) {
     grid-template-columns: 1fr 10fr 1fr;
 
     .event {
@@ -115,7 +115,10 @@
 
 .occurrenceInfo {
   margin: $baseMargin 0;
-  width: 67%;
+  width: 100%;
+  @include respond-above(md) {
+    width: auto;
+  }
   display: block;
   .label {
     display: inline-flex;
@@ -129,7 +132,6 @@
   & > * {
     margin-left: 0;
     margin-right: $baseMargin;
-    white-space: nowrap;
   }
 }
 
@@ -146,7 +148,8 @@
   }
   button {
     border: 2px solid $hel-summer;
-    width: 20rem;
+    max-width: 20rem;
+    width: 100%;
     font-weight: $font-weight-normal;
     background-color: $hel-white;
     padding: $basePadding;

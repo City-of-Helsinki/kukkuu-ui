@@ -27,7 +27,9 @@ exports[`renders snapshot correctly 1`] = `
       <th>
         Tapahtumapaikka
       </th>
-      <th>
+      <th
+        className="freePlaces"
+      >
         Vapaat paikat
       </th>
       <th />

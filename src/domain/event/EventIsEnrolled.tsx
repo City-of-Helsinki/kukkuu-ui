@@ -15,6 +15,7 @@ import UnenrolModal from './modal/UnenrolModal';
 import VenueFeatures from './VenueFeatures';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
+import SuccessToast from './enrol/SuccessToast';
 
 const EventIsEnrolled: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -45,7 +46,7 @@ const EventIsEnrolled: FunctionComponent = () => {
   if (!data?.occurrence) return errorMessage;
 
   return (
-    <EventPage event={data.occurrence.event}>
+    <EventPage event={data.occurrence.event} success={<SuccessToast />}>
       <OccurrenceInfo
         className={styles.occurrenceInfo}
         occurrence={data.occurrence}

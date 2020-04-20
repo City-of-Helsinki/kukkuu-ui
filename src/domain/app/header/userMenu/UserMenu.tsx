@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { FunctionComponent } from 'react';
 
 import styles from './userMenu.module.scss';
 
@@ -13,7 +13,7 @@ interface UserMenuProps {
   options: UserMenuOptions;
 }
 
-const UserMenu: React.FunctionComponent<UserMenuProps> = ({ options }) => {
+const UserMenu: FunctionComponent<UserMenuProps> = ({ options }) => {
   return (
     <ul className={styles.userMenu}>
       {options.map((option, index) => {

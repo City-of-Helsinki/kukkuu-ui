@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import * as Sentry from '@sentry/browser';
-import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import joinClassNames from 'classnames';
 
 import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
@@ -21,7 +21,7 @@ import {
 } from '../../api/generatedTypes/enrolOccurrenceMutation';
 import profileQuery from '../../profile/queries/ProfileQuery';
 import { childByIdQuery } from '../../child/queries/ChildQueries';
-import { saveChildEvents } from '../state/EventActions';
+import { saveChildEvents, justEnrolled } from '../state/EventActions';
 
 const Enrol: FunctionComponent = () => {
   const history = useHistory();
@@ -66,6 +66,7 @@ const Enrol: FunctionComponent = () => {
             enrolments: data.enrolOccurrence.enrolment.child.enrolments,
           })
         );
+        dispatch(justEnrolled());
       }
     },
   });
@@ -111,7 +112,7 @@ const Enrol: FunctionComponent = () => {
   return (
     <PageWrapper
       className={styles.wrapper}
-      containerClassName={classnames(styles.enrolContainer)}
+      containerClassName={joinClassNames(styles.enrolContainer)}
       title={'Enrol'}
     >
       <div className={styles.enrolWrapper} role="main">
@@ -120,9 +121,12 @@ const Enrol: FunctionComponent = () => {
             data.occurrence.event.name
           }`}</h1>
         </div>
+        <div className={styles.text}>
+          {t('enrollment.confirmationPage.text')}
+        </div>
         <OccurrenceInfo
           occurrence={data.occurrence}
-          className={styles.occurrenceInfo}
+          className={joinClassNames(styles.occurrenceInfo, styles.wrap)}
         />
 
         <div className={styles.actions}>

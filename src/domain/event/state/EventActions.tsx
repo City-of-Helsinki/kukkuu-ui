@@ -8,7 +8,9 @@ const clearEvent = createAction(EVENT_ACTIONS.CLEAR_EVENT);
 const saveChildEvents = createAction<ChildEnrolments>(
   EVENT_ACTIONS.SAVE_CHILD_EVENTS
 );
-const saveChildrenEvents = createAction<Children>(
+const saveChildrenEvents = createAction<Children | undefined>(
   EVENT_ACTIONS.SAVE_CHILDREN_EVENTS
 );
-export { clearEvent, saveChildEvents, saveChildrenEvents };
+const justEnrolled = createAction(EVENT_ACTIONS.JUST_ENROLLED);
+
+export { clearEvent, saveChildEvents, saveChildrenEvents, justEnrolled };

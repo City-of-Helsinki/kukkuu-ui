@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/react-hooks';
@@ -19,12 +19,19 @@ import settingsIcon from '../../assets/icons/svg/gear.svg';
 import Button from '../../common/components/button/Button';
 import EditProfileModal from './modal/EditProfileModal';
 import { clearEvent, saveChildrenEvents } from '../event/state/EventActions';
+import { defaultProfileData } from './state/ProfileReducers';
 
 const Profile: FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(saveProfile(data?.myProfile || defaultProfileData));
+    dispatch(clearEvent());
+    dispatch(saveChildrenEvents(data?.myProfile?.children || undefined));
+  }, [data, dispatch]);
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
@@ -38,11 +45,7 @@ const Profile: FunctionComponent = () => {
     );
   }
 
-  if (data?.myProfile) {
-    dispatch(saveProfile(data.myProfile));
-    dispatch(clearEvent());
-    dispatch(saveChildrenEvents(data.myProfile.children));
-  } else {
+  if (!data?.myProfile) {
     // User has logged in, but not created a profile, send them to front page for registration.
     return <Redirect to="/" />;
   }

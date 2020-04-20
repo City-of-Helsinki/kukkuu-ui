@@ -1,7 +1,7 @@
-@import 'colors';
-@import 'variables';
-@import 'fonts';
-@import 'mixins';
+@import 'styles/colors';
+@import 'styles/variables';
+@import 'styles/fonts';
+@import 'styles/mixins';
 
 .wrapper {
   @include background($hel-light);
@@ -26,6 +26,13 @@
 
 .heading {
   text-align: center;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+.text {
+  margin: 2rem 0;
 }
 
 .occurrenceInfo {

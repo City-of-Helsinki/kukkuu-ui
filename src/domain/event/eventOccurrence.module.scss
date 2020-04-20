@@ -1,6 +1,6 @@
-@import 'colors';
-@import 'mixins';
-@import 'variables';
+@import 'styles/colors';
+@import 'styles/mixins';
+@import 'styles/variables';
 
 .submitButton,
 .fullButton {
@@ -21,6 +21,12 @@ tr {
   th,
   td {
     padding: $basePadding 0;
+    &.occurrenceSubmit {
+      min-width: 7rem;
+    }
+    &.remainingCapacity {
+      text-align: center;
+    }
   }
 }
 @include respond-below(md) {

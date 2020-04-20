@@ -26,7 +26,9 @@ const EventOccurrenceList: FunctionComponent<EventOccurrenceListProps> = ({
           <th>{t('event.register.occurrenceTableHeader.date')}</th>
           <th>{t('event.register.occurrenceTableHeader.time')}</th>
           <th>{t('event.register.occurrenceTableHeader.venue')}</th>
-          <th>{t('event.register.occurrenceTableHeader.freePlaces')}</th>
+          <th className={styles.freePlaces}>
+            {t('event.register.occurrenceTableHeader.freePlaces')}
+          </th>
           <th></th>
         </tr>
 

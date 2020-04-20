@@ -31,7 +31,10 @@ const Card: FunctionComponent<CardProps> = ({
   title,
 }) => {
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      onClick={primaryAction ? primaryAction : action}
+    >
       <div className={styles.start}>
         {imageSrc ? (
           <img src={imageSrc} alt={alt} className={styles.image} />
@@ -41,7 +44,7 @@ const Card: FunctionComponent<CardProps> = ({
       </div>
 
       <div className={styles.middle}>
-        <h3 className={styles.title}>{title}</h3> {/* TODO: children? */}
+        <h3 className={styles.title}>{title}</h3>
         <div className={styles.focalPoint}>
           {primaryAction && (
             <Button
@@ -58,7 +61,7 @@ const Card: FunctionComponent<CardProps> = ({
 
       <div className={styles.end}>
         <button
-          aria-label={actionText} // TODO
+          aria-label={actionText}
           className={styles.actionWrapper}
           onClick={action}
         >

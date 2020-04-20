@@ -121,55 +121,52 @@
   "email": {
     "title": "Välkommen som kulturens fadderbarn!"
   },
-  "enrollment ": {
-    "successToast": {
-      "paragraph": ""
-    }
-  },
   "enrollment": {
+    "successToast": {
+      "paragraph": "Vi skickade en bekräftelse till din epost, den innehåller mer information om evenemanget",
+      "heading": "Anmälan till evenemanget lyckades!"
+    },
     "button": {
-      "occurenceFull": "",
-      "queue": "",
-      "selectOccurence": ""
+      "occurenceFull": "Fullt",
+      "queue": "Ställ dig i kö",
+      "selectOccurence": "Välj"
     },
     "confirmationPage": {
       "cancel": {
-        "button": ""
+        "button": "Tillbaka till val av evenemang"
       },
       "confirm": {
-        "button": ""
+        "button": "Anmäl dig till evenemanget"
       },
-      "heading": ""
+      "heading": "Anmäl dig till evenemanget",
+      "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i."
     },
     "enroll": {
-      "buttonText": ""
+      "buttonText": "Anmäl dig till evenemanget"
     },
-    "heading": "",
-    "selectDate": "",
-    "selectLanguage": "",
-    "selectlocation": "",
-    "selectTime": "",
+    "heading": "Anmäl dig",
+    "selectDate": "Välj datum",
+    "selectLanguage": "Välj språk",
+    "selectlocation": "Välj plats",
+    "selectTime": "Välj klockslag",
     "showEventInfo": {
-      "buttonText": ""
-    },
-    "successToas": {
-      "heading": ""
+      "buttonText": "Visa evenemangets information"
     }
   },
   "event": {
     "cancellation": {
-      "buttonText": "",
+      "buttonText": "Avboka anmälan",
       "confirmationModal": {
         "cancel": {
-          "buttonText": ""
+          "buttonText": "Tillbaka till evenemangssidan"
         },
         "confirm": {
-          "buttonText": ""
+          "buttonText": "Avboka anmälan"
         },
-        "heading": ""
+        "heading": "Vill du säkert avboka diin anmälan?"
       },
-      "heading": "",
-      "paragraph": ""
+      "heading": "Avbokning av anmälan",
+      "paragraph": "Kom ihåg att avboka din plats Ifall du inte kan delta i evenemanget. Då får istället något annat barn möjligheten att delta. Tack för din omtanke!"
     },
     "participantsPerInviteEnum": {
       "CHILD_AND_GUARDIAN": "1 barn + 1 närstående",
@@ -187,9 +184,9 @@
         "buttonText": "Välj",
         "date": "Datum",
         "eventInformation": "Information on evenemanget",
-        "freePlaces": "Free places",
-        "time": "Time",
-        "venue": "Venue"
+        "freePlaces": "Lediga platser",
+        "time": "Klockslag",
+        "venue": "Plats"
       }
     }
   },
@@ -373,10 +370,10 @@
         "heading": "Eventinbjudningar"
       },
       "past": {
-        "heading": ""
+        "heading": "Gångna evenemang"
       },
       "upcoming": {
-        "heading": ""
+        "heading": "Kommande evenemang"
       }
     },
     "heading": "Fadderbarn",
@@ -512,16 +509,16 @@
   "venue": {
     "features": {
       "accessibility": {
-        "heading": ""
+        "heading": "Tillgänglighet"
       },
       "additionalInformation": {
-        "heading": ""
+        "heading": "Tilläggsinformation"
       },
       "arrival": {
-        "heading": ""
+        "heading": "Ankomst"
       },
       "wcAndFacilities": {
-        "heading": ""
+        "heading": "Toaletter och skötrum för barn"
       }
     }
   }

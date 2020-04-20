@@ -4,54 +4,30 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
 <div
   className="row"
 >
-  <div
+  <InfoItem
     className="label"
-  >
-    <Icon
-      alt=" action"
-      className="labelIcon"
-      src="calendar.svg"
-    />
-    <div>
-      08.03.2020
-    </div>
-  </div>
-  <div
+    iconSrc="calendar.svg"
+    key="0"
+    label="08.03.2020"
+  />
+  <InfoItem
     className="label"
-  >
-    <Icon
-      alt=" action"
-      className="labelIcon"
-      src="clock.svg"
-    />
-    <div>
-      06.00 - 06.12
-    </div>
-  </div>
-  <div
+    iconSrc="clock.svg"
+    key="1"
+    label="06.00 - 06.12"
+  />
+  <InfoItem
     className="label"
-  >
-    <Icon
-      alt=" action"
-      className="labelIcon"
-      src="person.svg"
-    />
-    <div>
-      Perhe
-    </div>
-  </div>
-  <div
+    iconSrc="person.svg"
+    key="2"
+    label="Perhe"
+  />
+  <InfoItem
     className="label"
-  >
-    <Icon
-      alt=" action"
-      className="labelIcon"
-      src="location.svg"
-    />
-    <div>
-      Musiikkitalo
-    </div>
-  </div>
+    iconSrc="location.svg"
+    key="3"
+    label="Musiikkitalo"
+  />
 </div>
 `;
 
@@ -59,54 +35,30 @@ exports[`renders occurrence snapshot correctly 1`] = `
 <div
   className="row"
 >
-  <div
+  <InfoItem
     className="label"
-  >
-    <Icon
-      alt=" action"
-      className="labelIcon"
-      src="calendar.svg"
-    />
-    <div>
-      08.03.2020
-    </div>
-  </div>
-  <div
+    iconSrc="calendar.svg"
+    key="0"
+    label="08.03.2020"
+  />
+  <InfoItem
     className="label"
-  >
-    <Icon
-      alt=" action"
-      className="labelIcon"
-      src="clock.svg"
-    />
-    <div>
-      06.00 - 06.12
-    </div>
-  </div>
-  <div
+    iconSrc="clock.svg"
+    key="1"
+    label="06.00 - 06.12"
+  />
+  <InfoItem
     className="label"
-  >
-    <Icon
-      alt=" action"
-      className="labelIcon"
-      src="person.svg"
-    />
-    <div>
-      Perhe
-    </div>
-  </div>
-  <div
+    iconSrc="person.svg"
+    key="2"
+    label="Perhe"
+  />
+  <InfoItem
     className="label"
-  >
-    <Icon
-      alt=" action"
-      className="labelIcon"
-      src="location.svg"
-    />
-    <div>
-      Musiikkitalo
-    </div>
-  </div>
+    iconSrc="location.svg"
+    key="3"
+    label="Musiikkitalo"
+  />
 </div>
 `;
 

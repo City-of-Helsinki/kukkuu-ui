@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useRef, RefObject } from 'react';
+import React, { FunctionComponent, useRef, RefObject, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import classnames from 'classnames';
 import { useQuery } from '@apollo/react-hooks';
@@ -15,6 +15,7 @@ import { profileQuery as ProfileQueryType } from '../api/generatedTypes/profileQ
 import profileQuery from '../profile/queries/ProfileQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import { clearProfile, saveProfile } from '../profile/state/ProfileActions';
+import { defaultProfileData } from '../profile/state/ProfileReducers';
 
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -33,12 +34,13 @@ const Home: FunctionComponent = () => {
     }
   };
 
+  useEffect(() => {
+    dispatch(saveProfile(data?.myProfile || defaultProfileData));
+  }, [data, dispatch]);
+
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
     dispatch(clearProfile());
-  }
-  if (data?.myProfile) {
-    dispatch(saveProfile(data.myProfile));
   }
 
   const userHasProfile = !!data?.myProfile;

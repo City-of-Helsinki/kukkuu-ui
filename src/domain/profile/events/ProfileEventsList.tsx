@@ -20,7 +20,7 @@ interface ProfileEventsListProps {
   pastEvents: PastEventsTypes | null;
 }
 
-const QR_CODE_SIZE_PX = 180;
+const QR_CODE_SIZE_PX = 300;
 
 const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
   availableEvents,
@@ -77,7 +77,7 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                       <QRCode
                         quietZone={0}
                         size={QR_CODE_SIZE_PX}
-                        value={'Hello World - this works'}
+                        value={enrolmentEdge.node.occurrence.event.name || ''}
                         ecLevel={'H'}
                       />
                     </div>
@@ -86,7 +86,10 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
                     gotoOccurrencePage(enrolmentEdge.node?.occurrence.id || '')
                   }
                   actionText={t('enrollment.showEventInfo.buttonText')}
-                  focalContent={OccurrenceInfo(enrolmentEdge.node)}
+                  focalContent={OccurrenceInfo({
+                    occurrence: enrolmentEdge.node.occurrence,
+                    show: ['time', 'duration', 'venue'],
+                  })}
                 >
                   <p>{enrolmentEdge.node.occurrence.event.shortDescription}</p>
                 </Card>

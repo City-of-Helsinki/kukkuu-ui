@@ -5,6 +5,7 @@ import { ChildEvents } from '../type/EventChildTypes';
 import { profileQuery_myProfile_children_edges as edges } from '../../api/generatedTypes/profileQuery';
 import { enrolOccurrenceMutation_enrolOccurrence_enrolment_child_enrolments_edges as EnrolmentNodeEdge } from '../../api/generatedTypes/enrolOccurrenceMutation';
 import { unenrolOccurrenceMutation_unenrolOccurrence_child_enrolments_edges as UnEnrolmentNodeEdge } from '../../api/generatedTypes/unenrolOccurrenceMutation';
+
 export const defaultChildEventData: ChildEvents[] = [];
 
 export default createReducer(defaultChildEventData, {

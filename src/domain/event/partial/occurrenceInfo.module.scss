@@ -1,4 +1,4 @@
-@import 'mixins';
+@import 'styles/mixins';
 
 $labelIconMargin: 0.5rem;
 $labelColumnMargin: 1rem;
@@ -13,7 +13,7 @@ $labelRowMargin: 1rem;
   .label {
     @include respond-above(sm) {
       > * {
-        margin-left: $labelColumnMargin;
+        margin-right: $labelColumnMargin;
       }
     }
     @include respond-below(sm) {
@@ -31,6 +31,9 @@ $labelRowMargin: 1rem;
   border: 0;
   text-align: left;
   align-items: center;
+  @include respond-above(md) {
+    white-space: nowrap;
+  }
 }
 
 .labelIcon {

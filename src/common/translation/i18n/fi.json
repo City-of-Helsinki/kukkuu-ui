@@ -121,12 +121,11 @@
   "email": {
     "title": "Tervetuloa Kulttuurin kummilapsiin!"
   },
-  "enrollment ": {
-    "successToast": {
-      "paragraph": "Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot"
-    }
-  },
   "enrollment": {
+    "successToast": {
+      "paragraph": "Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot",
+      "heading": "Tapahtumaan ilmoittautuminen onnistui! "
+    },
     "button": {
       "occurenceFull": "Täynnä",
       "queue": "Jonoon",
@@ -139,7 +138,8 @@
       "confirm": {
         "button": "Ilmoittaudu tapahtumaan"
       },
-      "heading": "Ilmoittaudu tapahtumaan"
+      "heading": "Ilmoittaudu tapahtumaan",
+      "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua."
     },
     "enroll": {
       "buttonText": "Ilmoittaudu tapahtumaan"
@@ -151,9 +151,6 @@
     "selectTime": "Valitse kellonaika",
     "showEventInfo": {
       "buttonText": "Näytä tapahtuman tiedot"
-    },
-    "successToas": {
-      "heading": "Tapahtumaan ilmoittautuminen onnistui! "
     }
   },
   "event": {
