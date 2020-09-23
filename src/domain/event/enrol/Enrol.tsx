@@ -152,7 +152,6 @@ const Enrol = () => {
           occurrence={data.occurrence}
           className={joinClassNames(styles.occurrenceInfo, styles.wrap)}
         />
-
         <div className={styles.actions}>
           <Button onClick={() => enrol()}>
             {t('enrollment.confirmationPage.confirm.button')}
