@@ -2,36 +2,47 @@
 @import 'styles/fonts';
 @import 'styles/layout';
 
+$max-text-width: $container-width-s;
+
 .wrapper {
   background: var(--color-black-5);
   display: grid;
   justify-items: center;
   grid-template-rows: min-content;
+
   @include respond-above(sm) {
     padding: $largePadding;
   }
 }
 
 .enrolContainer {
+  max-width: $container-width-m;
+  padding-bottom: 0;
+
   background: var(--color-white);
 }
 
 .enrolWrapper {
   background: var(--color-white);
-  padding: $basePadding;
+  padding: $spacing-3-xl $spacing-l;
   display: grid;
   justify-items: center;
 }
 
-.heading {
+.heading > h1 {
+  margin: 0;
+  max-width: $max-text-width;
+
+  font-size: $fontsize-heading-l;
   text-align: center;
 }
 
-h1 {
-  margin-bottom: 0;
-}
 .text {
   margin: 2rem 0;
+  max-width: $max-text-width;
+
+  font-size: $fontsize-body-l;
+  text-align: center;
 }
 
 .occurrenceInfo {
@@ -46,8 +57,10 @@ h1 {
 }
 
 .actions {
+  margin-top: $spacing-s;
+
   @include respond-above(sm) {
-    width: 60%;
+    max-width: 55%;
   }
   button {
     margin-top: $baseMargin;

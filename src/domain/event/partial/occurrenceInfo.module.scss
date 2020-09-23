@@ -1,15 +1,30 @@
 @import 'styles/layout';
+@import 'styles/variables';
 
 $labelIconMargin: 0.5rem;
 $labelColumnMargin: 1rem;
 $labelRowMargin: 1rem;
 
 .row {
-  @include respond-above(sm) {
-    flex-direction: row;
-  }
   display: flex;
   flex-direction: column;
+
+  @include respond-above(sm) {
+    display: grid;
+    width: min-content;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      'item1 item2 item3'
+      'item4 item4 item4';
+    justify-items: center;
+
+    & > *:nth-child(4) {
+      grid-area: item4;
+    }
+  }
+
   .label {
     @include respond-above(sm) {
       > * {
@@ -29,8 +44,11 @@ $labelRowMargin: 1rem;
   justify-content: normal;
   flex-direction: row;
   border: 0;
-  text-align: left;
   align-items: center;
+
+  font-size: $fontsize-body-l;
+  text-align: left;
+
   @include respond-above(md) {
     white-space: nowrap;
   }
