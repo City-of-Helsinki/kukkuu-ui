@@ -1,6 +1,6 @@
 import React from 'react';
 import toJson from 'enzyme-to-json';
-import { MockedProvider } from '@apollo/react-testing';
+import { MockedProvider } from '@apollo/client/testing';
 
 import EditProfileModal from '../EditProfileModal';
 import { ProfileType } from '../../type/ProfileTypes';

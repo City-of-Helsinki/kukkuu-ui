@@ -1,4 +1,4 @@
-import { useApolloClient } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 
 import { profileChildrenQuery as ProfileChildrenQueryType } from '../../api/generatedTypes/profileChildrenQuery';
 import profileChildrenQuery from '../../profile/queries/ProfileChildrenQuery';

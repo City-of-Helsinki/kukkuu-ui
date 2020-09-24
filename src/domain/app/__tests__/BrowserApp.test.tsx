@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
 import { Provider } from 'react-redux';
-import { MockedProvider } from '@apollo/react-testing';
+import { MockedProvider } from '@apollo/client/testing';
 
 import { store } from '../state/AppStore';
 import BrowserApp, { AppRoutes } from '../BrowserApp';

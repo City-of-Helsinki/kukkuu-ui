@@ -1,7 +1,6 @@
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, QueryResult as GenericQueryResult } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Sentry from '@sentry/browser';
-import { QueryResult as GenericQueryResult } from '@apollo/react-common';
 import { useHistory } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
