@@ -76,7 +76,7 @@
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
     "start": "react-scripts start",
     "update-translations": "fetch-translations 18dpV7aA-t_6zMRUO5hP7DMfx0q4hdu-AlLpRjkB_0zI -l en,fi,sv -o src/common/translation/i18n",
-    "test": "TZ=UTC react-scripts test --watchAll=false",
+    "test": "TZ=UTC react-scripts test --env=jest-environment-jsdom-fourteen",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
   },
   "eslintConfig": {
@@ -95,6 +95,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/react": "^11.0.4",
     "apollo": "^2.28.3",
     "codecov": "^3.7.1",
     "eslint-config-prettier": "^6.11.0",

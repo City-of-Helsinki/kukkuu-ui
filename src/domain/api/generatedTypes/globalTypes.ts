@@ -71,7 +71,19 @@ export interface RelationshipInput {
   type?: RelationshipTypeEnum | null;
 }
 
+export interface SubscribeToFreeSpotNotificationMutationInput {
+  occurrenceId: string;
+  childId: string;
+  clientMutationId?: string | null;
+}
+
 export interface UnenrolOccurrenceMutationInput {
+  occurrenceId: string;
+  childId: string;
+  clientMutationId?: string | null;
+}
+
+export interface UnsubscribeFromFreeSpotNotificationMutationInput {
   occurrenceId: string;
   childId: string;
   clientMutationId?: string | null;

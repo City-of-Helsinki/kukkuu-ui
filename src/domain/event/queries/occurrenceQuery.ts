@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const occurrenceQuery = gql`
-  query occurrenceQuery($id: ID!) {
+  query occurrenceQuery($id: ID!, $childId: ID) {
     occurrence(id: $id) {
       id
       time
@@ -26,6 +26,7 @@ const occurrenceQuery = gql`
         wwwUrl
         wcAndFacilities
       }
+      childHasFreeSpotNotificationSubscription(childId: $childId)
     }
   }
 `;

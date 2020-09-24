@@ -134,7 +134,8 @@
   },
   "enrollment": {
     "button": {
-      "occurenceFull": "Täynnä",
+      "cancelNotificationSubscription": "Peru ilmoitusten tilaus",
+      "occurrenceFullSubscribeToNotifications": "Täynnä - Tilaa ilmoitus",
       "queue": "Jonoon",
       "selectOccurence": "Valitse"
     },
@@ -161,6 +162,12 @@
     "selectTime": "Valitse kellonaika",
     "showEventInfo": {
       "buttonText": "Näytä tapahtuman tiedot"
+    },
+    "notificationSubscriptionModal": {
+      "cancel": "Peruuta",
+      "description": "Saat ilmoituksen sähköpostiisi, kun tapahtumaan <b>{{eventName}} {{date}} klo {{time}}</b> vapautuu paikkoja. Vapautuvat paikat menevät niihin ensiksi ilmoittautuneelle.",
+      "subscribe": "Tilaa ilmoitus",
+      "title": "Tilaa ilmoitus vapautuvista paikoista"
     },
     "successToast": {
       "heading": "Tapahtumaan ilmoittautuminen onnistui! ",

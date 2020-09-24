@@ -1,8 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import moment from 'moment';
 
+import { mountWithProvider } from '../../../common/test/testUtils';
 import { eventQuery_event_occurrences_edges_node as OccurrenceEdgeNode } from '../../api/generatedTypes/eventQuery';
 import EventOccurrence from '../EventOccurrence';
 
@@ -17,14 +16,64 @@ const mockedNode: OccurrenceEdgeNode = {
   venue: {
     id: 'auppss',
     name: 'Musiikkitalo',
-    description: '',
     address: '',
   },
+  childHasFreeSpotNotificationSubscription: false,
+};
+const defaultProps = {
+  occurrence: mockedNode,
 };
 
-it('renders snapshot correctly', () => {
-  const element = shallow(
-    <EventOccurrence key={mockedNode.id} occurrence={mockedNode} />
+const getWrapper = (props: unknown = {}) =>
+  mountWithProvider(
+    <table>
+      <tbody>
+        <EventOccurrence {...defaultProps} {...props} />
+      </tbody>
+    </table>
   );
+
+it('renders snapshot correctly', () => {
+  const element = getWrapper({ key: mockedNode.id });
   expect(toJson(element)).toMatchSnapshot();
+});
+
+it('renders button for signing up to an event', () => {
+  const wrapper = getWrapper();
+
+  expect(wrapper.text().includes('Valitse')).toEqual(true);
+});
+
+describe('when event is full and child has not subscribed to notifications', () => {
+  const getFullEventWrapper = () =>
+    getWrapper({
+      occurrence: {
+        ...mockedNode,
+        remainingCapacity: 0,
+        childHasFreeSpotNotificationSubscription: false,
+      },
+    });
+
+  it('renders button for subscribing', () => {
+    const wrapper = getFullEventWrapper();
+
+    expect(wrapper.text().includes('Täynnä - Tilaa ilmoitus')).toEqual(true);
+  });
+});
+
+describe('when event is full and child has not subscribed to notifications', () => {
+  const getFullEventWrapper = () =>
+    getWrapper({
+      occurrence: {
+        ...mockedNode,
+        remainingCapacity: 0,
+        childHasFreeSpotNotificationSubscription: true,
+      },
+    });
+
+  it('renders button for subscribing', () => {
+    const wrapper = getFullEventWrapper();
+
+    expect(wrapper.text().includes('Peru ilmoitusten tilaus')).toEqual(true);
+  });
 });

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const eventQuery = gql`
-  query eventQuery($id: ID!, $date: Date, $time: Time) {
+  query eventQuery($id: ID!, $date: Date, $time: Time, $childId: ID) {
     event(id: $id) {
       id
       name
@@ -27,6 +27,7 @@ const eventQuery = gql`
               name
               address
             }
+            childHasFreeSpotNotificationSubscription(childId: $childId)
           }
         }
       }

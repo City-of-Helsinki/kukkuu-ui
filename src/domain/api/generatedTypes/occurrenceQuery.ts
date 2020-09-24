@@ -49,6 +49,7 @@ export interface occurrenceQuery_occurrence {
   remainingCapacity: number | null;
   event: occurrenceQuery_occurrence_event;
   venue: occurrenceQuery_occurrence_venue;
+  childHasFreeSpotNotificationSubscription: boolean | null;
 }
 
 export interface occurrenceQuery {
@@ -60,4 +61,5 @@ export interface occurrenceQuery {
 
 export interface occurrenceQueryVariables {
   id: string;
+  childId?: string | null;
 }

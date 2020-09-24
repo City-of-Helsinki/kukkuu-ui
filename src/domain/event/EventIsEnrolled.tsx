@@ -27,6 +27,7 @@ const EventIsEnrolled = () => {
     {
       variables: {
         id: params.occurrenceId,
+        childId: params.childId,
       },
     }
   );

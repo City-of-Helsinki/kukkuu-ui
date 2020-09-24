@@ -1,5 +1,9 @@
 import React from 'react';
-import { Button as HdsButton, ButtonProps } from 'hds-react';
+import { Button as HdsButton, ButtonProps as HDSButtonProps } from 'hds-react';
+
+type ButtonProps = Omit<HDSButtonProps, 'variant'> & {
+  variant?: HDSButtonProps['variant'] | 'disabled';
+};
 
 const kukkuuSecondaryButtonStyles = {
   '--background-color': 'var(--color-white)',
@@ -13,6 +17,16 @@ const kukkuuSupplementaryButtonStyles = {
   '--background-color-focus': 'transparent',
   '--background-color-hover-focus': 'transparent',
   '--border-color': 'none',
+};
+const kukkuuDisabledButtonStyles = {
+  '--background-color': 'var(--color-black-20)',
+  '--background-color-hover': 'var(--color-black-30)',
+  '--background-color-focus': 'var(--color-black-40)',
+  '--background-color-hover-focus': 'var(--color-black-40)',
+  '--border-color': 'var(--color-black-20)',
+  '--border-color-hover': 'var(--color-black-30)',
+  '--border-color-hover-focus': 'var(--color-black-40)',
+  '--border-color-focus': 'var(--color-black-40)',
 };
 
 const kukkuuButtonStyles = {
@@ -53,6 +67,14 @@ const Button = ({
       style = {
         ...kukkuuButtonStyles,
         ...kukkuuSupplementaryButtonStyles,
+      };
+      break;
+    case 'disabled':
+      // Can be used to set the button to appear disabled without
+      // actually disabling it.
+      style = {
+        ...kukkuuButtonStyles,
+        ...kukkuuDisabledButtonStyles,
       };
       break;
     default:
