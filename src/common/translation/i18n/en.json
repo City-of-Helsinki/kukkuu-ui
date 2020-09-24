@@ -134,7 +134,8 @@
   },
   "enrollment": {
     "button": {
-      "occurenceFull": "Full",
+      "cancelNotificationSubscription": "Cancel notifications",
+      "occurrenceFullSubscribeToNotifications": "Full - Subscribe to notifications",
       "queue": "Join queue",
       "selectOccurence": "Choose"
     },
@@ -161,6 +162,12 @@
     "selectTime": "Choose time",
     "showEventInfo": {
       "buttonText": "Show event details"
+    },
+    "notificationSubscriptionModal": {
+      "cancel": "Cancel",
+      "description": "You will receive a notification via email when places become available for the event <b>{{eventName}} {{date}} at {{time}}</b>. Available places are given out in the order they have been signed up for.",
+      "subscribe": "Subscribe",
+      "title": "Subscribe to receive a notification of available places"
     },
     "successToast": {
       "heading": "Registration for event successful",
@@ -578,7 +585,7 @@
         "heading": "Arrival"
       },
       "wcAndFacilities": {
-        "heading": "WCs and child care facilities"
+        "heading": "Toilets and child care facilities"
       }
     }
   },

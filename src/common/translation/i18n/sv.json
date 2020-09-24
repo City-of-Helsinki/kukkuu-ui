@@ -134,7 +134,8 @@
   },
   "enrollment": {
     "button": {
-      "occurenceFull": "Fullt",
+      "cancelNotificationSubscription": "Avbryt aviseringar",
+      "occurrenceFullSubscribeToNotifications": "Fullt - Prenumerera på aviseringar",
       "queue": "Ställ dig i kö",
       "selectOccurence": "Välj"
     },
@@ -161,6 +162,12 @@
     "selectTime": "Välj klockslag",
     "showEventInfo": {
       "buttonText": "Visa evenemangets information"
+    },
+    "notificationSubscriptionModal": {
+      "cancel": "Avbryt",
+      "description": "Du kommer att få ett meddelande via e-post när platser blir tillgängliga för evenemanget <b> {{eventName}} {{date}} kl. {{time}} </b>. Tillgängliga platser anges i den ordning de har registrerats.",
+      "subscribe": "Prenumerera",
+      "title": "Prenumerera för att få ett meddelande om tillgängliga platser"
     },
     "successToast": {
       "heading": "Din anmälan till evenemanget lyckades!",

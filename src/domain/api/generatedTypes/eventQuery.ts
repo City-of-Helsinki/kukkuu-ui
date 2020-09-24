@@ -35,6 +35,7 @@ export interface eventQuery_event_occurrences_edges_node {
   remainingCapacity: number | null;
   event: eventQuery_event_occurrences_edges_node_event;
   venue: eventQuery_event_occurrences_edges_node_venue;
+  childHasFreeSpotNotificationSubscription: boolean | null;
 }
 
 export interface eventQuery_event_occurrences_edges {
@@ -81,4 +82,5 @@ export interface eventQueryVariables {
   id: string;
   date?: any | null;
   time?: any | null;
+  childId?: string | null;
 }

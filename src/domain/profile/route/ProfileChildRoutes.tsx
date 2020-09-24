@@ -3,7 +3,7 @@ import { Switch, Route, RouteComponentProps } from 'react-router-dom';
 
 import Event from '../../event/Event';
 import ProfileChildDetail from '../children/child/ProfileChildDetail';
-import Enrol from '../../event/enrol/Enrol';
+import EnrolPage from '../../event/enrol/EnrolPage';
 import EventIsEnrolled from '../../event/EventIsEnrolled';
 
 const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
@@ -19,7 +19,7 @@ const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
       />
       <Route
         exact
-        component={Enrol}
+        component={EnrolPage}
         path={`${path}/event/:eventId/occurrence/:occurrenceId/enrol`}
       />
     </Switch>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '../api/generatedTypes/eventQuery';
 import { formatTime, newMoment } from '../../common/time/utils';
@@ -10,15 +10,47 @@ import {
   DEFAULT_TIME_FORMAT,
   DEFAULT_DATE_FORMAT,
 } from '../../common/time/TimeConstants';
+import eventQuery from './queries/eventQuery';
+import useSubscribeToFreeSpotNotificationMutation from './useSubscribeToFreeSpotNotificationMutation';
+import useUnsubscribeFromFreeSpotNotificationMutation from './useUnsubscribeFromFreeSpotNotificationMutation';
 
-interface EventOccurrenceProps {
+type UrlParams = {
+  childId: string;
+  eventId: string;
+};
+
+type EventOccurrenceProps = {
   occurrence: OccurrencesEdgeNode;
-}
+};
 
-const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
-  occurrence,
-}) => {
+const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
   const { t } = useTranslation();
+  const { childId, eventId } = useParams<UrlParams>();
+  const [subscribe] = useSubscribeToFreeSpotNotificationMutation();
+  const [unsubscribe] = useUnsubscribeFromFreeSpotNotificationMutation();
+
+  const mutationVariables = {
+    variables: {
+      input: { childId, occurrenceId: occurrence.id },
+    },
+    refetchQueries: [
+      {
+        query: eventQuery,
+        variables: {
+          id: eventId,
+          childId,
+        },
+      },
+    ],
+  };
+
+  const handleSubscribe = () => {
+    subscribe(mutationVariables);
+  };
+
+  const handleUnsubscribe = () => {
+    unsubscribe(mutationVariables);
+  };
 
   const date = formatTime(
     newMoment(occurrence.time),
@@ -26,8 +58,11 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
   );
   const time = formatTime(newMoment(occurrence.time), DEFAULT_TIME_FORMAT);
 
-  const hasCapacity =
-    occurrence.remainingCapacity && occurrence.remainingCapacity > 0;
+  const hasCapacity = Boolean(
+    occurrence.remainingCapacity && occurrence.remainingCapacity > 0
+  );
+  const childHasSubscription =
+    occurrence.childHasFreeSpotNotificationSubscription;
 
   return (
     <tr className={styles.occurrence}>
@@ -42,7 +77,7 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
           // TODO: KK-300 Make the back-button not confusing
         }
 
-        {hasCapacity ? (
+        {hasCapacity && (
           <Link
             className={styles.linkButton}
             to={`${occurrence.event.id}/occurrence/${occurrence.id}/enrol`}
@@ -51,9 +86,23 @@ const EventOccurrence: React.FunctionComponent<EventOccurrenceProps> = ({
               {t('event.register.occurrenceTableHeader.buttonText')}
             </Button>
           </Link>
-        ) : (
-          <Button className={styles.fullButton} disabled>
-            {t('enrollment.button.occurenceFull')}
+        )}
+        {!hasCapacity && !childHasSubscription && (
+          <Button
+            className={styles.fullButton}
+            variant="disabled"
+            onClick={handleSubscribe}
+          >
+            {t('enrollment.button.occurrenceFullSubscribeToNotifications')}
+          </Button>
+        )}
+        {!hasCapacity && childHasSubscription && (
+          <Button
+            className={styles.fullButton}
+            variant="secondary"
+            onClick={handleUnsubscribe}
+          >
+            {t('enrollment.button.cancelNotificationSubscription')}
           </Button>
         )}
       </td>

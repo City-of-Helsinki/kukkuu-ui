@@ -67,6 +67,7 @@ const Event = () => {
 
   const variables: EventQueryVariables = {
     id: params.eventId,
+    childId: params.childId,
   };
 
   const { loading, error, data, refetch } = useQuery<EventQueryType>(

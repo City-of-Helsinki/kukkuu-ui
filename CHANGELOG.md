@@ -5,6 +5,7 @@
 ### Added
 
 - Error handling for child already enrolled error
+- Option to subscribe to places once they become available
 
 ### Changed
 
