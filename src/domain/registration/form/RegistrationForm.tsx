@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Formik, FormikProps, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/client';
 import { useTranslation, Trans } from 'react-i18next';
 import { useHistory, Redirect } from 'react-router-dom';
 import classnames from 'classnames';

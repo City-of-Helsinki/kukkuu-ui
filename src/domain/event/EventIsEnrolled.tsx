@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/client';
 
 import styles from './event.module.scss';
 import occurrenceQuery from './queries/occurrenceQuery';

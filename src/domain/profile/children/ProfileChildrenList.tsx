@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@datapunt/matomo-tracker-react';

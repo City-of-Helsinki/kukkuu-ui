@@ -1,9 +1,11 @@
-import { ApolloClient } from 'apollo-client';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { setContext } from 'apollo-link-context';
-import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+  ApolloLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { onError } from '@apollo/client/link/error';
 import * as Sentry from '@sentry/browser';
 
 import i18n from '../../common/translation/i18n/i18nInit';

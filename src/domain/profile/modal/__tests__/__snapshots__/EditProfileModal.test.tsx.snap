@@ -1,55 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<ContextProvider
-  value={
+<Provider
+  store={
     Object {
-      "store": Object {
-        "dispatch": [Function],
-        "getState": [Function],
-        "replaceReducer": [Function],
-        "subscribe": [Function],
-        Symbol(observable): [Function],
-      },
-      "subscription": Subscription {
-        "handleChangeWrapper": [Function],
-        "listeners": Object {
-          "notify": [Function],
-        },
-        "onStateChange": [Function],
-        "parentSub": undefined,
-        "store": Object {
-          "dispatch": [Function],
-          "getState": [Function],
-          "replaceReducer": [Function],
-          "subscribe": [Function],
-          Symbol(observable): [Function],
-        },
-        "unsubscribe": null,
-      },
+      "dispatch": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+      Symbol(observable): [Function],
     }
   }
 >
   <MockedProvider
-    addTypename={true}
+    addTypename={false}
   >
-    <EditProfileModal
-      initialValues={
+    <Router
+      history={
         Object {
-          "children": Object {
-            "edges": Array [],
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
           },
-          "email": "email@example.com",
-          "firstName": "asdf",
-          "id": "yuiop",
-          "language": "SV",
-          "lastName": "fdsa",
-          "phoneNumber": "0904422233",
+          "push": [Function],
+          "replace": [Function],
         }
       }
-      isOpen={true}
-      setIsOpen={[MockFunction]}
-    />
+    >
+      <MockedProvider
+        addTypename={true}
+      >
+        <EditProfileModal
+          initialValues={
+            Object {
+              "children": Object {
+                "edges": Array [],
+              },
+              "email": "email@example.com",
+              "firstName": "asdf",
+              "id": "yuiop",
+              "language": "SV",
+              "lastName": "fdsa",
+              "phoneNumber": "0904422233",
+            }
+          }
+          isOpen={true}
+          setIsOpen={[MockFunction]}
+        />
+      </MockedProvider>
+    </Router>
   </MockedProvider>
-</ContextProvider>
+</Provider>
 `;

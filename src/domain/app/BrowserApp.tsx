@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Switch, Route, Redirect } from 'react-router';
 import { PersistGate } from 'redux-persist/integration/react';

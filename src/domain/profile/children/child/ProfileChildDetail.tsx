@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, useHistory } from 'react-router';
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { IconCogwheel } from 'hds-react';
