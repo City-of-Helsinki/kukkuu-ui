@@ -44,36 +44,37 @@ it('renders button for signing up to an event', () => {
   expect(wrapper.text().includes('Valitse')).toEqual(true);
 });
 
-describe('when event is full and child has not subscribed to notifications', () => {
-  const getFullEventWrapper = () =>
+describe('when event is full', () => {
+  const getFullEventWrapper = (
+    childHasFreeSpotNotificationSubscription = false
+  ) =>
     getWrapper({
       occurrence: {
         ...mockedNode,
         remainingCapacity: 0,
-        childHasFreeSpotNotificationSubscription: false,
+        childHasFreeSpotNotificationSubscription,
       },
     });
 
-  it('renders button for subscribing', () => {
+  it('should show full label instead of remaining capacity', () => {
     const wrapper = getFullEventWrapper();
 
-    expect(wrapper.text().includes('Täynnä - Tilaa ilmoitus')).toEqual(true);
+    expect(wrapper.text().includes('TÄYNNÄ')).toEqual(true);
   });
-});
 
-describe('when event is full and child has not subscribed to notifications', () => {
-  const getFullEventWrapper = () =>
-    getWrapper({
-      occurrence: {
-        ...mockedNode,
-        remainingCapacity: 0,
-        childHasFreeSpotNotificationSubscription: true,
-      },
+  describe('and child has not subscribed to notifications', () => {
+    it('renders button for subscribing', () => {
+      const wrapper = getFullEventWrapper();
+
+      expect(wrapper.text().includes('Täynnä - Tilaa ilmoitus')).toEqual(true);
     });
+  });
 
-  it('renders button for subscribing', () => {
-    const wrapper = getFullEventWrapper();
+  describe('and child has not subscribed to notifications', () => {
+    it('renders button for subscribing', () => {
+      const wrapper = getFullEventWrapper(true);
 
-    expect(wrapper.text().includes('Peru ilmoitusten tilaus')).toEqual(true);
+      expect(wrapper.text().includes('Peru ilmoitusten tilaus')).toEqual(true);
+    });
   });
 });
