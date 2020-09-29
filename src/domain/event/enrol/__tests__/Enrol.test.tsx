@@ -77,14 +77,19 @@ describe('<Enrol />', () => {
   });
 
   describe('when the event is full', () => {
-    it('the user should be able to subscribe to notifications', () => {
-      const onSubscribe = jest.fn();
-      const render = getWrapper({
-        onSubscribe,
+    const getFullOccurrenceWrapper = (props: any = {}) =>
+      getWrapper({
         occurrence: {
           ...occurrence,
           remainingCapacity: 0,
         },
+        ...props,
+      });
+
+    it('the user should be able to subscribe to notifications', () => {
+      const onSubscribe = jest.fn();
+      const render = getFullOccurrenceWrapper({
+        onSubscribe,
       });
       const subscribeButton = selectHdsButtonByText(
         render,
@@ -94,6 +99,20 @@ describe('<Enrol />', () => {
       fireEvent.click(subscribeButton, {});
 
       expect(onSubscribe).toHaveBeenCalled();
+    });
+
+    it('should have a special title and description', () => {
+      const { queryByText } = getFullOccurrenceWrapper();
+
+      expect(
+        queryByText('Ilmottautumien tapahtumaan event name epäonnistui')
+      ).not.toEqual(null);
+      expect(
+        queryByText(
+          // eslint-disable-next-line max-len
+          'Valitettavasti tämä tapahtuma on täynnä. Halutessasi voit tilata ilmoituksen paikkojen vapautumisesta!'
+        )
+      ).not.toEqual(null);
     });
   });
 

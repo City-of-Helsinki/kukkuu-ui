@@ -146,8 +146,14 @@
       "confirm": {
         "button": "Ilmoittaudu tapahtumaan"
       },
-      "heading": "Ilmoittaudu tapahtumaan",
-      "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua."
+      "heading": {
+        "text": "Ilmoittaudu tapahtumaan",
+        "full": "Ilmottautumien tapahtumaan {{eventName}} epäonnistui"
+      },
+      "description": {
+        "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua.",
+        "full": "Valitettavasti tämä tapahtuma on täynnä. Halutessasi voit tilata ilmoituksen paikkojen vapautumisesta!"
+      }
     },
     "enroll": {
       "error": {

@@ -40,6 +40,7 @@ $max-text-width: $container-width-s;
 .text {
   margin: 2rem 0;
   max-width: $max-text-width;
+  line-height: $lineheight-l;
 
   font-size: $fontsize-body-l;
   text-align: center;
