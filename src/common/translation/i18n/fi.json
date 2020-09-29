@@ -209,6 +209,9 @@
       "form": {
         "header": "Ilmoittaudu"
       },
+      "occurrenceTableBody": {
+        "full": "TÄYNNÄ"
+      },
       "occurrenceTableHeader": {
         "buttonText": "Valitse",
         "date": "Päivämäärä",

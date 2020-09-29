@@ -70,7 +70,9 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
       <td className={styles.occurrenceTime}>{time}</td>
       <td className={styles.occurrenceVenue}>{occurrence.venue.name}</td>
       <td className={styles.remainingCapacity}>
-        {occurrence?.remainingCapacity}
+        {hasCapacity
+          ? occurrence?.remainingCapacity
+          : t('event.register.occurrenceTableBody.full')}
       </td>
       <td className={styles.occurrenceSubmit}>
         {

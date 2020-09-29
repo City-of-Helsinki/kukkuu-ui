@@ -209,6 +209,9 @@
       "form": {
         "header": "Anmäl dig"
       },
+      "occurrenceTableBody": {
+        "full": "FULLT"
+      },
       "occurrenceTableHeader": {
         "buttonText": "Välj",
         "date": "Datum",

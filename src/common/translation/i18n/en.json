@@ -209,6 +209,9 @@
       "form": {
         "header": "Register"
       },
+      "occurrenceTableBody": {
+        "full": "FULL"
+      },
       "occurrenceTableHeader": {
         "buttonText": "Choose",
         "date": "Date",
