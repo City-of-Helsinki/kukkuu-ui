@@ -110,7 +110,7 @@ describe('<Enrol />', () => {
       expect(
         queryByText(
           // eslint-disable-next-line max-len
-          'Valitettavasti tämä tapahtuma on täynnä. Halutessasi voit tilata ilmoituksen paikkojen vapautumisesta!'
+          'Valitettavasti tämä tapahtuma on täynnä. Tilaa ilmoitus vapautuvista paikoista.'
         )
       ).not.toEqual(null);
     });

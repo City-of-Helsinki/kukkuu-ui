@@ -152,7 +152,7 @@
       },
       "description": {
         "text": "Check that the information below is correct for the event you wish to attend.",
-        "full": "Unfortunately this event is full. If you want you can subscribe to notifications in case of cancellations."
+        "full": "Unfortunately this event is full. Subscribe to receive a notification of available places."
       }
     },
     "enroll": {
