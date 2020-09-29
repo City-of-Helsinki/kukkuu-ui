@@ -36,17 +36,22 @@ const Enrol = ({
   const isFull = occurrence.remainingCapacity === 0;
   const isChildHasActiveSubscription =
     occurrence.childHasFreeSpotNotificationSubscription;
+  const eventName = occurrence.event.name;
 
   return (
     <>
       <div className={styles.enrolWrapper} role="main">
         <div className={styles.heading}>
-          <h1>{`${t('enrollment.confirmationPage.heading')} ${
-            occurrence.event.name
-          }`}</h1>
+          <h1>
+            {!isFull &&
+              `${t('enrollment.confirmationPage.heading.text')} ${eventName}`}
+            {isFull &&
+              t('enrollment.confirmationPage.heading.full', { eventName })}
+          </h1>
         </div>
         <div className={styles.text}>
-          {t('enrollment.confirmationPage.text')}
+          {!isFull && t('enrollment.confirmationPage.description.text')}
+          {isFull && t('enrollment.confirmationPage.description.full')}
         </div>
         <OccurrenceInfo
           occurrence={occurrence}

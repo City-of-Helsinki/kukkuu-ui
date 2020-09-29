@@ -146,8 +146,14 @@
       "confirm": {
         "button": "Register for event"
       },
-      "heading": "Register for event",
-      "text": "Check that the information below is correct for the event you wish to attend."
+      "heading": {
+        "text": "Register for event",
+        "full": "Registration for event {{eventName}} failed"
+      },
+      "description": {
+        "text": "Check that the information below is correct for the event you wish to attend.",
+        "full": "Unfortunately this event is full. If you want you can subscribe to notifications in case of cancellations."
+      }
     },
     "enroll": {
       "error": {

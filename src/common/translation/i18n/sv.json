@@ -146,8 +146,14 @@
       "confirm": {
         "button": "Anmäl dig till evenemanget"
       },
-      "heading": "Anmäl dig till evenemanget",
-      "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i."
+      "heading": {
+        "text": "Anmäl dig till evenemanget",
+        "full": "Registreringen för händelsen {{eventName}} misslyckades"
+      },
+      "description": {
+        "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i.",
+        "full": "Tyvärr är det här evenemanget fullt. Om du vill kan du prenumerera på aviseringar vid avbokningar."
+      }
     },
     "enroll": {
       "error": {
