@@ -26,16 +26,21 @@ import { GQLErrors } from './EnrolConstants';
 import useUnsubscribeFromFreeSpotNotificationMutation from '../useUnsubscribeFromFreeSpotNotificationMutation';
 import Enrol from './Enrol';
 
-function check<D>(data: D, resultFactory: (data: D) => boolean): boolean {
-  return resultFactory(data);
-}
-
 function containsAlreadyJoinedError(
   errors: ReadonlyArray<GraphQLError>
 ): boolean {
   return errors.some(
     (error: GraphQLError) =>
       error.extensions?.code === GQLErrors.CHILD_ALREADY_JOINED_EVENT_ERROR
+  );
+}
+
+function containsOccurrenceFullError(
+  errors: ReadonlyArray<GraphQLError>
+): boolean {
+  return errors.some(
+    (error: GraphQLError) =>
+      error.extensions?.code === GQLErrors.OCCURRENCE_IS_FULL_ERROR
   );
 }
 
@@ -53,15 +58,19 @@ const EnrolPage = () => {
     occurrenceId: string;
   }>();
   const [unsubscribe] = useUnsubscribeFromFreeSpotNotificationMutation();
-  const { loading, error, data } = useQuery<OccurrenceQueryType>(
-    occurrenceQuery,
-    {
-      variables: {
-        id: params.occurrenceId,
-        childId: params.childId,
-      },
-    }
-  );
+  const { loading, error, data, refetch: refetchOccurrence } = useQuery<
+    OccurrenceQueryType
+  >(occurrenceQuery, {
+    variables: {
+      id: params.occurrenceId,
+      childId: params.childId,
+    },
+  });
+
+  const goToOccurrence = () =>
+    history.replace(
+      `/profile/child/${params.childId}/occurrence/${data?.occurrence?.id}`
+    );
 
   // If redirect to /profile, need to do refetchquery
   // Might need to refetch myProfile in any case
@@ -88,10 +97,20 @@ const EnrolPage = () => {
         );
         dispatch(justEnrolled());
       }
+
+      goToOccurrence();
     },
     onError: (error) => {
-      if (check(error.graphQLErrors, containsAlreadyJoinedError)) {
+      if (containsAlreadyJoinedError(error.graphQLErrors)) {
+        goToOccurrence();
         toast.warning(t('enrollment.enroll.error.childAlreadyJoined'));
+      } else if (containsOccurrenceFullError(error.graphQLErrors)) {
+        // The occurrence has become full during the time between now
+        // and the last time the data was refreshed. By re-fetching the
+        // occurrence, we synchronize the data with the current truth,
+        // which will in turn update the view to communicate that this
+        // occurrence is full.
+        refetchOccurrence();
       } else {
         // eslint-disable-next-line no-console
         console.error(error);
@@ -131,10 +150,6 @@ const EnrolPage = () => {
         },
       },
     });
-
-    history.replace(
-      `/profile/child/${params.childId}/occurrence/${data.occurrence.id}`
-    );
   };
 
   const goToEvent = () => {
