@@ -1,137 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<table>
-  <tbody>
-    <EventOccurrence
-      key="T2NjdXJyZW5jZU5vZGU6Mg=="
-      occurrence={
-        Object {
-          "childHasFreeSpotNotificationSubscription": false,
-          "event": Object {
-            "id": "zzaaz",
-            "name": "event name",
-          },
-          "id": "T2NjdXJyZW5jZU5vZGU6Mg==",
-          "remainingCapacity": 99,
-          "time": "2020-03-08T04:00:00+00:00",
-          "venue": Object {
-            "address": "",
-            "id": "auppss",
-            "name": "Musiikkitalo",
-          },
-        }
-      }
-    >
+<div>
+  <table>
+    <tbody>
       <tr
-        className="occurrence"
+        class="occurrence"
       >
         <td
-          className="occurrenceDate"
+          class="occurrenceDate"
         >
           su 8.3.2020
         </td>
         <td
-          className="occurrenceTime"
+          class="occurrenceTime"
         >
           04:00
         </td>
         <td
-          className="occurrenceVenue"
+          class="occurrenceVenue"
         >
           Musiikkitalo
         </td>
         <td
-          className="remainingCapacity"
+          class="remainingCapacity"
         >
           99
         </td>
         <td
-          className="occurrenceSubmit"
+          class="occurrenceSubmit"
         >
-          <Link
-            className="linkButton"
-            to="zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
+          <a
+            class="linkButton"
+            href="/zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
           >
-            <LinkAnchor
-              className="linkButton"
-              href="/zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
-              navigate={[Function]}
+            <button
+              class="Button-module_button__3wgee button_hds-button__2A0je Button-module_primary__3bo_T button_hds-button--primary__2NVvO submitButton"
+              type="submit"
             >
-              <a
-                className="linkButton"
-                href="/zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
-                onClick={[Function]}
+              <span
+                class="Button-module_label__2zMLC button_hds-button__label__2EQa-"
               >
-                <Button
-                  className="submitButton"
-                  type="submit"
-                >
-                  <ForwardRef
-                    className="submitButton"
-                    style={
-                      Object {
-                        "--background-color": "var(--color-summer)",
-                        "--background-color-focus": "var(--color-summer)",
-                        "--background-color-hover": "var(--color-summer-dark-50)",
-                        "--background-color-hover-focus": "var(--color-summer-dark-50)",
-                        "--background-selected": "var(--color-summer)",
-                        "--border-color": "var(--color-summer)",
-                        "--border-color-focus": "var(--color-summer-dark-50)",
-                        "--border-color-hover": "var(--color-summer-dark-50)",
-                        "--border-color-hover-focus": "var(--color-summer-dark-50)",
-                        "--border-color-selected": "var(--color-summer)",
-                        "--border-color-selected-focus": "var(--color-summer)",
-                        "--border-color-selected-hover": "var(--color-summer-dark-50)",
-                        "--border-color-selected-hover-focus": "var(--color-summer)",
-                        "--color": "var(--color-black)",
-                        "--color-focus": "var(--color-black-90)",
-                        "--color-hover": "var(--color-black)",
-                        "--color-hover-focus": "var(--color-black-90)",
-                      }
-                    }
-                    type="submit"
-                  >
-                    <button
-                      className="Button-module_button__3wgee button_hds-button__2A0je Button-module_primary__3bo_T button_hds-button--primary__2NVvO submitButton"
-                      disabled={false}
-                      style={
-                        Object {
-                          "--background-color": "var(--color-summer)",
-                          "--background-color-focus": "var(--color-summer)",
-                          "--background-color-hover": "var(--color-summer-dark-50)",
-                          "--background-color-hover-focus": "var(--color-summer-dark-50)",
-                          "--background-selected": "var(--color-summer)",
-                          "--border-color": "var(--color-summer)",
-                          "--border-color-focus": "var(--color-summer-dark-50)",
-                          "--border-color-hover": "var(--color-summer-dark-50)",
-                          "--border-color-hover-focus": "var(--color-summer-dark-50)",
-                          "--border-color-selected": "var(--color-summer)",
-                          "--border-color-selected-focus": "var(--color-summer)",
-                          "--border-color-selected-hover": "var(--color-summer-dark-50)",
-                          "--border-color-selected-hover-focus": "var(--color-summer)",
-                          "--color": "var(--color-black)",
-                          "--color-focus": "var(--color-black-90)",
-                          "--color-hover": "var(--color-black)",
-                          "--color-hover-focus": "var(--color-black-90)",
-                        }
-                      }
-                      type="submit"
-                    >
-                      <span
-                        className="Button-module_label__2zMLC button_hds-button__label__2EQa-"
-                      >
-                        Valitse
-                      </span>
-                    </button>
-                  </ForwardRef>
-                </Button>
-              </a>
-            </LinkAnchor>
-          </Link>
+                Valitse
+              </span>
+            </button>
+          </a>
         </td>
       </tr>
-    </EventOccurrence>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 `;

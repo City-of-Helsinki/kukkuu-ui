@@ -3,8 +3,10 @@ import React from 'react';
 import {
   render,
   fireEvent,
-  RenderResult,
+  waitFor,
+  selectHdsButtonByText,
 } from '../../../../common/test/testingLibraryUtils';
+import initModal from '../../../../common/test/initModal';
 import Enrol from '../Enrol';
 
 const occurrence = {
@@ -32,16 +34,6 @@ const defaultProps = {
   onSubscribe: jest.fn(),
   onSubscribed: jest.fn(),
   setIsSubscriptionModalOpen: jest.fn(),
-};
-
-const selectHdsButtonByText = (
-  render: RenderResult,
-  text: string
-): HTMLElement => {
-  const { getByText } = render;
-  const buttonLabel = getByText(text);
-
-  return buttonLabel.closest('button') as HTMLElement;
 };
 
 const getWrapper = (props?: unknown) =>
@@ -86,19 +78,33 @@ describe('<Enrol />', () => {
         ...props,
       });
 
-    it('the user should be able to subscribe to notifications', () => {
+    it('the user should be able to subscribe to notifications', async () => {
+      initModal();
+
       const onSubscribe = jest.fn();
+      const onSubscribed = jest.fn();
       const render = getFullOccurrenceWrapper({
         onSubscribe,
+        onSubscribed,
       });
-      const subscribeButton = selectHdsButtonByText(
-        render,
-        'Täynnä - Tilaa ilmoitus'
-      );
 
-      fireEvent.click(subscribeButton, {});
+      await waitFor(() => {
+        fireEvent.click(
+          selectHdsButtonByText(render, 'Täynnä - Tilaa ilmoitus'),
+          {}
+        );
+      });
 
       expect(onSubscribe).toHaveBeenCalled();
+
+      await waitFor(() => {
+        // This button is hooked up to Apollo and mocks are not
+        // provided, but this test still works.
+        fireEvent.click(selectHdsButtonByText(render, 'Tilaa ilmoitus'));
+      });
+
+      // onSubscribed is called after a successful subscription
+      expect(onSubscribed).toHaveBeenCalled();
     });
 
     it('should have a special title and description', () => {
@@ -117,10 +123,10 @@ describe('<Enrol />', () => {
   });
 
   describe('when the event is full and te user has subscribed', () => {
-    it('the user should be able to unsubscribe', () => {
-      const onUnsubscribe = jest.fn();
+    it('the user should be able to unsubscribe', async () => {
+      const onUnsubscribed = jest.fn();
       const render = getWrapper({
-        onUnsubscribe,
+        onUnsubscribed,
         occurrence: {
           ...occurrence,
           remainingCapacity: 0,
@@ -129,12 +135,14 @@ describe('<Enrol />', () => {
       });
       const subscribeButton = selectHdsButtonByText(
         render,
-        'Peru ilmoitusten tilaus'
+        'Peru ilmoituksen tilaus'
       );
 
-      fireEvent.click(subscribeButton, {});
+      await waitFor(() => {
+        fireEvent.click(subscribeButton, {});
+      });
 
-      expect(onUnsubscribe).toHaveBeenCalled();
+      expect(onUnsubscribed).toHaveBeenCalled();
     });
   });
 });

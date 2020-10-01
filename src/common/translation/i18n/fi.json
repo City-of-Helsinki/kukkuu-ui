@@ -134,10 +134,11 @@
   },
   "enrollment": {
     "button": {
-      "cancelNotificationSubscription": "Peru ilmoitusten tilaus",
+      "cancelNotificationSubscription": "Peru ilmoituksen tilaus",
       "occurrenceFullSubscribeToNotifications": "Täynnä - Tilaa ilmoitus",
       "queue": "Jonoon",
-      "selectOccurence": "Valitse"
+      "selectOccurence": "Valitse",
+      "subscribeToNotifications": "Tilaa ilmoitus"
     },
     "confirmationPage": {
       "cancel": {

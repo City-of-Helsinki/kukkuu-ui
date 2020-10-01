@@ -6,12 +6,20 @@ import {
   DEFAULT_DATE_FORMAT,
   DEFAULT_TIME_FORMAT,
 } from '../../common/time/TimeConstants';
-import { occurrenceQuery_occurrence as Occurrence } from '../api/generatedTypes/occurrenceQuery';
 import ConfirmModal from '../../common/components/confirm/ConfirmModal';
 import useSubscribeToFreeSpotNotificationMutation from './useSubscribeToFreeSpotNotificationMutation';
 
+export type Occurrence = {
+  id: string | null;
+  time: string | null;
+  event: {
+    name: string | null;
+  };
+};
+
 type Props = {
   childId: string;
+  eventId: string;
   eventOccurrence: Occurrence;
   isOpen: boolean;
   onSubscribed?: () => void;
@@ -20,27 +28,36 @@ type Props = {
 
 const EventNotificationSubscriptionModal = ({
   childId,
+  eventId,
   eventOccurrence,
   isOpen,
   onSubscribed,
   setIsOpen,
 }: Props) => {
   const { t } = useTranslation();
-  const [subscribe] = useSubscribeToFreeSpotNotificationMutation();
+  const [subscribe] = useSubscribeToFreeSpotNotificationMutation(
+    eventId,
+    childId
+  );
 
   const handleAnswer = async (consented: boolean) => {
     if (consented) {
-      const { errors } = await subscribe({
-        variables: {
-          input: {
-            occurrenceId: eventOccurrence.id,
-            childId,
+      try {
+        await subscribe({
+          variables: {
+            input: {
+              occurrenceId: eventOccurrence.id,
+              childId,
+            },
           },
-        },
-      });
+        });
 
-      if (!errors && onSubscribed) {
-        onSubscribed();
+        if (onSubscribed) {
+          onSubscribed();
+        }
+      } catch (e) {
+        // Default error handling is enabled in
+        // useSubscribeToFreeSpotNotificationMutation
       }
     }
   };
