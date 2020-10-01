@@ -134,10 +134,11 @@
   },
   "enrollment": {
     "button": {
-      "cancelNotificationSubscription": "Avbryt aviseringar",
+      "cancelNotificationSubscription": "Avbryt avisering",
       "occurrenceFullSubscribeToNotifications": "Fullt - Prenumerera på aviseringar",
       "queue": "Ställ dig i kö",
-      "selectOccurence": "Välj"
+      "selectOccurence": "Välj",
+      "subscribeToNotifications": "Prenumerera på aviseringar"
     },
     "confirmationPage": {
       "cancel": {

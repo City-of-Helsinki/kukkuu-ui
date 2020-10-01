@@ -1,7 +1,12 @@
 import React from 'react';
-import toJson from 'enzyme-to-json';
 
-import { mountWithProvider } from '../../../common/test/testUtils';
+import {
+  render,
+  fireEvent,
+  waitFor,
+  selectHdsButtonByText,
+} from '../../../common/test/testingLibraryUtils';
+import initModal from '../../../common/test/initModal';
 import { eventQuery_event_occurrences_edges_node as OccurrenceEdgeNode } from '../../api/generatedTypes/eventQuery';
 import EventOccurrence from '../EventOccurrence';
 
@@ -25,7 +30,7 @@ const defaultProps = {
 };
 
 const getWrapper = (props: unknown = {}) =>
-  mountWithProvider(
+  render(
     <table>
       <tbody>
         <EventOccurrence {...defaultProps} {...props} />
@@ -34,47 +39,62 @@ const getWrapper = (props: unknown = {}) =>
   );
 
 it('renders snapshot correctly', () => {
-  const element = getWrapper({ key: mockedNode.id });
-  expect(toJson(element)).toMatchSnapshot();
+  const { container } = getWrapper({ key: mockedNode.id });
+
+  expect(container).toMatchSnapshot();
 });
 
 it('renders button for signing up to an event', () => {
-  const wrapper = getWrapper();
+  const { queryByText } = getWrapper();
 
-  expect(wrapper.text().includes('Valitse')).toEqual(true);
+  expect(queryByText('Valitse')).not.toEqual(null);
 });
 
 describe('when event is full', () => {
   const getFullEventWrapper = (
-    childHasFreeSpotNotificationSubscription = false
+    occurrence: Record<string, unknown> | null = {},
+    props: Record<string, unknown> = {}
   ) =>
     getWrapper({
       occurrence: {
         ...mockedNode,
         remainingCapacity: 0,
-        childHasFreeSpotNotificationSubscription,
+        ...occurrence,
       },
+      ...props,
     });
 
   it('should show full label instead of remaining capacity', () => {
-    const wrapper = getFullEventWrapper();
+    const { queryByText } = getFullEventWrapper();
 
-    expect(wrapper.text().includes('TÄYNNÄ')).toEqual(true);
+    expect(queryByText('TÄYNNÄ')).not.toEqual(null);
   });
 
   describe('and child has not subscribed to notifications', () => {
-    it('renders button for subscribing', () => {
-      const wrapper = getFullEventWrapper();
+    it('user should be able to subscribe', async () => {
+      initModal();
 
-      expect(wrapper.text().includes('Täynnä - Tilaa ilmoitus')).toEqual(true);
+      const render = getFullEventWrapper(null);
+
+      await waitFor(() => {
+        fireEvent.click(selectHdsButtonByText(render, 'Tilaa ilmoitus'), {});
+      });
+
+      await waitFor(() => {
+        // This button is hooked up to Apollo and mocks are not
+        // provided, but this test still works.
+        expect(render.getAllByText('Tilaa ilmoitus')[0]).toBeDefined();
+      });
     });
   });
 
-  describe('and child has not subscribed to notifications', () => {
-    it('renders button for subscribing', () => {
-      const wrapper = getFullEventWrapper(true);
+  describe('and child has subscribed to notifications', () => {
+    it('user should be able to unsubscribe', () => {
+      const { queryByText } = getFullEventWrapper({
+        childHasFreeSpotNotificationSubscription: true,
+      });
 
-      expect(wrapper.text().includes('Peru ilmoitusten tilaus')).toEqual(true);
+      expect(queryByText('Peru ilmoituksen tilaus')).not.toEqual(null);
     });
   });
 });

@@ -21,7 +21,9 @@ tr {
   td {
     padding: $basePadding 0;
     &.occurrenceSubmit {
-      min-width: 7rem;
+      // Needs to be wide enough to facilitate the widest possible,
+      // button label in each language
+      min-width: 17rem;
     }
     &.remainingCapacity {
       text-align: center;

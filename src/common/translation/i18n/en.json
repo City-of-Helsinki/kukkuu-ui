@@ -134,10 +134,11 @@
   },
   "enrollment": {
     "button": {
-      "cancelNotificationSubscription": "Cancel notifications",
+      "cancelNotificationSubscription": "Cancel notification",
       "occurrenceFullSubscribeToNotifications": "Full - Subscribe to notifications",
       "queue": "Join queue",
-      "selectOccurence": "Choose"
+      "selectOccurence": "Choose",
+      "subscribeToNotifications": "Subscribe to notifications"
     },
     "confirmationPage": {
       "cancel": {

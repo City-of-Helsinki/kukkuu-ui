@@ -10,9 +10,7 @@ import {
   DEFAULT_TIME_FORMAT,
   DEFAULT_DATE_FORMAT,
 } from '../../common/time/TimeConstants';
-import eventQuery from './queries/eventQuery';
-import useSubscribeToFreeSpotNotificationMutation from './useSubscribeToFreeSpotNotificationMutation';
-import useUnsubscribeFromFreeSpotNotificationMutation from './useUnsubscribeFromFreeSpotNotificationMutation';
+import EventOccurrenceNotificationControlButton from './EventOccurrenceNotificationControlButton';
 
 type UrlParams = {
   childId: string;
@@ -26,31 +24,6 @@ type EventOccurrenceProps = {
 const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
   const { t } = useTranslation();
   const { childId, eventId } = useParams<UrlParams>();
-  const [subscribe] = useSubscribeToFreeSpotNotificationMutation();
-  const [unsubscribe] = useUnsubscribeFromFreeSpotNotificationMutation();
-
-  const mutationVariables = {
-    variables: {
-      input: { childId, occurrenceId: occurrence.id },
-    },
-    refetchQueries: [
-      {
-        query: eventQuery,
-        variables: {
-          id: eventId,
-          childId,
-        },
-      },
-    ],
-  };
-
-  const handleSubscribe = () => {
-    subscribe(mutationVariables);
-  };
-
-  const handleUnsubscribe = () => {
-    unsubscribe(mutationVariables);
-  };
 
   const date = formatTime(
     newMoment(occurrence.time),
@@ -61,8 +34,9 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
   const hasCapacity = Boolean(
     occurrence.remainingCapacity && occurrence.remainingCapacity > 0
   );
-  const childHasSubscription =
-    occurrence.childHasFreeSpotNotificationSubscription;
+  const childHasSubscription = Boolean(
+    occurrence.childHasFreeSpotNotificationSubscription
+  );
 
   return (
     <tr className={styles.occurrence}>
@@ -89,23 +63,17 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
             </Button>
           </Link>
         )}
-        {!hasCapacity && !childHasSubscription && (
-          <Button
-            className={styles.fullButton}
-            variant="disabled"
-            onClick={handleSubscribe}
-          >
-            {t('enrollment.button.occurrenceFullSubscribeToNotifications')}
-          </Button>
-        )}
-        {!hasCapacity && childHasSubscription && (
-          <Button
-            className={styles.fullButton}
-            variant="secondary"
-            onClick={handleUnsubscribe}
-          >
-            {t('enrollment.button.cancelNotificationSubscription')}
-          </Button>
+        {!hasCapacity && (
+          <EventOccurrenceNotificationControlButton
+            childId={childId}
+            eventId={eventId}
+            isSubscribed={childHasSubscription}
+            occurrence={occurrence}
+            unsubscribeLabel={t(
+              'enrollment.button.cancelNotificationSubscription'
+            )}
+            subscribeLabel={t('enrollment.button.subscribeToNotifications')}
+          />
         )}
       </td>
     </tr>

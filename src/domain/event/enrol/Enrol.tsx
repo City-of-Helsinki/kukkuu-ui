@@ -6,36 +6,33 @@ import styles from './enrol.module.scss';
 import { occurrenceQuery_occurrence as OccurrenceType } from '../../api/generatedTypes/occurrenceQuery';
 import OccurrenceInfo from '../partial/OccurrenceInfo';
 import Button from '../../../common/components/button/Button';
-import EventNotificationSubscriptionModal from '../EventNotificationSubscriptionModal';
+import EventOccurrenceNotificationControlButton from '../EventOccurrenceNotificationControlButton';
 
 type Props = {
   childId: string;
-  isSubscriptionModalOpen: boolean;
   occurrence: OccurrenceType;
   onCancel: () => void;
   onEnrol: () => void;
-  onUnsubscribe: () => void;
-  onSubscribe: () => void;
-  onSubscribed: () => void;
-  setIsSubscriptionModalOpen: (isOpen: boolean) => void;
+  onUnsubscribed?: () => void;
+  onSubscribe?: () => void;
+  onSubscribed?: () => void;
 };
 
 const Enrol = ({
   childId,
-  isSubscriptionModalOpen,
   occurrence,
   onCancel,
   onEnrol,
-  onUnsubscribe,
+  onUnsubscribed,
   onSubscribe,
   onSubscribed,
-  setIsSubscriptionModalOpen,
 }: Props) => {
   const { t } = useTranslation();
 
   const isFull = occurrence.remainingCapacity === 0;
-  const isChildHasActiveSubscription =
-    occurrence.childHasFreeSpotNotificationSubscription;
+  const isChildHasActiveSubscription = Boolean(
+    occurrence.childHasFreeSpotNotificationSubscription
+  );
   const eventName = occurrence.event.name;
 
   return (
@@ -63,28 +60,28 @@ const Enrol = ({
               {t('enrollment.confirmationPage.confirm.button')}
             </Button>
           )}
-          {isFull && !isChildHasActiveSubscription && (
-            <Button variant="disabled" onClick={onSubscribe}>
-              {t('enrollment.button.occurrenceFullSubscribeToNotifications')}
-            </Button>
-          )}
-          {isFull && isChildHasActiveSubscription && (
-            <Button onClick={onUnsubscribe} variant="secondary">
-              {t('enrollment.button.cancelNotificationSubscription')}
-            </Button>
+          {isFull && (
+            <EventOccurrenceNotificationControlButton
+              childId={childId}
+              eventId={occurrence.event.id}
+              isSubscribed={isChildHasActiveSubscription}
+              occurrence={occurrence}
+              onUnsubscribed={onUnsubscribed}
+              onSubscribe={onSubscribe}
+              onSubscribed={onSubscribed}
+              unsubscribeLabel={t(
+                'enrollment.button.cancelNotificationSubscription'
+              )}
+              subscribeLabel={t(
+                'enrollment.button.occurrenceFullSubscribeToNotifications'
+              )}
+            />
           )}
           <Button onClick={onCancel} variant="secondary">
             {t('enrollment.confirmationPage.cancel.button')}
           </Button>
         </div>
       </div>
-      <EventNotificationSubscriptionModal
-        childId={childId}
-        eventOccurrence={occurrence}
-        isOpen={isSubscriptionModalOpen}
-        onSubscribed={onSubscribed}
-        setIsOpen={setIsSubscriptionModalOpen}
-      />
     </>
   );
 };

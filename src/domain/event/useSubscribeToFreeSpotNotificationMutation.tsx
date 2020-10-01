@@ -2,12 +2,25 @@ import subscribeToFreeSpotNotificationMutation from './mutations/subscribeToFree
 // eslint-disable-next-line max-len
 import { subscribeToFreeSpotNotificationMutation as SubscribeToFreeSpotNotificationMutation } from '../api/generatedTypes/subscribeToFreeSpotNotificationMutation';
 import useMutation from '../api/useMutation';
+import eventQuery from './queries/eventQuery';
 
-function useSubscribeToFreeSpotNotificationMutation() {
+function useSubscribeToFreeSpotNotificationMutation(
+  eventId: string,
+  childId: string
+) {
   return useMutation<SubscribeToFreeSpotNotificationMutation>(
     subscribeToFreeSpotNotificationMutation,
     {
       useDefaultErrorHandling: true,
+      refetchQueries: [
+        {
+          query: eventQuery,
+          variables: {
+            id: eventId,
+            childId,
+          },
+        },
+      ],
     }
   );
 }

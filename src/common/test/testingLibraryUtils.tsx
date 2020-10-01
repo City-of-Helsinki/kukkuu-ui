@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
-import { render, RenderOptions } from '@testing-library/react';
+import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import { MockedResponse } from '@apollo/client/testing';
 
 import TestProviders from './TestProviders';
 
 const customRender = (
   ui: ReactElement,
-  mocks: MockedResponse[],
-  options: RenderOptions
+  mocks?: MockedResponse[],
+  options?: RenderOptions
 ) =>
   render(ui, {
     wrapper: ({ children }) => (
@@ -15,6 +15,19 @@ const customRender = (
     ),
     ...options,
   });
+
+export const selectHdsButton = (buttonLabel: HTMLElement): HTMLElement => {
+  return buttonLabel.closest('button') as HTMLElement;
+};
+
+export const selectHdsButtonByText = (
+  render: RenderResult,
+  text: string
+): HTMLElement => {
+  const { getByText } = render;
+
+  return selectHdsButton(getByText(text));
+};
 
 // re-export everything
 export * from '@testing-library/react';

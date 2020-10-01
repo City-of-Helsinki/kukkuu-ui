@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
@@ -23,7 +23,6 @@ import { childByIdQuery } from '../../child/queries/ChildQueries';
 import { saveChildEvents, justEnrolled } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
 import { GQLErrors } from './EnrolConstants';
-import useUnsubscribeFromFreeSpotNotificationMutation from '../useUnsubscribeFromFreeSpotNotificationMutation';
 import Enrol from './Enrol';
 
 function containsAlreadyJoinedError(
@@ -48,16 +47,11 @@ const EnrolPage = () => {
   const history = useHistory();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const [
-    isNotificationSubscriptionModalOpen,
-    setIsNotificationSubscriptionModalOpen,
-  ] = useState<boolean>(false);
   const params = useParams<{
     childId: string;
     eventId: string;
     occurrenceId: string;
   }>();
-  const [unsubscribe] = useUnsubscribeFromFreeSpotNotificationMutation();
   const { loading, error, data, refetch: refetchOccurrence } = useQuery<
     OccurrenceQueryType
   >(occurrenceQuery, {
@@ -156,23 +150,8 @@ const EnrolPage = () => {
     history.push(`/profile/child/${params.childId}/event/${params.eventId}`);
   };
 
-  const handleSubscriptionStart = () => {
-    setIsNotificationSubscriptionModalOpen(true);
-  };
-
-  const handleUnsubscribe = async () => {
-    const { errors } = await unsubscribe({
-      variables: {
-        input: {
-          childId: params.childId,
-          occurrenceId: data?.occurrence?.id,
-        },
-      },
-    });
-
-    if (!errors) {
-      goToEvent();
-    }
+  const handleUnsubscribed = async () => {
+    goToEvent();
   };
 
   return (
@@ -182,15 +161,12 @@ const EnrolPage = () => {
       title={'Enrol'}
     >
       <Enrol
-        isSubscriptionModalOpen={isNotificationSubscriptionModalOpen}
         childId={params.childId}
         occurrence={data.occurrence}
         onCancel={() => history.goBack()}
         onEnrol={() => enrol()}
-        onUnsubscribe={handleUnsubscribe}
-        onSubscribe={handleSubscriptionStart}
+        onUnsubscribed={handleUnsubscribed}
         onSubscribed={() => goToEvent()}
-        setIsSubscriptionModalOpen={setIsNotificationSubscriptionModalOpen}
       />
     </PageWrapper>
   );
