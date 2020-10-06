@@ -30,7 +30,7 @@ const EventNotificationControlButton = ({
   subscribeLabel,
   unsubscribeLabel,
 }: Props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [unsubscribe] = useUnsubscribeFromFreeSpotNotificationMutation(
     eventId,
     childId
