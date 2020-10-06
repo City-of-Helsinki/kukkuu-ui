@@ -172,7 +172,7 @@
     },
     "notificationSubscriptionModal": {
       "cancel": "Cancel",
-      "description": "You will receive a notification via email when places become available for the event <b>{{eventName}} {{date}} at {{time}}</b>. Available places are given out in the order they have been signed up for.",
+      "description": "You will receive a notification via email when places become available for the event <b>{{eventName}} {{date}} at {{time}}</b>. Available places are given to those who first register for them.",
       "subscribe": "Subscribe",
       "title": "Subscribe to receive a notification of available places"
     },
