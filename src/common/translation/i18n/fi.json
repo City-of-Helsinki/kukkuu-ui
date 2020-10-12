@@ -70,6 +70,11 @@
       }
     }
   },
+  "combobox": {
+    "clearButtonAriaLabel": "Tyhjennä kaikki valinnat",
+    "selectedItemSrLabel": "Valittu kohde {value}",
+    "selectedItemRemoveButtonAriaLabel": "Poista kohde {value}"
+  },
   "common": {
     "backButton": {
       "label": "Palaa"
@@ -483,6 +488,12 @@
         },
         "info": {
           "heading": "Lapsen tiedot"
+        },
+        "languagesSpokenAtHome": {
+          "input": {
+            "helper": "Kerro meille mitä kieliä taloudessasi puhutaan. Käytämme tätä tietoa palvelumme parantamiseen.",
+            "label": "Kotona puhutut kielet"
+          }
         },
         "lastName": {
           "input": {

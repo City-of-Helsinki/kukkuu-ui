@@ -126,6 +126,27 @@ export interface profileQuery_myProfile_children {
   edges: (profileQuery_myProfile_children_edges | null)[];
 }
 
+export interface profileQuery_myProfile_languagesSpokenAtHome_edges_node {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+}
+
+export interface profileQuery_myProfile_languagesSpokenAtHome_edges {
+  /**
+   * The item at the end of the edge
+   */
+  node: profileQuery_myProfile_languagesSpokenAtHome_edges_node | null;
+}
+
+export interface profileQuery_myProfile_languagesSpokenAtHome {
+  /**
+   * Contains the nodes in this connection.
+   */
+  edges: (profileQuery_myProfile_languagesSpokenAtHome_edges | null)[];
+}
+
 export interface profileQuery_myProfile {
   /**
    * The ID of the object.
@@ -140,6 +161,7 @@ export interface profileQuery_myProfile {
   phoneNumber: string;
   language: Language;
   children: profileQuery_myProfile_children;
+  languagesSpokenAtHome: profileQuery_myProfile_languagesSpokenAtHome;
 }
 
 export interface profileQuery {

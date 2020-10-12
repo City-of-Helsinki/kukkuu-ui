@@ -1,5 +1,5 @@
 import {
-  useMutation as useApolloMutation,
+  useQuery as useApolloQuery,
   DocumentNode,
   TypedDocumentNode,
   MutationHookOptions,
@@ -8,8 +8,8 @@ import {
 
 import useDefaultErrorHandler from './useDefaultErrorHandler';
 
-function useMutation<TData = any, TVariables = OperationVariables>(
-  mutation: DocumentNode | TypedDocumentNode<TData, TVariables>,
+function useQuery<TData = any, TVariables = OperationVariables>(
+  query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: MutationHookOptions<TData, TVariables> & {
     useDefaultErrorHandling?: boolean;
   } = {}
@@ -18,10 +18,10 @@ function useMutation<TData = any, TVariables = OperationVariables>(
 
   const { useDefaultErrorHandling, ...apolloOptions } = options;
 
-  return useApolloMutation<TData, TVariables>(mutation, {
+  return useApolloQuery<TData, TVariables>(query, {
     onError: useDefaultErrorHandling ? defaultErrorHandler : undefined,
     ...apolloOptions,
   });
 }
 
-export default useMutation;
+export default useQuery;

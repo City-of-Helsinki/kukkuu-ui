@@ -54,6 +54,13 @@ const profileQuery = gql`
           }
         }
       }
+      languagesSpokenAtHome {
+        edges {
+          node {
+            id
+          }
+        }
+      }
     }
   }
 `;

@@ -70,6 +70,11 @@
       }
     }
   },
+  "combobox": {
+    "clearButtonAriaLabel": "Clear all selections",
+    "selectedItemSrLabel": "Selected item {value}",
+    "selectedItemRemoveButtonAriaLabel": "Remove item {value}"
+  },
   "common": {
     "backButton": {
       "label": "Back"
@@ -483,6 +488,12 @@
         },
         "info": {
           "heading": "Child's information"
+        },
+        "languagesSpokenAtHome": {
+          "input": {
+            "helper": "Tell us what languages are spoken in your household. We use this information to improve our service.",
+            "label": "Languages spoken at home"
+          }
         },
         "lastName": {
           "input": {

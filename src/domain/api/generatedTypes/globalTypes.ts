@@ -65,6 +65,7 @@ export interface GuardianInput {
   phoneNumber?: string | null;
   language: Language;
   email?: string | null;
+  languagesSpokenAtHome?: string[] | null;
 }
 
 export interface RelationshipInput {
@@ -106,6 +107,7 @@ export interface UpdateMyProfileMutationInput {
   phoneNumber?: string | null;
   language?: Language | null;
   email?: string | null;
+  languagesSpokenAtHome?: string[] | null;
   clientMutationId?: string | null;
 }
 

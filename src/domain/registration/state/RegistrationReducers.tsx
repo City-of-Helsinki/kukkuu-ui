@@ -20,6 +20,7 @@ export const defaultRegistrationData: RegistrationData = {
       firstName: '',
       lastName: '',
       phoneNumber: '',
+      languagesSpokenAtHome: [],
     },
     preferLanguage: '',
     agree: false,

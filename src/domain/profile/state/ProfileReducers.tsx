@@ -14,6 +14,9 @@ export const defaultProfileData: ProfileType = {
   children: {
     edges: [],
   },
+  languagesSpokenAtHome: {
+    edges: [],
+  },
 };
 
 export default createReducer(defaultProfileData, {

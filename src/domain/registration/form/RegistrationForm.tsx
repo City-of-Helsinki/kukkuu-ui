@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { useState } from 'react';
 import { Formik, FormikProps, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/client';
@@ -35,6 +35,7 @@ import Button from '../../../common/components/button/Button';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 import TermsField from '../../../common/components/form/fields/terms/TermsField';
 import ChildFormFields from './partial/childFormFields';
+import LanguagesCombobox from '../../languages/LanguagesCombobox';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({
@@ -71,7 +72,7 @@ const schema = yup.object().shape({
   agree: yup.boolean().oneOf([true], 'validation.general.required'),
 });
 
-const RegistrationForm: FunctionComponent = () => {
+const RegistrationForm = () => {
   const { i18n, t } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
   const history = useHistory();
@@ -88,7 +89,8 @@ const RegistrationForm: FunctionComponent = () => {
   });
   // For new users preferLanguage defaults to their chosen UI language.
   // FIXME or ignore: If you have the form open for a long time, and silent renew fails, you get a error from redux:
-  // Invariant failed: A state mutation was detected between dispatches, in the path 'registration.formValues.preferLanguage'.
+  // Invariant failed: A state mutation was detected between dispatches,
+  // in the path 'registration.formValues.preferLanguage'.
   initialValues.preferLanguage = initialValues.preferLanguage || currentLocale;
 
   // isFilling is true when user has started filling out the form.
@@ -125,7 +127,7 @@ const RegistrationForm: FunctionComponent = () => {
                 setFormIsFilling(true);
               }
             }}
-            onSubmit={(values: RegistrationFormValues) => {
+            onSubmit={(values) => {
               setFormIsFilling(false);
               dispatch(setFormValues(values));
 
@@ -145,6 +147,7 @@ const RegistrationForm: FunctionComponent = () => {
                 email: values.guardian.email,
                 phoneNumber: values.guardian.phoneNumber,
                 language: language,
+                languagesSpokenAtHome: values.guardian.languagesSpokenAtHome,
               };
 
               submitChildrenAndGuardian({
@@ -315,6 +318,16 @@ const RegistrationForm: FunctionComponent = () => {
                     placeholder={t(
                       'registration.form.guardian.language.input.placeholder'
                     )}
+                  />
+                  <LanguagesCombobox
+                    helper={t(
+                      'registration.form.child.languagesSpokenAtHome.input.helper'
+                    )}
+                    id="languagesSpokenAtHome"
+                    label={t(
+                      'registration.form.child.languagesSpokenAtHome.input.label'
+                    )}
+                    name="guardian.languagesSpokenAtHome"
                   />
                   <TermsField
                     className={styles.agreeBtn}

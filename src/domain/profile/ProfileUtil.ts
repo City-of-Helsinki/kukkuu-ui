@@ -13,7 +13,7 @@ import {
  */
 export const normalizeProfileChild = (
   profileChild: ChildByIdResponse
-): Child => {
+): Omit<Child, 'languagesSpokenAtHome'> => {
   const { relationships, ...childWithoutRelationships } = profileChild;
   const defaultHomeCity = capitalize(getEligibleCities()[0]);
 

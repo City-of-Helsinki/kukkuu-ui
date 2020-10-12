@@ -70,6 +70,11 @@
       }
     }
   },
+  "combobox": {
+    "clearButtonAriaLabel": "Rensa alla val",
+    "selectedItemSrLabel": "Valt sak {value}",
+    "selectedItemRemoveButtonAriaLabel": "Ta bort sak {value}"
+  },
   "common": {
     "backButton": {
       "label": "Tillbaka"
@@ -483,6 +488,12 @@
         },
         "info": {
           "heading": "Uppgifter om barnet"
+        },
+        "languagesSpokenAtHome": {
+          "input": {
+            "helper": "Berätta vilka språk som talas i ditt hushåll. Vi använder denna information för att förbättra vår tjänst",
+            "label": "Språk som talas hemma"
+          }
         },
         "lastName": {
           "input": {
