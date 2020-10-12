@@ -40,7 +40,7 @@
     "graphql-tag": "^2.10.4",
     "hds-core": "^0.12.1",
     "hds-design-tokens": "^0.13.0",
-    "hds-react": "^0.12.1",
+    "hds-react": "0.14.0",
     "helsinki-utils": "City-of-Helsinki/helsinki-utils-js.git#0.1.0",
     "i18next": "^19.7.0",
     "i18next-browser-languagedetector": "^6.0.1",

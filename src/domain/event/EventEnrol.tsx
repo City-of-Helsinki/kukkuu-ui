@@ -65,27 +65,23 @@ const EventEnrol = ({
                     className={styles.dateField}
                     id="date"
                     name="date"
-                    value={values.date || ''}
                     label={t('enrollment.selectDate')}
                     placeholder={t('common.select.default.text')}
                     options={[
                       { value: '', label: t('common.select.all.text') },
                       ...options.dates,
                     ]}
-                    default={values.date}
                   />
                   <FormikDropdown
                     className={styles.timeField}
                     id="time"
                     name="time"
-                    value={values.time || ''}
                     label={t('enrollment.selectTime')}
                     placeholder={t('common.select.default.text')}
                     options={[
                       { value: '', label: t('common.select.all.text') },
                       ...options.times,
                     ]}
-                    default={values.time}
                   />
                 </form>
               );

@@ -312,7 +312,6 @@ const RegistrationForm: FunctionComponent = () => {
                         value: SUPPORT_LANGUAGES.SV,
                       },
                     ]}
-                    isSubmitting={isSubmitting}
                     placeholder={t(
                       'registration.form.guardian.language.input.placeholder'
                     )}

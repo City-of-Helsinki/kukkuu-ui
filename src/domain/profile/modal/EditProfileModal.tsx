@@ -181,7 +181,6 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                 className={styles.formField}
                 id="language"
                 name="language"
-                value={initialValues.language}
                 label={t('registration.form.guardian.language.input.label')}
                 required={true}
                 options={[
