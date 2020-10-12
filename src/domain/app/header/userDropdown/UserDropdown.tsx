@@ -44,7 +44,12 @@ const UserDropdown = ({ isSmallScreen }: UserDropdownProps) => {
   const isAuthenticated = useSelector(isAuthenticatedSelector);
   const doLogout = useLogout();
 
-  const { loading, data } = useProfile();
+  // Skip the redirect to the short registration form when using profile
+  // here. Because the menu is used on all pages, it's difficult to
+  // control redirects. Previously this hook call would redirect users
+  // away from the registration form, which is a page where we do not
+  // want to for this check to take place.
+  const { loading, data } = useProfile(true);
   const { trackEvent } = useMatomo();
 
   if (loading) return <></>;

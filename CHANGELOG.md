@@ -22,6 +22,7 @@
 - Postal code validation
 - Crashes on iPhones with iOS version older than 11.3
 - Can not read property year of undefined error
+- User being asked child's birthday twice while registering
 
 # 1.4.0
 

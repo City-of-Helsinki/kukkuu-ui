@@ -21,7 +21,7 @@ export type ProfileQueryResult = Omit<
   data: Profile | null | undefined;
 };
 
-function useProfile(): ProfileQueryResult {
+function useProfile(skipRedirect = false): ProfileQueryResult {
   const { i18n } = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ function useProfile(): ProfileQueryResult {
       // This query should be skipped when the user is not
       // authenticated. However, it seems that this does not always
       // hold and we have to check authentication again in the callback.
-      if (isAuthenticated && !data?.myProfile) {
+      if (!skipRedirect && isAuthenticated && !data?.myProfile) {
         history.replace(`/${i18n.language}/home#register`);
       }
     },
