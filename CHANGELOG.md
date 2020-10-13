@@ -13,6 +13,8 @@
 - Show no other button than log out for logged in unregistered users
 - Update accessibility statement
 - Show events as upcoming events also for a while after they have started
+- No longer display an error when a user subscribes to notifications for an occurrence they have already subscribed to, instead refresh the page to fetch current most data
+- Display a more specific error message when a user subscribes to notification for an occurrence which has available capacity
 
 ### Fixed
 
