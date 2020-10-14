@@ -50,6 +50,9 @@ exports[`renders snapshot correctly 1`] = `
               "firstName": "asdf",
               "id": "yuiop",
               "language": "SV",
+              "languagesSpokenAtHome": Object {
+                "edges": Array [],
+              },
               "lastName": "fdsa",
               "phoneNumber": "0904422233",
             }
