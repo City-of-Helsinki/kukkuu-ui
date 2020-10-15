@@ -491,7 +491,7 @@
         },
         "languagesSpokenAtHome": {
           "input": {
-            "helper": "Berätta vilka språk som talas i ditt hushåll. Vi använder denna information för att förbättra vår tjänst",
+            "helper": "Vilket språk eller vilka språk talar ni hemma? Välj “Annat språk” om ditt språk inte finns med.",
             "label": "Språk som talas hemma"
           }
         },

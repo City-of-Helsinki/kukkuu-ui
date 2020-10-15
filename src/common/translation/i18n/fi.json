@@ -491,7 +491,7 @@
         },
         "languagesSpokenAtHome": {
           "input": {
-            "helper": "Kerro meille mitä kieliä taloudessasi puhutaan. Käytämme tätä tietoa palvelumme parantamiseen.",
+            "helper": "Mitä kieltä tai kieliä puhutte kotona? Jos kieli ei ole listassa, valitse “muu kieli”.",
             "label": "Kotona puhutut kielet"
           }
         },

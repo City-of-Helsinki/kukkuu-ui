@@ -491,7 +491,7 @@
         },
         "languagesSpokenAtHome": {
           "input": {
-            "helper": "Tell us what languages are spoken in your household. We use this information to improve our service.",
+            "helper": "What language or languages do you speak at home? If your language is not on the list, please choose “Other language”.",
             "label": "Languages spoken at home"
           }
         },
