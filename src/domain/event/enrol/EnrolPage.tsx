@@ -163,7 +163,7 @@ const EnrolPage = () => {
       <Enrol
         childId={params.childId}
         occurrence={data.occurrence}
-        onCancel={() => history.goBack()}
+        onCancel={() => goToEvent()}
         onEnrol={() => enrol()}
         onUnsubscribed={handleUnsubscribed}
         onSubscribed={() => goToEvent()}

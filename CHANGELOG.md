@@ -23,6 +23,7 @@
 - Crashes on iPhones with iOS version older than 11.3
 - Can not read property year of undefined error
 - User being asked child's birthday twice while registering
+- Back to event selection button not working when accessing the enrolment confirmation page through an invitation link
 
 # 1.4.0
 
