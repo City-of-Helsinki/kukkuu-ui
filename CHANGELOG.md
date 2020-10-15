@@ -7,6 +7,7 @@
 - Error handling for child already enrolled error
 - Logo of Finnish National Gallery to the home page
 - Option to subscribe to places once they become available
+- Languages spoken at home field into the interface
 
 ### Changed
 
