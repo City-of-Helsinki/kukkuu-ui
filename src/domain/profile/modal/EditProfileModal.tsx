@@ -220,6 +220,8 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
                   'registration.form.child.languagesSpokenAtHome.input.label'
                 )}
                 name="languagesSpokenAtHome"
+                // Block escape from closing the modal
+                catchEscapeKey
               />
               <div className={styles.buttonsWrapper}>
                 <Button
