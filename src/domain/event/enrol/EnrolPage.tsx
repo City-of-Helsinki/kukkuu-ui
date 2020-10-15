@@ -45,7 +45,10 @@ function containsOccurrenceFullError(
 
 const EnrolPage = () => {
   const history = useHistory();
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const dispatch = useDispatch();
   const params = useParams<{
     childId: string;
@@ -63,7 +66,7 @@ const EnrolPage = () => {
 
   const goToOccurrence = () =>
     history.replace(
-      `/profile/child/${params.childId}/occurrence/${data?.occurrence?.id}`
+      `/${language}/profile/child/${params.childId}/occurrence/${data?.occurrence?.id}`
     );
 
   // If redirect to /profile, need to do refetchquery
@@ -147,7 +150,9 @@ const EnrolPage = () => {
   };
 
   const goToEvent = () => {
-    history.push(`/profile/child/${params.childId}/event/${params.eventId}`);
+    history.push(
+      `/${language}/profile/child/${params.childId}/event/${params.eventId}`
+    );
   };
 
   const handleUnsubscribed = async () => {
