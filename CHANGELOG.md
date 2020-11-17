@@ -10,6 +10,10 @@
 
 - Hide clear all button from languages spoken at home
 
+### Fixed
+
+- Missing ResizeObserver throwing an error on some platforms
+
 # 1.5.0
 
 ### Added

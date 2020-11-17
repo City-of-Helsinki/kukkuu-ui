@@ -35,11 +35,11 @@ exports[`renders snapshot correctly 1`] = `
             href="/zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
           >
             <button
-              class="Button-module_button__3wgee button_hds-button__2A0je Button-module_primary__3bo_T button_hds-button--primary__2NVvO submitButton"
+              class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO submitButton"
               type="submit"
             >
               <span
-                class="Button-module_label__2zMLC button_hds-button__label__2EQa-"
+                class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
               >
                 Valitse
               </span>

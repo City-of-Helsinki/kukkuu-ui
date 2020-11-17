@@ -73,7 +73,8 @@
   "combobox": {
     "clearButtonAriaLabel": "Rensa alla val",
     "selectedItemSrLabel": "Valt sak {value}",
-    "selectedItemRemoveButtonAriaLabel": "Ta bort sak {value}"
+    "selectedItemRemoveButtonAriaLabel": "Ta bort sak {value}",
+    "toggleButtonAriaLabel": "Öppna kombinationsrutan"
   },
   "common": {
     "backButton": {

@@ -73,7 +73,8 @@
   "combobox": {
     "clearButtonAriaLabel": "Clear all selections",
     "selectedItemSrLabel": "Selected item {value}",
-    "selectedItemRemoveButtonAriaLabel": "Remove item {value}"
+    "selectedItemRemoveButtonAriaLabel": "Remove item {value}",
+    "toggleButtonAriaLabel": "Open the combobox"
   },
   "common": {
     "backButton": {

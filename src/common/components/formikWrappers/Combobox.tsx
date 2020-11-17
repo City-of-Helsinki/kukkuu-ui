@@ -19,9 +19,10 @@ type DropdownProps = Omit<
   options: Option[];
 };
 
-export type ComboboxProps = {
+export type ComboboxProps = Omit<DropdownProps, 'toggleButtonAriaLabel'> & {
   name: string;
-} & DropdownProps;
+  toggleButtonAriaLabel?: string;
+};
 
 function Combobox({
   name,
@@ -65,6 +66,7 @@ function Combobox({
       clearButtonAriaLabel={t('combobox.clearButtonAriaLabel')}
       selectedItemRemoveButtonAriaLabel={t('combobox.selectedItemSrLabel')}
       selectedItemSrLabel={t('combobox.selectedItemRemoveButtonAriaLabel')}
+      toggleButtonAriaLabel={t('combobox.toggleButtonAriaLabel')}
       {...rest}
       multiselect
     />

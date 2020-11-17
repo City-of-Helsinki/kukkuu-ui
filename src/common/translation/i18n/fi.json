@@ -73,7 +73,8 @@
   "combobox": {
     "clearButtonAriaLabel": "Tyhjennä kaikki valinnat",
     "selectedItemSrLabel": "Valittu kohde {value}",
-    "selectedItemRemoveButtonAriaLabel": "Poista kohde {value}"
+    "selectedItemRemoveButtonAriaLabel": "Poista kohde {value}",
+    "toggleButtonAriaLabel": "Avaa valikko"
   },
   "common": {
     "backButton": {
