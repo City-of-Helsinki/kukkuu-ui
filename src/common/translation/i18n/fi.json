@@ -428,7 +428,8 @@
         "text": "Uusi kutsu!"
       },
       "navigateToDetail": {
-        "buttonLabel": "Näytä Kummilapsen tiedot"
+        "buttonLabel": "Näytä Kummilapsen {{childName}} tiedot",
+        "buttonLabelWithoutName": "Näytä Kummilapsen tiedot"
       }
     },
     "children": {

@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^1.4.0",
     "@sentry/browser": "^5.19.1",
     "@testing-library/react": "^11.0.4",
+    "@testing-library/testcafe": "^4.2.3",
     "@types/classnames": "^2.2.10",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "26.0.10",
@@ -62,6 +63,7 @@
     "react-transition-group": "^4.4.1",
     "redux-oidc": "^4.0.0-beta1",
     "redux-persist": "^6.0.0",
+    "testcafe": "^1.9.4",
     "typescript": "3.9.7",
     "validator": "^13.1.1",
     "yup": "^0.29.1"
@@ -78,7 +80,9 @@
     "start": "react-scripts start",
     "update-translations": "fetch-translations 18dpV7aA-t_6zMRUO5hP7DMfx0q4hdu-AlLpRjkB_0zI -l en,fi,sv -o src/common/translation/i18n",
     "test": "TZ=UTC react-scripts test --env=jest-environment-jsdom-fourteen",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache"
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live",
+    "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" browser-tests/ -s takeOnFails=true --lang=fi-FI"
   },
   "eslintConfig": {
     "extends": "react-app"

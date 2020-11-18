@@ -24,10 +24,18 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
 
   // Change to child.availableEvents when API supports it. Change to true to test.
   const availableEvents = child.availableEvents?.edges[0]?.node?.name;
+  const isNamed = Boolean(child.firstName);
+  const childName = `${child.firstName} ${child.lastName}`;
 
   return (
     <button
-      aria-label={t('profile.child.navigateToDetail.buttonLabel')}
+      aria-label={
+        isNamed
+          ? t('profile.child.navigateToDetail.buttonLabel', {
+              childName: childName,
+            })
+          : t('profile.child.navigateToDetail.buttonLabelWithoutName')
+      }
       className={styles.childWrapper}
       onClick={() => history.push(`/profile/child/${child.id}`)}
     >
@@ -41,11 +49,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
           <Icon src={childIcon} alt={t('profile.child.default.name.text')} />
         </div>
         <div className={styles.childInfo}>
-          <h3>
-            {child.firstName
-              ? `${child.firstName} ${child.lastName}`
-              : t('profile.child.default.name.text')}
-          </h3>
+          <h3>{isNamed ? childName : t('profile.child.default.name.text')}</h3>
           <div className={styles.childBirthdate}>
             <Icon
               src={birthdayIcon}

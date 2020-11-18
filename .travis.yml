@@ -20,5 +20,9 @@ jobs:
         global:
           - NODE_ENV=production
       script: yarn build
+    - stage: 'Browser test'
+      name: 'Run browser tests'
+      if: type = cron
+      script: yarn test:browser:ci
 after_success:
   - ./node_modules/.bin/codecov < coverage/lcov.info

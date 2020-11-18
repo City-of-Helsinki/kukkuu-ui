@@ -428,7 +428,8 @@
         "text": "Ny inbjudan!"
       },
       "navigateToDetail": {
-        "buttonLabel": "Visa Fadderbarnets uppgifter"
+        "buttonLabel": "Visa Fadderbarnets {{childName}} uppgifter",
+        "buttonLabelWithoutName": "Visa Fadderbarnets uppgifter"
       }
     },
     "children": {

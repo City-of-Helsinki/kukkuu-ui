@@ -428,7 +428,8 @@
         "text": "New invitation!"
       },
       "navigateToDetail": {
-        "buttonLabel": "Navigate to child detail"
+        "buttonLabel": "Navigate to {{childName}} detail",
+        "buttonLabelWithoutName": "Navigate to child detail"
       }
     },
     "children": {
