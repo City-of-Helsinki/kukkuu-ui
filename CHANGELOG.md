@@ -9,6 +9,7 @@
 ### Changed
 
 - Hide clear all button from languages spoken at home
+- Child forms are no longer validate with browser validation
 
 ### Fixed
 

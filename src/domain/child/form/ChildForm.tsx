@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Formik, FieldArray, FormikErrors, FormikProps } from 'formik';
+import { Formik, FieldArray, FormikErrors, FormikProps, Form } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import * as yup from 'yup';
@@ -121,12 +121,12 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
     >
       {({
         isSubmitting,
-        handleSubmit,
         values,
         errors,
         touched,
       }: FormikProps<ChildFormValues>) => (
-        <form onSubmit={handleSubmit} id="childForm">
+        <Form id="childForm" noValidate>
+          he
           <FieldArray
             name="birthdate"
             render={(props) => {
@@ -229,7 +229,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               {t('profile.child.detail.delete.text')}
             </Button>
           )}
-        </form>
+        </Form>
       )}
     </Formik>
   );
