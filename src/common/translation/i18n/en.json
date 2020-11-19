@@ -621,5 +621,10 @@
       "title": "Oops!",
       "description": "It seems like you have registered to the service using another login method. Please log out of the service and try a different login method."
     }
+  },
+  "feedback": {
+    "giveFeedback": {
+      "label": "Give feedback of the Culture Kids service"
+    }
   }
 }

@@ -5,6 +5,7 @@
 ### Added
 
 - More context information to "No matching state found" error
+- Temporary link for giving feedback
 
 ### Changed
 

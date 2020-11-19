@@ -5,18 +5,19 @@ import { Redirect } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
 import { IconCogwheel } from 'hds-react';
 
-import { clearProfile } from './state/ProfileActions';
-import useProfile from './hooks/useProfile';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import ProfileChildrenList from './children/ProfileChildrenList';
-import PageWrapper from '../app/layout/PageWrapper';
-import styles from './profile.module.scss';
 import Icon from '../../common/components/icon/Icon';
-import phoneIcon from '../../assets/icons/svg/mobile.svg';
-import emailIcon from '../../assets/icons/svg/envelope.svg';
-import EditProfileModal from './modal/EditProfileModal';
 import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
+import GiveFeedbackButton from '../../common/components/giveFeedbackButton/GiveFeedbackButton';
+import phoneIcon from '../../assets/icons/svg/mobile.svg';
+import emailIcon from '../../assets/icons/svg/envelope.svg';
+import PageWrapper from '../app/layout/PageWrapper';
+import { clearProfile } from './state/ProfileActions';
+import useProfile from './hooks/useProfile';
+import ProfileChildrenList from './children/ProfileChildrenList';
+import EditProfileModal from './modal/EditProfileModal';
+import styles from './profile.module.scss';
 
 const Profile = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -81,6 +82,7 @@ const Profile = () => {
             </div>
             <ProfileChildrenList />
           </div>
+          <GiveFeedbackButton />
         </div>
       </div>
     </PageWrapper>

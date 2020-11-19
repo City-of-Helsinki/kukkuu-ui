@@ -621,5 +621,10 @@
       "title": "Hupsista!",
       "description": "Vaikuttaisi siltä, että olet käyttänyt eri tunnistautumistapaa rekisteröityessäsi palveluun. Kirjaudu ulos palvelusta ja koita sitten kirjautua uudestaan käyttäen jotain toista tunnistautumistapaa."
     }
+  },
+  "feedback": {
+    "giveFeedback": {
+      "label": "Anna palautetta Kulttuurin kummilapset -palvelusta"
+    }
   }
 }

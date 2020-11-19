@@ -6,31 +6,33 @@ import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { IconCogwheel } from 'hds-react';
 
-import styles from './profileChildDetail.module.scss';
 import PageWrapper from '../../../app/layout/PageWrapper';
 import backIcon from '../../../../assets/icons/svg/arrowLeft.svg';
 import personIcon from '../../../../assets/icons/svg/person.svg';
 import childIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import birthdateIcon from '../../../../assets/icons/svg/birthdayCake.svg';
 import Icon from '../../../../common/components/icon/Icon';
+import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
-import useProfile from '../../hooks/useProfile';
-import ProfileEvents from '../../events/ProfileEvents';
-import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
+import ErrorMessage from '../../../../common/components/error/Error';
+import Button from '../../../../common/components/button/Button';
 import { deleteChild_deleteChild as DeleteChildPayload } from '../../../api/generatedTypes/deleteChild';
 import { UpdateChildMutationInput as EditChildInput } from '../../../api/generatedTypes/globalTypes';
 import { updateChild_updateChild as EditChildPayload } from '../../../api/generatedTypes/updateChild';
+import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes/childByIdQuery';
+import { childByIdQuery } from '../../../child/queries/ChildQueries';
+import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
 import {
   deleteChildMutation,
   editChildMutation,
 } from '../../../child/mutation/ChildMutation';
+import useProfile from '../../hooks/useProfile';
+import ProfileEvents from '../../events/ProfileEvents';
 import profileQuery from '../../queries/ProfileQuery';
-import { childByIdQuery } from '../../../child/queries/ChildQueries';
-import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
-import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes/childByIdQuery';
-import ErrorMessage from '../../../../common/components/error/Error';
-import Button from '../../../../common/components/button/Button';
+import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
+import styles from './profileChildDetail.module.scss';
+
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
 const ProfileChildDetail = () => {
@@ -178,6 +180,7 @@ const ProfileChildDetail = () => {
               <p>{t('profile.children.noChild.text')}</p>
             </div>
           )}
+          <GiveFeedbackButton />
         </div>
       </div>
     </PageWrapper>
