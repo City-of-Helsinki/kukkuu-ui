@@ -119,12 +119,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
       validationSchema={schema}
       onSubmit={onFormSubmit}
     >
-      {({
-        isSubmitting,
-        values,
-        errors,
-        touched,
-      }: FormikProps<ChildFormValues>) => (
+      {({ isSubmitting, values }: FormikProps<ChildFormValues>) => (
         <Form id="childForm" noValidate>
           he
           <FieldArray
@@ -141,15 +136,17 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             }}
           />
           <div className={styles.childInfo}>
-            <FormikTextInput
-              id="homeCity"
-              name="homeCity"
-              label={t('homePage.preliminaryForm.childHomeCity.input.label')}
-              required={true}
-              placeholder={t(
-                'homePage.preliminaryForm.childHomeCity.input.placeholder'
-              )}
-            />
+            {!isEditForm && (
+              <FormikTextInput
+                id="homeCity"
+                name="homeCity"
+                label={t('homePage.preliminaryForm.childHomeCity.input.label')}
+                required={true}
+                placeholder={t(
+                  'homePage.preliminaryForm.childHomeCity.input.placeholder'
+                )}
+              />
+            )}
             <FormikTextInput
               className={styles.formField}
               id="postalCode"
