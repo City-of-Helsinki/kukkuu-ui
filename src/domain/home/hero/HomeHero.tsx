@@ -12,11 +12,11 @@ type HomeHero = {
   scrollToForm: () => void;
 };
 
-const HomeHero: React.FunctionComponent<HomeHero> = ({
+const HomeHero = ({
   userHasProfile,
   scrollToForm,
   userIsAuthenticated,
-}) => {
+}: HomeHero) => {
   const { t } = useTranslation();
   const history = useHistory();
 
@@ -32,7 +32,12 @@ const HomeHero: React.FunctionComponent<HomeHero> = ({
                 {t('homePage.hero.buttonText')}
               </Button>
             )}
-            {userHasProfile && (
+            {
+              // If the user is not authenticated, they can't access the
+              // the profile page, so only show this link when there's
+              // a profile, and the user is authenticated.
+            }
+            {userHasProfile && userIsAuthenticated && (
               <Button
                 className={styles.authenticateButton}
                 onClick={() => history.push('/profile')}

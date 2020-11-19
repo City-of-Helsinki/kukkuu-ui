@@ -15,34 +15,38 @@ exports[`renders snapshot correctly 1`] = `
   <MockedProvider
     addTypename={false}
   >
-    <Router
-      history={
-        Object {
-          "action": "POP",
-          "block": [Function],
-          "createHref": [Function],
-          "go": [Function],
-          "goBack": [Function],
-          "goForward": [Function],
-          "length": 1,
-          "listen": [Function],
-          "location": Object {
-            "hash": "",
-            "pathname": "/",
-            "search": "",
-            "state": undefined,
-          },
-          "push": [Function],
-          "replace": [Function],
-        }
-      }
+    <HelmetProvider
+      context={Object {}}
     >
-      <MockedProvider
-        addTypename={true}
+      <Router
+        history={
+          Object {
+            "action": "POP",
+            "block": [Function],
+            "createHref": [Function],
+            "go": [Function],
+            "goBack": [Function],
+            "goForward": [Function],
+            "length": 1,
+            "listen": [Function],
+            "location": Object {
+              "hash": "",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+            "push": [Function],
+            "replace": [Function],
+          }
+        }
       >
-        <RegistrationForm />
-      </MockedProvider>
-    </Router>
+        <MockedProvider
+          addTypename={true}
+        >
+          <RegistrationForm />
+        </MockedProvider>
+      </Router>
+    </HelmetProvider>
   </MockedProvider>
 </Provider>
 `;
