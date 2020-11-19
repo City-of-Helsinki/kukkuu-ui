@@ -33,9 +33,9 @@ test('As a guardian I want to edit my profile', async (t) => {
   await t.expect(editProfileModal.container.exists).ok();
 
   await t
-    // Clear the input
+    // Select the content of the input so it will be cleared when text
+    // is typed
     .selectText(editProfileModal.firstNameInput)
-    .pressKey('delete')
     // Input new name
     .typeText(editProfileModal.firstNameInput, t.ctx.profile.firstName)
     // Submit form

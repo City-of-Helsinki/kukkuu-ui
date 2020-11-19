@@ -70,9 +70,9 @@ test('As a guardian I want to edit the details of my child', async (t) => {
   await t.expect(editChildModal.container.exists).ok();
 
   await t
-    // Clear last name
+    // Select the content of the input so it will be cleared when text
+    // is typed
     .selectText(editChildModal.lastNameInput)
-    .pressKey('delete')
     // Input new last name
     .typeText(editChildModal.lastNameInput, nextLastName)
     // save changes
