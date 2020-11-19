@@ -92,6 +92,14 @@ You need to update jest snapshots and add the translation files to the git repos
 
 Generate static types for GraphQL queries by using the schema from the backend server.
 
+### `yarn test:browser`
+
+This command runs the browser tests.
+
+The command should warn when some of the necessary environment is missing. You should provide at least the following: `BROWSER_TESTS_USER_NAME`, `BROWSER_TESTS_USER_PASSWORD` and `BROWSER_ENV_URL`. The two first you can find from from the secrets repo within the file `kukkuu-admin_e2e-test-keys.txt`.
+
+Browser tests are ran in Travis once per day with the `yarn test:browser:ci` command which runs the tests in headless mode.
+
 ## Docker
 
 `docker-compose up` to start the dockerized dev-environment. Not for production!!!  
