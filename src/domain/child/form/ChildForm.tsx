@@ -121,7 +121,6 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
     >
       {({ isSubmitting, values }: FormikProps<ChildFormValues>) => (
         <Form id="childForm" noValidate>
-          he
           <FieldArray
             name="birthdate"
             render={(props) => {
