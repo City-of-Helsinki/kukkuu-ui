@@ -1,5 +1,5 @@
 import React, { FunctionComponent, Ref } from 'react';
-import { Formik, FieldArray, FormikErrors } from 'formik';
+import { Formik, FieldArray, FormikErrors, Form } from 'formik';
 import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
@@ -107,9 +107,9 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
           onSubmit={handleSubmit}
           validate={validate}
         >
-          {({ handleSubmit, isSubmitting, errors, touched }) => {
+          {({ isSubmitting }) => {
             return (
-              <form onSubmit={handleSubmit} id="homePageForm">
+              <Form noValidate id="homePageForm">
                 <div className={styles.inputWrapper}>
                   <FieldArray
                     name="child.birthdate"
@@ -143,7 +143,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                 >
                   {t('homePage.hero.buttonText')}
                 </Button>
-              </form>
+              </Form>
             );
           }}
         </Formik>
