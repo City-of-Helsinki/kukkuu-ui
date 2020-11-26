@@ -624,7 +624,8 @@
   },
   "feedback": {
     "giveFeedback": {
-      "label": "Give feedback of the Culture Kids service"
+      "label": "Give feedback of the Culture Kids service",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSfpPCeAdiT9pcMRazxqA9DW-mbqoN2kNwaV53XydjzHWdyFKw/viewform?usp=pp_url&entry.1982410290=Kulttuurin%20kummilapset"
     }
   }
 }

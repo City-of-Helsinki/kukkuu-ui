@@ -624,7 +624,8 @@
   },
   "feedback": {
     "giveFeedback": {
-      "label": "Ge respons om Kulturens fadderbarn tjänsten"
+      "label": "Ge respons om Kulturens fadderbarn tjänsten",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSf0mf1gIUZ-k768RkOdBQm3bjp6TCDWQa1Wc1r_3WiYbDXLAA/viewform?usp=pp_url&entry.1982410290=Kulttuurin%20kummilapset"
     }
   }
 }
