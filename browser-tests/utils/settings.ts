@@ -18,4 +18,4 @@ export const testUsername = (): string =>
 export const testUserPassword = (): string =>
   getEnvOrError('BROWSER_TESTS_USER_PASSWORD');
 
-export const envUrl = (): string => getEnvOrError('BROWSER_ENV_URL');
+export const envUrl = (): string => getEnvOrError('BROWSER_TESTS_ENV_URL');
