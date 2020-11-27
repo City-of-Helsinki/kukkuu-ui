@@ -1,14 +1,15 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
 
-import Icon from '../../common/components/icon/Icon';
-import styles from './event.module.scss';
 import personIcon from '../../assets/icons/svg/person.svg';
+import Icon from '../../common/components/icon/Icon';
+import FormikDropdown from '../../common/components/formikWrappers/FormikDropdown';
 import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
-import FormikDropdown from '../../common/components/formikWrappers/FormikDropdown';
+import styles from './event.module.scss';
+
 export interface EventEnrolProps {
   data: EventQueryType;
   filterValues: FilterValues;
@@ -58,9 +59,9 @@ const EventEnrol = ({
               handleSubmit(values);
             }}
           >
-            {({ handleSubmit, setFieldValue, values }) => {
+            {() => {
               return (
-                <form onSubmit={handleSubmit} id="eventPageForm">
+                <Form noValidate id="eventPageForm">
                   <FormikDropdown
                     className={styles.dateField}
                     id="date"
@@ -83,7 +84,7 @@ const EventEnrol = ({
                       ...options.times,
                     ]}
                   />
-                </form>
+                </Form>
               );
             }}
           </Formik>
