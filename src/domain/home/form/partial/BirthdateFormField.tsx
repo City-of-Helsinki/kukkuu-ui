@@ -1,10 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import { FieldArrayRenderProps, getIn, Field } from 'formik';
+import { FieldArrayRenderProps, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { TextInput } from 'hds-react';
 
-import styles from './birthdateFormField.module.scss';
 import { validateRequire } from '../../../../common/components/form/validationUtils';
+import TextInput from '../../../../common/components/formikWrappers/FormikTextInput';
 import {
   formatTime,
   newMoment,
@@ -12,6 +11,8 @@ import {
 } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { Birthdate } from '../../../child/form/ChildForm';
+import styles from './birthdateFormField.module.scss';
+
 interface BirthdateFormFieldProps extends FieldArrayRenderProps {
   isImmutable?: boolean;
   values?: Birthdate;
@@ -51,8 +52,7 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
         'homePage.preliminaryForm.childBirthdate.input.label'
       )}*`}</label>
       <div className={styles.inputWrapper}>
-        <Field
-          as={TextInput}
+        <TextInput
           type="number"
           id={`${name}.day`}
           name={`${name}.day`}
@@ -77,9 +77,9 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
           }
         />
         <div className={styles.dot}>.</div>
-        <Field
-          as={TextInput}
+        <TextInput
           type="number"
+          id={`${name}.month`}
           name={`${name}.month`}
           required={true}
           aria-label={t(
@@ -98,14 +98,15 @@ const BirthdateFormField: FunctionComponent<BirthdateFormFieldProps> = ({
           helperText={
             (getIn(touched, `${name}.month`) &&
               getIn(errors, `${name}.month`) &&
-              t('validation.general.required')) || <></>
+              t('validation.general.required')) ||
+            undefined
           }
         />
         <div className={styles.dot}>.</div>
-        <Field
-          as={TextInput}
+        <TextInput
           type="number"
           required={true}
+          id={`${name}.year`}
           name={`${name}.year`}
           maxLength={4}
           min={2019}

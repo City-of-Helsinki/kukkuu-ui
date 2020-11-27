@@ -16,6 +16,7 @@
 
 - Missing ResizeObserver throwing an error on some platforms
 - Profile link being visible on home page when user was not authenticated
+- Broken error styles for some forms
 
 # 1.5.0
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useField } from 'formik';
+import { useField, FieldValidator } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { TextInput, TextInputProps } from 'hds-react';
 
@@ -9,8 +9,8 @@ type Props = {
   name: string;
   id: string;
   helperText?: string;
-  label: string;
   required?: boolean;
+  validate?: FieldValidator;
 } & TextInputProps;
 
 function FormikTextInput({
@@ -19,23 +19,30 @@ function FormikTextInput({
   helperText,
   labelText,
   required,
+  validate,
   ...rest
 }: Props) {
   const { t } = useTranslation();
   // eslint-disable-next-line react/destructuring-assignment
-  const [field, meta] = useField(name);
+  const [field, meta] = useField({ name, validate });
 
   return (
-    <TextInput
-      {...field}
-      id={id}
-      className={styles.formField}
-      invalid={meta.touched && Boolean(meta.error)}
-      helperText={(Boolean(meta.touched) && t(meta.error || '')) || undefined}
-      labelText={labelText}
-      required={required}
-      {...rest}
-    />
+    // Since hds-react version 0.16.0, using <TextInput /> in a position
+    // in the dom where it's a grid item, will lead to unexpectedly
+    // positioned helper text. By wrapping the input in a <div> we stop
+    // the <TextInput /> from becoming a grid item.
+    <div>
+      <TextInput
+        {...field}
+        id={id}
+        className={styles.formField}
+        invalid={meta.touched && Boolean(meta.error)}
+        helperText={(Boolean(meta.touched) && t(meta.error || '')) || undefined}
+        labelText={labelText}
+        required={required}
+        {...rest}
+      />
+    </div>
   );
 }
 
