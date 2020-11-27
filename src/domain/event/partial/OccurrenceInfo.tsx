@@ -1,23 +1,24 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import joinClassNames from 'classnames';
 
-import styles from './occurrenceInfo.module.scss';
 import clockIcon from '../../../assets/icons/svg/clock.svg';
 import calendarIcon from '../../../assets/icons/svg/calendar.svg';
 import locationIcon from '../../../assets/icons/svg/location.svg';
 import personIcon from '../../../assets/icons/svg/person.svg';
-import { formatOccurrenceTime } from '../EventUtils';
-import { childByIdQuery_child_occurrences_edges_node as OccurrenceType } from '../../api/generatedTypes/childByIdQuery';
-import { occurrenceQuery_occurrence as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
+import { childByIdQuery_child_occurrences_edges_node as OccurrenceType } from '../../api/generatedTypes/childByIdQuery';
+import { occurrenceQuery_occurrence as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
+import { formatOccurrenceTime } from '../EventUtils';
 import InfoItem from './InfoItem';
+import styles from './occurrenceInfo.module.scss';
 
 type Props = {
   className?: string;
   occurrence: OccurrenceQueryType | OccurrenceType;
   show?: string[];
+  center?: boolean;
 };
 
 export type InfoItem = {
@@ -28,11 +29,12 @@ export type InfoItem = {
   label: string;
 };
 
-const OccurrenceInfo: FunctionComponent<Props> = ({
+const OccurrenceInfo = ({
   className,
   occurrence,
   show = ['time', 'duration', 'participants', 'venue'],
-}) => {
+  center = false,
+}: Props) => {
   const { t } = useTranslation();
 
   const infoItems: InfoItem[] = [
@@ -65,7 +67,13 @@ const OccurrenceInfo: FunctionComponent<Props> = ({
   ];
 
   return (
-    <div className={joinClassNames(className, styles.row)}>
+    <div
+      className={joinClassNames(
+        className,
+        styles.row,
+        center ? styles.center : ''
+      )}
+    >
       {infoItems.map(
         (item, index) =>
           show.some((id) => id === item.id) && (

@@ -18,6 +18,7 @@
 - Profile link being visible on home page when user was not authenticated
 - Broken error styles for some forms
 - Overflowing time picker in event details view
+- Occurrence info visual glitch in occurrence detail page
 
 # 1.5.0
 
