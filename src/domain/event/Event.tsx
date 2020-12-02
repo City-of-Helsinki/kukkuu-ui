@@ -4,26 +4,60 @@ import { useParams, useLocation, Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
 import { useSelector } from 'react-redux';
+import uniqBy from 'lodash/uniqBy';
 
-import styles from './event.module.scss';
-import PageWrapper from '../app/layout/PageWrapper';
-import eventQuery from './queries/eventQuery';
-import {
-  eventQuery as EventQueryType,
-  eventQueryVariables as EventQueryVariables,
-} from '../api/generatedTypes/eventQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import { formatOccurrenceTime } from './EventUtils';
 import { formatTime, newMoment } from '../../common/time/utils';
 import {
   BACKEND_DATE_FORMAT,
   DEFAULT_DATE_FORMAT,
   DEFAULT_TIME_FORMAT,
 } from '../../common/time/TimeConstants';
+import Paragraph from '../../common/components/paragraph/Paragraph';
+import {
+  eventQuery as EventQueryType,
+  eventQuery_event_occurrences as Occurrences,
+  eventQuery_event_occurrences_edges_node as OccurrenceNode,
+} from '../api/generatedTypes/eventQuery';
+import RelayList from '../api/relayList';
+import PageWrapper from '../app/layout/PageWrapper';
+import { childrenEventSelector } from './state/EventSelectors';
+import eventQuery from './queries/eventQuery';
+import { formatOccurrenceTime } from './EventUtils';
 import EventEnrol from './EventEnrol';
 import EventPage from './EventPage';
-import Paragraph from '../../common/components/paragraph/Paragraph';
-import { childrenEventSelector } from './state/EventSelectors';
+import styles from './event.module.scss';
+
+const OccurrenceList = RelayList<OccurrenceNode>();
+
+export function getDateOptions(occurrences?: Occurrences) {
+  const options = OccurrenceList(occurrences).items.map(({ id, time }) => ({
+    value: formatTime(newMoment(time), BACKEND_DATE_FORMAT),
+    label: formatTime(newMoment(time), DEFAULT_DATE_FORMAT),
+    key: id,
+  }));
+
+  return uniqBy(options, 'value');
+}
+
+export function getTimeOptions(occurrences?: Occurrences) {
+  const options = OccurrenceList(occurrences).items.map(
+    ({ id, time, event }) => ({
+      value: formatTime(newMoment(time), DEFAULT_TIME_FORMAT),
+      label: formatOccurrenceTime(time, event.duration || null),
+      key: id,
+    })
+  );
+  const uniqueOptions = uniqBy(options, 'value');
+
+  return uniqueOptions.sort((a, b) => {
+    return a.label && b.label
+      ? a.label === b.label
+        ? 0
+        : +(a.label > b.label) || -1
+      : 0;
+  });
+}
 
 export interface FilterValues {
   date?: string;
@@ -41,6 +75,11 @@ export interface FilterOptions {
   times: Option[];
 }
 
+const initialFilterValues = {
+  date: '',
+  time: '',
+};
+
 const Event = () => {
   const { t } = useTranslation();
   const location = useLocation();
@@ -52,20 +91,11 @@ const Event = () => {
 
   const past = location.pathname.includes('/past') ? true : false;
 
-  const initialFilterValues: FilterValues = {
-    date: '',
-    time: '',
-  };
-  const [selectedFilterValues, setFilterValues] = useState(initialFilterValues);
+  const [selectedFilterValues, setFilterValues] = useState<FilterValues>(
+    initialFilterValues
+  );
 
-  const [hasFiltered, setHasFiltered] = useState(false);
-  const initialOptions: FilterOptions = {
-    dates: [{ key: '', label: '', value: '' }],
-    times: [{ key: '', label: '', value: '' }],
-  };
-  const [options, setOptions] = useState(initialOptions);
-
-  const variables: EventQueryVariables = {
+  const variables = {
     id: params.eventId,
     childId: params.childId,
   };
@@ -102,6 +132,9 @@ const Event = () => {
     .filter((c) => c.childId === params.childId)
     .pop()
     ?.eventIds.some((e) => e === params.eventId);
+  // Use allOccurrences so that filtering does not affect options
+  const optionsDates = getDateOptions(data?.event?.allOccurrences);
+  const optionsTimes = getTimeOptions(data?.event?.allOccurrences);
 
   // Child is registered for this event, redirect back to profile.
   // If the event is in the past, we show it as an "archive event".
@@ -110,6 +143,7 @@ const Event = () => {
   }
 
   if (loading) return <LoadingSpinner isLoading={true} />;
+
   if (error) {
     // eslint-disable-next-line no-console
     console.error(error);
@@ -125,57 +159,6 @@ const Event = () => {
     return <div>No event</div>;
   }
 
-  const optionsDates = data.event.occurrences.edges
-    .map((occurrence) => {
-      return occurrence?.node?.id && occurrence.node.time
-        ? {
-            value: formatTime(
-              newMoment(occurrence.node.time),
-              BACKEND_DATE_FORMAT
-            ),
-            label: formatTime(
-              newMoment(occurrence.node.time),
-              DEFAULT_DATE_FORMAT
-            ),
-            key: occurrence.node.id,
-          }
-        : { key: '', label: '', value: '' };
-    })
-    .filter((v, i, a) => a.findIndex((t) => t.value === v.value) === i);
-
-  const optionsTimes = data.event.occurrences.edges
-    .map((occurrence) => {
-      return occurrence?.node?.id && occurrence.node.time
-        ? {
-            value: formatTime(
-              newMoment(occurrence.node.time),
-              DEFAULT_TIME_FORMAT
-            ),
-            label: formatOccurrenceTime(
-              occurrence.node.time,
-              data.event?.duration || null
-            ),
-            key: occurrence.node.id,
-          }
-        : { key: '', label: '', value: '' };
-    })
-    .filter((v, i, a) => a.findIndex((t) => t.value === v.value) === i)
-    .sort((a, b) => {
-      return a.label && b.label
-        ? a.label === b.label
-          ? 0
-          : +(a.label > b.label) || -1
-        : 0;
-    });
-
-  if (!hasFiltered) {
-    setOptions({
-      dates: optionsDates,
-      times: optionsTimes,
-    });
-    setHasFiltered(true);
-  }
-
   return (
     <EventPage event={data.event}>
       <div className={styles.description}>
@@ -185,7 +168,10 @@ const Event = () => {
         <EventEnrol
           data={data}
           filterValues={selectedFilterValues}
-          options={options}
+          options={{
+            dates: optionsDates,
+            times: optionsTimes,
+          }}
           onFilterUpdate={updateFilterValues}
         />
       )}

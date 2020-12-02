@@ -15,6 +15,10 @@ export interface eventQuery_event_occurrences_edges_node_event {
    */
   id: string;
   name: string | null;
+  /**
+   * In minutes
+   */
+  duration: number | null;
 }
 
 export interface eventQuery_event_occurrences_edges_node_venue {
@@ -52,6 +56,53 @@ export interface eventQuery_event_occurrences {
   edges: (eventQuery_event_occurrences_edges | null)[];
 }
 
+export interface eventQuery_event_allOccurrences_edges_node_event {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+  /**
+   * In minutes
+   */
+  duration: number | null;
+}
+
+export interface eventQuery_event_allOccurrences_edges_node_venue {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+  address: string | null;
+}
+
+export interface eventQuery_event_allOccurrences_edges_node {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  time: any;
+  remainingCapacity: number | null;
+  event: eventQuery_event_allOccurrences_edges_node_event;
+  venue: eventQuery_event_allOccurrences_edges_node_venue;
+  childHasFreeSpotNotificationSubscription: boolean | null;
+}
+
+export interface eventQuery_event_allOccurrences_edges {
+  /**
+   * The item at the end of the edge
+   */
+  node: eventQuery_event_allOccurrences_edges_node | null;
+}
+
+export interface eventQuery_event_allOccurrences {
+  /**
+   * Contains the nodes in this connection.
+   */
+  edges: (eventQuery_event_allOccurrences_edges | null)[];
+}
+
 export interface eventQuery_event {
   /**
    * The ID of the object.
@@ -69,6 +120,7 @@ export interface eventQuery_event {
   duration: number | null;
   capacityPerOccurrence: number;
   occurrences: eventQuery_event_occurrences;
+  allOccurrences: eventQuery_event_allOccurrences;
 }
 
 export interface eventQuery {
