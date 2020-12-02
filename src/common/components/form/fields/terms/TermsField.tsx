@@ -6,15 +6,15 @@ import { useTranslation } from 'react-i18next';
 import styles from './termsField.module.scss';
 
 const kukkuuCheckboxStyles = {
-  '--background-hover': 'var(--color-summer-dark-50)',
+  '--background-hover': 'var(--color-summer-dark)',
   '--background-selected': 'var(--color-summer)',
-  '--background-color-selected-hover': 'var(--color-summer-dark-50)',
-  '--background-color-selected-focus': 'var(--color-summer-dark-50)',
-  '--background-color-selected-hover-focus': 'var(--color-summer-dark-50)',
+  '--background-color-selected-hover': 'var(--color-summer-dark)',
+  '--background-color-selected-focus': 'var(--color-summer-dark)',
+  '--background-color-selected-hover-focus': 'var(--color-summer-dark)',
   '--border-color-selected': 'var(--color-summer)',
-  '--border-color-selected-hover': 'var(--color-summer-dark-50)',
-  '--border-color-selected-focus': 'var(--color-summer-dark-50)',
-  '--border-color-selected-hover-focus': 'var(--color-summer-dark-50)',
+  '--border-color-selected-hover': 'var(--color-summer-dark)',
+  '--border-color-selected-focus': 'var(--color-summer-dark)',
+  '--border-color-selected-hover-focus': 'var(--color-summer-dark)',
 } as React.CSSProperties;
 
 type Props = {
