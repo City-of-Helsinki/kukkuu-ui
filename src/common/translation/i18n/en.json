@@ -125,6 +125,11 @@
       "all": {
         "text": "Show all"
       }
+    },
+    "loading": "Loading",
+    "error": {
+      "title": "An error occured",
+      "description": "Please try again later"
     }
   },
   "dataProtection": {
@@ -406,6 +411,9 @@
       "detail": {
         "availableEvent": {
           "readMoreButton": "Read more and register for event"
+        },
+        "availableEventGroup": {
+          "readMoreButton": "Browser events"
         },
         "birthdate": "Child's date of birth",
         "delete": {

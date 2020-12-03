@@ -125,6 +125,11 @@
       "all": {
         "text": "Näytä kaikki"
       }
+    },
+    "loading": "Lataa",
+    "error": {
+      "title": "Tapahtui virhe",
+      "description": "Yritä myöhemmin uudestaan"
     }
   },
   "dataProtection": {
@@ -406,6 +411,9 @@
       "detail": {
         "availableEvent": {
           "readMoreButton": "Lue lisää ja ilmoittaudu tapahtumaan"
+        },
+        "availableEventGroup": {
+          "readMoreButton": "Selaa tapahtumia"
         },
         "birthdate": "Lapsen syntymäaika",
         "delete": {

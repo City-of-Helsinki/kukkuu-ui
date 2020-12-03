@@ -125,6 +125,11 @@
       "all": {
         "text": "Visa alla"
       }
+    },
+    "loading": "Läser in",
+    "error": {
+      "title": "Ett fel uppstod",
+      "description": "Försök igen senare"
     }
   },
   "dataProtection": {
@@ -406,6 +411,9 @@
       "detail": {
         "availableEvent": {
           "readMoreButton": "Läs mer och anmäl dig till evenemang"
+        },
+        "availableEventGroup": {
+          "readMoreButton": "Bläddra i händelser"
         },
         "birthdate": "Barnets födelsedatum",
         "delete": {
