@@ -4,9 +4,10 @@ import toJson from 'enzyme-to-json';
 
 import ProfileEventsList from '../ProfileEventsList';
 import Card from '../../../../common/components/card/Card';
+import EventCard from '../../../event/eventCard/EventCard';
 import {
   childByIdQuery_child as ChildByIdResponse,
-  childByIdQuery_child_availableEvents as AvailableEventsType,
+  childByIdQuery_child_availableEventsAndEventGroups as AvailableEventsType,
   childByIdQuery_child_pastEvents as PastEventsType,
   childByIdQuery_child_occurrences as OccurrencesType,
 } from '../../../api/generatedTypes/childByIdQuery';
@@ -23,7 +24,7 @@ const childData: ChildByIdResponse = {
     year: 0,
   },
   relationships: { edges: [] },
-  availableEvents: { edges: [] },
+  availableEventsAndEventGroups: { edges: [] },
   occurrences: { edges: [] },
   pastEvents: { edges: [] },
 };
@@ -39,7 +40,7 @@ const eventData = {
   occurrences: { edges: [] },
 };
 
-const availableEvents: AvailableEventsType = {
+const availableEventsAndEventGroups: AvailableEventsType = {
   edges: [
     {
       node: eventData,
@@ -77,14 +78,14 @@ const pastEvents: PastEventsType = {
 
 const childWithEvents: ChildByIdResponse = {
   ...childData,
-  availableEvents: availableEvents,
+  availableEventsAndEventGroups: availableEventsAndEventGroups,
   occurrences: occurrences,
   pastEvents: pastEvents,
 };
 
 const childOnlyAvailableEvents = {
   ...childData,
-  availableEvents: availableEvents,
+  availableEventsAndEventGroups: availableEventsAndEventGroups,
   occurrences: {
     edges: [],
   },
@@ -93,7 +94,7 @@ const childOnlyAvailableEvents = {
 
 const childOnlyEnrolments: ChildByIdResponse = {
   ...childData,
-  availableEvents: null,
+  availableEventsAndEventGroups: null,
   occurrences: {
     edges: [
       {
@@ -111,7 +112,7 @@ const childOnlyEnrolments: ChildByIdResponse = {
 
 const childOnlyPastEvents: ChildByIdResponse = {
   ...childData,
-  availableEvents: null,
+  availableEventsAndEventGroups: null,
   occurrences: {
     edges: [],
   },
@@ -121,7 +122,9 @@ const childOnlyPastEvents: ChildByIdResponse = {
 test('Renders snapshot correctly', () => {
   const wrapper = shallow(
     <ProfileEventsList
-      availableEvents={childWithEvents.availableEvents}
+      availableEventsAndEventGroups={
+        childWithEvents.availableEventsAndEventGroups
+      }
       occurrences={childWithEvents.occurrences}
       pastEvents={childWithEvents.pastEvents}
       childId="zzaf"
@@ -133,38 +136,44 @@ test('Renders snapshot correctly', () => {
 test('Renders only available events when no other events', () => {
   const wrapper = shallow(
     <ProfileEventsList
-      availableEvents={childOnlyAvailableEvents.availableEvents}
+      availableEventsAndEventGroups={
+        childOnlyAvailableEvents.availableEventsAndEventGroups
+      }
       occurrences={childOnlyAvailableEvents.occurrences}
       pastEvents={childOnlyAvailableEvents.pastEvents}
       childId="zzaf"
     />
   );
   expect(wrapper.find('h2').length).toBe(1);
-  expect(wrapper.find(Card).length).toBe(1);
+  expect(wrapper.find(EventCard).length).toBe(1);
 });
 
 test('Renders only enrolments when no other events', () => {
   const wrapper = shallow(
     <ProfileEventsList
-      availableEvents={childOnlyEnrolments.availableEvents}
+      availableEventsAndEventGroups={
+        childOnlyEnrolments.availableEventsAndEventGroups
+      }
       occurrences={childOnlyEnrolments.occurrences}
       pastEvents={childOnlyEnrolments.pastEvents}
       childId="zzaf"
     />
   );
   expect(wrapper.find('h2').length).toBe(1);
-  expect(wrapper.find(Card).length).toBe(1);
+  expect(wrapper.find(EventCard).length).toBe(1);
 });
 
 test('Renders only past events when no other events', () => {
   const wrapper = shallow(
     <ProfileEventsList
-      availableEvents={childOnlyPastEvents.availableEvents}
+      availableEventsAndEventGroups={
+        childOnlyPastEvents.availableEventsAndEventGroups
+      }
       occurrences={childOnlyPastEvents.occurrences}
       pastEvents={childOnlyPastEvents.pastEvents}
       childId="zzaf"
     />
   );
   expect(wrapper.find('h2').length).toBe(1);
-  expect(wrapper.find(Card).length).toBe(1);
+  expect(wrapper.find(EventCard).length).toBe(1);
 });

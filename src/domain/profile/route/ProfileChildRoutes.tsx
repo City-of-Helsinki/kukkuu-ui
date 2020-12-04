@@ -5,11 +5,17 @@ import Event from '../../event/Event';
 import ProfileChildDetail from '../children/child/ProfileChildDetail';
 import EnrolPage from '../../event/enrol/EnrolPage';
 import EventIsEnrolled from '../../event/EventIsEnrolled';
+import EventGroupPage from '../../eventGroup/EventGroupPage';
 
 const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
   return (
     <Switch>
       <Route exact component={ProfileChildDetail} path={path} />
+      <Route
+        exact
+        component={EventGroupPage}
+        path={`${path}/event-group/:eventGroupId`}
+      />
       <Route exact component={Event} path={`${path}/event/:eventId`} />
       <Route exact component={Event} path={`${path}/event/:eventId/past`} />
       <Route

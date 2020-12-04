@@ -1,33 +1,64 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { QRCode } from 'react-qrcode-logo';
 
-import Card from '../../../common/components/card/Card';
 import {
-  childByIdQuery_child_availableEvents as AvailableEventsTypes,
+  childByIdQuery_child_availableEventsAndEventGroups as AvailableEventsAndEventGroups,
+  childByIdQuery_child_availableEventsAndEventGroups_edges_node as AvailableEventOrEventGroupNode,
+  childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventNode as EventNode,
+  childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventGroupNode as EventGroupNode,
   childByIdQuery_child_pastEvents as PastEventsTypes,
+  childByIdQuery_child_pastEvents_edges_node as PastEventNode,
   childByIdQuery_child_occurrences as Occurrences,
+  childByIdQuery_child_occurrences_edges_node as OccurrenceNode,
 } from '../../api/generatedTypes/childByIdQuery';
-import styles from './profileEventsList.module.scss';
+import RelayList from '../../api/relayList';
 import OccurrenceInfo from '../../event/partial/OccurrenceInfo';
-import Paragraph from '../../../common/components/paragraph/Paragraph';
+import EventCard from '../../event/eventCard/EventCard';
+import styles from './profileEventsList.module.scss';
 
-interface ProfileEventsListProps {
-  availableEvents: AvailableEventsTypes | null;
+const availableEventsAndEventGroupsList = RelayList<
+  AvailableEventOrEventGroupNode
+>();
+const occurrencesList = RelayList<OccurrenceNode>();
+const pastEventsList = RelayList<PastEventNode>();
+
+function when<R = any>(
+  model: AvailableEventOrEventGroupNode,
+  isEvent: (event: EventNode) => R,
+  isEventGroup: (eventGroup: EventGroupNode) => R
+) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // @ts-ignore
+  const isEventGroupType = model['__typename'] === 'EventGroupNode';
+
+  if (isEventGroupType) {
+    const eventGroup = model as EventGroupNode;
+
+    return isEventGroup(eventGroup);
+  }
+
+  const event = model as EventNode;
+
+  return isEvent(event);
+}
+
+type Props = {
+  availableEventsAndEventGroups: AvailableEventsAndEventGroups | null;
   childId: string;
   pastEvents: PastEventsTypes | null;
   occurrences: Occurrences | null;
-}
+};
 
 const QR_CODE_SIZE_PX = 300;
 
-const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
-  availableEvents,
+const ProfileEventsList = ({
+  availableEventsAndEventGroups: availableEventsAndEventGroupsData,
   childId,
-  occurrences,
-  pastEvents,
-}) => {
+  occurrences: occurrenceData,
+  pastEvents: pastEventsData,
+}: Props) => {
   const history = useHistory();
   const { t } = useTranslation();
 
@@ -36,91 +67,86 @@ const ProfileEventsList: FunctionComponent<ProfileEventsListProps> = ({
     history.push(`/profile/child/${childId}/event/${eventId}${pastUrl}`);
   };
 
+  const gotoEventGroupPage = (eventGroupId: string) => {
+    history.push(`/profile/child/${childId}/event-group/${eventGroupId}`);
+  };
+
   const gotoOccurrencePage = (occurrenceId: string) => {
     history.push(`/profile/child/${childId}/occurrence/${occurrenceId}`);
   };
 
+  const availableEventsAndEventGroups = availableEventsAndEventGroupsList(
+    availableEventsAndEventGroupsData
+  ).items;
+  const occurrences = occurrencesList(occurrenceData).items;
+  const pastEvents = pastEventsList(pastEventsData).items;
+
   return (
     <>
-      {availableEvents?.edges?.[0] && (
+      {availableEventsAndEventGroups.length > 0 && (
         <div className={styles.eventsList}>
           <h2>{t('profile.events.invitations.heading')}</h2>
-          {availableEvents.edges.map(
-            (eventEdge) =>
-              eventEdge?.node && (
-                <Card
-                  key={eventEdge.node.id}
-                  imageSrc={eventEdge.node.image}
-                  alt={eventEdge.node.imageAltText || ''}
-                  title={eventEdge.node.name || ''} // TODO
-                  action={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
-                  actionText={t(
-                    'profile.child.detail.availableEvent.readMoreButton'
-                  )}
-                  primaryAction={() => gotoEventPage(eventEdge.node?.id || '')} // TODO
-                  primaryActionText={t(
-                    'profile.child.detail.availableEvent.readMoreButton'
-                  )}
-                >
-                  <Paragraph text={eventEdge.node.shortDescription || ''} />
-                </Card>
-              )
-          )}
+          {availableEventsAndEventGroups.map((eventOrEventGroup) => (
+            <EventCard
+              key={eventOrEventGroup.id}
+              event={eventOrEventGroup}
+              action={() =>
+                when(
+                  eventOrEventGroup,
+                  () => gotoEventPage(eventOrEventGroup.id),
+                  () => gotoEventGroupPage(eventOrEventGroup.id)
+                )
+              }
+              actionText={when<string>(
+                eventOrEventGroup,
+                () => t('profile.child.detail.availableEvent.readMoreButton'),
+                () =>
+                  t('profile.child.detail.availableEventGroup.readMoreButton')
+              )}
+            />
+          ))}
         </div>
       )}
-      {occurrences?.edges?.[0] && (
+      {occurrences.length > 0 && (
         <div className={styles.eventsList}>
           <h2>{t('profile.events.upcoming.heading')}</h2>
-          {occurrences.edges.map(
-            (occurrenceEdge) =>
-              occurrenceEdge?.node && (
-                <Card
-                  key={occurrenceEdge.node.event.id}
-                  title={occurrenceEdge.node.event.name || ''}
-                  imageElement={
-                    <div className={styles.qrWrapper}>
-                      <QRCode
-                        quietZone={0}
-                        size={QR_CODE_SIZE_PX}
-                        value={occurrenceEdge.node.event.name || ''}
-                        ecLevel={'H'}
-                      />
-                    </div>
-                  }
-                  action={() =>
-                    gotoOccurrencePage(occurrenceEdge.node?.id || '')
-                  }
-                  actionText={t('enrollment.showEventInfo.buttonText')}
-                  focalContent={OccurrenceInfo({
-                    occurrence: occurrenceEdge.node,
-                    show: ['time', 'duration', 'venue'],
-                  })}
-                >
-                  <p>{occurrenceEdge.node.event.shortDescription}</p>
-                </Card>
-              )
-          )}
+          {occurrences.map((occurrence) => (
+            <EventCard
+              key={occurrence.event.id}
+              imageElement={
+                <div className={styles.qrWrapper}>
+                  <QRCode
+                    quietZone={0}
+                    size={QR_CODE_SIZE_PX}
+                    value={occurrence.event.name || ''}
+                    ecLevel={'H'}
+                  />
+                </div>
+              }
+              event={occurrence.event}
+              action={() => gotoOccurrencePage(occurrence.id)}
+              actionText={t('enrollment.showEventInfo.buttonText')}
+              primaryAction="hidden"
+              focalContent={OccurrenceInfo({
+                occurrence,
+                show: ['time', 'duration', 'venue'],
+              })}
+            />
+          ))}
         </div>
       )}
-      {pastEvents?.edges?.[0] && (
+      {pastEvents.length > 0 && (
         <div className={styles.eventsList}>
           <h2>{t('profile.events.past.heading')}</h2>
-          {pastEvents.edges.map(
-            (pastEventEdge) =>
-              pastEventEdge?.node && (
-                <Card
-                  key={pastEventEdge.node.id}
-                  imageSrc={pastEventEdge.node.image}
-                  title={pastEventEdge.node.name || ''}
-                  action={() =>
-                    gotoEventPage(pastEventEdge.node?.id || '', true)
-                  }
-                  actionText={t('enrollment.showEventInfo.buttonText')}
-                >
-                  <p>{pastEventEdge.node.shortDescription}</p>
-                </Card>
-              )
-          )}
+          {pastEvents.map((pastEvent) => (
+            <EventCard
+              key={pastEvent.id}
+              event={pastEvent}
+              action={() => gotoEventPage(pastEvent.id, true)}
+              actionText={t('enrollment.showEventInfo.buttonText')}
+              primaryAction="hidden"
+            />
+          ))}
         </div>
       )}
     </>

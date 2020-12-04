@@ -39,8 +39,6 @@ fixture`Children feature`
   .page(route())
   .beforeEach(async (t) => {
     await login(t);
-    // Wait in order to allow authentication to complete
-    await t.wait(2500); // 2s
 
     t.ctx.addChild = buildAddChild();
     t.ctx.editChild = buildEditChild();

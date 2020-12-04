@@ -1,13 +1,6 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    { "language": "typescript", "autoFix": true },
-    { "language": "typescriptreact", "autoFix": true }
-  ],
   "editor.formatOnSave": true,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.autoIndent": "none",
   "editor.tabSize": 2,
   "editor.formatOnType": true
 }

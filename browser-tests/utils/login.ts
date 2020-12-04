@@ -9,4 +9,6 @@ export const login = async (t: TestController) => {
     .typeText(ssoLogin.username, testUsername())
     .typeText(ssoLogin.password, testUserPassword())
     .click(ssoLogin.loginButton);
+
+  await t.wait(2500); // 2,5s
 };

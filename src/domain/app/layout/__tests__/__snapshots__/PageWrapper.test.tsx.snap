@@ -4,38 +4,12 @@ exports[`renders snapshot correctly 1`] = `
 <div
   className="pageWrapper"
 >
-  <Helmet
-    defer={true}
-    encodeSpecialCharacters={true}
-  >
-    <html
-      lang="fi"
-    />
-    <title>
-      Kulttuurin kummilapset
-    </title>
-    <meta
-      content="Kaikki vuodesta 2020 eteenpäin syntyvät helsinkiläiset lapset kutsutaan kulttuurin kummilapsiksi. Kummilapset saavat kutsun vuosittain kahteen tapahtumaan, kunnes lapsi aloittaa koulun. Tapahtumat ovat maksuttomia."
-      name="description"
-    />
-    <link
-      href="/fi//"
-      hrefLang="fi"
-      rel="alternate"
-    />
-    <link
-      href="/sv//"
-      hrefLang="sv"
-      rel="alternate"
-    />
-    <link
-      href="/en//"
-      hrefLang="en"
-      rel="alternate"
-    />
-  </Helmet>
+  <PageMeta
+    description="homePage.hero.descriptionText"
+    title="appName"
+  />
   <Container
-    className="defaultContainer"
+    className=""
   />
 </div>
 `;

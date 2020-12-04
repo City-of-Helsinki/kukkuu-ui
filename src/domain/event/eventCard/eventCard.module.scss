@@ -1,0 +1,15 @@
+@import 'styles/variables';
+
+.placeholderImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  background-color: $color-summer;
+
+  & > img {
+    max-width: 9rem;
+  }
+}

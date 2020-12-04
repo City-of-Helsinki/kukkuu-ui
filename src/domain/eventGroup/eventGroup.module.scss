@@ -1,0 +1,57 @@
+@import 'styles/variables';
+@import 'styles/layout';
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.eventGroupDecoration {
+  max-width: 100%;
+  margin-top: $spacing-xs;
+  z-index: 10;
+  align-self: center;
+  margin-bottom: -8%;
+
+  @include respond-above(md) {
+    max-height: 18rem;
+    margin-bottom: -67px;
+  }
+}
+
+.eventGroupDetails {
+  padding: $spacing-layout-s $spacing-layout-xs;
+  margin-bottom: $spacing-layout-s;
+
+  background: $color-white;
+
+  @include respond-above(md) {
+    padding: $spacing-layout-m $spacing-layout-xl;
+  }
+
+  .title {
+    margin-top: 0;
+
+    font-size: $fontsize-heading-l;
+
+    @include respond-above(md) {
+      font-size: $fontsize-heading-xl;
+    }
+  }
+
+  .description {
+    margin-bottom: 0;
+
+    font-size: $fontsize-body-l;
+    font-weight: 300;
+    line-height: $lineheight-l;
+  }
+}
+
+.eventList {
+  margin: 0 $spacing-xs;
+
+  @include respond-above(md) {
+    margin: 0;
+  }
+}

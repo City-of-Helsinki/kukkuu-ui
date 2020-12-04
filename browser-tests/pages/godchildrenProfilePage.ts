@@ -51,11 +51,14 @@ export const addChildModal = {
 
 export const route = () => `${envUrl()}/fi/profile`;
 
-export async function selectChild(t, childName: string | RegExp) {
+export async function selectChild(
+  t: TestController,
+  childName: string | RegExp
+) {
   await t.click(godchildrenProfilePage.child(childName));
 }
 
-export async function deleteChild(t, childName: string) {
+export async function deleteChild(t: TestController, childName: string) {
   await selectChild(t, childName);
   await childProfilePageDeleteChild(t);
 }

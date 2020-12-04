@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/testcafe';
 
 export const login = {
-  loginButton: screen.getByText('Kirjaudu sisään'),
+  loginButton: screen.getAllByText('Kirjaudu sisään').nth(0),
 };

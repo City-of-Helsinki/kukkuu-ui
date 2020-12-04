@@ -35,15 +35,24 @@ export const childByIdQuery = gql`
           }
         }
       }
-      availableEvents {
+      availableEventsAndEventGroups {
         edges {
           node {
-            id
-            name
-            shortDescription
-            image
-            imageAltText
-            participantsPerInvite
+            ... on EventNode {
+              id
+              name
+              shortDescription
+              image
+              imageAltText
+              participantsPerInvite
+            }
+            ... on EventGroupNode {
+              id
+              name
+              shortDescription
+              image
+              imageAltText
+            }
           }
         }
       }

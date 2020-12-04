@@ -1,5 +1,6 @@
 import { TFunction } from 'i18next';
 import omit from 'lodash/omit';
+import pick from 'lodash/pick';
 
 import { RelationshipTypeEnum } from '../api/generatedTypes/globalTypes';
 import { Child, UpdateChild, AddChild } from './types/ChildTypes';
@@ -75,7 +76,16 @@ export const getChildFormModalBirthdate = (birthdate?: string) => {
 };
 
 export const getChildFormModalValues = (child: Child) => {
-  return Object.assign({}, child, {
+  const pickedChildFields = pick(child, [
+    'firstName',
+    'lastName',
+    'homeCity',
+    'postalCode',
+    'relationship',
+  ]);
+
+  return {
+    ...pickedChildFields,
     birthdate: getChildFormModalBirthdate(child.birthdate),
-  });
+  };
 };

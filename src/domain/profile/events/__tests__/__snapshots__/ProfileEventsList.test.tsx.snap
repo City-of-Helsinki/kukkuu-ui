@@ -8,20 +8,25 @@ exports[`Renders snapshot correctly 1`] = `
     <h2>
       Tapahtumakutsut
     </h2>
-    <Card
+    <EventCard
       action={[Function]}
       actionText="Lue lisää ja ilmoittaudu tapahtumaan"
-      alt="huhuu"
-      imageSrc="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+      event={
+        Object {
+          "duration": 60,
+          "id": "RXZlbnROb2RlOjE=",
+          "image": "http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png",
+          "imageAltText": "huhuu",
+          "name": "pentti",
+          "occurrences": Object {
+            "edges": Array [],
+          },
+          "participantsPerInvite": "CHILD_AND_GUARDIAN",
+          "shortDescription": "eventti",
+        }
+      }
       key="RXZlbnROb2RlOjE="
-      primaryAction={[Function]}
-      primaryActionText="Lue lisää ja ilmoittaudu tapahtumaan"
-      title="pentti"
-    >
-      <Paragraph
-        text="eventti"
-      />
-    </Card>
+    />
   </div>
   <div
     className="eventsList"
@@ -29,9 +34,23 @@ exports[`Renders snapshot correctly 1`] = `
     <h2>
       Tulevat tapahtumat
     </h2>
-    <Card
+    <EventCard
       action={[Function]}
       actionText="Näytä tapahtuman tiedot"
+      event={
+        Object {
+          "duration": 60,
+          "id": "RXZlbnROb2RlOjE=",
+          "image": "http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png",
+          "imageAltText": "huhuu",
+          "name": "pentti",
+          "occurrences": Object {
+            "edges": Array [],
+          },
+          "participantsPerInvite": "CHILD_AND_GUARDIAN",
+          "shortDescription": "eventti",
+        }
+      }
       focalContent={
         <div
           className="row"
@@ -74,12 +93,8 @@ exports[`Renders snapshot correctly 1`] = `
         </div>
       }
       key="RXZlbnROb2RlOjE="
-      title="pentti"
-    >
-      <p>
-        eventti
-      </p>
-    </Card>
+      primaryAction="hidden"
+    />
   </div>
   <div
     className="eventsList"
@@ -87,17 +102,26 @@ exports[`Renders snapshot correctly 1`] = `
     <h2>
       Menneet tapahtumat
     </h2>
-    <Card
+    <EventCard
       action={[Function]}
       actionText="Näytä tapahtuman tiedot"
-      imageSrc="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+      event={
+        Object {
+          "duration": 60,
+          "id": "RXZlbnROb2RlOjE=",
+          "image": "http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png",
+          "imageAltText": "huhuu",
+          "name": "pentti",
+          "occurrences": Object {
+            "edges": Array [],
+          },
+          "participantsPerInvite": "CHILD_AND_GUARDIAN",
+          "shortDescription": "eventti",
+        }
+      }
       key="RXZlbnROb2RlOjE="
-      title="pentti"
-    >
-      <p>
-        eventti
-      </p>
-    </Card>
+      primaryAction="hidden"
+    />
   </div>
 </Fragment>
 `;

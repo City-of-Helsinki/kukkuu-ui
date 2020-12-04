@@ -58,5 +58,26 @@ describe('ChildUtil', () => {
         year: 2020,
       });
     });
+
+    test('does not return fields which are irrelevant', () => {
+      const formModalChild = getChildFormModalValues({
+        ...defaultChild,
+        availableEventsAndEventGroups: {
+          edges: [],
+        },
+      });
+
+      [
+        'firstName',
+        'lastName',
+        'homeCity',
+        'postalCode',
+        'relationship',
+      ].forEach((field) => {
+        expect(Object.keys(formModalChild).includes(field));
+      });
+
+      expect(formModalChild.availableEventsAndEventGroups).toBeFalsy();
+    });
   });
 });

@@ -80,7 +80,7 @@
     "update-translations": "fetch-translations 18dpV7aA-t_6zMRUO5hP7DMfx0q4hdu-AlLpRjkB_0zI -l en,fi,sv -o src/common/translation/i18n",
     "test": "TZ=UTC react-scripts test --env=jest-environment-jsdom-fourteen",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live",
+    "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --lang=fi-FI",
     "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" browser-tests/ -s takeOnFails=true --lang=fi-FI"
   },
   "eslintConfig": {

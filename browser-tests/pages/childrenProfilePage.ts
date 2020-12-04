@@ -6,6 +6,9 @@ export const childrenProfilePage = {
     name: 'Muokkaa tietoja',
   }),
   childName: Selector('h1'),
+  selectEventGroupButtons: screen.getAllByRole('button', {
+    name: 'Selaa tapahtumia',
+  }),
 };
 
 export const editChildModal = {

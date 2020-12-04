@@ -67,7 +67,7 @@ export interface childByIdQuery_child_occurrences {
   edges: (childByIdQuery_child_occurrences_edges | null)[];
 }
 
-export interface childByIdQuery_child_availableEvents_edges_node {
+export interface childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventNode {
   /**
    * The ID of the object.
    */
@@ -79,18 +79,31 @@ export interface childByIdQuery_child_availableEvents_edges_node {
   participantsPerInvite: EventParticipantsPerInvite;
 }
 
-export interface childByIdQuery_child_availableEvents_edges {
+export interface childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventGroupNode {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+  shortDescription: string | null;
+  image: string;
+  imageAltText: string | null;
+}
+
+export type childByIdQuery_child_availableEventsAndEventGroups_edges_node = childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventNode | childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventGroupNode;
+
+export interface childByIdQuery_child_availableEventsAndEventGroups_edges {
   /**
    * The item at the end of the edge
    */
-  node: childByIdQuery_child_availableEvents_edges_node | null;
+  node: childByIdQuery_child_availableEventsAndEventGroups_edges_node | null;
 }
 
-export interface childByIdQuery_child_availableEvents {
+export interface childByIdQuery_child_availableEventsAndEventGroups {
   /**
    * Contains the nodes in this connection.
    */
-  edges: (childByIdQuery_child_availableEvents_edges | null)[];
+  edges: (childByIdQuery_child_availableEventsAndEventGroups_edges | null)[];
 }
 
 export interface childByIdQuery_child_pastEvents_edges_node_occurrences_edges_node {
@@ -175,7 +188,7 @@ export interface childByIdQuery_child {
   postalCode: string;
   project: childByIdQuery_child_project;
   occurrences: childByIdQuery_child_occurrences;
-  availableEvents: childByIdQuery_child_availableEvents | null;
+  availableEventsAndEventGroups: childByIdQuery_child_availableEventsAndEventGroups | null;
   pastEvents: childByIdQuery_child_pastEvents | null;
   relationships: childByIdQuery_child_relationships;
 }
