@@ -24,10 +24,6 @@ const PageMeta = ({
       ? t(description)
       : t('homePage.hero.descriptionText');
 
-  // TODO: Switch to updateLocaleParam() from RouteUtils
-  // https://helsinkisolutionoffice.atlassian.net/browse/KK-223
-
-  // When fixing this, ensure that PageWrapper.test.tsx.snap has sensible href links.
   const path = window.location.pathname.replace(`/${lang}/`, '');
 
   const { trackPageView } = useMatomo();
