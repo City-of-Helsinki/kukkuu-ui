@@ -16,9 +16,7 @@ const PageContentWithHero = ({ children, backTo }: Props) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.heroBackground}>
-        <img src="" alt="" />
-      </div>
+      <div className={styles.heroBackground}></div>
       <main className={styles.main}>
         <div className={styles.backButtonInnerWrapper}>
           {backTo && (
