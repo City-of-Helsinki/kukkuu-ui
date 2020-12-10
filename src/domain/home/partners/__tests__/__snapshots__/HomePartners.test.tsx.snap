@@ -75,6 +75,10 @@ exports[`renders snapshot correctly 1`] = `
               "name": "hurjaruuth",
             },
             Object {
+              "icon": "Kaapeli.png",
+              "name": "kaapeli",
+            },
+            Object {
               "altLangIcons": Object {
                 "en": "Finnish_National_Gallery_Logo_EN.svg",
                 "sv": "Finnish_National_Gallery_Logo_SV.svg",

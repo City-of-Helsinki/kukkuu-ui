@@ -11,6 +11,7 @@ import hktIcon from '../../../../assets/icons/partners/hkt.png';
 import hotellijaravintolamuseoIcon from '../../../../assets/icons/partners/hotellijaravintolamuseo.png';
 import hurjaruuthIcon from '../../../../assets/icons/partners/hurjaruuth.png';
 import jaesIcon from '../../../../assets/icons/partners/jaes.png';
+import kaapeliIcon from '../../../../assets/icons/partners/Kaapeli.png';
 import finnishNationalGalleryIconEN from '../../../../assets/icons/partners/Finnish_National_Gallery_Logo_EN.svg';
 import finnishNationalGalleryIconFI from '../../../../assets/icons/partners/Finnish_National_Gallery_Logo_FI.svg';
 import finnishNationalGalleryIconSV from '../../../../assets/icons/partners/Finnish_National_Gallery_Logo_SV.svg';
@@ -53,6 +54,10 @@ export const partnerList: Partner[] = [
   { name: 'hkt', icon: hktIcon },
   { name: 'hotellijaravintolamuseo', icon: hotellijaravintolamuseoIcon },
   { name: 'hurjaruuth', icon: hurjaruuthIcon },
+  {
+    name: 'kaapeli',
+    icon: kaapeliIcon,
+  },
   {
     name: 'kansallisgalleria',
     icon: finnishNationalGalleryIconFI,

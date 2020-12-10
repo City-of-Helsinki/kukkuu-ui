@@ -84,87 +84,93 @@ exports[`renders snapshot correctly 2`] = `
     src="hurjaruuth.png"
   />
   <Icon
-    alt="home.partners.partner.kansallisgalleria"
+    alt="home.partners.partner.kaapeli"
     className="icon"
     key="10"
+    src="Kaapeli.png"
+  />
+  <Icon
+    alt="home.partners.partner.kansallisgalleria"
+    className="icon"
+    key="11"
     src="Finnish_National_Gallery_Logo_FI.svg"
   />
   <Icon
     alt="Kansallismuseo"
     className="icon"
-    key="11"
+    key="12"
     src="kansallismuseo.png"
   />
   <Icon
     alt="Kansallisteatteri"
     className="icon"
-    key="12"
+    key="13"
     src="kansallisteatteri.png"
   />
   <Icon
     alt="Kansallinen audiovisuaalinen instituutti"
     className="icon"
-    key="13"
+    key="14"
     src="kavi.png"
   />
   <Icon
     alt="Suomen Kulttuuriperintökasvatuksen seura"
     className="icon"
-    key="14"
+    key="15"
     src="kulttuuriperintokasvatus.png"
   />
   <Icon
     alt="Arkkitehtuurimuseo"
     className="icon"
-    key="15"
+    key="16"
     src="mfa.png"
   />
   <Icon
     alt="Nukketeatteri Sampo"
     className="icon"
-    key="16"
+    key="17"
     src="nukketeatterisampo.png"
   />
   <Icon
     alt="Suomen kansallisooppera ja -baletti"
     className="icon"
-    key="17"
+    key="18"
     src="oopperabaletti.png"
   />
   <Icon
     alt="Q-teatteri"
     className="icon"
-    key="18"
+    key="19"
     src="qteatteri.png"
   />
   <Icon
     alt="Svenska Teatern"
     className="icon"
-    key="19"
+    key="20"
     src="svenskateatern.png"
   />
   <Icon
     alt="Tanssin talo"
     className="icon"
-    key="20"
+    key="21"
     src="tanssintalo.png"
   />
   <Icon
     alt="Teatteri ILMI Ö"
     className="icon"
-    key="21"
+    key="22"
     src="teatteriilmio.png"
   />
   <Icon
     alt="Teatterimuseo"
     className="icon"
-    key="22"
+    key="23"
     src="teatterimuseo.png"
   />
   <Icon
     alt="Suomen valokuvataiteen museo"
     className="icon"
-    key="23"
+    key="24"
     src="valokuvataiteenmuseo.png"
   />
 </div>

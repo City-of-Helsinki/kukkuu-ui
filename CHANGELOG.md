@@ -7,6 +7,7 @@
 - More context information to "No matching state found" error
 - Temporary link for giving feedback
 - Support for event groups
+- Logo of Kaapeli to the home page
 
 ### Changed
 
