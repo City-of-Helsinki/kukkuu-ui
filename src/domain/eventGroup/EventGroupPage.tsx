@@ -15,6 +15,7 @@ const EventGroupPage = () => {
   const query = useQuery(eventGroupQuery, {
     variables: {
       id: eventGroupId,
+      childId,
     },
   });
 

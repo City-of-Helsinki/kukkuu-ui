@@ -1,13 +1,13 @@
 import { gql } from '@apollo/client';
 
 const eventGroupQuery = gql`
-  query eventGroupQuery($id: ID!) {
+  query eventGroupQuery($id: ID!, $childId: String!) {
     eventGroup(id: $id) {
       id
       name
       shortDescription
       description
-      events {
+      events(availableForChild: $childId) {
         edges {
           node {
             id

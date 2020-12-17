@@ -52,4 +52,5 @@ export interface eventGroupQuery {
 
 export interface eventGroupQueryVariables {
   id: string;
+  childId: string;
 }
