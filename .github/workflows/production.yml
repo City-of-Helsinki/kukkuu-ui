@@ -1,8 +1,8 @@
 name: Build & Production
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'release-*'
 
 env:
   CONTAINER_REGISTRY: ghcr.io

@@ -2,6 +2,10 @@
 
 # [Unreleased]
 
+### Changed
+
+- Use GitHub flow instead of GitFlow
+
 # 1.6.0
 
 ### Added

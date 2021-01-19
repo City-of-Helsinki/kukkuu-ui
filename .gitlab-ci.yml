@@ -28,7 +28,7 @@ build-staging:
     DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.test.kuva.hel.ninja/graphql'
   only:
     refs:
-      - develop
+      - master
 
 build-production:
   extends: .build
@@ -39,7 +39,7 @@ build-production:
     DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.test.kuva.hel.ninja/graphql'
   only:
     refs:
-      - master
+      - /^release-.*$/
 
 review:
   variables:
@@ -49,6 +49,3 @@ review:
 staging:
   variables:
     DOCKER_IMAGE_NAME: '$CI_PROJECT_NAME-staging'
-  only:
-    refs:
-      - develop
