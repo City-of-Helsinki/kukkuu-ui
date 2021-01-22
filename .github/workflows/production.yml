@@ -26,5 +26,5 @@ jobs:
         env:
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-production
           DOCKER_BUILD_ARG_REACT_APP_ENVIRONMENT: 'production'
-          DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.test.kuva.hel.ninja'
-          DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.test.kuva.hel.ninja/graphql'
+          DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.newtest.kuva.hel.ninja'
+          DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.newtest.kuva.hel.ninja/graphql'

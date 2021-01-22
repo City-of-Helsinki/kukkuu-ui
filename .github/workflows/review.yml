@@ -19,13 +19,16 @@ jobs:
     name: Build
     steps:
       - uses: actions/checkout@v2
+      - uses: andersinno/kolga-setup-action@v2
+
       - name: Build
         uses: andersinno/kolga-build-action@v2
         env:
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-review
           DOCKER_BUILD_ARG_REACT_APP_ENVIRONMENT: 'review'
-          DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.test.kuva.hel.ninja'
-          DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.test.kuva.hel.ninja/graphql'
+          DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.${{ env.BASE_DOMAIN }}'
+          DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.${{ env.BASE_DOMAIN }}/graphql'
+          DOCKER_BUILD_ARG_REACT_APP_OIDC_CLIENT_ID: ${{ env.K8S_NAMESPACE }}
 
   review:
     runs-on: ubuntu-latest
@@ -40,3 +43,10 @@ jobs:
         env:
           ENVIRONMENT_URL: https://${{ env.K8S_NAMESPACE }}.${{ env.BASE_DOMAIN }}
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-review
+
+      - name: Setup Tunnistamo
+        uses: City-of-Helsinki/setup-tunnistamo-action@main
+        with:
+          kubeconfig_raw: ${{ env.KUBECONFIG_RAW}}
+          review_namespace: ${{ env.K8S_NAMESPACE }}
+          api_scope: https://api.hel.fi/auth/kukkuu
