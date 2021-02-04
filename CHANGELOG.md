@@ -2,9 +2,15 @@
 
 # [Unreleased]
 
+# 1.6.1
+
 ### Changed
 
-- Use GitHub flow instead of GitFlow
+- [#341](https://github.com/City-of-Helsinki/kukkuu-ui/pull/341) Use GitHub flow instead of GitFlow
+
+### Fixed
+
+- [#345](https://github.com/City-of-Helsinki/kukkuu-ui/pull/345) Privacy policy link
 
 # 1.6.0
 
