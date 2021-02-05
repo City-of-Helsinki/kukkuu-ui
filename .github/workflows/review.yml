@@ -33,7 +33,7 @@ jobs:
   review:
     runs-on: ubuntu-latest
     needs: build
-    name: Review
+    name: Review and Accept
     steps:
       - uses: actions/checkout@v2
       - uses: andersinno/kolga-setup-action@v2
@@ -50,3 +50,45 @@ jobs:
           kubeconfig_raw: ${{ env.KUBECONFIG_RAW}}
           review_namespace: ${{ env.K8S_NAMESPACE }}
           api_scope: https://api.hel.fi/auth/kukkuu
+          login_methods: github helusername
+
+      - name: Setup kubectl
+        run: |
+          echo "${{ env.KUBECONFIG_RAW }}" > $(pwd)/kubeconfig
+          echo "KUBECONFIG=$(pwd)/kubeconfig" >> $GITHUB_ENV
+        shell: bash
+      - name: Get Review Deploy URL
+        id: deploy-url
+        run: |
+          DEPLOY_URL=$(kubectl get ingress -n "${{ env.K8S_NAMESPACE }}" -o jsonpath='{.items[0].spec.rules[0].host}')
+          echo "BROWSER_TESTS_ENV_URL=https://$DEPLOY_URL" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 12.x
+      - name: Create yarn cache directory path
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install dependencies
+        run: yarn --prefer-offline --frozen-lockfile --check-files
+
+      - name: Run Acceptance Tests
+        run: yarn test:browser:ci
+        env:
+          BROWSER_TESTS_USER_NAME: ${{ secrets.BROWSER_TESTS_USER_NAME }}
+          BROWSER_TESTS_USER_PASSWORD: ${{ secrets.BROWSER_TESTS_USER_PASSWORD }}
+      - name: Upload screenshots of failed tests
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: screenshots
+          path: screenshots/
