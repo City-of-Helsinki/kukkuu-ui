@@ -5,4 +5,6 @@ export const ssoLogin = {
   username: screen.getByLabelText('Email'),
   password: screen.getByLabelText('Password'),
   loginButton: screen.getByDisplayValue('Log In'),
+  permissionPage: screen.getByText('Permission request'),
+  givePermissionButton: screen.getByDisplayValue('Allow'),
 };
