@@ -1,6 +1,5 @@
 [![codecov](https://codecov.io/gh/City-of-Helsinki/kukkuu-ui/branch/develop/graph/badge.svg)](https://codecov.io/gh/City-of-Helsinki/kukkuu-ui)
-![Build status](https://github.com/City-of-Helsinki/kukkuu-ui/workflows/CI/badge.svg?branch=develop)
-![Browser tests](https://github.com/City-of-Helsinki/kukkuu-ui/workflows/Browser%20tests/badge.svg?branch=develop)
+![Build & Staging](https://github.com/City-of-Helsinki/kukkuu-ui/workflows/Build%20&%20Staging%20&%20Accept/badge.svg)
 
 # UI for Kulttuurin kummilapset / Culture Kids
 
@@ -99,7 +98,7 @@ This command runs the browser tests.
 
 The command should warn when some of the necessary environment is missing. You should provide at least the following: `BROWSER_TESTS_USER_NAME`, `BROWSER_TESTS_USER_PASSWORD` and `BROWSER_ENV_URL`. The two first you can find from from the secrets repo within the file `kukkuu-admin_e2e-test-keys.txt`.
 
-Browser tests are ran with GitHub actions once per weekday with the `yarn test:browser:ci` command which runs the tests in headless mode.
+Browser tests are ran with GitHub actions on new PRs and merges into master with the `yarn test:browser:ci` command which runs the tests in headless mode.
 
 ## Docker
 
