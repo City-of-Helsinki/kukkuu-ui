@@ -2,6 +2,10 @@
 
 # [Unreleased]
 
+### Changed
+
+- Into using a translation sheet that is managed by executive office
+
 # 1.6.1
 
 ### Changed
