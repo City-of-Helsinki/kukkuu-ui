@@ -29,6 +29,7 @@ import ProfileRoute from '../profile/route/ProfileRoute';
 import EventRoute from '../event/route/EventRoute';
 import SessionAlert from './sessionAlert/SessionAlert';
 import useHashAnchorLinks from './useHashAnchorLinks';
+import AppTitleAnnouncer from './AppTitleAnnouncer';
 
 const App = () => {
   useHashAnchorLinks();
@@ -61,49 +62,52 @@ const App = () => {
   }, [mustRenewApiToken, dispatch, user]);
 
   return (
-    <LoadingSpinner isLoading={isLoadingUser}>
-      {isSessionPromptOpen && <SessionAlert isOpen={isSessionPromptOpen} />}
-      <Switch>
-        <Redirect exact path={`/${locale}/`} to={`/${locale}/home`} />
-        <Route exact path={`/${locale}/home`} component={Home} />
-        <Route
-          exact
-          path={`/${locale}/registration/not-eligible`}
-          component={NotEligible}
-        />
-        <Route
-          exact
-          path={`/${locale}/wrong-login-method`}
-          component={WrongLoginMethod}
-        />
-        <Route
-          exact
-          path={`/${locale}/accessibility`}
-          component={AccessibilityStatement}
-        />
-        <Route exact path={`/${locale}/terms`} component={TermsOfService} />
-        {!userHasProfile && (
-          <PrivateRoute exact path={`/${locale}/registration/form`}>
-            <RegistrationForm />
+    <>
+      <AppTitleAnnouncer />
+      <LoadingSpinner isLoading={isLoadingUser}>
+        {isSessionPromptOpen && <SessionAlert isOpen={isSessionPromptOpen} />}
+        <Switch>
+          <Redirect exact path={`/${locale}/`} to={`/${locale}/home`} />
+          <Route exact path={`/${locale}/home`} component={Home} />
+          <Route
+            exact
+            path={`/${locale}/registration/not-eligible`}
+            component={NotEligible}
+          />
+          <Route
+            exact
+            path={`/${locale}/wrong-login-method`}
+            component={WrongLoginMethod}
+          />
+          <Route
+            exact
+            path={`/${locale}/accessibility`}
+            component={AccessibilityStatement}
+          />
+          <Route exact path={`/${locale}/terms`} component={TermsOfService} />
+          {!userHasProfile && (
+            <PrivateRoute exact path={`/${locale}/registration/form`}>
+              <RegistrationForm />
+            </PrivateRoute>
+          )}
+          <PrivateRoute exact path={`/${locale}/registration/success`}>
+            <Welcome />
           </PrivateRoute>
-        )}
-        <PrivateRoute exact path={`/${locale}/registration/success`}>
-          <Welcome />
-        </PrivateRoute>
 
-        <PrivateRoute path={`/${locale}/profile`}>
-          <ProfileRoute />
-        </PrivateRoute>
+          <PrivateRoute path={`/${locale}/profile`}>
+            <ProfileRoute />
+          </PrivateRoute>
 
-        <PrivateRoute path={`/${locale}/event`}>
-          <EventRoute />
-        </PrivateRoute>
+          <PrivateRoute path={`/${locale}/event`}>
+            <EventRoute />
+          </PrivateRoute>
 
-        {userHasProfile && <Redirect to={`/${locale}/profile`} />}
+          {userHasProfile && <Redirect to={`/${locale}/profile`} />}
 
-        <Route component={NotFound} />
-      </Switch>
-    </LoadingSpinner>
+          <Route component={NotFound} />
+        </Switch>
+      </LoadingSpinner>
+    </>
   );
 };
 

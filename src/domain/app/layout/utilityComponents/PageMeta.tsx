@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
-import useAriaLive from '../../../../common/AriaLive/useAriaLive';
 import { getCurrentLanguage } from '../../../../common/translation/TranslationUtils';
 
 type Props = {
@@ -16,7 +15,6 @@ const PageMeta = ({
   description = 'homePage.hero.descriptionText',
 }: Props) => {
   const { i18n, t } = useTranslation();
-  const { sendMessage } = useAriaLive();
   const lang = getCurrentLanguage(i18n);
 
   const translatedTitle =
@@ -35,10 +33,6 @@ const PageMeta = ({
       href: window.location.href,
     });
   }, [trackPageView, translatedTitle]);
-
-  useEffect(() => {
-    sendMessage(translatedTitle);
-  }, [sendMessage, translatedTitle]);
 
   return (
     <Helmet>
