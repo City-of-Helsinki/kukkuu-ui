@@ -31,8 +31,10 @@ jobs:
         env:
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-production
           DOCKER_BUILD_ARG_REACT_APP_ENVIRONMENT: 'production'
-          DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.newtest.kuva.hel.ninja'
-          DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.newtest.kuva.hel.ninja/graphql'
+          DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://api.hel.fi/sso'
+          DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.api.hel.fi/graphql'
+          DOCKER_BUILD_ARG_REACT_APP_OIDC_CLIENT_ID: 'https://id.hel.fi/apps/kukkuu-ui-prod'
+          DOCKER_BUILD_ARG_REACT_APP_OIDC_SCOPE: 'openid profile https://api.hel.fi/auth/kukkuuapiprod'
 
   production:
     runs-on: ubuntu-latest
