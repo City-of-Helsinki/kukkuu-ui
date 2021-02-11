@@ -20,6 +20,7 @@ import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import OidcCallback from '../auth/OidcCallback';
 import { ScrollToTop } from '../../common/route/RouteUtils';
+import AriaLiveProvider from '../../common/AriaLive/AriaLiveProvider';
 
 const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})`;
 
@@ -65,24 +66,26 @@ export const AppRoutes: FunctionComponent = () => {
 
 const BrowserApp: FunctionComponent = () => {
   return (
-    <Provider store={store}>
-      <PersistGate
-        loading={<LoadingSpinner isLoading={true} />}
-        persistor={persistor}
-      >
-        <OidcProvider store={store} userManager={userManager}>
-          <ApolloProvider client={graphqlClient}>
-            <BrowserRouter>
-              <ScrollToTop />
-              <MatomoProvider value={instance}>
-                <AppRoutes />
-              </MatomoProvider>
-            </BrowserRouter>
-          </ApolloProvider>
-        </OidcProvider>
-      </PersistGate>
-      <ToastContainer />
-    </Provider>
+    <AriaLiveProvider>
+      <Provider store={store}>
+        <PersistGate
+          loading={<LoadingSpinner isLoading={true} />}
+          persistor={persistor}
+        >
+          <OidcProvider store={store} userManager={userManager}>
+            <ApolloProvider client={graphqlClient}>
+              <BrowserRouter>
+                <ScrollToTop />
+                <MatomoProvider value={instance}>
+                  <AppRoutes />
+                </MatomoProvider>
+              </BrowserRouter>
+            </ApolloProvider>
+          </OidcProvider>
+        </PersistGate>
+        <ToastContainer />
+      </Provider>
+    </AriaLiveProvider>
   );
 };
 
