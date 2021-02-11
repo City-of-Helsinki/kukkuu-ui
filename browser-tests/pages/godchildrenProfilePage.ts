@@ -40,7 +40,7 @@ export const addChildModal = {
   birthDayMonthInput: screen.getByLabelText('kk'),
   birthDayYearInput: screen.getByLabelText('vuosi'),
   cityInput: screen.getByLabelText('Lapsen kotipaikkakunta*'),
-  postalCodeInput: screen.getByLabelText('Lapsen postinumero*'),
+  postalCodeInput: screen.getByLabelText('Postinumero*'),
   firstNameInput: screen.getByLabelText('Lapsen etunimi'),
   lastNameInput: screen.getByLabelText('Lapsen sukunimi'),
   relationshipInput: screen.getByRole('button', {

@@ -169,7 +169,7 @@
     },
     "enroll": {
       "error": {
-        "capacityHasChanged": "Evenemangets kapacitet har förändrats. Uppdatera din webbläsare.",
+        "capacityHasChanged": "Eventens tillgängliga kapacitet har ändrats. Uppdatera din webbläsare.",
         "childAlreadyJoined": "Detta barn har redan anmält sig till detta evenemang."
       },
       "buttonText": "Anmäl dig till evenemanget"
@@ -516,8 +516,8 @@
             "error": {
               "length": "Postnummer måste vara 5 tecken långt"
             },
-            "label": "Barnets postnummer",
-            "placeholder": "Ange barnets postnummer"
+            "label": "Postnummer",
+            "placeholder": "Ange postnummer"
           }
         },
         "relationship": {

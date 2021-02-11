@@ -5,6 +5,7 @@
 ### Changed
 
 - Into using a translation sheet that is managed by executive office
+- Adjusted some translations
 
 # 1.6.1
 

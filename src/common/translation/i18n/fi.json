@@ -278,7 +278,7 @@
         "en": "Englanti",
         "es": "Espanja",
         "et": "Viro",
-        "fas": "Farsi",
+        "fas": "Persia",
         "fi": "Suomi",
         "fr": "Ranska",
         "npi": "Nepali",
@@ -516,8 +516,8 @@
             "error": {
               "length": "Postinumeron täytyy olla 5 merkkiä pitkä"
             },
-            "label": "Lapsen postinumero",
-            "placeholder": "Lisää lapsen postinumero"
+            "label": "Postinumero",
+            "placeholder": "Lisää postinumero"
           }
         },
         "relationship": {

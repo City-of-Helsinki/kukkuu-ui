@@ -278,7 +278,7 @@
         "en": "English",
         "es": "Spanish",
         "et": "Estonian",
-        "fas": "Farsi",
+        "fas": "Persian",
         "fi": "Finnish",
         "fr": "French",
         "npi": "Nepalese",
@@ -516,8 +516,8 @@
             "error": {
               "length": "Postal code has to be 5 characters long"
             },
-            "label": "Child's postal code",
-            "placeholder": "Enter child's postal code"
+            "label": "Postal code",
+            "placeholder": "Enter postal code"
           }
         },
         "relationship": {
@@ -546,7 +546,7 @@
         },
         "language": {
           "input": {
-            "label": "Preferred language",
+            "label": "Language of the service",
             "placeholder": "Enter guardian’s preferred language"
           }
         },
