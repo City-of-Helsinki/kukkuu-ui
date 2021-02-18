@@ -4,7 +4,8 @@ import {
   render,
   fireEvent,
   waitFor,
-  selectHdsButtonByText,
+  selectAllHdsButtonByText,
+  screen,
 } from '../../../common/test/testingLibraryUtils';
 import initModal from '../../../common/test/initModal';
 import { eventQuery_event_occurrences_edges_node as OccurrenceEdgeNode } from '../../api/generatedTypes/eventQuery';
@@ -45,9 +46,9 @@ it('renders snapshot correctly', () => {
 });
 
 it('renders button for signing up to an event', () => {
-  const { queryByText } = getWrapper();
+  getWrapper();
 
-  expect(queryByText('Valitse')).not.toEqual(null);
+  expect(screen.queryAllByText('Valitse')[0]).not.toEqual(null);
 });
 
 describe('when event is full', () => {
@@ -65,9 +66,9 @@ describe('when event is full', () => {
     });
 
   it('should show full label instead of remaining capacity', () => {
-    const { queryByText } = getFullEventWrapper();
+    getFullEventWrapper();
 
-    expect(queryByText('TÄYNNÄ')).not.toEqual(null);
+    expect(screen.queryAllByText('TÄYNNÄ')[0]).not.toEqual(null);
   });
 
   describe('and child has not subscribed to notifications', () => {
@@ -77,24 +78,26 @@ describe('when event is full', () => {
       const render = getFullEventWrapper(null);
 
       await waitFor(() => {
-        fireEvent.click(selectHdsButtonByText(render, 'Tilaa ilmoitus'), {});
+        fireEvent.click(selectAllHdsButtonByText(render, 'Tilaa ilmoitus'), {});
       });
 
       await waitFor(() => {
         // This button is hooked up to Apollo and mocks are not
         // provided, but this test still works.
-        expect(render.getAllByText('Tilaa ilmoitus')[0]).toBeDefined();
+        expect(screen.getAllByText('Tilaa ilmoitus')[0]).toBeDefined();
       });
     });
   });
 
   describe('and child has subscribed to notifications', () => {
     it('user should be able to unsubscribe', () => {
-      const { queryByText } = getFullEventWrapper({
+      getFullEventWrapper({
         childHasFreeSpotNotificationSubscription: true,
       });
 
-      expect(queryByText('Peru ilmoituksen tilaus')).not.toEqual(null);
+      expect(screen.queryAllByText('Peru ilmoituksen tilaus')[0]).not.toEqual(
+        null
+      );
     });
   });
 });

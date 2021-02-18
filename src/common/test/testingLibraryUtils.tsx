@@ -29,6 +29,15 @@ export const selectHdsButtonByText = (
   return selectHdsButton(getByText(text));
 };
 
+export const selectAllHdsButtonByText = (
+  render: RenderResult,
+  text: string
+): HTMLElement => {
+  const { getAllByText } = render;
+
+  return selectHdsButton(getAllByText(text)[0]);
+};
+
 // re-export everything
 export * from '@testing-library/react';
 

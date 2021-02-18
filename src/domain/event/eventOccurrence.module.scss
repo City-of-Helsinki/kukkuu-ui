@@ -13,6 +13,30 @@ tr {
   border-bottom: 2px solid var(--color-black-5);
 }
 
+.occurrence {
+  display: none;
+
+  & {
+    @include respond-above(md) {
+      display: table-row;
+    }
+  }
+
+  &.isMobile {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    & .occurrenceSubmit {
+      grid-column: 1 / -1;
+    }
+
+    @include respond-above(md) {
+      display: none;
+    }
+  }
+}
+
 @include respond-above(md) {
   table {
     border-collapse: collapse;
@@ -32,31 +56,36 @@ tr {
 }
 @include respond-below(md) {
   tr {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: auto 1fr 1fr auto;
-    grid-row-gap: $basePadding;
+    // display: grid;
+    // grid-template-rows: auto;
+    // grid-template-columns: auto 1fr 1fr auto;
+    // grid-row-gap: $basePadding;
     padding: 1rem 0;
   }
-  td.remainingCapacity {
-    grid-column: 4;
-    grid-row: 1 / span 2;
-    justify-self: end;
-    align-self: center;
-  }
-  td.occurrenceVenue {
-    grid-row: 1;
-    grid-column: 1 / span 3;
-  }
-  td.occurrenceDate {
-    grid-row: 2;
-    grid-column: 1;
-  }
-  td.occurrenceTime {
-    grid-row: 2;
-    grid-column: 2;
-  }
-  td.occurrenceSubmit {
-    grid-column: 1 / span 4;
-  }
+
+  // td.remainingCapacity {
+  //   grid-column: 4;
+  //   grid-row: 1 / span 2;
+  //   justify-self: end;
+  //   align-self: center;
+  // }
+  // td.occurrenceVenue {
+  //   grid-row: 1;
+  //   grid-column: 1 / span 3;
+  // }
+  // td.occurrenceDate {
+  //   grid-row: 2;
+  //   grid-column: 1;
+  // }
+  // td.occurrenceTime {
+  //   grid-row: 2;
+  //   grid-column: 2;
+  // }
+  // td.occurrenceSubmit {
+  //   grid-column: 1 / span 4;
+  // }
+}
+
+.remainingCapacity {
+  text-align: right;
 }

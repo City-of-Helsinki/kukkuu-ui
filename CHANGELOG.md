@@ -11,6 +11,7 @@
 
 - [Accessibility] Use same text content for screen readers and visual users in child list
 - [Accessibility] Announce title on page changes
+- [Accessibility] Incorrect tab order in occurrence list table
 
 # 1.6.1
 

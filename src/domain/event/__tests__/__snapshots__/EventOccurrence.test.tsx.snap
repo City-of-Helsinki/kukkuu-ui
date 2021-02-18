@@ -5,6 +5,47 @@ exports[`renders snapshot correctly 1`] = `
   <table>
     <tbody>
       <tr
+        class="occurrence isMobile"
+      >
+        <td
+          class="occurrenceVenue"
+        >
+          Musiikkitalo
+           
+          <time
+            datetime="2020-03-08 04:00:00.000"
+          >
+            su 8.3.2020
+             
+            04:00
+          </time>
+        </td>
+        <td
+          class="remainingCapacity"
+        >
+          99
+        </td>
+        <td
+          class="occurrenceSubmit"
+        >
+          <a
+            class="linkButton"
+            href="/zzaaz/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
+          >
+            <button
+              class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO submitButton"
+              type="submit"
+            >
+              <span
+                class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+              >
+                Valitse
+              </span>
+            </button>
+          </a>
+        </td>
+      </tr>
+      <tr
         class="occurrence"
       >
         <td
