@@ -5,22 +5,10 @@ import { envUrl } from '../utils/settings';
 import { deleteChild as childProfilePageDeleteChild } from './childrenProfilePage';
 
 export const godchildrenProfilePage = {
-  children: screen.getAllByRole('button', {
-    name: /Näytä Kummilapsen .* tiedot/,
-  }),
-  child: (name: string | RegExp) => {
-    let labelName;
-
-    if (name instanceof RegExp) {
-      labelName = new RegExp(`Näytä Kummilapsen ${name.source} tiedot`);
-    } else {
-      labelName = `Näytä Kummilapsen ${name} tiedot`;
-    }
-
-    return screen.getAllByRole('button', {
-      name: labelName,
-    });
-  },
+  child: (name: string | RegExp) =>
+    screen.getAllByRole('button', {
+      name: name,
+    }),
   editProfileButton: screen.getByRole('button', { name: 'Muokkaa tietoja' }),
   profileName: Selector('h1'),
   addChildButton: screen.getByRole('button', { name: 'Lisää lapsi' }),
@@ -58,7 +46,10 @@ export async function selectChild(
   await t.click(godchildrenProfilePage.child(childName));
 }
 
-export async function deleteChild(t: TestController, childName: string) {
+export async function deleteChild(
+  t: TestController,
+  childName: string | RegExp
+) {
   await selectChild(t, childName);
   await childProfilePageDeleteChild(t);
 }

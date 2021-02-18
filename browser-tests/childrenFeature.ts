@@ -33,7 +33,7 @@ function buildEditChild() {
   };
 }
 
-const childName = /Hertta Citron .*/;
+const childName = /.* Hertta Citron .*/;
 
 fixture`Children feature`
   .page(route())
@@ -50,9 +50,11 @@ fixture`Children feature`
 
 test('As a guardian I want to see a list of my children and to be able to select one', async (t) => {
   // The list displays the expected fields
-  await t.expect(godchildrenProfilePage.children.count).gte(2);
+  await t.expect(godchildrenProfilePage.child(childName).exists).ok();
   await selectChild(t, childName);
-  await t.expect(childrenProfilePage.childName.textContent).match(childName);
+  await t
+    .expect(childrenProfilePage.childName.textContent)
+    .match(/Hertta Citron .*/);
 });
 
 test('As a guardian I want to edit the details of my child', async (t) => {
@@ -92,6 +94,7 @@ test('As a guardian I want to add and delete a child', async (t) => {
     relationship,
   } = t.ctx.addChild;
   const newChildName = `${firstName} ${lastName}`;
+  const newChildNameRegepx = new RegExp(`${newChildName} .*`);
 
   // Open child add modal
   await t.click(godchildrenProfilePage.addChildButton);
@@ -117,8 +120,8 @@ test('As a guardian I want to add and delete a child', async (t) => {
   await t.wait(1000); // 1s
 
   // Assert that the child can be found
-  await t.expect(godchildrenProfilePage.child(newChildName).exists).ok();
+  await t.expect(godchildrenProfilePage.child(newChildNameRegepx).exists).ok();
 
   // Remove the created child
-  await deleteChild(t, newChildName);
+  await deleteChild(t, newChildNameRegepx);
 });

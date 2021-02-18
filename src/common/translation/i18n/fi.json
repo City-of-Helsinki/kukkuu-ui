@@ -436,8 +436,7 @@
         "text": "Uusi kutsu!"
       },
       "navigateToDetail": {
-        "buttonLabel": "Näytä Kummilapsen {{childName}} tiedot",
-        "buttonLabelWithoutName": "Näytä Kummilapsen tiedot"
+        "buttonLabel": "Näytä Kummilapsen tiedot"
       }
     },
     "children": {

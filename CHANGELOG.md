@@ -7,6 +7,10 @@
 - Into using a translation sheet that is managed by executive office
 - Adjusted some translations
 
+### Fixed
+
+- [Accessibility] Use same text content for screen readers and visual users in child list
+
 # 1.6.1
 
 ### Changed

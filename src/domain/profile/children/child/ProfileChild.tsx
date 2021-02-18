@@ -29,13 +29,6 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
 
   return (
     <button
-      aria-label={
-        isNamed
-          ? t('profile.child.navigateToDetail.buttonLabel', {
-              childName: childName,
-            })
-          : t('profile.child.navigateToDetail.buttonLabelWithoutName')
-      }
       className={styles.childWrapper}
       onClick={() => history.push(`/profile/child/${child.id}`)}
     >
