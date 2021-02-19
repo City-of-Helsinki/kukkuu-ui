@@ -6,8 +6,10 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 
-import PageWrapper from '../app/layout/PageWrapper';
 import ErrorMessage from '../../common/components/error/Error';
+import PageWrapper from '../app/layout/PageWrapper';
+import { store } from '../app/state/AppStore';
+import { authenticateWithBackend } from '../auth/authenticate';
 import userManager from './userManager';
 
 function OidcCallback(props: RouteChildrenProps) {
@@ -17,7 +19,9 @@ function OidcCallback(props: RouteChildrenProps) {
     message: <p>{t('authentication.redirect.text')}</p>,
   });
 
-  const onSuccess = (user: User) => {
+  const onSuccess = async (user: User) => {
+    await authenticateWithBackend(user.access_token, store.dispatch);
+
     if (user.state.path) props.history.replace(user.state.path);
     else props.history.replace('/profile');
   };

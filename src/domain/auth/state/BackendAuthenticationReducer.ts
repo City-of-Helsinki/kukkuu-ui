@@ -1,18 +1,16 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { USER_FOUND } from 'redux-oidc';
 
+import apiTokenService from '../../auth/apiTokenService';
 import { API_AUTHENTICATION_ACTIONS } from '../constants/BackendAuthenticationActionConstants';
 import { BackendAuthenticationData } from '../types/BackendAuthenticationTypes';
 
 export const defaultApiAuthenticationData: BackendAuthenticationData = {
-  // The idea is making the whole app rendering wait for apiToken check to resolve first
-  // On first load, spinner will load no matter what
-  // When either token is fetched from redux store, token is fetched successfully, token is failed to fetch
-  // Then the app route can render
-  isFetchingToken: true,
+  isFetchingToken: false,
   mustRenewToken: true,
   hasProfile: false,
-  apiToken: null,
+  // Find apiToken from service that persists it over page reloads
+  apiToken: apiTokenService.apiToken,
   errors: {},
 };
 

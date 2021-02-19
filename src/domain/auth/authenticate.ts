@@ -1,10 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
+import { Dispatch } from '@reduxjs/toolkit';
 
 import i18n from '../../common/translation/i18n/i18nInit';
 import userManager from './userManager';
-import { StoreThunk } from '../app/types/AppTypes';
 import {
   startFetchingToken,
   fetchTokenSuccess,
@@ -13,6 +13,7 @@ import {
 import { TUNNISTAMO_API_TOKEN_ENDPOINT } from '../api/constants/ApiConstants';
 import { BackendTokenResponse } from './types/BackendAuthenticationTypes';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
+import apiTokenService from './apiTokenService';
 
 export const loginTunnistamo = (path?: string) => {
   userManager
@@ -36,6 +37,7 @@ export const loginTunnistamo = (path?: string) => {
 export const logoutTunnistamo = async () => {
   try {
     document.cookie = 'loggedOut=1; max-age=10';
+    apiTokenService.clear();
     await userManager.signoutRedirect();
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -44,9 +46,10 @@ export const logoutTunnistamo = async () => {
   }
 };
 
-export const authenticateWithBackend = (
-  accessToken: string
-): StoreThunk => async (dispatch) => {
+export async function authenticateWithBackend(
+  accessToken: string,
+  dispatch: Dispatch
+) {
   try {
     dispatch(startFetchingToken());
 
@@ -60,6 +63,7 @@ export const authenticateWithBackend = (
       }
     );
 
+    apiTokenService.apiToken = Object.values(res.data)[0];
     dispatch(fetchTokenSuccess(res.data));
   } catch (error) {
     // eslint-disable-next-line no-console
@@ -67,4 +71,4 @@ export const authenticateWithBackend = (
     dispatch(fetchTokenError(error));
     toast.error(i18n.t('authentication.errorMessage'));
   }
-};
+}

@@ -17,7 +17,7 @@ export const isLoggedInSelector = (state: StoreState) =>
   !!state.authentication.tunnistamo.user?.access_token;
 
 export const isAuthenticatedSelector = (state: StoreState) =>
-  state.authentication.backend.hasProfile;
+  Boolean(state.authentication.backend.apiToken);
 
 export const isAuthenticatedWithApiTokenSelector = (state: StoreState) =>
   state.authentication.tunnistamo.user?.access_token &&
