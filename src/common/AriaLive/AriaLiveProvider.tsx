@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 
 import AriaLiveContext from './AriaLiveContext';
 import useAriaLive from './useAriaLive';
+import styles from './ariaLive.module.css';
 
 function AriaLiveRegion() {
   const { message } = useAriaLive();
 
-  return <div aria-live="polite">{message}</div>;
+  return (
+    <div aria-live="polite" className={styles.visuallyHidden}>
+      {message}
+    </div>
+  );
 }
 
 function getOrCreateContainer(id: string) {

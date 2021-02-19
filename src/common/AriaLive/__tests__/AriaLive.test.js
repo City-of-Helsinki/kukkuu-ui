@@ -32,6 +32,7 @@ describe('AriaLive', () => {
       >
         <div
           aria-live="polite"
+          class="visuallyHidden"
         />
       </div>
     `);
@@ -44,6 +45,7 @@ describe('AriaLive', () => {
       >
         <div
           aria-live="polite"
+          class="visuallyHidden"
         >
           message
         </div>
