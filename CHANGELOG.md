@@ -10,6 +10,7 @@
 ### Fixed
 
 - [Accessibility] Use same text content for screen readers and visual users in child list
+- [Accessibility] Announce title on page changes
 
 # 1.6.1
 
