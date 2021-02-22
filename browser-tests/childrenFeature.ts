@@ -117,7 +117,7 @@ test('As a guardian I want to add and delete a child', async (t) => {
     .click(addChildModal.submitButton);
 
   // Wait a bit extra so the UI has time to complete its refresh
-  await t.wait(1000); // 1s
+  await t.wait(1500); // 1.5s
 
   // Assert that the child can be found
   await t.expect(godchildrenProfilePage.child(newChildNameRegepx).exists).ok();
