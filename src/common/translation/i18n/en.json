@@ -193,6 +193,9 @@
       "paragraph": "We sent you a confirmation message by email where you can find more information about the event"
     }
   },
+  "enrollPage": {
+    "enrol": "Register for event"
+  },
   "event": {
     "cancellation": {
       "buttonText": "Cancel registration",

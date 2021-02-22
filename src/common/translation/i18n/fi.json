@@ -193,6 +193,9 @@
       "paragraph": "Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot"
     }
   },
+  "enrollPage": {
+    "enrol": "Ilmoittaudu tapahtumaan"
+  },
   "event": {
     "cancellation": {
       "buttonText": "Peru ilmoittautuminen",

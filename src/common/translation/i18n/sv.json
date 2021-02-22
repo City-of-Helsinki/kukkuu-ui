@@ -193,6 +193,9 @@
       "paragraph": "Vi skickade en bekräftelse till din epost, den innehåller mer information om evenemanget"
     }
   },
+  "enrollPage": {
+    "enrol": "Anmäl dig till evenemanget"
+  },
   "event": {
     "cancellation": {
       "buttonText": "Avboka din anmälan",
