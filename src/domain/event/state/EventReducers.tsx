@@ -3,7 +3,9 @@ import { createReducer } from '@reduxjs/toolkit';
 import { EVENT_ACTIONS } from '../constants/EventActionConstants';
 import { ChildEvents } from '../type/EventChildTypes';
 import { profileQuery_myProfile_children_edges as edges } from '../../api/generatedTypes/profileQuery';
+// eslint-disable-next-line max-len
 import { enrolOccurrenceMutation_enrolOccurrence_enrolment_child_occurrences_edges as EnrolmentNodeEdge } from '../../api/generatedTypes/enrolOccurrenceMutation';
+// eslint-disable-next-line max-len
 import { unenrolOccurrenceMutation_unenrolOccurrence_child_occurrences_edges as UnEnrolmentNodeEdge } from '../../api/generatedTypes/unenrolOccurrenceMutation';
 
 export const defaultChildEventData: ChildEvents[] = [];

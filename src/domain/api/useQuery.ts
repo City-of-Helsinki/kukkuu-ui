@@ -8,6 +8,7 @@ import {
 
 import useDefaultErrorHandler from './useDefaultErrorHandler';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useQuery<TData = any, TVariables = OperationVariables>(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
   options: MutationHookOptions<TData, TVariables> & {

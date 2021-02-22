@@ -69,6 +69,7 @@ describe('<Enrol />', () => {
   });
 
   describe('when the event is full', () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const getFullOccurrenceWrapper = (props: any = {}) =>
       getWrapper({
         occurrence: {

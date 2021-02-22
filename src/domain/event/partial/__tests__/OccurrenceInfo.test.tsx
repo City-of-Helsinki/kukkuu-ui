@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 
 import OccurrenceInfo from '../OccurrenceInfo';
 import { mockedOccurrenceNode } from '../../__tests__/EventPage.test';
+// eslint-disable-next-line max-len
 import { childByIdQuery_child_occurrences_edges_node as OccurrenceNodes } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 

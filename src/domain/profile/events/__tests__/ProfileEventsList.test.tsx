@@ -3,7 +3,6 @@ import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 
 import ProfileEventsList from '../ProfileEventsList';
-import Card from '../../../../common/components/card/Card';
 import EventCard from '../../../event/eventCard/EventCard';
 import {
   childByIdQuery_child as ChildByIdResponse,

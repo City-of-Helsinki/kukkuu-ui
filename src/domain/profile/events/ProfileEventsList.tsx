@@ -24,6 +24,7 @@ const availableEventsAndEventGroupsList = RelayList<
 const occurrencesList = RelayList<OccurrenceNode>();
 const pastEventsList = RelayList<PastEventNode>();
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function when<R = any>(
   model: AvailableEventOrEventGroupNode,
   isEvent: (event: EventNode) => R,
