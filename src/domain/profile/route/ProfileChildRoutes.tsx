@@ -1,29 +1,51 @@
 import React from 'react';
-import { Switch, Route, RouteComponentProps } from 'react-router-dom';
+import { Switch, RouteComponentProps } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
+import AppRoute from '../../app/AppRoute';
 import Event from '../../event/Event';
-import ProfileChildDetail from '../children/child/ProfileChildDetail';
 import EnrolPage from '../../event/enrol/EnrolPage';
 import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EventGroupPage from '../../eventGroup/EventGroupPage';
+import ProfileChildDetail from '../children/child/ProfileChildDetail';
 
 const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
+  const { t } = useTranslation();
+
   return (
     <Switch>
-      <Route exact component={ProfileChildDetail} path={path} />
-      <Route
+      <AppRoute
+        title={t('profile.child.detail.page.title')}
+        exact
+        component={ProfileChildDetail}
+        path={path}
+      />
+      <AppRoute
+        noTitle
         exact
         component={EventGroupPage}
         path={`${path}/event-group/:eventGroupId`}
       />
-      <Route exact component={Event} path={`${path}/event/:eventId`} />
-      <Route exact component={Event} path={`${path}/event/:eventId/past`} />
-      <Route
+      <AppRoute
+        noTitle
+        exact
+        component={Event}
+        path={`${path}/event/:eventId`}
+      />
+      <AppRoute
+        noTitle
+        exact
+        component={Event}
+        path={`${path}/event/:eventId/past`}
+      />
+      <AppRoute
+        noTitle
         exact
         component={EventIsEnrolled}
         path={`${path}/occurrence/:occurrenceId`}
       />
-      <Route
+      <AppRoute
+        title={t('enrolPage.enrol')}
         exact
         component={EnrolPage}
         path={`${path}/event/:eventId/occurrence/:occurrenceId/enrol`}

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { Route, RouteProps, useHistory, useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import {
@@ -45,10 +47,14 @@ function useInstantLogin(enabled = true) {
 
 type Props = RouteProps & {
   isPrivate?: boolean;
+  title?: string;
+  noTitle?: boolean;
 };
 
 function AppRoute({
   isPrivate = false,
+  title,
+  noTitle,
   render,
   component,
   ...routeProps
@@ -61,6 +67,7 @@ function AppRoute({
   useInstantLogin(isPrivate);
   useAuthenticated(isPrivate);
   const isLoadingUser = useSelector(isLoadingUserSelector);
+  const { t } = useTranslation();
 
   if (render) {
     // eslint-disable-next-line no-console
@@ -69,16 +76,33 @@ function AppRoute({
     );
   }
 
+  if (!title && !noTitle) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      // eslint-disable-next-line max-len
+      'Most app routes should have a title. If a route does not need one, explicitly state is by toggling the noTitle prop.'
+    );
+  }
+
   return (
-    <Route
-      {...routeProps}
-      render={(routeRenderProps) => (
-        <LoadingSpinner isLoading={isLoadingUser}>
-          {/* @ts-ignore */}
-          {React.createElement(component, routeRenderProps)}
-        </LoadingSpinner>
-      )}
-    />
+    <>
+      <Helmet>
+        {title && (
+          <title>
+            {title} - {t('appName')}
+          </title>
+        )}
+      </Helmet>
+      <Route
+        {...routeProps}
+        render={(routeRenderProps) => (
+          <LoadingSpinner isLoading={isLoadingUser}>
+            {/* @ts-ignore */}
+            {React.createElement(component, routeRenderProps)}
+          </LoadingSpinner>
+        )}
+      />
+    </>
   );
 }
 

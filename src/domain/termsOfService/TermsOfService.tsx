@@ -1,13 +1,11 @@
 import React, { FunctionComponent } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import styles from './termsOfService.module.scss';
 import PageWrapper from '../app/layout/PageWrapper';
 
 const TermsOfService: FunctionComponent = () => {
-  const { t } = useTranslation();
   return (
-    <PageWrapper title={t('termsOfService.title')}>
+    <PageWrapper>
       <div className={styles.termsOfService} lang="fi">
         <h1>Kulttuurin kummilapset -palvelua koskevat käyttöehdot</h1>
         <p>

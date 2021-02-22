@@ -108,10 +108,7 @@ const RegistrationForm = () => {
   }
 
   return (
-    <PageWrapper
-      className={styles.grayBackground}
-      title={'registration.heading'}
-    >
+    <PageWrapper className={styles.grayBackground}>
       <NavigationConfirm
         isHalfFilling={isFilling}
         warningMessage={t('common.form.leave.warning.text')}

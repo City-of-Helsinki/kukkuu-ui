@@ -1,16 +1,18 @@
 import React, { FunctionComponent } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import Event from '../Event';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
+import AppRoute from '../../app/AppRoute';
+import Event from '../Event';
 
 const EventRoute: FunctionComponent = () => {
   const { i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
   return (
     <Switch>
-      <Route
+      <AppRoute
+        noTitle
         exact
         component={Event}
         path={`/${currentLocale}/event/:eventId`}

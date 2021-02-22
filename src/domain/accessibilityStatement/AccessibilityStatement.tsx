@@ -31,7 +31,7 @@ const AccessibilityStatement: FunctionComponent = () => {
   const locale = getCurrentLanguage(i18n);
 
   return (
-    <PageWrapper title={'accessibilityStatement.title'}>
+    <PageWrapper>
       <div className={styles.accessibilityStatement}>
         <Statement lang={locale} />
       </div>

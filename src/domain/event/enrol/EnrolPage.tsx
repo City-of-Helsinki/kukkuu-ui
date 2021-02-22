@@ -163,7 +163,6 @@ const EnrolPage = () => {
     <PageWrapper
       className={styles.wrapper}
       containerClassName={joinClassNames(styles.enrolContainer)}
-      title={'Enrol'}
     >
       <Enrol
         childId={params.childId}

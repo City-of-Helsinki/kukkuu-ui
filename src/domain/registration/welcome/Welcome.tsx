@@ -13,7 +13,7 @@ const Welcome: FunctionComponent = () => {
   const history = useHistory();
 
   return (
-    <PageWrapper title={'registration.welcome.hero.header'}>
+    <PageWrapper>
       <div className={styles.welcome}>
         <h1>{t('registration.welcome.hero.header')}</h1>
         <Icon src={tadaImage} className={styles.tada} />

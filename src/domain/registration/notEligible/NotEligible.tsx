@@ -11,7 +11,7 @@ const NotEligible: FunctionComponent = () => {
   const { t } = useTranslation();
 
   return (
-    <PageWrapper title={t('registration.notEligible.title')}>
+    <PageWrapper>
       <div>
         <div className={styles.notEligible}>
           <Icon className={styles.notEligibleFace} src={adultFaceIcon} />

@@ -17,7 +17,7 @@ const PageWrapper = ({
   children,
   className,
   containerClassName,
-  title = 'appName',
+  title,
   description = 'homePage.hero.descriptionText',
 }: Props) => {
   return (

@@ -71,10 +71,7 @@ const ProfileChildDetail = () => {
   const child = data?.child;
 
   return (
-    <PageWrapper
-      className={styles.wrapper}
-      title={t('profile.child.detail.page.title')}
-    >
+    <PageWrapper className={styles.wrapper}>
       <div className={styles.childDetailWrapper} role="main">
         <div className={styles.backButtonWrapper}>
           <Button

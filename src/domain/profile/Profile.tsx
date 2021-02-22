@@ -40,7 +40,7 @@ const Profile = () => {
   }
 
   return (
-    <PageWrapper className={styles.wrapper} title={'profile.heading'}>
+    <PageWrapper className={styles.wrapper}>
       <div className={styles.profileWrapper} role="main">
         <div className={styles.profile}>
           <div className={styles.profileContent}>

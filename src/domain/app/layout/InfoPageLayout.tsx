@@ -15,7 +15,7 @@ type Props = {
 
 const InfoPageLayout = (props: Props) => {
   return (
-    <PageWrapper title={props.title}>
+    <PageWrapper>
       <InfoTemplate {...props} />
     </PageWrapper>
   );

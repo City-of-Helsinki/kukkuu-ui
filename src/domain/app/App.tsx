@@ -3,6 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { useTranslation } from 'react-i18next';
+
 import Home from '../home/Home';
 import NotFound from './notFound/NotFound';
 import NotEligible from '../registration/notEligible/NotEligible';
@@ -24,6 +26,7 @@ import AppRoute from './AppRoute';
 const App = () => {
   useHashAnchorLinks();
 
+  const { t } = useTranslation();
   const { locale } = useParams<{ locale: string }>();
   const userHasProfile = useSelector(userHasProfileSelector);
   const isSessionPromptOpen = useSelector(isSessionExpiredPromptOpen);
@@ -34,25 +37,39 @@ const App = () => {
       {isSessionPromptOpen && <SessionAlert isOpen={isSessionPromptOpen} />}
       <Switch>
         <Redirect exact path={`/${locale}/`} to={`/${locale}/home`} />
-        <AppRoute exact path={`/${locale}/home`} component={Home} />
         <AppRoute
+          title={t('appName')}
+          exact
+          path={`/${locale}/home`}
+          component={Home}
+        />
+        <AppRoute
+          title={t('registration.notEligible.title')}
           exact
           path={`/${locale}/registration/not-eligible`}
           component={NotEligible}
         />
         <AppRoute
+          title={t('auth.wrongLoginMethod.title')}
           exact
           path={`/${locale}/wrong-login-method`}
           component={WrongLoginMethod}
         />
         <AppRoute
+          title={t('accessibilityStatement.title')}
           exact
           path={`/${locale}/accessibility`}
           component={AccessibilityStatement}
         />
-        <AppRoute exact path={`/${locale}/terms`} component={TermsOfService} />
+        <AppRoute
+          title={t('termsOfService.title')}
+          exact
+          path={`/${locale}/terms`}
+          component={TermsOfService}
+        />
         {!userHasProfile && (
           <AppRoute
+            title={t('registration.heading')}
             isPrivate
             exact
             path={`/${locale}/registration/form`}
@@ -60,6 +77,7 @@ const App = () => {
           />
         )}
         <AppRoute
+          title={t('registration.welcome.hero.header')}
           isPrivate
           exact
           path={`/${locale}/registration/success`}
@@ -67,16 +85,22 @@ const App = () => {
         />
 
         <AppRoute
+          noTitle
           isPrivate
           path={`/${locale}/profile`}
           component={ProfileRoute}
         />
 
-        <AppRoute isPrivate path={`/${locale}/event`} component={EventRoute} />
+        <AppRoute
+          noTitle
+          isPrivate
+          path={`/${locale}/event`}
+          component={EventRoute}
+        />
 
         {userHasProfile && <Redirect to={`/${locale}/profile`} />}
 
-        <AppRoute component={NotFound} />
+        <AppRoute title={t('notFound.title')} component={NotFound} />
       </Switch>
     </>
   );

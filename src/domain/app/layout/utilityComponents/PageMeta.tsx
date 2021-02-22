@@ -5,20 +5,30 @@ import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { getCurrentLanguage } from '../../../../common/translation/TranslationUtils';
 
+function useTitle(title?: string) {
+  const { t } = useTranslation();
+
+  if (!title) {
+    return;
+  }
+
+  return title !== 'appName' ? `${t(title)} - ${t('appName')}` : t('appName');
+}
+
 type Props = {
   title?: string;
   description?: string;
 };
 
 const PageMeta = ({
-  title = 'appName',
+  title,
   description = 'homePage.hero.descriptionText',
 }: Props) => {
   const { i18n, t } = useTranslation();
   const lang = getCurrentLanguage(i18n);
+  const { trackPageView } = useMatomo();
+  const translatedTitle = useTitle(title);
 
-  const translatedTitle =
-    title !== 'appName' ? `${t(title)} - ${t('appName')}` : t('appName');
   const translatedDescription =
     title !== 'homePage.hero.descriptionText'
       ? t(description)
@@ -26,18 +36,19 @@ const PageMeta = ({
 
   const path = window.location.pathname.replace(`/${lang}/`, '');
 
-  const { trackPageView } = useMatomo();
   useEffect(() => {
-    trackPageView({
-      documentTitle: translatedTitle,
-      href: window.location.href,
-    });
+    if (translatedTitle) {
+      trackPageView({
+        documentTitle: translatedTitle,
+        href: window.location.href,
+      });
+    }
   }, [trackPageView, translatedTitle]);
 
   return (
     <Helmet>
       <html lang={lang} />
-      <title>{translatedTitle}</title>
+      {translatedTitle && <title>{translatedTitle}</title>}
       <meta name="description" content={translatedDescription} />
       <link rel="alternate" hrefLang="fi" href={'/fi/' + path} />
       <link rel="alternate" hrefLang="sv" href={'/sv/' + path} />
