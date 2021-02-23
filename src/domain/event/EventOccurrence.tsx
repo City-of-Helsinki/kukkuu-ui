@@ -80,7 +80,7 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
   return (
     <>
       <tr className={[styles.occurrence, styles.isMobile].join(' ')}>
-        <td className={styles.occurrenceVenue}>
+        <td>
           {occurrence.venue.name}{' '}
           <time dateTime={machineReadableDateTime}>
             {date} {time}
@@ -90,9 +90,9 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
         <td className={styles.occurrenceSubmit}>{submitCell}</td>
       </tr>
       <tr className={styles.occurrence}>
-        <td className={styles.occurrenceDate}>{date}</td>
-        <td className={styles.occurrenceTime}>{time}</td>
-        <td className={styles.occurrenceVenue}>{occurrence.venue.name}</td>
+        <td>{date}</td>
+        <td>{time}</td>
+        <td>{occurrence.venue.name}</td>
         <td className={styles.remainingCapacity}>{remainingCapacity}</td>
         <td className={styles.occurrenceSubmit}>{submitCell}</td>
       </tr>

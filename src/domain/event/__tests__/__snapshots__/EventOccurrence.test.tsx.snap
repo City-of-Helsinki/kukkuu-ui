@@ -7,9 +7,7 @@ exports[`renders snapshot correctly 1`] = `
       <tr
         class="occurrence isMobile"
       >
-        <td
-          class="occurrenceVenue"
-        >
+        <td>
           Musiikkitalo
            
           <time
@@ -48,19 +46,13 @@ exports[`renders snapshot correctly 1`] = `
       <tr
         class="occurrence"
       >
-        <td
-          class="occurrenceDate"
-        >
+        <td>
           su 8.3.2020
         </td>
-        <td
-          class="occurrenceTime"
-        >
+        <td>
           04:00
         </td>
-        <td
-          class="occurrenceVenue"
-        >
+        <td>
           Musiikkitalo
         </td>
         <td
