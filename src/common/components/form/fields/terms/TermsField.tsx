@@ -15,6 +15,7 @@ const kukkuuCheckboxStyles = {
   '--border-color-selected-hover': 'var(--color-summer-dark)',
   '--border-color-selected-focus': 'var(--color-summer-dark)',
   '--border-color-selected-hover-focus': 'var(--color-summer-dark)',
+  '--icon-color-selected': 'var(--color-black)',
 } as React.CSSProperties;
 
 type Props = {

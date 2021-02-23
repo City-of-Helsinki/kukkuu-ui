@@ -13,6 +13,7 @@
 - [Accessibility] Announce title on page changes
 - [Accessibility] Incorrect tab order in occurrence list table
 - Missing Finnish translation
+- [Accessibility] Add contrast to checkbox input tick icon
 
 # 1.6.1
 
