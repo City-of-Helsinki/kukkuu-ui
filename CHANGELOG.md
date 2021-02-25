@@ -6,6 +6,7 @@
 
 - Into using a translation sheet that is managed by executive office
 - Adjusted some translations
+- Service description to allow for children born after 2020
 
 ### Fixed
 
