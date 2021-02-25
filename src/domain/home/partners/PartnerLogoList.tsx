@@ -22,14 +22,18 @@ const Partners = (props: Props) => {
           partner.altLangIcons && partner.altLangIcons[currentLocale]
             ? partner.altLangIcons[currentLocale]
             : partner.icon;
+        const href = partner.url[currentLocale]
+          ? partner.url[currentLocale]
+          : partner.url.fi;
 
         return (
-          <Icon
-            key={index}
-            className={styles.icon}
-            src={icon}
-            alt={t(`home.partners.partner.${partner.name}`)}
-          />
+          <a key={index} href={href} className={styles.container}>
+            <Icon
+              className={styles.icon}
+              src={icon}
+              alt={t(`home.partners.partner.${partner.name}`)}
+            />
+          </a>
         );
       })}
     </div>

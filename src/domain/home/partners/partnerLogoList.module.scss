@@ -12,10 +12,8 @@
     gap: $xlargeMargin;
   }
   margin-bottom: $largeMargin;
-  .icon {
-    width: 2 * $xlargeMargin;
-    height: $xlargeMargin;
 
+  .container {
     @include respond-above(sm) {
       &:first-child {
         justify-self: end;
@@ -25,6 +23,12 @@
         justify-self: start;
       }
     }
+  }
+
+  .icon {
+    width: 2 * $xlargeMargin;
+    height: $xlargeMargin;
+
     img {
       width: 100%;
       height: auto;

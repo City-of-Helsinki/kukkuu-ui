@@ -22,10 +22,20 @@ exports[`renders snapshot correctly 1`] = `
               },
               "icon": "helsinki-fi.svg",
               "name": "hel",
+              "url": Object {
+                "en": "https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/en/services/cultural-centres-and-support/",
+                "fi": "https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/fi/palvelut/yleiset-kulttuuripalvelut/",
+                "sv": "https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/sv/tjanster/allmanna-kulturtjanster/",
+              },
             },
             Object {
               "icon": "jaes.png",
               "name": "jaes",
+              "url": Object {
+                "en": "https://jaes.fi/en/",
+                "fi": "https://jaes.fi/",
+                "sv": "https://jaes.fi/sv/",
+              },
             },
           ]
         }
@@ -37,46 +47,99 @@ exports[`renders snapshot correctly 1`] = `
             Object {
               "icon": "amosrex.png",
               "name": "amosrex",
+              "url": Object {
+                "en": "https://amosrex.fi/en/",
+                "fi": "https://amosrex.fi/",
+                "sv": "https://amosrex.fi/sv/",
+              },
             },
             Object {
               "icon": "cirko.png",
               "name": "cirko",
+              "url": Object {
+                "en": "https://cirko.fi/en/",
+                "fi": "https://cirko.fi/",
+                "sv": "https://cirko.fi/sv/",
+              },
             },
             Object {
               "icon": "dotdot.png",
               "name": "dot",
+              "url": Object {
+                "en": "https://dotdot.fi/in_english/",
+                "fi": "https://dotdot.fi/suomeksi/",
+                "sv": "https://dotdot.fi/start/",
+              },
             },
             Object {
               "icon": "designmuseum.png",
               "name": "designmuseum",
+              "url": Object {
+                "en": "https://www.designmuseum.fi/en/",
+                "fi": "https://www.designmuseum.fi/fi/",
+                "sv": "https://www.designmuseum.fi/sv/",
+              },
             },
             Object {
               "icon": "hamhelsinki.png",
               "name": "hamhelsinki",
+              "url": Object {
+                "en": "https://www.hamhelsinki.fi/en/",
+                "fi": "https://www.hamhelsinki.fi/",
+                "sv": "https://www.hamhelsinki.fi/sv/",
+              },
             },
             Object {
               "icon": "helsinginkaupunginmuseo.png",
               "name": "helsinginkaupunginmuseo",
+              "url": Object {
+                "en": "https://www.helsinginkaupunginmuseo.fi/en/",
+                "fi": "https://www.helsinginkaupunginmuseo.fi/",
+                "sv": "https://www.helsinginkaupunginmuseo.fi/sv/",
+              },
             },
             Object {
               "icon": "helsinginkaupunginorkesteri.png",
               "name": "helsinginkaupunginorkesteri",
+              "url": Object {
+                "en": "https://helsinginkaupunginorkesteri.fi/en",
+                "fi": "https://helsinginkaupunginorkesteri.fi/",
+                "sv": "https://helsinginkaupunginorkesteri.fi/sv",
+              },
             },
             Object {
               "icon": "hkt.png",
               "name": "hkt",
+              "url": Object {
+                "en": "https://hkt.fi/hktinenglish/",
+                "fi": "https://hkt.fi/",
+              },
             },
             Object {
               "icon": "hotellijaravintolamuseo.png",
               "name": "hotellijaravintolamuseo",
+              "url": Object {
+                "en": "https://www.hotellijaravintolamuseo.fi/english/",
+                "fi": "https://www.hotellijaravintolamuseo.fi/",
+                "sv": "https://www.hotellijaravintolamuseo.fi/svenska/",
+              },
             },
             Object {
               "icon": "hurjaruuth.png",
               "name": "hurjaruuth",
+              "url": Object {
+                "en": "https://www.hurjaruuth.fi/en/",
+                "fi": "https://www.hurjaruuth.fi/",
+              },
             },
             Object {
               "icon": "Kaapeli.png",
               "name": "kaapeli",
+              "url": Object {
+                "en": "https://www.kaapelitehdas.fi/en",
+                "fi": "https://www.kaapelitehdas.fi/",
+                "sv": "https://www.kaapelitehdas.fi/sv",
+              },
             },
             Object {
               "altLangIcons": Object {
@@ -85,58 +148,119 @@ exports[`renders snapshot correctly 1`] = `
               },
               "icon": "Finnish_National_Gallery_Logo_FI.svg",
               "name": "kansallisgalleria",
+              "url": Object {
+                "en": "https://www.kansallisgalleria.fi/en/search?category=artwork&hasImage=true",
+                "fi": "https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true",
+                "sv": "https://www.kansallisgalleria.fi/sv/search?category=artwork&hasImage=true",
+              },
             },
             Object {
               "icon": "kansallismuseo.png",
               "name": "kansallismuseo",
+              "url": Object {
+                "fi": "https://www.kansallismuseo.fi/fi/kansallismuseo",
+              },
             },
             Object {
               "icon": "kansallisteatteri.png",
               "name": "kansallisteatteri",
+              "url": Object {
+                "en": "https://kansallisteatteri.fi/briefly-in-english/",
+                "fi": "https://kansallisteatteri.fi/",
+              },
             },
             Object {
               "icon": "kavi.png",
               "name": "kavi",
+              "url": Object {
+                "en": "https://kavi.fi/en/national-audiovisual-institute/",
+                "fi": "https://kavi.fi/kansallinen-audiovisuaalinen-instituutti-palvelee/",
+                "sv": "https://kavi.fi/sv/nationella-audiovisuella-institutet/",
+              },
             },
             Object {
               "icon": "kulttuuriperintokasvatus.png",
               "name": "kulttuuriperintokasvatus",
+              "url": Object {
+                "en": "https://www.kulttuuriperintokasvatus.fi/in-english/",
+                "fi": "https://www.kulttuuriperintokasvatus.fi/",
+                "sv": "https://www.kulttuuriperintokasvatus.fi/pa-svenska/",
+              },
             },
             Object {
               "icon": "mfa.png",
               "name": "mfa",
+              "url": Object {
+                "en": "https://www.mfa.fi/en/frontpage/",
+                "fi": "https://www.mfa.fi/",
+              },
             },
             Object {
               "icon": "nukketeatterisampo.png",
               "name": "nukketeatterisampo",
+              "url": Object {
+                "en": "https://nukketeatterisampo.fi/en/",
+                "fi": "https://nukketeatterisampo.fi/",
+              },
             },
             Object {
               "icon": "oopperabaletti.png",
               "name": "oopperabaletti",
+              "url": Object {
+                "en": "https://oopperabaletti.fi/en/",
+                "fi": "https://oopperabaletti.fi/",
+                "sv": "https://oopperabaletti.fi/sv/",
+              },
             },
             Object {
               "icon": "qteatteri.png",
               "name": "qteatteri",
+              "url": Object {
+                "en": "http://www.q-teatteri.fi/q-in-english/",
+                "fi": "http://www.q-teatteri.fi/",
+              },
             },
             Object {
               "icon": "svenskateatern.png",
               "name": "svenskateatern",
+              "url": Object {
+                "en": "https://svenskateatern.fi/en/start/",
+                "fi": "https://svenskateatern.fi/fi/alku/",
+                "sv": "https://svenskateatern.fi/sv/start/",
+              },
             },
             Object {
               "icon": "tanssintalo.png",
               "name": "tanssintalo",
+              "url": Object {
+                "en": "https://www.tanssintalo.fi/en/",
+                "fi": "https://www.tanssintalo.fi/",
+              },
             },
             Object {
               "icon": "teatteriilmio.png",
               "name": "teatteriilmio",
+              "url": Object {
+                "fi": "https://www.teatteri-ilmio.fi/",
+              },
             },
             Object {
               "icon": "teatterimuseo.png",
               "name": "teatterimuseo",
+              "url": Object {
+                "en": "https://www.teatterimuseo.fi/en",
+                "fi": "https://www.teatterimuseo.fi/",
+                "sv": "https://www.teatterimuseo.fi/sv",
+              },
             },
             Object {
               "icon": "valokuvataiteenmuseo.png",
               "name": "valokuvataiteenmuseo",
+              "url": Object {
+                "en": "https://www.valokuvataiteenmuseo.fi/en",
+                "fi": "https://www.valokuvataiteenmuseo.fi/fi",
+                "sv": "https://www.valokuvataiteenmuseo.fi/sv",
+              },
             },
           ]
         }

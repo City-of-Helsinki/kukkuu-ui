@@ -2,6 +2,10 @@
 
 # [Unreleased]
 
+### Added
+
+- Links into partner logos
+
 ### Changed
 
 - Into using a translation sheet that is managed by executive office

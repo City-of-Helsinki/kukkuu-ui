@@ -4,18 +4,28 @@ exports[`renders snapshot correctly 1`] = `
 <div
   className="big"
 >
-  <Icon
-    alt="home.partners.partner.hel"
-    className="icon"
+  <a
+    className="container"
+    href="https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/fi/palvelut/yleiset-kulttuuripalvelut/"
     key="0"
-    src="helsinki-fi.svg"
-  />
-  <Icon
-    alt="Jane ja Aatos Erkon säätiö"
-    className="icon"
+  >
+    <Icon
+      alt="home.partners.partner.hel"
+      className="icon"
+      src="helsinki-fi.svg"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://jaes.fi/"
     key="1"
-    src="jaes.png"
-  />
+  >
+    <Icon
+      alt="Jane ja Aatos Erkon säätiö"
+      className="icon"
+      src="jaes.png"
+    />
+  </a>
 </div>
 `;
 
@@ -23,155 +33,280 @@ exports[`renders snapshot correctly 2`] = `
 <div
   className="small"
 >
-  <Icon
-    alt="Amos Rex"
-    className="icon"
+  <a
+    className="container"
+    href="https://amosrex.fi/"
     key="0"
-    src="amosrex.png"
-  />
-  <Icon
-    alt="Cirko – Uuden sirkuksen keskus"
-    className="icon"
+  >
+    <Icon
+      alt="Amos Rex"
+      className="icon"
+      src="amosrex.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://cirko.fi/"
     key="1"
-    src="cirko.png"
-  />
-  <Icon
-    alt="DOT ry"
-    className="icon"
+  >
+    <Icon
+      alt="Cirko – Uuden sirkuksen keskus"
+      className="icon"
+      src="cirko.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://dotdot.fi/suomeksi/"
     key="2"
-    src="dotdot.png"
-  />
-  <Icon
-    alt="Designmuseo"
-    className="icon"
+  >
+    <Icon
+      alt="DOT ry"
+      className="icon"
+      src="dotdot.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.designmuseum.fi/fi/"
     key="3"
-    src="designmuseum.png"
-  />
-  <Icon
-    alt="Helsingin taidemuseo HAM"
-    className="icon"
+  >
+    <Icon
+      alt="Designmuseo"
+      className="icon"
+      src="designmuseum.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.hamhelsinki.fi/"
     key="4"
-    src="hamhelsinki.png"
-  />
-  <Icon
-    alt="Helsingin kaupunginmuseo"
-    className="icon"
+  >
+    <Icon
+      alt="Helsingin taidemuseo HAM"
+      className="icon"
+      src="hamhelsinki.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.helsinginkaupunginmuseo.fi/"
     key="5"
-    src="helsinginkaupunginmuseo.png"
-  />
-  <Icon
-    alt="Helsingin kaupunginorkesteri"
-    className="icon"
+  >
+    <Icon
+      alt="Helsingin kaupunginmuseo"
+      className="icon"
+      src="helsinginkaupunginmuseo.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://helsinginkaupunginorkesteri.fi/"
     key="6"
-    src="helsinginkaupunginorkesteri.png"
-  />
-  <Icon
-    alt="Helsingin Kaupunginteatteri"
-    className="icon"
+  >
+    <Icon
+      alt="Helsingin kaupunginorkesteri"
+      className="icon"
+      src="helsinginkaupunginorkesteri.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://hkt.fi/"
     key="7"
-    src="hkt.png"
-  />
-  <Icon
-    alt="Hotelli- ja ravintolamuseo"
-    className="icon"
+  >
+    <Icon
+      alt="Helsingin Kaupunginteatteri"
+      className="icon"
+      src="hkt.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.hotellijaravintolamuseo.fi/"
     key="8"
-    src="hotellijaravintolamuseo.png"
-  />
-  <Icon
-    alt="Tanssiteatteri Hurjaruuth"
-    className="icon"
+  >
+    <Icon
+      alt="Hotelli- ja ravintolamuseo"
+      className="icon"
+      src="hotellijaravintolamuseo.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.hurjaruuth.fi/"
     key="9"
-    src="hurjaruuth.png"
-  />
-  <Icon
-    alt="home.partners.partner.kaapeli"
-    className="icon"
+  >
+    <Icon
+      alt="Tanssiteatteri Hurjaruuth"
+      className="icon"
+      src="hurjaruuth.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.kaapelitehdas.fi/"
     key="10"
-    src="Kaapeli.png"
-  />
-  <Icon
-    alt="home.partners.partner.kansallisgalleria"
-    className="icon"
+  >
+    <Icon
+      alt="home.partners.partner.kaapeli"
+      className="icon"
+      src="Kaapeli.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true"
     key="11"
-    src="Finnish_National_Gallery_Logo_FI.svg"
-  />
-  <Icon
-    alt="Kansallismuseo"
-    className="icon"
+  >
+    <Icon
+      alt="home.partners.partner.kansallisgalleria"
+      className="icon"
+      src="Finnish_National_Gallery_Logo_FI.svg"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.kansallismuseo.fi/fi/kansallismuseo"
     key="12"
-    src="kansallismuseo.png"
-  />
-  <Icon
-    alt="Kansallisteatteri"
-    className="icon"
+  >
+    <Icon
+      alt="Kansallismuseo"
+      className="icon"
+      src="kansallismuseo.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://kansallisteatteri.fi/"
     key="13"
-    src="kansallisteatteri.png"
-  />
-  <Icon
-    alt="Kansallinen audiovisuaalinen instituutti"
-    className="icon"
+  >
+    <Icon
+      alt="Kansallisteatteri"
+      className="icon"
+      src="kansallisteatteri.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://kavi.fi/kansallinen-audiovisuaalinen-instituutti-palvelee/"
     key="14"
-    src="kavi.png"
-  />
-  <Icon
-    alt="Suomen Kulttuuriperintökasvatuksen seura"
-    className="icon"
+  >
+    <Icon
+      alt="Kansallinen audiovisuaalinen instituutti"
+      className="icon"
+      src="kavi.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.kulttuuriperintokasvatus.fi/"
     key="15"
-    src="kulttuuriperintokasvatus.png"
-  />
-  <Icon
-    alt="Arkkitehtuurimuseo"
-    className="icon"
+  >
+    <Icon
+      alt="Suomen Kulttuuriperintökasvatuksen seura"
+      className="icon"
+      src="kulttuuriperintokasvatus.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.mfa.fi/"
     key="16"
-    src="mfa.png"
-  />
-  <Icon
-    alt="Nukketeatteri Sampo"
-    className="icon"
+  >
+    <Icon
+      alt="Arkkitehtuurimuseo"
+      className="icon"
+      src="mfa.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://nukketeatterisampo.fi/"
     key="17"
-    src="nukketeatterisampo.png"
-  />
-  <Icon
-    alt="Suomen kansallisooppera ja -baletti"
-    className="icon"
+  >
+    <Icon
+      alt="Nukketeatteri Sampo"
+      className="icon"
+      src="nukketeatterisampo.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://oopperabaletti.fi/"
     key="18"
-    src="oopperabaletti.png"
-  />
-  <Icon
-    alt="Q-teatteri"
-    className="icon"
+  >
+    <Icon
+      alt="Suomen kansallisooppera ja -baletti"
+      className="icon"
+      src="oopperabaletti.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="http://www.q-teatteri.fi/"
     key="19"
-    src="qteatteri.png"
-  />
-  <Icon
-    alt="Svenska Teatern"
-    className="icon"
+  >
+    <Icon
+      alt="Q-teatteri"
+      className="icon"
+      src="qteatteri.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://svenskateatern.fi/fi/alku/"
     key="20"
-    src="svenskateatern.png"
-  />
-  <Icon
-    alt="Tanssin talo"
-    className="icon"
+  >
+    <Icon
+      alt="Svenska Teatern"
+      className="icon"
+      src="svenskateatern.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.tanssintalo.fi/"
     key="21"
-    src="tanssintalo.png"
-  />
-  <Icon
-    alt="Teatteri ILMI Ö"
-    className="icon"
+  >
+    <Icon
+      alt="Tanssin talo"
+      className="icon"
+      src="tanssintalo.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.teatteri-ilmio.fi/"
     key="22"
-    src="teatteriilmio.png"
-  />
-  <Icon
-    alt="Teatterimuseo"
-    className="icon"
+  >
+    <Icon
+      alt="Teatteri ILMI Ö"
+      className="icon"
+      src="teatteriilmio.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.teatterimuseo.fi/"
     key="23"
-    src="teatterimuseo.png"
-  />
-  <Icon
-    alt="Suomen valokuvataiteen museo"
-    className="icon"
+  >
+    <Icon
+      alt="Teatterimuseo"
+      className="icon"
+      src="teatterimuseo.png"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.valokuvataiteenmuseo.fi/fi"
     key="24"
-    src="valokuvataiteenmuseo.png"
-  />
+  >
+    <Icon
+      alt="Suomen valokuvataiteen museo"
+      className="icon"
+      src="valokuvataiteenmuseo.png"
+    />
+  </a>
 </div>
 `;
