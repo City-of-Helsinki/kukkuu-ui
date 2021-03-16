@@ -2,23 +2,25 @@
 
 # [Unreleased]
 
+# 1.6.2
+
 ### Added
 
-- Links into partner logos
+- [#361](https://github.com/City-of-Helsinki/kukkuu-ui/pull/361) Links into partner logos
 
 ### Changed
 
-- Into using a translation sheet that is managed by executive office
-- Adjusted some translations
-- Service description to allow for children born after 2020
+- [#349](https://github.com/City-of-Helsinki/kukkuu-ui/pull/349) Into using a translation sheet that is managed by executive office
+- [#350](https://github.com/City-of-Helsinki/kukkuu-ui/pull/350) Adjusted some translations
+- [#360](https://github.com/City-of-Helsinki/kukkuu-ui/pull/360) Service description to allow for children born after 2020
 
 ### Fixed
 
-- [Accessibility] Use same text content for screen readers and visual users in child list
-- [Accessibility] Announce title on page changes
-- [Accessibility] Incorrect tab order in occurrence list table
-- Missing Finnish translation
-- [Accessibility] Add contrast to checkbox input tick icon
+- [#354](https://github.com/City-of-Helsinki/kukkuu-ui/pull/354) [Accessibility] Use same text content for screen readers and visual users in child list
+- [#357](https://github.com/City-of-Helsinki/kukkuu-ui/pull/357) [Accessibility] Announce title on page changes
+- [#356](https://github.com/City-of-Helsinki/kukkuu-ui/pull/356) [Accessibility] Incorrect tab order in occurrence list table
+- [#358](https://github.com/City-of-Helsinki/kukkuu-ui/pull/358) Missing Finnish translation
+- [#359](https://github.com/City-of-Helsinki/kukkuu-ui/pull/359) [Accessibility] Add contrast to checkbox input tick icon
 
 # 1.6.1
 
