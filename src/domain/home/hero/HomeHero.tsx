@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
+import { IconAlertCircle } from 'hds-react';
 
 import styles from './hero.module.scss';
 import { loginTunnistamo } from '../../auth/authenticate';
@@ -26,6 +27,8 @@ const HomeHero = ({
         <div className={styles.hero}>
           <h1>{t('appName')}</h1>
           <p> {t('homePage.hero.descriptionText')}</p>
+          <IconAlertCircle size="l" />
+          <p className={styles.notice}>{t('home.coronaNotice')}</p>
           <div className={styles.buttonGroup}>
             {!userHasProfile && (
               <Button className={styles.registerButton} onClick={scrollToForm}>
