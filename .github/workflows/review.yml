@@ -33,6 +33,7 @@ jobs:
           DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.${{ env.BASE_DOMAIN }}'
           DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.${{ env.BASE_DOMAIN }}/graphql'
           DOCKER_BUILD_ARG_REACT_APP_OIDC_CLIENT_ID: ${{ env.K8S_NAMESPACE }}
+          DOCKER_BUILD_ARG_REACT_APP_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: true
 
   review:
     runs-on: ubuntu-latest

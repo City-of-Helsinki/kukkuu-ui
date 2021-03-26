@@ -47,7 +47,7 @@
   }
 
   .buttonGroup {
-    margin: 0 auto;
+    margin: $spacing-2-xl auto 0;
     button {
       width: 80%;
       @include respond-above(sm) {
@@ -78,8 +78,6 @@
   }
 
   .notice {
-    margin: 0 0 $spacing-l;
-
     font-weight: 500;
   }
 }

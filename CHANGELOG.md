@@ -2,6 +2,10 @@
 
 # [Unreleased]
 
+### Added
+
+- Coronavirus notice to the front page
+
 # 1.6.2
 
 ### Added

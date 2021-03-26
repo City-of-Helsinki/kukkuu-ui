@@ -6,6 +6,7 @@ import { IconAlertCircle } from 'hds-react';
 import styles from './hero.module.scss';
 import { loginTunnistamo } from '../../auth/authenticate';
 import Button from '../../../common/components/button/Button';
+import Config from '../../config';
 
 type HomeHero = {
   userHasProfile: boolean;
@@ -27,8 +28,12 @@ const HomeHero = ({
         <div className={styles.hero}>
           <h1>{t('appName')}</h1>
           <p> {t('homePage.hero.descriptionText')}</p>
-          <IconAlertCircle size="l" />
-          <p className={styles.notice}>{t('home.coronaNotice')}</p>
+          {Config.featureFlagShowCoronaInfo && (
+            <>
+              <IconAlertCircle size="l" />
+              <p className={styles.notice}>{t('home.coronaNotice')}</p>
+            </>
+          )}
           <div className={styles.buttonGroup}>
             {!userHasProfile && (
               <Button className={styles.registerButton} onClick={scrollToForm}>
