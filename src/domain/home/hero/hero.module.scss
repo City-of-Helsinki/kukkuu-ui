@@ -40,10 +40,21 @@
 
 .hero {
   h1 {
-    margin: $largeMargin 0;
+    margin: $spacing-layout-l 0 $spacing-l;
+
+    font-size: $fontsize-heading-l;
+
+    @include respond-above(sm) {
+      font-size: $fontsize-heading-xl;
+    }
   }
   p {
     margin: 0 0 $spacing-s;
+  }
+
+  .bodyXl {
+    font-size: $fontsize-body-xl;
+    line-height: $lineheight-l;
   }
 
   .buttonGroup {

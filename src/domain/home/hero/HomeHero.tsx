@@ -27,7 +27,7 @@ const HomeHero = ({
       <div className={styles.heroContainer}>
         <div className={styles.hero}>
           <h1>{t('appName')}</h1>
-          <p> {t('homePage.hero.descriptionText')}</p>
+          <p className={styles.bodyXl}>{t('homePage.hero.descriptionText')}</p>
           {Config.featureFlagShowCoronaInfo && (
             <>
               <IconAlertCircle size="l" />
