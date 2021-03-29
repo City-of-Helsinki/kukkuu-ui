@@ -14,6 +14,8 @@ describe('Config', () => {
   describe('featureFlagShowCoronaInfo', () => {
     it('should return true when REACT_APP_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO is true', () => {
       process.env.REACT_APP_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO = 'true';
+      expect(Config.featureFlagShowCoronaInfo).toEqual(true);
+
       process.env.REACT_APP_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO = true;
 
       expect(Config.featureFlagShowCoronaInfo).toEqual(true);
