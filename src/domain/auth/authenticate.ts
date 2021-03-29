@@ -27,8 +27,8 @@ export const loginTunnistamo = (path?: string) => {
         toast.error(i18n.t('authentication.networkError.message'));
       } else {
         toast.error(i18n.t('authentication.errorMessage'));
-        Sentry.captureException(error);
       }
+      Sentry.captureException(error);
       // eslint-disable-next-line no-console
       console.error(error);
     });
