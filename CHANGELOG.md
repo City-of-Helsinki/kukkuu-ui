@@ -6,6 +6,10 @@
 
 - Coronavirus notice to the front page
 
+### Cahnged
+
+- Tanssintalo logo
+
 # 1.6.2
 
 ### Added
