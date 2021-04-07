@@ -20,5 +20,5 @@ export const login = async (t: TestController) => {
 
   await givePermission(t);
 
-  await t.wait(3000); // 3s
+  await t.wait(3500); // 3.5s
 };
