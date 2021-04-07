@@ -2,13 +2,15 @@
 
 # [Unreleased]
 
+# 1.6.3
+
 ### Added
 
-- Coronavirus notice to the front page
+- [#365](https://github.com/City-of-Helsinki/kukkuu-ui/pull/365) Coronavirus notice to the front page
 
-### Cahnged
+### Changed
 
-- Tanssintalo logo
+- [#367](https://github.com/City-of-Helsinki/kukkuu-ui/pull/367) Tanssintalo logo
 
 # 1.6.2
 
