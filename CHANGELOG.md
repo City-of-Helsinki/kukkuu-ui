@@ -2,6 +2,12 @@
 
 # [Unreleased]
 
+# 1.6.4
+
+### Fixed
+
+- [#370](https://github.com/City-of-Helsinki/kukkuu-ui/pull/370) Fix broken authentication: Users accessing the www prefixed address of the production version of the service will now be redirected to the service address without the www prefix
+
 # 1.6.3
 
 ### Added
