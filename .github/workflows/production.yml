@@ -45,6 +45,17 @@ jobs:
       - uses: actions/checkout@v2
       - uses: andersinno/kolga-setup-action@v2
 
+      - name: Set multiline ingress annotation to environment variables
+        env:
+          WWW_REDIRECT: |
+            if (\$host = 'www.kummilapset.hel.fi' ) {
+              rewrite ^ https://kummilapset.hel.fi$request_uri permanent;
+            }
+        run: |
+          echo "K8S_INGRESS_ANNOTATIONS<<EOF" >> $GITHUB_ENV
+          echo "nginx.ingress.kubernetes.io/configuration-snippet=${{ env.WWW_REDIRECT }}" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Deploy
         uses: andersinno/kolga-deploy-action@v2
         with:
