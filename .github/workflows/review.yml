@@ -1,5 +1,15 @@
 name: Build & Review
-on: [pull_request]
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      build_required:
+        description: 'Build images (true/false). Note that PR environment is deployed with versions merged with target, so manual deploy needs to build image (at least first time)'
+        required: true
+        default: 'true'
+      pr_number:
+        description: 'Pull request number (if redeploy without build) or own number for environment'
+        required: true
 
 env:
   CONTAINER_REGISTRY: ghcr.io
@@ -26,6 +36,7 @@ jobs:
       - uses: andersinno/kolga-setup-action@v2
 
       - name: Build
+        if: github.event_name == 'pull_request' || github.event.inputs.build_required == 'true'
         uses: andersinno/kolga-build-action@v2
         env:
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-review
@@ -41,7 +52,17 @@ jobs:
     name: Review and Accept
     steps:
       - uses: actions/checkout@v2
+
+      - name: Parse branch from event
+        id: branch
+        run: |
+          branch=$(echo ${{ github.event.ref }} | sed 's/refs\/heads\///')
+          echo "::set-output name=manual_branch::$branch"
+
       - uses: andersinno/kolga-setup-action@v2
+        with:
+          head_ref: ${{ steps.branch.outputs.manual_branch }}
+          pr_number: ${{ github.event.inputs.pr_number }}
 
       - name: Deploy
         uses: andersinno/kolga-deploy-action@v2
