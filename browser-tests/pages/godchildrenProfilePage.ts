@@ -32,7 +32,7 @@ export const addChildModal = {
   firstNameInput: screen.getByLabelText('Lapsen etunimi'),
   lastNameInput: screen.getByLabelText('Lapsen sukunimi'),
   relationshipInput: screen.getByRole('button', {
-    name: 'Ilmoittajan suhde lapseen Valitse',
+    name: 'Ilmoittajan suhde lapseen',
   }),
   submitButton: screen.getByRole('button', { name: 'Lisää lapsi' }),
 };
