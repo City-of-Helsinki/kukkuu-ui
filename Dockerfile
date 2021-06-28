@@ -21,7 +21,7 @@ RUN yarn policies set-version $YARN_VERSION
 USER appuser
 
 # Copy package.json and package-lock.json/yarn.lock files
-COPY package*.json *yarn* ./
+COPY --chown=appuser:appuser package*.json *yarn* ./
 
 # Install npm depepndencies
 ENV PATH /app/node_modules/.bin:$PATH
