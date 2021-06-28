@@ -4,7 +4,6 @@
 .linkButton {
   text-decoration: none;
 }
-.submitButton,
 .fullButton {
   width: 100%;
 }
@@ -48,6 +47,8 @@ tr {
       // Needs to be wide enough to facilitate the widest possible,
       // button label in each language
       min-width: 17rem;
+
+      text-align: right;
     }
     &.remainingCapacity {
       text-align: center;

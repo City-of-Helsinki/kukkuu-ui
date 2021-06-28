@@ -14,6 +14,7 @@ const EventOccurrenceList: FunctionComponent<EventOccurrenceListProps> = ({
   occurrences,
 }) => {
   const { t } = useTranslation();
+
   return (
     <table className={styles.eventOccurrenceList}>
       <tbody>

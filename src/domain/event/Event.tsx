@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { useParams, useLocation, Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
@@ -26,6 +26,7 @@ import eventQuery from './queries/eventQuery';
 import { formatOccurrenceTime } from './EventUtils';
 import EventEnrol from './EventEnrol';
 import EventPage from './EventPage';
+import EventParticipantsPerInvite from './EventParticipantsPerInvite';
 import styles from './event.module.scss';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
@@ -158,10 +159,27 @@ const Event = () => {
     return <div>No event</div>;
   }
 
+  const isTicketmaster = Boolean(
+    new URLSearchParams(location.search).get('isTicketmaster')
+  );
+
   return (
     <EventPage event={data.event}>
+      <EventParticipantsPerInvite
+        participantsPerInvite={data?.event?.participantsPerInvite}
+      />
       <div className={styles.description}>
         <Paragraph text={data.event.description || ''} />
+        {isTicketmaster && (
+          <p>
+            <Trans i18nKey="event.ticketmasterNotice" />{' '}
+            <strong>
+              <Trans
+                i18nKey={`event.participantsPerInviteEnumLong.${data?.event?.participantsPerInvite}`}
+              />
+            </strong>
+          </p>
+        )}
       </div>
       {!past && (
         <EventEnrol

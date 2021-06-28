@@ -194,7 +194,8 @@
     }
   },
   "enrollPage": {
-    "enrol": "Register for event"
+    "enrol": "Register for event",
+    "enrolShort": "Register"
   },
   "event": {
     "cancellation": {
@@ -230,6 +231,7 @@
       },
       "occurrenceTableHeader": {
         "buttonText": "Choose",
+        "buttonContinueText": "Continue",
         "date": "Date",
         "eventInformation": "Event information",
         "freePlaces": "Free Places",
@@ -237,7 +239,8 @@
         "venue": "Venue"
       },
       "participants": "Participants"
-    }
+    },
+    "ticketmasterNotice": "Registration for the event takes place in the Ticketmaster ticket service. To reserve tickets you will need a user account which you can create during the reservation process unless you already have one. The up to date status for seating can be found from Ticketmaster."
   },
   "footer": {
     "copyrightText": "© City of Helsinki"

@@ -1,10 +1,16 @@
 @import 'styles/layout';
+@import 'styles/variables';
 
 .eventOccurrenceList {
   width: 100%;
 
   th {
     text-align: left;
+  }
+
+  tr.mobileHeader,
+  tr.desktopHeader {
+    border-bottom: 4px solid $color-summer;
   }
 
   @include respond-above(md) {

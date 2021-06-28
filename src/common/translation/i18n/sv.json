@@ -194,7 +194,8 @@
     }
   },
   "enrollPage": {
-    "enrol": "Anmäl dig till evenemanget"
+    "enrol": "Anmäl dig till evenemanget",
+    "enrolShort": "Anmäl"
   },
   "event": {
     "cancellation": {
@@ -230,6 +231,7 @@
       },
       "occurrenceTableHeader": {
         "buttonText": "Välj",
+        "buttonContinueText": "Fortsätta",
         "date": "Datum",
         "eventInformation": "Information on evenemanget",
         "freePlaces": "Lediga platser",
@@ -237,7 +239,8 @@
         "venue": "Plats"
       },
       "participants": "Deltagare"
-    }
+    },
+    "ticketmasterNotice": "Anmälningen till evenemanget sker via Ticketmasters-biljettjänst. Du behöver ett gratis användarkonto för biljetterna. Du kan skapa kontot då du bokar, ifall du inte har ett från tidigare. Information om lediga platser för evenemanget hittar du på Ticketmaster."
   },
   "footer": {
     "copyrightText": "© Helsingfors stad"

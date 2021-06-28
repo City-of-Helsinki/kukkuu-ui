@@ -56,14 +56,6 @@
   display: grid;
 }
 
-.attendees {
-  display: flex;
-  align-items: center;
-  .icon {
-    margin-right: $baseMargin;
-  }
-}
-
 .signup {
   margin: $baseMargin 0;
   form {

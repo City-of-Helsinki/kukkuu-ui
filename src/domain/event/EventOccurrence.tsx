@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '../api/generatedTypes/eventQuery';
 import { formatTime, newMoment } from '../../common/time/utils';
@@ -11,6 +11,29 @@ import {
   DEFAULT_DATE_FORMAT,
 } from '../../common/time/TimeConstants';
 import EventOccurrenceNotificationControlButton from './EventOccurrenceNotificationControlButton';
+
+const SubmitTypes = {
+  enrol: 'ENROL',
+  notification: 'NOTIFICATION',
+  ticketmaster: 'TICKETMASTER',
+} as const;
+
+type SubmitType = typeof SubmitTypes[keyof typeof SubmitTypes];
+
+function getSubmitType(
+  isTicketmaster: boolean,
+  hasCapacity: boolean
+): SubmitType {
+  if (isTicketmaster) {
+    return SubmitTypes.ticketmaster;
+  }
+
+  if (hasCapacity) {
+    return SubmitTypes.enrol;
+  }
+
+  return SubmitTypes.notification;
+}
 
 type UrlParams = {
   childId: string;
@@ -24,6 +47,7 @@ type EventOccurrenceProps = {
 const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
   const { t } = useTranslation();
   const { childId, eventId } = useParams<UrlParams>();
+  const location = useLocation();
 
   const date = formatTime(
     newMoment(occurrence.time),
@@ -46,13 +70,14 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
   const remainingCapacity = hasCapacity
     ? occurrence?.remainingCapacity
     : t('event.register.occurrenceTableBody.full');
+  const isTicketmaster = Boolean(
+    new URLSearchParams(location.search).get('isTicketmaster')
+  );
+  const ticketmasterLink = 'https://ticketmaster.fi';
+  const submitType = getSubmitType(isTicketmaster, hasCapacity);
   const submitCell = (
     <>
-      {
-        // TODO: KK-300 Make the back-button not confusing
-      }
-
-      {hasCapacity && (
+      {submitType === SubmitTypes.enrol && (
         <Link
           className={styles.linkButton}
           to={`${occurrence.event.id}/occurrence/${occurrence.id}/enrol`}
@@ -62,7 +87,7 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
           </Button>
         </Link>
       )}
-      {!hasCapacity && (
+      {submitType === SubmitTypes.notification && (
         <EventOccurrenceNotificationControlButton
           childId={childId}
           eventId={eventId}
@@ -73,6 +98,13 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
           )}
           subscribeLabel={t('enrollment.button.subscribeToNotifications')}
         />
+      )}
+      {submitType === SubmitTypes.ticketmaster && (
+        <a className={styles.linkButton} href={ticketmasterLink}>
+          <Button type="button" className={styles.submitButton}>
+            {t('event.register.occurrenceTableHeader.buttonContinueText')}
+          </Button>
+        </a>
       )}
     </>
   );

@@ -194,7 +194,8 @@
     }
   },
   "enrollPage": {
-    "enrol": "Ilmoittaudu tapahtumaan"
+    "enrol": "Ilmoittaudu tapahtumaan",
+    "enrolShort": "Ilmoittaudu"
   },
   "event": {
     "cancellation": {
@@ -230,6 +231,7 @@
       },
       "occurrenceTableHeader": {
         "buttonText": "Valitse",
+        "buttonContinueText": "Jatka",
         "date": "Päivämäärä",
         "eventInformation": "Tapahtuman tiedot",
         "freePlaces": "Vapaat paikat",
@@ -237,7 +239,8 @@
         "venue": "Tapahtumapaikka"
       },
       "participants": "Osallistujat"
-    }
+    },
+    "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista."
   },
   "footer": {
     "copyrightText": "© Helsingin kaupunki"

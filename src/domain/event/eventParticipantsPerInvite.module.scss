@@ -1,0 +1,16 @@
+@import 'styles/variables';
+@import 'styles/variables';
+
+.participantsPerInvite {
+  padding: $spacing-s;
+  display: flex;
+  align-items: center;
+
+  font-weight: 500;
+
+  background: $color-fog-medium-light;
+
+  & > * {
+    margin-right: $spacing-2-xs;
+  }
+}
