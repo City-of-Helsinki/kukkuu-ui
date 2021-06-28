@@ -97,6 +97,7 @@ function AppRoute({
         {...routeProps}
         render={(routeRenderProps) => (
           <LoadingSpinner isLoading={isLoadingUser}>
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             {/* @ts-ignore */}
             {React.createElement(component, routeRenderProps)}
           </LoadingSpinner>

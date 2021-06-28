@@ -47,7 +47,7 @@
     "i18next-browser-languagedetector": "^6.0.1",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
-    "node-sass": "^4.14.1",
+    "node-sass": "6.0.1",
     "oidc-client": "^1.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -58,18 +58,22 @@
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.4",
+    "react-scripts": "4.0.3",
     "react-toastify": "^6.0.8",
     "react-transition-group": "^4.4.1",
     "redux-oidc": "^4.0.0-beta1",
     "redux-persist": "^6.0.0",
-    "testcafe": "^1.9.4",
+    "testcafe": "1.14.2",
     "typescript": "3.9.7",
     "validator": "^13.1.1",
     "yup": "^0.29.1"
   },
   "resolutions": {
-    "graphql": "^14.6.0"
+    "graphql": "^14.6.0",
+    "css-what": "^5.0.1 ",
+    "glob-parent": "^5.1.2",
+    "normalize-url": "^6.0.1",
+    "browserslist": "^4.16.5"
   },
   "scripts": {
     "build": "react-scripts build",
@@ -78,7 +82,7 @@
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
     "start": "react-scripts start",
     "update-translations": "fetch-translations 1b5qAamjhmSNiME3matBINaeyz8TvoRWVB6wU5HvKy4g -l en,fi,sv -o src/common/translation/i18n",
-    "test": "TZ=UTC react-scripts test --env=jest-environment-jsdom-fourteen",
+    "test": "TZ=UTC react-scripts test",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --lang=fi-FI",
     "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" browser-tests/ -s takeOnFails=true --lang=fi-FI"

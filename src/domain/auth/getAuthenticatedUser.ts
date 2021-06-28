@@ -5,6 +5,7 @@ import * as Sentry from '@sentry/browser';
 import i18n from '../../common/translation/i18n/i18nInit';
 import userManager from './userManager';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default function (): Promise<User> {
   return new Promise(async (resolve, reject) => {
     try {

@@ -20,6 +20,7 @@ const SuccessToast: FunctionComponent = () => {
     setShowJustEnrolled(isJustEnrolled);
   }, [isJustEnrolled]);
 
+  // eslint-disable-next-line no-undef
   let timer: NodeJS.Timeout;
   useEffect(() => {
     return () => {

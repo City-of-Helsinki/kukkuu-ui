@@ -18,9 +18,8 @@ import OccurrenceInfo from '../../event/partial/OccurrenceInfo';
 import EventCard from '../../event/eventCard/EventCard';
 import styles from './profileEventsList.module.scss';
 
-const availableEventsAndEventGroupsList = RelayList<
-  AvailableEventOrEventGroupNode
->();
+const availableEventsAndEventGroupsList =
+  RelayList<AvailableEventOrEventGroupNode>();
 const occurrencesList = RelayList<OccurrenceNode>();
 const pastEventsList = RelayList<PastEventNode>();
 
@@ -30,7 +29,7 @@ function when<R = any>(
   isEvent: (event: EventNode) => R,
   isEventGroup: (eventGroup: EventGroupNode) => R
 ) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const isEventGroupType = model['__typename'] === 'EventGroupNode';
 

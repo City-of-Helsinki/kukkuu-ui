@@ -55,9 +55,12 @@ const EnrolPage = () => {
     eventId: string;
     occurrenceId: string;
   }>();
-  const { loading, error, data, refetch: refetchOccurrence } = useQuery<
-    OccurrenceQueryType
-  >(occurrenceQuery, {
+  const {
+    loading,
+    error,
+    data,
+    refetch: refetchOccurrence,
+  } = useQuery<OccurrenceQueryType>(occurrenceQuery, {
     variables: {
       id: params.occurrenceId,
       childId: params.childId,

@@ -19,7 +19,6 @@ export const loginTunnistamo = (path?: string) => {
   userManager
     .signinRedirect({
       data: { path: path || 'profile' },
-      /* eslint-disable @typescript-eslint/camelcase */
       ui_locales: getCurrentLanguage(i18n),
     })
     .catch((error) => {

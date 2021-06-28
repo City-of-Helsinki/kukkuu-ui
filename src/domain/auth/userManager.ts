@@ -10,7 +10,6 @@ if (process.env.NODE_ENV === 'development') {
   Log.level = Log.INFO;
 }
 
-/* eslint-disable @typescript-eslint/camelcase */
 const settings: UserManagerSettings = {
   loadUserInfo: true,
   userStore: new WebStorageStateStore({ store: window.localStorage }),
@@ -25,7 +24,6 @@ const settings: UserManagerSettings = {
   scope: process.env.REACT_APP_OIDC_SCOPE,
   post_logout_redirect_uri: `${location}/`,
 };
-/* eslint-enable @typescript-eslint/camelcase */
 
 const userManager = createUserManager(settings);
 

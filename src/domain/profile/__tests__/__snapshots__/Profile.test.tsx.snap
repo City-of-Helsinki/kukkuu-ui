@@ -19,7 +19,7 @@ exports[`renders snapshot correctly 1`] = `
           "group": CacheGroup {
             "caching": true,
             "d": [Function],
-            "keyMaker": KeyTrie {
+            "keyMaker": Trie {
               "makeData": [Function],
               "weakness": true,
             },
@@ -44,6 +44,7 @@ exports[`renders snapshot correctly 1`] = `
               "ROOT_SUBSCRIPTION": "Subscription",
             },
             "supertypeMap": Map {},
+            "toBeAdded": Object {},
             "typePolicies": Object {},
             "usingPossibleTypes": false,
           },
@@ -52,12 +53,12 @@ exports[`renders snapshot correctly 1`] = `
           "sharedLayerGroup": CacheGroup {
             "caching": true,
             "d": [Function],
-            "keyMaker": KeyTrie {
+            "keyMaker": Trie {
               "makeData": [Function],
               "weakness": true,
             },
           },
-          "storageTrie": KeyTrie {
+          "storageTrie": Trie {
             "makeData": [Function],
             "weakness": true,
           },
@@ -73,7 +74,7 @@ exports[`renders snapshot correctly 1`] = `
           "group": CacheGroup {
             "caching": true,
             "d": [Function],
-            "keyMaker": KeyTrie {
+            "keyMaker": Trie {
               "makeData": [Function],
               "weakness": true,
             },
@@ -98,6 +99,7 @@ exports[`renders snapshot correctly 1`] = `
               "ROOT_SUBSCRIPTION": "Subscription",
             },
             "supertypeMap": Map {},
+            "toBeAdded": Object {},
             "typePolicies": Object {},
             "usingPossibleTypes": false,
           },
@@ -106,12 +108,12 @@ exports[`renders snapshot correctly 1`] = `
           "sharedLayerGroup": CacheGroup {
             "caching": true,
             "d": [Function],
-            "keyMaker": KeyTrie {
+            "keyMaker": Trie {
               "makeData": [Function],
               "weakness": true,
             },
           },
-          "storageTrie": KeyTrie {
+          "storageTrie": Trie {
             "makeData": [Function],
             "weakness": true,
           },
@@ -137,6 +139,7 @@ exports[`renders snapshot correctly 1`] = `
             "ROOT_SUBSCRIPTION": "Subscription",
           },
           "supertypeMap": Map {},
+          "toBeAdded": Object {},
           "typePolicies": Object {},
           "usingPossibleTypes": false,
         },
@@ -189,7 +192,7 @@ exports[`renders snapshot correctly 1`] = `
             "group": CacheGroup {
               "caching": true,
               "d": [Function],
-              "keyMaker": KeyTrie {
+              "keyMaker": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
@@ -214,6 +217,7 @@ exports[`renders snapshot correctly 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
+              "toBeAdded": Object {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -222,12 +226,12 @@ exports[`renders snapshot correctly 1`] = `
             "sharedLayerGroup": CacheGroup {
               "caching": true,
               "d": [Function],
-              "keyMaker": KeyTrie {
+              "keyMaker": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
             },
-            "storageTrie": KeyTrie {
+            "storageTrie": Trie {
               "makeData": [Function],
               "weakness": true,
             },
@@ -243,7 +247,7 @@ exports[`renders snapshot correctly 1`] = `
             "group": CacheGroup {
               "caching": true,
               "d": [Function],
-              "keyMaker": KeyTrie {
+              "keyMaker": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
@@ -268,6 +272,7 @@ exports[`renders snapshot correctly 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
+              "toBeAdded": Object {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -276,12 +281,12 @@ exports[`renders snapshot correctly 1`] = `
             "sharedLayerGroup": CacheGroup {
               "caching": true,
               "d": [Function],
-              "keyMaker": KeyTrie {
+              "keyMaker": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
             },
-            "storageTrie": KeyTrie {
+            "storageTrie": Trie {
               "makeData": [Function],
               "weakness": true,
             },
@@ -307,6 +312,7 @@ exports[`renders snapshot correctly 1`] = `
               "ROOT_SUBSCRIPTION": "Subscription",
             },
             "supertypeMap": Map {},
+            "toBeAdded": Object {},
             "typePolicies": Object {},
             "usingPossibleTypes": false,
           },
@@ -358,7 +364,7 @@ exports[`renders snapshot correctly 1`] = `
             "group": CacheGroup {
               "caching": true,
               "d": [Function],
-              "keyMaker": KeyTrie {
+              "keyMaker": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
@@ -383,6 +389,7 @@ exports[`renders snapshot correctly 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
+              "toBeAdded": Object {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -391,12 +398,12 @@ exports[`renders snapshot correctly 1`] = `
             "sharedLayerGroup": CacheGroup {
               "caching": true,
               "d": [Function],
-              "keyMaker": KeyTrie {
+              "keyMaker": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
             },
-            "storageTrie": KeyTrie {
+            "storageTrie": Trie {
               "makeData": [Function],
               "weakness": true,
             },
@@ -412,7 +419,7 @@ exports[`renders snapshot correctly 1`] = `
             "group": CacheGroup {
               "caching": true,
               "d": [Function],
-              "keyMaker": KeyTrie {
+              "keyMaker": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
@@ -437,6 +444,7 @@ exports[`renders snapshot correctly 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
+              "toBeAdded": Object {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -445,12 +453,12 @@ exports[`renders snapshot correctly 1`] = `
             "sharedLayerGroup": CacheGroup {
               "caching": true,
               "d": [Function],
-              "keyMaker": KeyTrie {
+              "keyMaker": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
             },
-            "storageTrie": KeyTrie {
+            "storageTrie": Trie {
               "makeData": [Function],
               "weakness": true,
             },
@@ -476,6 +484,7 @@ exports[`renders snapshot correctly 1`] = `
               "ROOT_SUBSCRIPTION": "Subscription",
             },
             "supertypeMap": Map {},
+            "toBeAdded": Object {},
             "typePolicies": Object {},
             "usingPossibleTypes": false,
           },
@@ -531,7 +540,7 @@ exports[`renders snapshot correctly 1`] = `
               "group": CacheGroup {
                 "caching": true,
                 "d": [Function],
-                "keyMaker": KeyTrie {
+                "keyMaker": Trie {
                   "makeData": [Function],
                   "weakness": true,
                 },
@@ -556,6 +565,7 @@ exports[`renders snapshot correctly 1`] = `
                   "ROOT_SUBSCRIPTION": "Subscription",
                 },
                 "supertypeMap": Map {},
+                "toBeAdded": Object {},
                 "typePolicies": Object {},
                 "usingPossibleTypes": false,
               },
@@ -564,12 +574,12 @@ exports[`renders snapshot correctly 1`] = `
               "sharedLayerGroup": CacheGroup {
                 "caching": true,
                 "d": [Function],
-                "keyMaker": KeyTrie {
+                "keyMaker": Trie {
                   "makeData": [Function],
                   "weakness": true,
                 },
               },
-              "storageTrie": KeyTrie {
+              "storageTrie": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
@@ -585,7 +595,7 @@ exports[`renders snapshot correctly 1`] = `
               "group": CacheGroup {
                 "caching": true,
                 "d": [Function],
-                "keyMaker": KeyTrie {
+                "keyMaker": Trie {
                   "makeData": [Function],
                   "weakness": true,
                 },
@@ -610,6 +620,7 @@ exports[`renders snapshot correctly 1`] = `
                   "ROOT_SUBSCRIPTION": "Subscription",
                 },
                 "supertypeMap": Map {},
+                "toBeAdded": Object {},
                 "typePolicies": Object {},
                 "usingPossibleTypes": false,
               },
@@ -618,12 +629,12 @@ exports[`renders snapshot correctly 1`] = `
               "sharedLayerGroup": CacheGroup {
                 "caching": true,
                 "d": [Function],
-                "keyMaker": KeyTrie {
+                "keyMaker": Trie {
                   "makeData": [Function],
                   "weakness": true,
                 },
               },
-              "storageTrie": KeyTrie {
+              "storageTrie": Trie {
                 "makeData": [Function],
                 "weakness": true,
               },
@@ -649,6 +660,7 @@ exports[`renders snapshot correctly 1`] = `
                 "ROOT_SUBSCRIPTION": "Subscription",
               },
               "supertypeMap": Map {},
+              "toBeAdded": Object {},
               "typePolicies": Object {},
               "usingPossibleTypes": false,
             },
@@ -681,9 +693,7 @@ exports[`renders snapshot correctly 1`] = `
           "client": [Circular],
         },
         "mutationIdCounter": 1,
-        "mutationStore": MutationStore {
-          "store": Object {},
-        },
+        "mutationStore": Object {},
         "onBroadcast": [Function],
         "queries": Map {},
         "queryDeduplication": true,
@@ -696,7 +706,7 @@ exports[`renders snapshot correctly 1`] = `
       "resetStore": [Function],
       "resetStoreCallbacks": Array [],
       "typeDefs": undefined,
-      "version": "local",
+      "version": "3.3.20",
       "watchQuery": [Function],
     }
   }

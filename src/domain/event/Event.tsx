@@ -91,9 +91,8 @@ const Event = () => {
 
   const past = location.pathname.includes('/past') ? true : false;
 
-  const [selectedFilterValues, setFilterValues] = useState<FilterValues>(
-    initialFilterValues
-  );
+  const [selectedFilterValues, setFilterValues] =
+    useState<FilterValues>(initialFilterValues);
 
   const variables = {
     id: params.eventId,

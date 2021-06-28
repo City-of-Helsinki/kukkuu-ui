@@ -3,6 +3,7 @@ export type BackendAuthenticationData = {
   apiToken: string | null;
   hasProfile: boolean;
   mustRenewToken: boolean;
+  // eslint-disable-next-line @typescript-eslint/ban-types
   errors: object;
 };
 

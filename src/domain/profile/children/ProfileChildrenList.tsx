@@ -47,10 +47,8 @@ const ProfileChildrenList = () => {
           <AddNewChildFormModal
             setIsOpen={setIsOpen}
             addChild={(payload) => {
-              const supportedChildData: Omit<
-                UpdateChildMutationInput,
-                'id'
-              > = getSupportedChildData(payload);
+              const supportedChildData: Omit<UpdateChildMutationInput, 'id'> =
+                getSupportedChildData(payload);
               addChild({ variables: { input: supportedChildData } })
                 .then(() => {
                   trackEvent({ category: 'action', action: 'Add child' });

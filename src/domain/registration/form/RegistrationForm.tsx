@@ -81,12 +81,14 @@ const RegistrationForm = () => {
 
   const initialValues = useSelector(initialFormDataSelector);
   const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
-  const [submitChildrenAndGuardian] = useMutation<
-    SubmitChildrenAndGuardianData
-  >(submitChildrenAndGuardianMutation, {
-    awaitRefetchQueries: true,
-    refetchQueries: [{ query: profileQuery }],
-  });
+  const [submitChildrenAndGuardian] =
+    useMutation<SubmitChildrenAndGuardianData>(
+      submitChildrenAndGuardianMutation,
+      {
+        awaitRefetchQueries: true,
+        refetchQueries: [{ query: profileQuery }],
+      }
+    );
   // For new users preferLanguage defaults to their chosen UI language.
   // FIXME or ignore: If you have the form open for a long time, and silent renew fails, you get a error from redux:
   // Invariant failed: A state mutation was detected between dispatches,

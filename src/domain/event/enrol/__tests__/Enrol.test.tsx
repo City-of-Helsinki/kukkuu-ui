@@ -37,7 +37,7 @@ const defaultProps = {
 };
 
 const getWrapper = (props?: unknown) =>
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   render(<Enrol {...defaultProps} {...props} />);
 

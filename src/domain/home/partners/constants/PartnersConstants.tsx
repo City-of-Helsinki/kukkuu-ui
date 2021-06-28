@@ -41,12 +41,9 @@ export const mainPartnerList: Partner[] = [
     icon: helIcon,
     altLangIcons: { sv: helIconSv },
     url: {
-      fi:
-        'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/fi/palvelut/yleiset-kulttuuripalvelut/',
-      sv:
-        'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/sv/tjanster/allmanna-kulturtjanster/',
-      en:
-        'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/en/services/cultural-centres-and-support/',
+      fi: 'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/fi/palvelut/yleiset-kulttuuripalvelut/',
+      sv: 'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/sv/tjanster/allmanna-kulturtjanster/',
+      en: 'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/en/services/cultural-centres-and-support/',
     },
   },
   {
@@ -163,12 +160,9 @@ export const partnerList: Partner[] = [
       sv: finnishNationalGalleryIconSV,
     },
     url: {
-      fi:
-        'https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true',
-      sv:
-        'https://www.kansallisgalleria.fi/sv/search?category=artwork&hasImage=true',
-      en:
-        'https://www.kansallisgalleria.fi/en/search?category=artwork&hasImage=true',
+      fi: 'https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true',
+      sv: 'https://www.kansallisgalleria.fi/sv/search?category=artwork&hasImage=true',
+      en: 'https://www.kansallisgalleria.fi/en/search?category=artwork&hasImage=true',
     },
   },
   {

@@ -16,6 +16,7 @@ type Props = {
       };
   isLoading?: boolean;
   isReady?: boolean;
+  // eslint-disable-next-line react/no-unused-prop-types
   layout?: ReactComponentElement<'div'>;
 };
 
@@ -36,7 +37,7 @@ const Page = ({ title, children, error, isLoading, isReady }: Props) => {
         />
       )}
       {isError && (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         <InfoTemplate title={error.name} description={error.description} />
       )}

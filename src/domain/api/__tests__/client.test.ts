@@ -6,7 +6,7 @@ jest.mock('../../auth/state/AuthenticationSelectors', () => ({
 }));
 
 describe('graphql client', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     global.fetch.resetMocks();
   });
 

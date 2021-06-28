@@ -65,9 +65,8 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     // Ensure that we're using the correct typing when we're updating and querying
     // children. updateChild_updateChild_child has a different set of fields compared to
     // childByIdQuery_child
-    const supportedChildPayload: ChildDetailEditModalPayload = getSupportedChildData(
-      payload
-    );
+    const supportedChildPayload: ChildDetailEditModalPayload =
+      getSupportedChildData(payload);
     editChild(supportedChildPayload);
     setIsOpen(false);
   };
