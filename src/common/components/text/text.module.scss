@@ -1,0 +1,63 @@
+@import 'styles/variables';
+@import 'styles/layout';
+
+.text {
+  color: $color-black-90;
+}
+.text:last-child {
+  margin-bottom: 0;
+}
+
+.h1 {
+  margin: 0 0 $spacing-s 0;
+
+  font-size: $fontsize-heading-l;
+  line-height: $lineheight-l;
+
+  @include respond-above(xs) {
+    font-size: $fontsize-heading-xl;
+  }
+}
+
+.h2 {
+  margin: 0 0 $spacing-s 0;
+
+  font-size: $fontsize-heading-l;
+}
+
+.h3 {
+  margin: 0 0 $spacing-s 0;
+
+  font-size: $fontsize-heading-m;
+  font-weight: 600;
+}
+
+.h4 {
+  margin: 0 0 $spacing-s 0;
+
+  font-size: $fontsize-heading-s;
+}
+
+.h5 {
+  margin: 0 0 $spacing-s 0;
+
+  font-size: $fontsize-heading-xs;
+}
+
+.body-l {
+  margin: 0 0 $spacing-l 0;
+
+  font-size: $fontsize-body-l;
+  line-height: $lineheight-l;
+  white-space: pre-wrap;
+}
+
+.body {
+  font-size: $fontsize-body-m;
+  white-space: pre-wrap;
+}
+
+.body-xl {
+  font-size: $fontsize-body-xl;
+  white-space: pre-wrap;
+}

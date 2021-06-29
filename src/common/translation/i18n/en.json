@@ -240,7 +240,17 @@
       },
       "participants": "Participants"
     },
-    "ticketmasterNotice": "Registration for the event takes place in the Ticketmaster ticket service. To reserve tickets you will need a user account which you can create during the reservation process unless you already have one. The up to date status for seating can be found from Ticketmaster."
+    "ticketmasterNotice": "Registration for the event takes place in the Ticketmaster ticket service. To reserve tickets you will need a user account which you can create during the reservation process if you do not already have one. The up to date status for placing can be found from Ticketmaster."
+  },
+  "eventOccurrenceRedirectPage": {
+    "metaTitle": "You are being redirected to Ticketmaster",
+    "title": "You are being redirected to Ticketmaster",
+    "description": "The Ticketmaster Ticket Service allows you to browse all {{eventName}} events. You can sign up for any of them as long as there are places available.",
+    "passwordLabel": "Use this personal password when making a reservation:",
+    "copyPassword": "Copy Password",
+    "back": "Back",
+    "continue": "Continue to Ticketmaster",
+    "unexpectedError": "An unexpected error took place"
   },
   "footer": {
     "copyrightText": "© City of Helsinki"

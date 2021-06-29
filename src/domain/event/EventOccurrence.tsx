@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '../api/generatedTypes/eventQuery';
 import { formatTime, newMoment } from '../../common/time/utils';
 import styles from './eventOccurrence.module.scss';
-import Button from '../../common/components/button/Button';
+import LinkButton from '../../common/components/button/LinkButton';
 import {
   DEFAULT_TIME_FORMAT,
   DEFAULT_DATE_FORMAT,
@@ -70,22 +70,17 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
   const remainingCapacity = hasCapacity
     ? occurrence?.remainingCapacity
     : t('event.register.occurrenceTableBody.full');
+  const occurrenceUrl = `${occurrence.event.id}/occurrence/${occurrence.id}`;
   const isTicketmaster = Boolean(
     new URLSearchParams(location.search).get('isTicketmaster')
   );
-  const ticketmasterLink = 'https://ticketmaster.fi';
   const submitType = getSubmitType(isTicketmaster, hasCapacity);
   const submitCell = (
     <>
       {submitType === SubmitTypes.enrol && (
-        <Link
-          className={styles.linkButton}
-          to={`${occurrence.event.id}/occurrence/${occurrence.id}/enrol`}
-        >
-          <Button type="submit" className={styles.submitButton}>
-            {t('event.register.occurrenceTableHeader.buttonText')}
-          </Button>
-        </Link>
+        <LinkButton to={`${occurrenceUrl}/enrol`}>
+          {t('event.register.occurrenceTableHeader.buttonText')}
+        </LinkButton>
       )}
       {submitType === SubmitTypes.notification && (
         <EventOccurrenceNotificationControlButton
@@ -100,11 +95,9 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
         />
       )}
       {submitType === SubmitTypes.ticketmaster && (
-        <a className={styles.linkButton} href={ticketmasterLink}>
-          <Button type="button" className={styles.submitButton}>
-            {t('event.register.occurrenceTableHeader.buttonContinueText')}
-          </Button>
-        </a>
+        <LinkButton to={`${occurrenceUrl}/redirect`}>
+          {t('event.register.occurrenceTableHeader.buttonContinueText')}
+        </LinkButton>
       )}
     </>
   );

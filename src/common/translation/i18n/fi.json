@@ -242,6 +242,16 @@
     },
     "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista."
   },
+  "eventOccurrenceRedirectPage": {
+    "metaTitle": "Olet siirtymässä Ticketmasteriin",
+    "title": "Olet siirtymässä Ticketmasteriin",
+    "description": "Ticketmaster-lippupalvelussa voit selata kaikkia {{eventName}}-tapahtumia. Voit ilmoittautua mihin tahansa niistä, kunhan paikkoja on vapaana.",
+    "passwordLabel": "Käytä varaessasi tätä henkilökohtaista salasanaa:",
+    "copyPassword": "Kopioi salasana",
+    "back": "Takaisin",
+    "continue": "Jatka Ticketmasteriin",
+    "unexpectedError": "Odottamaton virhe"
+  },
   "footer": {
     "copyrightText": "© Helsingin kaupunki"
   },

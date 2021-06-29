@@ -1,0 +1,58 @@
+@import 'styles/variables';
+
+.wrapper {
+  padding: $spacing-layout-m $spacing-layout-l;
+  margin: $spacing-layout-s auto;
+  max-width: 44.5rem;
+
+  background-color: $color-white;
+
+  .row {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: $spacing-3-xl;
+    }
+  }
+
+  .password {
+    padding: $spacing-s;
+    width: min-content;
+    margin-right: $spacing-m;
+
+    font-size: $fontsize-body-xl;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+
+    background-color: $color-black-5;
+  }
+
+  .copyButton {
+    padding: 0;
+    margin-right: $spacing-2-xs;
+
+    text-decoration: underline;
+    color: $color-black-90;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .successCheckMark {
+    color: $color-success;
+  }
+
+  .anchorButton {
+    margin-right: $spacing-m;
+  }
+}
+
+.lessMargin {
+  margin-bottom: $spacing-s;
+}
+
+.grey {
+  background-color: $color-black-5;
+}

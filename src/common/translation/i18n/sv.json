@@ -242,6 +242,16 @@
     },
     "ticketmasterNotice": "Anmälningen till evenemanget sker via Ticketmasters-biljettjänst. Du behöver ett gratis användarkonto för biljetterna. Du kan skapa kontot då du bokar, ifall du inte har ett från tidigare. Information om lediga platser för evenemanget hittar du på Ticketmaster."
   },
+  "eventOccurrenceRedirectPage": {
+    "metaTitle": "Du omdirigeras till Ticketmaster",
+    "title": "Du omdirigeras till Ticketmaster",
+    "description": "Ticketmaster Ticket Service låter dig bläddra bland alla {{eventName}} händelser. Du kan anmäla dig till någon av dem så länge det finns lediga platser.",
+    "passwordLabel": "Använd detta personliga lösenord när du gör en bokning:",
+    "copyPassword": "Kopiera lösenord",
+    "back": "Tillbaka",
+    "continue": "Fortsätt till Ticketmaster",
+    "unexpectedError": "Ett oväntat fel inträffade"
+  },
   "footer": {
     "copyrightText": "© Helsingfors stad"
   },
