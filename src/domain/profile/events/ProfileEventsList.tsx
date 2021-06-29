@@ -14,6 +14,7 @@ import {
   childByIdQuery_child_occurrences_edges_node as OccurrenceNode,
 } from '../../api/generatedTypes/childByIdQuery';
 import RelayList from '../../api/relayList';
+import Text from '../../../common/components/text/Text';
 import OccurrenceInfo from '../../event/partial/OccurrenceInfo';
 import EventCard from '../../event/eventCard/EventCard';
 import styles from './profileEventsList.module.scss';
@@ -138,6 +139,9 @@ const ProfileEventsList = ({
       {pastEvents.length > 0 && (
         <div className={styles.eventsList}>
           <h2>{t('profile.events.past.heading')}</h2>
+          <Text variant="body-l" className={styles.descriptionMaxWidth}>
+            {t('profile.events.past.ticketmasterNotice')}
+          </Text>
           {pastEvents.map((pastEvent) => (
             <EventCard
               key={pastEvent.id}

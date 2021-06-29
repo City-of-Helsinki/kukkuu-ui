@@ -471,7 +471,8 @@
         "heading": "Tapahtumakutsut"
       },
       "past": {
-        "heading": "Menneet tapahtumat"
+        "heading": "Menneet tapahtumat",
+        "ticketmasterNotice": "Huomiothan, että tapahtumat jonka liput on toimitettu Ticketmaster-lippupalvelun kautta ilmestyvät tänne viiveellä. "
       },
       "upcoming": {
         "heading": "Tulevat tapahtumat"
