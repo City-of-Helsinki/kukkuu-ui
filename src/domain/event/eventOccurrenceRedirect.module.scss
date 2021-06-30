@@ -1,6 +1,7 @@
 @import 'styles/variables';
 
 .wrapper {
+  align-self: flex-start;
   padding: $spacing-layout-m $spacing-layout-l;
   margin: $spacing-layout-s auto;
   max-width: 44.5rem;
