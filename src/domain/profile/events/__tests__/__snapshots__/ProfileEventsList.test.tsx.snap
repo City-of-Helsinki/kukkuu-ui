@@ -102,6 +102,12 @@ exports[`Renders snapshot correctly 1`] = `
     <h2>
       Menneet tapahtumat
     </h2>
+    <Text
+      className="descriptionMaxWidth"
+      variant="body-l"
+    >
+      Huomiothan, että tapahtumat jonka liput on toimitettu Ticketmaster-lippupalvelun kautta ilmestyvät tänne viiveellä. 
+    </Text>
     <EventCard
       action={[Function]}
       actionText="Näytä tapahtuman tiedot"
