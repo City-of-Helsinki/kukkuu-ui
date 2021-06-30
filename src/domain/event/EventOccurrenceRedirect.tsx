@@ -15,6 +15,7 @@ import styles from './eventOccurrenceRedirect.module.scss';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
 import useEventOccurrence from './queries/useEventOccurrence';
+import useAriaLive from '../../common/AriaLive/useAriaLive';
 
 function getEventPathname(pathname: string): string {
   return pathname.split('/').slice(0, 7).join('/');
@@ -49,6 +50,8 @@ const EventOccurrenceRedirect = () => {
   );
   const location = useLocation();
   const [copyStatus, setCopyStatus] = useState<CopyState>(CopyStates.initial);
+  const { sendMessage } = useAriaLive();
+
   const ticketSystem = data?.event?.ticketSystem;
   const ticketmasterPassword =
     ticketSystem && 'childPassword' in ticketSystem
@@ -65,7 +68,11 @@ const EventOccurrenceRedirect = () => {
     if (ticketmasterPassword) {
       const success = copy(ticketmasterPassword);
 
+      // If copying was successful, true is returned. Otherwise the
+      // copy-to-clipboard package will render a modal which advises the user
+      // to copy by other means.
       if (success) {
+        sendMessage(t('eventOccurrenceRedirectPage.passwordCopySuccess'));
         setCopyStatus(CopyStates.success);
       }
     }

@@ -250,7 +250,8 @@
     "copyPassword": "Kopioi salasana",
     "back": "Takaisin",
     "continue": "Jatka Ticketmasteriin",
-    "unexpectedError": "Odottamaton virhe"
+    "unexpectedError": "Odottamaton virhe",
+    "passwordCopySuccess": "Salasana kopioitiin onistuneesti"
   },
   "footer": {
     "copyrightText": "© Helsingin kaupunki"

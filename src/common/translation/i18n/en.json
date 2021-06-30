@@ -250,7 +250,8 @@
     "copyPassword": "Copy Password",
     "back": "Back",
     "continue": "Continue to Ticketmaster",
-    "unexpectedError": "An unexpected error took place"
+    "unexpectedError": "An unexpected error took place",
+    "passwordCopySuccess": "Password was copied succesfully"
   },
   "footer": {
     "copyrightText": "© City of Helsinki"

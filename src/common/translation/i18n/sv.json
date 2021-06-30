@@ -250,7 +250,8 @@
     "copyPassword": "Kopiera lösenord",
     "back": "Tillbaka",
     "continue": "Fortsätt till Ticketmaster",
-    "unexpectedError": "Ett oväntat fel inträffade"
+    "unexpectedError": "Ett oväntat fel inträffade",
+    "passwordCopySuccess": "Lösenordet har kopierats"
   },
   "footer": {
     "copyrightText": "© Helsingfors stad"
