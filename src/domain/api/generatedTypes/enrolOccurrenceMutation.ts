@@ -145,7 +145,7 @@ export interface enrolOccurrenceMutation_enrolOccurrence_enrolment {
    */
   id: string;
   occurrence: enrolOccurrenceMutation_enrolOccurrence_enrolment_occurrence;
-  child: enrolOccurrenceMutation_enrolOccurrence_enrolment_child;
+  child: enrolOccurrenceMutation_enrolOccurrence_enrolment_child | null;
 }
 
 export interface enrolOccurrenceMutation_enrolOccurrence {

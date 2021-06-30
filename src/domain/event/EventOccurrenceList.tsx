@@ -1,18 +1,15 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { eventQuery_event_occurrences as Occurrences } from '../api/generatedTypes/eventQuery';
 import EventOccurrence from './EventOccurrence';
 import styles from './eventOccurrenceList.module.scss';
 
-interface EventOccurrenceListProps {
+type EventOccurrenceListProps = {
   occurrences: Occurrences;
-  eventId: string;
-}
+};
 
-const EventOccurrenceList: FunctionComponent<EventOccurrenceListProps> = ({
-  occurrences,
-}) => {
+const EventOccurrenceList = ({ occurrences }: EventOccurrenceListProps) => {
   const { t } = useTranslation();
 
   return (

@@ -88,7 +88,7 @@ const EnrolPage = () => {
       },
     ],
     onCompleted: (data) => {
-      if (data?.enrolOccurrence?.enrolment?.child.occurrences.edges) {
+      if (data?.enrolOccurrence?.enrolment?.child?.occurrences?.edges) {
         dispatch(
           saveChildEvents({
             childId: params.childId,

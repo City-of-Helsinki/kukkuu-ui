@@ -28,6 +28,7 @@ import EventEnrol from './EventEnrol';
 import EventPage from './EventPage';
 import EventParticipantsPerInvite from './EventParticipantsPerInvite';
 import styles from './event.module.scss';
+import { TicketSystem } from '../api/generatedTypes/globalTypes';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
@@ -159,9 +160,8 @@ const Event = () => {
     return <div>No event</div>;
   }
 
-  const isTicketmaster = Boolean(
-    new URLSearchParams(location.search).get('isTicketmaster')
-  );
+  const isTicketmaster =
+    data?.event?.ticketSystem?.type === TicketSystem.TICKETMASTER;
 
   return (
     <EventPage event={data.event}>

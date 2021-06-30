@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { EventParticipantsPerInvite } from "./globalTypes";
+import { EventParticipantsPerInvite, TicketSystem } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: eventQuery
@@ -30,6 +30,17 @@ export interface eventQuery_event_occurrences_edges_node_venue {
   address: string | null;
 }
 
+export interface eventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem {
+  type: TicketSystem;
+}
+
+export interface eventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem {
+  type: TicketSystem;
+  url: string;
+}
+
+export type eventQuery_event_occurrences_edges_node_ticketSystem = eventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | eventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem;
+
 export interface eventQuery_event_occurrences_edges_node {
   /**
    * The ID of the object.
@@ -40,6 +51,7 @@ export interface eventQuery_event_occurrences_edges_node {
   event: eventQuery_event_occurrences_edges_node_event;
   venue: eventQuery_event_occurrences_edges_node_venue;
   childHasFreeSpotNotificationSubscription: boolean | null;
+  ticketSystem: eventQuery_event_occurrences_edges_node_ticketSystem | null;
 }
 
 export interface eventQuery_event_occurrences_edges {
@@ -77,6 +89,17 @@ export interface eventQuery_event_allOccurrences_edges_node_venue {
   address: string | null;
 }
 
+export interface eventQuery_event_allOccurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem {
+  type: TicketSystem;
+}
+
+export interface eventQuery_event_allOccurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem {
+  type: TicketSystem;
+  url: string;
+}
+
+export type eventQuery_event_allOccurrences_edges_node_ticketSystem = eventQuery_event_allOccurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | eventQuery_event_allOccurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem;
+
 export interface eventQuery_event_allOccurrences_edges_node {
   /**
    * The ID of the object.
@@ -87,6 +110,7 @@ export interface eventQuery_event_allOccurrences_edges_node {
   event: eventQuery_event_allOccurrences_edges_node_event;
   venue: eventQuery_event_allOccurrences_edges_node_venue;
   childHasFreeSpotNotificationSubscription: boolean | null;
+  ticketSystem: eventQuery_event_allOccurrences_edges_node_ticketSystem | null;
 }
 
 export interface eventQuery_event_allOccurrences_edges {
@@ -102,6 +126,17 @@ export interface eventQuery_event_allOccurrences {
    */
   edges: (eventQuery_event_allOccurrences_edges | null)[];
 }
+
+export interface eventQuery_event_ticketSystem_InternalEventTicketSystem {
+  type: TicketSystem;
+}
+
+export interface eventQuery_event_ticketSystem_TicketmasterEventTicketSystem {
+  type: TicketSystem;
+  childPassword: string;
+}
+
+export type eventQuery_event_ticketSystem = eventQuery_event_ticketSystem_InternalEventTicketSystem | eventQuery_event_ticketSystem_TicketmasterEventTicketSystem;
 
 export interface eventQuery_event {
   /**
@@ -121,6 +156,7 @@ export interface eventQuery_event {
   capacityPerOccurrence: number;
   occurrences: eventQuery_event_occurrences;
   allOccurrences: eventQuery_event_allOccurrences;
+  ticketSystem: eventQuery_event_ticketSystem | null;
 }
 
 export interface eventQuery {

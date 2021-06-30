@@ -16,11 +16,17 @@ const OccurrenceFragment = gql`
       address
     }
     childHasFreeSpotNotificationSubscription(childId: $childId)
+    ticketSystem {
+      type
+      ... on TicketmasterOccurrenceTicketSystem {
+        url
+      }
+    }
   }
 `;
 
 const eventQuery = gql`
-  query eventQuery($id: ID!, $date: Date, $time: Time, $childId: ID) {
+  query eventQuery($id: ID!, $date: Date, $time: Time, $childId: ID!) {
     event(id: $id) {
       id
       name
@@ -45,9 +51,26 @@ const eventQuery = gql`
           }
         }
       }
+      ticketSystem {
+        type
+        ... on TicketmasterEventTicketSystem {
+          childPassword(childId: $childId)
+        }
+      }
     }
   }
 
   ${OccurrenceFragment}
 `;
+
+export const eventOccurrenceQuery = gql`
+  query eventOccurrenceQuery($id: ID!, $childId: ID!) {
+    occurrence(id: $id) {
+      ...OccurrenceFragment
+    }
+  }
+
+  ${OccurrenceFragment}
+`;
+
 export default eventQuery;

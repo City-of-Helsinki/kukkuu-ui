@@ -29,6 +29,11 @@ export enum RelationshipTypeEnum {
   PARENT = "PARENT",
 }
 
+export enum TicketSystem {
+  INTERNAL = "INTERNAL",
+  TICKETMASTER = "TICKETMASTER",
+}
+
 export interface AddChildMutationInput {
   firstName?: string | null;
   lastName?: string | null;

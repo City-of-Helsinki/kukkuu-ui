@@ -5,7 +5,7 @@ import LinkButtonBase, { LinkButtonBaseProps } from './LinkButtonBase';
 
 type Props = LinkProps & LinkButtonBaseProps;
 
-const LinkButton = ({ children, className, ...delegated }: Props) => {
+const LinkButton = ({ children, ...delegated }: Props) => {
   return (
     <LinkButtonBase as={Link} {...delegated}>
       {children}

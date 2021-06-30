@@ -14,6 +14,7 @@ import eventQuery from './queries/eventQuery';
 import styles from './eventOccurrenceRedirect.module.scss';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
+import useEventOccurrence from './queries/useEventOccurrence';
 
 function getEventPathname(pathname: string): string {
   return pathname.split('/').slice(0, 7).join('/');
@@ -29,6 +30,7 @@ type CopyState = typeof CopyStates[keyof typeof CopyStates];
 
 type Params = {
   eventId: string;
+  occurrenceId: string;
   childId: string;
 };
 
@@ -41,15 +43,31 @@ const EventOccurrenceRedirect = () => {
       childId: params.childId,
     },
   });
+  const occurrenceResult = useEventOccurrence(
+    params.occurrenceId,
+    params.childId
+  );
   const location = useLocation();
   const [copyStatus, setCopyStatus] = useState<CopyState>(CopyStates.initial);
-  const password = 'KUM98374';
+  const ticketSystem = data?.event?.ticketSystem;
+  const ticketmasterPassword =
+    ticketSystem && 'childPassword' in ticketSystem
+      ? ticketSystem.childPassword
+      : null;
+  const occurrenceTicketSystem =
+    occurrenceResult?.data?.occurrence?.ticketSystem;
+  const ticketmasterUrl =
+    occurrenceTicketSystem && 'url' in occurrenceTicketSystem
+      ? occurrenceTicketSystem.url
+      : null;
 
   const handlePasswordCopy = () => {
-    const success = copy(password);
+    if (ticketmasterPassword) {
+      const success = copy(ticketmasterPassword);
 
-    if (success) {
-      setCopyStatus(CopyStates.success);
+      if (success) {
+        setCopyStatus(CopyStates.success);
+      }
     }
   };
 
@@ -83,7 +101,7 @@ const EventOccurrenceRedirect = () => {
           {t('eventOccurrenceRedirectPage.passwordLabel')}
         </Text>
         <div className={styles.row}>
-          <div className={styles.password}>{password}</div>
+          <div className={styles.password}>{ticketmasterPassword}</div>
           <button
             type="button"
             onClick={handlePasswordCopy}
@@ -96,16 +114,16 @@ const EventOccurrenceRedirect = () => {
           )}
         </div>
         <div className={styles.row}>
-          <AnchorButton
+          <LinkButton
             variant="secondary"
-            href={getEventPathname(location.pathname)}
-            className={styles.anchorButton}
+            to={getEventPathname(location.pathname)}
+            className={styles.linkButton}
           >
             {t('eventOccurrenceRedirectPage.back')}
-          </AnchorButton>
-          <LinkButton to="">
-            {t('eventOccurrenceRedirectPage.continue')}
           </LinkButton>
+          <AnchorButton href={ticketmasterUrl}>
+            {t('eventOccurrenceRedirectPage.continue')}
+          </AnchorButton>
         </div>
       </div>
     </PageWrapper>

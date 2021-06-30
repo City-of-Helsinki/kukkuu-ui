@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
+import { TicketSystem } from '../api/generatedTypes/globalTypes';
 import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '../api/generatedTypes/eventQuery';
 import { formatTime, newMoment } from '../../common/time/utils';
-import styles from './eventOccurrence.module.scss';
 import LinkButton from '../../common/components/button/LinkButton';
 import {
   DEFAULT_TIME_FORMAT,
   DEFAULT_DATE_FORMAT,
 } from '../../common/time/TimeConstants';
 import EventOccurrenceNotificationControlButton from './EventOccurrenceNotificationControlButton';
+import styles from './eventOccurrence.module.scss';
 
 const SubmitTypes = {
   enrol: 'ENROL',
@@ -47,7 +48,6 @@ type EventOccurrenceProps = {
 const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
   const { t } = useTranslation();
   const { childId, eventId } = useParams<UrlParams>();
-  const location = useLocation();
 
   const date = formatTime(
     newMoment(occurrence.time),
@@ -71,9 +71,8 @@ const EventOccurrence = ({ occurrence }: EventOccurrenceProps) => {
     ? occurrence?.remainingCapacity
     : t('event.register.occurrenceTableBody.full');
   const occurrenceUrl = `${occurrence.event.id}/occurrence/${occurrence.id}`;
-  const isTicketmaster = Boolean(
-    new URLSearchParams(location.search).get('isTicketmaster')
-  );
+  const isTicketmaster =
+    occurrence?.ticketSystem?.type === TicketSystem.TICKETMASTER;
   const submitType = getSubmitType(isTicketmaster, hasCapacity);
   const submitCell = (
     <>

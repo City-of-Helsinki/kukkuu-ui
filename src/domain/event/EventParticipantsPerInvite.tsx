@@ -29,6 +29,7 @@ function EventParticipantsPerInvite({ participantsPerInvite }: Props) {
         src={getIcon(participantsPerInvite)}
         alt={t('event.register.participants')}
         className={styles.icon}
+        aria-hidden="true"
       />
       {t(`event.participantsPerInviteEnum.${participantsPerInvite}`)}
     </div>

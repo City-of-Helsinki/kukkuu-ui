@@ -75,10 +75,7 @@ const EventEnrol = ({
         </Formik>
       </div>
       {data.event.occurrences.edges && (
-        <EventOccurrenceList
-          occurrences={data.event.occurrences}
-          eventId={data.event.id}
-        />
+        <EventOccurrenceList occurrences={data.event.occurrences} />
       )}
     </>
   );

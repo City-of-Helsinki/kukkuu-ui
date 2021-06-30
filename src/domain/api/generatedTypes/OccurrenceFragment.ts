@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { TicketSystem } from "./globalTypes";
+
 // ====================================================
 // GraphQL fragment: OccurrenceFragment
 // ====================================================
@@ -28,6 +30,17 @@ export interface OccurrenceFragment_venue {
   address: string | null;
 }
 
+export interface OccurrenceFragment_ticketSystem_InternalOccurrenceTicketSystem {
+  type: TicketSystem;
+}
+
+export interface OccurrenceFragment_ticketSystem_TicketmasterOccurrenceTicketSystem {
+  type: TicketSystem;
+  url: string;
+}
+
+export type OccurrenceFragment_ticketSystem = OccurrenceFragment_ticketSystem_InternalOccurrenceTicketSystem | OccurrenceFragment_ticketSystem_TicketmasterOccurrenceTicketSystem;
+
 export interface OccurrenceFragment {
   /**
    * The ID of the object.
@@ -38,4 +51,5 @@ export interface OccurrenceFragment {
   event: OccurrenceFragment_event;
   venue: OccurrenceFragment_venue;
   childHasFreeSpotNotificationSubscription: boolean | null;
+  ticketSystem: OccurrenceFragment_ticketSystem | null;
 }
