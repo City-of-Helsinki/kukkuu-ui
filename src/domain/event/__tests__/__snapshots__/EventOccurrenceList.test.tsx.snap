@@ -53,6 +53,7 @@ exports[`renders snapshot correctly 1`] = `
           },
         }
       }
+      showFreePlaces={true}
     />
     <EventOccurrence
       key="T2NjdXJyZW5jZU5vZGU6Mg=="
@@ -73,6 +74,7 @@ exports[`renders snapshot correctly 1`] = `
           },
         }
       }
+      showFreePlaces={true}
     />
   </tbody>
 </table>

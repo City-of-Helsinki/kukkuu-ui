@@ -246,12 +246,12 @@
     "metaTitle": "Olet siirtymässä Ticketmasteriin",
     "title": "Olet siirtymässä Ticketmasteriin",
     "description": "Ticketmaster-lippupalvelussa voit selata kaikkia {{eventName}}-tapahtumia. Voit ilmoittautua mihin tahansa niistä, kunhan paikkoja on vapaana.",
-    "passwordLabel": "Käytä varaessasi tätä henkilökohtaista salasanaa:",
+    "passwordLabel": "Käytä varatessasi tätä henkilökohtaista salasanaa:",
     "copyPassword": "Kopioi salasana",
     "back": "Takaisin",
     "continue": "Jatka Ticketmasteriin",
     "unexpectedError": "Odottamaton virhe",
-    "passwordCopySuccess": "Salasana kopioitiin onistuneesti"
+    "passwordCopySuccess": "Salasana kopioitiin onnistuneesti"
   },
   "footer": {
     "copyrightText": "© Helsingin kaupunki"
@@ -473,7 +473,7 @@
       },
       "past": {
         "heading": "Menneet tapahtumat",
-        "ticketmasterNotice": "Huomiothan, että tapahtumat jonka liput on toimitettu Ticketmaster-lippupalvelun kautta ilmestyvät tänne viiveellä. "
+        "ticketmasterNotice": "Huomioithan, että tapahtumat joiden liput on toimitettu Ticketmaster-lippupalvelun kautta ilmestyvät tänne viiveellä."
       },
       "upcoming": {
         "heading": "Tulevat tapahtumat"

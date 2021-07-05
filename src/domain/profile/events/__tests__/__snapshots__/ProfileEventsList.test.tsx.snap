@@ -106,7 +106,7 @@ exports[`Renders snapshot correctly 1`] = `
       className="descriptionMaxWidth"
       variant="body-l"
     >
-      Huomiothan, että tapahtumat jonka liput on toimitettu Ticketmaster-lippupalvelun kautta ilmestyvät tänne viiveellä. 
+      Huomioithan, että tapahtumat joiden liput on toimitettu Ticketmaster-lippupalvelun kautta ilmestyvät tänne viiveellä.
     </Text>
     <EventCard
       action={[Function]}
