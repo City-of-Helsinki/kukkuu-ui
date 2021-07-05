@@ -7,9 +7,13 @@ import styles from './eventOccurrenceList.module.scss';
 
 type EventOccurrenceListProps = {
   occurrences: Occurrences;
+  showFreePlaces?: boolean;
 };
 
-const EventOccurrenceList = ({ occurrences }: EventOccurrenceListProps) => {
+const EventOccurrenceList = ({
+  occurrences,
+  showFreePlaces = true,
+}: EventOccurrenceListProps) => {
   const { t } = useTranslation();
 
   return (
@@ -17,22 +21,30 @@ const EventOccurrenceList = ({ occurrences }: EventOccurrenceListProps) => {
       <tbody>
         <tr className={styles.mobileHeader}>
           <th>{t('event.register.occurrenceTableHeader.eventInformation')}</th>
-          <th>{t('event.register.occurrenceTableHeader.freePlaces')}</th>
+          {showFreePlaces && (
+            <th>{t('event.register.occurrenceTableHeader.freePlaces')}</th>
+          )}
         </tr>
 
         <tr className={styles.desktopHeader}>
           <th>{t('event.register.occurrenceTableHeader.date')}</th>
           <th>{t('event.register.occurrenceTableHeader.time')}</th>
           <th>{t('event.register.occurrenceTableHeader.venue')}</th>
-          <th className={styles.freePlaces}>
-            {t('event.register.occurrenceTableHeader.freePlaces')}
-          </th>
+          {showFreePlaces && (
+            <th className={styles.freePlaces}>
+              {t('event.register.occurrenceTableHeader.freePlaces')}
+            </th>
+          )}
           <th></th>
         </tr>
 
         {occurrences.edges.map((edge) =>
           edge?.node ? (
-            <EventOccurrence key={edge.node.id} occurrence={edge.node} />
+            <EventOccurrence
+              key={edge.node.id}
+              occurrence={edge.node}
+              showFreePlaces={showFreePlaces}
+            />
           ) : null
         )}
       </tbody>

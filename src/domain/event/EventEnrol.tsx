@@ -7,13 +7,14 @@ import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
 import styles from './event.module.scss';
+import { TicketSystem } from '../api/generatedTypes/globalTypes';
 
-export interface EventEnrolProps {
+export type EventEnrolProps = {
   data: EventQueryType;
   filterValues: FilterValues;
   options: FilterOptions;
   onFilterUpdate: (filterValues: FilterValues) => void;
-}
+};
 
 const EventEnrol = ({
   data,
@@ -31,6 +32,9 @@ const EventEnrol = ({
   };
 
   if (!data?.event) return <div></div>;
+
+  const isTicketmasterTicketingSystem =
+    data?.event?.ticketSystem?.type === TicketSystem.TICKETMASTER;
 
   return (
     <>
@@ -75,7 +79,10 @@ const EventEnrol = ({
         </Formik>
       </div>
       {data.event.occurrences.edges && (
-        <EventOccurrenceList occurrences={data.event.occurrences} />
+        <EventOccurrenceList
+          occurrences={data.event.occurrences}
+          showFreePlaces={!isTicketmasterTicketingSystem}
+        />
       )}
     </>
   );
