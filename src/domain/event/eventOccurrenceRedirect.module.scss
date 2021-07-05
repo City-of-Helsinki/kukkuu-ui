@@ -1,26 +1,52 @@
 @import 'styles/variables';
+@import 'styles/layout';
 
 .wrapper {
   align-self: flex-start;
-  padding: $spacing-layout-m $spacing-layout-l;
+  padding: $spacing-layout-s $spacing-layout-xs;
   margin: $spacing-layout-s auto;
   max-width: 44.5rem;
 
   background-color: $color-white;
 
+  @include respond-above(sm) {
+    padding: $spacing-layout-m $spacing-layout-l;
+  }
+
   .row {
     display: flex;
     align-items: center;
+    flex-direction: column;
 
     &:not(:last-child) {
       margin-bottom: $spacing-3-xl;
+    }
+
+    & > * {
+      width: 100%;
+    }
+
+    & > *:not(:last-child) {
+      margin-bottom: $spacing-s;
+    }
+
+    @include respond-above(sm) {
+      flex-direction: row;
+
+      & > * {
+        width: initial;
+      }
+
+      & > *:not(:last-child) {
+        margin-bottom: 0;
+        margin-right: $spacing-s;
+      }
     }
   }
 
   .password {
     padding: $spacing-s;
     width: min-content;
-    margin-right: $spacing-m;
 
     font-size: $fontsize-body-xl;
     text-transform: uppercase;
@@ -31,7 +57,6 @@
 
   .copyButton {
     padding: 0;
-    margin-right: $spacing-2-xs;
 
     text-decoration: underline;
     color: $color-black-90;
@@ -43,10 +68,10 @@
 
   .successCheckMark {
     color: $color-success;
-  }
 
-  .linkButton {
-    margin-right: $spacing-m;
+    @include respond-above(sm) {
+      margin-left: $spacing-2-xs;
+    }
   }
 }
 

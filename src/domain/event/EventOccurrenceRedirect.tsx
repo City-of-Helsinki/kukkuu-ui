@@ -124,7 +124,6 @@ const EventOccurrenceRedirect = () => {
           <LinkButton
             variant="secondary"
             to={getEventPathname(location.pathname)}
-            className={styles.linkButton}
           >
             {t('eventOccurrenceRedirectPage.back')}
           </LinkButton>
