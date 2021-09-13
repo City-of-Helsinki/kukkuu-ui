@@ -153,7 +153,7 @@ export interface eventQuery_event {
    * In minutes
    */
   duration: number | null;
-  capacityPerOccurrence: number;
+  capacityPerOccurrence: number | null;
   occurrences: eventQuery_event_occurrences;
   allOccurrences: eventQuery_event_allOccurrences;
   ticketSystem: eventQuery_event_ticketSystem | null;
@@ -170,5 +170,5 @@ export interface eventQueryVariables {
   id: string;
   date?: any | null;
   time?: any | null;
-  childId?: string | null;
+  childId: string;
 }

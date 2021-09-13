@@ -20,6 +20,7 @@ import {
 } from '../../api/generatedTypes/enrolOccurrenceMutation';
 import profileQuery from '../../profile/queries/ProfileQuery';
 import { childByIdQuery } from '../../child/queries/ChildQueries';
+import eventGroupQuery from '../../eventGroup/queries/eventGroupQuery';
 import { saveChildEvents, justEnrolled } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
 import { GQLErrors } from './EnrolConstants';
@@ -84,6 +85,13 @@ const EnrolPage = () => {
         query: childByIdQuery,
         variables: {
           id: params.childId,
+        },
+      },
+      {
+        query: eventGroupQuery,
+        variables: {
+          id: data?.occurrence?.event?.eventGroup?.id,
+          childId: params.childId,
         },
       },
     ],

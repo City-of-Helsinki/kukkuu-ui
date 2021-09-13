@@ -9,6 +9,13 @@ import { EventParticipantsPerInvite } from "./globalTypes";
 // GraphQL query operation: occurrenceQuery
 // ====================================================
 
+export interface occurrenceQuery_occurrence_event_eventGroup {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+}
+
 export interface occurrenceQuery_occurrence_event {
   /**
    * The ID of the object.
@@ -24,6 +31,7 @@ export interface occurrenceQuery_occurrence_event {
    */
   duration: number | null;
   participantsPerInvite: EventParticipantsPerInvite;
+  eventGroup: occurrenceQuery_occurrence_event_eventGroup | null;
 }
 
 export interface occurrenceQuery_occurrence_venue {

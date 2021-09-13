@@ -63,5 +63,5 @@ export interface eventOccurrenceQuery {
 
 export interface eventOccurrenceQueryVariables {
   id: string;
-  childId?: string | null;
+  childId: string;
 }
