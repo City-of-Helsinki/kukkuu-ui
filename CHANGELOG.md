@@ -2,6 +2,12 @@
 
 # [Unreleased]
 
+# 1.6.5
+
+### Fixed
+
+- [#384](https://github.com/City-of-Helsinki/kukkuu-ui/pull/384) Prevent users from accessing event group reservations when they are already enrolled
+
 # 1.6.4
 
 ### Fixed
