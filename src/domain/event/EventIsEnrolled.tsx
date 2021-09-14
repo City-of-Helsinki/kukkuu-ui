@@ -69,6 +69,7 @@ const EventIsEnrolled = () => {
           setIsOpen={setIsOpen}
           childId={params.childId}
           occurrenceId={data.occurrence.id}
+          eventGroupId={data?.occurrence?.event?.eventGroup?.id}
         />
       )}
     </EventPage>

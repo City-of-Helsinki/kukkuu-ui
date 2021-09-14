@@ -16,12 +16,14 @@ import {
 import ConfirmModal from '../../../common/components/confirm/ConfirmModal';
 import { saveChildEvents } from '../state/EventActions';
 import { childByIdQuery } from '../../child/queries/ChildQueries';
+import eventGroupQuery from '../../eventGroup/queries/eventGroupQuery';
 
 interface UnenrolModalProps {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
   childId: string;
   occurrenceId: string;
+  eventGroupId?: string;
 }
 
 const UnenrolModal = ({
@@ -29,6 +31,7 @@ const UnenrolModal = ({
   setIsOpen,
   childId,
   occurrenceId,
+  eventGroupId,
 }: UnenrolModalProps) => {
   const history = useHistory();
   const { t } = useTranslation();
@@ -46,6 +49,13 @@ const UnenrolModal = ({
         },
       },
       { query: profileQuery },
+      {
+        query: eventGroupQuery,
+        variables: {
+          id: eventGroupId,
+          childId: childId,
+        },
+      },
     ],
     onCompleted: (data) => {
       if (data.unenrolOccurrence?.child?.occurrences.edges) {
