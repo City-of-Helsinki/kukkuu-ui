@@ -2,6 +2,12 @@
 
 # [Unreleased]
 
+# 1.6.8
+
+### Fixed
+
+- [#388](https://github.com/City-of-Helsinki/kukkuu-ui/pull/388) Render newlines in event groups descriptions
+
 # 1.6.7
 
 ### Fixed
