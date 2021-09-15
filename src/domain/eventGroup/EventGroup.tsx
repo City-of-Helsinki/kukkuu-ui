@@ -10,6 +10,7 @@ import {
   eventGroupQuery as EventGroupQuery,
   eventGroupQuery_eventGroup_events_edges_node as EventNode,
 } from '../api/generatedTypes/eventGroupQuery';
+import { nlToParagraph } from '../../common/commonUtils';
 import RelayList from '../api/relayList';
 import EventCard from '../event/eventCard/EventCard';
 import styles from './eventGroup.module.scss';
@@ -44,9 +45,7 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
           />
           <div className={styles.eventGroupDetails}>
             <h1 className={styles.title}>{eventGroup?.name}</h1>
-            {eventGroup?.description && (
-              <p className={styles.description}>{eventGroup?.description}</p>
-            )}
+            {eventGroup?.description && nlToParagraph(eventGroup?.description)}
           </div>
           <div className={styles.eventList}>
             {EventList(eventGroup?.events).items.map((event) => (
