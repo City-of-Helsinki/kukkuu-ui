@@ -2,6 +2,12 @@
 
 # [Unreleased]
 
+# 1.6.7
+
+### Fixed
+
+- [#386](https://github.com/City-of-Helsinki/kukkuu-ui/pull/386) Fix profile refetching after unenrol mutation
+
 # 1.6.6
 
 ### Fixed
