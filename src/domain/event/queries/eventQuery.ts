@@ -37,6 +37,9 @@ const eventQuery = gql`
       participantsPerInvite
       duration
       capacityPerOccurrence
+      eventGroup {
+        id
+      }
       occurrences(upcoming: true, date: $date, time: $time) {
         edges {
           node {

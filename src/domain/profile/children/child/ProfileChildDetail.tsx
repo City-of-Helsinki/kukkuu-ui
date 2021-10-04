@@ -32,6 +32,7 @@ import ProfileEvents from '../../events/ProfileEvents';
 import profileQuery from '../../queries/ProfileQuery';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
+import { useProfileRouteGoBack } from '../../route/ProfileRoute';
 
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
@@ -40,6 +41,7 @@ const ProfileChildDetail = () => {
   const params = useParams<{ childId: string }>();
   const { data: guardian } = useProfile();
   const history = useHistory();
+  const goBack = useProfileRouteGoBack();
   const { loading, error, data } = useQuery<ChildByIdResponse>(childByIdQuery, {
     variables: {
       id: params.childId,
@@ -77,7 +79,7 @@ const ProfileChildDetail = () => {
           <Button
             variant="secondary"
             aria-label={t('common.backButton.label')}
-            onClick={() => history.goBack()}
+            onClick={goBack}
           >
             <Icon src={backIcon} className={styles.backButtonIcon} />
           </Button>

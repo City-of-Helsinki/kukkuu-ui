@@ -9,6 +9,13 @@ import { EventParticipantsPerInvite, TicketSystem } from "./globalTypes";
 // GraphQL query operation: eventQuery
 // ====================================================
 
+export interface eventQuery_event_eventGroup {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+}
+
 export interface eventQuery_event_occurrences_edges_node_event {
   /**
    * The ID of the object.
@@ -154,6 +161,7 @@ export interface eventQuery_event {
    */
   duration: number | null;
   capacityPerOccurrence: number | null;
+  eventGroup: eventQuery_event_eventGroup | null;
   occurrences: eventQuery_event_occurrences;
   allOccurrences: eventQuery_event_allOccurrences;
   ticketSystem: eventQuery_event_ticketSystem | null;

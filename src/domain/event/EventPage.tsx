@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
 
 import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
@@ -14,10 +13,10 @@ type EventProps = {
   event: EventQueryType | OccurrenceQueryType;
   children?: ReactElement | Array<ReactElement | false>;
   success?: ReactElement;
+  goBack: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const EventPage = ({ event, children, success }: EventProps) => {
-  const history = useHistory();
+const EventPage = ({ event, children, success, goBack }: EventProps) => {
   const { t } = useTranslation();
   if (!event) return <></>;
 
@@ -41,7 +40,7 @@ const EventPage = ({ event, children, success }: EventProps) => {
               variant="secondary"
               aria-label={t('common.backButton.label')}
               className={styles.backButton}
-              onClick={() => history.goBack()}
+              onClick={goBack}
             >
               <Icon src={backIcon} className={styles.backButtonIcon} />
             </Button>

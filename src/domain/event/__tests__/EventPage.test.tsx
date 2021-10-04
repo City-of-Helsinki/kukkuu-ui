@@ -19,6 +19,9 @@ export const mockedOccurrenceNode: OccurrenceQueryType = {
     shortDescription: 'd',
     duration: 12,
     participantsPerInvite: EventParticipantsPerInvite.FAMILY,
+    eventGroup: {
+      id: 'e1',
+    },
   },
   venue: {
     id: 'auppss',
@@ -30,9 +33,12 @@ export const mockedOccurrenceNode: OccurrenceQueryType = {
     wwwUrl: 'https://example.com/z',
     wcAndFacilities: 'uio',
   },
+  childHasFreeSpotNotificationSubscription: null,
 };
 
 it('renders snapshot correctly', () => {
-  const element = shallow(<EventPage event={mockedOccurrenceNode.event} />);
+  const element = shallow(
+    <EventPage event={mockedOccurrenceNode.event} goBack={jest.fn()} />
+  );
   expect(toJson(element)).toMatchSnapshot();
 });

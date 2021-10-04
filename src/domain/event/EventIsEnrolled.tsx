@@ -16,10 +16,11 @@ import EventPage from './EventPage';
 import SuccessToast from './enrol/SuccessToast';
 import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
+import { useChildRouteGoBack } from '../profile/route/ProfileRoute';
 
 const EventIsEnrolled = () => {
   const { t } = useTranslation();
-
+  const goBack = useChildRouteGoBack();
   const [isOpen, setIsOpen] = useState(false);
   const params = useParams<{ childId: string; occurrenceId: string }>();
   const { loading, error, data } = useQuery<OccurrenceQueryType>(
@@ -43,7 +44,11 @@ const EventIsEnrolled = () => {
   if (!data?.occurrence) return errorMessage;
 
   return (
-    <EventPage event={data.occurrence.event} success={<SuccessToast />}>
+    <EventPage
+      event={data.occurrence.event}
+      success={<SuccessToast />}
+      goBack={goBack}
+    >
       <OccurrenceInfo
         className={styles.occurrenceInfo}
         occurrence={data.occurrence}

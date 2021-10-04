@@ -20,7 +20,7 @@ exports[`renders snapshot correctly 1`] = `
         <Button
           aria-label="Palaa"
           className="backButton"
-          onClick={[Function]}
+          onClick={[MockFunction]}
           variant="secondary"
         >
           <Icon
