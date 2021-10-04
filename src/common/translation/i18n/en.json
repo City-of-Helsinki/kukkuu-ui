@@ -472,8 +472,7 @@
         "heading": "Event invitations"
       },
       "past": {
-        "heading": "Past events",
-        "ticketmasterNotice": "Please take into consideration that tickets which have been delivered through Ticketmaster ticket service appear here with a delay."
+        "heading": "Past events"
       },
       "upcoming": {
         "heading": "Upcoming events"
