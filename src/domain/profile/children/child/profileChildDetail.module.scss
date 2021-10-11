@@ -27,18 +27,6 @@ $childHeadingMargin: 0.65rem;
   width: $largeMargin;
   margin-top: $baseMargin;
 
-  button {
-    background: transparent;
-    width: 100%;
-    border: 0;
-    &:hover,
-    &:focus,
-    &:hover:focus {
-      background: var(--color-white);
-      border-radius: 50%;
-    }
-  }
-
   .backButtonIcon {
     height: inherit;
     width: inherit;
@@ -46,6 +34,30 @@ $childHeadingMargin: 0.65rem;
       height: $baseMargin;
       width: $baseMargin;
     }
+  }
+}
+
+.backButtonInnerWrapper {
+  grid-column: 1;
+  padding-top: 2rem;
+  width: $logoWidth;
+  display: flex;
+  justify-content: center;
+
+  a {
+    display: inline-flex;
+    width: 3.9rem;
+    height: 3.9rem;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+    border: none;
+    border-radius: 50%;
+  }
+
+  @include respond-below(md) {
+    display: none;
   }
 }
 

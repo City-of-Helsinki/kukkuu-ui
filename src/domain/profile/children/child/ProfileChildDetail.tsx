@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useParams, useHistory } from 'react-router';
 import { useMutation, useQuery } from '@apollo/client';
@@ -32,7 +33,7 @@ import ProfileEvents from '../../events/ProfileEvents';
 import profileQuery from '../../queries/ProfileQuery';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
-import { useProfileRouteGoBack } from '../../route/ProfileRoute';
+import { useProfileRouteGoBackTo } from '../../route/ProfileRoute';
 
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
@@ -41,7 +42,7 @@ const ProfileChildDetail = () => {
   const params = useParams<{ childId: string }>();
   const { data: guardian } = useProfile();
   const history = useHistory();
-  const goBack = useProfileRouteGoBack();
+  const goBackTo = useProfileRouteGoBackTo();
   const { loading, error, data } = useQuery<ChildByIdResponse>(childByIdQuery, {
     variables: {
       id: params.childId,
@@ -76,13 +77,15 @@ const ProfileChildDetail = () => {
     <PageWrapper className={styles.wrapper}>
       <div className={styles.childDetailWrapper} role="main">
         <div className={styles.backButtonWrapper}>
-          <Button
-            variant="secondary"
-            aria-label={t('common.backButton.label')}
-            onClick={goBack}
-          >
-            <Icon src={backIcon} className={styles.backButtonIcon} />
-          </Button>
+          {goBackTo && (
+            <Link
+              aria-label={t('common.backButton.label')}
+              className={styles.backButton}
+              to={goBackTo}
+            >
+              <Icon src={backIcon} className={styles.backButtonIcon} />
+            </Link>
+          )}
         </div>
         <div className={styles.childWrapper}>
           {child ? (

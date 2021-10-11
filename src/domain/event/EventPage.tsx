@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Icon from '../../common/components/icon/Icon';
@@ -7,16 +8,15 @@ import PageWrapper from '../app/layout/PageWrapper';
 import backIcon from '../../assets/icons/svg/arrowLeft.svg';
 import { eventQuery_event as EventQueryType } from '../api/generatedTypes/eventQuery';
 import { occurrenceQuery_occurrence_event as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
-import Button from '../../common/components/button/Button';
 
 type EventProps = {
   event: EventQueryType | OccurrenceQueryType;
   children?: ReactElement | Array<ReactElement | false>;
   success?: ReactElement;
-  goBack: React.MouseEventHandler<HTMLButtonElement>;
+  backTo?: string;
 };
 
-const EventPage = ({ event, children, success, goBack }: EventProps) => {
+const EventPage = ({ event, children, success, backTo }: EventProps) => {
   const { t } = useTranslation();
   if (!event) return <></>;
 
@@ -36,14 +36,15 @@ const EventPage = ({ event, children, success, goBack }: EventProps) => {
         {success}
         <div className={styles.backButtonWrapper}>
           <div className={styles.backButtonInnerWrapper}>
-            <Button
-              variant="secondary"
-              aria-label={t('common.backButton.label')}
-              className={styles.backButton}
-              onClick={goBack}
-            >
-              <Icon src={backIcon} className={styles.backButtonIcon} />
-            </Button>
+            {backTo && (
+              <Link
+                aria-label={t('common.backButton.label')}
+                className={styles.backButton}
+                to={backTo}
+              >
+                <Icon src={backIcon} className={styles.backButtonIcon} />
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -87,17 +87,16 @@ exports[`renders snapshot correctly 1`] = `
       <div
         className="backButtonInnerWrapper"
       >
-        <Button
+        <Link
           aria-label="Palaa"
           className="backButton"
-          onClick={[MockFunction]}
-          variant="secondary"
+          to="/back-to"
         >
           <Icon
             className="backButtonIcon"
             src="arrowLeft.svg"
           />
-        </Button>
+        </Link>
       </div>
     </div>
   </div>

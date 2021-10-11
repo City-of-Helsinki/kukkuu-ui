@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { Switch, useHistory, useParams } from 'react-router-dom';
+import { Switch, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 
@@ -9,37 +9,26 @@ import Event from '../Event';
 import { eventQuery as EventQueryType } from '../../api/generatedTypes/eventQuery';
 import eventQuery from '../queries/eventQuery';
 
-export const useEventRouteGoBack = () => {
+export const useEventRouteGoBackTo = () => {
   const { i18n } = useTranslation();
-  const history = useHistory();
   const currentLocale = getCurrentLanguage(i18n);
-  const { childId, eventGroupId, eventId } =
-    useParams<{ childId: string; eventGroupId: string; eventId: string }>();
+  const { childId, eventId } =
+    useParams<{ childId: string; eventId: string }>();
 
   const { data: eventData } = useQuery<EventQueryType>(eventQuery, {
     variables: { id: eventId, childId },
-    skip: !!eventGroupId || !eventId,
+    skip: !eventId,
   });
 
-  // Go to event group page
-  if (eventGroupId) {
-    return () =>
-      history.push(
-        `/${currentLocale}/profile/child/${childId}/event-group/${eventGroupId}`
-      );
-  }
+  const eventGroupId = eventData?.event?.eventGroup?.id ?? '';
 
-  // When the event group id not given, it needs to be resolved
-  if (!eventGroupId && eventData?.event?.eventGroup?.id) {
+  if (eventGroupId) {
     // Go to event group page
-    return () =>
-      history.push(
-        `/${currentLocale}/profile/child/${childId}/event-group/${eventData?.event?.eventGroup?.id}`
-      );
+    return `/${currentLocale}/profile/child/${childId}/event-group/${eventGroupId}`;
   }
 
   // Fallback if the eventGroupId could not be resolved
-  return () => history.push(`/${currentLocale}/profile/child/${childId}`);
+  return `/${currentLocale}/profile/child/${childId}`;
 };
 
 const EventRoute: FunctionComponent = () => {

@@ -29,7 +29,7 @@ import EventPage from './EventPage';
 import EventParticipantsPerInvite from './EventParticipantsPerInvite';
 import styles from './event.module.scss';
 import { TicketSystem } from '../api/generatedTypes/globalTypes';
-import { useEventRouteGoBack } from './route/EventRoute';
+import { useEventRouteGoBackTo } from './route/EventRoute';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
@@ -86,7 +86,7 @@ const initialFilterValues = {
 const Event = () => {
   const { t } = useTranslation();
   const location = useLocation();
-  const goBack = useEventRouteGoBack();
+  const goBackTo = useEventRouteGoBackTo();
   const params = useParams<{
     childId: string;
     eventId: string;
@@ -165,7 +165,7 @@ const Event = () => {
     data?.event?.ticketSystem?.type === TicketSystem.TICKETMASTER;
 
   return (
-    <EventPage event={data.event} goBack={goBack}>
+    <EventPage event={data.event} backTo={goBackTo}>
       <EventParticipantsPerInvite
         participantsPerInvite={data?.event?.participantsPerInvite}
       />

@@ -38,7 +38,7 @@ export const mockedOccurrenceNode: OccurrenceQueryType = {
 
 it('renders snapshot correctly', () => {
   const element = shallow(
-    <EventPage event={mockedOccurrenceNode.event} goBack={jest.fn()} />
+    <EventPage event={mockedOccurrenceNode.event} backTo={'/back-to'} />
   );
   expect(toJson(element)).toMatchSnapshot();
 });

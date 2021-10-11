@@ -26,13 +26,19 @@
   width: $logoWidth;
   display: flex;
   justify-content: center;
-  button {
-    background: white;
+
+  a {
+    display: inline-flex;
     width: 3.9rem;
     height: 3.9rem;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
     border: none;
     border-radius: 50%;
   }
+
   @include respond-below(md) {
     display: none;
   }

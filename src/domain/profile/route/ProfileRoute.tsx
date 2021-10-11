@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, useRouteMatch, useHistory, useParams } from 'react-router-dom';
+import { Switch, useRouteMatch, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
@@ -9,19 +9,17 @@ import Profile from '../Profile';
 import ProfileChildRoutes from './ProfileChildRoutes';
 import useIsChildOfProfile from './useIsChildOfProfile';
 
-export const useProfileRouteGoBack = () => {
+export const useProfileRouteGoBackTo = () => {
   const { i18n } = useTranslation();
-  const history = useHistory();
   const currentLocale = getCurrentLanguage(i18n);
-  return () => history.push(`/${currentLocale}/profile`);
+  return `/${currentLocale}/profile`;
 };
 
-export const useChildRouteGoBack = () => {
-  const history = useHistory();
+export const useChildRouteGoBackTo = () => {
   const { i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
   const { childId } = useParams<{ childId: string }>();
-  return () => history.push(`/${currentLocale}/profile/child/${childId}`);
+  return `/${currentLocale}/profile/child/${childId}`;
 };
 
 const ProfileRoute = () => {
