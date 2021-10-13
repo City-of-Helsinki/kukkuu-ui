@@ -2,6 +2,16 @@
 
 # [Unreleased]
 
+# 1.6.9
+
+### Fixed
+
+- [#391](https://github.com/City-of-Helsinki/kukkuu-ui/pull/391) Fixed left arrow buttons
+
+### Removed
+
+- [#392](https://github.com/City-of-Helsinki/kukkuu-ui/pull/392) Removed Ticketmaster notice from past events
+
 # 1.6.8
 
 ### Fixed
