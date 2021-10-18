@@ -18,11 +18,9 @@ import {
   enrolOccurrenceMutation as EnrolOccurrenceMutationData,
   enrolOccurrenceMutationVariables as EnrolOccurrenceMutationVariables,
 } from '../../api/generatedTypes/enrolOccurrenceMutation';
-import profileQuery from '../../profile/queries/ProfileQuery';
-import { childByIdQuery } from '../../child/queries/ChildQueries';
-import eventGroupQuery from '../../eventGroup/queries/eventGroupQuery';
 import { saveChildEvents, justEnrolled } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
+import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
 import { GQLErrors } from './EnrolConstants';
 import Enrol from './Enrol';
 
@@ -79,22 +77,10 @@ const EnrolPage = () => {
     EnrolOccurrenceMutationData,
     EnrolOccurrenceMutationVariables
   >(enrolOccurrenceMutation, {
-    refetchQueries: [
-      { query: profileQuery },
-      {
-        query: childByIdQuery,
-        variables: {
-          id: params.childId,
-        },
-      },
-      {
-        query: eventGroupQuery,
-        variables: {
-          id: data?.occurrence?.event?.eventGroup?.id,
-          childId: params.childId,
-        },
-      },
-    ],
+    refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({
+      childId: params.childId,
+      eventGroupId: data?.occurrence?.event?.eventGroup?.id,
+    }),
     onCompleted: (data) => {
       if (data?.enrolOccurrence?.enrolment?.child?.occurrences?.edges) {
         dispatch(

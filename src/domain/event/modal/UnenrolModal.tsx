@@ -8,15 +8,13 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 
 import unenrolOccurrenceMutation from '../mutations/unenrolOccurrenceMutation';
-import profileQuery from '../../profile/queries/ProfileQuery';
 import {
   unenrolOccurrenceMutation as UnenrolOccurrenceMutation,
   unenrolOccurrenceMutationVariables as UnenrolOccurrenceMutationVariables,
 } from '../../api/generatedTypes/unenrolOccurrenceMutation';
 import ConfirmModal from '../../../common/components/confirm/ConfirmModal';
 import { saveChildEvents } from '../state/EventActions';
-import { childByIdQuery } from '../../child/queries/ChildQueries';
-import eventGroupQuery from '../../eventGroup/queries/eventGroupQuery';
+import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
 
 interface UnenrolModalProps {
   isOpen: boolean;
@@ -41,22 +39,10 @@ const UnenrolModal = ({
     UnenrolOccurrenceMutation,
     UnenrolOccurrenceMutationVariables
   >(unenrolOccurrenceMutation, {
-    refetchQueries: [
-      {
-        query: childByIdQuery,
-        variables: {
-          id: childId,
-        },
-      },
-      { query: profileQuery },
-      {
-        query: eventGroupQuery,
-        variables: {
-          id: eventGroupId,
-          childId: childId,
-        },
-      },
-    ],
+    refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({
+      childId,
+      eventGroupId,
+    }),
     awaitRefetchQueries: true,
     onCompleted: (data) => {
       if (data.unenrolOccurrence?.child?.occurrences.edges) {

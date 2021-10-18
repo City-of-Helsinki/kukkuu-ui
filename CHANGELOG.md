@@ -2,6 +2,10 @@
 
 # [Unreleased]
 
+### Fixed
+
+- Occurrence refetching failing when occurrence did not have an event group
+
 # 1.6.9
 
 ### Fixed
