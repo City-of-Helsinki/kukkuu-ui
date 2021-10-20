@@ -67,7 +67,10 @@ export async function authenticateWithBackend(
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(error);
-    dispatch(fetchTokenError(error));
     toast.error(i18n.t('authentication.errorMessage'));
+
+    if (error instanceof Error) {
+      dispatch(fetchTokenError(error));
+    }
   }
 }
