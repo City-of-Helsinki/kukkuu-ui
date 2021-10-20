@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback } from 'react';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import { logoutTunnistamo } from './authenticate';
@@ -7,7 +7,7 @@ import { flushAllState } from './state/AuthenticationUtils';
 function useLogout() {
   const { trackEvent } = useMatomo();
 
-  const logout = React.useCallback(() => {
+  const logout = useCallback(() => {
     trackEvent({ category: 'action', action: 'Log out' });
 
     // Flush all cached state

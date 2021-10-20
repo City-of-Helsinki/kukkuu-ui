@@ -1,4 +1,4 @@
-import React, { FunctionComponent, Ref } from 'react';
+import { FunctionComponent, Ref } from 'react';
 import { Formik, FieldArray, FormikErrors, Form } from 'formik';
 import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { QueryResult } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';

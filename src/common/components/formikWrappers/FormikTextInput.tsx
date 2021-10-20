@@ -1,4 +1,3 @@
-import React from 'react';
 import { useField, FieldValidator } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { TextInput, TextInputProps } from 'hds-react';

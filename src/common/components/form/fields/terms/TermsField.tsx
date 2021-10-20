@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Checkbox, CheckboxProps } from 'hds-react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';

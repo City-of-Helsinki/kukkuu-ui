@@ -1,4 +1,3 @@
-import React from 'react';
 import { Select, SelectProps as HDSDropdownProps } from 'hds-react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';

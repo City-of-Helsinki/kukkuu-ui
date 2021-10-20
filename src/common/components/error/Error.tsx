@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styles from './error.module.scss';
 import PageWrapper from '../../../domain/app/layout/PageWrapper';
 

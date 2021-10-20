@@ -1,4 +1,3 @@
-import React from 'react';
 import toJson from 'enzyme-to-json';
 
 import { store } from '../../../../domain/app/state/AppStore';

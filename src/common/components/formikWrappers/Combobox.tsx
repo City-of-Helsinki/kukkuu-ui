@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React from 'react';
 import {
   Combobox as HDSCombobox,
   ComboboxProps as HDSDropdownProps,

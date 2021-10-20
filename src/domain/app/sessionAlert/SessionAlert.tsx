@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
 import { logoutTunnistamo } from '../../auth/authenticate';

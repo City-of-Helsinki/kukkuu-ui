@@ -1,5 +1,3 @@
-import React from 'react';
-
 import PageWrapper from '../../app/layout/PageWrapper';
 import InfoTemplate from './utilityComponents/InfoTemplate';
 

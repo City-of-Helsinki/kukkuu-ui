@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
 import Header from '../header/Header';

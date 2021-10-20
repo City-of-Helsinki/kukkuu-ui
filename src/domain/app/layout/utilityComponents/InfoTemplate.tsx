@@ -1,5 +1,3 @@
-import React from 'react';
-
 import adultFaceIcon from '../../../../assets/icons/svg/adultFace.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import Button from '../../../../common/components/button/Button';

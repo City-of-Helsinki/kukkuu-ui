@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { useParams, useLocation, Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/client';

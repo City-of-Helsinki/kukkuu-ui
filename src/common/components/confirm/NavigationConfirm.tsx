@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { Prompt } from 'react-router-dom';
 
 interface NavigationConfirmProps {

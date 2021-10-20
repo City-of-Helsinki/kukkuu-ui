@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { render } from '../../../../common/test/testingLibraryUtils';
 import Welcome from '../Welcome';
 

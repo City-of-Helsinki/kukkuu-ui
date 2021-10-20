@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 import useAriaLive from '../../common/AriaLive/useAriaLive';

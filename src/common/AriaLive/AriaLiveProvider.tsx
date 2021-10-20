@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import AriaLiveContext from './AriaLiveContext';

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import styles from './occurrenceInfo.module.scss';
 import Icon from '../../../common/components/icon/Icon';

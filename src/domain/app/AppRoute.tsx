@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { createElement, useEffect } from 'react';
 import { Route, RouteProps, useHistory, useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
@@ -99,7 +99,7 @@ function AppRoute({
           <LoadingSpinner isLoading={isLoadingUser}>
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             {/* @ts-ignore */}
-            {React.createElement(component, routeRenderProps)}
+            {createElement(component, routeRenderProps)}
           </LoadingSpinner>
         )}
       />

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import uniqueId from 'lodash/uniqueId';
 
 import angleDownIcon from '../../../assets/icons/svg/angleDown.svg';

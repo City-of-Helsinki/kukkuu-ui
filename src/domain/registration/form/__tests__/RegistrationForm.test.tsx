@@ -1,4 +1,3 @@
-import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
 import toJson from 'enzyme-to-json';
 

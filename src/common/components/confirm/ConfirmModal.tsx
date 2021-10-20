@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import Modal from '../modal/Modal';
 import styles from './confirmModal.module.scss';

@@ -1,5 +1,4 @@
 import { Switch, Redirect, useParams } from 'react-router';
-import React from 'react';
 import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';

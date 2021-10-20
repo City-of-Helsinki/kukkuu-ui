@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { eventQuery_event_occurrences as Occurrences } from '../api/generatedTypes/eventQuery';

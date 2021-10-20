@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 
 import ProfileEventsList from './ProfileEventsList';
 import ProfileNoEvent from './ProfileNoEvent';

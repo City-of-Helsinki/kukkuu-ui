@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Route, Redirect, RouteProps, useLocation } from 'react-router-dom';
 
 type Authorization = (() => Promise<boolean>) | boolean;

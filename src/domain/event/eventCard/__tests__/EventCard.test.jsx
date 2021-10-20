@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { fireEvent, render } from '../../../../common/test/testingLibraryUtils';
 import EventCard from '../EventCard';
 

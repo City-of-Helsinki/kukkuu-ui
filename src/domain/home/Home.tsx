@@ -1,4 +1,4 @@
-import React, { useRef, RefObject } from 'react';
+import { useRef, RefObject } from 'react';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 

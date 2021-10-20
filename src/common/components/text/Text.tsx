@@ -1,4 +1,5 @@
-import React, { ReactNode, HTMLAttributes } from 'react';
+import { ReactNode, HTMLAttributes } from 'react';
+import * as React from 'react';
 
 import styles from './text.module.scss';
 

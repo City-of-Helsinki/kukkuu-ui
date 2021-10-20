@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Button from '../../common/components/button/Button';
 import EventNotificationSubscriptionModal, {

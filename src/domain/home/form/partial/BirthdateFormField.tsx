@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { FunctionComponent } from 'react';
 import { FieldArrayRenderProps, getIn } from 'formik';
 import { useTranslation } from 'react-i18next';
 

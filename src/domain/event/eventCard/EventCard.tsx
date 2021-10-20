@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 import homeTheaterIcon from '../../../assets/icons/svg/homeTheater.svg';
 import Card from '../../../common/components/card/Card';

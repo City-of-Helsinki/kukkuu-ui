@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { createBrowserHistory } from 'history';

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { Button as HdsButton, ButtonProps as HDSButtonProps } from 'hds-react';
 
 type ButtonProps = Omit<HDSButtonProps, 'variant'> & {

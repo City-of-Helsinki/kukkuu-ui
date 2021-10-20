@@ -1,5 +1,5 @@
 import { mount, shallow } from 'enzyme';
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { MockedResponse } from '@apollo/client/testing';
 
 import TestProviders from './TestProviders';

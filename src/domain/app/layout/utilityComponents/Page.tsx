@@ -1,4 +1,4 @@
-import React, { ReactComponentElement, ReactElement } from 'react';
+import { ReactComponentElement, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';

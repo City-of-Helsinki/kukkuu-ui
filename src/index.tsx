@@ -2,7 +2,6 @@
 // https://sentry.hel.ninja/aok/kukkuu-ui/issues/12094/
 import 'finally-polyfill';
 
-import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
 import './assets/styles/main.scss';

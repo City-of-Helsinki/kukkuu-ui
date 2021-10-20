@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
@@ -20,7 +20,7 @@ import EditProfileModal from './modal/EditProfileModal';
 import styles from './profile.module.scss';
 
 const Profile = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { loading, error, data } = useProfile();
   const { t } = useTranslation();
   const dispatch = useDispatch();
