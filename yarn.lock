@@ -5530,6 +5530,11 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
+date-fns@2.16.1:
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.16.1.tgz#05775792c3f3331da812af253e1a935851d3834b"
+  integrity sha512-sAJVKx/FqrLYHAQeN7VpJrPhagZc9R4ImZIWYRFZaaohR3KzmuK88touwsSwSVT8Qcbd4zoDsnGfX4GFB4imyQ==
+
 date-fns@^1.27.2:
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
@@ -7665,34 +7670,32 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-hds-core@0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-0.16.0.tgz#a5041cb77327ddfb27a803e2230c952013526f67"
-  integrity sha512-8prQ+XCjdg59wMggog+5ARFT6spmfXy4Z4h24BxzmCy8F1WB3ufD5fFPelyGWM3RbVVL73/64VPR4dtT0cEm+g==
+hds-core@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-1.5.1.tgz#ed802a7b5a39c242b8aa92cea6bb9f5844ed2eaa"
+  integrity sha512-PJy4+RqpxoyQNQOM5dOeeTBiJo4EDukSjvMrJMMMZ9T36Q9n3uxIbtMObPkjhYFvcVwiXD03ZvZ1LDk1VPmMlQ==
 
-hds-core@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-0.12.1.tgz#f467d8274c672741e937ae58a7dd20f49525f7df"
-  integrity sha512-os28NxPnBJ896XZUvwAHdrpMHCRtcF5k68SfauoCn+oq7f9I/+6YQfx/3MNobBkjUkOZopBUgzh2Vm/1BGZKZQ==
+hds-design-tokens@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/hds-design-tokens/-/hds-design-tokens-1.5.1.tgz#90eb4ce89a311eb85c01d630d305ec1bc7c0d1a2"
+  integrity sha512-yvDsLz3lK/PavNijrex+de1137RinfkbAjuggL+wQbLVa5Q1qb1kh59kCZ/0qiVxU/IIS5hkAG6JOzzd0z8Oyg==
 
-hds-design-tokens@0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/hds-design-tokens/-/hds-design-tokens-0.16.0.tgz#7b86ed4231063b72175d7a7d9776bab93925dea0"
-  integrity sha512-N0xrNc/sgahP98PTHZxdofp8+tfZCxjcZWcZ1NjUHPnXPijQBkEQ1L/FfqMb8DuaNkcja7OKTFLIUZXniDw1Cw==
-
-hds-react@0.16.0:
-  version "0.16.0"
-  resolved "https://registry.yarnpkg.com/hds-react/-/hds-react-0.16.0.tgz#be6dd525296f7728035418aff498cf0ff960767d"
-  integrity sha512-hL1mp4BTv/4NO3IZien3DO9VVtYEW9HoeFZDaW5f60XTg/OkijzFFVcZNKDic/ORHsqe7BA5UQeMU1NdeqHk6Q==
+hds-react@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/hds-react/-/hds-react-1.5.1.tgz#5d6ccffd79e5644f15f78a364e5b2376ce765153"
+  integrity sha512-+JUGbPVGt0GajjkKBmYYo4dVHmf69pS2NFCq3DdYycjP8UAxY2cWzWxdNTuRxYdHn3SYwovLPgOY6g+eP7W60w==
   dependencies:
     "@babel/runtime" "7.11.2"
     "@juggle/resize-observer" "3.2.0"
     "@popperjs/core" "2.5.3"
     "@react-aria/visually-hidden" "3.2.0"
+    date-fns "2.16.1"
     downshift "6.0.6"
-    hds-core "0.16.0"
+    hds-core "1.5.1"
     lodash.isequal "4.5.0"
+    lodash.isfunction "3.0.9"
     lodash.uniqueid "4.0.1"
+    lodash.xor "^4.5.0"
     react-merge-refs "1.1.0"
     react-popper "2.2.3"
     react-spring "9.0.0-rc.3"
@@ -9669,6 +9672,11 @@ lodash.isequal@4.5.0, lodash.isequal@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
+lodash.isfunction@3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
+  integrity sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -9718,6 +9726,11 @@ lodash.uniqueid@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.uniqueid/-/lodash.uniqueid-4.0.1.tgz#3268f26a7c88e4f4b1758d679271814e31fa5b26"
   integrity sha1-MmjyanyI5PSxdY1nknGBTjH6WyY=
+
+lodash.xor@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.xor/-/lodash.xor-4.5.0.tgz#4d48ed7e98095b0632582ba714d3ff8ae8fb1db6"
+  integrity sha1-TUjtfpgJWwYyWCunFNP/iuj7HbY=
 
 lodash.xorby@^4.7.0:
   version "4.7.0"

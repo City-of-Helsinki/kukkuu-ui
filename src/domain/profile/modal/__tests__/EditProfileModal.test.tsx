@@ -88,21 +88,21 @@ it('should allow all fields to be filled', () => {
   const result = getWrapper();
   const { getByLabelText, getAllByLabelText, queryByDisplayValue } = result;
 
-  fireEvent.change(getByLabelText('Sähköpostiosoite*'), {
+  fireEvent.change(getByLabelText('Sähköpostiosoite *'), {
     target: { value: formData.email },
   });
-  fireEvent.change(getByLabelText('Puhelinnumero*'), {
+  fireEvent.change(getByLabelText('Puhelinnumero *'), {
     target: { value: formData.phoneNumber },
   });
-  fireEvent.change(getByLabelText('Etunimi*'), {
+  fireEvent.change(getByLabelText('Etunimi *'), {
     target: { value: formData.firstName },
   });
-  fireEvent.change(getByLabelText('Sukunimi*'), {
+  fireEvent.change(getByLabelText('Sukunimi *'), {
     target: {
       value: formData.lastName,
     },
   });
-  selectOption(getHdsSelect(getAllByLabelText('Asiointikieli*')), 'Suomi');
+  selectOption(getHdsSelect(getAllByLabelText('Asiointikieli *')), 'Suomi');
 
   // Because the component submits with a GraphQL hook we don't look
   // at the submit function, but instead just try and verify that we can
@@ -112,7 +112,7 @@ it('should allow all fields to be filled', () => {
   });
   // Handle select as a special case because it has no input
   expect(
-    getHdsSelect(getAllByLabelText('Asiointikieli*'))?.querySelector('button')
+    getHdsSelect(getAllByLabelText('Asiointikieli *'))?.querySelector('button')
       ?.textContent
   ).toEqual('Suomi');
 });
