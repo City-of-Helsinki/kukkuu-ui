@@ -1,127 +1,260 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Renders snapshot correctly 1`] = `
-<Fragment>
+<div>
   <div
-    className="eventsList"
+    class="eventsList"
   >
     <h2>
       Tapahtumakutsut
     </h2>
-    <EventCard
-      action={[Function]}
-      actionText="Lue lisää ja ilmoittaudu tapahtumaan"
-      event={
-        Object {
-          "duration": 60,
-          "id": "RXZlbnROb2RlOjE=",
-          "image": "http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png",
-          "imageAltText": "huhuu",
-          "name": "pentti",
-          "occurrences": Object {
-            "edges": Array [],
-          },
-          "participantsPerInvite": "CHILD_AND_GUARDIAN",
-          "shortDescription": "eventti",
-        }
-      }
-      key="RXZlbnROb2RlOjE="
-    />
+    <div
+      class="wrapper"
+    >
+      <div
+        class="start"
+      >
+        <img
+          alt="huhuu"
+          class="image"
+          src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+        />
+      </div>
+      <div
+        class="middle"
+      >
+        <h3
+          class="title"
+        >
+          pentti
+        </h3>
+        <p>
+          eventti
+        </p>
+        <div
+          class="focalPoint"
+        >
+          <button
+            class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO primaryActionButton"
+            style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+            type="button"
+          >
+            <span
+              class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+            >
+              Lue lisää ja ilmoittaudu tapahtumaan
+            </span>
+          </button>
+        </div>
+      </div>
+      <div
+        class="end"
+      >
+        <button
+          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+          type="button"
+        >
+          <span
+            class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+          >
+            <div
+              class="actionText"
+            >
+              Lue lisää ja ilmoittaudu tapahtumaan
+            </div>
+            <div
+              class="imgWrapper gotoAction"
+            >
+              <img
+                alt=""
+                src="angleDown.svg"
+              />
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
   </div>
   <div
-    className="eventsList"
+    class="eventsList"
   >
     <h2>
       Tulevat tapahtumat
     </h2>
-    <EventCard
-      action={[Function]}
-      actionText="Näytä tapahtuman tiedot"
-      event={
-        Object {
-          "duration": 60,
-          "id": "RXZlbnROb2RlOjE=",
-          "image": "http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png",
-          "imageAltText": "huhuu",
-          "name": "pentti",
-          "occurrences": Object {
-            "edges": Array [],
-          },
-          "participantsPerInvite": "CHILD_AND_GUARDIAN",
-          "shortDescription": "eventti",
-        }
-      }
-      focalContent={
+    <div
+      class="wrapper"
+    >
+      <div
+        class="start"
+      >
         <div
-          className="row"
+          class="qrWrapper"
         >
-          <InfoItem
-            className="label"
-            iconAlt="Päivämäärä"
-            iconSrc="calendar.svg"
-            label="24.2.2020"
-          />
-          <InfoItem
-            className="label"
-            iconAlt="Kellonaika"
-            iconSrc="clock.svg"
-            label="07:07 - 08:07"
-          />
-          <InfoItem
-            className="label"
-            iconAlt="Tapahtumapaikka"
-            iconSrc="location.svg"
-            label="aa"
-          />
+          <div />
         </div>
-      }
-      imageElement={
+      </div>
+      <div
+        class="middle"
+      >
+        <h3
+          class="title"
+        >
+          pentti
+        </h3>
+        <p>
+          eventti
+        </p>
         <div
-          className="qrWrapper"
+          class="focalPoint"
         >
-          <QRCode
-            bgColor="#FFFFFF"
-            ecLevel="H"
-            enableCORS={false}
-            fgColor="#000000"
-            logoOpacity={1}
-            qrStyle="squares"
-            quietZone={0}
-            size={300}
-            value="pentti"
-          />
+          <div
+            class="row"
+          >
+            <div
+              class="label"
+            >
+              <div
+                class="imgWrapper labelIcon"
+              >
+                <img
+                  alt="Päivämäärä"
+                  src="calendar.svg"
+                />
+              </div>
+              <div
+                class="label"
+              >
+                24.2.2020
+              </div>
+            </div>
+            <div
+              class="label"
+            >
+              <div
+                class="imgWrapper labelIcon"
+              >
+                <img
+                  alt="Kellonaika"
+                  src="clock.svg"
+                />
+              </div>
+              <div
+                class="label"
+              >
+                07:07 - 08:07
+              </div>
+            </div>
+            <div
+              class="label"
+            >
+              <div
+                class="imgWrapper labelIcon"
+              >
+                <img
+                  alt="Tapahtumapaikka"
+                  src="location.svg"
+                />
+              </div>
+              <div
+                class="label"
+              >
+                aa
+              </div>
+            </div>
+          </div>
         </div>
-      }
-      key="RXZlbnROb2RlOjE="
-      primaryAction="hidden"
-    />
+      </div>
+      <div
+        class="end"
+      >
+        <button
+          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+          type="button"
+        >
+          <span
+            class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+          >
+            <div
+              class="actionText"
+            >
+              Näytä tapahtuman tiedot
+            </div>
+            <div
+              class="imgWrapper gotoAction"
+            >
+              <img
+                alt=""
+                src="angleDown.svg"
+              />
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
   </div>
   <div
-    className="eventsList"
+    class="eventsList"
   >
     <h2>
       Menneet tapahtumat
     </h2>
-    <EventCard
-      action={[Function]}
-      actionText="Näytä tapahtuman tiedot"
-      event={
-        Object {
-          "duration": 60,
-          "id": "RXZlbnROb2RlOjE=",
-          "image": "http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png",
-          "imageAltText": "huhuu",
-          "name": "pentti",
-          "occurrences": Object {
-            "edges": Array [],
-          },
-          "participantsPerInvite": "CHILD_AND_GUARDIAN",
-          "shortDescription": "eventti",
-        }
-      }
-      key="RXZlbnROb2RlOjE="
-      primaryAction="hidden"
-    />
+    <div
+      class="wrapper"
+    >
+      <div
+        class="start"
+      >
+        <img
+          alt="huhuu"
+          class="image"
+          src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+        />
+      </div>
+      <div
+        class="middle"
+      >
+        <h3
+          class="title"
+        >
+          pentti
+        </h3>
+        <p>
+          eventti
+        </p>
+        <div
+          class="focalPoint"
+        />
+      </div>
+      <div
+        class="end"
+      >
+        <button
+          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+          type="button"
+        >
+          <span
+            class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+          >
+            <div
+              class="actionText"
+            >
+              Näytä tapahtuman tiedot
+            </div>
+            <div
+              class="imgWrapper gotoAction"
+            >
+              <img
+                alt=""
+                src="angleDown.svg"
+              />
+            </div>
+          </span>
+        </button>
+      </div>
+    </div>
   </div>
-</Fragment>
+</div>
 `;

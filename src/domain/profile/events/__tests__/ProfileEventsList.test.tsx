@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
+import { render } from '../../../../common/test/testingLibraryUtils';
 import ProfileEventsList from '../ProfileEventsList';
 import EventCard from '../../../event/eventCard/EventCard';
 import {
@@ -11,6 +11,13 @@ import {
   childByIdQuery_child_occurrences as OccurrencesType,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
+
+jest.mock('react-qrcode-logo', () => ({
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  ...jest.requireActual('react-qrcode-logo'),
+  QRCode: () => <div />,
+}));
 
 const childData: ChildByIdResponse = {
   id: '',
@@ -119,7 +126,7 @@ const childOnlyPastEvents: ChildByIdResponse = {
 };
 
 test('Renders snapshot correctly', () => {
-  const wrapper = shallow(
+  const { container } = render(
     <ProfileEventsList
       availableEventsAndEventGroups={
         childWithEvents.availableEventsAndEventGroups
@@ -129,7 +136,7 @@ test('Renders snapshot correctly', () => {
       childId="zzaf"
     />
   );
-  expect(toJson(wrapper)).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
 test('Renders only available events when no other events', () => {
