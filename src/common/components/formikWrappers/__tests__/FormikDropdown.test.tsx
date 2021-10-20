@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Field } from 'formik';
 
 import FormikDropdown from '../FormikDropdown';
 import TestForm from '../../../test/TestForm';
@@ -8,6 +7,7 @@ import TestForm from '../../../test/TestForm';
 it('renders snapshot correctly', () => {
   const props = {
     id: 'fooSelect',
+    name: 'fooSelect',
     label: 'select label',
     onChange: () => jest.fn(),
     options: [
@@ -23,7 +23,7 @@ it('renders snapshot correctly', () => {
     ],
   };
   const input = shallow(
-    <TestForm>{() => <Field component={FormikDropdown} {...props} />}</TestForm>
+    <TestForm>{() => <FormikDropdown {...props} />}</TestForm>
   );
   expect(input.html()).toMatchSnapshot();
 });

@@ -14,6 +14,18 @@ describe('graphql client', () => {
     global.fetch.mockResponse(
       JSON.stringify({
         data: {
+          myProfile: {
+            languagesSpokenAtHome: {
+              edges: [],
+            },
+            children: [],
+            language: '',
+            phoneNumber: '',
+            email: '',
+            lastName: '',
+            firstName: '',
+            id: '1',
+          },
           children: { __typename: 'ChildNodeConnection' },
         },
       })
