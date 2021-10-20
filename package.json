@@ -76,7 +76,11 @@
     "glob-parent": "6.0.2",
     "normalize-url": "7.0.2",
     "browserslist": "^4.16.5",
-    "eslint": "^7.32.0"
+    "eslint": "^7.32.0",
+    "immer": ">=9.0.6",
+    "set-value": ">=4.0.1",
+    "nth-check": ">=2.0.1",
+    "ansi-regex": "^5.0.1"
   },
   "scripts": {
     "build": "react-scripts build",
