@@ -74,7 +74,6 @@
     "graphql": "^14.0.0",
     "css-what": "^5.0.1 ",
     "glob-parent": "6.0.2",
-    "normalize-url": "7.0.2",
     "browserslist": "^4.16.5",
     "eslint": "^7.32.0",
     "immer": ">=9.0.6",
