@@ -1,5 +1,5 @@
-import Adapter from 'enzyme-adapter-react-16';
-import { configure } from 'enzyme';
+import Enzyme from 'enzyme';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { GlobalWithFetchMock } from 'jest-fetch-mock';
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
@@ -10,7 +10,7 @@ React.useLayoutEffect = React.useEffect;
 
 // Suppress useLayoutEffect warning from Formik
 
-configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() });
 
 const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock;
 // eslint-disable-next-line @typescript-eslint/no-require-imports
