@@ -1,71 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
->
-  <MockedProvider
-    addTypename={false}
-  >
-    <HelmetProvider
-      context={Object {}}
-    >
-      <Router
-        history={
-          Object {
-            "action": "POP",
-            "block": [Function],
-            "createHref": [Function],
-            "go": [Function],
-            "goBack": [Function],
-            "goForward": [Function],
-            "length": 1,
-            "listen": [Function],
-            "location": Object {
-              "hash": "",
-              "pathname": "/",
-              "search": "",
-              "state": undefined,
-            },
-            "push": [Function],
-            "replace": [Function],
-          }
-        }
-      >
-        <MockedProvider
-          addTypename={true}
-        >
-          <EditProfileModal
-            initialValues={
-              Object {
-                "children": Object {
-                  "edges": Array [],
-                },
-                "email": "email@example.com",
-                "firstName": "asdf",
-                "id": "yuiop",
-                "language": "SV",
-                "languagesSpokenAtHome": Object {
-                  "edges": Array [],
-                },
-                "lastName": "fdsa",
-                "phoneNumber": "0904422233",
-              }
-            }
-            isOpen={true}
-            setIsOpen={[MockFunction]}
-          />
-        </MockedProvider>
-      </Router>
-    </HelmetProvider>
-  </MockedProvider>
-</Provider>
+<div>
+  <div>
+    <div
+      class="modalWrapper"
+    />
+  </div>
+</div>
 `;

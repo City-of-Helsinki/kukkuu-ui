@@ -1,11 +1,13 @@
-import toJson from 'enzyme-to-json';
 import { MockedProvider } from '@apollo/client/testing';
 
 import EditProfileModal from '../EditProfileModal';
 import { ProfileType } from '../../type/ProfileTypes';
 import { Language } from '../../../api/generatedTypes/globalTypes';
-import { shallowWithProvider } from '../../../../common/test/testUtils';
-import { render, fireEvent } from '../../../../common/test/testingLibraryUtils';
+import {
+  render,
+  fireEvent,
+  waitFor,
+} from '../../../../common/test/testingLibraryUtils';
 import initModal from '../../../../common/test/initModal';
 
 const initialValues: ProfileType = {
@@ -70,7 +72,8 @@ const selectOption = (
 };
 
 it('renders snapshot correctly', () => {
-  const element = shallowWithProvider(
+  initModal();
+  const { container } = render(
     <MockedProvider>
       <EditProfileModal
         initialValues={initialValues}
@@ -79,10 +82,10 @@ it('renders snapshot correctly', () => {
       />
     </MockedProvider>
   );
-  expect(toJson(element)).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });
 
-it('should allow all fields to be filled', () => {
+it('should allow all fields to be filled', async () => {
   initModal();
   const result = getWrapper();
   const { getByLabelText, getAllByLabelText, queryByDisplayValue } = result;
@@ -110,8 +113,11 @@ it('should allow all fields to be filled', () => {
     expect(queryByDisplayValue(value)).not.toEqual(null);
   });
   // Handle select as a special case because it has no input
-  expect(
-    getHdsSelect(getAllByLabelText('Asiointikieli *'))?.querySelector('button')
-      ?.textContent
-  ).toEqual('Suomi');
+  await waitFor(() => {
+    expect(
+      getHdsSelect(getAllByLabelText('Asiointikieli *'))?.querySelector(
+        'button'
+      )?.textContent
+    ).toEqual('Suomi');
+  });
 });
