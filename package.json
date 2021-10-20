@@ -10,6 +10,36 @@
     "Tuomas Haapala"
   ],
   "private": true,
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "graphql-types": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes",
+    "lint": "eslint --ext js,ts,tsx src",
+    "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
+    "start": "react-scripts start",
+    "update-translations": "fetch-translations 1b5qAamjhmSNiME3matBINaeyz8TvoRWVB6wU5HvKy4g -l en,fi,sv -o src/common/translation/i18n",
+    "test": "TZ=UTC react-scripts test",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --lang=fi-FI",
+    "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" browser-tests/ -s takeOnFails=true --lang=fi-FI"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "@apollo/client": "3.4.16",
     "@datapunt/matomo-tracker-react": "0.5.1",
@@ -82,33 +112,6 @@
     "set-value": ">=4.0.1",
     "nth-check": ">=2.0.1",
     "ansi-regex": "^5.0.1"
-  },
-  "scripts": {
-    "build": "react-scripts build",
-    "graphql-types": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes",
-    "lint": "eslint --ext js,ts,tsx src",
-    "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
-    "start": "react-scripts start",
-    "update-translations": "fetch-translations 1b5qAamjhmSNiME3matBINaeyz8TvoRWVB6wU5HvKy4g -l en,fi,sv -o src/common/translation/i18n",
-    "test": "TZ=UTC react-scripts test",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --lang=fi-FI",
-    "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" browser-tests/ -s takeOnFails=true --lang=fi-FI"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
