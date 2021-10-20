@@ -45,7 +45,7 @@
     "hds-design-tokens": "1.5.1",
     "hds-react": "1.5.1",
     "helsinki-utils": "City-of-Helsinki/helsinki-utils-js.git#0.1.0",
-    "i18next": "^19.7.0",
+    "i18next": "21.3.2",
     "i18next-browser-languagedetector": "^6.0.1",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",

@@ -11,6 +11,9 @@ i18n.use(initReactI18next).init({
       translation: fi,
     },
   },
+  interpolation: {
+    skipOnVariables: false,
+  },
 });
 
 export default i18n;

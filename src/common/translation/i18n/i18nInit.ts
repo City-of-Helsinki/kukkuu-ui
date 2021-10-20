@@ -37,8 +37,9 @@ function initI18next() {
       fallbackLng: 'fi',
       interpolation: {
         escapeValue: false,
+        skipOnVariables: false,
       },
-      whitelist: [
+      supportedLngs: [
         SUPPORT_LANGUAGES.EN,
         SUPPORT_LANGUAGES.FI,
         SUPPORT_LANGUAGES.SV,
