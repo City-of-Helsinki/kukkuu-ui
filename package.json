@@ -41,7 +41,6 @@
     "eslint-plugin-prettier": "4.0.0",
     "finally-polyfill": "^0.2.0",
     "formik": "^2.1.4",
-    "graphql-tag": "^2.10.4",
     "hds-core": "^0.12.1",
     "hds-design-tokens": "0.16.0",
     "hds-react": "0.16.0",

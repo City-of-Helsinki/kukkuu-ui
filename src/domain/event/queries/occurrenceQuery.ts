@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from '@apollo/client';
 
 const occurrenceQuery = gql`
   query occurrenceQuery($id: ID!, $childId: ID) {
