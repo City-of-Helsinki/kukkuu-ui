@@ -12,7 +12,7 @@ import Welcome from '../registration/welcome/Welcome';
 import AccessibilityStatement from '../accessibilityStatement/AccessibilityStatement';
 import { userHasProfileSelector } from '../registration/state/RegistrationSelectors';
 import TermsOfService from '../termsOfService/TermsOfService';
-import { isSessionExpiredPromptOpen } from './state/ui/UISelectors';
+import { isSessionExpiredPromptOpenSelector } from './state/ui/UISelectors';
 import {} from '../auth/state/BackendAuthenticationActions';
 import ProfileRoute from '../profile/route/ProfileRoute';
 import EventRoute from '../event/route/EventRoute';
@@ -27,7 +27,7 @@ const App = () => {
   const { t } = useTranslation();
   const { locale } = useParams<{ locale: string }>();
   const userHasProfile = useSelector(userHasProfileSelector);
-  const isSessionPromptOpen = useSelector(isSessionExpiredPromptOpen);
+  const isSessionPromptOpen = useSelector(isSessionExpiredPromptOpenSelector);
 
   return (
     <>

@@ -1,4 +1,4 @@
 import { StoreState } from '../../types/AppTypes';
 
-export const isSessionExpiredPromptOpen = (state: StoreState) =>
+export const isSessionExpiredPromptOpenSelector = (state: StoreState) =>
   state.ui.sessionExpiredPrompt.isOpen;
