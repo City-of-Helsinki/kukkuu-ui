@@ -23,6 +23,8 @@ function useAuthenticated(enabled = true) {
       history.replace('/home', { from: location });
     }
   }, [isAuthenticated, enabled, history, location, isLoadingUser]);
+
+  return !enabled || (!isLoadingUser && isAuthenticated);
 }
 
 function useInstantLogin(enabled = true) {
@@ -74,8 +76,7 @@ function AppRoute({
   // For instance, the useAuthenticated hook replaces the current path,
   // in which case the original navigation target would be lost.
   useInstantLogin(isPrivate);
-  useAuthenticated(isPrivate);
-  const isLoadingUser = useSelector(isLoadingUserSelector);
+  const canRenderComponent = useAuthenticated(isPrivate);
   const { t } = useTranslation();
 
   if (render) {
@@ -105,7 +106,7 @@ function AppRoute({
       <Route
         {...routeProps}
         render={(routeRenderProps) => (
-          <LoadingSpinner isLoading={isLoadingUser}>
+          <LoadingSpinner isLoading={!canRenderComponent}>
             {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
             {/* @ts-ignore */}
             {createElement(component, routeRenderProps)}
