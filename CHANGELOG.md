@@ -2,9 +2,18 @@
 
 # [Unreleased]
 
+# 1.7.0
+
+### Changed
+
+- [#398](https://github.com/City-of-Helsinki/kukkuu-ui/pull/398) Disallow API requests until user is authenticated
+- [#398](https://github.com/City-of-Helsinki/kukkuu-ui/pull/398) Use new error codes when checking auth errors
+
 ### Fixed
 
-- Occurrence refetching failing when occurrence did not have an event group
+- [#396](https://github.com/City-of-Helsinki/kukkuu-ui/pull/396) Occurrence refetching failing when occurrence did not have an event group
+
+Also [dependencies are updated to the newest possible versions](https://github.com/City-of-Helsinki/kukkuu-ui/pull/397).
 
 # 1.6.9
 
