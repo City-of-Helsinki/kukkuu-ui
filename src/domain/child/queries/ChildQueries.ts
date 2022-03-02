@@ -32,6 +32,14 @@ export const childByIdQuery = gql`
               imageAltText
               participantsPerInvite
             }
+            enrolments(first: 1) {
+              edges {
+                node {
+                  id
+                  referenceId
+                }
+              }
+            }
           }
         }
       }

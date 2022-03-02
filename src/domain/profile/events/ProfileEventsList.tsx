@@ -15,6 +15,7 @@ import {
 import RelayList from '../../api/relayList';
 import OccurrenceInfo from '../../event/partial/OccurrenceInfo';
 import EventCard from '../../event/eventCard/EventCard';
+import Config from '../../config';
 import styles from './profileEventsList.module.scss';
 
 const availableEventsAndEventGroupsList =
@@ -117,7 +118,9 @@ const ProfileEventsList = ({
                   <QRCode
                     quietZone={0}
                     size={QR_CODE_SIZE_PX}
-                    value={occurrence.event.name || ''}
+                    value={getTicketValidationUrl(
+                      occurrence?.enrolments?.edges?.[0]?.node?.referenceId
+                    )}
                     ecLevel={'H'}
                   />
                 </div>
@@ -151,5 +154,8 @@ const ProfileEventsList = ({
     </>
   );
 };
+
+const getTicketValidationUrl = (referenceId?: string | null) =>
+  referenceId ? `${Config.adminUrl}/${referenceId}` : undefined;
 
 export default ProfileEventsList;

@@ -43,6 +43,31 @@ export interface childByIdQuery_child_occurrences_edges_node_event {
   participantsPerInvite: EventParticipantsPerInvite;
 }
 
+export interface childByIdQuery_child_occurrences_edges_node_enrolments_edges_node {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  /**
+   * An unique encoded reference id
+   */
+  referenceId: string | null;
+}
+
+export interface childByIdQuery_child_occurrences_edges_node_enrolments_edges {
+  /**
+   * The item at the end of the edge
+   */
+  node: childByIdQuery_child_occurrences_edges_node_enrolments_edges_node | null;
+}
+
+export interface childByIdQuery_child_occurrences_edges_node_enrolments {
+  /**
+   * Contains the nodes in this connection.
+   */
+  edges: (childByIdQuery_child_occurrences_edges_node_enrolments_edges | null)[];
+}
+
 export interface childByIdQuery_child_occurrences_edges_node {
   /**
    * The ID of the object.
@@ -51,6 +76,7 @@ export interface childByIdQuery_child_occurrences_edges_node {
   time: any;
   venue: childByIdQuery_child_occurrences_edges_node_venue;
   event: childByIdQuery_child_occurrences_edges_node_event;
+  enrolments: childByIdQuery_child_occurrences_edges_node_enrolments;
 }
 
 export interface childByIdQuery_child_occurrences_edges {
