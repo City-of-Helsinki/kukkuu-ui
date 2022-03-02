@@ -36,7 +36,7 @@ jobs:
           DOCKER_BUILD_ARG_REACT_APP_OIDC_CLIENT_ID: 'https://id.hel.fi/apps/kukkuu-ui-prod'
           DOCKER_BUILD_ARG_REACT_APP_OIDC_SCOPE: 'openid profile https://api.hel.fi/auth/kukkuuapiprod'
           DOCKER_BUILD_ARG_REACT_APP_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
-          DOCKER_BUILD_ARG_REACT_APP_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.prod.kuva.hel.ninja/check-ticket-validity'
+          DOCKER_BUILD_ARG_REACT_APP_ADMIN_TICKET_VALIDATION_URL: 'https://kummilapset-admin.hel.fi/check-ticket-validity'
 
   production:
     runs-on: ubuntu-latest
