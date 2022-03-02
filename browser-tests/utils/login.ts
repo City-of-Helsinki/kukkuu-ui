@@ -1,5 +1,4 @@
 import { ssoLogin } from '../pages/ssoLogin';
-import { login as loginPage } from '../pages/login';
 import { testUsername, testUserPassword } from './settings';
 
 const givePermission = async (t: TestController) => {
