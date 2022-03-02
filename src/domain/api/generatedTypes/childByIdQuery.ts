@@ -220,9 +220,6 @@ export interface childByIdQuery_child {
 }
 
 export interface childByIdQuery {
-  /**
-   * The ID of the object
-   */
   child: childByIdQuery_child | null;
 }
 

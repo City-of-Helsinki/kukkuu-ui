@@ -168,9 +168,6 @@ export interface eventQuery_event {
 }
 
 export interface eventQuery {
-  /**
-   * The ID of the object
-   */
   event: eventQuery_event | null;
 }
 

@@ -44,9 +44,6 @@ export interface eventGroupQuery_eventGroup {
 }
 
 export interface eventGroupQuery {
-  /**
-   * The ID of the object
-   */
   eventGroup: eventGroupQuery_eventGroup | null;
 }
 

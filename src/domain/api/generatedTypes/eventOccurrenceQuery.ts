@@ -55,9 +55,6 @@ export interface eventOccurrenceQuery_occurrence {
 }
 
 export interface eventOccurrenceQuery {
-  /**
-   * The ID of the object
-   */
   occurrence: eventOccurrenceQuery_occurrence | null;
 }
 

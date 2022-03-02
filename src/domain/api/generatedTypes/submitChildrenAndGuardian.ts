@@ -89,8 +89,7 @@ export interface submitChildrenAndGuardian_submitChildrenAndGuardian {
 
 export interface submitChildrenAndGuardian {
   /**
-   * This is the first mutation one needs to execute to start using the service.
-   * After that this mutation cannot be used anymore.
+   * This is the first mutation one needs to execute to start using the service. After that this mutation cannot be used anymore.
    */
   submitChildrenAndGuardian: submitChildrenAndGuardian_submitChildrenAndGuardian | null;
 }
