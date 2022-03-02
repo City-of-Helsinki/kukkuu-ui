@@ -115,7 +115,7 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.9",
-    "apollo": "^2.28.3",
+    "apollo": "^2.33.9",
     "codecov": "^3.7.1",
     "jest-fetch-mock": "^3.0.3"
   },
