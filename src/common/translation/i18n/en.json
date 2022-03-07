@@ -487,7 +487,8 @@
     },
     "message": {
       "greetings": "Hello {{firstName}}",
-      "serviceDescription": ""
+      "serviceDescription": "",
+      "projectDescription": ""
     }
   },
   "registration": {

@@ -1,14 +1,49 @@
 $buttonLabelMargin: 0.2rem;
 
-.childrenList {
-  .thisYearPartner {
-    p {
-      text-align: left;
-    }
+.layout {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-layout-xs);
+
+  & > * {
+    margin: 0;
+  }
+
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+
+    list-style-type: none;
+  }
+
+  button {
+    width: fit-content;
   }
 }
 
-.addChild {
-  // Left-align plus icon with child cards above
-  transform: translateX(calc(var(--spacing-m) * -1));
+.projects {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-layout-xs);
+
+  & > * {
+    margin: 0;
+  }
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-layout-2-xs);
+
+  & > * {
+    margin: 0;
+  }
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-layout-2-xs);
 }

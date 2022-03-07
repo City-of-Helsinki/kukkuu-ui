@@ -487,7 +487,8 @@
     },
     "message": {
       "greetings": "Hei {{firstName}}",
-      "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!"
+      "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!",
+      "projectDescription": "{{projectYear}} • Kummitoimija: {{projectName}}"
     }
   },
   "registration": {
