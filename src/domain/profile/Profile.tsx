@@ -3,15 +3,13 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
-import { IconCogwheel } from 'hds-react';
+import { Container, IconPen } from 'hds-react';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import Icon from '../../common/components/icon/Icon';
 import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
 import GiveFeedbackButton from '../../common/components/giveFeedbackButton/GiveFeedbackButton';
-import phoneIcon from '../../assets/icons/svg/mobile.svg';
-import emailIcon from '../../assets/icons/svg/envelope.svg';
+import Text from '../../common/components/text/Text';
 import PageWrapper from '../app/layout/PageWrapper';
 import { clearProfile } from './state/ProfileActions';
 import useProfile from './hooks/useProfile';
@@ -41,50 +39,32 @@ const Profile = () => {
 
   return (
     <PageWrapper className={styles.wrapper}>
-      <div className={styles.profileWrapper} role="main">
-        <div className={styles.profile}>
-          <div className={styles.profileContent}>
-            <div className={styles.heading}>
-              <h1>
-                {data.firstName} {data.lastName}
-              </h1>
-              <Button
-                variant="supplementary"
-                className={styles.editProfileButton}
-                iconRight={<IconCogwheel />}
-                onClick={() => setIsOpen(true)}
-              >
-                {t('profile.edit.button.text')}
-              </Button>
-            </div>
-            {isOpen && (
-              <EditProfileModal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                initialValues={data}
-              />
-            )}
-            <div className={styles.guardianInfo}>
-              <div className={styles.guardianInfoRow}>
-                <Icon
-                  src={emailIcon}
-                  alt={t('registration.form.guardian.email.input.label')}
-                />
-                <span>{data.email}</span>
-              </div>
-              <div className={styles.guardianInfoRow}>
-                <Icon
-                  src={phoneIcon}
-                  alt={t('profile.child.detail.phoneNumber')}
-                />
-                <span>{data.phoneNumber}</span>
-              </div>
-            </div>
-            <ProfileChildrenList />
-          </div>
-          <GiveFeedbackButton />
+      <Container role="main" className={styles.container}>
+        <div className={styles.heading}>
+          <Text variant="h1">
+            {t('profile.message.greetings', {
+              firstName: data.firstName,
+            })}
+          </Text>
+          <Button
+            variant="secondary"
+            iconLeft={<IconPen />}
+            onClick={() => setIsOpen(true)}
+          >
+            {t('profile.edit.button.text')}
+          </Button>
         </div>
-      </div>
+        <Text variant="body-l">{t('profile.message.serviceDescription')}</Text>
+        {isOpen && (
+          <EditProfileModal
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            initialValues={data}
+          />
+        )}
+        <ProfileChildrenList />
+        <GiveFeedbackButton />
+      </Container>
     </PageWrapper>
   );
 };

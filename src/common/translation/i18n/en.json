@@ -484,6 +484,10 @@
         "heading": "Event invitations"
       },
       "text": "Event invitations sent to you will be displayed here. You can sign up for events and cancel your attendance if you, for some reason, are unable to attend."
+    },
+    "message": {
+      "greetings": "Hello {{firstName}}",
+      "serviceDescription": ""
     }
   },
   "registration": {

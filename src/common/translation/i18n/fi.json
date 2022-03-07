@@ -464,7 +464,7 @@
     },
     "edit": {
       "button": {
-        "text": "Muokkaa tietoja"
+        "text": "Muokkaa tietojasi"
       }
     },
     "events": {
@@ -484,6 +484,10 @@
         "heading": "Tapahtumakutsut"
       },
       "text": "Tänne saapuvat sinulle lähetetyt tapahtumakutsut. Pääset myös ilmoittautumaan tapahtumiin ja perumaan ilmoittautumisen, jos et jostain syystä pääsekään osallistumaan tapahtumaan."
+    },
+    "message": {
+      "greetings": "Hei {{firstName}}",
+      "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!"
     }
   },
   "registration": {

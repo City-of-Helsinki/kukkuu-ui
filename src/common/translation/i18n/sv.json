@@ -484,6 +484,10 @@
         "heading": "Inbjudan till evenemang"
       },
       "text": "Inbjudan till de evenemang som skickats till dig visas här. Här kan du också anmäla dig till evenemang och avboka din anmälan om du av någon orsak inte kan delta."
+    },
+    "message": {
+      "greetings": "Hej {{firstName}}",
+      "serviceDescription": ""
     }
   },
   "registration": {

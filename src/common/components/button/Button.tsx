@@ -6,7 +6,7 @@ type ButtonProps = Omit<HDSButtonProps, 'variant'> & {
 };
 
 const kukkuuSecondaryButtonStyles = {
-  '--background-color': 'var(--color-white)',
+  '--background-color': 'transparent',
   '--background-color-hover': 'var(--color-white)',
   '--background-color-focus': 'var(--color-white)',
   '--background-color-hover-focus': 'var(--color-white)',

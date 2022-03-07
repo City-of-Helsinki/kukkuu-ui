@@ -1,89 +1,35 @@
 @import 'styles/layout';
 @import 'styles/variables';
 
-.profileWrapper {
-  display: grid;
-  @include respond-below(md) {
-    padding: 0 $basePadding;
-  }
-  @include respond-above(sm) {
-    grid-template-columns: 1fr 10fr 1fr;
-
-    .profile {
-      grid-column: 2;
-    }
-  }
+.wrapper {
+  background: #f9f9f9;
 }
 
-.profileContent {
-  .thisYearPartner {
-    p {
-      text-align: left;
-    }
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-layout-m);
+
+  margin: 0 auto;
+
+  & > * {
+    margin-bottom: 0;
   }
 }
 
 .heading {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-top: $baseMargin;
-  h1 {
-    margin: 0;
+  flex-direction: column;
+
+  margin-top: var(--spacing-layout-s);
+
+  & > * {
+    margin-bottom: 0;
   }
 
-  .editProfileButton {
-    padding: 0;
-    background: transparent;
-    height: $buttonHeight;
+  @include respond-above(sm) {
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    border: none;
-    @include respond-above(md) {
-      display: inline-flex;
-      align-items: center;
-    }
-    // HDS adds unwanted margin to icon
-    div {
-      margin-right: 0;
-    }
-    span {
-      display: none;
-      @include respond-above(md) {
-        display: inherit;
-      }
-    }
-  }
-}
-
-.wrapper {
-  background: var(--color-black-5);
-}
-
-.guardianInfo {
-  display: grid;
-  grid-auto-flow: row;
-  margin-bottom: $baseMargin;
-
-  .guardianInfoRow {
-    h1 {
-      margin: 0;
-      align-self: center;
-    }
-    display: grid;
-    grid-template-columns: $largeMargin 1fr;
-    gap: $baseMargin;
-    padding-bottom: $baseMargin;
-
-    > span {
-      align-self: center;
-    }
-
-    > div {
-      align-self: center;
-      justify-self: center;
-    }
-    &:first-child {
-      padding-top: $baseMargin;
-    }
   }
 }
