@@ -10,7 +10,8 @@
   flex-direction: column;
   row-gap: var(--spacing-layout-m);
 
-  margin: 0 auto;
+  margin: 0 1rem;
+  max-width: none;
 
   & > * {
     margin-bottom: 0;

@@ -455,6 +455,9 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Navigate to child detail"
+      },
+      "message": {
+        "eventVisitsThisYear": ""
       }
     },
     "children": {
@@ -488,7 +491,10 @@
     "message": {
       "greetings": "Hello {{firstName}}",
       "serviceDescription": "",
-      "projectDescription": ""
+      "projectDescription": "",
+      "allSignupsSpent": "",
+      "enrollToEvent": "",
+      "youAreEnrolled": ""
     }
   },
   "registration": {

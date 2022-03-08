@@ -1,0 +1,36 @@
+@import 'styles/layout';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-3-xs);
+}
+
+.occurrenceLink {
+  text-decoration: none;
+  color: var(--color-coat-of-arms);
+  font-weight: 600;
+  font-size: var(--fontsize-body-l);
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: var(--spacing-xs);
+  column-gap: var(--spacing-xl);
+
+  padding: 0;
+  margin: 0;
+
+  list-style-type: none;
+
+  @include respond-above(sm) {
+    flex-direction: row;
+  }
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-2-xs);
+}

@@ -1,66 +1,154 @@
-@import 'styles/variables';
-@import 'styles/fonts';
+@import 'styles/layout';
 
-$childProfileMargin: 0.2rem;
+.container {
+  --container-padding: var(--spacing-s);
+  --icon-dimension: 3rem;
 
-.childWrapper {
-  background: var(--color-white);
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  margin-bottom: $baseMargin;
-  padding: 0;
-  border: 0;
-  width: 100%;
-  text-align: left;
+  flex-direction: column;
+  column-gap: var(--spacing-s);
+  row-gap: var(--spacing-s);
+
+  position: relative;
+
+  padding: var(--container-padding);
+
+  background: var(--color-white);
+  cursor: pointer;
+
+  @include respond-above(sm) {
+    --container-padding: var(--spacing-s);
+    --icon-dimension: 4rem;
+
+    flex-direction: row;
+    align-items: center;
+  }
+
+  & > a {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: var(--container-padding);
+  left: var(--container-padding);
+
+  align-self: flex-start;
+  height: var(--icon-dimension);
+  width: var(--icon-dimension);
+
+  @include respond-above(sm) {
+    position: unset;
+    top: unset;
+    left: unset;
+  }
+}
+
+.content {
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-2-xs);
+
+  & > * {
+    margin: 0;
+  }
+
+  @include respond-above(lg) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'titleArea additionalArea'
+      'contentStackArea additionalArea';
+  }
+
+  .title {
+    grid-area: titleArea;
+  }
+  .contentStack {
+    grid-area: contentStackArea;
+  }
+  .additionalDetails {
+    grid-area: additionalArea;
+  }
+}
+
+.title {
+  display: flex;
   align-items: center;
+
+  min-height: var(--icon-dimension);
+  padding-left: calc(var(--icon-dimension) + var(--spacing-xs));
+
+  @include respond-above(sm) {
+    min-height: unset;
+    padding-left: unset;
+  }
+}
+
+.contentStack {
+  order: 100; // set last
+  display: flex;
+  flex-direction: column;
+
+  & > * {
+    margin: 0;
+  }
+
+  @include respond-above(sm) {
+    order: unset;
+  }
+}
+
+.additionalDetails {
+  order: 3;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  justify-content: left;
+  column-gap: var(--spacing-l);
+  row-gap: var(--spacing-xs);
+
+  @include respond-above(sm) {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+  }
 }
 
 .invitationLabel {
-  background-color: var(--color-engel);
-  align-self: start;
+  padding: var(--spacing-3-xs) var(--spacing-xs);
+
+  font-size: var(--font-size-base);
+  font-weight: 500;
+
+  // Tokens can't be used because color has opacity
+  background-color: rgba(255, 198, 30, 0.5);
+}
+
+.contentDescription {
+  font-weight: 500;
+}
+
+.readMoreLink {
   position: absolute;
-  padding: $childProfileMargin $basePadding;
-  font-size: $font-size-sm;
-}
+  top: var(--spacing-s);
+  right: var(--spacing-s);
 
-.child {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  padding: $largePadding $basePadding;
+  height: var(--icon-dimension);
 
-  .childIcon {
-    > div {
-      height: $largeMargin;
-      width: $largeMargin;
-    }
-  }
-
-  .childInfo {
-    margin-left: 1rem;
-    h3 {
-      font-size: $font-size-lg;
-      margin: 0;
-      margin-bottom: $childProfileMargin;
-    }
-
-    .childBirthdate {
-      align-items: center;
-      display: inline-flex;
-      > div {
-        margin-right: 0.5rem;
-      }
-    }
-  }
-}
-
-.childDetail {
   display: flex;
   align-items: center;
-  margin: $baseMargin;
-  > div {
-    transform: rotate(-90deg);
+
+  @include respond-above(sm) {
+    position: unset;
+    top: unset;
+    left: unset;
   }
 }

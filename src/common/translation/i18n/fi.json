@@ -455,6 +455,9 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Näytä Kummilapsen tiedot"
+      },
+      "message": {
+        "eventVisitsThisYear": "Tapahtumakäynnit tänä vuonna {{eventVisitCount}}/{{allowedEventVisitCount}}"
       }
     },
     "children": {
@@ -488,7 +491,10 @@
     "message": {
       "greetings": "Hei {{firstName}}",
       "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!",
-      "projectDescription": "{{projectYear}} • Kummitoimija: {{projectName}}"
+      "projectDescription": "{{projectYear}} • Kummitoimija: {{projectName}}",
+      "allSignupsSpent": "Onnittelut, olet osallistunut jo kahteen tapahtumaan tänä vuonna. Ensi vuonna nähdään!",
+      "enrollToEvent": "Sinulla on voimassaoleva tapahtumakutsu. Ilmoittaudu mukaan!",
+      "youAreEnrolled": "Olet ilmoittautunut tapahtumaan:"
     }
   },
   "registration": {

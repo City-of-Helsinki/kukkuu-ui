@@ -455,6 +455,9 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Visa Fadderbarnets uppgifter"
+      },
+      "message": {
+        "eventVisitsThisYear": ""
       }
     },
     "children": {
@@ -488,7 +491,10 @@
     "message": {
       "greetings": "Hej {{firstName}}",
       "serviceDescription": "",
-      "projectDescription": ""
+      "projectDescription": "",
+      "allSignupsSpent": "",
+      "enrollToEvent": "",
+      "youAreEnrolled": ""
     }
   },
   "registration": {

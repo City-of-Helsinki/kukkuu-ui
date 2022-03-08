@@ -1,16 +1,19 @@
 import * as React from 'react';
-import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { IconAngleRight, IconCheck } from 'hds-react';
 
-// eslint-disable-next-line max-len
-import { profileQuery_myProfile_children_edges_node as ChildType } from '../../../api/generatedTypes/profileQuery';
-import Icon from '../../../../common/components/icon/Icon';
-import birthdayIcon from '../../../../assets/icons/svg/birthdayCake.svg';
-import angleDownIcon from '../../../../assets/icons/svg/angleDown.svg';
 import childIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
+import Icon from '../../../../common/components/icon/Icon';
+import Text from '../../../../common/components/text/Text';
+import KukkuuPill from '../../../../common/components/kukkuuPill/KukkuuPill';
+import { newMoment } from '../../../../common/time/utils';
+import {
+  profileQuery_myProfile_children_edges_node as ChildType,
+  profileQuery_myProfile_children_edges_node_enrolments_edges_node as EnrolmentType,
+} from '../../../api/generatedTypes/profileQuery';
+import ProfileChildEnrolment from './ProfileChildEnrolment';
 import styles from './profileChild.module.scss';
-import { formatTime, newMoment } from '../../../../common/time/utils';
-import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 
 interface ProfileChildProps {
   child: ChildType;
@@ -19,49 +22,156 @@ interface ProfileChildProps {
 const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
   child,
 }) => {
-  const history = useHistory();
+  const linkRef = React.useRef<HTMLAnchorElement | null>(null);
+  const downRef = React.useRef<Date | null>(null);
   const { t } = useTranslation();
 
   // Change to child.availableEvents when API supports it. Change to true to test.
   const availableEvents = child.availableEvents?.edges[0]?.node?.name;
   const isNamed = Boolean(child.firstName);
   const childName = `${child.firstName} ${child.lastName}`;
+  const enrolments = child.enrolments?.edges
+    ?.map((edge) => edge?.node)
+    ?.filter((node): node is EnrolmentType => Boolean(node));
+  const nextEnrolment = enrolments ? findNextEnrolment(enrolments) : null;
+
+  const handleWrapperMouseDown = () => {
+    downRef.current = new Date();
+  };
+
+  const handleWrapperMouseUp = (e: React.MouseEvent<HTMLElement>) => {
+    const link = linkRef.current;
+    const mouseDownTime = downRef?.current;
+    const up = new Date();
+
+    // Invoke a click on link if
+    // 1. The event did not bubble from the link itself
+    // 2. The user is not attempting to select text
+    if (
+      mouseDownTime &&
+      link &&
+      link !== e.target &&
+      up.getTime() - mouseDownTime.getTime() < 200
+    ) {
+      link.click();
+    }
+  };
 
   return (
-    <button
-      className={styles.childWrapper}
-      onClick={() => history.push(`/profile/child/${child.id}`)}
+    <div
+      onMouseDown={handleWrapperMouseDown}
+      onMouseUp={handleWrapperMouseUp}
+      className={styles.container}
     >
-      {availableEvents && (
-        <div className={styles.invitationLabel}>
-          {t('profile.child.invitationLabel.text')}
-        </div>
-      )}
-      <div className={styles.child} role="listitem">
-        <div className={styles.childIcon}>
-          <Icon src={childIcon} alt={t('profile.child.default.name.text')} />
-        </div>
-        <div className={styles.childInfo}>
-          <h3>{isNamed ? childName : t('profile.child.default.name.text')}</h3>
-          <div className={styles.childBirthdate}>
-            <Icon
-              src={birthdayIcon}
-              alt={t('profile.child.detail.birthdate')}
+      <Icon
+        src={childIcon}
+        alt={t('profile.child.default.name.text')}
+        className={styles.icon}
+      />
+      <div className={styles.content}>
+        <Text variant="h4" className={styles.title}>
+          {isNamed ? childName : t('profile.child.default.name.text')}
+        </Text>
+        <div className={styles.contentStack}>
+          <Content hasEnrolment={Boolean(nextEnrolment)} />
+          {nextEnrolment && (
+            <ProfileChildEnrolment
+              enrolment={nextEnrolment}
+              childId={child.id}
             />
-            <span>
-              {formatTime(newMoment(child.birthdate), DEFAULT_DATE_FORMAT)}
-            </span>
-          </div>
+          )}
+        </div>
+        <div className={styles.additionalDetails}>
+          {availableEvents && (
+            <div className={styles.invitationLabel}>
+              {t('profile.child.invitationLabel.text')}
+            </div>
+          )}
+          <KukkuuPill
+            variant="success"
+            iconLeft={<IconCheck />}
+            name={t('profile.child.message.eventVisitsThisYear', {
+              eventVisitCount: 0,
+              allowedEventVisitCount: 2,
+            })}
+          />
         </div>
       </div>
-      <div className={styles.childDetail}>
-        <Icon
-          src={angleDownIcon}
-          alt={t('profile.child.navigateToDetail.buttonLabel')}
+      <Link
+        className={styles.readMoreLink}
+        ref={linkRef}
+        to={`/profile/child/${child.id}`}
+      >
+        <IconAngleRight
+          aria-label={t('profile.child.navigateToDetail.buttonLabel')}
         />
-      </div>
-    </button>
+      </Link>
+    </div>
   );
 };
+
+type ContentProps = {
+  maxEnrolmentCount?: number;
+  enrolmentCount?: number;
+  hasInvitation?: boolean;
+  hasEnrolment?: boolean;
+};
+
+function Content({
+  maxEnrolmentCount,
+  enrolmentCount,
+  hasInvitation,
+  hasEnrolment,
+}: ContentProps) {
+  const { t } = useTranslation();
+
+  if (hasEnrolment) {
+    return (
+      <Text className={styles.contentDescription}>
+        {t('profile.message.youAreEnrolled')}
+      </Text>
+    );
+  }
+
+  if (
+    getIsNotEmpty(enrolmentCount) &&
+    getIsNotEmpty(maxEnrolmentCount) &&
+    enrolmentCount >= maxEnrolmentCount
+  ) {
+    return (
+      <Text className={styles.contentDescription}>
+        {t('profile.message.allSignupsSpent')}
+      </Text>
+    );
+  }
+
+  if (hasInvitation) {
+    return (
+      <Text className={styles.contentDescription}>
+        {t('profile.message.enrollToEvent')}
+      </Text>
+    );
+  }
+
+  return null;
+}
+
+function getIsNotEmpty<V>(val: V): val is Exclude<V, undefined | null> {
+  return typeof val !== undefined || val !== null;
+}
+
+function findNextEnrolment(enrolments: EnrolmentType[]) {
+  return enrolments.reduce((incumbent, enrolment) => {
+    if (!incumbent) {
+      return enrolment;
+    }
+
+    const now = newMoment(new Date());
+    const untilIncumbent = now.diff(newMoment(incumbent.occurrence.time));
+    const untilEnrolment = now.diff(newMoment(enrolment.occurrence.time));
+
+    return untilIncumbent < untilEnrolment ? enrolment : incumbent;
+  });
+}
 
 export default ProfileChild;

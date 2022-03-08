@@ -1,0 +1,20 @@
+.pill {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-2-xs);
+
+  padding: var(--spacing-2-xs) var(--spacing-s);
+
+  font-weight: 500;
+
+  border-radius: 30px;
+}
+
+.default {
+  background: var(--color-summer-light);
+}
+.success {
+  color: var(--color-white);
+
+  background-color: var(--color-success);
+}

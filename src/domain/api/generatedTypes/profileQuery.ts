@@ -97,6 +97,58 @@ export interface profileQuery_myProfile_children_edges_node_occurrences {
   edges: (profileQuery_myProfile_children_edges_node_occurrences_edges | null)[];
 }
 
+export interface profileQuery_myProfile_children_edges_node_enrolments_edges_node_occurrence_venue {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+}
+
+export interface profileQuery_myProfile_children_edges_node_enrolments_edges_node_occurrence_event {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+  /**
+   * In minutes
+   */
+  duration: number | null;
+}
+
+export interface profileQuery_myProfile_children_edges_node_enrolments_edges_node_occurrence {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  time: any;
+  venue: profileQuery_myProfile_children_edges_node_enrolments_edges_node_occurrence_venue;
+  event: profileQuery_myProfile_children_edges_node_enrolments_edges_node_occurrence_event;
+}
+
+export interface profileQuery_myProfile_children_edges_node_enrolments_edges_node {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  occurrence: profileQuery_myProfile_children_edges_node_enrolments_edges_node_occurrence;
+}
+
+export interface profileQuery_myProfile_children_edges_node_enrolments_edges {
+  /**
+   * The item at the end of the edge
+   */
+  node: profileQuery_myProfile_children_edges_node_enrolments_edges_node | null;
+}
+
+export interface profileQuery_myProfile_children_edges_node_enrolments {
+  /**
+   * Contains the nodes in this connection.
+   */
+  edges: (profileQuery_myProfile_children_edges_node_enrolments_edges | null)[];
+}
+
 export interface profileQuery_myProfile_children_edges_node {
   /**
    * The ID of the object.
@@ -110,6 +162,7 @@ export interface profileQuery_myProfile_children_edges_node {
   relationships: profileQuery_myProfile_children_edges_node_relationships;
   availableEvents: profileQuery_myProfile_children_edges_node_availableEvents | null;
   occurrences: profileQuery_myProfile_children_edges_node_occurrences;
+  enrolments: profileQuery_myProfile_children_edges_node_enrolments;
 }
 
 export interface profileQuery_myProfile_children_edges {
