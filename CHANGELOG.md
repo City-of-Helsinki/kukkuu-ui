@@ -1,6 +1,11 @@
 # Change Log
 
-# [Unreleased]
+# 1.8.0
+
+### Changed
+
+- [#402](https://github.com/City-of-Helsinki/kukkuu-ui/pull/402) Azure-pipeline configurations
+- [#407](https://github.com/City-of-Helsinki/kukkuu-ui/pull/407) Update QR-code content to have a link to the Admin-UI's ticket validation endpoint
 
 # 1.7.0
 
