@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 import homeTheaterIcon from '../../../assets/icons/svg/homeTheater.svg';
 import Card from '../../../common/components/card/Card';
-import Paragraph from '../../../common/components/paragraph/Paragraph';
+import Text from '../../../common/components/text/Text';
 import styles from './eventCard.module.scss';
 
 const PlaceholderImage = () => {
@@ -52,7 +52,7 @@ const EventCard = ({
       primaryActionText={isPrimaryActionVisible ? actionText : undefined}
       focalContent={focalContent}
     >
-      <Paragraph text={shortDescription || ''} />
+      <Text>{shortDescription}</Text>
     </Card>
   );
 };

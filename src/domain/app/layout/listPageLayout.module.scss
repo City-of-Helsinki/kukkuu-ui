@@ -1,0 +1,102 @@
+@import 'styles/layout';
+@import '~hds-design-tokens/lib/all.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  padding-bottom: 7rem;
+
+  background: #f9f9f9;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-layout-s);
+
+  padding: 0 var(--spacing-2-xs) 0 var(--spacing-s);
+  margin: 0 auto;
+  max-width: var(--breakpoint-xl);
+
+  @include respond-above(sm) {
+    row-gap: var(--spacing-layout-m);
+
+    padding: 0 var(--spacing-m);
+  }
+}
+
+$backButtonWidth: 5 * 16px;
+$backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
+
+.header {
+  --back-button-width: #{$backButtonWidth};
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    'backButton backButton'
+    'title title'
+    'content content'
+    'actions actions';
+  row-gap: var(--spacing-layout-xs);
+  align-items: center;
+
+  @include respond-above(sm) {
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'backButton backButton'
+      'title actions'
+      'content content';
+  }
+
+  @media screen and (min-width: $backButtonAsideBreakpoint) {
+    grid-template-columns: var(--back-button-width) 1fr auto;
+    grid-template-areas:
+      'backButton title actions'
+      'empty content content';
+
+    margin-left: calc(var(--back-button-width) * -1);
+  }
+
+  & .headerBackButtonContainer {
+    grid-area: backButton;
+  }
+  & .headerTitle {
+    grid-area: title;
+  }
+  & .headerContent {
+    grid-area: content;
+  }
+  & .headerActions {
+    grid-area: actions;
+  }
+
+  margin-top: var(--spacing-layout-s);
+
+  // Remove margin from text elements so that we can control them with
+  // gaps.
+  & * {
+    margin-bottom: 0;
+  }
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-l);
+}
+
+.headerBackButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--spacing-s);
+
+  color: var(--color-text);
+
+  background: var(--color-white);
+  border-radius: 100%;
+}

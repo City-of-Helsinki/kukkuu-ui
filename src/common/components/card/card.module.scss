@@ -1,17 +1,17 @@
-@import 'styles/fonts';
 @import 'styles/layout';
-@import 'styles/variables';
-
-$columnMargin: 2rem;
-$cardMargin: 2rem;
-$cardGutter: 1rem;
-$middleRowMargin: 1rem;
-$focalPointTopMargin: 1rem;
-$imageSize: 20vw;
-$imageMinSize: 200px;
-$imageMaxSize: 300px;
 
 .wrapper {
+  --padding: var(--spacing-m);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-s);
+  column-gap: var(--spacing-xl);
+
+  padding: var(--padding);
+
+  background: var(--color-white);
+
   @include respond-above(sm) {
     display: grid;
     grid-template-columns: 2fr 10fr 1fr;
@@ -20,102 +20,46 @@ $imageMaxSize: 300px;
     margin: 0;
     padding: 0;
   }
-  background: var(--color-white);
-  & + & {
-    margin-top: $cardMargin;
-  }
-  margin: 0 (-$cardGutter);
-  padding: $cardGutter;
 }
 
-.start {
+.image {
+  margin: calc(var(--padding) * -1);
+  margin-bottom: unset;
+
   @include respond-above(sm) {
-    width: $imageSize;
-    height: $imageSize;
-    min-width: $imageMinSize;
-    min-height: $imageMinSize;
-    max-width: $imageMaxSize;
-    max-height: $imageMaxSize;
-    .image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    width: 20vw;
+    height: 20vw;
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 14.25rem;
+    max-height: 14.25rem;
+
+    margin: unset;
   }
+
   & .image {
     width: 100%;
     object-fit: cover;
   }
 }
 
-.middle {
-  @include respond-above(sm) {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    margin-left: $columnMargin;
-    .title {
-      margin-bottom: 0;
-    }
-    .focalPoint {
-      order: 1;
-      margin-top: $focalPointTopMargin;
-    }
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  row-gap: var(--spacing-s);
+  column-gap: var(--spacing-s);
+
+  & * {
+    margin: 0;
   }
-  > :first-child {
-    margin-top: 0;
-  }
-  > :last-child {
-    margin-bottom: 0;
-  }
-  margin: $middleRowMargin 0;
 }
 
-.end {
+.cta {
   display: none;
 
   @include respond-above(sm) {
     display: block;
     justify-self: center;
-    & .actionText {
-      display: none;
-    }
   }
-}
-
-/* TODO: move to caller? */
-.content {
-  > :first-child {
-    margin-top: 0;
-  }
-  > :last-child {
-    margin-bottom: 0;
-  }
-}
-
-.primaryActionButton {
-  width: 100%;
-  min-width: fit-content;
-  padding: 0 2rem;
-  @include respond-above(sm) {
-    width: auto;
-  }
-}
-
-.actionWrapper {
-  display: flex;
-  justify-content: normal;
-  flex-direction: row;
-  border: 0;
-  width: 100%;
-  text-align: left;
-  align-items: center;
-}
-
-.actionText {
-  font-weight: $font-weight-bold;
-}
-
-.gotoAction {
-  transform: rotate(-90deg);
 }

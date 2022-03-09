@@ -161,7 +161,7 @@ function getIsNotEmpty<V>(val: V): val is Exclude<V, undefined | null> {
 }
 
 function findNextEnrolment(enrolments: EnrolmentType[]) {
-  return enrolments.reduce((incumbent, enrolment) => {
+  return enrolments.reduce((incumbent: EnrolmentType | null, enrolment) => {
     if (!incumbent) {
       return enrolment;
     }
@@ -171,7 +171,7 @@ function findNextEnrolment(enrolments: EnrolmentType[]) {
     const untilEnrolment = now.diff(newMoment(enrolment.occurrence.time));
 
     return untilIncumbent < untilEnrolment ? enrolment : incumbent;
-  });
+  }, null);
 }
 
 export default ProfileChild;

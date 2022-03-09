@@ -41,8 +41,16 @@
     "object-curly-spacing": ["warn", "always"],
     "import/no-named-as-default": "off"
   },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "no-undef": "off"
+      }
+    }
+  ],
   "globals": {
-      "React": true,
-      "JSX": true
+    "React": true,
+    "JSX": true
   }
 }

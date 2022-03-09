@@ -47,6 +47,7 @@ const profileQuery = gql`
                   event {
                     id
                     name
+                    shortDescription
                   }
                 }
               }

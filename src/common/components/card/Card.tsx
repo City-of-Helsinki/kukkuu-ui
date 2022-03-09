@@ -1,9 +1,9 @@
 import { ReactNode, ReactElement } from 'react';
+import { IconAngleRight } from 'hds-react';
 
-import angleDownIcon from '../../../assets/icons/svg/angleDown.svg';
-import styles from './card.module.scss';
-import Icon from '../icon/Icon';
 import Button from '../button/Button';
+import Text from '../text/Text';
+import styles from './card.module.scss';
 
 interface CardProps {
   action: () => void;
@@ -35,16 +35,17 @@ const Card = ({
       className={styles.wrapper}
       onClick={primaryAction ? primaryAction : action}
     >
-      <div className={styles.start}>
+      <div className={styles.image}>
         {imageSrc ? (
           <img src={imageSrc} alt={alt} className={styles.image} />
         ) : (
           imageElement && imageElement
         )}
       </div>
-
-      <div className={styles.middle}>
-        <h3 className={styles.title}>{title}</h3>
+      <div className={styles.content}>
+        <Text variant="h3" className={styles.title}>
+          {title}
+        </Text>
         {children}
         <div className={styles.focalPoint}>
           {primaryAction && (
@@ -55,11 +56,13 @@ const Card = ({
           {focalContent && focalContent}
         </div>
       </div>
-
-      <div className={styles.end}>
-        <Button variant="supplementary" className={styles.actionWrapper}>
-          <div className={styles.actionText}>{actionText}</div>
-          <Icon src={angleDownIcon} alt={''} className={styles.gotoAction} />
+      <div className={styles.cta}>
+        <Button
+          variant="supplementary"
+          aria-label={actionText}
+          className={styles.actionWrapper}
+        >
+          <IconAngleRight />
         </Button>
       </div>
     </div>

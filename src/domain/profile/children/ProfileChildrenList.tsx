@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
@@ -10,6 +10,7 @@ import { profileQuery_myProfile_children as Children } from '../../api/generated
 import Button from '../../../common/components/button/Button';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import Text from '../../../common/components/text/Text';
+import List from '../../../common/components/list/List';
 import AddNewChildFormModal from '../../registration/modal/AddNewChildFormModal';
 import { addChildMutation } from '../../child/mutation/ChildMutation';
 import { getSupportedChildData } from '../../child/ChildUtils';
@@ -61,17 +62,19 @@ const ProfileChildrenList = () => {
         />
       )}
       {children?.edges ? (
-        <ul className={styles.projects}>
-          {getProjectsFromProfileQuery(children).map((project) => (
-            <li key={project.id} className={styles.project}>
-              <Text as="h3" variant="body-xl">
+        <List
+          variant="spacing-layout-xs"
+          items={getProjectsFromProfileQuery(children).map((project) => (
+            <React.Fragment key={project.id}>
+              <Text as="h3" variant="body-xl" className={styles.noMargin}>
                 {t('profile.message.projectDescription', {
                   projectYear: project.year,
                   projectName: project.name,
                 })}
               </Text>
-              <ul className={styles.children}>
-                {children.edges.map((childEdge) => {
+              <List
+                variant="spacing-layout-2-xs"
+                items={children.edges.map((childEdge) => {
                   const child = childEdge?.node;
                   const childYear = childEdge?.node?.project.year;
                   const projectYear = project?.year;
@@ -80,15 +83,13 @@ const ProfileChildrenList = () => {
                     childYear &&
                     projectYear &&
                     childYear === projectYear ? (
-                    <li key={child.id}>
-                      <ProfileChild key={child.id} child={child} />
-                    </li>
+                    <ProfileChild key={child.id} child={child} />
                   ) : null;
                 })}
-              </ul>
-            </li>
+              />
+            </React.Fragment>
           ))}
-        </ul>
+        />
       ) : (
         <div className={styles.noChild}>
           <p>{t('profile.children.noChild.text')}</p>

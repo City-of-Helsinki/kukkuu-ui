@@ -3,10 +3,6 @@
 
 $childHeadingMargin: 0.65rem;
 
-.wrapper {
-  background: var(--color-black-5);
-}
-
 .childDetailWrapper {
   display: grid;
   padding: 0 $basePadding;
@@ -16,48 +12,6 @@ $childHeadingMargin: 0.65rem;
   }
   @include respond-below(sm) {
     grid-auto-rows: min-content;
-  }
-}
-
-.backButtonWrapper {
-  @include respond-below(sm) {
-    display: none;
-  }
-  height: $largeMargin;
-  width: $largeMargin;
-  margin-top: $baseMargin;
-
-  .backButtonIcon {
-    height: inherit;
-    width: inherit;
-    img {
-      height: $baseMargin;
-      width: $baseMargin;
-    }
-  }
-}
-
-.backButtonInnerWrapper {
-  grid-column: 1;
-  padding-top: 2rem;
-  width: $logoWidth;
-  display: flex;
-  justify-content: center;
-
-  a {
-    display: inline-flex;
-    width: 3.9rem;
-    height: 3.9rem;
-    justify-content: center;
-    align-items: center;
-
-    background: white;
-    border: none;
-    border-radius: 50%;
-  }
-
-  @include respond-below(md) {
-    display: none;
   }
 }
 

@@ -1,21 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useParams, useHistory } from 'react-router';
 import { useMutation, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { IconCogwheel } from 'hds-react';
+import { IconCheck, IconPen } from 'hds-react';
 
-import PageWrapper from '../../../app/layout/PageWrapper';
-import backIcon from '../../../../assets/icons/svg/arrowLeft.svg';
-import personIcon from '../../../../assets/icons/svg/person.svg';
-import childIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
-import birthdateIcon from '../../../../assets/icons/svg/birthdayCake.svg';
-import Icon from '../../../../common/components/icon/Icon';
 import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
-import { formatTime, newMoment } from '../../../../common/time/utils';
-import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import ErrorMessage from '../../../../common/components/error/Error';
 import Button from '../../../../common/components/button/Button';
 import { deleteChild_deleteChild as DeleteChildPayload } from '../../../api/generatedTypes/deleteChild';
@@ -28,19 +19,19 @@ import {
   deleteChildMutation,
   editChildMutation,
 } from '../../../child/mutation/ChildMutation';
-import useProfile from '../../hooks/useProfile';
 import ProfileEvents from '../../events/ProfileEvents';
 import profileQuery from '../../queries/ProfileQuery';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
 import { useProfileRouteGoBackTo } from '../../route/ProfileRoute';
+import ListPageLayout from '../../../app/layout/ListPageLayout';
+import KukkuuPill from '../../../../common/components/kukkuuPill/KukkuuPill';
 
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
 const ProfileChildDetail = () => {
   const { t } = useTranslation();
   const params = useParams<{ childId: string }>();
-  const { data: guardian } = useProfile();
   const history = useHistory();
   const goBackTo = useProfileRouteGoBackTo();
   const { loading, error, data } = useQuery<ChildByIdResponse>(childByIdQuery, {
@@ -74,118 +65,84 @@ const ProfileChildDetail = () => {
   const child = data?.child;
 
   return (
-    <PageWrapper className={styles.wrapper}>
-      <div className={styles.childDetailWrapper} role="main">
-        <div className={styles.backButtonWrapper}>
-          {goBackTo && (
-            <Link
-              aria-label={t('common.backButton.label')}
-              className={styles.backButton}
-              to={goBackTo}
-            >
-              <Icon src={backIcon} className={styles.backButtonIcon} />
-            </Link>
-          )}
-        </div>
-        <div className={styles.childWrapper}>
-          {child ? (
-            <div className={styles.childInfo}>
-              <div className={styles.childInfoHeadingRow}>
-                <div className={styles.childName}>
-                  <Icon
-                    src={childIcon}
-                    className={styles.childIcon}
-                    alt={t('profile.child.default.name.text')}
-                  />
-                  <h1>
-                    {child.firstName
-                      ? `${child.firstName} ${child.lastName}`
-                      : t('profile.child.default.name.text')}
-                  </h1>
-                </div>
-
+    <ListPageLayout>
+      {child ? (
+        <>
+          <ListPageLayout.Header
+            title={
+              child.firstName
+                ? `${child.firstName} ${child.lastName}`
+                : t('profile.child.default.name.text')
+            }
+            actions={
+              <>
+                <KukkuuPill
+                  variant="success"
+                  iconLeft={<IconCheck />}
+                  name={t('profile.child.message.eventVisitsThisYear', {
+                    eventVisitCount: 0,
+                    allowedEventVisitCount: 2,
+                  })}
+                />
                 <Button
-                  variant="supplementary"
-                  className={styles.editChildInfoButton}
+                  variant="secondary"
                   onClick={() => setIsOpen(true)}
-                  iconRight={<IconCogwheel />}
+                  iconLeft={<IconPen />}
                 >
                   {t('profile.edit.button.text')}
                 </Button>
-              </div>
-              {isOpen && (
-                <ProfileChildDetailEditModal
-                  setIsOpen={setIsOpen}
-                  childBeingEdited={child}
-                  editChild={async (payload: ChildDetailEditModalPayload) => {
-                    try {
-                      await editChild({
-                        variables: {
-                          input: {
-                            id: child.id,
-                            ...payload,
-                          },
-                        },
-                      });
-                    } catch (error) {
-                      toast.error(
-                        t('registration.submitMutation.errorMessage')
-                      );
-                      Sentry.captureException(error);
-                    }
-                  }}
-                  deleteChild={async () => {
-                    try {
-                      const res = await deleteChild({
-                        variables: {
-                          input: {
-                            id: child.id,
-                          },
-                        },
-                      });
+              </>
+            }
+            backButtonHref={goBackTo}
+          />
+          {isOpen && (
+            <ProfileChildDetailEditModal
+              setIsOpen={setIsOpen}
+              childBeingEdited={child}
+              editChild={async (payload: ChildDetailEditModalPayload) => {
+                try {
+                  await editChild({
+                    variables: {
+                      input: {
+                        id: child.id,
+                        ...payload,
+                      },
+                    },
+                  });
+                } catch (error) {
+                  toast.error(t('registration.submitMutation.errorMessage'));
+                  Sentry.captureException(error);
+                }
+              }}
+              deleteChild={async () => {
+                try {
+                  const res = await deleteChild({
+                    variables: {
+                      input: {
+                        id: child.id,
+                      },
+                    },
+                  });
 
-                      if (res) {
-                        history.push('/profile');
-                      }
-                    } catch (error) {
-                      toast.error(
-                        t('registration.submitMutation.errorMessage')
-                      );
-                      Sentry.captureException(error);
-                    }
-                  }}
-                />
-              )}
-              <div className={styles.childInfoRow}>
-                <Icon
-                  src={birthdateIcon}
-                  alt={t('profile.child.detail.birthdate')}
-                />
-                <span>
-                  {formatTime(newMoment(child.birthdate), DEFAULT_DATE_FORMAT)}
-                </span>
-              </div>
-              <div className={styles.childInfoRow}>
-                <Icon
-                  src={personIcon}
-                  alt={t('profile.child.detail.guardiansName')}
-                />
-                <span>{`${guardian?.firstName} ${guardian?.lastName}`}</span>
-              </div>
-
-              <div className={styles.eventWrapper}>
-                <ProfileEvents child={child} />
-              </div>
-            </div>
-          ) : (
-            <div className={styles.noChild}>
-              <p>{t('profile.children.noChild.text')}</p>
-            </div>
+                  if (res) {
+                    history.push('/profile');
+                  }
+                } catch (error) {
+                  toast.error(t('registration.submitMutation.errorMessage'));
+                  Sentry.captureException(error);
+                }
+              }}
+            />
           )}
-          <GiveFeedbackButton />
+          <ProfileEvents child={child} />
+        </>
+      ) : (
+        <div className={styles.noChild}>
+          <p>{t('profile.children.noChild.text')}</p>
         </div>
-      </div>
-    </PageWrapper>
+      )}
+      <GiveFeedbackButton />
+    </ListPageLayout>
   );
 };
 

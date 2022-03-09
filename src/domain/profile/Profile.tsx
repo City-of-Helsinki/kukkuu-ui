@@ -3,19 +3,18 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Redirect } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
-import { Container, IconPen } from 'hds-react';
+import { IconPen } from 'hds-react';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
 import GiveFeedbackButton from '../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import Text from '../../common/components/text/Text';
-import PageWrapper from '../app/layout/PageWrapper';
+import ListPageLayout from '../app/layout/ListPageLayout';
 import { clearProfile } from './state/ProfileActions';
 import useProfile from './hooks/useProfile';
 import ProfileChildrenList from './children/ProfileChildrenList';
 import EditProfileModal from './modal/EditProfileModal';
-import styles from './profile.module.scss';
 
 const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,17 +37,17 @@ const Profile = () => {
   }
 
   return (
-    <PageWrapper className={styles.wrapper}>
-      <Container role="main" className={styles.container}>
-        <div className={styles.header}>
-          <Text variant="h1">
-            {t('profile.message.greetings', {
-              firstName: data.firstName,
-            })}
-          </Text>
+    <ListPageLayout>
+      <ListPageLayout.Header
+        title={t('profile.message.greetings', {
+          firstName: data.firstName,
+        })}
+        content={
           <Text variant="body-l">
             {t('profile.message.serviceDescription')}
           </Text>
+        }
+        actions={
           <Button
             variant="secondary"
             iconLeft={<IconPen />}
@@ -56,18 +55,18 @@ const Profile = () => {
           >
             {t('profile.edit.button.text')}
           </Button>
-        </div>
-        {isOpen && (
-          <EditProfileModal
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            initialValues={data}
-          />
-        )}
-        <ProfileChildrenList />
-        <GiveFeedbackButton />
-      </Container>
-    </PageWrapper>
+        }
+      />
+      {isOpen && (
+        <EditProfileModal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          initialValues={data}
+        />
+      )}
+      <ProfileChildrenList />
+      <GiveFeedbackButton />
+    </ListPageLayout>
   );
 };
 

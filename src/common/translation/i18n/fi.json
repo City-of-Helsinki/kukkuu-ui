@@ -428,7 +428,7 @@
       },
       "detail": {
         "availableEvent": {
-          "readMoreButton": "Lue lisää ja ilmoittaudu tapahtumaan"
+          "readMoreButton": "Ilmoittaudu tapahtumaan"
         },
         "availableEventGroup": {
           "readMoreButton": "Selaa tapahtumia"

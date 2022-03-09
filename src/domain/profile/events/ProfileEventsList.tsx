@@ -1,3 +1,4 @@
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { QRCode } from 'react-qrcode-logo';
@@ -13,6 +14,8 @@ import {
   childByIdQuery_child_occurrences_edges_node as OccurrenceNode,
 } from '../../api/generatedTypes/childByIdQuery';
 import RelayList from '../../api/relayList';
+import Text from '../../../common/components/text/Text';
+import List from '../../../common/components/list/List';
 import OccurrenceInfo from '../../event/partial/OccurrenceInfo';
 import EventCard from '../../event/eventCard/EventCard';
 import Config from '../../config';
@@ -83,74 +86,91 @@ const ProfileEventsList = ({
 
   return (
     <>
-      {availableEventsAndEventGroups.length > 0 && (
-        <div className={styles.eventsList}>
-          <h2>{t('profile.events.invitations.heading')}</h2>
-          {availableEventsAndEventGroups.map((eventOrEventGroup) => (
-            <EventCard
-              key={eventOrEventGroup.id}
-              event={eventOrEventGroup}
-              action={() =>
-                when(
-                  eventOrEventGroup,
-                  () => gotoEventPage(eventOrEventGroup.id),
-                  () => gotoEventGroupPage(eventOrEventGroup.id)
-                )
-              }
-              actionText={when<string>(
-                eventOrEventGroup,
-                () => t('profile.child.detail.availableEvent.readMoreButton'),
-                () =>
-                  t('profile.child.detail.availableEventGroup.readMoreButton')
-              )}
-            />
-          ))}
-        </div>
-      )}
-      {occurrences.length > 0 && (
-        <div className={styles.eventsList}>
-          <h2>{t('profile.events.upcoming.heading')}</h2>
-          {occurrences.map((occurrence) => (
-            <EventCard
-              key={occurrence.event.id}
-              imageElement={
-                <div className={styles.qrWrapper}>
-                  <QRCode
-                    quietZone={0}
-                    size={QR_CODE_SIZE_PX}
-                    value={getTicketValidationUrl(
-                      occurrence?.enrolments?.edges?.[0]?.node?.referenceId
-                    )}
-                    ecLevel={'H'}
-                  />
-                </div>
-              }
-              event={occurrence.event}
-              action={() => gotoOccurrencePage(occurrence.id)}
-              actionText={t('enrollment.showEventInfo.buttonText')}
-              primaryAction="hidden"
-              focalContent={OccurrenceInfo({
-                occurrence,
-                show: ['time', 'duration', 'venue'],
-              })}
-            />
-          ))}
-        </div>
-      )}
-      {pastEvents.length > 0 && (
-        <div className={styles.eventsList}>
-          <h2>{t('profile.events.past.heading')}</h2>
-          {pastEvents.map((pastEvent) => (
-            <EventCard
-              key={pastEvent.id}
-              event={pastEvent}
-              action={() => gotoEventPage(pastEvent.id, true)}
-              actionText={t('enrollment.showEventInfo.buttonText')}
-              primaryAction="hidden"
-            />
-          ))}
-        </div>
-      )}
+      <List
+        variant="spacing-xl"
+        items={[
+          availableEventsAndEventGroups.length > 0 && (
+            <React.Fragment key="availableEventsAndEventGroups">
+              <Text variant="h2">
+                {t('profile.events.invitations.heading')}
+              </Text>
+              <List
+                variant="spacing-layout-2-xs"
+                items={availableEventsAndEventGroups.map(
+                  (eventOrEventGroup) => (
+                    <EventCard
+                      key={eventOrEventGroup.id}
+                      event={eventOrEventGroup}
+                      action={() =>
+                        when(
+                          eventOrEventGroup,
+                          () => gotoEventPage(eventOrEventGroup.id),
+                          () => gotoEventGroupPage(eventOrEventGroup.id)
+                        )
+                      }
+                      actionText={when<string>(
+                        eventOrEventGroup,
+                        () =>
+                          t(
+                            'profile.child.detail.availableEvent.readMoreButton'
+                          ),
+                        () =>
+                          t(
+                            'profile.child.detail.availableEventGroup.readMoreButton'
+                          )
+                      )}
+                    />
+                  )
+                )}
+              />
+            </React.Fragment>
+          ),
+          occurrences.length > 0 && (
+            <React.Fragment key="occurrences">
+              <Text variant="h2">{t('profile.events.upcoming.heading')}</Text>
+              {occurrences.map((occurrence) => (
+                <EventCard
+                  key={occurrence.event.id}
+                  imageElement={
+                    <div className={styles.qrWrapper}>
+                      <QRCode
+                        quietZone={0}
+                        size={QR_CODE_SIZE_PX}
+                        value={getTicketValidationUrl(
+                          occurrence?.enrolments?.edges?.[0]?.node?.referenceId
+                        )}
+                        ecLevel={'H'}
+                      />
+                    </div>
+                  }
+                  event={occurrence.event}
+                  action={() => gotoOccurrencePage(occurrence.id)}
+                  actionText={t('enrollment.showEventInfo.buttonText')}
+                  primaryAction="hidden"
+                  focalContent={OccurrenceInfo({
+                    occurrence,
+                    show: ['time', 'duration', 'venue'],
+                  })}
+                />
+              ))}
+            </React.Fragment>
+          ),
+          pastEvents.length > 0 && (
+            <React.Fragment key="pastEvents">
+              <Text variant="h2">{t('profile.events.past.heading')}</Text>
+              {pastEvents.map((pastEvent) => (
+                <EventCard
+                  key={pastEvent.id}
+                  event={pastEvent}
+                  action={() => gotoEventPage(pastEvent.id, true)}
+                  actionText={t('enrollment.showEventInfo.buttonText')}
+                  primaryAction="hidden"
+                />
+              ))}
+            </React.Fragment>
+          ),
+        ]}
+      />
     </>
   );
 };
