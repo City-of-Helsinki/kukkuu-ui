@@ -40,11 +40,14 @@ const Profile = () => {
   return (
     <PageWrapper className={styles.wrapper}>
       <Container role="main" className={styles.container}>
-        <div className={styles.heading}>
+        <div className={styles.header}>
           <Text variant="h1">
             {t('profile.message.greetings', {
               firstName: data.firstName,
             })}
+          </Text>
+          <Text variant="body-l">
+            {t('profile.message.serviceDescription')}
           </Text>
           <Button
             variant="secondary"
@@ -54,7 +57,6 @@ const Profile = () => {
             {t('profile.edit.button.text')}
           </Button>
         </div>
-        <Text variant="body-l">{t('profile.message.serviceDescription')}</Text>
         {isOpen && (
           <EditProfileModal
             isOpen={isOpen}
