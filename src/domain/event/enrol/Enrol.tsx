@@ -52,7 +52,6 @@ const Enrol = ({
         <OccurrenceInfo
           occurrence={occurrence}
           className={joinClassNames(styles.occurrenceInfo, styles.wrap)}
-          center
         />
         <div className={styles.actions}>
           {!isFull && (

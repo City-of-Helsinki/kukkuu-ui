@@ -48,8 +48,8 @@ $max-text-width: $container-width-s;
 
 .occurrenceInfo {
   box-sizing: border-box;
-  background: var(--color-black-5);
-  padding: $basePadding;
+  background: $color-fog-medium-light;
+  padding: $spacing-s;
   width: 100%;
 
   @include respond-above(sm) {

@@ -112,54 +112,79 @@ exports[`Renders snapshot correctly 1`] = `
             class="row"
           >
             <div
-              class="label"
+              class="fullWidth"
             >
-              <div
-                class="imgWrapper labelIcon"
-              >
-                <img
-                  alt="Päivämäärä"
-                  src="calendar.svg"
-                />
-              </div>
               <div
                 class="label"
               >
-                24.2.2020
+                <div
+                  class="imgWrapper labelIcon"
+                >
+                  <img
+                    alt="Tapahtumapaikka"
+                    src="location.svg"
+                  />
+                </div>
+                <div>
+                  <span
+                    class="label"
+                  >
+                    aa
+                  </span>
+                  <small
+                    class="description"
+                  >
+                    ssfas uus 12
+                  </small>
+                </div>
               </div>
             </div>
             <div
-              class="label"
+              class=""
             >
-              <div
-                class="imgWrapper labelIcon"
-              >
-                <img
-                  alt="Kellonaika"
-                  src="clock.svg"
-                />
-              </div>
               <div
                 class="label"
               >
-                07:07 - 08:07
+                <div
+                  class="imgWrapper labelIcon"
+                >
+                  <img
+                    alt="Päivämäärä"
+                    src="calendar.svg"
+                  />
+                </div>
+                <div>
+                  <span
+                    class="label"
+                  >
+                    24.2.2020
+                  </span>
+                  
+                </div>
               </div>
             </div>
             <div
-              class="label"
+              class=""
             >
-              <div
-                class="imgWrapper labelIcon"
-              >
-                <img
-                  alt="Tapahtumapaikka"
-                  src="location.svg"
-                />
-              </div>
               <div
                 class="label"
               >
-                aa
+                <div
+                  class="imgWrapper labelIcon"
+                >
+                  <img
+                    alt="Kellonaika"
+                    src="clock.svg"
+                  />
+                </div>
+                <div>
+                  <span
+                    class="label"
+                  >
+                    07:07 - 08:07
+                  </span>
+                  
+                </div>
               </div>
             </div>
           </div>

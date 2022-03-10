@@ -112,7 +112,10 @@
 }
 
 .occurrenceInfo {
-  margin: $baseMargin 0;
+  background: $color-fog-medium-light;
+  box-sizing: border-box;
+  padding: $spacing-s;
+
   width: 100%;
   @include respond-above(md) {
     width: auto;

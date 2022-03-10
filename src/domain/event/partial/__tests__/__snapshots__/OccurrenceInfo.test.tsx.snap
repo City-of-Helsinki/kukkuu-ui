@@ -6,31 +6,33 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
 >
   <InfoItem
     className="label"
+    description="Urho Kekkosen katu 12"
+    fullWidth={true}
+    iconAlt="Tapahtumapaikka"
+    iconSrc="location.svg"
+    key="0"
+    label="Musiikkitalo"
+  />
+  <InfoItem
+    className="label"
     iconAlt="Päivämäärä"
     iconSrc="calendar.svg"
-    key="0"
+    key="1"
     label="8.3.2020"
   />
   <InfoItem
     className="label"
     iconAlt="Kellonaika"
     iconSrc="clock.svg"
-    key="1"
+    key="2"
     label="04:00 - 04:12"
   />
   <InfoItem
     className="label"
     iconAlt="Osallistujat"
     iconSrc="person.svg"
-    key="2"
-    label="Perhe"
-  />
-  <InfoItem
-    className="label"
-    iconAlt="Tapahtumapaikka"
-    iconSrc="location.svg"
     key="3"
-    label="Musiikkitalo"
+    label="Perhe"
   />
 </div>
 `;
@@ -41,31 +43,32 @@ exports[`renders occurrence snapshot correctly 1`] = `
 >
   <InfoItem
     className="label"
+    fullWidth={true}
+    iconAlt="Tapahtumapaikka"
+    iconSrc="location.svg"
+    key="0"
+    label="Musiikkitalo"
+  />
+  <InfoItem
+    className="label"
     iconAlt="Päivämäärä"
     iconSrc="calendar.svg"
-    key="0"
+    key="1"
     label="8.3.2020"
   />
   <InfoItem
     className="label"
     iconAlt="Kellonaika"
     iconSrc="clock.svg"
-    key="1"
+    key="2"
     label="04:00 - 04:12"
   />
   <InfoItem
     className="label"
     iconAlt="Osallistujat"
     iconSrc="person.svg"
-    key="2"
-    label="Perhe"
-  />
-  <InfoItem
-    className="label"
-    iconAlt="Tapahtumapaikka"
-    iconSrc="location.svg"
     key="3"
-    label="Musiikkitalo"
+    label="Perhe"
   />
 </div>
 `;

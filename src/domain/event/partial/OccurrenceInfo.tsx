@@ -4,12 +4,11 @@ import joinClassNames from 'classnames';
 import clockIcon from '../../../assets/icons/svg/clock.svg';
 import calendarIcon from '../../../assets/icons/svg/calendar.svg';
 import locationIcon from '../../../assets/icons/svg/location.svg';
-import personIcon from '../../../assets/icons/svg/person.svg';
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import { childByIdQuery_child_occurrences_edges_node as OccurrenceType } from '../../api/generatedTypes/childByIdQuery';
 import { occurrenceQuery_occurrence as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
-import { formatOccurrenceTime } from '../EventUtils';
+import { formatOccurrenceTime, getParticipantsIcon } from '../EventUtils';
 import InfoItem from './InfoItem';
 import styles from './occurrenceInfo.module.scss';
 
@@ -26,6 +25,8 @@ export type InfoItem = {
   iconSrc: string;
   iconAlt?: string;
   label: string;
+  description?: string;
+  fullWidth?: boolean;
 };
 
 const OccurrenceInfo = ({
@@ -37,6 +38,14 @@ const OccurrenceInfo = ({
   const { t } = useTranslation();
 
   const infoItems: InfoItem[] = [
+    {
+      id: 'venue',
+      iconSrc: locationIcon,
+      iconAlt: t('event.register.occurrenceTableHeader.venue'),
+      label: occurrence.venue.name || '',
+      description: occurrence.venue.address || undefined,
+      fullWidth: true,
+    },
     {
       id: 'time',
       iconSrc: calendarIcon,
@@ -51,17 +60,11 @@ const OccurrenceInfo = ({
     },
     {
       id: 'participants',
-      iconSrc: personIcon,
+      iconSrc: getParticipantsIcon(occurrence.event.participantsPerInvite),
       iconAlt: t('event.register.participants'),
       label: t(
         `event.participantsPerInviteEnum.${occurrence.event.participantsPerInvite}`
       ),
-    },
-    {
-      id: 'venue',
-      iconSrc: locationIcon,
-      iconAlt: t('event.register.occurrenceTableHeader.venue'),
-      label: occurrence.venue.name || '',
     },
   ];
 
@@ -86,6 +89,8 @@ const OccurrenceInfo = ({
               iconSrc={item.iconSrc}
               iconAlt={item.iconAlt}
               label={item.label}
+              description={item.description}
+              fullWidth={item.fullWidth}
             />
           )
       )}

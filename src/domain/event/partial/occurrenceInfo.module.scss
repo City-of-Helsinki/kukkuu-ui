@@ -2,8 +2,8 @@
 @import 'styles/variables';
 
 $labelIconMargin: 0.5rem;
-$labelColumnMargin: 1rem;
-$labelRowMargin: 1rem;
+$labelColumnMargin: $spacing-2-xs;
+$labelRowMargin: $spacing-s;
 
 .row {
   display: flex;
@@ -31,6 +31,9 @@ $labelRowMargin: 1rem;
       }
     }
   }
+  .description {
+    display: block;
+  }
 }
 
 .label {
@@ -50,4 +53,8 @@ $labelRowMargin: 1rem;
 
 .labelIcon {
   margin-right: $labelIconMargin;
+}
+
+.fullWidth {
+  width: 100%;
 }
