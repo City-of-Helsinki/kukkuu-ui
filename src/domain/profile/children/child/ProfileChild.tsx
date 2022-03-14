@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { IconAngleRight, IconCheck } from 'hds-react';
+import { IconAngleRight } from 'hds-react';
 
 import childIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import Text from '../../../../common/components/text/Text';
-import KukkuuPill from '../../../../common/components/kukkuuPill/KukkuuPill';
 import { newMoment } from '../../../../common/time/utils';
 import {
   profileQuery_myProfile_children_edges_node as ChildType,
   profileQuery_myProfile_children_edges_node_enrolments_edges_node as EnrolmentType,
 } from '../../../api/generatedTypes/profileQuery';
+import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
 import ProfileChildEnrolment from './ProfileChildEnrolment';
 import styles from './profileChild.module.scss';
 
@@ -87,14 +87,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
               {t('profile.child.invitationLabel.text')}
             </div>
           )}
-          <KukkuuPill
-            variant="success"
-            iconLeft={<IconCheck />}
-            name={t('profile.child.message.eventVisitsThisYear', {
-              eventVisitCount: 0,
-              allowedEventVisitCount: 2,
-            })}
-          />
+          <ChildEnrolmentCount childId={child.id} />
         </div>
       </div>
       <Link

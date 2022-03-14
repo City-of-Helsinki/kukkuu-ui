@@ -68,6 +68,9 @@
           "text": "Palaa profiilin luomiseen"
         }
       }
+    },
+    "message": {
+      "eventVisitsThisYear": "Tapahtumakäynnit tänä vuonna {{eventVisitCount}}/{{allowedEventVisitCount}}"
     }
   },
   "combobox": {
@@ -455,9 +458,6 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Näytä Kummilapsen tiedot"
-      },
-      "message": {
-        "eventVisitsThisYear": "Tapahtumakäynnit tänä vuonna {{eventVisitCount}}/{{allowedEventVisitCount}}"
       }
     },
     "children": {

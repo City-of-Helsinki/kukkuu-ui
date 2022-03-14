@@ -4,28 +4,28 @@ import { useParams, useHistory } from 'react-router';
 import { useMutation, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { IconCheck, IconPen } from 'hds-react';
+import { IconPen } from 'hds-react';
 
-import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
-import ErrorMessage from '../../../../common/components/error/Error';
-import Button from '../../../../common/components/button/Button';
 import { deleteChild_deleteChild as DeleteChildPayload } from '../../../api/generatedTypes/deleteChild';
 import { UpdateChildMutationInput as EditChildInput } from '../../../api/generatedTypes/globalTypes';
 import { updateChild_updateChild as EditChildPayload } from '../../../api/generatedTypes/updateChild';
 import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes/childByIdQuery';
-import { childByIdQuery } from '../../../child/queries/ChildQueries';
+import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
+import ErrorMessage from '../../../../common/components/error/Error';
+import Button from '../../../../common/components/button/Button';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
 import {
   deleteChildMutation,
   editChildMutation,
 } from '../../../child/mutation/ChildMutation';
+import { childByIdQuery } from '../../../child/queries/ChildQueries';
+import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
+import ListPageLayout from '../../../app/layout/ListPageLayout';
 import ProfileEvents from '../../events/ProfileEvents';
 import profileQuery from '../../queries/ProfileQuery';
+import { useProfileRouteGoBackTo } from '../../route/ProfileRoute';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
-import { useProfileRouteGoBackTo } from '../../route/ProfileRoute';
-import ListPageLayout from '../../../app/layout/ListPageLayout';
-import KukkuuPill from '../../../../common/components/kukkuuPill/KukkuuPill';
 
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 
@@ -76,14 +76,7 @@ const ProfileChildDetail = () => {
             }
             actions={
               <>
-                <KukkuuPill
-                  variant="success"
-                  iconLeft={<IconCheck />}
-                  name={t('profile.child.message.eventVisitsThisYear', {
-                    eventVisitCount: 0,
-                    allowedEventVisitCount: 2,
-                  })}
-                />
+                <ChildEnrolmentCount childId={child.id} />
                 <Button
                   variant="secondary"
                   onClick={() => setIsOpen(true)}
