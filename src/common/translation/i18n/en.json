@@ -6,6 +6,12 @@
     "errorMessage": "An error occured. Please try again later"
   },
   "appName": "Culture Kids",
+  "auth": {
+    "wrongLoginMethod": {
+      "description": "It seems like you have registered to the service using another login method. Please log out of the service and try a different login method.",
+      "title": "Oops!"
+    }
+  },
   "authentication": {
     "deviceTimeError": {
       "message": "Believe it or not, but we can’t allow you to log in because the clock on your device is off by more than five minutes. Please set the time and try again.",
@@ -68,12 +74,15 @@
           "text": "Return to registration page"
         }
       }
+    },
+    "message": {
+      "eventVisitsThisYear": ""
     }
   },
   "combobox": {
     "clearButtonAriaLabel": "Clear all selections",
-    "selectedItemSrLabel": "Selected item {value}",
     "selectedItemRemoveButtonAriaLabel": "Remove item {value}",
+    "selectedItemSrLabel": "Selected item {value}",
     "toggleButtonAriaLabel": "Open the combobox"
   },
   "common": {
@@ -82,6 +91,10 @@
     },
     "closeButton": {
       "altText": "Close"
+    },
+    "error": {
+      "description": "Please try again later",
+      "title": "An error occured"
     },
     "form": {
       "leave": {
@@ -98,6 +111,7 @@
       "fi": "Suomi",
       "sv": "Svenska"
     },
+    "loading": "Loading",
     "menu": {
       "closeMenuText": "Close menu",
       "openMenuText": "Open menu"
@@ -119,17 +133,12 @@
       }
     },
     "select": {
-      "default": {
-        "text": "Choose"
-      },
       "all": {
         "text": "Show all"
+      },
+      "default": {
+        "text": "Choose"
       }
-    },
-    "loading": "Loading",
-    "error": {
-      "title": "An error occured",
-      "description": "Please try again later"
     }
   },
   "dataProtection": {
@@ -158,35 +167,35 @@
       "confirm": {
         "button": "Register for event"
       },
-      "heading": {
-        "text": "Register for event",
-        "full": "Registration for event {{eventName}} failed"
-      },
       "description": {
-        "text": "Check that the information below is correct for the event you wish to attend.",
-        "full": "Unfortunately this event is full. Subscribe to receive a notification of available places."
+        "full": "Unfortunately this event is full. Subscribe to receive a notification of available places.",
+        "text": "Check that the information below is correct for the event you wish to attend."
+      },
+      "heading": {
+        "full": "Registration for event {{eventName}} failed",
+        "text": "Register for event"
       }
     },
     "enroll": {
+      "buttonText": "Register for event",
       "error": {
         "capacityHasChanged": "The available capacity of the event has changed. Please refresh your browser.",
         "childAlreadyJoined": "This child has already been enrolled in this event."
-      },
-      "buttonText": "Register for event"
+      }
     },
     "heading": "Register",
+    "notificationSubscriptionModal": {
+      "cancel": "Cancel",
+      "description": "You will receive a notification via email when places become available for the event <b>{{eventName}} {{date}} at {{time}}</b>. Available places are given to those who first register for them.",
+      "subscribe": "Subscribe",
+      "title": "Subscribe to receive a notification of available places"
+    },
     "selectDate": "Choose date",
     "selectLanguage": "Choose event language",
     "selectlocation": "Choose event location",
     "selectTime": "Choose time",
     "showEventInfo": {
       "buttonText": "Show event details"
-    },
-    "notificationSubscriptionModal": {
-      "cancel": "Cancel",
-      "description": "You will receive a notification via email when places become available for the event <b>{{eventName}} {{date}} at {{time}}</b>. Available places are given to those who first register for them.",
-      "subscribe": "Subscribe",
-      "title": "Subscribe to receive a notification of available places"
     },
     "successToast": {
       "heading": "Registration for event successful",
@@ -213,13 +222,13 @@
       "paragraph": "Please remember to cancel your participation in case you are not able to attend the event so that another child is able to take your place. Thank you!"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_GUARDIAN": "1 child + 1 adult",
       "CHILD_AND_1_OR_2_GUARDIANS": "1 child + 1–2 adults",
+      "CHILD_AND_GUARDIAN": "1 child + 1 adult",
       "FAMILY": "Family"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_GUARDIAN": "One adult can accompany a child in this registration",
       "CHILD_AND_1_OR_2_GUARDIANS": "One or two adults can accompany a child in this registration",
+      "CHILD_AND_GUARDIAN": "One adult can accompany a child in this registration",
       "FAMILY": "The whole faily is welcome to this event with this registration"
     },
     "register": {
@@ -230,8 +239,8 @@
         "full": "FULL"
       },
       "occurrenceTableHeader": {
-        "buttonText": "Choose",
         "buttonContinueText": "Continue",
+        "buttonText": "Choose",
         "date": "Date",
         "eventInformation": "Event information",
         "freePlaces": "Free Places",
@@ -243,15 +252,21 @@
     "ticketmasterNotice": "Registration for the event takes place in the Ticketmaster ticket service. To reserve tickets you will need a user account which you can create during the reservation process if you do not already have one. The up to date status for placing can be found from Ticketmaster."
   },
   "eventOccurrenceRedirectPage": {
-    "metaTitle": "You are being redirected to Ticketmaster",
-    "title": "You are being redirected to Ticketmaster",
-    "description": "The Ticketmaster Ticket Service allows you to browse all {{eventName}} events. You can sign up for any of them as long as there are places available.",
-    "passwordLabel": "Use this personal password when making a reservation:",
-    "copyPassword": "Copy Password",
     "back": "Back",
     "continue": "Continue to Ticketmaster",
-    "unexpectedError": "An unexpected error took place",
-    "passwordCopySuccess": "Password was copied succesfully"
+    "copyPassword": "Copy Password",
+    "description": "The Ticketmaster Ticket Service allows you to browse all {{eventName}} events. You can sign up for any of them as long as there are places available.",
+    "metaTitle": "You are being redirected to Ticketmaster",
+    "passwordCopySuccess": "Password was copied succesfully",
+    "passwordLabel": "Use this personal password when making a reservation:",
+    "title": "You are being redirected to Ticketmaster",
+    "unexpectedError": "An unexpected error took place"
+  },
+  "feedback": {
+    "giveFeedback": {
+      "label": "Give feedback of the Culture Kids service",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSfpPCeAdiT9pcMRazxqA9DW-mbqoN2kNwaV53XydjzHWdyFKw/viewform?usp=pp_url&entry.1982410290=Kulttuurin%20kummilapset"
+    }
   },
   "footer": {
     "copyrightText": "© City of Helsinki"
@@ -393,11 +408,11 @@
       "label": "Menu"
     },
     "profileDropdown": {
-      "openCityProfile": {
-        "text": "Open user profile in omaHelsinki"
-      },
       "icon": {
         "label": "Profile menu"
+      },
+      "openCityProfile": {
+        "text": "Open user profile in omaHelsinki"
       },
       "profile": {
         "text": "Culture Kids Profile"
@@ -455,9 +470,6 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Navigate to child detail"
-      },
-      "message": {
-        "eventVisitsThisYear": ""
       }
     },
     "children": {
@@ -482,19 +494,19 @@
       }
     },
     "heading": "Culture Kids",
+    "message": {
+      "allSignupsSpent": "",
+      "enrollToEvent": "",
+      "greetings": "Hello {{firstName}}",
+      "projectDescription": "",
+      "serviceDescription": "",
+      "youAreEnrolled": ""
+    },
     "noupcomingevents": {
       "hero": {
         "heading": "Event invitations"
       },
       "text": "Event invitations sent to you will be displayed here. You can sign up for events and cancel your attendance if you, for some reason, are unable to attend."
-    },
-    "message": {
-      "greetings": "Hello {{firstName}}",
-      "serviceDescription": "",
-      "projectDescription": "",
-      "allSignupsSpent": "",
-      "enrollToEvent": "",
-      "youAreEnrolled": ""
     }
   },
   "registration": {
@@ -569,6 +581,13 @@
             "placeholder": "Enter guardian’s first name"
           }
         },
+        "homeLanguage": {
+          "input": {
+            "assistiveText": "Enter languages that are spoken in your home. We use this infomration to improve our service.",
+            "label": "Languages spoken at home",
+            "placeholder": "Enter language"
+          }
+        },
         "info": {
           "heading": "Guardian's information"
         },
@@ -588,13 +607,6 @@
           "input": {
             "label": "Guardian’s telephone number",
             "placeholder": "Please enter guardian’s telephone number"
-          }
-        },
-        "homeLanguage": {
-          "input": {
-            "label": "Languages spoken at home",
-            "placeholder": "Enter language",
-            "assistiveText": "Enter languages that are spoken in your home. We use this infomration to improve our service."
           }
         }
       },
@@ -650,18 +662,6 @@
       "wcAndFacilities": {
         "heading": "Toilets and child care facilities"
       }
-    }
-  },
-  "auth": {
-    "wrongLoginMethod": {
-      "title": "Oops!",
-      "description": "It seems like you have registered to the service using another login method. Please log out of the service and try a different login method."
-    }
-  },
-  "feedback": {
-    "giveFeedback": {
-      "label": "Give feedback of the Culture Kids service",
-      "link": "https://docs.google.com/forms/d/e/1FAIpQLSfpPCeAdiT9pcMRazxqA9DW-mbqoN2kNwaV53XydjzHWdyFKw/viewform?usp=pp_url&entry.1982410290=Kulttuurin%20kummilapset"
     }
   }
 }

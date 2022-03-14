@@ -6,6 +6,12 @@
     "errorMessage": "Tapahtui virhe. Yritä myöhemmin uudestaan"
   },
   "appName": "Kulttuurin kummilapset",
+  "auth": {
+    "wrongLoginMethod": {
+      "description": "Vaikuttaisi siltä, että olet käyttänyt eri tunnistautumistapaa rekisteröityessäsi palveluun. Kirjaudu ulos palvelusta ja koita sitten kirjautua uudestaan käyttäen jotain toista tunnistautumistapaa.",
+      "title": "Hupsista!"
+    }
+  },
   "authentication": {
     "deviceTimeError": {
       "message": "Usko tai älä usko mutta et voi kirjautua sisään koska laitteesi kello on yli 5 minuuttia väärässä. Säädä kelloa ja kokeile uudestaan.",
@@ -75,8 +81,8 @@
   },
   "combobox": {
     "clearButtonAriaLabel": "Tyhjennä kaikki valinnat",
-    "selectedItemSrLabel": "Valittu kohde {value}",
     "selectedItemRemoveButtonAriaLabel": "Poista kohde {value}",
+    "selectedItemSrLabel": "Valittu kohde {value}",
     "toggleButtonAriaLabel": "Avaa valikko"
   },
   "common": {
@@ -85,6 +91,10 @@
     },
     "closeButton": {
       "altText": "Sulje"
+    },
+    "error": {
+      "description": "Yritä myöhemmin uudestaan",
+      "title": "Tapahtui virhe"
     },
     "form": {
       "leave": {
@@ -101,6 +111,7 @@
       "fi": "Suomi",
       "sv": "Svenska"
     },
+    "loading": "Lataa",
     "menu": {
       "closeMenuText": "Sulje valikko",
       "openMenuText": "Avaa valikko"
@@ -122,17 +133,12 @@
       }
     },
     "select": {
-      "default": {
-        "text": "Valitse"
-      },
       "all": {
         "text": "Näytä kaikki"
+      },
+      "default": {
+        "text": "Valitse"
       }
-    },
-    "loading": "Lataa",
-    "error": {
-      "title": "Tapahtui virhe",
-      "description": "Yritä myöhemmin uudestaan"
     }
   },
   "dataProtection": {
@@ -161,35 +167,35 @@
       "confirm": {
         "button": "Ilmoittaudu tapahtumaan"
       },
-      "heading": {
-        "text": "Ilmoittaudu tapahtumaan",
-        "full": "Ilmottautumien tapahtumaan {{eventName}} epäonnistui"
-      },
       "description": {
-        "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua.",
-        "full": "Valitettavasti tämä tapahtuma on täynnä. Tilaa ilmoitus vapautuvista paikoista."
+        "full": "Valitettavasti tämä tapahtuma on täynnä. Tilaa ilmoitus vapautuvista paikoista.",
+        "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua."
+      },
+      "heading": {
+        "full": "Ilmottautumien tapahtumaan {{eventName}} epäonnistui",
+        "text": "Ilmoittaudu tapahtumaan"
       }
     },
     "enroll": {
+      "buttonText": "Ilmoittaudu tapahtumaan",
       "error": {
         "capacityHasChanged": "Tapahtuman vapaa kapasiteetti on muuttunut. Ole hyvä ja päivitä tämä sivu.",
         "childAlreadyJoined": "Lapsi on jo ilmoittautunut tapahtumaan."
-      },
-      "buttonText": "Ilmoittaudu tapahtumaan"
+      }
     },
     "heading": "Ilmoittaudu",
+    "notificationSubscriptionModal": {
+      "cancel": "Peruuta",
+      "description": "Saat ilmoituksen sähköpostiisi, kun tapahtumaan <b>{{eventName}} {{date}} klo {{time}}</b> vapautuu paikkoja. Vapautuvat paikat menevät niihin ensiksi ilmoittautuneelle.",
+      "subscribe": "Tilaa ilmoitus",
+      "title": "Tilaa ilmoitus vapautuvista paikoista"
+    },
     "selectDate": "Valitse päivämäärä",
     "selectLanguage": "Valitse tapahtuman kieli",
     "selectlocation": "Valitse tapahtumapaikka",
     "selectTime": "Valitse kellonaika",
     "showEventInfo": {
       "buttonText": "Näytä tapahtuman tiedot"
-    },
-    "notificationSubscriptionModal": {
-      "cancel": "Peruuta",
-      "description": "Saat ilmoituksen sähköpostiisi, kun tapahtumaan <b>{{eventName}} {{date}} klo {{time}}</b> vapautuu paikkoja. Vapautuvat paikat menevät niihin ensiksi ilmoittautuneelle.",
-      "subscribe": "Tilaa ilmoitus",
-      "title": "Tilaa ilmoitus vapautuvista paikoista"
     },
     "successToast": {
       "heading": "Tapahtumaan ilmoittautuminen onnistui! ",
@@ -216,13 +222,13 @@
       "paragraph": "Mikäli et pysty osallistumaan tapahtumaan, muistathan perua sen, jotta joku muu pääsee halutessaan osallistumaan tapahtumaan. Kiitos :)"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_GUARDIAN": "1 lapsi + 1 aikuinen",
       "CHILD_AND_1_OR_2_GUARDIANS": "1 lapsi + 1–2 aikuista",
+      "CHILD_AND_GUARDIAN": "1 lapsi + 1 aikuinen",
       "FAMILY": "Perhe"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_GUARDIAN": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1 aikuinen",
       "CHILD_AND_1_OR_2_GUARDIANS": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1–2 aikuista",
+      "CHILD_AND_GUARDIAN": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1 aikuinen",
       "FAMILY": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua koko perhe"
     },
     "register": {
@@ -233,8 +239,8 @@
         "full": "TÄYNNÄ"
       },
       "occurrenceTableHeader": {
-        "buttonText": "Valitse",
         "buttonContinueText": "Jatka",
+        "buttonText": "Valitse",
         "date": "Päivämäärä",
         "eventInformation": "Tapahtuman tiedot",
         "freePlaces": "Vapaat paikat",
@@ -246,15 +252,21 @@
     "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista."
   },
   "eventOccurrenceRedirectPage": {
-    "metaTitle": "Olet siirtymässä Ticketmasteriin",
-    "title": "Olet siirtymässä Ticketmasteriin",
-    "description": "Ticketmaster-lippupalvelussa voit selata kaikkia {{eventName}}-tapahtumia. Voit ilmoittautua mihin tahansa niistä, kunhan paikkoja on vapaana.",
-    "passwordLabel": "Käytä varatessasi tätä henkilökohtaista salasanaa:",
-    "copyPassword": "Kopioi salasana",
     "back": "Takaisin",
     "continue": "Jatka Ticketmasteriin",
-    "unexpectedError": "Odottamaton virhe",
-    "passwordCopySuccess": "Salasana kopioitiin onnistuneesti"
+    "copyPassword": "Kopioi salasana",
+    "description": "Ticketmaster-lippupalvelussa voit selata kaikkia {{eventName}}-tapahtumia. Voit ilmoittautua mihin tahansa niistä, kunhan paikkoja on vapaana.",
+    "metaTitle": "Olet siirtymässä Ticketmasteriin",
+    "passwordCopySuccess": "Salasana kopioitiin onnistuneesti",
+    "passwordLabel": "Käytä varatessasi tätä henkilökohtaista salasanaa:",
+    "title": "Olet siirtymässä Ticketmasteriin",
+    "unexpectedError": "Odottamaton virhe"
+  },
+  "feedback": {
+    "giveFeedback": {
+      "label": "Anna palautetta Kulttuurin kummilapset -palvelusta",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSdqw2Lq3qooEeRdgr0sV0-Wv-4XcV7IZVzq1HuWoLRa2M7tEg/viewform?usp=pp_url&entry.1982410290=Kulttuurin+kummilapset"
+    }
   },
   "footer": {
     "copyrightText": "© Helsingin kaupunki"
@@ -396,11 +408,11 @@
       "label": "Valikko"
     },
     "profileDropdown": {
-      "openCityProfile": {
-        "text": "Open user profile on omaHelsinki"
-      },
       "icon": {
         "label": "Profiilivalikko"
+      },
+      "openCityProfile": {
+        "text": "Open user profile on omaHelsinki"
       },
       "profile": {
         "text": "Kummilapsiprofiili"
@@ -482,19 +494,19 @@
       }
     },
     "heading": "Kummilapset",
+    "message": {
+      "allSignupsSpent": "Onnittelut, olet osallistunut jo kahteen tapahtumaan tänä vuonna. Ensi vuonna nähdään!",
+      "enrollToEvent": "Sinulla on voimassaoleva tapahtumakutsu. Ilmoittaudu mukaan!",
+      "greetings": "Hei {{firstName}}",
+      "projectDescription": "{{projectYear}} • Kummitoimija: {{projectName}}",
+      "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!",
+      "youAreEnrolled": "Olet ilmoittautunut tapahtumaan:"
+    },
     "noupcomingevents": {
       "hero": {
         "heading": "Tapahtumakutsut"
       },
       "text": "Tänne saapuvat sinulle lähetetyt tapahtumakutsut. Pääset myös ilmoittautumaan tapahtumiin ja perumaan ilmoittautumisen, jos et jostain syystä pääsekään osallistumaan tapahtumaan."
-    },
-    "message": {
-      "greetings": "Hei {{firstName}}",
-      "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!",
-      "projectDescription": "{{projectYear}} • Kummitoimija: {{projectName}}",
-      "allSignupsSpent": "Onnittelut, olet osallistunut jo kahteen tapahtumaan tänä vuonna. Ensi vuonna nähdään!",
-      "enrollToEvent": "Sinulla on voimassaoleva tapahtumakutsu. Ilmoittaudu mukaan!",
-      "youAreEnrolled": "Olet ilmoittautunut tapahtumaan:"
     }
   },
   "registration": {
@@ -569,6 +581,13 @@
             "placeholder": "Lisää etunimi"
           }
         },
+        "homeLanguage": {
+          "input": {
+            "assistiveText": "Voit halutessasi lisätä tiedon mitä kieliä kotonasi puhutaan. Käytämme tietoa palvelun parantamiseen.",
+            "label": "Kotona puhutut kielet",
+            "placeholder": "Lisää kieli"
+          }
+        },
         "info": {
           "heading": "Lähiaikuisen tiedot"
         },
@@ -588,13 +607,6 @@
           "input": {
             "label": "Puhelinnumero",
             "placeholder": "Lisää puhelinnumero"
-          }
-        },
-        "homeLanguage": {
-          "input": {
-            "label": "Kotona puhutut kielet",
-            "placeholder": "Lisää kieli",
-            "assistiveText": "Voit halutessasi lisätä tiedon mitä kieliä kotonasi puhutaan. Käytämme tietoa palvelun parantamiseen."
           }
         }
       },
@@ -650,18 +662,6 @@
       "wcAndFacilities": {
         "heading": "WC-tilat ja lastenhoitohuone"
       }
-    }
-  },
-  "auth": {
-    "wrongLoginMethod": {
-      "title": "Hupsista!",
-      "description": "Vaikuttaisi siltä, että olet käyttänyt eri tunnistautumistapaa rekisteröityessäsi palveluun. Kirjaudu ulos palvelusta ja koita sitten kirjautua uudestaan käyttäen jotain toista tunnistautumistapaa."
-    }
-  },
-  "feedback": {
-    "giveFeedback": {
-      "label": "Anna palautetta Kulttuurin kummilapset -palvelusta",
-      "link": "https://docs.google.com/forms/d/e/1FAIpQLSdqw2Lq3qooEeRdgr0sV0-Wv-4XcV7IZVzq1HuWoLRa2M7tEg/viewform?usp=pp_url&entry.1982410290=Kulttuurin+kummilapset"
     }
   }
 }

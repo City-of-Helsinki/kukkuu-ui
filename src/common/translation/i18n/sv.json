@@ -6,6 +6,12 @@
     "errorMessage": "Ett fel uppstod. Försök igen senare"
   },
   "appName": "Kulturens fadderbarn",
+  "auth": {
+    "wrongLoginMethod": {
+      "description": "Det verkar som om du har använt en annan autentiseringsmetod när du registrerar dig för tjänsten. Logga ut från tjänsten och försök sedan logga in igen med en annan autentiseringsmetod.",
+      "title": "Hoppsan!"
+    }
+  },
   "authentication": {
     "deviceTimeError": {
       "message": "Tro det eller ej, men du kan inte logga in eftersom din enhets klocka går mer än 5 minuter fel. Justera klockan och försök igen.",
@@ -68,12 +74,15 @@
           "text": "Tillbaka till registreringen"
         }
       }
+    },
+    "message": {
+      "eventVisitsThisYear": ""
     }
   },
   "combobox": {
     "clearButtonAriaLabel": "Rensa alla val",
-    "selectedItemSrLabel": "Valt sak {value}",
     "selectedItemRemoveButtonAriaLabel": "Ta bort sak {value}",
+    "selectedItemSrLabel": "Valt sak {value}",
     "toggleButtonAriaLabel": "Öppna kombinationsrutan"
   },
   "common": {
@@ -82,6 +91,10 @@
     },
     "closeButton": {
       "altText": "Stäng"
+    },
+    "error": {
+      "description": "Försök igen senare",
+      "title": "Ett fel uppstod"
     },
     "form": {
       "leave": {
@@ -98,6 +111,7 @@
       "fi": "Suomi",
       "sv": "Svenska"
     },
+    "loading": "Läser in",
     "menu": {
       "closeMenuText": "Stäng meny",
       "openMenuText": "Öppna meny"
@@ -119,17 +133,12 @@
       }
     },
     "select": {
-      "default": {
-        "text": "Välj"
-      },
       "all": {
         "text": "Visa alla"
+      },
+      "default": {
+        "text": "Välj"
       }
-    },
-    "loading": "Läser in",
-    "error": {
-      "title": "Ett fel uppstod",
-      "description": "Försök igen senare"
     }
   },
   "dataProtection": {
@@ -158,35 +167,35 @@
       "confirm": {
         "button": "Anmäl dig till evenemanget"
       },
-      "heading": {
-        "text": "Anmäl dig till evenemanget",
-        "full": "Registreringen för händelsen {{eventName}} misslyckades"
-      },
       "description": {
-        "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i.",
-        "full": "Tyvärr är det här evenemanget fullt. Prenumerera för att få ett meddelande om tillgängliga platser."
+        "full": "Tyvärr är det här evenemanget fullt. Prenumerera för att få ett meddelande om tillgängliga platser.",
+        "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i."
+      },
+      "heading": {
+        "full": "Registreringen för händelsen {{eventName}} misslyckades",
+        "text": "Anmäl dig till evenemanget"
       }
     },
     "enroll": {
+      "buttonText": "Anmäl dig till evenemanget",
       "error": {
         "capacityHasChanged": "Eventens tillgängliga kapacitet har ändrats. Uppdatera din webbläsare.",
         "childAlreadyJoined": "Detta barn har redan anmält sig till detta evenemang."
-      },
-      "buttonText": "Anmäl dig till evenemanget"
+      }
     },
     "heading": "Anmäl dig",
+    "notificationSubscriptionModal": {
+      "cancel": "Avbryt",
+      "description": "Du kommer att få ett meddelande via e-post när platser blir tillgängliga för evenemanget <b> {{eventName}} {{date}} kl. {{time}} </b>. Tillgängliga platser anges i den ordning de har registrerats.",
+      "subscribe": "Prenumerera",
+      "title": "Prenumerera för att få ett meddelande om tillgängliga platser"
+    },
     "selectDate": "Välj datum",
     "selectLanguage": "Välj språk",
     "selectlocation": "Välj plats",
     "selectTime": "Välj klockslag",
     "showEventInfo": {
       "buttonText": "Visa evenemangets information"
-    },
-    "notificationSubscriptionModal": {
-      "cancel": "Avbryt",
-      "description": "Du kommer att få ett meddelande via e-post när platser blir tillgängliga för evenemanget <b> {{eventName}} {{date}} kl. {{time}} </b>. Tillgängliga platser anges i den ordning de har registrerats.",
-      "subscribe": "Prenumerera",
-      "title": "Prenumerera för att få ett meddelande om tillgängliga platser"
     },
     "successToast": {
       "heading": "Din anmälan till evenemanget lyckades!",
@@ -213,13 +222,13 @@
       "paragraph": "Kom ihåg att avboka din plats Ifall du inte kan delta i evenemanget. Då kan får ett annat barn möjligheten att delta istället. Tack för din omtanke!"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_GUARDIAN": "1 barn + 1 vuxen",
       "CHILD_AND_1_OR_2_GUARDIANS": "1 barn + 1–2 vuxna",
+      "CHILD_AND_GUARDIAN": "1 barn + 1 vuxen",
       "FAMILY": "Familj"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_GUARDIAN": "En vuxen kan delta tillsammans med ett fadderbarn per anmälan",
       "CHILD_AND_1_OR_2_GUARDIANS": "En eller två vuxna kan delta tillsammans med ett fadderbarn per anmälan",
+      "CHILD_AND_GUARDIAN": "En vuxen kan delta tillsammans med ett fadderbarn per anmälan",
       "FAMILY": "Hela familjen kan delta tillsammans med ett fadderbarn per anmälan"
     },
     "register": {
@@ -230,8 +239,8 @@
         "full": "FULLT"
       },
       "occurrenceTableHeader": {
-        "buttonText": "Välj",
         "buttonContinueText": "Fortsätta",
+        "buttonText": "Välj",
         "date": "Datum",
         "eventInformation": "Information on evenemanget",
         "freePlaces": "Lediga platser",
@@ -243,15 +252,21 @@
     "ticketmasterNotice": "Anmälningen till evenemanget sker via Ticketmasters-biljettjänst. Du behöver ett gratis användarkonto för biljetterna. Du kan skapa kontot då du bokar, ifall du inte har ett från tidigare. Information om lediga platser för evenemanget hittar du på Ticketmaster."
   },
   "eventOccurrenceRedirectPage": {
-    "metaTitle": "Du omdirigeras till Ticketmaster",
-    "title": "Du omdirigeras till Ticketmaster",
-    "description": "Ticketmaster Ticket Service låter dig bläddra bland alla {{eventName}} händelser. Du kan anmäla dig till någon av dem så länge det finns lediga platser.",
-    "passwordLabel": "Använd detta personliga lösenord när du gör en bokning:",
-    "copyPassword": "Kopiera lösenord",
     "back": "Tillbaka",
     "continue": "Fortsätt till Ticketmaster",
-    "unexpectedError": "Ett oväntat fel inträffade",
-    "passwordCopySuccess": "Lösenordet har kopierats"
+    "copyPassword": "Kopiera lösenord",
+    "description": "Ticketmaster Ticket Service låter dig bläddra bland alla {{eventName}} händelser. Du kan anmäla dig till någon av dem så länge det finns lediga platser.",
+    "metaTitle": "Du omdirigeras till Ticketmaster",
+    "passwordCopySuccess": "Lösenordet har kopierats",
+    "passwordLabel": "Använd detta personliga lösenord när du gör en bokning:",
+    "title": "Du omdirigeras till Ticketmaster",
+    "unexpectedError": "Ett oväntat fel inträffade"
+  },
+  "feedback": {
+    "giveFeedback": {
+      "label": "Ge respons om Kulturens fadderbarn tjänsten",
+      "link": "https://docs.google.com/forms/d/e/1FAIpQLSf0mf1gIUZ-k768RkOdBQm3bjp6TCDWQa1Wc1r_3WiYbDXLAA/viewform?usp=pp_url&entry.1982410290=Kulttuurin%20kummilapset"
+    }
   },
   "footer": {
     "copyrightText": "© Helsingfors stad"
@@ -393,11 +408,11 @@
       "label": "Meny"
     },
     "profileDropdown": {
-      "openCityProfile": {
-        "text": "Open user profile on omaHelsinki"
-      },
       "icon": {
         "label": "Profilmeny"
+      },
+      "openCityProfile": {
+        "text": "Open user profile on omaHelsinki"
       },
       "profile": {
         "text": "Fadderbarnsprofil"
@@ -455,9 +470,6 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Visa Fadderbarnets uppgifter"
-      },
-      "message": {
-        "eventVisitsThisYear": ""
       }
     },
     "children": {
@@ -482,19 +494,19 @@
       }
     },
     "heading": "Fadderbarn",
+    "message": {
+      "allSignupsSpent": "",
+      "enrollToEvent": "",
+      "greetings": "Hej {{firstName}}",
+      "projectDescription": "",
+      "serviceDescription": "",
+      "youAreEnrolled": ""
+    },
     "noupcomingevents": {
       "hero": {
         "heading": "Inbjudan till evenemang"
       },
       "text": "Inbjudan till de evenemang som skickats till dig visas här. Här kan du också anmäla dig till evenemang och avboka din anmälan om du av någon orsak inte kan delta."
-    },
-    "message": {
-      "greetings": "Hej {{firstName}}",
-      "serviceDescription": "",
-      "projectDescription": "",
-      "allSignupsSpent": "",
-      "enrollToEvent": "",
-      "youAreEnrolled": ""
     }
   },
   "registration": {
@@ -569,6 +581,13 @@
             "placeholder": "Ange förnamn"
           }
         },
+        "homeLanguage": {
+          "input": {
+            "assistiveText": "Ange språk som talas i ditt hem. Vi använder denna information för att förbättra vår service.",
+            "label": "Språka hemma",
+            "placeholder": "Ange språk"
+          }
+        },
         "info": {
           "heading": "Uppgifter om närstående vuxen"
         },
@@ -588,13 +607,6 @@
           "input": {
             "label": "Telefonnummer",
             "placeholder": "Ange telefonnummer"
-          }
-        },
-        "homeLanguage": {
-          "input": {
-            "label": "Språka hemma",
-            "placeholder": "Ange språk",
-            "assistiveText": "Ange språk som talas i ditt hem. Vi använder denna information för att förbättra vår service."
           }
         }
       },
@@ -650,18 +662,6 @@
       "wcAndFacilities": {
         "heading": "Toaletter och skötrum för barn"
       }
-    }
-  },
-  "auth": {
-    "wrongLoginMethod": {
-      "title": "Hoppsan!",
-      "description": "Det verkar som om du har använt en annan autentiseringsmetod när du registrerar dig för tjänsten. Logga ut från tjänsten och försök sedan logga in igen med en annan autentiseringsmetod."
-    }
-  },
-  "feedback": {
-    "giveFeedback": {
-      "label": "Ge respons om Kulturens fadderbarn tjänsten",
-      "link": "https://docs.google.com/forms/d/e/1FAIpQLSf0mf1gIUZ-k768RkOdBQm3bjp6TCDWQa1Wc1r_3WiYbDXLAA/viewform?usp=pp_url&entry.1982410290=Kulttuurin%20kummilapset"
     }
   }
 }
