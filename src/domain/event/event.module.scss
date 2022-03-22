@@ -114,7 +114,7 @@
 .occurrenceInfo {
   background: $color-fog-medium-light;
   box-sizing: border-box;
-  padding: $spacing-s;
+  padding: $spacing-2-xs;
 
   width: 100%;
   @include respond-above(md) {

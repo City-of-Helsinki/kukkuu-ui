@@ -2,23 +2,15 @@
 
 exports[`renders snapshot correctly 1`] = `
 <div
-  className=""
+  className="class"
 >
-  <div
-    className="class"
-  >
-    <Icon
-      alt="Alt text"
-      className="labelIcon"
-      src="iconSource"
-    />
-    <div>
-      <span
-        className="label"
-      >
-        infoItemLabel
-      </span>
-    </div>
+  <div>
+    <Text
+      className="label"
+      variant="body"
+    >
+      infoItemLabel
+    </Text>
   </div>
 </div>
 `;

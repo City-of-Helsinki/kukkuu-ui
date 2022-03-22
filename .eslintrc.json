@@ -40,5 +40,9 @@
     "no-undef": "warn",
     "object-curly-spacing": ["warn", "always"],
     "import/no-named-as-default": "off"
+  },
+  "globals": {
+      "React": true,
+      "JSX": true
   }
 }

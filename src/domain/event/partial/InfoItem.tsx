@@ -1,35 +1,36 @@
+import classNames from 'classnames';
 import { FunctionComponent } from 'react';
 
+import Text from '../../../common/components/text/Text';
 import styles from './occurrenceInfo.module.scss';
-import Icon from '../../../common/components/icon/Icon';
 
-type Props = {
+export type InfoItemProps = {
+  id: string;
   className?: string;
-  iconSrc: string;
-  iconAlt?: string;
-  label?: string;
+  icon: JSX.Element;
+  label: string;
   description?: string;
   fullWidth?: boolean;
 };
 
-const InfoItem: FunctionComponent<Props> = ({
+const InfoItem: FunctionComponent<InfoItemProps> = ({
   className,
-  iconSrc,
-  iconAlt = '',
+  icon,
   label = '',
   description = '',
   fullWidth = false,
 }) => {
   return (
-    <div className={fullWidth ? styles.fullWidth : ''}>
-      <div className={className}>
-        <Icon alt={iconAlt} className={styles.labelIcon} src={iconSrc} />
-        <div>
-          <span className={styles.label}>{label}</span>
-          {description && (
-            <small className={styles.description}>{description}</small>
-          )}
-        </div>
+    <div className={classNames(className, { [styles.fullWidth]: fullWidth })}>
+      {icon}
+      <div>
+        <Text variant="body" className={styles.label}>
+          {label}
+        </Text>
+
+        {description && (
+          <Text className={styles.description}>{description}</Text>
+        )}
       </div>
     </div>
   );
