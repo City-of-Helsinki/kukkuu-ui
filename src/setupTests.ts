@@ -2,9 +2,8 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 require('dotenv').config({ path: './.env.test' });
 
-import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-// import { GlobalWithFetchMock } from 'jest-fetch-mock';
+import Enzyme from 'enzyme';
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -18,13 +17,9 @@ React.useLayoutEffect = React.useEffect;
 
 Enzyme.configure({ adapter: new Adapter() });
 
-// const customGlobal: GlobalWithFetchMock = global as GlobalWithFetchMock;
-// // eslint-disable-next-line @typescript-eslint/no-require-imports
-// customGlobal.fetch = require('jest-fetch-mock');
-// customGlobal.fetchMock = customGlobal.fetch;
-
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
+
   useHistory: () => ({
     push: jest.fn(),
   }),
