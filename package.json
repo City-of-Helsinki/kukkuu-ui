@@ -19,6 +19,7 @@
     "generate:graphql": "DOTENV_CONFIG_PATH=\"./.env.development\" graphql-codegen -r dotenv/config --config codegen.yml",
     "lint": "eslint --ext js,ts,tsx src",
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
+    "format:code": "eslint --ext js,ts,tsx src --fix",
     "start": "react-scripts start",
     "update-translations": "fetch-translations 1b5qAamjhmSNiME3matBINaeyz8TvoRWVB6wU5HvKy4g -l en,fi,sv -o src/common/translation/i18n",
     "test": "TZ=UTC react-scripts test",
@@ -135,6 +136,14 @@
       "!src/domain/api/generatedTypes",
       "!src/serviceWorker.ts",
       "!src/setupTests.ts"
+    ]
+  },
+  "lint-staged": {
+    "src/**/*.{tsx,ts}": [
+      "eslint --fix",
+      "stylelint --fix",
+      "prettier --write",
+      "yarn test:staged"
     ]
   }
 }
