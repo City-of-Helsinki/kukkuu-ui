@@ -7,6 +7,11 @@
 - [#402](https://github.com/City-of-Helsinki/kukkuu-ui/pull/402) Azure-pipeline configurations
 - [#407](https://github.com/City-of-Helsinki/kukkuu-ui/pull/407) Update QR-code content to have a link to the Admin-UI's ticket validation endpoint
 
+### Changed
+
+- Only support the amount of enrolments that's defined for the project
+- List upcoming events and event groups even if the child has enrolled in them
+
 # 1.7.0
 
 ### Changed
