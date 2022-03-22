@@ -66,7 +66,7 @@ const ProfileChildrenList = () => {
           variant="spacing-layout-xs"
           items={getProjectsFromProfileQuery(children).map((project) => (
             <React.Fragment key={project.id}>
-              <Text as="h3" variant="body-xl" className={styles.noMargin}>
+              <Text as="h3" variant="body-xl" className={styles.projectTitle}>
                 {t('profile.message.projectDescription', {
                   projectYear: project.year,
                   projectName: project.name,
