@@ -14,11 +14,12 @@ describe('ProfileUtils', () => {
         project: {
           id: '1',
           year: 2020,
+          name: 'Project name',
         },
         occurrences: {
           edges: [],
         },
-        availableEvents: {
+        upcomingEventsAndEventGroups: {
           edges: [],
         },
         pastEvents: {
@@ -44,9 +45,9 @@ describe('ProfileUtils', () => {
         homeCity: 'Helsinki',
         birthdate: '2020-01-01',
         postalCode: '00100',
-        project: { id: '1', year: 2020 },
+        project: { id: '1', name: 'Project name', year: 2020 },
         occurrences: { edges: [] },
-        availableEvents: { edges: [] },
+        upcomingEventsAndEventGroups: { edges: [] },
         pastEvents: { edges: [] },
         relationship: {
           type: 'PARENT',

@@ -204,7 +204,10 @@
   },
   "enrollPage": {
     "enrol": "Anmäl dig till evenemanget",
-    "enrolShort": "Anmäl"
+    "enrolShort": "Anmäl",
+    "message": {
+      "alreadyEnrolledNotice": ""
+    }
   },
   "event": {
     "cancellation": {
@@ -239,7 +242,6 @@
         "full": "FULLT"
       },
       "occurrenceTableHeader": {
-        "buttonContinueText": "Fortsätta",
         "buttonText": "Välj",
         "date": "Datum",
         "eventInformation": "Information on evenemanget",
@@ -443,7 +445,8 @@
       },
       "detail": {
         "availableEvent": {
-          "readMoreButton": "Läs mer och anmäl dig till evenemang"
+          "readMoreAndEnrolButton": "Läs mer och anmäl dig till evenemang",
+          "readMoreButton": "Läs mer"
         },
         "availableEventGroup": {
           "readMoreButton": "Bläddra i händelser"
@@ -507,6 +510,14 @@
         "heading": "Inbjudan till evenemang"
       },
       "text": "Inbjudan till de evenemang som skickats till dig visas här. Här kan du också anmäla dig till evenemang och avboka din anmälan om du av någon orsak inte kan delta."
+    }
+  },
+  "profileEventList": {
+    "message": {
+      "alrepadyEnrolledEvent": "",
+      "alrepadyEnrolledEventGroup": "",
+      "noEnrollEvent": "",
+      "noEnrollEventGroup": ""
     }
   },
   "registration": {
@@ -663,5 +674,6 @@
         "heading": "Toaletter och skötrum för barn"
       }
     }
-  }
+  },
+  "": "Fortsätta"
 }

@@ -13,10 +13,12 @@ const event = {
   id: '1',
   name: 'Event name',
   shortDescription: 'Event short description',
+  canChildEnroll: true,
 };
 const eventGroup = {
   name: 'Event group name',
   description: 'Description',
+  canChildEnroll: true,
   events: {
     edges: [
       {
@@ -82,7 +84,7 @@ describe('<EventGroup />', () => {
 
     fireEvent.click(
       getAllByRole('button', {
-        name: 'Lue lisää ja ilmoittaudu tapahtumaan',
+        name: 'Lue lisää ja ilmoittaudu',
       })[0]
     );
 

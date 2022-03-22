@@ -43,7 +43,7 @@ export const childByIdQuery = gql`
           }
         }
       }
-      availableEventsAndEventGroups {
+      upcomingEventsAndEventGroups {
         edges {
           node {
             ... on EventNode {
@@ -53,6 +53,7 @@ export const childByIdQuery = gql`
               image
               imageAltText
               participantsPerInvite
+              canChildEnroll(childId: $id)
             }
             ... on EventGroupNode {
               id
@@ -60,6 +61,7 @@ export const childByIdQuery = gql`
               shortDescription
               image
               imageAltText
+              canChildEnroll(childId: $id)
             }
           }
         }

@@ -2,305 +2,371 @@
 
 exports[`Renders snapshot correctly 1`] = `
 <div>
-  <div
-    class="eventsList"
+  <ul
+    class="list spacing-xl"
   >
-    <h2>
-      Tapahtumakutsut
-    </h2>
-    <div
-      class="wrapper"
+    <li
+      class="item"
     >
-      <div
-        class="start"
+      <h2
+        class="text h2 "
       >
-        <img
-          alt="huhuu"
-          class="image"
-          src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
-        />
-      </div>
-      <div
-        class="middle"
+        Tapahtumakutsut
+      </h2>
+      <ul
+        class="list spacing-layout-2-xs"
       >
-        <h3
-          class="title"
-        >
-          pentti
-        </h3>
-        <p>
-          eventti
-        </p>
-        <div
-          class="focalPoint"
-        >
-          <button
-            class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO primaryActionButton"
-            style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
-            type="button"
-          >
-            <span
-              class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-            >
-              Lue lisää ja ilmoittaudu tapahtumaan
-            </span>
-          </button>
-        </div>
-      </div>
-      <div
-        class="end"
-      >
-        <button
-          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
-          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
-          type="button"
-        >
-          <span
-            class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-          >
-            <div
-              class="actionText"
-            >
-              Lue lisää ja ilmoittaudu tapahtumaan
-            </div>
-            <div
-              class="imgWrapper gotoAction"
-            >
-              <img
-                alt=""
-                src="angleDown.svg"
-              />
-            </div>
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    class="eventsList"
-  >
-    <h2>
-      Tulevat tapahtumat
-    </h2>
-    <div
-      class="wrapper"
-    >
-      <div
-        class="start"
-      >
-        <div
-          class="qrWrapper"
-        >
-          <div />
-        </div>
-      </div>
-      <div
-        class="middle"
-      >
-        <h3
-          class="title"
-        >
-          pentti
-        </h3>
-        <p>
-          eventti
-        </p>
-        <div
-          class="focalPoint"
+        <li
+          class="item"
         >
           <div
-            class="row"
+            class="wrapper"
           >
             <div
-              class="label fullWidth"
+              class="image"
             >
-              <svg
-                class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+              <img
+                alt="huhuu"
+                class="image"
+                src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+              />
+            </div>
+            <div
+              class="content"
+            >
+              <h3
+                class="text h3 title"
               >
-                <g
-                  fill="none"
-                  fill-rule="evenodd"
+                pentti
+              </h3>
+              <p
+                class="text body "
+              >
+                eventti
+              </p>
+              <div
+                class="focalPoint"
+              >
+                <button
+                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO primaryActionButton"
+                  style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                  type="button"
                 >
-                  <path
-                    d="M0 0h24v24H0z"
-                  />
-                  <path
-                    d="M11.967 1.5c2.06 0 4.12.778 5.69 2.334 3.143 3.111 2.93 7.96 0 11.268l-.622.709c-2.612 2.991-4.066 4.96-5.068 6.937-1.073-2.13-2.682-4.249-5.689-7.646-2.93-3.308-3.143-8.157 0-11.268A8.06 8.06 0 0111.967 1.5zm.032 2a6.072 6.072 0 00-4.3 1.762A5.606 5.606 0 006.002 9.41c.02 1.573.648 3.134 1.766 4.398l.66.752c1.59 1.823 2.717 3.239 3.573 4.503.975-1.437 2.292-3.063 4.233-5.255 1.118-1.264 1.746-2.825 1.766-4.398a5.616 5.616 0 00-1.698-4.15A6.077 6.077 0 0011.999 3.5zM12 6a3.5 3.5 0 110 6.999A3.5 3.5 0 0112 6zm0 2c-.827 0-1.5.673-1.5 1.5S11.173 11 12 11s1.5-.673 1.5-1.5S12.827 8 12 8z"
-                    fill="currentColor"
-                  />
-                </g>
-              </svg>
-              <div>
-                <p
-                  class="text body label"
-                >
-                  aa
-                </p>
-                <p
-                  class="text body description"
-                >
-                  ssfas uus 12
-                </p>
+                  <span
+                    class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                  >
+                    Lue lisää
+                  </span>
+                </button>
+                <span />
               </div>
             </div>
             <div
-              class="label"
+              class="cta"
             >
-              <svg
-                class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+              <button
+                aria-label="Lue lisää"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                type="button"
               >
-                <g
-                  fill="none"
-                  fill-rule="evenodd"
+                <span
+                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
                 >
-                  <path
-                    d="M0 0h24v24H0z"
-                  />
-                  <path
-                    d="M17 2a1 1 0 011 1v1h4v17H2V4h4V3a1 1 0 112 0v1h8V3a1 1 0 011-1zm3 9H4v8h16v-8zm0-5H4v3h16V6z"
-                    fill="currentColor"
-                  />
-                </g>
-              </svg>
-              <div>
-                <p
-                  class="text body label"
-                >
-                  24.2.2020
-                </p>
-                
-              </div>
-            </div>
-            <div
-              class="label"
-            >
-              <svg
-                class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g
-                  fill="none"
-                  fill-rule="evenodd"
-                >
-                  <path
-                    d="M0 0h24v24H0z"
-                  />
-                  <path
-                    d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16zm1 2v5.584l3.243 3.244-1.415 1.415-3.535-3.536.002-.001-.294-.292L11 6h2z"
-                    fill="currentColor"
-                  />
-                </g>
-              </svg>
-              <div>
-                <p
-                  class="text body label"
-                >
-                  07:07 - 08:07
-                </p>
-                
-              </div>
+                  <svg
+                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      fill="none"
+                      fill-rule="evenodd"
+                    >
+                      <polygon
+                        points="0 24 0 0 24 0 24 24"
+                      />
+                      <polygon
+                        fill="currentColor"
+                        points="13.5 12 8.5 7 10 5.5 16.5 12 10 18.5 8.5 17"
+                      />
+                    </g>
+                  </svg>
+                </span>
+              </button>
             </div>
           </div>
-        </div>
-      </div>
-      <div
-        class="end"
-      >
-        <button
-          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
-          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
-          type="button"
-        >
-          <span
-            class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-          >
-            <div
-              class="actionText"
-            >
-              Näytä tapahtuman tiedot
-            </div>
-            <div
-              class="imgWrapper gotoAction"
-            >
-              <img
-                alt=""
-                src="angleDown.svg"
-              />
-            </div>
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div
-    class="eventsList"
-  >
-    <h2>
-      Menneet tapahtumat
-    </h2>
-    <div
-      class="wrapper"
+        </li>
+      </ul>
+    </li>
+    <li
+      class="item"
     >
-      <div
-        class="start"
+      <h2
+        class="text h2 "
       >
-        <img
-          alt="huhuu"
-          class="image"
-          src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
-        />
-      </div>
-      <div
-        class="middle"
+        Tulevat tapahtumat
+      </h2>
+      <ul
+        class="list spacing-layout-2-xs"
       >
-        <h3
-          class="title"
+        <li
+          class="item"
         >
-          pentti
-        </h3>
-        <p>
-          eventti
-        </p>
-        <div
-          class="focalPoint"
-        />
-      </div>
-      <div
-        class="end"
-      >
-        <button
-          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
-          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
-          type="button"
-        >
-          <span
-            class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+          <div
+            class="wrapper"
           >
             <div
-              class="actionText"
+              class="image"
             >
-              Näytä tapahtuman tiedot
+              <div
+                class="qrWrapper"
+              >
+                <div />
+              </div>
             </div>
             <div
-              class="imgWrapper gotoAction"
+              class="content"
+            >
+              <h3
+                class="text h3 title"
+              >
+                pentti
+              </h3>
+              <p
+                class="text body "
+              >
+                eventti
+              </p>
+              <div
+                class="focalPoint"
+              >
+                <span>
+                  <div
+                    class="row"
+                  >
+                    <div
+                      class="label fullWidth"
+                    >
+                      <svg
+                        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <path
+                            d="M0 0h24v24H0z"
+                          />
+                          <path
+                            d="M11.967 1.5c2.06 0 4.12.778 5.69 2.334 3.143 3.111 2.93 7.96 0 11.268l-.622.709c-2.612 2.991-4.066 4.96-5.068 6.937-1.073-2.13-2.682-4.249-5.689-7.646-2.93-3.308-3.143-8.157 0-11.268A8.06 8.06 0 0111.967 1.5zm.032 2a6.072 6.072 0 00-4.3 1.762A5.606 5.606 0 006.002 9.41c.02 1.573.648 3.134 1.766 4.398l.66.752c1.59 1.823 2.717 3.239 3.573 4.503.975-1.437 2.292-3.063 4.233-5.255 1.118-1.264 1.746-2.825 1.766-4.398a5.616 5.616 0 00-1.698-4.15A6.077 6.077 0 0011.999 3.5zM12 6a3.5 3.5 0 110 6.999A3.5 3.5 0 0112 6zm0 2c-.827 0-1.5.673-1.5 1.5S11.173 11 12 11s1.5-.673 1.5-1.5S12.827 8 12 8z"
+                            fill="currentColor"
+                          />
+                        </g>
+                      </svg>
+                      <div>
+                        <p
+                          class="text body label"
+                        >
+                          aa
+                        </p>
+                        <p
+                          class="text body description"
+                        >
+                          ssfas uus 12
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="label"
+                    >
+                      <svg
+                        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <path
+                            d="M0 0h24v24H0z"
+                          />
+                          <path
+                            d="M17 2a1 1 0 011 1v1h4v17H2V4h4V3a1 1 0 112 0v1h8V3a1 1 0 011-1zm3 9H4v8h16v-8zm0-5H4v3h16V6z"
+                            fill="currentColor"
+                          />
+                        </g>
+                      </svg>
+                      <div>
+                        <p
+                          class="text body label"
+                        >
+                          24.2.2020
+                        </p>
+                        
+                      </div>
+                    </div>
+                    <div
+                      class="label"
+                    >
+                      <svg
+                        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                        role="img"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g
+                          fill="none"
+                          fill-rule="evenodd"
+                        >
+                          <path
+                            d="M0 0h24v24H0z"
+                          />
+                          <path
+                            d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 2a8 8 0 100 16 8 8 0 000-16zm1 2v5.584l3.243 3.244-1.415 1.415-3.535-3.536.002-.001-.294-.292L11 6h2z"
+                            fill="currentColor"
+                          />
+                        </g>
+                      </svg>
+                      <div>
+                        <p
+                          class="text body label"
+                        >
+                          07:07 - 08:07
+                        </p>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </div>
+            <div
+              class="cta"
+            >
+              <button
+                aria-label="Näytä tapahtuman tiedot"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                type="button"
+              >
+                <span
+                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                >
+                  <svg
+                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      fill="none"
+                      fill-rule="evenodd"
+                    >
+                      <polygon
+                        points="0 24 0 0 24 0 24 24"
+                      />
+                      <polygon
+                        fill="currentColor"
+                        points="13.5 12 8.5 7 10 5.5 16.5 12 10 18.5 8.5 17"
+                      />
+                    </g>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li
+      class="item"
+    >
+      <h2
+        class="text h2 "
+      >
+        Menneet tapahtumat
+      </h2>
+      <ul
+        class="list spacing-layout-2-xs"
+      >
+        <li
+          class="item"
+        >
+          <div
+            class="wrapper"
+          >
+            <div
+              class="image"
             >
               <img
-                alt=""
-                src="angleDown.svg"
+                alt="huhuu"
+                class="image"
+                src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
               />
             </div>
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
+            <div
+              class="content"
+            >
+              <h3
+                class="text h3 title"
+              >
+                pentti
+              </h3>
+              <p
+                class="text body "
+              >
+                eventti
+              </p>
+              <div
+                class="focalPoint"
+              >
+                <span />
+              </div>
+            </div>
+            <div
+              class="cta"
+            >
+              <button
+                aria-label="Näytä tapahtuman tiedot"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                type="button"
+              >
+                <span
+                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                >
+                  <svg
+                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      fill="none"
+                      fill-rule="evenodd"
+                    >
+                      <polygon
+                        points="0 24 0 0 24 0 24 24"
+                      />
+                      <polygon
+                        fill="currentColor"
+                        points="13.5 12 8.5 7 10 5.5 16.5 12 10 18.5 8.5 17"
+                      />
+                    </g>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>
 `;

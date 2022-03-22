@@ -35,6 +35,7 @@ exports[`renders snapshot correctly 1`] = `
       <th />
     </tr>
     <EventOccurrence
+      canEnroll={true}
       key="T2NjdXJyZW5jZU5vZGU6Mg=="
       occurrence={
         Object {
@@ -56,6 +57,7 @@ exports[`renders snapshot correctly 1`] = `
       showFreePlaces={true}
     />
     <EventOccurrence
+      canEnroll={true}
       key="T2NjdXJyZW5jZU5vZGU6Mg=="
       occurrence={
         Object {

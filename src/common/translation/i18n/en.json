@@ -204,7 +204,10 @@
   },
   "enrollPage": {
     "enrol": "Register for event",
-    "enrolShort": "Register"
+    "enrolShort": "Register",
+    "message": {
+      "alreadyEnrolledNotice": ""
+    }
   },
   "event": {
     "cancellation": {
@@ -239,8 +242,7 @@
         "full": "FULL"
       },
       "occurrenceTableHeader": {
-        "buttonContinueText": "Continue",
-        "buttonText": "Choose",
+        "buttonText": "Enrol",
         "date": "Date",
         "eventInformation": "Event information",
         "freePlaces": "Free Places",
@@ -443,7 +445,8 @@
       },
       "detail": {
         "availableEvent": {
-          "readMoreButton": "Read more and register for event"
+          "readMoreAndEnrolButton": "Read more and register for event",
+          "readMoreButton": "Read more"
         },
         "availableEventGroup": {
           "readMoreButton": "Browse events"
@@ -507,6 +510,14 @@
         "heading": "Event invitations"
       },
       "text": "Event invitations sent to you will be displayed here. You can sign up for events and cancel your attendance if you, for some reason, are unable to attend."
+    }
+  },
+  "profileEventList": {
+    "message": {
+      "alrepadyEnrolledEvent": "",
+      "alrepadyEnrolledEventGroup": "",
+      "noEnrollEvent": "",
+      "noEnrollEventGroup": ""
     }
   },
   "registration": {
@@ -663,5 +674,6 @@
         "heading": "Toilets and child care facilities"
       }
     }
-  }
+  },
+  "": "Continue"
 }

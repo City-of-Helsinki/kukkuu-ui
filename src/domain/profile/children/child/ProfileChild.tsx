@@ -32,8 +32,8 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
     },
   });
 
-  // Change to child.availableEvents when API supports it. Change to true to test.
-  const availableEvents = child.availableEvents?.edges[0]?.node?.name;
+  const upcomingEventsAndEventGroups =
+    child.upcomingEventsAndEventGroups?.edges[0]?.node?.name;
   const isNamed = Boolean(child.firstName);
   const childName = `${child.firstName} ${child.lastName}`;
   const enrolments = child.enrolments?.edges
@@ -88,7 +88,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
             hasEnrolment={Boolean(nextEnrolment)}
             enrolmentCount={data?.child?.pastEnrolmentCount}
             maxEnrolmentCount={data?.child?.project?.enrolmentLimit}
-            hasInvitation={Boolean(availableEvents)}
+            hasInvitation={Boolean(upcomingEventsAndEventGroups)}
           />
           {nextEnrolment && (
             <ProfileChildEnrolment
@@ -98,7 +98,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
           )}
         </div>
         <div className={styles.additionalDetails}>
-          {availableEvents && (
+          {upcomingEventsAndEventGroups && (
             <div className={styles.invitationLabel}>
               {t('profile.child.invitationLabel.text')}
             </div>

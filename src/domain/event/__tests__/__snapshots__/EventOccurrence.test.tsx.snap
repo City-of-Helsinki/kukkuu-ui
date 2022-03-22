@@ -33,7 +33,7 @@ exports[`renders snapshot correctly 1`] = `
             <span
               class="hds-button__label"
             >
-              Valitse
+              Ilmoittaudu
             </span>
           </a>
         </td>
@@ -65,7 +65,7 @@ exports[`renders snapshot correctly 1`] = `
             <span
               class="hds-button__label"
             >
-              Valitse
+              Ilmoittaudu
             </span>
           </a>
         </td>

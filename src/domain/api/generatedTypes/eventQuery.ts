@@ -161,6 +161,7 @@ export interface eventQuery_event {
    */
   duration: number | null;
   capacityPerOccurrence: number | null;
+  canChildEnroll: boolean | null;
   eventGroup: eventQuery_event_eventGroup | null;
   occurrences: eventQuery_event_occurrences;
   allOccurrences: eventQuery_event_allOccurrences;

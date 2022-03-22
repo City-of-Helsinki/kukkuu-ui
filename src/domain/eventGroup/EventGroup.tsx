@@ -54,9 +54,13 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
                 action={() => {
                   history.push(`/profile/child/${childId}/event/${event.id}`);
                 }}
-                actionText={t(
-                  'profile.child.detail.availableEvent.readMoreButton'
-                )}
+                actionText={
+                  event.canChildEnroll
+                    ? t(
+                        'profile.child.detail.availableEvent.readMoreAndEnrolButton'
+                      )
+                    : t('profile.child.detail.availableEvent.readMoreButton')
+                }
               />
             ))}
           </div>

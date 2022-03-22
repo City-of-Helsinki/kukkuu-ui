@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Formik, Form } from 'formik';
+import { Notification } from 'hds-react';
 
 import FormikDropdown from '../../common/components/formikWrappers/FormikDropdown';
 import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
@@ -38,6 +39,11 @@ const EventEnrol = ({
   return (
     <>
       <h2>{t('enrollPage.enrolShort')}</h2>
+      {!data?.event?.canChildEnroll && (
+        <Notification type="alert">
+          {t('enrollPage.message.alreadyEnrolledNotice')}
+        </Notification>
+      )}
       <div className={styles.signup}>
         <Formik
           key="eventPageFormKey"
@@ -81,6 +87,7 @@ const EventEnrol = ({
         <EventOccurrenceList
           occurrences={data.event.occurrences}
           showFreePlaces={!isTicketmasterTicketingSystem}
+          canEnroll={data?.event?.canChildEnroll}
         />
       )}
     </>

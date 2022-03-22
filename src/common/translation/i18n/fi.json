@@ -204,7 +204,10 @@
   },
   "enrollPage": {
     "enrol": "Ilmoittaudu tapahtumaan",
-    "enrolShort": "Ilmoittaudu"
+    "enrolShort": "Ilmoittaudu",
+    "message": {
+      "alreadyEnrolledNotice": "Huomioithan, että olet jo ilmoittautunut yhteen tapahtumaan."
+    }
   },
   "event": {
     "cancellation": {
@@ -239,8 +242,7 @@
         "full": "TÄYNNÄ"
       },
       "occurrenceTableHeader": {
-        "buttonContinueText": "Jatka",
-        "buttonText": "Valitse",
+        "buttonText": "Ilmoittaudu",
         "date": "Päivämäärä",
         "eventInformation": "Tapahtuman tiedot",
         "freePlaces": "Vapaat paikat",
@@ -443,7 +445,8 @@
       },
       "detail": {
         "availableEvent": {
-          "readMoreButton": "Ilmoittaudu tapahtumaan"
+          "readMoreAndEnrolButton": "Lue lisää ja ilmoittaudu",
+          "readMoreButton": "Lue lisää"
         },
         "availableEventGroup": {
           "readMoreButton": "Selaa tapahtumia"
@@ -507,6 +510,14 @@
         "heading": "Tapahtumakutsut"
       },
       "text": "Tänne saapuvat sinulle lähetetyt tapahtumakutsut. Pääset myös ilmoittautumaan tapahtumiin ja perumaan ilmoittautumisen, jos et jostain syystä pääsekään osallistumaan tapahtumaan."
+    }
+  },
+  "profileEventList": {
+    "message": {
+      "alrepadyEnrolledEvent": "Huomioithan, että et voi ilmoittautua tähän tapahtumaan.",
+      "alrepadyEnrolledEventGroup": "Huomioithan, että et voi ilmoittautua tämän ryhmän tapahtumiin.",
+      "noEnrollEvent": "Olet jo ilmoittautunut toiseen tapahtumaan.",
+      "noEnrollEventGroup": "Huomioithan, että olet jo ilmoittautunut yhteen tapahtumaan."
     }
   },
   "registration": {
@@ -663,5 +674,6 @@
         "heading": "WC-tilat ja lastenhoitohuone"
       }
     }
-  }
+  },
+  "": "Jatka"
 }

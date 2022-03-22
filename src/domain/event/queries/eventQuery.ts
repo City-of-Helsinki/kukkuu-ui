@@ -37,6 +37,7 @@ const eventQuery = gql`
       participantsPerInvite
       duration
       capacityPerOccurrence
+      canChildEnroll(childId: $childId)
       eventGroup {
         id
       }

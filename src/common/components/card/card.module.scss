@@ -63,3 +63,12 @@
     justify-self: center;
   }
 }
+
+.focalPoint {
+  display: flex;
+  align-items: center;
+
+  & > *:first-child:not(:last-child) {
+    margin-right: var(--spacing-m);
+  }
+}

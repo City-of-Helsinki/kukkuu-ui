@@ -43,11 +43,13 @@ type UrlParams = {
 type EventOccurrenceProps = {
   occurrence: OccurrencesEdgeNode;
   showFreePlaces?: boolean;
+  canEnroll?: boolean | null;
 };
 
 const EventOccurrence = ({
   occurrence,
   showFreePlaces = true,
+  canEnroll = true,
 }: EventOccurrenceProps) => {
   const { t } = useTranslation();
   const { childId, eventId } = useParams<UrlParams>();
@@ -116,7 +118,9 @@ const EventOccurrence = ({
         {showFreePlaces && (
           <td className={styles.remainingCapacity}>{remainingCapacity}</td>
         )}
-        <td className={styles.occurrenceSubmit}>{submitCell}</td>
+        <td className={styles.occurrenceSubmit}>
+          {canEnroll ? submitCell : null}
+        </td>
       </tr>
       <tr className={styles.occurrence}>
         <td>{date}</td>
@@ -125,7 +129,9 @@ const EventOccurrence = ({
         {showFreePlaces && (
           <td className={styles.remainingCapacity}>{remainingCapacity}</td>
         )}
-        <td className={styles.occurrenceSubmit}>{submitCell}</td>
+        <td className={styles.occurrenceSubmit}>
+          {canEnroll ? submitCell : null}
+        </td>
       </tr>
     </>
   );

@@ -30,13 +30,19 @@ const profileQuery = gql`
                 }
               }
             }
-            availableEvents {
+            upcomingEventsAndEventGroups {
               edges {
                 node {
-                  id
-                  name
-                  duration
-                  participantsPerInvite
+                  ... on EventGroupNode {
+                    id
+                    name
+                  }
+                  ... on EventNode {
+                    id
+                    name
+                    duration
+                    participantsPerInvite
+                  }
                 }
               }
             }

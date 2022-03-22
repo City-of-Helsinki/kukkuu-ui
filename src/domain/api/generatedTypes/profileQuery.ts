@@ -40,7 +40,15 @@ export interface profileQuery_myProfile_children_edges_node_relationships {
   edges: (profileQuery_myProfile_children_edges_node_relationships_edges | null)[];
 }
 
-export interface profileQuery_myProfile_children_edges_node_availableEvents_edges_node {
+export interface profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node_EventGroupNode {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+}
+
+export interface profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node_EventNode {
   /**
    * The ID of the object.
    */
@@ -53,18 +61,20 @@ export interface profileQuery_myProfile_children_edges_node_availableEvents_edge
   participantsPerInvite: EventParticipantsPerInvite;
 }
 
-export interface profileQuery_myProfile_children_edges_node_availableEvents_edges {
+export type profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node = profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node_EventGroupNode | profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node_EventNode;
+
+export interface profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges {
   /**
    * The item at the end of the edge
    */
-  node: profileQuery_myProfile_children_edges_node_availableEvents_edges_node | null;
+  node: profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node | null;
 }
 
-export interface profileQuery_myProfile_children_edges_node_availableEvents {
+export interface profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups {
   /**
    * Contains the nodes in this connection.
    */
-  edges: (profileQuery_myProfile_children_edges_node_availableEvents_edges | null)[];
+  edges: (profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges | null)[];
 }
 
 export interface profileQuery_myProfile_children_edges_node_occurrences_edges_node_event {
@@ -161,7 +171,10 @@ export interface profileQuery_myProfile_children_edges_node {
   postalCode: string;
   project: profileQuery_myProfile_children_edges_node_project;
   relationships: profileQuery_myProfile_children_edges_node_relationships;
-  availableEvents: profileQuery_myProfile_children_edges_node_availableEvents | null;
+  /**
+   * All upcoming events and event groups for the child's project.
+   */
+  upcomingEventsAndEventGroups: profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups | null;
   occurrences: profileQuery_myProfile_children_edges_node_occurrences;
   enrolments: profileQuery_myProfile_children_edges_node_enrolments;
 }

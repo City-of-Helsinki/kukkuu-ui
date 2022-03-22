@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { QRCode } from 'react-qrcode-logo';
 
 import {
-  childByIdQuery_child_availableEventsAndEventGroups as AvailableEventsAndEventGroups,
-  childByIdQuery_child_availableEventsAndEventGroups_edges_node as AvailableEventOrEventGroupNode,
-  childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventNode as EventNode,
-  childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventGroupNode as EventGroupNode,
+  childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEventsAndEventGroups,
+  childByIdQuery_child_upcomingEventsAndEventGroups_edges_node as UpcomingEventsAndEventGroupsNode,
+  childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode as EventNode,
+  childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode as EventGroupNode,
   childByIdQuery_child_pastEvents as PastEventsTypes,
   childByIdQuery_child_pastEvents_edges_node as PastEventNode,
   childByIdQuery_child_occurrences as Occurrences,
@@ -20,15 +20,16 @@ import OccurrenceInfo from '../../event/partial/OccurrenceInfo';
 import EventCard from '../../event/eventCard/EventCard';
 import Config from '../../config';
 import styles from './profileEventsList.module.scss';
+import useChildEnrolmentCount from '../../child/useChildEnrolmentCount';
 
-const availableEventsAndEventGroupsList =
-  RelayList<AvailableEventOrEventGroupNode>();
+const upcomingEventsAndEventGroupsList =
+  RelayList<UpcomingEventsAndEventGroupsNode>();
 const occurrencesList = RelayList<OccurrenceNode>();
 const pastEventsList = RelayList<PastEventNode>();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function when<R = any>(
-  model: AvailableEventOrEventGroupNode,
+  model: UpcomingEventsAndEventGroupsNode,
   isEvent: (event: EventNode) => R,
   isEventGroup: (eventGroup: EventGroupNode) => R
 ) {
@@ -48,7 +49,7 @@ function when<R = any>(
 }
 
 type Props = {
-  availableEventsAndEventGroups: AvailableEventsAndEventGroups | null;
+  upcomingEventsAndEventGroups: UpcomingEventsAndEventGroups | null;
   childId: string;
   pastEvents: PastEventsTypes | null;
   occurrences: Occurrences | null;
@@ -57,13 +58,18 @@ type Props = {
 const QR_CODE_SIZE_PX = 300;
 
 const ProfileEventsList = ({
-  availableEventsAndEventGroups: availableEventsAndEventGroupsData,
+  upcomingEventsAndEventGroups: upcomingEventsAndEventGroupsData,
   childId,
   occurrences: occurrenceData,
   pastEvents: pastEventsData,
 }: Props) => {
   const history = useHistory();
   const { t } = useTranslation();
+  const { data } = useChildEnrolmentCount({
+    variables: {
+      childId: childId,
+    },
+  });
 
   const gotoEventPage = (eventId: string, past = false) => {
     const pastUrl = past ? '/past' : '';
@@ -78,29 +84,48 @@ const ProfileEventsList = ({
     history.push(`/profile/child/${childId}/occurrence/${occurrenceId}`);
   };
 
-  const availableEventsAndEventGroups = availableEventsAndEventGroupsList(
-    availableEventsAndEventGroupsData
+  const upcomingEventsAndEventGroups = upcomingEventsAndEventGroupsList(
+    upcomingEventsAndEventGroupsData
   ).items;
   const occurrences = occurrencesList(occurrenceData).items;
   const pastEvents = pastEventsList(pastEventsData).items;
+  const pastEnrolmentCount = data?.child?.pastEnrolmentCount;
+  const enrolmentLimit = data?.child?.project?.enrolmentLimit;
+  const childDoesNotHaveEnrolmentsLeft = Boolean(
+    pastEnrolmentCount && enrolmentLimit && pastEnrolmentCount >= enrolmentLimit
+  );
 
   return (
     <>
       <List
         variant="spacing-xl"
         items={[
-          availableEventsAndEventGroups.length > 0 && (
-            <React.Fragment key="availableEventsAndEventGroups">
+          upcomingEventsAndEventGroups.length > 0 && (
+            <React.Fragment key="upcomingEventsAndEventGroups">
               <Text variant="h2">
                 {t('profile.events.invitations.heading')}
               </Text>
               <List
                 variant="spacing-layout-2-xs"
-                items={availableEventsAndEventGroups.map(
-                  (eventOrEventGroup) => (
+                items={upcomingEventsAndEventGroups.map((eventOrEventGroup) => {
+                  const focalContent = getFocalContent(
+                    eventOrEventGroup,
+                    childDoesNotHaveEnrolmentsLeft
+                  );
+
+                  return (
                     <EventCard
+                      focalContent={
+                        focalContent ? <>{t(focalContent)}</> : undefined
+                      }
                       key={eventOrEventGroup.id}
                       event={eventOrEventGroup}
+                      primaryAction={when(
+                        eventOrEventGroup,
+                        (event) =>
+                          event.canChildEnroll ? 'visible' : 'hidden',
+                        () => 'visible'
+                      )}
                       action={() =>
                         when(
                           eventOrEventGroup,
@@ -120,8 +145,8 @@ const ProfileEventsList = ({
                           )
                       )}
                     />
-                  )
-                )}
+                  );
+                })}
               />
             </React.Fragment>
           ),
@@ -184,5 +209,28 @@ const ProfileEventsList = ({
 
 const getTicketValidationUrl = (referenceId?: string | null) =>
   referenceId ? `${Config.adminUrl}/${referenceId}` : undefined;
+
+const getFocalContent = (
+  eventOrEventGroup: UpcomingEventsAndEventGroupsNode,
+  childDoesNotHaveEnrolmentsLeft: boolean
+) => {
+  if (childDoesNotHaveEnrolmentsLeft) {
+    return when(
+      eventOrEventGroup,
+      () => 'profileEventList.message.alreadyEnrolledEvent',
+      () => 'profileEventList.message.alreadyEnrolledEventGroup'
+    );
+  }
+
+  return when(
+    eventOrEventGroup,
+    (event) =>
+      !event.canChildEnroll ? 'profileEventList.message.noEnrollEvent' : null,
+    (eventGroup) =>
+      !eventGroup.canChildEnroll
+        ? 'profileEventList.message.noEnrollEventGroup'
+        : null
+  );
+};
 
 export default ProfileEventsList;

@@ -53,7 +53,7 @@ const Card = ({
               {primaryActionText}
             </Button>
           )}
-          {focalContent && focalContent}
+          <span>{focalContent && focalContent}</span>
         </div>
       </div>
       <div className={styles.cta}>

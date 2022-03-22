@@ -6,7 +6,7 @@ import ProfileNoEvent from '../ProfileNoEvent';
 import ProfileEventsList from '../ProfileEventsList';
 import {
   childByIdQuery_child as ChildByIdResponse,
-  childByIdQuery_child_availableEventsAndEventGroups as AvailableEvents,
+  childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEvents,
   childByIdQuery_child_pastEvents as PastEvents,
   childByIdQuery_child_occurrences as Occurrences,
 } from '../../../api/generatedTypes/childByIdQuery';
@@ -21,25 +21,26 @@ const childData: ChildByIdResponse = {
   project: {
     id: '',
     year: 0,
+    name: 'Test project',
   },
   relationships: {
     edges: [],
   },
-  availableEventsAndEventGroups: { edges: [] },
+  upcomingEventsAndEventGroups: { edges: [] },
   occurrences: { edges: [] },
   pastEvents: { edges: [] },
 };
 
 const childNoEvents = {
   ...childData,
-  availableEventsAndEventGroups: null,
+  upcomingEvents: null,
   enrolments: {
     edges: [],
   },
   pastEvents: null,
 };
 
-const availableEventsAndEventGroups: AvailableEvents = {
+const upcomingEventsAndEventGroups: UpcomingEvents = {
   edges: [
     {
       node: {
@@ -50,6 +51,7 @@ const availableEventsAndEventGroups: AvailableEvents = {
         image:
           'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
         imageAltText: 'uooo',
+        canChildEnroll: true,
       },
     },
   ],
@@ -64,7 +66,6 @@ const occurrences: Occurrences = {
         venue: {
           id: '',
           address: '',
-          description: '',
           name: '',
         },
         event: {
@@ -76,6 +77,9 @@ const occurrences: Occurrences = {
           image:
             'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
           imageAltText: 'uooo',
+        },
+        enrolments: {
+          edges: [],
         },
       },
     },
@@ -103,14 +107,14 @@ const pastEvents: PastEvents = {
 
 const childWithEvents: ChildByIdResponse = {
   ...childData,
-  availableEventsAndEventGroups: availableEventsAndEventGroups,
+  upcomingEventsAndEventGroups,
   occurrences: occurrences,
   pastEvents: pastEvents,
 };
 
 const childOnlyAvailableEvents: ChildByIdResponse = {
   ...childData,
-  availableEventsAndEventGroups: availableEventsAndEventGroups,
+  upcomingEventsAndEventGroups,
   occurrences: {
     edges: [],
   },
@@ -119,7 +123,7 @@ const childOnlyAvailableEvents: ChildByIdResponse = {
 
 const childOnlyEnrolments: ChildByIdResponse = {
   ...childData,
-  availableEventsAndEventGroups: null,
+  upcomingEventsAndEventGroups: null,
   occurrences: {
     edges: [
       {
@@ -129,7 +133,6 @@ const childOnlyEnrolments: ChildByIdResponse = {
           venue: {
             id: '',
             address: '',
-            description: '',
             name: '',
           },
           event: {
@@ -142,6 +145,9 @@ const childOnlyEnrolments: ChildByIdResponse = {
             image:
               'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
           },
+          enrolments: {
+            edges: [],
+          },
         },
       },
     ],
@@ -151,7 +157,7 @@ const childOnlyEnrolments: ChildByIdResponse = {
 
 const childOnlyPastEvents = {
   ...childData,
-  availableEventsAndEventGroups: null,
+  upcomingEventsAndEventGroups: null,
   enrolments: {
     edges: [],
   },
@@ -170,8 +176,8 @@ test('Renders "No events" when no events"', () => {
     wrapper.equals(
       <ProfileEventsList
         childId={childWithEvents.id}
-        availableEventsAndEventGroups={
-          childWithEvents.availableEventsAndEventGroups
+        upcomingEventsAndEventGroups={
+          childWithEvents.upcomingEventsAndEventGroups
         }
         occurrences={childWithEvents.occurrences}
         pastEvents={childWithEvents.pastEvents}
@@ -186,8 +192,8 @@ test('Renders events list when events of any type', () => {
     wrapper.equals(
       <ProfileEventsList
         childId={childWithEvents.id}
-        availableEventsAndEventGroups={
-          childWithEvents.availableEventsAndEventGroups
+        upcomingEventsAndEventGroups={
+          childWithEvents.upcomingEventsAndEventGroups
         }
         occurrences={childWithEvents.occurrences}
         pastEvents={childWithEvents.pastEvents}
@@ -196,14 +202,14 @@ test('Renders events list when events of any type', () => {
   ).toEqual(true);
 });
 
-test('Renders events list when only availableEventsAndEventGroups', () => {
+test('Renders events list when only upcomingEventsAndEventGroups', () => {
   const wrapper = shallow(<ProfileEvents child={childOnlyAvailableEvents} />);
   expect(
     wrapper.equals(
       <ProfileEventsList
         childId={childOnlyAvailableEvents.id}
-        availableEventsAndEventGroups={
-          childOnlyAvailableEvents.availableEventsAndEventGroups
+        upcomingEventsAndEventGroups={
+          childOnlyAvailableEvents.upcomingEventsAndEventGroups
         }
         occurrences={childOnlyAvailableEvents.occurrences}
         pastEvents={childOnlyAvailableEvents.pastEvents}
@@ -218,8 +224,8 @@ test('Renders events list when only enrolments', () => {
     wrapper.equals(
       <ProfileEventsList
         childId={childOnlyEnrolments.id}
-        availableEventsAndEventGroups={
-          childOnlyEnrolments.availableEventsAndEventGroups
+        upcomingEventsAndEventGroups={
+          childOnlyEnrolments.upcomingEventsAndEventGroups
         }
         occurrences={childOnlyEnrolments.occurrences}
         pastEvents={childOnlyEnrolments.pastEvents}
@@ -234,8 +240,8 @@ test('Renders events list when only past events', () => {
     wrapper.equals(
       <ProfileEventsList
         childId={childOnlyPastEvents.id}
-        availableEventsAndEventGroups={
-          childOnlyPastEvents.availableEventsAndEventGroups
+        upcomingEventsAndEventGroups={
+          childOnlyPastEvents.upcomingEventsAndEventGroups
         }
         occurrences={childOnlyPastEvents.enrolments}
         pastEvents={childOnlyPastEvents.pastEvents}

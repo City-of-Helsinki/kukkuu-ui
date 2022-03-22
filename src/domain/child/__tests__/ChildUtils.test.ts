@@ -62,9 +62,6 @@ describe('ChildUtil', () => {
     test('does not return fields which are irrelevant', () => {
       const formModalChild = getChildFormModalValues({
         ...defaultChild,
-        availableEventsAndEventGroups: {
-          edges: [],
-        },
       });
 
       [
@@ -76,8 +73,6 @@ describe('ChildUtil', () => {
       ].forEach((field) => {
         expect(Object.keys(formModalChild).includes(field));
       });
-
-      expect(formModalChild.availableEventsAndEventGroups).toBeFalsy();
     });
   });
 });

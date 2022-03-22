@@ -16,6 +16,7 @@ export interface eventGroupQuery_eventGroup_events_edges_node {
   shortDescription: string | null;
   image: string;
   imageAltText: string | null;
+  canChildEnroll: boolean | null;
 }
 
 export interface eventGroupQuery_eventGroup_events_edges {

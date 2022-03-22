@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
-import { useParams, useLocation, Redirect } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
-import { useSelector } from 'react-redux';
 import uniqBy from 'lodash/uniqBy';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
@@ -21,7 +20,6 @@ import {
 } from '../api/generatedTypes/eventQuery';
 import RelayList from '../api/relayList';
 import PageWrapper from '../app/layout/PageWrapper';
-import { childrenEventSelector } from './state/EventSelectors';
 import eventQuery from './queries/eventQuery';
 import { formatOccurrenceTime } from './EventUtils';
 import EventEnrol from './EventEnrol';
@@ -119,30 +117,9 @@ const Event = () => {
     refetch({ ...filterValues, ...variables });
   };
 
-  // This page should not be available for children who are already
-  // registered for this event (unless it is in the past, when it shows as archived)
-  // The only way to come to this page is by using one of:
-  // 1. back arrow button (shown on the page in desktop mode)
-  // 2. browser back button
-  // 3. bookmark / history
-
-  // In this case we want to redirect back to the child detail page.
-
-  // FIXME: Move this logic into a selector - IF you ever need it somewhere else.
-  // Why not now? Because I don't want to move childId & eventId into state right now.
-  const isRegistered = useSelector(childrenEventSelector)
-    .filter((c) => c.childId === params.childId)
-    .pop()
-    ?.eventIds.some((e) => e === params.eventId);
   // Use allOccurrences so that filtering does not affect options
   const optionsDates = getDateOptions(data?.event?.allOccurrences);
   const optionsTimes = getTimeOptions(data?.event?.allOccurrences);
-
-  // Child is registered for this event, redirect back to profile.
-  // If the event is in the past, we show it as an "archive event".
-  if (isRegistered && !past) {
-    return <Redirect to={`/profile/child/${params.childId}`} />;
-  }
 
   if (loading) return <LoadingSpinner isLoading={true} />;
 

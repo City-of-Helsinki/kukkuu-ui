@@ -10,7 +10,7 @@ interface ProfileEventsProps {
 
 const ProfileEvents: FunctionComponent<ProfileEventsProps> = ({ child }) => {
   const hasEvents = (child: ChildByIdResponse) => {
-    return child.availableEventsAndEventGroups?.edges?.[0] ||
+    return child.upcomingEventsAndEventGroups?.edges?.[0] ||
       child.occurrences.edges?.[0] ||
       child.pastEvents?.edges?.[0]
       ? true
@@ -19,7 +19,7 @@ const ProfileEvents: FunctionComponent<ProfileEventsProps> = ({ child }) => {
 
   return hasEvents(child) ? (
     <ProfileEventsList
-      availableEventsAndEventGroups={child.availableEventsAndEventGroups}
+      upcomingEventsAndEventGroups={child.upcomingEventsAndEventGroups}
       childId={child.id}
       pastEvents={child.pastEvents}
       occurrences={child.occurrences}

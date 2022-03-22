@@ -7,11 +7,13 @@ import styles from './eventOccurrenceList.module.scss';
 type EventOccurrenceListProps = {
   occurrences: Occurrences;
   showFreePlaces?: boolean;
+  canEnroll?: boolean | null;
 };
 
 const EventOccurrenceList = ({
   occurrences,
   showFreePlaces = true,
+  canEnroll = true,
 }: EventOccurrenceListProps) => {
   const { t } = useTranslation();
 
@@ -43,6 +45,7 @@ const EventOccurrenceList = ({
               key={edge.node.id}
               occurrence={edge.node}
               showFreePlaces={showFreePlaces}
+              canEnroll={canEnroll}
             />
           ) : null
         )}

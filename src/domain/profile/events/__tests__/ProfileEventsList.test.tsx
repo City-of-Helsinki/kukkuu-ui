@@ -1,11 +1,10 @@
-import { shallow } from 'enzyme';
+import { MockedProvider } from '@apollo/client/testing';
 
-import { render } from '../../../../common/test/testingLibraryUtils';
+import { render, screen } from '../../../../common/test/testingLibraryUtils';
 import ProfileEventsList from '../ProfileEventsList';
-import EventCard from '../../../event/eventCard/EventCard';
 import {
   childByIdQuery_child as ChildByIdResponse,
-  childByIdQuery_child_availableEventsAndEventGroups as AvailableEventsType,
+  childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEventsAndEventGroupsType,
   childByIdQuery_child_pastEvents as PastEventsType,
   childByIdQuery_child_occurrences as OccurrencesType,
 } from '../../../api/generatedTypes/childByIdQuery';
@@ -27,9 +26,10 @@ const childData: ChildByIdResponse = {
   project: {
     id: '',
     year: 0,
+    name: 'Test project',
   },
   relationships: { edges: [] },
-  availableEventsAndEventGroups: { edges: [] },
+  upcomingEventsAndEventGroups: { edges: [] },
   occurrences: { edges: [] },
   pastEvents: { edges: [] },
 };
@@ -43,9 +43,10 @@ const eventData = {
   duration: 60,
   participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
   occurrences: { edges: [] },
+  canChildEnroll: true,
 };
 
-const availableEventsAndEventGroups: AvailableEventsType = {
+const upcomingEventsAndEventGroups: UpcomingEventsAndEventGroupsType = {
   edges: [
     {
       node: eventData,
@@ -68,6 +69,9 @@ const occurrences: OccurrencesType = {
         time: '2020-02-24T07:07:18+00:00', // 09.07
         venue: venueData,
         event: eventData,
+        enrolments: {
+          edges: [],
+        },
       },
     },
   ],
@@ -83,14 +87,14 @@ const pastEvents: PastEventsType = {
 
 const childWithEvents: ChildByIdResponse = {
   ...childData,
-  availableEventsAndEventGroups: availableEventsAndEventGroups,
+  upcomingEventsAndEventGroups,
   occurrences: occurrences,
   pastEvents: pastEvents,
 };
 
 const childOnlyAvailableEvents = {
   ...childData,
-  availableEventsAndEventGroups: availableEventsAndEventGroups,
+  upcomingEventsAndEventGroups,
   occurrences: {
     edges: [],
   },
@@ -99,7 +103,7 @@ const childOnlyAvailableEvents = {
 
 const childOnlyEnrolments: ChildByIdResponse = {
   ...childData,
-  availableEventsAndEventGroups: null,
+  upcomingEventsAndEventGroups: null,
   occurrences: {
     edges: [
       {
@@ -108,6 +112,9 @@ const childOnlyEnrolments: ChildByIdResponse = {
           time: '2020-02-24T09:09:09+00:00',
           venue: venueData,
           event: eventData,
+          enrolments: {
+            edges: [],
+          },
         },
       },
     ],
@@ -117,7 +124,7 @@ const childOnlyEnrolments: ChildByIdResponse = {
 
 const childOnlyPastEvents: ChildByIdResponse = {
   ...childData,
-  availableEventsAndEventGroups: null,
+  upcomingEventsAndEventGroups: null,
   occurrences: {
     edges: [],
   },
@@ -126,59 +133,90 @@ const childOnlyPastEvents: ChildByIdResponse = {
 
 test('Renders snapshot correctly', () => {
   const { container } = render(
-    <ProfileEventsList
-      availableEventsAndEventGroups={
-        childWithEvents.availableEventsAndEventGroups
-      }
-      occurrences={childWithEvents.occurrences}
-      pastEvents={childWithEvents.pastEvents}
-      childId="zzaf"
-    />
+    <MockedProvider>
+      <ProfileEventsList
+        upcomingEventsAndEventGroups={
+          childWithEvents.upcomingEventsAndEventGroups
+        }
+        occurrences={childWithEvents.occurrences}
+        pastEvents={childWithEvents.pastEvents}
+        childId="zzaf"
+      />
+    </MockedProvider>
   );
   expect(container).toMatchSnapshot();
 });
 
-test('Renders only available events when no other events', () => {
-  const wrapper = shallow(
-    <ProfileEventsList
-      availableEventsAndEventGroups={
-        childOnlyAvailableEvents.availableEventsAndEventGroups
-      }
-      occurrences={childOnlyAvailableEvents.occurrences}
-      pastEvents={childOnlyAvailableEvents.pastEvents}
-      childId="zzaf"
-    />
+test('Renders only upcoming events and event groups when no other inputs', () => {
+  render(
+    <MockedProvider>
+      <ProfileEventsList
+        upcomingEventsAndEventGroups={
+          childOnlyAvailableEvents.upcomingEventsAndEventGroups
+        }
+        occurrences={childOnlyAvailableEvents.occurrences}
+        pastEvents={childOnlyAvailableEvents.pastEvents}
+        childId="zzaf"
+      />
+    </MockedProvider>
   );
-  expect(wrapper.find('h2').length).toBe(1);
-  expect(wrapper.find(EventCard).length).toBe(1);
+  expect(
+    screen.getByRole('heading', { name: 'Tapahtumakutsut' })
+  ).toBeInTheDocument();
+  expect(
+    screen.queryByRole('heading', { name: 'Tulevat tapahtumat' })
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByRole('heading', { name: 'Menneet tapahtumat' })
+  ).not.toBeInTheDocument();
 });
 
-test('Renders only enrolments when no other events', () => {
-  const wrapper = shallow(
-    <ProfileEventsList
-      availableEventsAndEventGroups={
-        childOnlyEnrolments.availableEventsAndEventGroups
-      }
-      occurrences={childOnlyEnrolments.occurrences}
-      pastEvents={childOnlyEnrolments.pastEvents}
-      childId="zzaf"
-    />
+test('Renders only enrolments when no other inputs', () => {
+  render(
+    <MockedProvider>
+      <ProfileEventsList
+        upcomingEventsAndEventGroups={
+          childOnlyEnrolments.upcomingEventsAndEventGroups
+        }
+        occurrences={childOnlyEnrolments.occurrences}
+        pastEvents={childOnlyEnrolments.pastEvents}
+        childId="zzaf"
+      />
+    </MockedProvider>
   );
-  expect(wrapper.find('h2').length).toBe(1);
-  expect(wrapper.find(EventCard).length).toBe(1);
+
+  expect(
+    screen.queryByRole('heading', { name: 'Tapahtumakutsut' })
+  ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: 'Tulevat tapahtumat' })
+  ).toBeInTheDocument();
+  expect(
+    screen.queryByRole('heading', { name: 'Menneet tapahtumat' })
+  ).not.toBeInTheDocument();
 });
 
-test('Renders only past events when no other events', () => {
-  const wrapper = shallow(
-    <ProfileEventsList
-      availableEventsAndEventGroups={
-        childOnlyPastEvents.availableEventsAndEventGroups
-      }
-      occurrences={childOnlyPastEvents.occurrences}
-      pastEvents={childOnlyPastEvents.pastEvents}
-      childId="zzaf"
-    />
+test('Renders only past events when no other inputs', () => {
+  render(
+    <MockedProvider>
+      <ProfileEventsList
+        upcomingEventsAndEventGroups={
+          childOnlyPastEvents.upcomingEventsAndEventGroups
+        }
+        occurrences={childOnlyPastEvents.occurrences}
+        pastEvents={childOnlyPastEvents.pastEvents}
+        childId="zzaf"
+      />
+    </MockedProvider>
   );
-  expect(wrapper.find('h2').length).toBe(1);
-  expect(wrapper.find(EventCard).length).toBe(1);
+
+  expect(
+    screen.queryByRole('heading', { name: 'Tapahtumakutsut' })
+  ).not.toBeInTheDocument();
+  expect(
+    screen.queryByRole('heading', { name: 'Tulevat tapahtumat' })
+  ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', { name: 'Menneet tapahtumat' })
+  ).toBeInTheDocument();
 });

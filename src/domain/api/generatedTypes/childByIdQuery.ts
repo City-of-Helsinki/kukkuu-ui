@@ -93,7 +93,7 @@ export interface childByIdQuery_child_occurrences {
   edges: (childByIdQuery_child_occurrences_edges | null)[];
 }
 
-export interface childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventNode {
+export interface childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode {
   /**
    * The ID of the object.
    */
@@ -103,9 +103,10 @@ export interface childByIdQuery_child_availableEventsAndEventGroups_edges_node_E
   image: string;
   imageAltText: string | null;
   participantsPerInvite: EventParticipantsPerInvite;
+  canChildEnroll: boolean | null;
 }
 
-export interface childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventGroupNode {
+export interface childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode {
   /**
    * The ID of the object.
    */
@@ -114,22 +115,23 @@ export interface childByIdQuery_child_availableEventsAndEventGroups_edges_node_E
   shortDescription: string | null;
   image: string;
   imageAltText: string | null;
+  canChildEnroll: boolean | null;
 }
 
-export type childByIdQuery_child_availableEventsAndEventGroups_edges_node = childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventNode | childByIdQuery_child_availableEventsAndEventGroups_edges_node_EventGroupNode;
+export type childByIdQuery_child_upcomingEventsAndEventGroups_edges_node = childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode | childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode;
 
-export interface childByIdQuery_child_availableEventsAndEventGroups_edges {
+export interface childByIdQuery_child_upcomingEventsAndEventGroups_edges {
   /**
    * The item at the end of the edge
    */
-  node: childByIdQuery_child_availableEventsAndEventGroups_edges_node | null;
+  node: childByIdQuery_child_upcomingEventsAndEventGroups_edges_node | null;
 }
 
-export interface childByIdQuery_child_availableEventsAndEventGroups {
+export interface childByIdQuery_child_upcomingEventsAndEventGroups {
   /**
    * Contains the nodes in this connection.
    */
-  edges: (childByIdQuery_child_availableEventsAndEventGroups_edges | null)[];
+  edges: (childByIdQuery_child_upcomingEventsAndEventGroups_edges | null)[];
 }
 
 export interface childByIdQuery_child_pastEvents_edges_node_occurrences_edges_node {
@@ -214,7 +216,10 @@ export interface childByIdQuery_child {
   postalCode: string;
   project: childByIdQuery_child_project;
   occurrences: childByIdQuery_child_occurrences;
-  availableEventsAndEventGroups: childByIdQuery_child_availableEventsAndEventGroups | null;
+  /**
+   * All upcoming events and event groups for the child's project.
+   */
+  upcomingEventsAndEventGroups: childByIdQuery_child_upcomingEventsAndEventGroups | null;
   pastEvents: childByIdQuery_child_pastEvents | null;
   relationships: childByIdQuery_child_relationships;
 }
