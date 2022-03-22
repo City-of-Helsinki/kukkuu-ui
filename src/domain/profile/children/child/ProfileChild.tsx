@@ -14,6 +14,7 @@ import {
 import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
 import ProfileChildEnrolment from './ProfileChildEnrolment';
 import styles from './profileChild.module.scss';
+import useChildEnrolmentCount from '../../../child/useChildEnrolmentCount';
 
 interface ProfileChildProps {
   child: ChildType;
@@ -25,6 +26,11 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
   const linkRef = React.useRef<HTMLAnchorElement | null>(null);
   const downRef = React.useRef<Date | null>(null);
   const { t } = useTranslation();
+  const { data } = useChildEnrolmentCount({
+    variables: {
+      childId: child.id,
+    },
+  });
 
   // Change to child.availableEvents when API supports it. Change to true to test.
   const availableEvents = child.availableEvents?.edges[0]?.node?.name;
@@ -78,7 +84,12 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
           {isNamed ? childName : t('profile.child.default.name.text')}
         </Text>
         <div className={styles.contentStack}>
-          <Content hasEnrolment={Boolean(nextEnrolment)} />
+          <Content
+            hasEnrolment={Boolean(nextEnrolment)}
+            enrolmentCount={data?.child?.pastEnrolmentCount}
+            maxEnrolmentCount={data?.child?.project?.enrolmentLimit}
+            hasInvitation={Boolean(availableEvents)}
+          />
           {nextEnrolment && (
             <ProfileChildEnrolment
               enrolment={nextEnrolment}
@@ -109,10 +120,10 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
 };
 
 type ContentProps = {
-  maxEnrolmentCount?: number;
-  enrolmentCount?: number;
-  hasInvitation?: boolean;
-  hasEnrolment?: boolean;
+  maxEnrolmentCount?: number | null;
+  enrolmentCount?: number | null;
+  hasInvitation?: boolean | null;
+  hasEnrolment?: boolean | null;
 };
 
 function Content({
