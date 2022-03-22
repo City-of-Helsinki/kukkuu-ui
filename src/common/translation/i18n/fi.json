@@ -76,7 +76,7 @@
       }
     },
     "message": {
-      "eventVisitsThisYear": "Tapahtumakäynnit tänä vuonna {{eventVisitCount}}/{{allowedEventVisitCount}}"
+      "eventVisitsThisYear": "Tapahtumakäynnit tänä vuonna"
     }
   },
   "combobox": {

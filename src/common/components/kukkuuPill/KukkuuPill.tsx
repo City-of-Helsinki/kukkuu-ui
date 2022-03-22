@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './kukkuuPill.module.scss';
 
 type Props = {
-  name: string;
+  name: string | ReactNode;
   iconLeft?: ReactNode;
   variant?: 'default' | 'success';
 };

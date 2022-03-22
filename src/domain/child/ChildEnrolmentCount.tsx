@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { IconCheck } from 'hds-react';
+import { IconCheck, LoadingSpinner } from 'hds-react';
 import { useQuery } from '@apollo/client';
 
 import {
@@ -32,10 +32,21 @@ export default function ChildEnrolmentCount({ childId }: Props) {
     <KukkuuPill
       variant={areAllEnrolmentsUsed ? 'success' : 'default'}
       iconLeft={areAllEnrolmentsUsed && <IconCheck />}
-      name={t('child.message.eventVisitsThisYear', {
-        eventVisitCount: pastEnrolmentCount,
-        allowedEventVisitCount: enrolmentLimit,
-      })}
+      name={
+        <>
+          {t('child.message.eventVisitsThisYear')}{' '}
+          {data ? (
+            `${pastEnrolmentCount}/${enrolmentLimit}`
+          ) : (
+            <LoadingSpinner
+              theme={{
+                '--spinner-color': 'var(--color-black)',
+              }}
+              small
+            />
+          )}
+        </>
+      }
     />
   );
 }
