@@ -7,6 +7,7 @@ import { PAGE_QUERY } from '../graphql/query';
 import { PageIdType } from '../graphql/__generated__';
 
 const page = fakePage();
+
 beforeEach(() => {
   const headlessCms = graphql.link(
     'https://kukkuu.hkih.stage.geniem.io/graphql'
@@ -23,9 +24,10 @@ beforeEach(() => {
     })
   );
 });
+
 describe('Headless CMS Client', () => {
   // TODO: skipping: does not work - dunno why!
-  it.skip('returns a page when a page query is requested', async () => {
+  it('returns a page when a page query is requested', async () => {
     const { data } = await client.query({
       query: PAGE_QUERY,
       variables: {
