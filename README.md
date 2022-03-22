@@ -158,6 +158,16 @@ Clone the repository (https://github.com/City-of-Helsinki/kukkuu). Follow the in
 - TOKEN_AUTH_AUTHSERVER_URL=http://tunnistamo-backend:8000/openid
 - MEDIA_ROOT=/app/var/
 
+### Headless CMS
+
+A headless CMS system is used to produce some dynamic pages. The Headless CMS server endpoint is set with `REACT_APP_CMS_URI` environment variable.
+
+The default server that is used is the test / staging server:
+
+```
+REACT_APP_CMS_URI="https://kukkuu.hkih.stage.geniem.io/graphql"
+```
+
 ### kukkuu-ui
 
 Run `docker-compose up`, now the app should be running at `http://localhost:3000/`!
