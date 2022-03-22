@@ -24,16 +24,16 @@ export default function ChildEnrolmentCount({ childId }: Props) {
     },
   });
 
-  const enrolmentCount = data?.child?.enrolmentCount ?? ' ';
+  const pastEnrolmentCount = data?.child?.pastEnrolmentCount ?? ' ';
   const enrolmentLimit = data?.child?.project?.enrolmentLimit ?? ' ';
-  const areAllEnrolmentsUsed = data && enrolmentCount === enrolmentLimit;
+  const areAllEnrolmentsUsed = data && pastEnrolmentCount === enrolmentLimit;
 
   return (
     <KukkuuPill
       variant={areAllEnrolmentsUsed ? 'success' : 'default'}
       iconLeft={areAllEnrolmentsUsed && <IconCheck />}
       name={t('child.message.eventVisitsThisYear', {
-        eventVisitCount: enrolmentCount,
+        eventVisitCount: pastEnrolmentCount,
         allowedEventVisitCount: enrolmentLimit,
       })}
     />

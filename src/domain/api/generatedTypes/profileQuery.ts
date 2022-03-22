@@ -73,6 +73,7 @@ export interface profileQuery_myProfile_children_edges_node_occurrences_edges_no
    */
   id: string;
   name: string | null;
+  shortDescription: string | null;
 }
 
 export interface profileQuery_myProfile_children_edges_node_occurrences_edges_node {

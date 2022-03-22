@@ -20,9 +20,13 @@ export interface ChildEnrolmentCount_child_project {
 
 export interface ChildEnrolmentCount_child {
   /**
-   * How many enrolments child has this year.
+   * The ID of the object.
    */
-  enrolmentCount: number | null;
+  id: string;
+  /**
+   * How many past enrolments child has this year.
+   */
+  pastEnrolmentCount: number | null;
   project: ChildEnrolmentCount_child_project;
 }
 
