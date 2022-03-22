@@ -32,7 +32,12 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
   const childName = `${child.firstName} ${child.lastName}`;
   const enrolments = child.enrolments?.edges
     ?.map((edge) => edge?.node)
-    ?.filter((node): node is EnrolmentType => Boolean(node));
+    ?.filter((node): node is EnrolmentType => {
+      const now = new Date();
+      const occurrenceTimeDate = new Date(node?.occurrence.time);
+
+      return Boolean(node) && occurrenceTimeDate.getTime() >= now.getTime();
+    });
   const nextEnrolment = enrolments ? findNextEnrolment(enrolments) : null;
 
   const handleWrapperMouseDown = () => {
