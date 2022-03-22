@@ -57,7 +57,7 @@ $backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
       'backButton title actions'
       'empty content content';
 
-    margin-left: calc(var(--back-button-width) * -1);
+    margin-left: calc(#{var(--back-button-width)} * -1);
   }
 
   & .headerBackButtonContainer {

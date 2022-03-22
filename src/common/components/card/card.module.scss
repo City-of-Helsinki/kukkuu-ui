@@ -23,7 +23,7 @@
 }
 
 .image {
-  margin: calc(var(--padding) * -1);
+  margin: calc(#{var(--padding)} * -1);
   margin-bottom: unset;
 
   @include respond-above(sm) {
