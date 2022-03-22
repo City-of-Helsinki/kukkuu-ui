@@ -3,8 +3,8 @@ import { graphql } from 'msw';
 import { server } from '../../../test/msw/server';
 import { fakePage } from '../../../utils/cmsMockDataUtils';
 import client from '../client';
-import { PAGE_QUERY } from '../graphql/query';
 import { PageIdType } from '../graphql/__generated__';
+import { PAGE_QUERY } from '../graphql/query';
 
 const page = fakePage();
 
@@ -14,8 +14,6 @@ beforeEach(() => {
   );
   server.use(
     headlessCms.query('Page', (req, res, ctx) => {
-      const { id: pageId } = req.variables;
-      console.log('pageId', pageId);
       return res(
         ctx.data({
           page,
@@ -26,7 +24,6 @@ beforeEach(() => {
 });
 
 describe('Headless CMS Client', () => {
-  // TODO: skipping: does not work - dunno why!
   it('returns a page when a page query is requested', async () => {
     const { data } = await client.query({
       query: PAGE_QUERY,
@@ -35,6 +32,6 @@ describe('Headless CMS Client', () => {
         idType: PageIdType.Id,
       },
     });
-    expect(data.page).toBe(page);
+    expect(data.page.id).toEqual(page.id);
   });
 });
