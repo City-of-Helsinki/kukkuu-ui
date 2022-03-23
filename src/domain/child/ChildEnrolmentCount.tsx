@@ -27,6 +27,15 @@ export default function ChildEnrolmentCount({ childId }: Props) {
   const pastEnrolmentCount = data?.child?.pastEnrolmentCount ?? ' ';
   const enrolmentLimit = data?.child?.project?.enrolmentLimit ?? ' ';
   const areAllEnrolmentsUsed = data && pastEnrolmentCount === enrolmentLimit;
+  const enrolmentsUsed = `${pastEnrolmentCount}/${enrolmentLimit}`;
+  const loadingSpinner = (
+    <LoadingSpinner
+      theme={{
+        '--spinner-color': 'var(--color-black)',
+      }}
+      small
+    />
+  );
 
   return (
     <KukkuuPill
@@ -35,16 +44,7 @@ export default function ChildEnrolmentCount({ childId }: Props) {
       name={
         <>
           {t('child.message.eventVisitsThisYear')}:{' '}
-          {data ? (
-            `${pastEnrolmentCount}/${enrolmentLimit}`
-          ) : (
-            <LoadingSpinner
-              theme={{
-                '--spinner-color': 'var(--color-black)',
-              }}
-              small
-            />
-          )}
+          {data ? enrolmentsUsed : loadingSpinner}
         </>
       }
     />
