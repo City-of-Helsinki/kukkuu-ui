@@ -2,15 +2,9 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -57,75 +51,71 @@ export enum AvatarRatingEnum {
   /** Indicates an R level avatar rating level. */
   R = 'R',
   /** Indicates an X level avatar rating level. */
-  X = 'X',
+  X = 'X'
 }
 
 /** The category type */
-export type Category = DatabaseIdentifier &
-  HierarchicalTermNode &
-  MenuItemLinkable &
-  Node &
-  TermNode &
-  UniformResourceIdentifiable & {
-    __typename?: 'Category';
-    /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
-    ancestors?: Maybe<CategoryToAncestorsCategoryConnection>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of databaseId
-     */
-    categoryId?: Maybe<Scalars['Int']>;
-    /** Connection between the category type and the category type */
-    children?: Maybe<CategoryToCategoryConnection>;
-    /** Connection between the category type and the ContentNode type */
-    contentNodes?: Maybe<CategoryToContentNodeConnection>;
-    /** The number of objects connected to the object */
-    count?: Maybe<Scalars['Int']>;
-    /** The unique resource identifier path */
-    databaseId: Scalars['Int'];
-    /** The description of the object */
-    description?: Maybe<Scalars['String']>;
-    /** Connection between the TermNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-    /** Connection between the TermNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-    /** The unique resource identifier path */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** List available translations for this post */
-    language?: Maybe<Language>;
-    /** The link to the term */
-    link?: Maybe<Scalars['String']>;
-    /** The human friendly name of the object. */
-    name?: Maybe<Scalars['String']>;
-    /** Connection between the category type and the category type */
-    parent?: Maybe<CategoryToParentCategoryConnectionEdge>;
-    /** Database id of the parent node */
-    parentDatabaseId?: Maybe<Scalars['Int']>;
-    /** The globally unique identifier of the parent node. */
-    parentId?: Maybe<Scalars['ID']>;
-    /** Connection between the category type and the post type */
-    posts?: Maybe<CategoryToPostConnection>;
-    /** An alphanumeric identifier for the object unique to its type. */
-    slug?: Maybe<Scalars['String']>;
-    /** Connection between the category type and the Taxonomy type */
-    taxonomy?: Maybe<CategoryToTaxonomyConnectionEdge>;
-    /** The ID of the term group that this term object belongs to */
-    termGroupId?: Maybe<Scalars['Int']>;
-    /** The taxonomy ID that the object is associated with */
-    termTaxonomyId?: Maybe<Scalars['Int']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<Category>;
-    /** List all translated versions of this term */
-    translations?: Maybe<Array<Maybe<Category>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type Category = DatabaseIdentifier & HierarchicalTermNode & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
+  __typename?: 'Category';
+  /** The ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+  ancestors?: Maybe<CategoryToAncestorsCategoryConnection>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of databaseId
+   */
+  categoryId?: Maybe<Scalars['Int']>;
+  /** Connection between the category type and the category type */
+  children?: Maybe<CategoryToCategoryConnection>;
+  /** Connection between the category type and the ContentNode type */
+  contentNodes?: Maybe<CategoryToContentNodeConnection>;
+  /** The number of objects connected to the object */
+  count?: Maybe<Scalars['Int']>;
+  /** The unique resource identifier path */
+  databaseId: Scalars['Int'];
+  /** The description of the object */
+  description?: Maybe<Scalars['String']>;
+  /** Connection between the TermNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+  /** Connection between the TermNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+  /** The unique resource identifier path */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** List available translations for this post */
+  language?: Maybe<Language>;
+  /** The link to the term */
+  link?: Maybe<Scalars['String']>;
+  /** The human friendly name of the object. */
+  name?: Maybe<Scalars['String']>;
+  /** Connection between the category type and the category type */
+  parent?: Maybe<CategoryToParentCategoryConnectionEdge>;
+  /** Database id of the parent node */
+  parentDatabaseId?: Maybe<Scalars['Int']>;
+  /** The globally unique identifier of the parent node. */
+  parentId?: Maybe<Scalars['ID']>;
+  /** Connection between the category type and the post type */
+  posts?: Maybe<CategoryToPostConnection>;
+  /** An alphanumeric identifier for the object unique to its type. */
+  slug?: Maybe<Scalars['String']>;
+  /** Connection between the category type and the Taxonomy type */
+  taxonomy?: Maybe<CategoryToTaxonomyConnectionEdge>;
+  /** The ID of the term group that this term object belongs to */
+  termGroupId?: Maybe<Scalars['Int']>;
+  /** The taxonomy ID that the object is associated with */
+  termTaxonomyId?: Maybe<Scalars['Int']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<Category>;
+  /** List all translated versions of this term */
+  translations?: Maybe<Array<Maybe<Category>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The category type */
 export type CategoryAncestorsArgs = {
@@ -134,6 +124,7 @@ export type CategoryAncestorsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The category type */
 export type CategoryChildrenArgs = {
@@ -144,6 +135,7 @@ export type CategoryChildrenArgs = {
   where?: InputMaybe<CategoryToCategoryConnectionWhereArgs>;
 };
 
+
 /** The category type */
 export type CategoryContentNodesArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -153,6 +145,7 @@ export type CategoryContentNodesArgs = {
   where?: InputMaybe<CategoryToContentNodeConnectionWhereArgs>;
 };
 
+
 /** The category type */
 export type CategoryEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -160,6 +153,7 @@ export type CategoryEnqueuedScriptsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The category type */
 export type CategoryEnqueuedStylesheetsArgs = {
@@ -169,6 +163,7 @@ export type CategoryEnqueuedStylesheetsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The category type */
 export type CategoryPostsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -177,6 +172,7 @@ export type CategoryPostsArgs = {
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<CategoryToPostConnectionWhereArgs>;
 };
+
 
 /** The category type */
 export type CategoryTranslationArgs = {
@@ -194,7 +190,7 @@ export enum CategoryIdType {
   /** Url friendly name of the node */
   Slug = 'SLUG',
   /** The URI for the node */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Connection between the category type and the category type */
@@ -442,102 +438,97 @@ export type CategoryToTaxonomyConnectionEdge = {
 };
 
 /** The collection type */
-export type Collection = ContentNode &
-  DatabaseIdentifier &
-  Node &
-  NodeWithRevisions &
-  NodeWithTemplate &
-  NodeWithTitle &
-  UniformResourceIdentifiable & {
-    __typename?: 'Collection';
-    /** Background Color */
-    backgroundColor?: Maybe<Scalars['String']>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    collectionId: Scalars['Int'];
-    /** Connection between the ContentNode type and the ContentType type */
-    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** Post publishing date. */
-    date?: Maybe<Scalars['String']>;
-    /** The publishing date set in GMT. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** Description */
-    description?: Maybe<Scalars['String']>;
-    /** The desired slug of the post */
-    desiredSlug?: Maybe<Scalars['String']>;
-    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-    /** The RSS enclosure for the object */
-    enclosure?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-    /** Vanhentumisaika */
-    expirationTime?: Maybe<Scalars['String']>;
-    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-    guid?: Maybe<Scalars['String']>;
-    /** The globally unique identifier of the collection-cpt object. */
-    id: Scalars['ID'];
-    /** Image */
-    image?: Maybe<Scalars['String']>;
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is a node in the preview state */
-    isPreview?: Maybe<Scalars['Boolean']>;
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** True if the node is a revision of another node */
-    isRevision?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** Polylang language */
-    language?: Maybe<Language>;
-    /** The user that most recently edited the node */
-    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-    /** The permalink of the post */
-    link?: Maybe<Scalars['String']>;
-    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-    modified?: Maybe<Scalars['String']>;
-    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-    modifiedGmt?: Maybe<Scalars['String']>;
-    /** List of modules */
-    modules?: Maybe<Array<Maybe<CollectionModulesUnionType>>>;
-    /** Connection between the collection type and the collection type */
-    preview?: Maybe<CollectionToPreviewConnectionEdge>;
-    /** The database id of the preview node */
-    previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
-    /** Whether the object is a node in the preview state */
-    previewRevisionId?: Maybe<Scalars['ID']>;
-    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-    /** Connection between the collection type and the collection type */
-    revisions?: Maybe<CollectionToRevisionConnection>;
-    /** The SEO Framework data of the collection */
-    seo?: Maybe<Seo>;
-    /** Show on front page */
-    showOnFrontPage?: Maybe<Scalars['Boolean']>;
-    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-    slug?: Maybe<Scalars['String']>;
-    /** The current status of the object */
-    status?: Maybe<Scalars['String']>;
-    /** The template assigned to the node */
-    template?: Maybe<ContentTemplate>;
-    /** Connection between the collection type and the TermNode type */
-    terms?: Maybe<CollectionToTermNodeConnection>;
-    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-    title?: Maybe<Scalars['String']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<Collection>;
-    /** List all translated versions of this post */
-    translations?: Maybe<Array<Maybe<Collection>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type Collection = ContentNode & DatabaseIdentifier & Node & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+  __typename?: 'Collection';
+  /** Background Color */
+  backgroundColor?: Maybe<Scalars['String']>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  collectionId: Scalars['Int'];
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** Description */
+  description?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Vanhentumisaika */
+  expirationTime?: Maybe<Scalars['String']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** The globally unique identifier of the collection-cpt object. */
+  id: Scalars['ID'];
+  /** Image */
+  image?: Maybe<Scalars['String']>;
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** True if the node is a revision of another node */
+  isRevision?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** Polylang language */
+  language?: Maybe<Language>;
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** List of modules */
+  modules?: Maybe<Array<Maybe<CollectionModulesUnionType>>>;
+  /** Connection between the collection type and the collection type */
+  preview?: Maybe<CollectionToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+  /** Connection between the collection type and the collection type */
+  revisions?: Maybe<CollectionToRevisionConnection>;
+  /** The SEO Framework data of the collection */
+  seo?: Maybe<Seo>;
+  /** Show on front page */
+  showOnFrontPage?: Maybe<Scalars['Boolean']>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** Connection between the collection type and the TermNode type */
+  terms?: Maybe<CollectionToTermNodeConnection>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<Collection>;
+  /** List all translated versions of this post */
+  translations?: Maybe<Array<Maybe<Collection>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The collection type */
 export type CollectionEnqueuedScriptsArgs = {
@@ -547,6 +538,7 @@ export type CollectionEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The collection type */
 export type CollectionEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -554,6 +546,7 @@ export type CollectionEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The collection type */
 export type CollectionRevisionsArgs = {
@@ -564,6 +557,7 @@ export type CollectionRevisionsArgs = {
   where?: InputMaybe<CollectionToRevisionConnectionWhereArgs>;
 };
 
+
 /** The collection type */
 export type CollectionTermsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -573,10 +567,12 @@ export type CollectionTermsArgs = {
   where?: InputMaybe<CollectionToTermNodeConnectionWhereArgs>;
 };
 
+
 /** The collection type */
 export type CollectionTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The collection type */
 export type CollectionTranslationArgs = {
@@ -592,7 +588,7 @@ export enum CollectionIdType {
   /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
   Slug = 'SLUG',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 export type CollectionModulesUnionType = EventSearch | EventSelected;
@@ -729,59 +725,61 @@ export type CollectionToTermNodeConnectionWhereArgs = {
 };
 
 /** A Comment object */
-export type Comment = DatabaseIdentifier &
-  Node & {
-    __typename?: 'Comment';
-    /** User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL. */
-    agent?: Maybe<Scalars['String']>;
-    /** The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL. */
-    approved?: Maybe<Scalars['Boolean']>;
-    /** The author of the comment */
-    author?: Maybe<CommentToCommenterConnectionEdge>;
-    /** IP address for the author. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL. */
-    authorIp?: Maybe<Scalars['String']>;
-    /**
-     * ID for the comment, unique among comments.
-     * @deprecated Deprecated in favor of databaseId
-     */
-    commentId?: Maybe<Scalars['Int']>;
-    /** Connection between the Comment type and the ContentNode type */
-    commentedOn?: Maybe<CommentToContentNodeConnectionEdge>;
-    /** Content of the comment. This field is equivalent to WP_Comment-&gt;comment_content and the value matching the &quot;comment_content&quot; column in SQL. */
-    content?: Maybe<Scalars['String']>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** Date the comment was posted in local time. This field is equivalent to WP_Comment-&gt;date and the value matching the &quot;date&quot; column in SQL. */
-    date?: Maybe<Scalars['String']>;
-    /** Date the comment was posted in GMT. This field is equivalent to WP_Comment-&gt;date_gmt and the value matching the &quot;date_gmt&quot; column in SQL. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** The globally unique identifier for the comment object */
-    id: Scalars['ID'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** Karma value for the comment. This field is equivalent to WP_Comment-&gt;comment_karma and the value matching the &quot;comment_karma&quot; column in SQL. */
-    karma?: Maybe<Scalars['Int']>;
-    /** Connection between the Comment type and the Comment type */
-    parent?: Maybe<CommentToParentCommentConnectionEdge>;
-    /** The database id of the parent comment node or null if it is the root comment */
-    parentDatabaseId?: Maybe<Scalars['Int']>;
-    /** The globally unique identifier of the parent comment node. */
-    parentId?: Maybe<Scalars['ID']>;
-    /** Connection between the Comment type and the Comment type */
-    replies?: Maybe<CommentToCommentConnection>;
-    /** Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL. */
-    type?: Maybe<Scalars['String']>;
-  };
+export type Comment = DatabaseIdentifier & Node & {
+  __typename?: 'Comment';
+  /** User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL. */
+  agent?: Maybe<Scalars['String']>;
+  /** The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL. */
+  approved?: Maybe<Scalars['Boolean']>;
+  /** The author of the comment */
+  author?: Maybe<CommentToCommenterConnectionEdge>;
+  /** IP address for the author. This field is equivalent to WP_Comment-&gt;comment_author_IP and the value matching the &quot;comment_author_IP&quot; column in SQL. */
+  authorIp?: Maybe<Scalars['String']>;
+  /**
+   * ID for the comment, unique among comments.
+   * @deprecated Deprecated in favor of databaseId
+   */
+  commentId?: Maybe<Scalars['Int']>;
+  /** Connection between the Comment type and the ContentNode type */
+  commentedOn?: Maybe<CommentToContentNodeConnectionEdge>;
+  /** Content of the comment. This field is equivalent to WP_Comment-&gt;comment_content and the value matching the &quot;comment_content&quot; column in SQL. */
+  content?: Maybe<Scalars['String']>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Date the comment was posted in local time. This field is equivalent to WP_Comment-&gt;date and the value matching the &quot;date&quot; column in SQL. */
+  date?: Maybe<Scalars['String']>;
+  /** Date the comment was posted in GMT. This field is equivalent to WP_Comment-&gt;date_gmt and the value matching the &quot;date_gmt&quot; column in SQL. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** The globally unique identifier for the comment object */
+  id: Scalars['ID'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Karma value for the comment. This field is equivalent to WP_Comment-&gt;comment_karma and the value matching the &quot;comment_karma&quot; column in SQL. */
+  karma?: Maybe<Scalars['Int']>;
+  /** Connection between the Comment type and the Comment type */
+  parent?: Maybe<CommentToParentCommentConnectionEdge>;
+  /** The database id of the parent comment node or null if it is the root comment */
+  parentDatabaseId?: Maybe<Scalars['Int']>;
+  /** The globally unique identifier of the parent comment node. */
+  parentId?: Maybe<Scalars['ID']>;
+  /** Connection between the Comment type and the Comment type */
+  replies?: Maybe<CommentToCommentConnection>;
+  /** Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL. */
+  type?: Maybe<Scalars['String']>;
+};
+
 
 /** A Comment object */
 export type CommentContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
 
+
 /** A Comment object */
 export type CommentParentArgs = {
   where?: InputMaybe<CommentToParentCommentConnectionWhereArgs>;
 };
+
 
 /** A Comment object */
 export type CommentRepliesArgs = {
@@ -793,22 +791,21 @@ export type CommentRepliesArgs = {
 };
 
 /** A Comment Author object */
-export type CommentAuthor = Commenter &
-  Node & {
-    __typename?: 'CommentAuthor';
-    /** Identifies the primary key from the database. */
-    databaseId: Scalars['Int'];
-    /** The email for the comment author */
-    email?: Maybe<Scalars['String']>;
-    /** The globally unique identifier for the comment author object */
-    id: Scalars['ID'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** The name for the comment author. */
-    name?: Maybe<Scalars['String']>;
-    /** The url the comment author. */
-    url?: Maybe<Scalars['String']>;
-  };
+export type CommentAuthor = Commenter & Node & {
+  __typename?: 'CommentAuthor';
+  /** Identifies the primary key from the database. */
+  databaseId: Scalars['Int'];
+  /** The email for the comment author */
+  email?: Maybe<Scalars['String']>;
+  /** The globally unique identifier for the comment author object */
+  id: Scalars['ID'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** The name for the comment author. */
+  name?: Maybe<Scalars['String']>;
+  /** The url the comment author. */
+  url?: Maybe<Scalars['String']>;
+};
 
 /** Connection between the Comment type and the Comment type */
 export type CommentToCommentConnection = {
@@ -1024,109 +1021,103 @@ export enum CommentsConnectionOrderbyEnum {
   /** Order by the the type of comment, such as 'comment', 'pingback', or 'trackback'. */
   CommentType = 'COMMENT_TYPE',
   /** Order by the user ID. */
-  UserId = 'USER_ID',
+  UserId = 'USER_ID'
 }
 
 /** The contact type */
-export type Contact = ContentNode &
-  DatabaseIdentifier &
-  Node &
-  NodeWithFeaturedImage &
-  NodeWithRevisions &
-  NodeWithTemplate &
-  NodeWithTitle &
-  UniformResourceIdentifiable & {
-    __typename?: 'Contact';
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    contactId: Scalars['Int'];
-    /** Connection between the ContentNode type and the ContentType type */
-    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** Post publishing date. */
-    date?: Maybe<Scalars['String']>;
-    /** The publishing date set in GMT. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** Description */
-    description?: Maybe<Scalars['String']>;
-    /** The desired slug of the post */
-    desiredSlug?: Maybe<Scalars['String']>;
-    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-    /** The RSS enclosure for the object */
-    enclosure?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-    /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
-    featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
-    /** The database identifier for the featured image node assigned to the content node */
-    featuredImageDatabaseId?: Maybe<Scalars['Int']>;
-    /** Globally unique ID of the featured image assigned to the node */
-    featuredImageId?: Maybe<Scalars['ID']>;
-    /** First name */
-    firstName?: Maybe<Scalars['String']>;
-    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-    guid?: Maybe<Scalars['String']>;
-    /** The globally unique identifier of the contact-cpt object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is a node in the preview state */
-    isPreview?: Maybe<Scalars['Boolean']>;
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** True if the node is a revision of another node */
-    isRevision?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** Job Title */
-    jobTitle?: Maybe<Scalars['String']>;
-    /** Polylang language */
-    language?: Maybe<Language>;
-    /** The user that most recently edited the node */
-    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-    /** Last name */
-    lastName?: Maybe<Scalars['String']>;
-    /** The permalink of the post */
-    link?: Maybe<Scalars['String']>;
-    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-    modified?: Maybe<Scalars['String']>;
-    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-    modifiedGmt?: Maybe<Scalars['String']>;
-    /** Connection between the contact type and the contact type */
-    preview?: Maybe<ContactToPreviewConnectionEdge>;
-    /** The database id of the preview node */
-    previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
-    /** Whether the object is a node in the preview state */
-    previewRevisionId?: Maybe<Scalars['ID']>;
-    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-    /** Connection between the contact type and the contact type */
-    revisions?: Maybe<ContactToRevisionConnection>;
-    /** The SEO Framework data of the contact */
-    seo?: Maybe<Seo>;
-    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-    slug?: Maybe<Scalars['String']>;
-    /** The current status of the object */
-    status?: Maybe<Scalars['String']>;
-    /** The template assigned to a node of content */
-    template?: Maybe<ContentTemplate>;
-    /** Connection between the contact type and the TermNode type */
-    terms?: Maybe<ContactToTermNodeConnection>;
-    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-    title?: Maybe<Scalars['String']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<Contact>;
-    /** List all translated versions of this post */
-    translations?: Maybe<Array<Maybe<Contact>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type Contact = ContentNode & DatabaseIdentifier & Node & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+  __typename?: 'Contact';
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  contactId: Scalars['Int'];
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** Description */
+  description?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+  /** The database identifier for the featured image node assigned to the content node */
+  featuredImageDatabaseId?: Maybe<Scalars['Int']>;
+  /** Globally unique ID of the featured image assigned to the node */
+  featuredImageId?: Maybe<Scalars['ID']>;
+  /** First name */
+  firstName?: Maybe<Scalars['String']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** The globally unique identifier of the contact-cpt object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** True if the node is a revision of another node */
+  isRevision?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** Job Title */
+  jobTitle?: Maybe<Scalars['String']>;
+  /** Polylang language */
+  language?: Maybe<Language>;
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** Last name */
+  lastName?: Maybe<Scalars['String']>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** Connection between the contact type and the contact type */
+  preview?: Maybe<ContactToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+  /** Connection between the contact type and the contact type */
+  revisions?: Maybe<ContactToRevisionConnection>;
+  /** The SEO Framework data of the contact */
+  seo?: Maybe<Seo>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** The template assigned to a node of content */
+  template?: Maybe<ContentTemplate>;
+  /** Connection between the contact type and the TermNode type */
+  terms?: Maybe<ContactToTermNodeConnection>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<Contact>;
+  /** List all translated versions of this post */
+  translations?: Maybe<Array<Maybe<Contact>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The contact type */
 export type ContactEnqueuedScriptsArgs = {
@@ -1136,6 +1127,7 @@ export type ContactEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The contact type */
 export type ContactEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -1143,6 +1135,7 @@ export type ContactEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The contact type */
 export type ContactRevisionsArgs = {
@@ -1153,6 +1146,7 @@ export type ContactRevisionsArgs = {
   where?: InputMaybe<ContactToRevisionConnectionWhereArgs>;
 };
 
+
 /** The contact type */
 export type ContactTermsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -1162,10 +1156,12 @@ export type ContactTermsArgs = {
   where?: InputMaybe<ContactToTermNodeConnectionWhereArgs>;
 };
 
+
 /** The contact type */
 export type ContactTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The contact type */
 export type ContactTranslationArgs = {
@@ -1181,7 +1177,7 @@ export enum ContactIdType {
   /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
   Slug = 'SLUG',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Connection between the contact type and the contact type */
@@ -1369,6 +1365,7 @@ export type ContentNode = {
   uri?: Maybe<Scalars['String']>;
 };
 
+
 /** Nodes used to manage content */
 export type ContentNodeEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -1376,6 +1373,7 @@ export type ContentNodeEnqueuedScriptsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** Nodes used to manage content */
 export type ContentNodeEnqueuedStylesheetsArgs = {
@@ -1392,7 +1390,7 @@ export enum ContentNodeIdTypeEnum {
   /** Identify a resource by the (hashed) Global ID. */
   Id = 'ID',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Connection between the ContentNode type and the ContentType type */
@@ -1459,14 +1457,7 @@ export type ContentNodeToEnqueuedStylesheetConnectionEdge = {
 };
 
 /** A union of Content Node Types that support revisions */
-export type ContentRevisionUnion =
-  | Collection
-  | Contact
-  | LandingPage
-  | Page
-  | Post
-  | Release
-  | Translation;
+export type ContentRevisionUnion = Collection | Contact | LandingPage | Page | Post | Release | Translation;
 
 /** The template assigned to a node of content */
 export type ContentTemplate = {
@@ -1475,74 +1466,74 @@ export type ContentTemplate = {
 };
 
 /** An Post Type object */
-export type ContentType = Node &
-  UniformResourceIdentifiable & {
-    __typename?: 'ContentType';
-    /** Whether this content type should can be exported. */
-    canExport?: Maybe<Scalars['Boolean']>;
-    /** Connection between the ContentType type and the Taxonomy type */
-    connectedTaxonomies?: Maybe<ContentTypeToTaxonomyConnection>;
-    /** Connection between the ContentType type and the ContentNode type */
-    contentNodes?: Maybe<ContentTypeToContentNodeConnection>;
-    /** Whether content of this type should be deleted when the author of it is deleted from the system. */
-    deleteWithUser?: Maybe<Scalars['Boolean']>;
-    /** Description of the content type. */
-    description?: Maybe<Scalars['String']>;
-    /** Whether to exclude nodes of this content type from front end search results. */
-    excludeFromSearch?: Maybe<Scalars['Boolean']>;
-    /** The plural name of the content type within the GraphQL Schema. */
-    graphqlPluralName?: Maybe<Scalars['String']>;
-    /** The singular name of the content type within the GraphQL Schema. */
-    graphqlSingleName?: Maybe<Scalars['String']>;
-    /** Whether this content type should have archives. Content archives are generated by type and by date. */
-    hasArchive?: Maybe<Scalars['Boolean']>;
-    /** Whether the content type is hierarchical, for example pages. */
-    hierarchical?: Maybe<Scalars['Boolean']>;
-    /** The globally unique identifier of the post-type object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether this page is set to the static front page. */
-    isFrontPage: Scalars['Boolean'];
-    /** Whether this page is set to the blog posts page. */
-    isPostsPage: Scalars['Boolean'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** Display name of the content type. */
-    label?: Maybe<Scalars['String']>;
-    /** Details about the content type labels. */
-    labels?: Maybe<PostTypeLabelDetails>;
-    /** The name of the icon file to display as a menu icon. */
-    menuIcon?: Maybe<Scalars['String']>;
-    /** The position of this post type in the menu. Only applies if show_in_menu is true. */
-    menuPosition?: Maybe<Scalars['Int']>;
-    /** The internal name of the post type. This should not be used for display purposes. */
-    name?: Maybe<Scalars['String']>;
-    /** Whether a content type is intended for use publicly either via the admin interface or by front-end users. While the default settings of exclude_from_search, publicly_queryable, show_ui, and show_in_nav_menus are inherited from public, each does not rely on this relationship and controls a very specific intention. */
-    public?: Maybe<Scalars['Boolean']>;
-    /** Whether queries can be performed on the front end for the content type as part of parse_request(). */
-    publiclyQueryable?: Maybe<Scalars['Boolean']>;
-    /** Name of content type to display in REST API &quot;wp/v2&quot; namespace. */
-    restBase?: Maybe<Scalars['String']>;
-    /** The REST Controller class assigned to handling this content type. */
-    restControllerClass?: Maybe<Scalars['String']>;
-    /** Makes this content type available via the admin bar. */
-    showInAdminBar?: Maybe<Scalars['Boolean']>;
-    /** Whether to add the content type to the GraphQL Schema. */
-    showInGraphql?: Maybe<Scalars['Boolean']>;
-    /** Where to show the content type in the admin menu. To work, $show_ui must be true. If true, the post type is shown in its own top level menu. If false, no menu is shown. If a string of an existing top level menu (eg. &quot;tools.php&quot; or &quot;edit.php?post_type=page&quot;), the post type will be placed as a sub-menu of that. */
-    showInMenu?: Maybe<Scalars['Boolean']>;
-    /** Makes this content type available for selection in navigation menus. */
-    showInNavMenus?: Maybe<Scalars['Boolean']>;
-    /** Whether the content type is associated with a route under the the REST API &quot;wp/v2&quot; namespace. */
-    showInRest?: Maybe<Scalars['Boolean']>;
-    /** Whether to generate and allow a UI for managing this content type in the admin. */
-    showUi?: Maybe<Scalars['Boolean']>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type ContentType = Node & UniformResourceIdentifiable & {
+  __typename?: 'ContentType';
+  /** Whether this content type should can be exported. */
+  canExport?: Maybe<Scalars['Boolean']>;
+  /** Connection between the ContentType type and the Taxonomy type */
+  connectedTaxonomies?: Maybe<ContentTypeToTaxonomyConnection>;
+  /** Connection between the ContentType type and the ContentNode type */
+  contentNodes?: Maybe<ContentTypeToContentNodeConnection>;
+  /** Whether content of this type should be deleted when the author of it is deleted from the system. */
+  deleteWithUser?: Maybe<Scalars['Boolean']>;
+  /** Description of the content type. */
+  description?: Maybe<Scalars['String']>;
+  /** Whether to exclude nodes of this content type from front end search results. */
+  excludeFromSearch?: Maybe<Scalars['Boolean']>;
+  /** The plural name of the content type within the GraphQL Schema. */
+  graphqlPluralName?: Maybe<Scalars['String']>;
+  /** The singular name of the content type within the GraphQL Schema. */
+  graphqlSingleName?: Maybe<Scalars['String']>;
+  /** Whether this content type should have archives. Content archives are generated by type and by date. */
+  hasArchive?: Maybe<Scalars['Boolean']>;
+  /** Whether the content type is hierarchical, for example pages. */
+  hierarchical?: Maybe<Scalars['Boolean']>;
+  /** The globally unique identifier of the post-type object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether this page is set to the static front page. */
+  isFrontPage: Scalars['Boolean'];
+  /** Whether this page is set to the blog posts page. */
+  isPostsPage: Scalars['Boolean'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** Display name of the content type. */
+  label?: Maybe<Scalars['String']>;
+  /** Details about the content type labels. */
+  labels?: Maybe<PostTypeLabelDetails>;
+  /** The name of the icon file to display as a menu icon. */
+  menuIcon?: Maybe<Scalars['String']>;
+  /** The position of this post type in the menu. Only applies if show_in_menu is true. */
+  menuPosition?: Maybe<Scalars['Int']>;
+  /** The internal name of the post type. This should not be used for display purposes. */
+  name?: Maybe<Scalars['String']>;
+  /** Whether a content type is intended for use publicly either via the admin interface or by front-end users. While the default settings of exclude_from_search, publicly_queryable, show_ui, and show_in_nav_menus are inherited from public, each does not rely on this relationship and controls a very specific intention. */
+  public?: Maybe<Scalars['Boolean']>;
+  /** Whether queries can be performed on the front end for the content type as part of parse_request(). */
+  publiclyQueryable?: Maybe<Scalars['Boolean']>;
+  /** Name of content type to display in REST API &quot;wp/v2&quot; namespace. */
+  restBase?: Maybe<Scalars['String']>;
+  /** The REST Controller class assigned to handling this content type. */
+  restControllerClass?: Maybe<Scalars['String']>;
+  /** Makes this content type available via the admin bar. */
+  showInAdminBar?: Maybe<Scalars['Boolean']>;
+  /** Whether to add the content type to the GraphQL Schema. */
+  showInGraphql?: Maybe<Scalars['Boolean']>;
+  /** Where to show the content type in the admin menu. To work, $show_ui must be true. If true, the post type is shown in its own top level menu. If false, no menu is shown. If a string of an existing top level menu (eg. &quot;tools.php&quot; or &quot;edit.php?post_type=page&quot;), the post type will be placed as a sub-menu of that. */
+  showInMenu?: Maybe<Scalars['Boolean']>;
+  /** Makes this content type available for selection in navigation menus. */
+  showInNavMenus?: Maybe<Scalars['Boolean']>;
+  /** Whether the content type is associated with a route under the the REST API &quot;wp/v2&quot; namespace. */
+  showInRest?: Maybe<Scalars['Boolean']>;
+  /** Whether to generate and allow a UI for managing this content type in the admin. */
+  showUi?: Maybe<Scalars['Boolean']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** An Post Type object */
 export type ContentTypeConnectedTaxonomiesArgs = {
@@ -1551,6 +1542,7 @@ export type ContentTypeConnectedTaxonomiesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** An Post Type object */
 export type ContentTypeContentNodesArgs = {
@@ -1578,7 +1570,7 @@ export enum ContentTypeEnum {
   /** The Type of Content object */
   ReleaseCpt = 'RELEASE_CPT',
   /** The Type of Content object */
-  TranslationCpt = 'TRANSLATION_CPT',
+  TranslationCpt = 'TRANSLATION_CPT'
 }
 
 /** The Type of Identifier used to fetch a single Content Type node. To be used along with the "id" field. Default is "ID". */
@@ -1586,7 +1578,7 @@ export enum ContentTypeIdTypeEnum {
   /** The globally unique ID */
   Id = 'ID',
   /** The name of the content type. */
-  Name = 'NAME',
+  Name = 'NAME'
 }
 
 /** Connection between the ContentType type and the ContentNode type */
@@ -1672,19 +1664,19 @@ export type ContentTypeToTaxonomyConnectionEdge = {
 /** Allowed Content Types of the Category taxonomy. */
 export enum ContentTypesOfCategoryEnum {
   /** The Type of Content object */
-  Post = 'POST',
+  Post = 'POST'
 }
 
 /** Allowed Content Types of the PostFormat taxonomy. */
 export enum ContentTypesOfPostFormatEnum {
   /** The Type of Content object */
-  Post = 'POST',
+  Post = 'POST'
 }
 
 /** Allowed Content Types of the Tag taxonomy. */
 export enum ContentTypesOfTagEnum {
   /** The Type of Content object */
-  Post = 'POST',
+  Post = 'POST'
 }
 
 /** Input for the createCategory mutation */
@@ -2449,44 +2441,42 @@ export type EnqueuedAsset = {
 };
 
 /** Script enqueued by the CMS */
-export type EnqueuedScript = EnqueuedAsset &
-  Node & {
-    __typename?: 'EnqueuedScript';
-    /** @todo */
-    args?: Maybe<Scalars['Boolean']>;
-    /** Dependencies needed to use this asset */
-    dependencies?: Maybe<Array<Maybe<EnqueuedScript>>>;
-    /** Extra information needed for the script */
-    extra?: Maybe<Scalars['String']>;
-    /** The handle of the enqueued asset */
-    handle?: Maybe<Scalars['String']>;
-    /** The ID of the enqueued asset */
-    id: Scalars['ID'];
-    /** The source of the asset */
-    src?: Maybe<Scalars['String']>;
-    /** The version of the enqueued asset */
-    version?: Maybe<Scalars['String']>;
-  };
+export type EnqueuedScript = EnqueuedAsset & Node & {
+  __typename?: 'EnqueuedScript';
+  /** @todo */
+  args?: Maybe<Scalars['Boolean']>;
+  /** Dependencies needed to use this asset */
+  dependencies?: Maybe<Array<Maybe<EnqueuedScript>>>;
+  /** Extra information needed for the script */
+  extra?: Maybe<Scalars['String']>;
+  /** The handle of the enqueued asset */
+  handle?: Maybe<Scalars['String']>;
+  /** The ID of the enqueued asset */
+  id: Scalars['ID'];
+  /** The source of the asset */
+  src?: Maybe<Scalars['String']>;
+  /** The version of the enqueued asset */
+  version?: Maybe<Scalars['String']>;
+};
 
 /** Stylesheet enqueued by the CMS */
-export type EnqueuedStylesheet = EnqueuedAsset &
-  Node & {
-    __typename?: 'EnqueuedStylesheet';
-    /** @todo */
-    args?: Maybe<Scalars['Boolean']>;
-    /** Dependencies needed to use this asset */
-    dependencies?: Maybe<Array<Maybe<EnqueuedScript>>>;
-    /** Extra information needed for the script */
-    extra?: Maybe<Scalars['String']>;
-    /** The handle of the enqueued asset */
-    handle?: Maybe<Scalars['String']>;
-    /** The ID of the enqueued asset */
-    id: Scalars['ID'];
-    /** The source of the asset */
-    src?: Maybe<Scalars['String']>;
-    /** The version of the enqueued asset */
-    version?: Maybe<Scalars['String']>;
-  };
+export type EnqueuedStylesheet = EnqueuedAsset & Node & {
+  __typename?: 'EnqueuedStylesheet';
+  /** @todo */
+  args?: Maybe<Scalars['Boolean']>;
+  /** Dependencies needed to use this asset */
+  dependencies?: Maybe<Array<Maybe<EnqueuedScript>>>;
+  /** Extra information needed for the script */
+  extra?: Maybe<Scalars['String']>;
+  /** The handle of the enqueued asset */
+  handle?: Maybe<Scalars['String']>;
+  /** The ID of the enqueued asset */
+  id: Scalars['ID'];
+  /** The source of the asset */
+  src?: Maybe<Scalars['String']>;
+  /** The version of the enqueued asset */
+  version?: Maybe<Scalars['String']>;
+};
 
 /** Collection Module: EventSearch */
 export type EventSearch = {
@@ -2549,6 +2539,7 @@ export type HierarchicalContentNode = {
   parentId?: Maybe<Scalars['ID']>;
 };
 
+
 /** Content node with hierarchical (parent/child) relationships */
 export type HierarchicalContentNodeAncestorsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2557,6 +2548,7 @@ export type HierarchicalContentNodeAncestorsArgs = {
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs>;
 };
+
 
 /** Content node with hierarchical (parent/child) relationships */
 export type HierarchicalContentNodeChildrenArgs = {
@@ -2571,9 +2563,7 @@ export type HierarchicalContentNodeChildrenArgs = {
 export type HierarchicalContentNodeToContentNodeAncestorsConnection = {
   __typename?: 'HierarchicalContentNodeToContentNodeAncestorsConnection';
   /** Edges for the HierarchicalContentNodeToContentNodeAncestorsConnection connection */
-  edges?: Maybe<
-    Array<Maybe<HierarchicalContentNodeToContentNodeAncestorsConnectionEdge>>
-  >;
+  edges?: Maybe<Array<Maybe<HierarchicalContentNodeToContentNodeAncestorsConnectionEdge>>>;
   /** The nodes of the connection, without the edges */
   nodes?: Maybe<Array<Maybe<ContentNode>>>;
   /** Information about pagination in a connection. */
@@ -2633,9 +2623,7 @@ export type HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs = {
 export type HierarchicalContentNodeToContentNodeChildrenConnection = {
   __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnection';
   /** Edges for the HierarchicalContentNodeToContentNodeChildrenConnection connection */
-  edges?: Maybe<
-    Array<Maybe<HierarchicalContentNodeToContentNodeChildrenConnectionEdge>>
-  >;
+  edges?: Maybe<Array<Maybe<HierarchicalContentNodeToContentNodeChildrenConnectionEdge>>>;
   /** The nodes of the connection, without the edges */
   nodes?: Maybe<Array<Maybe<ContentNode>>>;
   /** Information about pagination in a connection. */
@@ -2707,106 +2695,101 @@ export type HierarchicalTermNode = {
 };
 
 /** The landingPage type */
-export type LandingPage = ContentNode &
-  DatabaseIdentifier &
-  Node &
-  NodeWithRevisions &
-  NodeWithTemplate &
-  NodeWithTitle &
-  UniformResourceIdentifiable & {
-    __typename?: 'LandingPage';
-    /** Background Color */
-    backgroundColor?: Maybe<Scalars['String']>;
-    /** Box Color */
-    boxColor?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the ContentType type */
-    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** Post publishing date. */
-    date?: Maybe<Scalars['String']>;
-    /** The publishing date set in GMT. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** Description */
-    description?: Maybe<Scalars['String']>;
-    /** The desired slug of the post */
-    desiredSlug?: Maybe<Scalars['String']>;
-    /** Desktop Image */
-    desktopImage?: Maybe<LandingPageToMediaItemConnection>;
-    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-    /** The RSS enclosure for the object */
-    enclosure?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-    /** Float Image */
-    floatImage?: Maybe<LandingPageToFloatImageConnection>;
-    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-    guid?: Maybe<Scalars['String']>;
-    /** Link */
-    heroLink?: Maybe<Array<Maybe<Scalars['String']>>>;
-    /** The globally unique identifier of the landing-page-cpt object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is a node in the preview state */
-    isPreview?: Maybe<Scalars['Boolean']>;
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** True if the node is a revision of another node */
-    isRevision?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    landingPageId: Scalars['Int'];
-    /** Polylang language */
-    language?: Maybe<Language>;
-    /** The user that most recently edited the node */
-    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-    /** The permalink of the post */
-    link?: Maybe<Scalars['String']>;
-    /** Mobile Image */
-    mobileImage?: Maybe<LandingPageToMobileImageConnection>;
-    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-    modified?: Maybe<Scalars['String']>;
-    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-    modifiedGmt?: Maybe<Scalars['String']>;
-    /** List of modules */
-    modules?: Maybe<Array<Maybe<CollectionModulesUnionType>>>;
-    /** Connection between the landingPage type and the landingPage type */
-    preview?: Maybe<LandingPageToPreviewConnectionEdge>;
-    /** The database id of the preview node */
-    previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
-    /** Whether the object is a node in the preview state */
-    previewRevisionId?: Maybe<Scalars['ID']>;
-    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-    /** Connection between the landingPage type and the landingPage type */
-    revisions?: Maybe<LandingPageToRevisionConnection>;
-    /** The SEO Framework data of the landingPage */
-    seo?: Maybe<Seo>;
-    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-    slug?: Maybe<Scalars['String']>;
-    /** The current status of the object */
-    status?: Maybe<Scalars['String']>;
-    /** The template assigned to the node */
-    template?: Maybe<ContentTemplate>;
-    /** Connection between the landingPage type and the TermNode type */
-    terms?: Maybe<LandingPageToTermNodeConnection>;
-    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-    title?: Maybe<Scalars['String']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<LandingPage>;
-    /** List all translated versions of this post */
-    translations?: Maybe<Array<Maybe<LandingPage>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type LandingPage = ContentNode & DatabaseIdentifier & Node & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+  __typename?: 'LandingPage';
+  /** Background Color */
+  backgroundColor?: Maybe<Scalars['String']>;
+  /** Box Color */
+  boxColor?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** Description */
+  description?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** Desktop Image */
+  desktopImage?: Maybe<LandingPageToMediaItemConnection>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Float Image */
+  floatImage?: Maybe<LandingPageToFloatImageConnection>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** Link */
+  heroLink?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The globally unique identifier of the landing-page-cpt object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** True if the node is a revision of another node */
+  isRevision?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  landingPageId: Scalars['Int'];
+  /** Polylang language */
+  language?: Maybe<Language>;
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** Mobile Image */
+  mobileImage?: Maybe<LandingPageToMobileImageConnection>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** List of modules */
+  modules?: Maybe<Array<Maybe<CollectionModulesUnionType>>>;
+  /** Connection between the landingPage type and the landingPage type */
+  preview?: Maybe<LandingPageToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+  /** Connection between the landingPage type and the landingPage type */
+  revisions?: Maybe<LandingPageToRevisionConnection>;
+  /** The SEO Framework data of the landingPage */
+  seo?: Maybe<Seo>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** Connection between the landingPage type and the TermNode type */
+  terms?: Maybe<LandingPageToTermNodeConnection>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<LandingPage>;
+  /** List all translated versions of this post */
+  translations?: Maybe<Array<Maybe<LandingPage>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The landingPage type */
 export type LandingPageDesktopImageArgs = {
@@ -2817,6 +2800,7 @@ export type LandingPageDesktopImageArgs = {
   where?: InputMaybe<LandingPageToMediaItemConnectionWhereArgs>;
 };
 
+
 /** The landingPage type */
 export type LandingPageEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2825,6 +2809,7 @@ export type LandingPageEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The landingPage type */
 export type LandingPageEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2832,6 +2817,7 @@ export type LandingPageEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The landingPage type */
 export type LandingPageFloatImageArgs = {
@@ -2842,6 +2828,7 @@ export type LandingPageFloatImageArgs = {
   where?: InputMaybe<LandingPageToFloatImageConnectionWhereArgs>;
 };
 
+
 /** The landingPage type */
 export type LandingPageMobileImageArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2850,6 +2837,7 @@ export type LandingPageMobileImageArgs = {
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<LandingPageToMobileImageConnectionWhereArgs>;
 };
+
 
 /** The landingPage type */
 export type LandingPageRevisionsArgs = {
@@ -2860,6 +2848,7 @@ export type LandingPageRevisionsArgs = {
   where?: InputMaybe<LandingPageToRevisionConnectionWhereArgs>;
 };
 
+
 /** The landingPage type */
 export type LandingPageTermsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2869,10 +2858,12 @@ export type LandingPageTermsArgs = {
   where?: InputMaybe<LandingPageToTermNodeConnectionWhereArgs>;
 };
 
+
 /** The landingPage type */
 export type LandingPageTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The landingPage type */
 export type LandingPageTranslationArgs = {
@@ -2888,7 +2879,7 @@ export enum LandingPageIdType {
   /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
   Slug = 'SLUG',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Connection between the landingPage type and the MediaItem type */
@@ -3222,7 +3213,7 @@ export enum LanguageCodeEnum {
   En = 'EN',
   /** The default locale of the site */
   Fi = 'FI',
-  Sv = 'SV',
+  Sv = 'SV'
 }
 
 /** Filter item by specific language, default language or list all languages */
@@ -3232,7 +3223,7 @@ export enum LanguageCodeFilterEnum {
   En = 'EN',
   /** The default locale of the site */
   Fi = 'FI',
-  Sv = 'SV',
+  Sv = 'SV'
 }
 
 /** Layout: LayoutArticles */
@@ -3329,123 +3320,117 @@ export type MediaDetails = {
 };
 
 /** The mediaItem type */
-export type MediaItem = ContentNode &
-  DatabaseIdentifier &
-  HierarchicalContentNode &
-  Node &
-  NodeWithAuthor &
-  NodeWithTemplate &
-  NodeWithTitle &
-  UniformResourceIdentifiable & {
-    __typename?: 'MediaItem';
-    /** Alternative text to display when resource is not displayed */
-    altText?: Maybe<Scalars['String']>;
-    /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
-    ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
-    /** Connection between the NodeWithAuthor type and the User type */
-    author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
-    /** The database identifier of the author of the node */
-    authorDatabaseId?: Maybe<Scalars['Int']>;
-    /** The globally unique identifier of the author of the node */
-    authorId?: Maybe<Scalars['ID']>;
-    /** The caption for the resource */
-    caption?: Maybe<Scalars['String']>;
-    /** Connection between the HierarchicalContentNode type and the ContentNode type */
-    children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
-    /** Connection between the ContentNode type and the ContentType type */
-    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** Post publishing date. */
-    date?: Maybe<Scalars['String']>;
-    /** The publishing date set in GMT. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** Description of the image (stored as post_content) */
-    description?: Maybe<Scalars['String']>;
-    /** The desired slug of the post */
-    desiredSlug?: Maybe<Scalars['String']>;
-    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-    /** The RSS enclosure for the object */
-    enclosure?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-    /** The filesize in bytes of the resource */
-    fileSize?: Maybe<Scalars['Int']>;
-    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-    guid?: Maybe<Scalars['String']>;
-    /** The globally unique identifier of the attachment object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is a node in the preview state */
-    isPreview?: Maybe<Scalars['Boolean']>;
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** Polylang language */
-    language?: Maybe<Language>;
-    /** The user that most recently edited the node */
-    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-    /** The permalink of the post */
-    link?: Maybe<Scalars['String']>;
-    /** Details about the mediaItem */
-    mediaDetails?: Maybe<MediaDetails>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    mediaItemId: Scalars['Int'];
-    /** Url of the mediaItem */
-    mediaItemUrl?: Maybe<Scalars['String']>;
-    /** Type of resource */
-    mediaType?: Maybe<Scalars['String']>;
-    /** The mime type of the mediaItem */
-    mimeType?: Maybe<Scalars['String']>;
-    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-    modified?: Maybe<Scalars['String']>;
-    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-    modifiedGmt?: Maybe<Scalars['String']>;
-    /** The parent of the node. The parent object can be of various types */
-    parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
-    /** Database id of the parent node */
-    parentDatabaseId?: Maybe<Scalars['Int']>;
-    /** The globally unique identifier of the parent node. */
-    parentId?: Maybe<Scalars['ID']>;
-    /** Valokuvaajan tiedot */
-    photographerName?: Maybe<Scalars['String']>;
-    /** The database id of the preview node */
-    previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
-    /** Whether the object is a node in the preview state */
-    previewRevisionId?: Maybe<Scalars['ID']>;
-    /** The SEO Framework data of the mediaItem */
-    seo?: Maybe<Seo>;
-    /** The sizes attribute value for an image. */
-    sizes?: Maybe<Scalars['String']>;
-    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-    slug?: Maybe<Scalars['String']>;
-    /** Url of the mediaItem */
-    sourceUrl?: Maybe<Scalars['String']>;
-    /** The srcset attribute specifies the URL of the image to use in different situations. It is a comma separated string of urls and their widths. */
-    srcSet?: Maybe<Scalars['String']>;
-    /** The current status of the object */
-    status?: Maybe<Scalars['String']>;
-    /** The template assigned to the node */
-    template?: Maybe<ContentTemplate>;
-    /** Connection between the mediaItem type and the TermNode type */
-    terms?: Maybe<MediaItemToTermNodeConnection>;
-    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-    title?: Maybe<Scalars['String']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<MediaItem>;
-    /** List all translated versions of this post */
-    translations?: Maybe<Array<Maybe<MediaItem>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNode & Node & NodeWithAuthor & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+  __typename?: 'MediaItem';
+  /** Alternative text to display when resource is not displayed */
+  altText?: Maybe<Scalars['String']>;
+  /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+  ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
+  /** Connection between the NodeWithAuthor type and the User type */
+  author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
+  /** The database identifier of the author of the node */
+  authorDatabaseId?: Maybe<Scalars['Int']>;
+  /** The globally unique identifier of the author of the node */
+  authorId?: Maybe<Scalars['ID']>;
+  /** The caption for the resource */
+  caption?: Maybe<Scalars['String']>;
+  /** Connection between the HierarchicalContentNode type and the ContentNode type */
+  children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** Description of the image (stored as post_content) */
+  description?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** The filesize in bytes of the resource */
+  fileSize?: Maybe<Scalars['Int']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** The globally unique identifier of the attachment object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** Polylang language */
+  language?: Maybe<Language>;
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** Details about the mediaItem */
+  mediaDetails?: Maybe<MediaDetails>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  mediaItemId: Scalars['Int'];
+  /** Url of the mediaItem */
+  mediaItemUrl?: Maybe<Scalars['String']>;
+  /** Type of resource */
+  mediaType?: Maybe<Scalars['String']>;
+  /** The mime type of the mediaItem */
+  mimeType?: Maybe<Scalars['String']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** The parent of the node. The parent object can be of various types */
+  parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
+  /** Database id of the parent node */
+  parentDatabaseId?: Maybe<Scalars['Int']>;
+  /** The globally unique identifier of the parent node. */
+  parentId?: Maybe<Scalars['ID']>;
+  /** Valokuvaajan tiedot */
+  photographerName?: Maybe<Scalars['String']>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /** The SEO Framework data of the mediaItem */
+  seo?: Maybe<Seo>;
+  /** The sizes attribute value for an image. */
+  sizes?: Maybe<Scalars['String']>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** Url of the mediaItem */
+  sourceUrl?: Maybe<Scalars['String']>;
+  /** The srcset attribute specifies the URL of the image to use in different situations. It is a comma separated string of urls and their widths. */
+  srcSet?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** Connection between the mediaItem type and the TermNode type */
+  terms?: Maybe<MediaItemToTermNodeConnection>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<MediaItem>;
+  /** List all translated versions of this post */
+  translations?: Maybe<Array<Maybe<MediaItem>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The mediaItem type */
 export type MediaItemAncestorsArgs = {
@@ -3456,10 +3441,12 @@ export type MediaItemAncestorsArgs = {
   where?: InputMaybe<HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs>;
 };
 
+
 /** The mediaItem type */
 export type MediaItemCaptionArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The mediaItem type */
 export type MediaItemChildrenArgs = {
@@ -3470,10 +3457,12 @@ export type MediaItemChildrenArgs = {
   where?: InputMaybe<HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs>;
 };
 
+
 /** The mediaItem type */
 export type MediaItemDescriptionArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The mediaItem type */
 export type MediaItemEnqueuedScriptsArgs = {
@@ -3483,6 +3472,7 @@ export type MediaItemEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The mediaItem type */
 export type MediaItemEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -3491,25 +3481,30 @@ export type MediaItemEnqueuedStylesheetsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The mediaItem type */
 export type MediaItemFileSizeArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
 };
+
 
 /** The mediaItem type */
 export type MediaItemSizesArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
 };
 
+
 /** The mediaItem type */
 export type MediaItemSourceUrlArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
 };
 
+
 /** The mediaItem type */
 export type MediaItemSrcSetArgs = {
   size?: InputMaybe<MediaItemSizeEnum>;
 };
+
 
 /** The mediaItem type */
 export type MediaItemTermsArgs = {
@@ -3520,10 +3515,12 @@ export type MediaItemTermsArgs = {
   where?: InputMaybe<MediaItemToTermNodeConnectionWhereArgs>;
 };
 
+
 /** The mediaItem type */
 export type MediaItemTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The mediaItem type */
 export type MediaItemTranslationArgs = {
@@ -3541,7 +3538,7 @@ export enum MediaItemIdType {
   /** Identify a media item by its source url */
   SourceUrl = 'SOURCE_URL',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Meta connected to a MediaItem */
@@ -3586,7 +3583,7 @@ export enum MediaItemSizeEnum {
   /** MediaItem with the 1536x1536 size */
   '1536X1536' = '_1536X1536',
   /** MediaItem with the 2048x2048 size */
-  '2048X2048' = '_2048X2048',
+  '2048X2048' = '_2048X2048'
 }
 
 /** The status of the media item object. */
@@ -3598,7 +3595,7 @@ export enum MediaItemStatusEnum {
   /** Objects with the private status */
   Private = 'PRIVATE',
   /** Objects with the trash status */
-  Trash = 'TRASH',
+  Trash = 'TRASH'
 }
 
 /** Connection between the mediaItem type and the TermNode type */
@@ -3687,31 +3684,31 @@ export type MediaSize = {
 };
 
 /** Menus are the containers for navigation items. Menus can be assigned to menu locations, which are typically registered by the active theme. */
-export type Menu = DatabaseIdentifier &
-  Node & {
-    __typename?: 'Menu';
-    /** The number of items in the menu */
-    count?: Maybe<Scalars['Int']>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** The globally unique identifier of the nav menu object. */
-    id: Scalars['ID'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** The locations a menu is assigned to */
-    locations?: Maybe<Array<Maybe<MenuLocationEnum>>>;
-    /**
-     * WP ID of the nav menu.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    menuId?: Maybe<Scalars['Int']>;
-    /** Connection between the Menu type and the MenuItem type */
-    menuItems?: Maybe<MenuToMenuItemConnection>;
-    /** Display name of the menu. Equivalent to WP_Term-&gt;name. */
-    name?: Maybe<Scalars['String']>;
-    /** The url friendly name of the menu. Equivalent to WP_Term-&gt;slug */
-    slug?: Maybe<Scalars['String']>;
-  };
+export type Menu = DatabaseIdentifier & Node & {
+  __typename?: 'Menu';
+  /** The number of items in the menu */
+  count?: Maybe<Scalars['Int']>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** The globally unique identifier of the nav menu object. */
+  id: Scalars['ID'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** The locations a menu is assigned to */
+  locations?: Maybe<Array<Maybe<MenuLocationEnum>>>;
+  /**
+   * WP ID of the nav menu.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  menuId?: Maybe<Scalars['Int']>;
+  /** Connection between the Menu type and the MenuItem type */
+  menuItems?: Maybe<MenuToMenuItemConnection>;
+  /** Display name of the menu. Equivalent to WP_Term-&gt;name. */
+  name?: Maybe<Scalars['String']>;
+  /** The url friendly name of the menu. Equivalent to WP_Term-&gt;slug */
+  slug?: Maybe<Scalars['String']>;
+};
+
 
 /** Menus are the containers for navigation items. Menus can be assigned to menu locations, which are typically registered by the active theme. */
 export type MenuMenuItemsArgs = {
@@ -3723,56 +3720,56 @@ export type MenuMenuItemsArgs = {
 };
 
 /** Navigation menu items are the individual items assigned to a menu. These are rendered as the links in a navigation menu. */
-export type MenuItem = DatabaseIdentifier &
-  Node & {
-    __typename?: 'MenuItem';
-    /** Connection between the MenuItem type and the MenuItem type */
-    childItems?: Maybe<MenuItemToMenuItemConnection>;
-    /** Connection from MenuItem to it&#039;s connected node */
-    connectedNode?: Maybe<MenuItemToMenuItemLinkableConnectionEdge>;
-    /**
-     * The object connected to this menu item.
-     * @deprecated Deprecated in favor of the connectedNode field
-     */
-    connectedObject?: Maybe<MenuItemObjectUnion>;
-    /** Class attribute for the menu item link */
-    cssClasses?: Maybe<Array<Maybe<Scalars['String']>>>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** Description of the menu item. */
-    description?: Maybe<Scalars['String']>;
-    /** The globally unique identifier of the nav menu item object. */
-    id: Scalars['ID'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** Label or title of the menu item. */
-    label?: Maybe<Scalars['String']>;
-    /** Link relationship (XFN) of the menu item. */
-    linkRelationship?: Maybe<Scalars['String']>;
-    /** The locations the menu item&#039;s Menu is assigned to */
-    locations?: Maybe<Array<Maybe<MenuLocationEnum>>>;
-    /** The Menu a MenuItem is part of */
-    menu?: Maybe<MenuItemToMenuConnectionEdge>;
-    /**
-     * WP ID of the menu item.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    menuItemId?: Maybe<Scalars['Int']>;
-    /** Menu item order */
-    order?: Maybe<Scalars['Int']>;
-    /** The database id of the parent menu item or null if it is the root */
-    parentDatabaseId?: Maybe<Scalars['Int']>;
-    /** The globally unique identifier of the parent nav menu item object. */
-    parentId?: Maybe<Scalars['ID']>;
-    /** Path for the resource. Relative path for internal resources. Absolute path for external resources. */
-    path?: Maybe<Scalars['String']>;
-    /** Target attribute for the menu item link. */
-    target?: Maybe<Scalars['String']>;
-    /** Title attribute for the menu item link */
-    title?: Maybe<Scalars['String']>;
-    /** URL or destination of the menu item. */
-    url?: Maybe<Scalars['String']>;
-  };
+export type MenuItem = DatabaseIdentifier & Node & {
+  __typename?: 'MenuItem';
+  /** Connection between the MenuItem type and the MenuItem type */
+  childItems?: Maybe<MenuItemToMenuItemConnection>;
+  /** Connection from MenuItem to it&#039;s connected node */
+  connectedNode?: Maybe<MenuItemToMenuItemLinkableConnectionEdge>;
+  /**
+   * The object connected to this menu item.
+   * @deprecated Deprecated in favor of the connectedNode field
+   */
+  connectedObject?: Maybe<MenuItemObjectUnion>;
+  /** Class attribute for the menu item link */
+  cssClasses?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Description of the menu item. */
+  description?: Maybe<Scalars['String']>;
+  /** The globally unique identifier of the nav menu item object. */
+  id: Scalars['ID'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Label or title of the menu item. */
+  label?: Maybe<Scalars['String']>;
+  /** Link relationship (XFN) of the menu item. */
+  linkRelationship?: Maybe<Scalars['String']>;
+  /** The locations the menu item&#039;s Menu is assigned to */
+  locations?: Maybe<Array<Maybe<MenuLocationEnum>>>;
+  /** The Menu a MenuItem is part of */
+  menu?: Maybe<MenuItemToMenuConnectionEdge>;
+  /**
+   * WP ID of the menu item.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  menuItemId?: Maybe<Scalars['Int']>;
+  /** Menu item order */
+  order?: Maybe<Scalars['Int']>;
+  /** The database id of the parent menu item or null if it is the root */
+  parentDatabaseId?: Maybe<Scalars['Int']>;
+  /** The globally unique identifier of the parent nav menu item object. */
+  parentId?: Maybe<Scalars['ID']>;
+  /** Path for the resource. Relative path for internal resources. Absolute path for external resources. */
+  path?: Maybe<Scalars['String']>;
+  /** Target attribute for the menu item link. */
+  target?: Maybe<Scalars['String']>;
+  /** Title attribute for the menu item link */
+  title?: Maybe<Scalars['String']>;
+  /** URL or destination of the menu item. */
+  url?: Maybe<Scalars['String']>;
+};
+
 
 /** Navigation menu items are the individual items assigned to a menu. These are rendered as the links in a navigation menu. */
 export type MenuItemChildItemsArgs = {
@@ -3798,7 +3795,7 @@ export enum MenuItemNodeIdTypeEnum {
   /** Identify a resource by the Database ID. */
   DatabaseId = 'DATABASE_ID',
   /** Identify a resource by the (hashed) Global ID. */
-  Id = 'ID',
+  Id = 'ID'
 }
 
 /** Deprecated in favor of MenuItemLinkeable Interface */
@@ -3869,7 +3866,7 @@ export enum MenuLocationEnum {
   /** Put the menu in the tertiary___en location */
   TertiaryEn = 'TERTIARY___EN',
   /** Put the menu in the tertiary___sv location */
-  TertiarySv = 'TERTIARY___SV',
+  TertiarySv = 'TERTIARY___SV'
 }
 
 /** The Type of Identifier used to fetch a single node. Default is "ID". To be used along with the "id" field. */
@@ -3879,7 +3876,7 @@ export enum MenuNodeIdTypeEnum {
   /** Identify a menu node by the (hashed) Global ID. */
   Id = 'ID',
   /** Identify a menu node by it's name */
-  Name = 'NAME',
+  Name = 'NAME'
 }
 
 /** Connection between the Menu type and the MenuItem type */
@@ -3979,7 +3976,7 @@ export enum MimeTypeEnum {
   /** MimeType video/webm */
   VideoWebm = 'VIDEO_WEBM',
   /** MimeType video/x-flv */
-  VideoXFlv = 'VIDEO_X_FLV',
+  VideoXFlv = 'VIDEO_X_FLV'
 }
 
 /** An object with an ID */
@@ -4010,6 +4007,7 @@ export type NodeWithContentEditor = {
   /** The content of the post. */
   content?: Maybe<Scalars['String']>;
 };
+
 
 /** A node that supports the content editor */
 export type NodeWithContentEditorContentArgs = {
@@ -4076,6 +4074,7 @@ export type NodeWithFeaturedImage = {
   uri?: Maybe<Scalars['String']>;
 };
 
+
 /** A node that can have a featured image set */
 export type NodeWithFeaturedImageEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4083,6 +4082,7 @@ export type NodeWithFeaturedImageEnqueuedScriptsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** A node that can have a featured image set */
 export type NodeWithFeaturedImageEnqueuedStylesheetsArgs = {
@@ -4132,6 +4132,7 @@ export type NodeWithTitle = {
   title?: Maybe<Scalars['String']>;
 };
 
+
 /** A node that NodeWith a title */
 export type NodeWithTitleTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
@@ -4161,142 +4162,131 @@ export enum OrderEnum {
   /** Sort the query result set in an ascending order */
   Asc = 'ASC',
   /** Sort the query result set in a descending order */
-  Desc = 'DESC',
+  Desc = 'DESC'
 }
 
 /** The page type */
-export type Page = ContentNode &
-  DatabaseIdentifier &
-  HierarchicalContentNode &
-  MenuItemLinkable &
-  Node &
-  NodeWithAuthor &
-  NodeWithContentEditor &
-  NodeWithFeaturedImage &
-  NodeWithPageAttributes &
-  NodeWithRevisions &
-  NodeWithTemplate &
-  NodeWithTitle &
-  UniformResourceIdentifiable & {
-    __typename?: 'Page';
-    /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
-    ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
-    /** Connection between the NodeWithAuthor type and the User type */
-    author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
-    /** The database identifier of the author of the node */
-    authorDatabaseId?: Maybe<Scalars['Int']>;
-    /** The globally unique identifier of the author of the node */
-    authorId?: Maybe<Scalars['ID']>;
-    /** Connection between the HierarchicalContentNode type and the ContentNode type */
-    children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
-    /** The content of the post. */
-    content?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the ContentType type */
-    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-    /** The unique resource identifier path */
-    databaseId: Scalars['Int'];
-    /** Post publishing date. */
-    date?: Maybe<Scalars['String']>;
-    /** The publishing date set in GMT. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** The desired slug of the post */
-    desiredSlug?: Maybe<Scalars['String']>;
-    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-    /** The RSS enclosure for the object */
-    enclosure?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-    /** Vanhentumisaika */
-    expirationTime?: Maybe<Scalars['String']>;
-    /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
-    featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
-    /** The database identifier for the featured image node assigned to the content node */
-    featuredImageDatabaseId?: Maybe<Scalars['Int']>;
-    /** Globally unique ID of the featured image assigned to the node */
-    featuredImageId?: Maybe<Scalars['ID']>;
-    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-    guid?: Maybe<Scalars['String']>;
-    /** The globally unique identifier of the page object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether this page is set to the static front page. */
-    isFrontPage: Scalars['Boolean'];
-    /** Whether this page is set to the blog posts page. */
-    isPostsPage: Scalars['Boolean'];
-    /** Whether the object is a node in the preview state */
-    isPreview?: Maybe<Scalars['Boolean']>;
-    /** Whether this page is set to the privacy page. */
-    isPrivacyPage: Scalars['Boolean'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** True if the node is a revision of another node */
-    isRevision?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** Polylang language */
-    language?: Maybe<Language>;
-    /** The user that most recently edited the node */
-    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-    /** Ingressi */
-    lead?: Maybe<Scalars['String']>;
-    /** The permalink of the post */
-    link?: Maybe<Scalars['String']>;
-    /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
-    menuOrder?: Maybe<Scalars['Int']>;
-    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-    modified?: Maybe<Scalars['String']>;
-    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-    modifiedGmt?: Maybe<Scalars['String']>;
-    /** List of modules */
-    modules?: Maybe<Array<Maybe<PageModulesUnionType>>>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    pageId: Scalars['Int'];
-    /** The parent of the node. The parent object can be of various types */
-    parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
-    /** Database id of the parent node */
-    parentDatabaseId?: Maybe<Scalars['Int']>;
-    /** The globally unique identifier of the parent node. */
-    parentId?: Maybe<Scalars['ID']>;
-    /** Connection between the page type and the page type */
-    preview?: Maybe<PageToPreviewConnectionEdge>;
-    /** The database id of the preview node */
-    previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
-    /** Whether the object is a node in the preview state */
-    previewRevisionId?: Maybe<Scalars['ID']>;
-    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-    /** Connection between the page type and the page type */
-    revisions?: Maybe<PageToRevisionConnection>;
-    /** The SEO Framework data of the page */
-    seo?: Maybe<Seo>;
-    /** Näytä alisivut */
-    showChildPages?: Maybe<Scalars['Boolean']>;
-    /** List of modules */
-    sidebar?: Maybe<Array<Maybe<PageSidebarUnionType>>>;
-    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-    slug?: Maybe<Scalars['String']>;
-    /** The current status of the object */
-    status?: Maybe<Scalars['String']>;
-    /** The template assigned to a node of content */
-    template?: Maybe<ContentTemplate>;
-    /** Connection between the page type and the TermNode type */
-    terms?: Maybe<PageToTermNodeConnection>;
-    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-    title?: Maybe<Scalars['String']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<Page>;
-    /** List all translated versions of this post */
-    translations?: Maybe<Array<Maybe<Page>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithPageAttributes & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+  __typename?: 'Page';
+  /** Returns ancestors of the node. Default ordered as lowest (closest to the child) to highest (closest to the root). */
+  ancestors?: Maybe<HierarchicalContentNodeToContentNodeAncestorsConnection>;
+  /** Connection between the NodeWithAuthor type and the User type */
+  author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
+  /** The database identifier of the author of the node */
+  authorDatabaseId?: Maybe<Scalars['Int']>;
+  /** The globally unique identifier of the author of the node */
+  authorId?: Maybe<Scalars['ID']>;
+  /** Connection between the HierarchicalContentNode type and the ContentNode type */
+  children?: Maybe<HierarchicalContentNodeToContentNodeChildrenConnection>;
+  /** The content of the post. */
+  content?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The unique resource identifier path */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Vanhentumisaika */
+  expirationTime?: Maybe<Scalars['String']>;
+  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+  /** The database identifier for the featured image node assigned to the content node */
+  featuredImageDatabaseId?: Maybe<Scalars['Int']>;
+  /** Globally unique ID of the featured image assigned to the node */
+  featuredImageId?: Maybe<Scalars['ID']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** The globally unique identifier of the page object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether this page is set to the static front page. */
+  isFrontPage: Scalars['Boolean'];
+  /** Whether this page is set to the blog posts page. */
+  isPostsPage: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether this page is set to the privacy page. */
+  isPrivacyPage: Scalars['Boolean'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** True if the node is a revision of another node */
+  isRevision?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** Polylang language */
+  language?: Maybe<Language>;
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** Ingressi */
+  lead?: Maybe<Scalars['String']>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** A field used for ordering posts. This is typically used with nav menu items or for special ordering of hierarchical content types. */
+  menuOrder?: Maybe<Scalars['Int']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** List of modules */
+  modules?: Maybe<Array<Maybe<PageModulesUnionType>>>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  pageId: Scalars['Int'];
+  /** The parent of the node. The parent object can be of various types */
+  parent?: Maybe<HierarchicalContentNodeToParentContentNodeConnectionEdge>;
+  /** Database id of the parent node */
+  parentDatabaseId?: Maybe<Scalars['Int']>;
+  /** The globally unique identifier of the parent node. */
+  parentId?: Maybe<Scalars['ID']>;
+  /** Connection between the page type and the page type */
+  preview?: Maybe<PageToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+  /** Connection between the page type and the page type */
+  revisions?: Maybe<PageToRevisionConnection>;
+  /** The SEO Framework data of the page */
+  seo?: Maybe<Seo>;
+  /** Näytä alisivut */
+  showChildPages?: Maybe<Scalars['Boolean']>;
+  /** List of modules */
+  sidebar?: Maybe<Array<Maybe<PageSidebarUnionType>>>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** The template assigned to a node of content */
+  template?: Maybe<ContentTemplate>;
+  /** Connection between the page type and the TermNode type */
+  terms?: Maybe<PageToTermNodeConnection>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<Page>;
+  /** List all translated versions of this post */
+  translations?: Maybe<Array<Maybe<Page>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The page type */
 export type PageAncestorsArgs = {
@@ -4307,6 +4297,7 @@ export type PageAncestorsArgs = {
   where?: InputMaybe<HierarchicalContentNodeToContentNodeAncestorsConnectionWhereArgs>;
 };
 
+
 /** The page type */
 export type PageChildrenArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4316,10 +4307,12 @@ export type PageChildrenArgs = {
   where?: InputMaybe<HierarchicalContentNodeToContentNodeChildrenConnectionWhereArgs>;
 };
 
+
 /** The page type */
 export type PageContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The page type */
 export type PageEnqueuedScriptsArgs = {
@@ -4329,6 +4322,7 @@ export type PageEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The page type */
 export type PageEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4336,6 +4330,7 @@ export type PageEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The page type */
 export type PageRevisionsArgs = {
@@ -4346,6 +4341,7 @@ export type PageRevisionsArgs = {
   where?: InputMaybe<PageToRevisionConnectionWhereArgs>;
 };
 
+
 /** The page type */
 export type PageTermsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4355,10 +4351,12 @@ export type PageTermsArgs = {
   where?: InputMaybe<PageToTermNodeConnectionWhereArgs>;
 };
 
+
 /** The page type */
 export type PageTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The page type */
 export type PageTranslationArgs = {
@@ -4372,21 +4370,12 @@ export enum PageIdType {
   /** Identify a resource by the (hashed) Global ID. */
   Id = 'ID',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
-export type PageModulesUnionType =
-  | EventSearch
-  | EventSelected
-  | LayoutArticles
-  | LayoutCollection
-  | LayoutContact
-  | LayoutPages;
+export type PageModulesUnionType = EventSearch | EventSelected | LayoutArticles | LayoutCollection | LayoutContact | LayoutPages;
 
-export type PageSidebarUnionType =
-  | LayoutArticles
-  | LayoutLinkList
-  | LayoutPages;
+export type PageSidebarUnionType = LayoutArticles | LayoutLinkList | LayoutPages;
 
 /** Connection between the page type and the page type */
 export type PageToPreviewConnectionEdge = {
@@ -4551,124 +4540,115 @@ export type Plugin = Node & {
 };
 
 /** The post type */
-export type Post = ContentNode &
-  DatabaseIdentifier &
-  MenuItemLinkable &
-  Node &
-  NodeWithAuthor &
-  NodeWithContentEditor &
-  NodeWithFeaturedImage &
-  NodeWithRevisions &
-  NodeWithTemplate &
-  NodeWithTitle &
-  UniformResourceIdentifiable & {
-    __typename?: 'Post';
-    /** Connection between the NodeWithAuthor type and the User type */
-    author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
-    /** The database identifier of the author of the node */
-    authorDatabaseId?: Maybe<Scalars['Int']>;
-    /** The globally unique identifier of the author of the node */
-    authorId?: Maybe<Scalars['ID']>;
-    /** Connection between the post type and the category type */
-    categories?: Maybe<PostToCategoryConnection>;
-    /** The content of the post. */
-    content?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the ContentType type */
-    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-    /** The unique resource identifier path */
-    databaseId: Scalars['Int'];
-    /** Post publishing date. */
-    date?: Maybe<Scalars['String']>;
-    /** The publishing date set in GMT. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** The desired slug of the post */
-    desiredSlug?: Maybe<Scalars['String']>;
-    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-    /** The RSS enclosure for the object */
-    enclosure?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-    /** Vanhentumisaika */
-    expirationTime?: Maybe<Scalars['String']>;
-    /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
-    featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
-    /** The database identifier for the featured image node assigned to the content node */
-    featuredImageDatabaseId?: Maybe<Scalars['Int']>;
-    /** Globally unique ID of the featured image assigned to the node */
-    featuredImageId?: Maybe<Scalars['ID']>;
-    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-    guid?: Maybe<Scalars['String']>;
-    /** Hide Published Date */
-    hidePublishedDate?: Maybe<Scalars['Boolean']>;
-    /** The globally unique identifier of the post object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is a node in the preview state */
-    isPreview?: Maybe<Scalars['Boolean']>;
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** True if the node is a revision of another node */
-    isRevision?: Maybe<Scalars['Boolean']>;
-    /** Whether this page is sticky */
-    isSticky: Scalars['Boolean'];
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** Polylang language */
-    language?: Maybe<Language>;
-    /** The user that most recently edited the node */
-    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-    /** Ingressi */
-    lead?: Maybe<Scalars['String']>;
-    /** The permalink of the post */
-    link?: Maybe<Scalars['String']>;
-    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-    modified?: Maybe<Scalars['String']>;
-    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-    modifiedGmt?: Maybe<Scalars['String']>;
-    /** List of modules */
-    modules?: Maybe<Array<Maybe<PostModulesUnionType>>>;
-    /** Connection between the post type and the postFormat type */
-    postFormats?: Maybe<PostToPostFormatConnection>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    postId: Scalars['Int'];
-    /** Connection between the post type and the post type */
-    preview?: Maybe<PostToPreviewConnectionEdge>;
-    /** The database id of the preview node */
-    previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
-    /** Whether the object is a node in the preview state */
-    previewRevisionId?: Maybe<Scalars['ID']>;
-    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-    /** Connection between the post type and the post type */
-    revisions?: Maybe<PostToRevisionConnection>;
-    /** The SEO Framework data of the post */
-    seo?: Maybe<Seo>;
-    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-    slug?: Maybe<Scalars['String']>;
-    /** The current status of the object */
-    status?: Maybe<Scalars['String']>;
-    /** Connection between the post type and the tag type */
-    tags?: Maybe<PostToTagConnection>;
-    /** The template assigned to a node of content */
-    template?: Maybe<ContentTemplate>;
-    /** Connection between the post type and the TermNode type */
-    terms?: Maybe<PostToTermNodeConnection>;
-    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-    title?: Maybe<Scalars['String']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<Post>;
-    /** List all translated versions of this post */
-    translations?: Maybe<Array<Maybe<Post>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithContentEditor & NodeWithFeaturedImage & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+  __typename?: 'Post';
+  /** Connection between the NodeWithAuthor type and the User type */
+  author?: Maybe<NodeWithAuthorToUserConnectionEdge>;
+  /** The database identifier of the author of the node */
+  authorDatabaseId?: Maybe<Scalars['Int']>;
+  /** The globally unique identifier of the author of the node */
+  authorId?: Maybe<Scalars['ID']>;
+  /** Connection between the post type and the category type */
+  categories?: Maybe<PostToCategoryConnection>;
+  /** The content of the post. */
+  content?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The unique resource identifier path */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Vanhentumisaika */
+  expirationTime?: Maybe<Scalars['String']>;
+  /** Connection between the NodeWithFeaturedImage type and the MediaItem type */
+  featuredImage?: Maybe<NodeWithFeaturedImageToMediaItemConnectionEdge>;
+  /** The database identifier for the featured image node assigned to the content node */
+  featuredImageDatabaseId?: Maybe<Scalars['Int']>;
+  /** Globally unique ID of the featured image assigned to the node */
+  featuredImageId?: Maybe<Scalars['ID']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** Hide Published Date */
+  hidePublishedDate?: Maybe<Scalars['Boolean']>;
+  /** The globally unique identifier of the post object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** True if the node is a revision of another node */
+  isRevision?: Maybe<Scalars['Boolean']>;
+  /** Whether this page is sticky */
+  isSticky: Scalars['Boolean'];
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** Polylang language */
+  language?: Maybe<Language>;
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** Ingressi */
+  lead?: Maybe<Scalars['String']>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** List of modules */
+  modules?: Maybe<Array<Maybe<PostModulesUnionType>>>;
+  /** Connection between the post type and the postFormat type */
+  postFormats?: Maybe<PostToPostFormatConnection>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  postId: Scalars['Int'];
+  /** Connection between the post type and the post type */
+  preview?: Maybe<PostToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+  /** Connection between the post type and the post type */
+  revisions?: Maybe<PostToRevisionConnection>;
+  /** The SEO Framework data of the post */
+  seo?: Maybe<Seo>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** Connection between the post type and the tag type */
+  tags?: Maybe<PostToTagConnection>;
+  /** The template assigned to a node of content */
+  template?: Maybe<ContentTemplate>;
+  /** Connection between the post type and the TermNode type */
+  terms?: Maybe<PostToTermNodeConnection>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<Post>;
+  /** List all translated versions of this post */
+  translations?: Maybe<Array<Maybe<Post>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The post type */
 export type PostCategoriesArgs = {
@@ -4679,10 +4659,12 @@ export type PostCategoriesArgs = {
   where?: InputMaybe<PostToCategoryConnectionWhereArgs>;
 };
 
+
 /** The post type */
 export type PostContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The post type */
 export type PostEnqueuedScriptsArgs = {
@@ -4692,6 +4674,7 @@ export type PostEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The post type */
 export type PostEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4699,6 +4682,7 @@ export type PostEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The post type */
 export type PostPostFormatsArgs = {
@@ -4709,6 +4693,7 @@ export type PostPostFormatsArgs = {
   where?: InputMaybe<PostToPostFormatConnectionWhereArgs>;
 };
 
+
 /** The post type */
 export type PostRevisionsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4717,6 +4702,7 @@ export type PostRevisionsArgs = {
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PostToRevisionConnectionWhereArgs>;
 };
+
 
 /** The post type */
 export type PostTagsArgs = {
@@ -4727,6 +4713,7 @@ export type PostTagsArgs = {
   where?: InputMaybe<PostToTagConnectionWhereArgs>;
 };
 
+
 /** The post type */
 export type PostTermsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4736,10 +4723,12 @@ export type PostTermsArgs = {
   where?: InputMaybe<PostToTermNodeConnectionWhereArgs>;
 };
 
+
 /** The post type */
 export type PostTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The post type */
 export type PostTranslationArgs = {
@@ -4767,53 +4756,51 @@ export type PostCategoriesNodeInput = {
 };
 
 /** The postFormat type */
-export type PostFormat = DatabaseIdentifier &
-  Node &
-  TermNode &
-  UniformResourceIdentifiable & {
-    __typename?: 'PostFormat';
-    /** Connection between the postFormat type and the ContentNode type */
-    contentNodes?: Maybe<PostFormatToContentNodeConnection>;
-    /** The number of objects connected to the object */
-    count?: Maybe<Scalars['Int']>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** The description of the object */
-    description?: Maybe<Scalars['String']>;
-    /** Connection between the TermNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-    /** Connection between the TermNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-    /** The unique resource identifier path */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** The link to the term */
-    link?: Maybe<Scalars['String']>;
-    /** The human friendly name of the object. */
-    name?: Maybe<Scalars['String']>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of databaseId
-     */
-    postFormatId?: Maybe<Scalars['Int']>;
-    /** Connection between the postFormat type and the post type */
-    posts?: Maybe<PostFormatToPostConnection>;
-    /** An alphanumeric identifier for the object unique to its type. */
-    slug?: Maybe<Scalars['String']>;
-    /** Connection between the postFormat type and the Taxonomy type */
-    taxonomy?: Maybe<PostFormatToTaxonomyConnectionEdge>;
-    /** The ID of the term group that this term object belongs to */
-    termGroupId?: Maybe<Scalars['Int']>;
-    /** The taxonomy ID that the object is associated with */
-    termTaxonomyId?: Maybe<Scalars['Int']>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type PostFormat = DatabaseIdentifier & Node & TermNode & UniformResourceIdentifiable & {
+  __typename?: 'PostFormat';
+  /** Connection between the postFormat type and the ContentNode type */
+  contentNodes?: Maybe<PostFormatToContentNodeConnection>;
+  /** The number of objects connected to the object */
+  count?: Maybe<Scalars['Int']>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** The description of the object */
+  description?: Maybe<Scalars['String']>;
+  /** Connection between the TermNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+  /** Connection between the TermNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+  /** The unique resource identifier path */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** The link to the term */
+  link?: Maybe<Scalars['String']>;
+  /** The human friendly name of the object. */
+  name?: Maybe<Scalars['String']>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of databaseId
+   */
+  postFormatId?: Maybe<Scalars['Int']>;
+  /** Connection between the postFormat type and the post type */
+  posts?: Maybe<PostFormatToPostConnection>;
+  /** An alphanumeric identifier for the object unique to its type. */
+  slug?: Maybe<Scalars['String']>;
+  /** Connection between the postFormat type and the Taxonomy type */
+  taxonomy?: Maybe<PostFormatToTaxonomyConnectionEdge>;
+  /** The ID of the term group that this term object belongs to */
+  termGroupId?: Maybe<Scalars['Int']>;
+  /** The taxonomy ID that the object is associated with */
+  termTaxonomyId?: Maybe<Scalars['Int']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The postFormat type */
 export type PostFormatContentNodesArgs = {
@@ -4824,6 +4811,7 @@ export type PostFormatContentNodesArgs = {
   where?: InputMaybe<PostFormatToContentNodeConnectionWhereArgs>;
 };
 
+
 /** The postFormat type */
 export type PostFormatEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4832,6 +4820,7 @@ export type PostFormatEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The postFormat type */
 export type PostFormatEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -4839,6 +4828,7 @@ export type PostFormatEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The postFormat type */
 export type PostFormatPostsArgs = {
@@ -4860,7 +4850,7 @@ export enum PostFormatIdType {
   /** Url friendly name of the node */
   Slug = 'SLUG',
   /** The URI for the node */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Connection between the postFormat type and the ContentNode type */
@@ -5025,23 +5015,17 @@ export enum PostIdType {
   /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
   Slug = 'SLUG',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
-export type PostModulesUnionType =
-  | EventSearch
-  | EventSelected
-  | LayoutArticles
-  | LayoutCollection
-  | LayoutContact
-  | LayoutPages;
+export type PostModulesUnionType = EventSearch | EventSelected | LayoutArticles | LayoutCollection | LayoutContact | LayoutPages;
 
 /** The format of post field data. */
 export enum PostObjectFieldFormatEnum {
   /** Provide the field value directly from database */
   Raw = 'RAW',
   /** Apply the default WordPress rendering */
-  Rendered = 'RENDERED',
+  Rendered = 'RENDERED'
 }
 
 /** The column to use when filtering by date */
@@ -5049,7 +5033,7 @@ export enum PostObjectsConnectionDateColumnEnum {
   /** The date the comment was created in local time. */
   Date = 'DATE',
   /** The most recent modification date of the comment. */
-  Modified = 'MODIFIED',
+  Modified = 'MODIFIED'
 }
 
 /** Field to order the connection by */
@@ -5073,7 +5057,7 @@ export enum PostObjectsConnectionOrderbyEnum {
   /** Order by slug */
   Slug = 'SLUG',
   /** Order by title */
-  Title = 'TITLE',
+  Title = 'TITLE'
 }
 
 /** Options for ordering the connection */
@@ -5137,7 +5121,7 @@ export enum PostStatusEnum {
   /** Objects with the wp_stream_disabled status */
   WpStreamDisabled = 'WP_STREAM_DISABLED',
   /** Objects with the wp_stream_enabled status */
-  WpStreamEnabled = 'WP_STREAM_ENABLED',
+  WpStreamEnabled = 'WP_STREAM_ENABLED'
 }
 
 /** Set relationships between the post to tags */
@@ -5625,104 +5609,99 @@ export enum RelationEnum {
   /** The logical AND condition returns true if both operands are true, otherwise, it returns false. */
   And = 'AND',
   /** The logical OR condition returns false if both operands are false, otherwise, it returns true. */
-  Or = 'OR',
+  Or = 'OR'
 }
 
 /** The release type */
-export type Release = ContentNode &
-  DatabaseIdentifier &
-  Node &
-  NodeWithContentEditor &
-  NodeWithRevisions &
-  NodeWithTemplate &
-  NodeWithTitle &
-  UniformResourceIdentifiable & {
-    __typename?: 'Release';
-    /** The content of the post. */
-    content?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the ContentType type */
-    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** Post publishing date. */
-    date?: Maybe<Scalars['String']>;
-    /** The publishing date set in GMT. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** The desired slug of the post */
-    desiredSlug?: Maybe<Scalars['String']>;
-    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-    /** The RSS enclosure for the object */
-    enclosure?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-    /** Vanhentumisaika */
-    expirationTime?: Maybe<Scalars['String']>;
-    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-    guid?: Maybe<Scalars['String']>;
-    /** The globally unique identifier of the release-cpt object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is a node in the preview state */
-    isPreview?: Maybe<Scalars['Boolean']>;
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** True if the node is a revision of another node */
-    isRevision?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** Polylang language */
-    language?: Maybe<Language>;
-    /** The user that most recently edited the node */
-    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-    /** The permalink of the post */
-    link?: Maybe<Scalars['String']>;
-    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-    modified?: Maybe<Scalars['String']>;
-    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-    modifiedGmt?: Maybe<Scalars['String']>;
-    /** Connection between the release type and the release type */
-    preview?: Maybe<ReleaseToPreviewConnectionEdge>;
-    /** The database id of the preview node */
-    previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
-    /** Whether the object is a node in the preview state */
-    previewRevisionId?: Maybe<Scalars['ID']>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    releaseId: Scalars['Int'];
-    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-    /** Connection between the release type and the release type */
-    revisions?: Maybe<ReleaseToRevisionConnection>;
-    /** The SEO Framework data of the release */
-    seo?: Maybe<Seo>;
-    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-    slug?: Maybe<Scalars['String']>;
-    /** The current status of the object */
-    status?: Maybe<Scalars['String']>;
-    /** The template assigned to the node */
-    template?: Maybe<ContentTemplate>;
-    /** Connection between the release type and the TermNode type */
-    terms?: Maybe<ReleaseToTermNodeConnection>;
-    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-    title?: Maybe<Scalars['String']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<Release>;
-    /** List all translated versions of this post */
-    translations?: Maybe<Array<Maybe<Release>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type Release = ContentNode & DatabaseIdentifier & Node & NodeWithContentEditor & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+  __typename?: 'Release';
+  /** The content of the post. */
+  content?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** Vanhentumisaika */
+  expirationTime?: Maybe<Scalars['String']>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** The globally unique identifier of the release-cpt object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** True if the node is a revision of another node */
+  isRevision?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** Polylang language */
+  language?: Maybe<Language>;
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** Connection between the release type and the release type */
+  preview?: Maybe<ReleaseToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  releaseId: Scalars['Int'];
+  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+  /** Connection between the release type and the release type */
+  revisions?: Maybe<ReleaseToRevisionConnection>;
+  /** The SEO Framework data of the release */
+  seo?: Maybe<Seo>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** Connection between the release type and the TermNode type */
+  terms?: Maybe<ReleaseToTermNodeConnection>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<Release>;
+  /** List all translated versions of this post */
+  translations?: Maybe<Array<Maybe<Release>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The release type */
 export type ReleaseContentArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The release type */
 export type ReleaseEnqueuedScriptsArgs = {
@@ -5732,6 +5711,7 @@ export type ReleaseEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The release type */
 export type ReleaseEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -5739,6 +5719,7 @@ export type ReleaseEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The release type */
 export type ReleaseRevisionsArgs = {
@@ -5749,6 +5730,7 @@ export type ReleaseRevisionsArgs = {
   where?: InputMaybe<ReleaseToRevisionConnectionWhereArgs>;
 };
 
+
 /** The release type */
 export type ReleaseTermsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -5758,10 +5740,12 @@ export type ReleaseTermsArgs = {
   where?: InputMaybe<ReleaseToTermNodeConnectionWhereArgs>;
 };
 
+
 /** The release type */
 export type ReleaseTitleArgs = {
   format?: InputMaybe<PostObjectFieldFormatEnum>;
 };
+
 
 /** The release type */
 export type ReleaseTranslationArgs = {
@@ -5777,7 +5761,7 @@ export enum ReleaseIdType {
   /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
   Slug = 'SLUG',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Connection between the release type and the release type */
@@ -6046,225 +6030,270 @@ export type RootMutation = {
   updateUser?: Maybe<UpdateUserPayload>;
 };
 
+
 /** The root mutation */
 export type RootMutationCreateCategoryArgs = {
   input: CreateCategoryInput;
 };
+
 
 /** The root mutation */
 export type RootMutationCreateCollectionArgs = {
   input: CreateCollectionInput;
 };
 
+
 /** The root mutation */
 export type RootMutationCreateCommentArgs = {
   input: CreateCommentInput;
 };
+
 
 /** The root mutation */
 export type RootMutationCreateContactArgs = {
   input: CreateContactInput;
 };
 
+
 /** The root mutation */
 export type RootMutationCreateLandingPageArgs = {
   input: CreateLandingPageInput;
 };
+
 
 /** The root mutation */
 export type RootMutationCreateMediaItemArgs = {
   input: CreateMediaItemInput;
 };
 
+
 /** The root mutation */
 export type RootMutationCreatePageArgs = {
   input: CreatePageInput;
 };
+
 
 /** The root mutation */
 export type RootMutationCreatePostArgs = {
   input: CreatePostInput;
 };
 
+
 /** The root mutation */
 export type RootMutationCreatePostFormatArgs = {
   input: CreatePostFormatInput;
 };
+
 
 /** The root mutation */
 export type RootMutationCreateReleaseArgs = {
   input: CreateReleaseInput;
 };
 
+
 /** The root mutation */
 export type RootMutationCreateTagArgs = {
   input: CreateTagInput;
 };
+
 
 /** The root mutation */
 export type RootMutationCreateTranslationArgs = {
   input: CreateTranslationInput;
 };
 
+
 /** The root mutation */
 export type RootMutationCreateUserArgs = {
   input: CreateUserInput;
 };
+
 
 /** The root mutation */
 export type RootMutationDeleteCategoryArgs = {
   input: DeleteCategoryInput;
 };
 
+
 /** The root mutation */
 export type RootMutationDeleteCollectionArgs = {
   input: DeleteCollectionInput;
 };
+
 
 /** The root mutation */
 export type RootMutationDeleteCommentArgs = {
   input: DeleteCommentInput;
 };
 
+
 /** The root mutation */
 export type RootMutationDeleteContactArgs = {
   input: DeleteContactInput;
 };
+
 
 /** The root mutation */
 export type RootMutationDeleteLandingPageArgs = {
   input: DeleteLandingPageInput;
 };
 
+
 /** The root mutation */
 export type RootMutationDeleteMediaItemArgs = {
   input: DeleteMediaItemInput;
 };
+
 
 /** The root mutation */
 export type RootMutationDeletePageArgs = {
   input: DeletePageInput;
 };
 
+
 /** The root mutation */
 export type RootMutationDeletePostArgs = {
   input: DeletePostInput;
 };
+
 
 /** The root mutation */
 export type RootMutationDeletePostFormatArgs = {
   input: DeletePostFormatInput;
 };
 
+
 /** The root mutation */
 export type RootMutationDeleteReleaseArgs = {
   input: DeleteReleaseInput;
 };
+
 
 /** The root mutation */
 export type RootMutationDeleteTagArgs = {
   input: DeleteTagInput;
 };
 
+
 /** The root mutation */
 export type RootMutationDeleteTranslationArgs = {
   input: DeleteTranslationInput;
 };
+
 
 /** The root mutation */
 export type RootMutationDeleteUserArgs = {
   input: DeleteUserInput;
 };
 
+
 /** The root mutation */
 export type RootMutationIncreaseCountArgs = {
   count?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The root mutation */
 export type RootMutationRegisterUserArgs = {
   input: RegisterUserInput;
 };
 
+
 /** The root mutation */
 export type RootMutationResetUserPasswordArgs = {
   input: ResetUserPasswordInput;
 };
+
 
 /** The root mutation */
 export type RootMutationRestoreCommentArgs = {
   input: RestoreCommentInput;
 };
 
+
 /** The root mutation */
 export type RootMutationSendPasswordResetEmailArgs = {
   input: SendPasswordResetEmailInput;
 };
+
 
 /** The root mutation */
 export type RootMutationUpdateCategoryArgs = {
   input: UpdateCategoryInput;
 };
 
+
 /** The root mutation */
 export type RootMutationUpdateCollectionArgs = {
   input: UpdateCollectionInput;
 };
+
 
 /** The root mutation */
 export type RootMutationUpdateCommentArgs = {
   input: UpdateCommentInput;
 };
 
+
 /** The root mutation */
 export type RootMutationUpdateContactArgs = {
   input: UpdateContactInput;
 };
+
 
 /** The root mutation */
 export type RootMutationUpdateLandingPageArgs = {
   input: UpdateLandingPageInput;
 };
 
+
 /** The root mutation */
 export type RootMutationUpdateMediaItemArgs = {
   input: UpdateMediaItemInput;
 };
+
 
 /** The root mutation */
 export type RootMutationUpdatePageArgs = {
   input: UpdatePageInput;
 };
 
+
 /** The root mutation */
 export type RootMutationUpdatePostArgs = {
   input: UpdatePostInput;
 };
+
 
 /** The root mutation */
 export type RootMutationUpdatePostFormatArgs = {
   input: UpdatePostFormatInput;
 };
 
+
 /** The root mutation */
 export type RootMutationUpdateReleaseArgs = {
   input: UpdateReleaseInput;
 };
+
 
 /** The root mutation */
 export type RootMutationUpdateSettingsArgs = {
   input: UpdateSettingsInput;
 };
 
+
 /** The root mutation */
 export type RootMutationUpdateTagArgs = {
   input: UpdateTagInput;
 };
 
+
 /** The root mutation */
 export type RootMutationUpdateTranslationArgs = {
   input: UpdateTranslationInput;
 };
+
 
 /** The root mutation */
 export type RootMutationUpdateUserArgs = {
@@ -6437,6 +6466,7 @@ export type RootQuery = {
   writingSettings?: Maybe<WritingSettings>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryCategoriesArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -6446,11 +6476,13 @@ export type RootQueryCategoriesArgs = {
   where?: InputMaybe<RootQueryToCategoryConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryCategoryArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<CategoryIdType>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryCollectionArgs = {
@@ -6459,6 +6491,7 @@ export type RootQueryCollectionArgs = {
   idType?: InputMaybe<CollectionIdType>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryCollectionByArgs = {
   collectionId?: InputMaybe<Scalars['Int']>;
@@ -6466,6 +6499,7 @@ export type RootQueryCollectionByArgs = {
   slug?: InputMaybe<Scalars['String']>;
   uri?: InputMaybe<Scalars['String']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryCollectionsArgs = {
@@ -6476,10 +6510,12 @@ export type RootQueryCollectionsArgs = {
   where?: InputMaybe<RootQueryToCollectionConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryCommentArgs = {
   id: Scalars['ID'];
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryCommentsArgs = {
@@ -6490,12 +6526,14 @@ export type RootQueryCommentsArgs = {
   where?: InputMaybe<RootQueryToCommentConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryContactArgs = {
   asPreview?: InputMaybe<Scalars['Boolean']>;
   id: Scalars['ID'];
   idType?: InputMaybe<ContactIdType>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryContactByArgs = {
@@ -6504,6 +6542,7 @@ export type RootQueryContactByArgs = {
   slug?: InputMaybe<Scalars['String']>;
   uri?: InputMaybe<Scalars['String']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryContactsArgs = {
@@ -6514,6 +6553,7 @@ export type RootQueryContactsArgs = {
   where?: InputMaybe<RootQueryToContactConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryContentNodeArgs = {
   asPreview?: InputMaybe<Scalars['Boolean']>;
@@ -6521,6 +6561,7 @@ export type RootQueryContentNodeArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<ContentNodeIdTypeEnum>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryContentNodesArgs = {
@@ -6531,11 +6572,13 @@ export type RootQueryContentNodesArgs = {
   where?: InputMaybe<RootQueryToContentNodeConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryContentTypeArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<ContentTypeIdTypeEnum>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryContentTypesArgs = {
@@ -6545,12 +6588,14 @@ export type RootQueryContentTypesArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryLandingPageArgs = {
   asPreview?: InputMaybe<Scalars['Boolean']>;
   id: Scalars['ID'];
   idType?: InputMaybe<LandingPageIdType>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryLandingPageByArgs = {
@@ -6559,6 +6604,7 @@ export type RootQueryLandingPageByArgs = {
   slug?: InputMaybe<Scalars['String']>;
   uri?: InputMaybe<Scalars['String']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryLandingPagesArgs = {
@@ -6569,12 +6615,14 @@ export type RootQueryLandingPagesArgs = {
   where?: InputMaybe<RootQueryToLandingPageConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryMediaItemArgs = {
   asPreview?: InputMaybe<Scalars['Boolean']>;
   id: Scalars['ID'];
   idType?: InputMaybe<MediaItemIdType>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryMediaItemByArgs = {
@@ -6583,6 +6631,7 @@ export type RootQueryMediaItemByArgs = {
   slug?: InputMaybe<Scalars['String']>;
   uri?: InputMaybe<Scalars['String']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryMediaItemsArgs = {
@@ -6593,17 +6642,20 @@ export type RootQueryMediaItemsArgs = {
   where?: InputMaybe<RootQueryToMediaItemConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryMenuArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<MenuNodeIdTypeEnum>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryMenuItemArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<MenuItemNodeIdTypeEnum>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryMenuItemsArgs = {
@@ -6614,6 +6666,7 @@ export type RootQueryMenuItemsArgs = {
   where?: InputMaybe<RootQueryToMenuItemConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryMenusArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -6623,20 +6676,24 @@ export type RootQueryMenusArgs = {
   where?: InputMaybe<RootQueryToMenuConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryNodeArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryNodeByUriArgs = {
   uri: Scalars['String'];
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryNotificationArgs = {
   language: Scalars['String'];
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryPageArgs = {
@@ -6645,12 +6702,14 @@ export type RootQueryPageArgs = {
   idType?: InputMaybe<PageIdType>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryPageByArgs = {
   id?: InputMaybe<Scalars['ID']>;
   pageId?: InputMaybe<Scalars['Int']>;
   uri?: InputMaybe<Scalars['String']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryPagesArgs = {
@@ -6661,10 +6720,12 @@ export type RootQueryPagesArgs = {
   where?: InputMaybe<RootQueryToPageConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryPluginArgs = {
   id: Scalars['ID'];
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryPluginsArgs = {
@@ -6674,12 +6735,14 @@ export type RootQueryPluginsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryPostArgs = {
   asPreview?: InputMaybe<Scalars['Boolean']>;
   id: Scalars['ID'];
   idType?: InputMaybe<PostIdType>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryPostByArgs = {
@@ -6689,11 +6752,13 @@ export type RootQueryPostByArgs = {
   uri?: InputMaybe<Scalars['String']>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryPostFormatArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<PostFormatIdType>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryPostFormatsArgs = {
@@ -6704,6 +6769,7 @@ export type RootQueryPostFormatsArgs = {
   where?: InputMaybe<RootQueryToPostFormatConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryPostsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -6713,6 +6779,7 @@ export type RootQueryPostsArgs = {
   where?: InputMaybe<RootQueryToPostConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryRegisteredScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -6720,6 +6787,7 @@ export type RootQueryRegisteredScriptsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryRegisteredStylesheetsArgs = {
@@ -6729,12 +6797,14 @@ export type RootQueryRegisteredStylesheetsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryReleaseArgs = {
   asPreview?: InputMaybe<Scalars['Boolean']>;
   id: Scalars['ID'];
   idType?: InputMaybe<ReleaseIdType>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryReleaseByArgs = {
@@ -6743,6 +6813,7 @@ export type RootQueryReleaseByArgs = {
   slug?: InputMaybe<Scalars['String']>;
   uri?: InputMaybe<Scalars['String']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryReleasesArgs = {
@@ -6753,6 +6824,7 @@ export type RootQueryReleasesArgs = {
   where?: InputMaybe<RootQueryToReleaseConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryRevisionsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -6762,16 +6834,19 @@ export type RootQueryRevisionsArgs = {
   where?: InputMaybe<RootQueryToContentRevisionUnionConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQuerySiteSettingsArgs = {
   language: Scalars['String'];
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryTagArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<TagIdType>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryTagsArgs = {
@@ -6782,6 +6857,7 @@ export type RootQueryTagsArgs = {
   where?: InputMaybe<RootQueryToTagConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryTaxonomiesArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -6790,11 +6866,13 @@ export type RootQueryTaxonomiesArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryTaxonomyArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<TaxonomyIdTypeEnum>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryTermNodeArgs = {
@@ -6802,6 +6880,7 @@ export type RootQueryTermNodeArgs = {
   idType?: InputMaybe<TermNodeIdTypeEnum>;
   taxonomy?: InputMaybe<TaxonomyEnum>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryTermsArgs = {
@@ -6812,10 +6891,12 @@ export type RootQueryTermsArgs = {
   where?: InputMaybe<RootQueryToTermNodeConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryThemeArgs = {
   id: Scalars['ID'];
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryThemesArgs = {
@@ -6825,11 +6906,13 @@ export type RootQueryThemesArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryTranslateStringArgs = {
   language: LanguageCodeEnum;
   string: Scalars['String'];
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryTranslationArgs = {
@@ -6838,6 +6921,7 @@ export type RootQueryTranslationArgs = {
   idType?: InputMaybe<TranslationIdType>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryTranslationByArgs = {
   id?: InputMaybe<Scalars['ID']>;
@@ -6845,6 +6929,7 @@ export type RootQueryTranslationByArgs = {
   translationId?: InputMaybe<Scalars['Int']>;
   uri?: InputMaybe<Scalars['String']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryTranslationsArgs = {
@@ -6855,16 +6940,19 @@ export type RootQueryTranslationsArgs = {
   where?: InputMaybe<RootQueryToTranslationConnectionWhereArgs>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryUserArgs = {
   id: Scalars['ID'];
   idType?: InputMaybe<UserNodeIdTypeEnum>;
 };
 
+
 /** The root entry point into the Graph */
 export type RootQueryUserRoleArgs = {
   id: Scalars['ID'];
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryUserRolesArgs = {
@@ -6873,6 +6961,7 @@ export type RootQueryUserRolesArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The root entry point into the Graph */
 export type RootQueryUsersArgs = {
@@ -8105,9 +8194,7 @@ export type RootQueryToUserConnectionWhereArgs = {
   /** Search keyword. Searches for possible string matches on columns. When "searchColumns" is left empty, it tries to determine which column to search in based on search string. */
   search?: InputMaybe<Scalars['String']>;
   /** Array of column names to be searched. Accepts 'ID', 'login', 'nicename', 'email', 'url'. */
-  searchColumns?: InputMaybe<
-    Array<InputMaybe<UsersConnectionSearchColumnEnum>>
-  >;
+  searchColumns?: InputMaybe<Array<InputMaybe<UsersConnectionSearchColumnEnum>>>;
 };
 
 /** Connection between the RootQuery type and the UserRole type */
@@ -8228,60 +8315,57 @@ export type SiteSettings = {
 };
 
 /** The tag type */
-export type Tag = DatabaseIdentifier &
-  MenuItemLinkable &
-  Node &
-  TermNode &
-  UniformResourceIdentifiable & {
-    __typename?: 'Tag';
-    /** Connection between the tag type and the ContentNode type */
-    contentNodes?: Maybe<TagToContentNodeConnection>;
-    /** The number of objects connected to the object */
-    count?: Maybe<Scalars['Int']>;
-    /** The unique resource identifier path */
-    databaseId: Scalars['Int'];
-    /** The description of the object */
-    description?: Maybe<Scalars['String']>;
-    /** Connection between the TermNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
-    /** Connection between the TermNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
-    /** The unique resource identifier path */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** List available translations for this post */
-    language?: Maybe<Language>;
-    /** The link to the term */
-    link?: Maybe<Scalars['String']>;
-    /** The human friendly name of the object. */
-    name?: Maybe<Scalars['String']>;
-    /** Connection between the tag type and the post type */
-    posts?: Maybe<TagToPostConnection>;
-    /** An alphanumeric identifier for the object unique to its type. */
-    slug?: Maybe<Scalars['String']>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of databaseId
-     */
-    tagId?: Maybe<Scalars['Int']>;
-    /** Connection between the tag type and the Taxonomy type */
-    taxonomy?: Maybe<TagToTaxonomyConnectionEdge>;
-    /** The ID of the term group that this term object belongs to */
-    termGroupId?: Maybe<Scalars['Int']>;
-    /** The taxonomy ID that the object is associated with */
-    termTaxonomyId?: Maybe<Scalars['Int']>;
-    /** Get specific translation version of this object */
-    translation?: Maybe<Tag>;
-    /** List all translated versions of this term */
-    translations?: Maybe<Array<Maybe<Tag>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
+  __typename?: 'Tag';
+  /** Connection between the tag type and the ContentNode type */
+  contentNodes?: Maybe<TagToContentNodeConnection>;
+  /** The number of objects connected to the object */
+  count?: Maybe<Scalars['Int']>;
+  /** The unique resource identifier path */
+  databaseId: Scalars['Int'];
+  /** The description of the object */
+  description?: Maybe<Scalars['String']>;
+  /** Connection between the TermNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<TermNodeToEnqueuedScriptConnection>;
+  /** Connection between the TermNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
+  /** The unique resource identifier path */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** List available translations for this post */
+  language?: Maybe<Language>;
+  /** The link to the term */
+  link?: Maybe<Scalars['String']>;
+  /** The human friendly name of the object. */
+  name?: Maybe<Scalars['String']>;
+  /** Connection between the tag type and the post type */
+  posts?: Maybe<TagToPostConnection>;
+  /** An alphanumeric identifier for the object unique to its type. */
+  slug?: Maybe<Scalars['String']>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of databaseId
+   */
+  tagId?: Maybe<Scalars['Int']>;
+  /** Connection between the tag type and the Taxonomy type */
+  taxonomy?: Maybe<TagToTaxonomyConnectionEdge>;
+  /** The ID of the term group that this term object belongs to */
+  termGroupId?: Maybe<Scalars['Int']>;
+  /** The taxonomy ID that the object is associated with */
+  termTaxonomyId?: Maybe<Scalars['Int']>;
+  /** Get specific translation version of this object */
+  translation?: Maybe<Tag>;
+  /** List all translated versions of this term */
+  translations?: Maybe<Array<Maybe<Tag>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The tag type */
 export type TagContentNodesArgs = {
@@ -8292,6 +8376,7 @@ export type TagContentNodesArgs = {
   where?: InputMaybe<TagToContentNodeConnectionWhereArgs>;
 };
 
+
 /** The tag type */
 export type TagEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -8299,6 +8384,7 @@ export type TagEnqueuedScriptsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The tag type */
 export type TagEnqueuedStylesheetsArgs = {
@@ -8308,6 +8394,7 @@ export type TagEnqueuedStylesheetsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The tag type */
 export type TagPostsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -8316,6 +8403,7 @@ export type TagPostsArgs = {
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<TagToPostConnectionWhereArgs>;
 };
+
 
 /** The tag type */
 export type TagTranslationArgs = {
@@ -8333,7 +8421,7 @@ export enum TagIdType {
   /** Url friendly name of the node */
   Slug = 'SLUG',
   /** The URI for the node */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Connection between the tag type and the ContentNode type */
@@ -8534,6 +8622,7 @@ export type Taxonomy = Node & {
   showUi?: Maybe<Scalars['Boolean']>;
 };
 
+
 /** A taxonomy object */
 export type TaxonomyConnectedContentTypesArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -8549,7 +8638,7 @@ export enum TaxonomyEnum {
   /** Taxonomy enum post_format */
   Postformat = 'POSTFORMAT',
   /** Taxonomy enum post_tag */
-  Tag = 'TAG',
+  Tag = 'TAG'
 }
 
 /** The Type of Identifier used to fetch a single Taxonomy node. To be used along with the "id" field. Default is "ID". */
@@ -8557,7 +8646,7 @@ export enum TaxonomyIdTypeEnum {
   /** The globally unique ID */
   Id = 'ID',
   /** The name of the taxonomy */
-  Name = 'NAME',
+  Name = 'NAME'
 }
 
 /** Connection between the Taxonomy type and the ContentType type */
@@ -8614,6 +8703,7 @@ export type TermNode = {
   uri?: Maybe<Scalars['String']>;
 };
 
+
 /** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
 export type TermNodeEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -8621,6 +8711,7 @@ export type TermNodeEnqueuedScriptsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** Terms are nodes within a Taxonomy, used to group and relate other nodes. */
 export type TermNodeEnqueuedStylesheetsArgs = {
@@ -8641,7 +8732,7 @@ export enum TermNodeIdTypeEnum {
   /** Url friendly name of the node */
   Slug = 'SLUG',
   /** The URI for the node */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Connection between the TermNode type and the EnqueuedScript type */
@@ -8699,7 +8790,7 @@ export enum TermObjectsConnectionOrderbyEnum {
   /** Order the connection by term id. */
   TermId = 'TERM_ID',
   /** Order the connection by term order. */
-  TermOrder = 'TERM_ORDER',
+  TermOrder = 'TERM_ORDER'
 }
 
 /** A theme object */
@@ -8730,84 +8821,79 @@ export type Theme = Node & {
 };
 
 /** The translation type */
-export type Translation = ContentNode &
-  DatabaseIdentifier &
-  Node &
-  NodeWithRevisions &
-  NodeWithTemplate &
-  NodeWithTitle &
-  UniformResourceIdentifiable & {
-    __typename?: 'Translation';
-    /** Connection between the ContentNode type and the ContentType type */
-    contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
-    /** The unique identifier stored in the database */
-    databaseId: Scalars['Int'];
-    /** Post publishing date. */
-    date?: Maybe<Scalars['String']>;
-    /** The publishing date set in GMT. */
-    dateGmt?: Maybe<Scalars['String']>;
-    /** The desired slug of the post */
-    desiredSlug?: Maybe<Scalars['String']>;
-    /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
-    editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
-    /** The RSS enclosure for the object */
-    enclosure?: Maybe<Scalars['String']>;
-    /** Connection between the ContentNode type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
-    /** Connection between the ContentNode type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
-    /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
-    guid?: Maybe<Scalars['String']>;
-    /** The globally unique identifier of the translation-cpt object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is a node in the preview state */
-    isPreview?: Maybe<Scalars['Boolean']>;
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** True if the node is a revision of another node */
-    isRevision?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** The user that most recently edited the node */
-    lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
-    /** The permalink of the post */
-    link?: Maybe<Scalars['String']>;
-    /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
-    modified?: Maybe<Scalars['String']>;
-    /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
-    modifiedGmt?: Maybe<Scalars['String']>;
-    /** Connection between the translation type and the translation type */
-    preview?: Maybe<TranslationToPreviewConnectionEdge>;
-    /** The database id of the preview node */
-    previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
-    /** Whether the object is a node in the preview state */
-    previewRevisionId?: Maybe<Scalars['ID']>;
-    /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
-    revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
-    /** Connection between the translation type and the translation type */
-    revisions?: Maybe<TranslationToRevisionConnection>;
-    /** The SEO Framework data of the translation */
-    seo?: Maybe<Seo>;
-    /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
-    slug?: Maybe<Scalars['String']>;
-    /** The current status of the object */
-    status?: Maybe<Scalars['String']>;
-    /** The template assigned to the node */
-    template?: Maybe<ContentTemplate>;
-    /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
-    title?: Maybe<Scalars['String']>;
-    /**
-     * The id field matches the WP_Post-&gt;ID field.
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    translationId: Scalars['Int'];
-    /** Translations */
-    translations?: Maybe<Array<Maybe<TranslationResponse>>>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-  };
+export type Translation = ContentNode & DatabaseIdentifier & Node & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & UniformResourceIdentifiable & {
+  __typename?: 'Translation';
+  /** Connection between the ContentNode type and the ContentType type */
+  contentType?: Maybe<ContentNodeToContentTypeConnectionEdge>;
+  /** The unique identifier stored in the database */
+  databaseId: Scalars['Int'];
+  /** Post publishing date. */
+  date?: Maybe<Scalars['String']>;
+  /** The publishing date set in GMT. */
+  dateGmt?: Maybe<Scalars['String']>;
+  /** The desired slug of the post */
+  desiredSlug?: Maybe<Scalars['String']>;
+  /** If a user has edited the node within the past 15 seconds, this will return the user that last edited. Null if the edit lock doesn&#039;t exist or is greater than 15 seconds */
+  editingLockedBy?: Maybe<ContentNodeToEditLockConnectionEdge>;
+  /** The RSS enclosure for the object */
+  enclosure?: Maybe<Scalars['String']>;
+  /** Connection between the ContentNode type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<ContentNodeToEnqueuedScriptConnection>;
+  /** Connection between the ContentNode type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<ContentNodeToEnqueuedStylesheetConnection>;
+  /** The global unique identifier for this post. This currently matches the value stored in WP_Post-&gt;guid and the guid column in the &quot;post_objects&quot; database table. */
+  guid?: Maybe<Scalars['String']>;
+  /** The globally unique identifier of the translation-cpt object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is a node in the preview state */
+  isPreview?: Maybe<Scalars['Boolean']>;
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** True if the node is a revision of another node */
+  isRevision?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** The user that most recently edited the node */
+  lastEditedBy?: Maybe<ContentNodeToEditLastConnectionEdge>;
+  /** The permalink of the post */
+  link?: Maybe<Scalars['String']>;
+  /** The local modified time for a post. If a post was recently updated the modified field will change to match the corresponding time. */
+  modified?: Maybe<Scalars['String']>;
+  /** The GMT modified time for a post. If a post was recently updated the modified field will change to match the corresponding time in GMT. */
+  modifiedGmt?: Maybe<Scalars['String']>;
+  /** Connection between the translation type and the translation type */
+  preview?: Maybe<TranslationToPreviewConnectionEdge>;
+  /** The database id of the preview node */
+  previewRevisionDatabaseId?: Maybe<Scalars['Int']>;
+  /** Whether the object is a node in the preview state */
+  previewRevisionId?: Maybe<Scalars['ID']>;
+  /** If the current node is a revision, this field exposes the node this is a revision of. Returns null if the node is not a revision of another node. */
+  revisionOf?: Maybe<NodeWithRevisionsToContentNodeConnectionEdge>;
+  /** Connection between the translation type and the translation type */
+  revisions?: Maybe<TranslationToRevisionConnection>;
+  /** The SEO Framework data of the translation */
+  seo?: Maybe<Seo>;
+  /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
+  slug?: Maybe<Scalars['String']>;
+  /** The current status of the object */
+  status?: Maybe<Scalars['String']>;
+  /** The template assigned to the node */
+  template?: Maybe<ContentTemplate>;
+  /** The title of the post. This is currently just the raw title. An amendment to support rendered title needs to be made. */
+  title?: Maybe<Scalars['String']>;
+  /**
+   * The id field matches the WP_Post-&gt;ID field.
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  translationId: Scalars['Int'];
+  /** Translations */
+  translations?: Maybe<Array<Maybe<TranslationResponse>>>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+};
+
 
 /** The translation type */
 export type TranslationEnqueuedScriptsArgs = {
@@ -8817,6 +8903,7 @@ export type TranslationEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** The translation type */
 export type TranslationEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -8824,6 +8911,7 @@ export type TranslationEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** The translation type */
 export type TranslationRevisionsArgs = {
@@ -8833,6 +8921,7 @@ export type TranslationRevisionsArgs = {
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<TranslationToRevisionConnectionWhereArgs>;
 };
+
 
 /** The translation type */
 export type TranslationTitleArgs = {
@@ -8848,7 +8937,7 @@ export enum TranslationIdType {
   /** Identify a resource by the slug. Available to non-hierarchcial Types where the slug is a unique identifier. */
   Slug = 'SLUG',
   /** Identify a resource by the URI. */
-  Uri = 'URI',
+  Uri = 'URI'
 }
 
 /** Translation with language/value pairs */
@@ -9436,77 +9525,75 @@ export type UpdateUserPayload = {
 };
 
 /** A User object */
-export type User = Commenter &
-  DatabaseIdentifier &
-  Node &
-  UniformResourceIdentifiable & {
-    __typename?: 'User';
-    /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
-    avatar?: Maybe<Avatar>;
-    /** User metadata option name. Usually it will be &quot;wp_capabilities&quot;. */
-    capKey?: Maybe<Scalars['String']>;
-    /** A list of capabilities (permissions) granted to the user */
-    capabilities?: Maybe<Array<Maybe<Scalars['String']>>>;
-    /** Connection between the User type and the Comment type */
-    comments?: Maybe<UserToCommentConnection>;
-    /** Identifies the primary key from the database. */
-    databaseId: Scalars['Int'];
-    /** Description of the user. */
-    description?: Maybe<Scalars['String']>;
-    /** Email address of the user. This is equivalent to the WP_User-&gt;user_email property. */
-    email?: Maybe<Scalars['String']>;
-    /** Connection between the User type and the EnqueuedScript type */
-    enqueuedScripts?: Maybe<UserToEnqueuedScriptConnection>;
-    /** Connection between the User type and the EnqueuedStylesheet type */
-    enqueuedStylesheets?: Maybe<UserToEnqueuedStylesheetConnection>;
-    /** A complete list of capabilities including capabilities inherited from a role. This is equivalent to the array keys of WP_User-&gt;allcaps. */
-    extraCapabilities?: Maybe<Array<Maybe<Scalars['String']>>>;
-    /** First name of the user. This is equivalent to the WP_User-&gt;user_first_name property. */
-    firstName?: Maybe<Scalars['String']>;
-    /** The globally unique identifier for the user object. */
-    id: Scalars['ID'];
-    /** Whether the node is a Content Node */
-    isContentNode: Scalars['Boolean'];
-    /** Whether the object is restricted from the current viewer */
-    isRestricted?: Maybe<Scalars['Boolean']>;
-    /** Whether the node is a Term */
-    isTermNode: Scalars['Boolean'];
-    /** Last name of the user. This is equivalent to the WP_User-&gt;user_last_name property. */
-    lastName?: Maybe<Scalars['String']>;
-    /** The preferred language locale set for the user. Value derived from get_user_locale(). */
-    locale?: Maybe<Scalars['String']>;
-    /** Connection between the User type and the mediaItem type */
-    mediaItems?: Maybe<UserToMediaItemConnection>;
-    /** Display name of the user. This is equivalent to the WP_User-&gt;dispaly_name property. */
-    name?: Maybe<Scalars['String']>;
-    /** The nicename for the user. This field is equivalent to WP_User-&gt;user_nicename */
-    nicename?: Maybe<Scalars['String']>;
-    /** Nickname of the user. */
-    nickname?: Maybe<Scalars['String']>;
-    /** Connection between the User type and the page type */
-    pages?: Maybe<UserToPageConnection>;
-    /** Connection between the User type and the post type */
-    posts?: Maybe<UserToPostConnection>;
-    /** The date the user registered or was created. The field follows a full ISO8601 date string format. */
-    registeredDate?: Maybe<Scalars['String']>;
-    /** Connection between the User and Revisions authored by the user */
-    revisions?: Maybe<UserToContentRevisionUnionConnection>;
-    /** Connection between the User type and the UserRole type */
-    roles?: Maybe<UserToUserRoleConnection>;
-    /** The slug for the user. This field is equivalent to WP_User-&gt;user_nicename */
-    slug?: Maybe<Scalars['String']>;
-    /** The unique resource identifier path */
-    uri?: Maybe<Scalars['String']>;
-    /** A website url that is associated with the user. */
-    url?: Maybe<Scalars['String']>;
-    /**
-     * The Id of the user. Equivalent to WP_User-&gt;ID
-     * @deprecated Deprecated in favor of the databaseId field
-     */
-    userId?: Maybe<Scalars['Int']>;
-    /** Username for the user. This field is equivalent to WP_User-&gt;user_login. */
-    username?: Maybe<Scalars['String']>;
-  };
+export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdentifiable & {
+  __typename?: 'User';
+  /** Avatar object for user. The avatar object can be retrieved in different sizes by specifying the size argument. */
+  avatar?: Maybe<Avatar>;
+  /** User metadata option name. Usually it will be &quot;wp_capabilities&quot;. */
+  capKey?: Maybe<Scalars['String']>;
+  /** A list of capabilities (permissions) granted to the user */
+  capabilities?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** Connection between the User type and the Comment type */
+  comments?: Maybe<UserToCommentConnection>;
+  /** Identifies the primary key from the database. */
+  databaseId: Scalars['Int'];
+  /** Description of the user. */
+  description?: Maybe<Scalars['String']>;
+  /** Email address of the user. This is equivalent to the WP_User-&gt;user_email property. */
+  email?: Maybe<Scalars['String']>;
+  /** Connection between the User type and the EnqueuedScript type */
+  enqueuedScripts?: Maybe<UserToEnqueuedScriptConnection>;
+  /** Connection between the User type and the EnqueuedStylesheet type */
+  enqueuedStylesheets?: Maybe<UserToEnqueuedStylesheetConnection>;
+  /** A complete list of capabilities including capabilities inherited from a role. This is equivalent to the array keys of WP_User-&gt;allcaps. */
+  extraCapabilities?: Maybe<Array<Maybe<Scalars['String']>>>;
+  /** First name of the user. This is equivalent to the WP_User-&gt;user_first_name property. */
+  firstName?: Maybe<Scalars['String']>;
+  /** The globally unique identifier for the user object. */
+  id: Scalars['ID'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean'];
+  /** Whether the object is restricted from the current viewer */
+  isRestricted?: Maybe<Scalars['Boolean']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean'];
+  /** Last name of the user. This is equivalent to the WP_User-&gt;user_last_name property. */
+  lastName?: Maybe<Scalars['String']>;
+  /** The preferred language locale set for the user. Value derived from get_user_locale(). */
+  locale?: Maybe<Scalars['String']>;
+  /** Connection between the User type and the mediaItem type */
+  mediaItems?: Maybe<UserToMediaItemConnection>;
+  /** Display name of the user. This is equivalent to the WP_User-&gt;dispaly_name property. */
+  name?: Maybe<Scalars['String']>;
+  /** The nicename for the user. This field is equivalent to WP_User-&gt;user_nicename */
+  nicename?: Maybe<Scalars['String']>;
+  /** Nickname of the user. */
+  nickname?: Maybe<Scalars['String']>;
+  /** Connection between the User type and the page type */
+  pages?: Maybe<UserToPageConnection>;
+  /** Connection between the User type and the post type */
+  posts?: Maybe<UserToPostConnection>;
+  /** The date the user registered or was created. The field follows a full ISO8601 date string format. */
+  registeredDate?: Maybe<Scalars['String']>;
+  /** Connection between the User and Revisions authored by the user */
+  revisions?: Maybe<UserToContentRevisionUnionConnection>;
+  /** Connection between the User type and the UserRole type */
+  roles?: Maybe<UserToUserRoleConnection>;
+  /** The slug for the user. This field is equivalent to WP_User-&gt;user_nicename */
+  slug?: Maybe<Scalars['String']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']>;
+  /** A website url that is associated with the user. */
+  url?: Maybe<Scalars['String']>;
+  /**
+   * The Id of the user. Equivalent to WP_User-&gt;ID
+   * @deprecated Deprecated in favor of the databaseId field
+   */
+  userId?: Maybe<Scalars['Int']>;
+  /** Username for the user. This field is equivalent to WP_User-&gt;user_login. */
+  username?: Maybe<Scalars['String']>;
+};
+
 
 /** A User object */
 export type UserAvatarArgs = {
@@ -9514,6 +9601,7 @@ export type UserAvatarArgs = {
   rating?: InputMaybe<AvatarRatingEnum>;
   size?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** A User object */
 export type UserCommentsArgs = {
@@ -9524,6 +9612,7 @@ export type UserCommentsArgs = {
   where?: InputMaybe<UserToCommentConnectionWhereArgs>;
 };
 
+
 /** A User object */
 export type UserEnqueuedScriptsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -9532,6 +9621,7 @@ export type UserEnqueuedScriptsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** A User object */
 export type UserEnqueuedStylesheetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -9539,6 +9629,7 @@ export type UserEnqueuedStylesheetsArgs = {
   first?: InputMaybe<Scalars['Int']>;
   last?: InputMaybe<Scalars['Int']>;
 };
+
 
 /** A User object */
 export type UserMediaItemsArgs = {
@@ -9549,6 +9640,7 @@ export type UserMediaItemsArgs = {
   where?: InputMaybe<UserToMediaItemConnectionWhereArgs>;
 };
 
+
 /** A User object */
 export type UserPagesArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -9557,6 +9649,7 @@ export type UserPagesArgs = {
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<UserToPageConnectionWhereArgs>;
 };
+
 
 /** A User object */
 export type UserPostsArgs = {
@@ -9567,6 +9660,7 @@ export type UserPostsArgs = {
   where?: InputMaybe<UserToPostConnectionWhereArgs>;
 };
 
+
 /** A User object */
 export type UserRevisionsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -9575,6 +9669,7 @@ export type UserRevisionsArgs = {
   last?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<UserToContentRevisionUnionConnectionWhereArgs>;
 };
+
 
 /** A User object */
 export type UserRolesArgs = {
@@ -9597,7 +9692,7 @@ export enum UserNodeIdTypeEnum {
   /** The URI for the node */
   Uri = 'URI',
   /** The username the User uses to login with */
-  Username = 'USERNAME',
+  Username = 'USERNAME'
 }
 
 /** A user role object */
@@ -9634,7 +9729,7 @@ export enum UserRoleEnum {
   /** User role with specific capabilities */
   HeadlessCmsViewer = 'HEADLESS_CMS_VIEWER',
   /** User role with specific capabilities */
-  Subscriber = 'SUBSCRIBER',
+  Subscriber = 'SUBSCRIBER'
 }
 
 /** Connection between the User type and the Comment type */
@@ -10074,7 +10169,7 @@ export enum UsersConnectionOrderbyEnum {
   /** Order by registration date */
   Registered = 'REGISTERED',
   /** Order by URL */
-  Url = 'URL',
+  Url = 'URL'
 }
 
 /** Options for ordering the connection */
@@ -10096,7 +10191,7 @@ export enum UsersConnectionSearchColumnEnum {
   /** A URL-friendly name for the user. The default is the user's username. */
   Nicename = 'NICENAME',
   /** The URL of the user\s website. */
-  Url = 'URL',
+  Url = 'URL'
 }
 
 /** Information about pagination in a connection. */
@@ -10123,1925 +10218,138 @@ export type WritingSettings = {
   useSmilies?: Maybe<Scalars['Boolean']>;
 };
 
-export type MenuQueryVariables = Exact<{
-  id: Scalars['ID'];
-  idType?: InputMaybe<MenuNodeIdTypeEnum>;
-}>;
-
-export type MenuQuery = {
-  __typename?: 'RootQuery';
-  menu?: {
-    __typename?: 'Menu';
-    menuItems?: {
-      __typename?: 'MenuToMenuItemConnection';
-      nodes?: Array<{
-        __typename?: 'MenuItem';
-        connectedNode?: {
-          __typename?: 'MenuItemToMenuItemLinkableConnectionEdge';
-          node?:
-            | { __typename?: 'Category' }
-            | {
-                __typename?: 'Page';
-                id: string;
-                content?: string | null;
-                slug?: string | null;
-                title?: string | null;
-                uri?: string | null;
-                lead?: string | null;
-                children?: {
-                  __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnection';
-                  nodes?: Array<
-                    | { __typename?: 'Collection' }
-                    | { __typename?: 'Contact' }
-                    | { __typename?: 'LandingPage' }
-                    | { __typename?: 'MediaItem' }
-                    | {
-                        __typename?: 'Page';
-                        id: string;
-                        content?: string | null;
-                        slug?: string | null;
-                        title?: string | null;
-                        uri?: string | null;
-                        lead?: string | null;
-                        translations?: Array<{
-                          __typename?: 'Page';
-                          id: string;
-                          content?: string | null;
-                          slug?: string | null;
-                          title?: string | null;
-                          uri?: string | null;
-                          lead?: string | null;
-                          seo?: {
-                            __typename?: 'SEO';
-                            title?: string | null;
-                            description?: string | null;
-                            openGraphTitle?: string | null;
-                            openGraphDescription?: string | null;
-                            openGraphType?: string | null;
-                            twitterTitle?: string | null;
-                            twitterDescription?: string | null;
-                          } | null;
-                          language?: {
-                            __typename?: 'Language';
-                            code?: LanguageCodeEnum | null;
-                            slug?: string | null;
-                            locale?: string | null;
-                            name?: string | null;
-                          } | null;
-                          featuredImage?: {
-                            __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                            node?: {
-                              __typename?: 'MediaItem';
-                              mediaItemUrl?: string | null;
-                              link?: string | null;
-                              altText?: string | null;
-                              mimeType?: string | null;
-                              title?: string | null;
-                              uri?: string | null;
-                            } | null;
-                          } | null;
-                          sidebar?: Array<
-                            | {
-                                __typename?: 'LayoutArticles';
-                                articles?: Array<{
-                                  __typename?: 'Post';
-                                  id: string;
-                                  title?: string | null;
-                                  uri?: string | null;
-                                  featuredImage?: {
-                                    __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                                    node?: {
-                                      __typename?: 'MediaItem';
-                                      altText?: string | null;
-                                      mediaItemUrl?: string | null;
-                                    } | null;
-                                  } | null;
-                                } | null> | null;
-                              }
-                            | {
-                                __typename?: 'LayoutLinkList';
-                                anchor?: string | null;
-                                title?: string | null;
-                                description?: string | null;
-                                links?: Array<{
-                                  __typename?: 'Link';
-                                  target?: string | null;
-                                  title?: string | null;
-                                  url?: string | null;
-                                } | null> | null;
-                              }
-                            | {
-                                __typename?: 'LayoutPages';
-                                pages?: Array<{
-                                  __typename?: 'Page';
-                                  id: string;
-                                  title?: string | null;
-                                  uri?: string | null;
-                                  featuredImage?: {
-                                    __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                                    node?: {
-                                      __typename?: 'MediaItem';
-                                      altText?: string | null;
-                                      mediaItemUrl?: string | null;
-                                    } | null;
-                                  } | null;
-                                } | null> | null;
-                              }
-                            | null
-                          > | null;
-                        } | null> | null;
-                        seo?: {
-                          __typename?: 'SEO';
-                          title?: string | null;
-                          description?: string | null;
-                          openGraphTitle?: string | null;
-                          openGraphDescription?: string | null;
-                          openGraphType?: string | null;
-                          twitterTitle?: string | null;
-                          twitterDescription?: string | null;
-                        } | null;
-                        language?: {
-                          __typename?: 'Language';
-                          code?: LanguageCodeEnum | null;
-                          slug?: string | null;
-                          locale?: string | null;
-                          name?: string | null;
-                        } | null;
-                        featuredImage?: {
-                          __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                          node?: {
-                            __typename?: 'MediaItem';
-                            mediaItemUrl?: string | null;
-                            link?: string | null;
-                            altText?: string | null;
-                            mimeType?: string | null;
-                            title?: string | null;
-                            uri?: string | null;
-                          } | null;
-                        } | null;
-                        sidebar?: Array<
-                          | {
-                              __typename?: 'LayoutArticles';
-                              articles?: Array<{
-                                __typename?: 'Post';
-                                id: string;
-                                title?: string | null;
-                                uri?: string | null;
-                                featuredImage?: {
-                                  __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                                  node?: {
-                                    __typename?: 'MediaItem';
-                                    altText?: string | null;
-                                    mediaItemUrl?: string | null;
-                                  } | null;
-                                } | null;
-                              } | null> | null;
-                            }
-                          | {
-                              __typename?: 'LayoutLinkList';
-                              anchor?: string | null;
-                              title?: string | null;
-                              description?: string | null;
-                              links?: Array<{
-                                __typename?: 'Link';
-                                target?: string | null;
-                                title?: string | null;
-                                url?: string | null;
-                              } | null> | null;
-                            }
-                          | {
-                              __typename?: 'LayoutPages';
-                              pages?: Array<{
-                                __typename?: 'Page';
-                                id: string;
-                                title?: string | null;
-                                uri?: string | null;
-                                featuredImage?: {
-                                  __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                                  node?: {
-                                    __typename?: 'MediaItem';
-                                    altText?: string | null;
-                                    mediaItemUrl?: string | null;
-                                  } | null;
-                                } | null;
-                              } | null> | null;
-                            }
-                          | null
-                        > | null;
-                      }
-                    | { __typename?: 'Post' }
-                    | { __typename?: 'Release' }
-                    | { __typename?: 'Translation' }
-                    | null
-                  > | null;
-                } | null;
-                translations?: Array<{
-                  __typename?: 'Page';
-                  id: string;
-                  content?: string | null;
-                  slug?: string | null;
-                  title?: string | null;
-                  uri?: string | null;
-                  lead?: string | null;
-                  seo?: {
-                    __typename?: 'SEO';
-                    title?: string | null;
-                    description?: string | null;
-                    openGraphTitle?: string | null;
-                    openGraphDescription?: string | null;
-                    openGraphType?: string | null;
-                    twitterTitle?: string | null;
-                    twitterDescription?: string | null;
-                  } | null;
-                  language?: {
-                    __typename?: 'Language';
-                    code?: LanguageCodeEnum | null;
-                    slug?: string | null;
-                    locale?: string | null;
-                    name?: string | null;
-                  } | null;
-                  featuredImage?: {
-                    __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                    node?: {
-                      __typename?: 'MediaItem';
-                      mediaItemUrl?: string | null;
-                      link?: string | null;
-                      altText?: string | null;
-                      mimeType?: string | null;
-                      title?: string | null;
-                      uri?: string | null;
-                    } | null;
-                  } | null;
-                  sidebar?: Array<
-                    | {
-                        __typename?: 'LayoutArticles';
-                        articles?: Array<{
-                          __typename?: 'Post';
-                          id: string;
-                          title?: string | null;
-                          uri?: string | null;
-                          featuredImage?: {
-                            __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                            node?: {
-                              __typename?: 'MediaItem';
-                              altText?: string | null;
-                              mediaItemUrl?: string | null;
-                            } | null;
-                          } | null;
-                        } | null> | null;
-                      }
-                    | {
-                        __typename?: 'LayoutLinkList';
-                        anchor?: string | null;
-                        title?: string | null;
-                        description?: string | null;
-                        links?: Array<{
-                          __typename?: 'Link';
-                          target?: string | null;
-                          title?: string | null;
-                          url?: string | null;
-                        } | null> | null;
-                      }
-                    | {
-                        __typename?: 'LayoutPages';
-                        pages?: Array<{
-                          __typename?: 'Page';
-                          id: string;
-                          title?: string | null;
-                          uri?: string | null;
-                          featuredImage?: {
-                            __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                            node?: {
-                              __typename?: 'MediaItem';
-                              altText?: string | null;
-                              mediaItemUrl?: string | null;
-                            } | null;
-                          } | null;
-                        } | null> | null;
-                      }
-                    | null
-                  > | null;
-                } | null> | null;
-                seo?: {
-                  __typename?: 'SEO';
-                  title?: string | null;
-                  description?: string | null;
-                  openGraphTitle?: string | null;
-                  openGraphDescription?: string | null;
-                  openGraphType?: string | null;
-                  twitterTitle?: string | null;
-                  twitterDescription?: string | null;
-                } | null;
-                language?: {
-                  __typename?: 'Language';
-                  code?: LanguageCodeEnum | null;
-                  slug?: string | null;
-                  locale?: string | null;
-                  name?: string | null;
-                } | null;
-                featuredImage?: {
-                  __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                  node?: {
-                    __typename?: 'MediaItem';
-                    mediaItemUrl?: string | null;
-                    link?: string | null;
-                    altText?: string | null;
-                    mimeType?: string | null;
-                    title?: string | null;
-                    uri?: string | null;
-                  } | null;
-                } | null;
-                sidebar?: Array<
-                  | {
-                      __typename?: 'LayoutArticles';
-                      articles?: Array<{
-                        __typename?: 'Post';
-                        id: string;
-                        title?: string | null;
-                        uri?: string | null;
-                        featuredImage?: {
-                          __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                          node?: {
-                            __typename?: 'MediaItem';
-                            altText?: string | null;
-                            mediaItemUrl?: string | null;
-                          } | null;
-                        } | null;
-                      } | null> | null;
-                    }
-                  | {
-                      __typename?: 'LayoutLinkList';
-                      anchor?: string | null;
-                      title?: string | null;
-                      description?: string | null;
-                      links?: Array<{
-                        __typename?: 'Link';
-                        target?: string | null;
-                        title?: string | null;
-                        url?: string | null;
-                      } | null> | null;
-                    }
-                  | {
-                      __typename?: 'LayoutPages';
-                      pages?: Array<{
-                        __typename?: 'Page';
-                        id: string;
-                        title?: string | null;
-                        uri?: string | null;
-                        featuredImage?: {
-                          __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                          node?: {
-                            __typename?: 'MediaItem';
-                            altText?: string | null;
-                            mediaItemUrl?: string | null;
-                          } | null;
-                        } | null;
-                      } | null> | null;
-                    }
-                  | null
-                > | null;
-              }
-            | { __typename?: 'Post' }
-            | { __typename?: 'Tag' }
-            | null;
-        } | null;
-      } | null> | null;
-    } | null;
-  } | null;
-};
-
-export type MenuPageFieldsFragment = {
-  __typename?: 'Page';
-  id: string;
-  content?: string | null;
-  slug?: string | null;
-  title?: string | null;
-  uri?: string | null;
-  lead?: string | null;
-  translations?: Array<{
-    __typename?: 'Page';
-    id: string;
-    content?: string | null;
-    slug?: string | null;
-    title?: string | null;
-    uri?: string | null;
-    lead?: string | null;
-    seo?: {
-      __typename?: 'SEO';
-      title?: string | null;
-      description?: string | null;
-      openGraphTitle?: string | null;
-      openGraphDescription?: string | null;
-      openGraphType?: string | null;
-      twitterTitle?: string | null;
-      twitterDescription?: string | null;
-    } | null;
-    language?: {
-      __typename?: 'Language';
-      code?: LanguageCodeEnum | null;
-      slug?: string | null;
-      locale?: string | null;
-      name?: string | null;
-    } | null;
-    featuredImage?: {
-      __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-      node?: {
-        __typename?: 'MediaItem';
-        mediaItemUrl?: string | null;
-        link?: string | null;
-        altText?: string | null;
-        mimeType?: string | null;
-        title?: string | null;
-        uri?: string | null;
-      } | null;
-    } | null;
-    sidebar?: Array<
-      | {
-          __typename?: 'LayoutArticles';
-          articles?: Array<{
-            __typename?: 'Post';
-            id: string;
-            title?: string | null;
-            uri?: string | null;
-            featuredImage?: {
-              __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-              node?: {
-                __typename?: 'MediaItem';
-                altText?: string | null;
-                mediaItemUrl?: string | null;
-              } | null;
-            } | null;
-          } | null> | null;
-        }
-      | {
-          __typename?: 'LayoutLinkList';
-          anchor?: string | null;
-          title?: string | null;
-          description?: string | null;
-          links?: Array<{
-            __typename?: 'Link';
-            target?: string | null;
-            title?: string | null;
-            url?: string | null;
-          } | null> | null;
-        }
-      | {
-          __typename?: 'LayoutPages';
-          pages?: Array<{
-            __typename?: 'Page';
-            id: string;
-            title?: string | null;
-            uri?: string | null;
-            featuredImage?: {
-              __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-              node?: {
-                __typename?: 'MediaItem';
-                altText?: string | null;
-                mediaItemUrl?: string | null;
-              } | null;
-            } | null;
-          } | null> | null;
-        }
-      | null
-    > | null;
-  } | null> | null;
-  seo?: {
-    __typename?: 'SEO';
-    title?: string | null;
-    description?: string | null;
-    openGraphTitle?: string | null;
-    openGraphDescription?: string | null;
-    openGraphType?: string | null;
-    twitterTitle?: string | null;
-    twitterDescription?: string | null;
-  } | null;
-  language?: {
-    __typename?: 'Language';
-    code?: LanguageCodeEnum | null;
-    slug?: string | null;
-    locale?: string | null;
-    name?: string | null;
-  } | null;
-  featuredImage?: {
-    __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-    node?: {
-      __typename?: 'MediaItem';
-      mediaItemUrl?: string | null;
-      link?: string | null;
-      altText?: string | null;
-      mimeType?: string | null;
-      title?: string | null;
-      uri?: string | null;
-    } | null;
-  } | null;
-  sidebar?: Array<
-    | {
-        __typename?: 'LayoutArticles';
-        articles?: Array<{
-          __typename?: 'Post';
-          id: string;
-          title?: string | null;
-          uri?: string | null;
-          featuredImage?: {
-            __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-            node?: {
-              __typename?: 'MediaItem';
-              altText?: string | null;
-              mediaItemUrl?: string | null;
-            } | null;
-          } | null;
-        } | null> | null;
-      }
-    | {
-        __typename?: 'LayoutLinkList';
-        anchor?: string | null;
-        title?: string | null;
-        description?: string | null;
-        links?: Array<{
-          __typename?: 'Link';
-          target?: string | null;
-          title?: string | null;
-          url?: string | null;
-        } | null> | null;
-      }
-    | {
-        __typename?: 'LayoutPages';
-        pages?: Array<{
-          __typename?: 'Page';
-          id: string;
-          title?: string | null;
-          uri?: string | null;
-          featuredImage?: {
-            __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-            node?: {
-              __typename?: 'MediaItem';
-              altText?: string | null;
-              mediaItemUrl?: string | null;
-            } | null;
-          } | null;
-        } | null> | null;
-      }
-    | null
-  > | null;
-};
-
 export type PageQueryVariables = Exact<{
   id: Scalars['ID'];
   idType?: InputMaybe<PageIdType>;
 }>;
 
-export type PageQuery = {
-  __typename?: 'RootQuery';
-  page?: {
-    __typename?: 'Page';
-    id: string;
-    content?: string | null;
-    slug?: string | null;
-    title?: string | null;
-    uri?: string | null;
-    lead?: string | null;
-    translations?: Array<{
-      __typename?: 'Page';
-      id: string;
-      content?: string | null;
-      slug?: string | null;
-      title?: string | null;
-      uri?: string | null;
-      lead?: string | null;
-      seo?: {
-        __typename?: 'SEO';
-        title?: string | null;
-        description?: string | null;
-        openGraphTitle?: string | null;
-        openGraphDescription?: string | null;
-        openGraphType?: string | null;
-        twitterTitle?: string | null;
-        twitterDescription?: string | null;
-      } | null;
-      language?: {
-        __typename?: 'Language';
-        code?: LanguageCodeEnum | null;
-        slug?: string | null;
-        locale?: string | null;
-        name?: string | null;
-      } | null;
-      featuredImage?: {
-        __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-        node?: {
-          __typename?: 'MediaItem';
-          mediaItemUrl?: string | null;
-          link?: string | null;
-          altText?: string | null;
-          mimeType?: string | null;
-          title?: string | null;
-          uri?: string | null;
-        } | null;
-      } | null;
-      sidebar?: Array<
-        | {
-            __typename?: 'LayoutArticles';
-            articles?: Array<{
-              __typename?: 'Post';
-              id: string;
-              title?: string | null;
-              uri?: string | null;
-              featuredImage?: {
-                __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                node?: {
-                  __typename?: 'MediaItem';
-                  altText?: string | null;
-                  mediaItemUrl?: string | null;
-                } | null;
-              } | null;
-            } | null> | null;
-          }
-        | {
-            __typename?: 'LayoutLinkList';
-            anchor?: string | null;
-            title?: string | null;
-            description?: string | null;
-            links?: Array<{
-              __typename?: 'Link';
-              target?: string | null;
-              title?: string | null;
-              url?: string | null;
-            } | null> | null;
-          }
-        | {
-            __typename?: 'LayoutPages';
-            pages?: Array<{
-              __typename?: 'Page';
-              id: string;
-              title?: string | null;
-              uri?: string | null;
-              featuredImage?: {
-                __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                node?: {
-                  __typename?: 'MediaItem';
-                  altText?: string | null;
-                  mediaItemUrl?: string | null;
-                } | null;
-              } | null;
-            } | null> | null;
-          }
-        | null
-      > | null;
-    } | null> | null;
-    parent?: {
-      __typename?: 'HierarchicalContentNodeToParentContentNodeConnectionEdge';
-      node?:
-        | { __typename?: 'Collection' }
-        | { __typename?: 'Contact' }
-        | { __typename?: 'LandingPage' }
-        | { __typename?: 'MediaItem' }
-        | {
-            __typename?: 'Page';
-            id: string;
-            content?: string | null;
-            slug?: string | null;
-            title?: string | null;
-            uri?: string | null;
-            lead?: string | null;
-            translations?: Array<{
-              __typename?: 'Page';
-              id: string;
-              content?: string | null;
-              slug?: string | null;
-              title?: string | null;
-              uri?: string | null;
-              lead?: string | null;
-              seo?: {
-                __typename?: 'SEO';
-                title?: string | null;
-                description?: string | null;
-                openGraphTitle?: string | null;
-                openGraphDescription?: string | null;
-                openGraphType?: string | null;
-                twitterTitle?: string | null;
-                twitterDescription?: string | null;
-              } | null;
-              language?: {
-                __typename?: 'Language';
-                code?: LanguageCodeEnum | null;
-                slug?: string | null;
-                locale?: string | null;
-                name?: string | null;
-              } | null;
-              featuredImage?: {
-                __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                node?: {
-                  __typename?: 'MediaItem';
-                  mediaItemUrl?: string | null;
-                  link?: string | null;
-                  altText?: string | null;
-                  mimeType?: string | null;
-                  title?: string | null;
-                  uri?: string | null;
-                } | null;
-              } | null;
-              sidebar?: Array<
-                | {
-                    __typename?: 'LayoutArticles';
-                    articles?: Array<{
-                      __typename?: 'Post';
-                      id: string;
-                      title?: string | null;
-                      uri?: string | null;
-                      featuredImage?: {
-                        __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                        node?: {
-                          __typename?: 'MediaItem';
-                          altText?: string | null;
-                          mediaItemUrl?: string | null;
-                        } | null;
-                      } | null;
-                    } | null> | null;
-                  }
-                | {
-                    __typename?: 'LayoutLinkList';
-                    anchor?: string | null;
-                    title?: string | null;
-                    description?: string | null;
-                    links?: Array<{
-                      __typename?: 'Link';
-                      target?: string | null;
-                      title?: string | null;
-                      url?: string | null;
-                    } | null> | null;
-                  }
-                | {
-                    __typename?: 'LayoutPages';
-                    pages?: Array<{
-                      __typename?: 'Page';
-                      id: string;
-                      title?: string | null;
-                      uri?: string | null;
-                      featuredImage?: {
-                        __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                        node?: {
-                          __typename?: 'MediaItem';
-                          altText?: string | null;
-                          mediaItemUrl?: string | null;
-                        } | null;
-                      } | null;
-                    } | null> | null;
-                  }
-                | null
-              > | null;
-            } | null> | null;
-            seo?: {
-              __typename?: 'SEO';
-              title?: string | null;
-              description?: string | null;
-              openGraphTitle?: string | null;
-              openGraphDescription?: string | null;
-              openGraphType?: string | null;
-              twitterTitle?: string | null;
-              twitterDescription?: string | null;
-            } | null;
-            language?: {
-              __typename?: 'Language';
-              code?: LanguageCodeEnum | null;
-              slug?: string | null;
-              locale?: string | null;
-              name?: string | null;
-            } | null;
-            featuredImage?: {
-              __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-              node?: {
-                __typename?: 'MediaItem';
-                mediaItemUrl?: string | null;
-                link?: string | null;
-                altText?: string | null;
-                mimeType?: string | null;
-                title?: string | null;
-                uri?: string | null;
-              } | null;
-            } | null;
-            sidebar?: Array<
-              | {
-                  __typename?: 'LayoutArticles';
-                  articles?: Array<{
-                    __typename?: 'Post';
-                    id: string;
-                    title?: string | null;
-                    uri?: string | null;
-                    featuredImage?: {
-                      __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                      node?: {
-                        __typename?: 'MediaItem';
-                        altText?: string | null;
-                        mediaItemUrl?: string | null;
-                      } | null;
-                    } | null;
-                  } | null> | null;
-                }
-              | {
-                  __typename?: 'LayoutLinkList';
-                  anchor?: string | null;
-                  title?: string | null;
-                  description?: string | null;
-                  links?: Array<{
-                    __typename?: 'Link';
-                    target?: string | null;
-                    title?: string | null;
-                    url?: string | null;
-                  } | null> | null;
-                }
-              | {
-                  __typename?: 'LayoutPages';
-                  pages?: Array<{
-                    __typename?: 'Page';
-                    id: string;
-                    title?: string | null;
-                    uri?: string | null;
-                    featuredImage?: {
-                      __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                      node?: {
-                        __typename?: 'MediaItem';
-                        altText?: string | null;
-                        mediaItemUrl?: string | null;
-                      } | null;
-                    } | null;
-                  } | null> | null;
-                }
-              | null
-            > | null;
-          }
-        | { __typename?: 'Post' }
-        | { __typename?: 'Release' }
-        | { __typename?: 'Translation' }
-        | null;
-    } | null;
-    children?: {
-      __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnection';
-      nodes?: Array<
-        | { __typename?: 'Collection' }
-        | { __typename?: 'Contact' }
-        | { __typename?: 'LandingPage' }
-        | { __typename?: 'MediaItem' }
-        | {
-            __typename?: 'Page';
-            id: string;
-            content?: string | null;
-            slug?: string | null;
-            title?: string | null;
-            uri?: string | null;
-            lead?: string | null;
-            translations?: Array<{
-              __typename?: 'Page';
-              id: string;
-              content?: string | null;
-              slug?: string | null;
-              title?: string | null;
-              uri?: string | null;
-              lead?: string | null;
-              seo?: {
-                __typename?: 'SEO';
-                title?: string | null;
-                description?: string | null;
-                openGraphTitle?: string | null;
-                openGraphDescription?: string | null;
-                openGraphType?: string | null;
-                twitterTitle?: string | null;
-                twitterDescription?: string | null;
-              } | null;
-              language?: {
-                __typename?: 'Language';
-                code?: LanguageCodeEnum | null;
-                slug?: string | null;
-                locale?: string | null;
-                name?: string | null;
-              } | null;
-              featuredImage?: {
-                __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                node?: {
-                  __typename?: 'MediaItem';
-                  mediaItemUrl?: string | null;
-                  link?: string | null;
-                  altText?: string | null;
-                  mimeType?: string | null;
-                  title?: string | null;
-                  uri?: string | null;
-                } | null;
-              } | null;
-              sidebar?: Array<
-                | {
-                    __typename?: 'LayoutArticles';
-                    articles?: Array<{
-                      __typename?: 'Post';
-                      id: string;
-                      title?: string | null;
-                      uri?: string | null;
-                      featuredImage?: {
-                        __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                        node?: {
-                          __typename?: 'MediaItem';
-                          altText?: string | null;
-                          mediaItemUrl?: string | null;
-                        } | null;
-                      } | null;
-                    } | null> | null;
-                  }
-                | {
-                    __typename?: 'LayoutLinkList';
-                    anchor?: string | null;
-                    title?: string | null;
-                    description?: string | null;
-                    links?: Array<{
-                      __typename?: 'Link';
-                      target?: string | null;
-                      title?: string | null;
-                      url?: string | null;
-                    } | null> | null;
-                  }
-                | {
-                    __typename?: 'LayoutPages';
-                    pages?: Array<{
-                      __typename?: 'Page';
-                      id: string;
-                      title?: string | null;
-                      uri?: string | null;
-                      featuredImage?: {
-                        __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                        node?: {
-                          __typename?: 'MediaItem';
-                          altText?: string | null;
-                          mediaItemUrl?: string | null;
-                        } | null;
-                      } | null;
-                    } | null> | null;
-                  }
-                | null
-              > | null;
-            } | null> | null;
-            seo?: {
-              __typename?: 'SEO';
-              title?: string | null;
-              description?: string | null;
-              openGraphTitle?: string | null;
-              openGraphDescription?: string | null;
-              openGraphType?: string | null;
-              twitterTitle?: string | null;
-              twitterDescription?: string | null;
-            } | null;
-            language?: {
-              __typename?: 'Language';
-              code?: LanguageCodeEnum | null;
-              slug?: string | null;
-              locale?: string | null;
-              name?: string | null;
-            } | null;
-            featuredImage?: {
-              __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-              node?: {
-                __typename?: 'MediaItem';
-                mediaItemUrl?: string | null;
-                link?: string | null;
-                altText?: string | null;
-                mimeType?: string | null;
-                title?: string | null;
-                uri?: string | null;
-              } | null;
-            } | null;
-            sidebar?: Array<
-              | {
-                  __typename?: 'LayoutArticles';
-                  articles?: Array<{
-                    __typename?: 'Post';
-                    id: string;
-                    title?: string | null;
-                    uri?: string | null;
-                    featuredImage?: {
-                      __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                      node?: {
-                        __typename?: 'MediaItem';
-                        altText?: string | null;
-                        mediaItemUrl?: string | null;
-                      } | null;
-                    } | null;
-                  } | null> | null;
-                }
-              | {
-                  __typename?: 'LayoutLinkList';
-                  anchor?: string | null;
-                  title?: string | null;
-                  description?: string | null;
-                  links?: Array<{
-                    __typename?: 'Link';
-                    target?: string | null;
-                    title?: string | null;
-                    url?: string | null;
-                  } | null> | null;
-                }
-              | {
-                  __typename?: 'LayoutPages';
-                  pages?: Array<{
-                    __typename?: 'Page';
-                    id: string;
-                    title?: string | null;
-                    uri?: string | null;
-                    featuredImage?: {
-                      __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                      node?: {
-                        __typename?: 'MediaItem';
-                        altText?: string | null;
-                        mediaItemUrl?: string | null;
-                      } | null;
-                    } | null;
-                  } | null> | null;
-                }
-              | null
-            > | null;
-          }
-        | { __typename?: 'Post' }
-        | { __typename?: 'Release' }
-        | { __typename?: 'Translation' }
-        | null
-      > | null;
-    } | null;
-    seo?: {
-      __typename?: 'SEO';
-      title?: string | null;
-      description?: string | null;
-      openGraphTitle?: string | null;
-      openGraphDescription?: string | null;
-      openGraphType?: string | null;
-      twitterTitle?: string | null;
-      twitterDescription?: string | null;
-    } | null;
-    language?: {
-      __typename?: 'Language';
-      code?: LanguageCodeEnum | null;
-      slug?: string | null;
-      locale?: string | null;
-      name?: string | null;
-    } | null;
-    featuredImage?: {
-      __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-      node?: {
-        __typename?: 'MediaItem';
-        mediaItemUrl?: string | null;
-        link?: string | null;
-        altText?: string | null;
-        mimeType?: string | null;
-        title?: string | null;
-        uri?: string | null;
-      } | null;
-    } | null;
-    sidebar?: Array<
-      | {
-          __typename?: 'LayoutArticles';
-          articles?: Array<{
-            __typename?: 'Post';
-            id: string;
-            title?: string | null;
-            uri?: string | null;
-            featuredImage?: {
-              __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-              node?: {
-                __typename?: 'MediaItem';
-                altText?: string | null;
-                mediaItemUrl?: string | null;
-              } | null;
-            } | null;
-          } | null> | null;
-        }
-      | {
-          __typename?: 'LayoutLinkList';
-          anchor?: string | null;
-          title?: string | null;
-          description?: string | null;
-          links?: Array<{
-            __typename?: 'Link';
-            target?: string | null;
-            title?: string | null;
-            url?: string | null;
-          } | null> | null;
-        }
-      | {
-          __typename?: 'LayoutPages';
-          pages?: Array<{
-            __typename?: 'Page';
-            id: string;
-            title?: string | null;
-            uri?: string | null;
-            featuredImage?: {
-              __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-              node?: {
-                __typename?: 'MediaItem';
-                altText?: string | null;
-                mediaItemUrl?: string | null;
-              } | null;
-            } | null;
-          } | null> | null;
-        }
-      | null
-    > | null;
-  } | null;
-};
 
-export type PageFieldsFragment = {
-  __typename?: 'Page';
-  id: string;
-  content?: string | null;
-  slug?: string | null;
-  title?: string | null;
-  uri?: string | null;
-  lead?: string | null;
-  seo?: {
-    __typename?: 'SEO';
-    title?: string | null;
-    description?: string | null;
-    openGraphTitle?: string | null;
-    openGraphDescription?: string | null;
-    openGraphType?: string | null;
-    twitterTitle?: string | null;
-    twitterDescription?: string | null;
-  } | null;
-  language?: {
-    __typename?: 'Language';
-    code?: LanguageCodeEnum | null;
-    slug?: string | null;
-    locale?: string | null;
-    name?: string | null;
-  } | null;
-  featuredImage?: {
-    __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-    node?: {
-      __typename?: 'MediaItem';
-      mediaItemUrl?: string | null;
-      link?: string | null;
-      altText?: string | null;
-      mimeType?: string | null;
-      title?: string | null;
-      uri?: string | null;
-    } | null;
-  } | null;
-  sidebar?: Array<
-    | {
-        __typename?: 'LayoutArticles';
-        articles?: Array<{
-          __typename?: 'Post';
-          id: string;
-          title?: string | null;
-          uri?: string | null;
-          featuredImage?: {
-            __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-            node?: {
-              __typename?: 'MediaItem';
-              altText?: string | null;
-              mediaItemUrl?: string | null;
-            } | null;
-          } | null;
-        } | null> | null;
-      }
-    | {
-        __typename?: 'LayoutLinkList';
-        anchor?: string | null;
-        title?: string | null;
-        description?: string | null;
-        links?: Array<{
-          __typename?: 'Link';
-          target?: string | null;
-          title?: string | null;
-          url?: string | null;
-        } | null> | null;
-      }
-    | {
-        __typename?: 'LayoutPages';
-        pages?: Array<{
-          __typename?: 'Page';
-          id: string;
-          title?: string | null;
-          uri?: string | null;
-          featuredImage?: {
-            __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-            node?: {
-              __typename?: 'MediaItem';
-              altText?: string | null;
-              mediaItemUrl?: string | null;
-            } | null;
-          } | null;
-        } | null> | null;
-      }
-    | null
-  > | null;
-};
+export type PageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', id: string, content?: string | null, slug?: string | null, title?: string | null, uri?: string | null, lead?: string | null, translations?: Array<{ __typename?: 'Page', id: string, content?: string | null, slug?: string | null, title?: string | null, uri?: string | null, lead?: string | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null } | null, language?: { __typename?: 'Language', code?: LanguageCodeEnum | null, slug?: string | null, locale?: string | null, name?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, link?: string | null, altText?: string | null, mimeType?: string | null, title?: string | null, uri?: string | null } | null } | null, sidebar?: Array<{ __typename?: 'LayoutArticles', articles?: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | { __typename?: 'LayoutLinkList', anchor?: string | null, title?: string | null, description?: string | null, links?: Array<{ __typename?: 'Link', target?: string | null, title?: string | null, url?: string | null } | null> | null } | { __typename?: 'LayoutPages', pages?: Array<{ __typename?: 'Page', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | null> | null } | null> | null, parent?: { __typename?: 'HierarchicalContentNodeToParentContentNodeConnectionEdge', node?: { __typename?: 'Collection' } | { __typename?: 'Contact' } | { __typename?: 'LandingPage' } | { __typename?: 'MediaItem' } | { __typename?: 'Page', id: string, content?: string | null, slug?: string | null, title?: string | null, uri?: string | null, lead?: string | null, translations?: Array<{ __typename?: 'Page', id: string, content?: string | null, slug?: string | null, title?: string | null, uri?: string | null, lead?: string | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null } | null, language?: { __typename?: 'Language', code?: LanguageCodeEnum | null, slug?: string | null, locale?: string | null, name?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, link?: string | null, altText?: string | null, mimeType?: string | null, title?: string | null, uri?: string | null } | null } | null, sidebar?: Array<{ __typename?: 'LayoutArticles', articles?: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | { __typename?: 'LayoutLinkList', anchor?: string | null, title?: string | null, description?: string | null, links?: Array<{ __typename?: 'Link', target?: string | null, title?: string | null, url?: string | null } | null> | null } | { __typename?: 'LayoutPages', pages?: Array<{ __typename?: 'Page', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | null> | null } | null> | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null } | null, language?: { __typename?: 'Language', code?: LanguageCodeEnum | null, slug?: string | null, locale?: string | null, name?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, link?: string | null, altText?: string | null, mimeType?: string | null, title?: string | null, uri?: string | null } | null } | null, sidebar?: Array<{ __typename?: 'LayoutArticles', articles?: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | { __typename?: 'LayoutLinkList', anchor?: string | null, title?: string | null, description?: string | null, links?: Array<{ __typename?: 'Link', target?: string | null, title?: string | null, url?: string | null } | null> | null } | { __typename?: 'LayoutPages', pages?: Array<{ __typename?: 'Page', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | null> | null } | { __typename?: 'Post' } | { __typename?: 'Release' } | { __typename?: 'Translation' } | null } | null, children?: { __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnection', nodes?: Array<{ __typename?: 'Collection' } | { __typename?: 'Contact' } | { __typename?: 'LandingPage' } | { __typename?: 'MediaItem' } | { __typename?: 'Page', id: string, content?: string | null, slug?: string | null, title?: string | null, uri?: string | null, lead?: string | null, translations?: Array<{ __typename?: 'Page', id: string, content?: string | null, slug?: string | null, title?: string | null, uri?: string | null, lead?: string | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null } | null, language?: { __typename?: 'Language', code?: LanguageCodeEnum | null, slug?: string | null, locale?: string | null, name?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, link?: string | null, altText?: string | null, mimeType?: string | null, title?: string | null, uri?: string | null } | null } | null, sidebar?: Array<{ __typename?: 'LayoutArticles', articles?: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | { __typename?: 'LayoutLinkList', anchor?: string | null, title?: string | null, description?: string | null, links?: Array<{ __typename?: 'Link', target?: string | null, title?: string | null, url?: string | null } | null> | null } | { __typename?: 'LayoutPages', pages?: Array<{ __typename?: 'Page', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | null> | null } | null> | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null } | null, language?: { __typename?: 'Language', code?: LanguageCodeEnum | null, slug?: string | null, locale?: string | null, name?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, link?: string | null, altText?: string | null, mimeType?: string | null, title?: string | null, uri?: string | null } | null } | null, sidebar?: Array<{ __typename?: 'LayoutArticles', articles?: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | { __typename?: 'LayoutLinkList', anchor?: string | null, title?: string | null, description?: string | null, links?: Array<{ __typename?: 'Link', target?: string | null, title?: string | null, url?: string | null } | null> | null } | { __typename?: 'LayoutPages', pages?: Array<{ __typename?: 'Page', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | null> | null } | { __typename?: 'Post' } | { __typename?: 'Release' } | { __typename?: 'Translation' } | null> | null } | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null } | null, language?: { __typename?: 'Language', code?: LanguageCodeEnum | null, slug?: string | null, locale?: string | null, name?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, link?: string | null, altText?: string | null, mimeType?: string | null, title?: string | null, uri?: string | null } | null } | null, sidebar?: Array<{ __typename?: 'LayoutArticles', articles?: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | { __typename?: 'LayoutLinkList', anchor?: string | null, title?: string | null, description?: string | null, links?: Array<{ __typename?: 'Link', target?: string | null, title?: string | null, url?: string | null } | null> | null } | { __typename?: 'LayoutPages', pages?: Array<{ __typename?: 'Page', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | null> | null } | null };
 
-export type SeoFieldsFragment = {
-  __typename?: 'SEO';
-  title?: string | null;
-  description?: string | null;
-  openGraphTitle?: string | null;
-  openGraphDescription?: string | null;
-  openGraphType?: string | null;
-  twitterTitle?: string | null;
-  twitterDescription?: string | null;
-};
+export type PageFieldsFragment = { __typename?: 'Page', id: string, content?: string | null, slug?: string | null, title?: string | null, uri?: string | null, lead?: string | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null } | null, language?: { __typename?: 'Language', code?: LanguageCodeEnum | null, slug?: string | null, locale?: string | null, name?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, link?: string | null, altText?: string | null, mimeType?: string | null, title?: string | null, uri?: string | null } | null } | null, sidebar?: Array<{ __typename?: 'LayoutArticles', articles?: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | { __typename?: 'LayoutLinkList', anchor?: string | null, title?: string | null, description?: string | null, links?: Array<{ __typename?: 'Link', target?: string | null, title?: string | null, url?: string | null } | null> | null } | { __typename?: 'LayoutPages', pages?: Array<{ __typename?: 'Page', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | null> | null };
 
-export type PagesQueryVariables = Exact<{ [key: string]: never }>;
+export type SeoFieldsFragment = { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null };
 
-export type PagesQuery = {
-  __typename?: 'RootQuery';
-  pages?: {
-    __typename?: 'RootQueryToPageConnection';
-    edges?: Array<{
-      __typename?: 'RootQueryToPageConnectionEdge';
-      node?: {
-        __typename?: 'Page';
-        id: string;
-        content?: string | null;
-        slug?: string | null;
-        title?: string | null;
-        uri?: string | null;
-        lead?: string | null;
-        seo?: {
-          __typename?: 'SEO';
-          title?: string | null;
-          description?: string | null;
-          openGraphTitle?: string | null;
-          openGraphDescription?: string | null;
-          openGraphType?: string | null;
-          twitterTitle?: string | null;
-          twitterDescription?: string | null;
-        } | null;
-        language?: {
-          __typename?: 'Language';
-          code?: LanguageCodeEnum | null;
-          slug?: string | null;
-          locale?: string | null;
-          name?: string | null;
-        } | null;
-        featuredImage?: {
-          __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-          node?: {
-            __typename?: 'MediaItem';
-            mediaItemUrl?: string | null;
-            link?: string | null;
-            altText?: string | null;
-            mimeType?: string | null;
-            title?: string | null;
-            uri?: string | null;
-          } | null;
-        } | null;
-        sidebar?: Array<
-          | {
-              __typename?: 'LayoutArticles';
-              articles?: Array<{
-                __typename?: 'Post';
-                id: string;
-                title?: string | null;
-                uri?: string | null;
-                featuredImage?: {
-                  __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                  node?: {
-                    __typename?: 'MediaItem';
-                    altText?: string | null;
-                    mediaItemUrl?: string | null;
-                  } | null;
-                } | null;
-              } | null> | null;
-            }
-          | {
-              __typename?: 'LayoutLinkList';
-              anchor?: string | null;
-              title?: string | null;
-              description?: string | null;
-              links?: Array<{
-                __typename?: 'Link';
-                target?: string | null;
-                title?: string | null;
-                url?: string | null;
-              } | null> | null;
-            }
-          | {
-              __typename?: 'LayoutPages';
-              pages?: Array<{
-                __typename?: 'Page';
-                id: string;
-                title?: string | null;
-                uri?: string | null;
-                featuredImage?: {
-                  __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                  node?: {
-                    __typename?: 'MediaItem';
-                    altText?: string | null;
-                    mediaItemUrl?: string | null;
-                  } | null;
-                } | null;
-              } | null> | null;
-            }
-          | null
-        > | null;
-      } | null;
-    } | null> | null;
-  } | null;
-};
+export type PagesQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type SubPagesSearchQueryVariables = Exact<{
-  id: Scalars['ID'];
-  idType?: InputMaybe<PageIdType>;
-  search: Scalars['String'];
-  first?: InputMaybe<Scalars['Int']>;
-  after?: InputMaybe<Scalars['String']>;
-}>;
 
-export type SubPagesSearchQuery = {
-  __typename?: 'RootQuery';
-  page?: {
-    __typename?: 'Page';
-    id: string;
-    children?: {
-      __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnection';
-      pageInfo?: {
-        __typename?: 'WPPageInfo';
-        endCursor?: string | null;
-        hasNextPage: boolean;
-      } | null;
-      edges?: Array<{
-        __typename?: 'HierarchicalContentNodeToContentNodeChildrenConnectionEdge';
-        cursor?: string | null;
-        node?:
-          | { __typename?: 'Collection' }
-          | { __typename?: 'Contact' }
-          | { __typename?: 'LandingPage' }
-          | { __typename?: 'MediaItem' }
-          | {
-              __typename?: 'Page';
-              id: string;
-              content?: string | null;
-              slug?: string | null;
-              title?: string | null;
-              uri?: string | null;
-              lead?: string | null;
-              translations?: Array<{
-                __typename?: 'Page';
-                id: string;
-                content?: string | null;
-                slug?: string | null;
-                title?: string | null;
-                uri?: string | null;
-                lead?: string | null;
-                seo?: {
-                  __typename?: 'SEO';
-                  title?: string | null;
-                  description?: string | null;
-                  openGraphTitle?: string | null;
-                  openGraphDescription?: string | null;
-                  openGraphType?: string | null;
-                  twitterTitle?: string | null;
-                  twitterDescription?: string | null;
-                } | null;
-                language?: {
-                  __typename?: 'Language';
-                  code?: LanguageCodeEnum | null;
-                  slug?: string | null;
-                  locale?: string | null;
-                  name?: string | null;
-                } | null;
-                featuredImage?: {
-                  __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                  node?: {
-                    __typename?: 'MediaItem';
-                    mediaItemUrl?: string | null;
-                    link?: string | null;
-                    altText?: string | null;
-                    mimeType?: string | null;
-                    title?: string | null;
-                    uri?: string | null;
-                  } | null;
-                } | null;
-                sidebar?: Array<
-                  | {
-                      __typename?: 'LayoutArticles';
-                      articles?: Array<{
-                        __typename?: 'Post';
-                        id: string;
-                        title?: string | null;
-                        uri?: string | null;
-                        featuredImage?: {
-                          __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                          node?: {
-                            __typename?: 'MediaItem';
-                            altText?: string | null;
-                            mediaItemUrl?: string | null;
-                          } | null;
-                        } | null;
-                      } | null> | null;
-                    }
-                  | {
-                      __typename?: 'LayoutLinkList';
-                      anchor?: string | null;
-                      title?: string | null;
-                      description?: string | null;
-                      links?: Array<{
-                        __typename?: 'Link';
-                        target?: string | null;
-                        title?: string | null;
-                        url?: string | null;
-                      } | null> | null;
-                    }
-                  | {
-                      __typename?: 'LayoutPages';
-                      pages?: Array<{
-                        __typename?: 'Page';
-                        id: string;
-                        title?: string | null;
-                        uri?: string | null;
-                        featuredImage?: {
-                          __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                          node?: {
-                            __typename?: 'MediaItem';
-                            altText?: string | null;
-                            mediaItemUrl?: string | null;
-                          } | null;
-                        } | null;
-                      } | null> | null;
-                    }
-                  | null
-                > | null;
-              } | null> | null;
-              seo?: {
-                __typename?: 'SEO';
-                title?: string | null;
-                description?: string | null;
-                openGraphTitle?: string | null;
-                openGraphDescription?: string | null;
-                openGraphType?: string | null;
-                twitterTitle?: string | null;
-                twitterDescription?: string | null;
-              } | null;
-              language?: {
-                __typename?: 'Language';
-                code?: LanguageCodeEnum | null;
-                slug?: string | null;
-                locale?: string | null;
-                name?: string | null;
-              } | null;
-              featuredImage?: {
-                __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                node?: {
-                  __typename?: 'MediaItem';
-                  mediaItemUrl?: string | null;
-                  link?: string | null;
-                  altText?: string | null;
-                  mimeType?: string | null;
-                  title?: string | null;
-                  uri?: string | null;
-                } | null;
-              } | null;
-              sidebar?: Array<
-                | {
-                    __typename?: 'LayoutArticles';
-                    articles?: Array<{
-                      __typename?: 'Post';
-                      id: string;
-                      title?: string | null;
-                      uri?: string | null;
-                      featuredImage?: {
-                        __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                        node?: {
-                          __typename?: 'MediaItem';
-                          altText?: string | null;
-                          mediaItemUrl?: string | null;
-                        } | null;
-                      } | null;
-                    } | null> | null;
-                  }
-                | {
-                    __typename?: 'LayoutLinkList';
-                    anchor?: string | null;
-                    title?: string | null;
-                    description?: string | null;
-                    links?: Array<{
-                      __typename?: 'Link';
-                      target?: string | null;
-                      title?: string | null;
-                      url?: string | null;
-                    } | null> | null;
-                  }
-                | {
-                    __typename?: 'LayoutPages';
-                    pages?: Array<{
-                      __typename?: 'Page';
-                      id: string;
-                      title?: string | null;
-                      uri?: string | null;
-                      featuredImage?: {
-                        __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                        node?: {
-                          __typename?: 'MediaItem';
-                          altText?: string | null;
-                          mediaItemUrl?: string | null;
-                        } | null;
-                      } | null;
-                    } | null> | null;
-                  }
-                | null
-              > | null;
-            }
-          | { __typename?: 'Post' }
-          | { __typename?: 'Release' }
-          | { __typename?: 'Translation' }
-          | null;
-      } | null> | null;
-    } | null;
-  } | null;
-};
-
-export type PagesSearchQueryVariables = Exact<{
-  search: Scalars['String'];
-  first?: InputMaybe<Scalars['Int']>;
-  after?: InputMaybe<Scalars['String']>;
-}>;
-
-export type PagesSearchQuery = {
-  __typename?: 'RootQuery';
-  pages?: {
-    __typename?: 'RootQueryToPageConnection';
-    pageInfo?: {
-      __typename?: 'WPPageInfo';
-      endCursor?: string | null;
-      hasNextPage: boolean;
-    } | null;
-    edges?: Array<{
-      __typename?: 'RootQueryToPageConnectionEdge';
-      cursor?: string | null;
-      node?: {
-        __typename?: 'Page';
-        id: string;
-        content?: string | null;
-        slug?: string | null;
-        title?: string | null;
-        uri?: string | null;
-        lead?: string | null;
-        translations?: Array<{
-          __typename?: 'Page';
-          id: string;
-          content?: string | null;
-          slug?: string | null;
-          title?: string | null;
-          uri?: string | null;
-          lead?: string | null;
-          seo?: {
-            __typename?: 'SEO';
-            title?: string | null;
-            description?: string | null;
-            openGraphTitle?: string | null;
-            openGraphDescription?: string | null;
-            openGraphType?: string | null;
-            twitterTitle?: string | null;
-            twitterDescription?: string | null;
-          } | null;
-          language?: {
-            __typename?: 'Language';
-            code?: LanguageCodeEnum | null;
-            slug?: string | null;
-            locale?: string | null;
-            name?: string | null;
-          } | null;
-          featuredImage?: {
-            __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-            node?: {
-              __typename?: 'MediaItem';
-              mediaItemUrl?: string | null;
-              link?: string | null;
-              altText?: string | null;
-              mimeType?: string | null;
-              title?: string | null;
-              uri?: string | null;
-            } | null;
-          } | null;
-          sidebar?: Array<
-            | {
-                __typename?: 'LayoutArticles';
-                articles?: Array<{
-                  __typename?: 'Post';
-                  id: string;
-                  title?: string | null;
-                  uri?: string | null;
-                  featuredImage?: {
-                    __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                    node?: {
-                      __typename?: 'MediaItem';
-                      altText?: string | null;
-                      mediaItemUrl?: string | null;
-                    } | null;
-                  } | null;
-                } | null> | null;
-              }
-            | {
-                __typename?: 'LayoutLinkList';
-                anchor?: string | null;
-                title?: string | null;
-                description?: string | null;
-                links?: Array<{
-                  __typename?: 'Link';
-                  target?: string | null;
-                  title?: string | null;
-                  url?: string | null;
-                } | null> | null;
-              }
-            | {
-                __typename?: 'LayoutPages';
-                pages?: Array<{
-                  __typename?: 'Page';
-                  id: string;
-                  title?: string | null;
-                  uri?: string | null;
-                  featuredImage?: {
-                    __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                    node?: {
-                      __typename?: 'MediaItem';
-                      altText?: string | null;
-                      mediaItemUrl?: string | null;
-                    } | null;
-                  } | null;
-                } | null> | null;
-              }
-            | null
-          > | null;
-        } | null> | null;
-        seo?: {
-          __typename?: 'SEO';
-          title?: string | null;
-          description?: string | null;
-          openGraphTitle?: string | null;
-          openGraphDescription?: string | null;
-          openGraphType?: string | null;
-          twitterTitle?: string | null;
-          twitterDescription?: string | null;
-        } | null;
-        language?: {
-          __typename?: 'Language';
-          code?: LanguageCodeEnum | null;
-          slug?: string | null;
-          locale?: string | null;
-          name?: string | null;
-        } | null;
-        featuredImage?: {
-          __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-          node?: {
-            __typename?: 'MediaItem';
-            mediaItemUrl?: string | null;
-            link?: string | null;
-            altText?: string | null;
-            mimeType?: string | null;
-            title?: string | null;
-            uri?: string | null;
-          } | null;
-        } | null;
-        sidebar?: Array<
-          | {
-              __typename?: 'LayoutArticles';
-              articles?: Array<{
-                __typename?: 'Post';
-                id: string;
-                title?: string | null;
-                uri?: string | null;
-                featuredImage?: {
-                  __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                  node?: {
-                    __typename?: 'MediaItem';
-                    altText?: string | null;
-                    mediaItemUrl?: string | null;
-                  } | null;
-                } | null;
-              } | null> | null;
-            }
-          | {
-              __typename?: 'LayoutLinkList';
-              anchor?: string | null;
-              title?: string | null;
-              description?: string | null;
-              links?: Array<{
-                __typename?: 'Link';
-                target?: string | null;
-                title?: string | null;
-                url?: string | null;
-              } | null> | null;
-            }
-          | {
-              __typename?: 'LayoutPages';
-              pages?: Array<{
-                __typename?: 'Page';
-                id: string;
-                title?: string | null;
-                uri?: string | null;
-                featuredImage?: {
-                  __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge';
-                  node?: {
-                    __typename?: 'MediaItem';
-                    altText?: string | null;
-                    mediaItemUrl?: string | null;
-                  } | null;
-                } | null;
-              } | null> | null;
-            }
-          | null
-        > | null;
-      } | null;
-    } | null> | null;
-  } | null;
-};
+export type PagesQuery = { __typename?: 'RootQuery', pages?: { __typename?: 'RootQueryToPageConnection', edges?: Array<{ __typename?: 'RootQueryToPageConnectionEdge', node?: { __typename?: 'Page', id: string, content?: string | null, slug?: string | null, title?: string | null, uri?: string | null, lead?: string | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null, openGraphTitle?: string | null, openGraphDescription?: string | null, openGraphType?: string | null, twitterTitle?: string | null, twitterDescription?: string | null } | null, language?: { __typename?: 'Language', code?: LanguageCodeEnum | null, slug?: string | null, locale?: string | null, name?: string | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', mediaItemUrl?: string | null, link?: string | null, altText?: string | null, mimeType?: string | null, title?: string | null, uri?: string | null } | null } | null, sidebar?: Array<{ __typename?: 'LayoutArticles', articles?: Array<{ __typename?: 'Post', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | { __typename?: 'LayoutLinkList', anchor?: string | null, title?: string | null, description?: string | null, links?: Array<{ __typename?: 'Link', target?: string | null, title?: string | null, url?: string | null } | null> | null } | { __typename?: 'LayoutPages', pages?: Array<{ __typename?: 'Page', id: string, title?: string | null, uri?: string | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node?: { __typename?: 'MediaItem', altText?: string | null, mediaItemUrl?: string | null } | null } | null } | null> | null } | null> | null } | null } | null> | null } | null };
 
 export type NotificationQueryVariables = Exact<{
   language?: Scalars['String'];
 }>;
 
-export type NotificationQuery = {
-  __typename?: 'RootQuery';
-  notification?: {
-    __typename?: 'Notification';
-    content?: string | null;
-    title?: string | null;
-    level?: string | null;
-    startDate?: string | null;
-    endDate?: string | null;
-    linkText?: string | null;
-    linkUrl?: string | null;
-  } | null;
-};
+
+export type NotificationQuery = { __typename?: 'RootQuery', notification?: { __typename?: 'Notification', content?: string | null, title?: string | null, level?: string | null, startDate?: string | null, endDate?: string | null, linkText?: string | null, linkUrl?: string | null } | null };
 
 export const SeoFieldsFragmentDoc = gql`
-  fragment seoFields on SEO {
-    title
-    description
-    openGraphTitle
-    openGraphDescription
-    openGraphType
-    twitterTitle
-    twitterDescription
-  }
-`;
+    fragment seoFields on SEO {
+  title
+  description
+  openGraphTitle
+  openGraphDescription
+  openGraphType
+  twitterTitle
+  twitterDescription
+}
+    `;
 export const PageFieldsFragmentDoc = gql`
-  fragment pageFields on Page {
-    id
-    content
+    fragment pageFields on Page {
+  id
+  content
+  slug
+  title
+  uri
+  lead
+  seo {
+    ...seoFields
+  }
+  language {
+    code
     slug
-    title
-    uri
-    lead
-    seo {
-      ...seoFields
+    locale
+    name
+  }
+  featuredImage {
+    node {
+      mediaItemUrl
+      link
+      altText
+      mimeType
+      title
+      uri
     }
-    language {
-      code
-      slug
-      locale
-      name
+  }
+  sidebar {
+    ... on LayoutLinkList {
+      anchor
+      title
+      description
+      links {
+        target
+        title
+        url
+      }
     }
-    featuredImage {
-      node {
-        mediaItemUrl
-        link
-        altText
-        mimeType
+    ... on LayoutArticles {
+      articles {
+        id
         title
         uri
-      }
-    }
-    sidebar {
-      ... on LayoutLinkList {
-        anchor
-        title
-        description
-        links {
-          target
-          title
-          url
-        }
-      }
-      ... on LayoutArticles {
-        articles {
-          id
-          title
-          uri
-          featuredImage {
-            node {
-              altText
-              mediaItemUrl
-            }
+        featuredImage {
+          node {
+            altText
+            mediaItemUrl
           }
         }
       }
-      ... on LayoutPages {
-        pages {
-          id
-          title
-          uri
-          featuredImage {
-            node {
-              altText
-              mediaItemUrl
-            }
+    }
+    ... on LayoutPages {
+      pages {
+        id
+        title
+        uri
+        featuredImage {
+          node {
+            altText
+            mediaItemUrl
           }
         }
       }
     }
   }
-  ${SeoFieldsFragmentDoc}
-`;
-export const MenuPageFieldsFragmentDoc = gql`
-  fragment menuPageFields on Page {
+}
+    ${SeoFieldsFragmentDoc}`;
+export const PageDocument = gql`
+    query Page($id: ID!, $idType: PageIdType) {
+  page(id: $id, idType: $idType) {
     ...pageFields
     translations {
       ...pageFields
     }
-  }
-  ${PageFieldsFragmentDoc}
-`;
-export const MenuDocument = gql`
-  query Menu($id: ID!, $idType: MenuNodeIdTypeEnum) {
-    menu(id: $id, idType: $idType) {
-      menuItems(first: 100) {
-        nodes {
-          connectedNode {
-            node {
-              ... on Page {
-                ...menuPageFields
-                children {
-                  nodes {
-                    ...menuPageFields
-                  }
-                }
-              }
-            }
+    parent {
+      node {
+        ... on Page {
+          ...pageFields
+          translations {
+            ...pageFields
+          }
+        }
+      }
+    }
+    children {
+      nodes {
+        ... on Page {
+          ...pageFields
+          translations {
+            ...pageFields
           }
         }
       }
     }
   }
-  ${MenuPageFieldsFragmentDoc}
-`;
-
-/**
- * __useMenuQuery__
- *
- * To run a query within a React component, call `useMenuQuery` and pass it any options that fit your needs.
- * When your component renders, `useMenuQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useMenuQuery({
- *   variables: {
- *      id: // value for 'id'
- *      idType: // value for 'idType'
- *   },
- * });
- */
-export function useMenuQuery(
-  baseOptions: Apollo.QueryHookOptions<MenuQuery, MenuQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<MenuQuery, MenuQueryVariables>(MenuDocument, options);
 }
-export function useMenuLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<MenuQuery, MenuQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<MenuQuery, MenuQueryVariables>(
-    MenuDocument,
-    options
-  );
-}
-export type MenuQueryHookResult = ReturnType<typeof useMenuQuery>;
-export type MenuLazyQueryHookResult = ReturnType<typeof useMenuLazyQuery>;
-export type MenuQueryResult = Apollo.QueryResult<MenuQuery, MenuQueryVariables>;
-export const PageDocument = gql`
-  query Page($id: ID!, $idType: PageIdType) {
-    page(id: $id, idType: $idType) {
-      ...pageFields
-      translations {
-        ...pageFields
-      }
-      parent {
-        node {
-          ... on Page {
-            ...pageFields
-            translations {
-              ...pageFields
-            }
-          }
-        }
-      }
-      children {
-        nodes {
-          ... on Page {
-            ...pageFields
-            translations {
-              ...pageFields
-            }
-          }
-        }
-      }
-    }
-  }
-  ${PageFieldsFragmentDoc}
-`;
+    ${PageFieldsFragmentDoc}`;
 
 /**
  * __usePageQuery__
@@ -12060,36 +10368,28 @@ export const PageDocument = gql`
  *   },
  * });
  */
-export function usePageQuery(
-  baseOptions: Apollo.QueryHookOptions<PageQuery, PageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<PageQuery, PageQueryVariables>(PageDocument, options);
-}
-export function usePageLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<PageQuery, PageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<PageQuery, PageQueryVariables>(
-    PageDocument,
-    options
-  );
-}
+export function usePageQuery(baseOptions: Apollo.QueryHookOptions<PageQuery, PageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PageQuery, PageQueryVariables>(PageDocument, options);
+      }
+export function usePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageQuery, PageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PageQuery, PageQueryVariables>(PageDocument, options);
+        }
 export type PageQueryHookResult = ReturnType<typeof usePageQuery>;
 export type PageLazyQueryHookResult = ReturnType<typeof usePageLazyQuery>;
 export type PageQueryResult = Apollo.QueryResult<PageQuery, PageQueryVariables>;
 export const PagesDocument = gql`
-  query Pages {
-    pages(first: 100) {
-      edges {
-        node {
-          ...pageFields
-        }
+    query Pages {
+  pages(first: 100) {
+    edges {
+      node {
+        ...pageFields
       }
     }
   }
-  ${PageFieldsFragmentDoc}
-`;
+}
+    ${PageFieldsFragmentDoc}`;
 
 /**
  * __usePagesQuery__
@@ -12106,202 +10406,30 @@ export const PagesDocument = gql`
  *   },
  * });
  */
-export function usePagesQuery(
-  baseOptions?: Apollo.QueryHookOptions<PagesQuery, PagesQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<PagesQuery, PagesQueryVariables>(
-    PagesDocument,
-    options
-  );
-}
-export function usePagesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<PagesQuery, PagesQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<PagesQuery, PagesQueryVariables>(
-    PagesDocument,
-    options
-  );
-}
+export function usePagesQuery(baseOptions?: Apollo.QueryHookOptions<PagesQuery, PagesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PagesQuery, PagesQueryVariables>(PagesDocument, options);
+      }
+export function usePagesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PagesQuery, PagesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PagesQuery, PagesQueryVariables>(PagesDocument, options);
+        }
 export type PagesQueryHookResult = ReturnType<typeof usePagesQuery>;
 export type PagesLazyQueryHookResult = ReturnType<typeof usePagesLazyQuery>;
-export type PagesQueryResult = Apollo.QueryResult<
-  PagesQuery,
-  PagesQueryVariables
->;
-export const SubPagesSearchDocument = gql`
-  query SubPagesSearch(
-    $id: ID!
-    $idType: PageIdType
-    $search: String!
-    $first: Int
-    $after: String
-  ) {
-    page(id: $id, idType: $idType) {
-      id
-      children(where: { search: $search }, first: $first, after: $after) {
-        pageInfo {
-          endCursor
-          hasNextPage
-        }
-        edges {
-          cursor
-          node {
-            ... on Page {
-              ...pageFields
-              translations {
-                ...pageFields
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${PageFieldsFragmentDoc}
-`;
-
-/**
- * __useSubPagesSearchQuery__
- *
- * To run a query within a React component, call `useSubPagesSearchQuery` and pass it any options that fit your needs.
- * When your component renders, `useSubPagesSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useSubPagesSearchQuery({
- *   variables: {
- *      id: // value for 'id'
- *      idType: // value for 'idType'
- *      search: // value for 'search'
- *      first: // value for 'first'
- *      after: // value for 'after'
- *   },
- * });
- */
-export function useSubPagesSearchQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    SubPagesSearchQuery,
-    SubPagesSearchQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<SubPagesSearchQuery, SubPagesSearchQueryVariables>(
-    SubPagesSearchDocument,
-    options
-  );
-}
-export function useSubPagesSearchLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    SubPagesSearchQuery,
-    SubPagesSearchQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<SubPagesSearchQuery, SubPagesSearchQueryVariables>(
-    SubPagesSearchDocument,
-    options
-  );
-}
-export type SubPagesSearchQueryHookResult = ReturnType<
-  typeof useSubPagesSearchQuery
->;
-export type SubPagesSearchLazyQueryHookResult = ReturnType<
-  typeof useSubPagesSearchLazyQuery
->;
-export type SubPagesSearchQueryResult = Apollo.QueryResult<
-  SubPagesSearchQuery,
-  SubPagesSearchQueryVariables
->;
-export const PagesSearchDocument = gql`
-  query PagesSearch($search: String!, $first: Int, $after: String) {
-    pages(where: { search: $search }, first: $first, after: $after) {
-      pageInfo {
-        endCursor
-        hasNextPage
-      }
-      edges {
-        cursor
-        node {
-          ... on Page {
-            ...pageFields
-            translations {
-              ...pageFields
-            }
-          }
-        }
-      }
-    }
-  }
-  ${PageFieldsFragmentDoc}
-`;
-
-/**
- * __usePagesSearchQuery__
- *
- * To run a query within a React component, call `usePagesSearchQuery` and pass it any options that fit your needs.
- * When your component renders, `usePagesSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = usePagesSearchQuery({
- *   variables: {
- *      search: // value for 'search'
- *      first: // value for 'first'
- *      after: // value for 'after'
- *   },
- * });
- */
-export function usePagesSearchQuery(
-  baseOptions: Apollo.QueryHookOptions<
-    PagesSearchQuery,
-    PagesSearchQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<PagesSearchQuery, PagesSearchQueryVariables>(
-    PagesSearchDocument,
-    options
-  );
-}
-export function usePagesSearchLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    PagesSearchQuery,
-    PagesSearchQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<PagesSearchQuery, PagesSearchQueryVariables>(
-    PagesSearchDocument,
-    options
-  );
-}
-export type PagesSearchQueryHookResult = ReturnType<typeof usePagesSearchQuery>;
-export type PagesSearchLazyQueryHookResult = ReturnType<
-  typeof usePagesSearchLazyQuery
->;
-export type PagesSearchQueryResult = Apollo.QueryResult<
-  PagesSearchQuery,
-  PagesSearchQueryVariables
->;
+export type PagesQueryResult = Apollo.QueryResult<PagesQuery, PagesQueryVariables>;
 export const NotificationDocument = gql`
-  query Notification($language: String! = "fi") {
-    notification(language: $language) {
-      content
-      title
-      level
-      startDate
-      endDate
-      linkText
-      linkUrl
-    }
+    query Notification($language: String! = "fi") {
+  notification(language: $language) {
+    content
+    title
+    level
+    startDate
+    endDate
+    linkText
+    linkUrl
   }
-`;
+}
+    `;
 
 /**
  * __useNotificationQuery__
@@ -12319,37 +10447,14 @@ export const NotificationDocument = gql`
  *   },
  * });
  */
-export function useNotificationQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    NotificationQuery,
-    NotificationQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<NotificationQuery, NotificationQueryVariables>(
-    NotificationDocument,
-    options
-  );
-}
-export function useNotificationLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    NotificationQuery,
-    NotificationQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<NotificationQuery, NotificationQueryVariables>(
-    NotificationDocument,
-    options
-  );
-}
-export type NotificationQueryHookResult = ReturnType<
-  typeof useNotificationQuery
->;
-export type NotificationLazyQueryHookResult = ReturnType<
-  typeof useNotificationLazyQuery
->;
-export type NotificationQueryResult = Apollo.QueryResult<
-  NotificationQuery,
-  NotificationQueryVariables
->;
+export function useNotificationQuery(baseOptions?: Apollo.QueryHookOptions<NotificationQuery, NotificationQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<NotificationQuery, NotificationQueryVariables>(NotificationDocument, options);
+      }
+export function useNotificationLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NotificationQuery, NotificationQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<NotificationQuery, NotificationQueryVariables>(NotificationDocument, options);
+        }
+export type NotificationQueryHookResult = ReturnType<typeof useNotificationQuery>;
+export type NotificationLazyQueryHookResult = ReturnType<typeof useNotificationLazyQuery>;
+export type NotificationQueryResult = Apollo.QueryResult<NotificationQuery, NotificationQueryVariables>;

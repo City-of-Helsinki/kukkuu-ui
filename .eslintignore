@@ -1,1 +1,2 @@
 src/serviceWorker.ts
+src/domain/headless-cms/graphql/__generated__.ts

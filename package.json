@@ -136,13 +136,5 @@
       "!src/serviceWorker.ts",
       "!src/setupTests.ts"
     ]
-  },
-  "lint-staged": {
-    "src/**/*.{tsx,ts}": [
-      "eslint --fix",
-      "stylelint --fix",
-      "prettier --write",
-      "yarn test:staged"
-    ]
   }
 }
