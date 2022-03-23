@@ -1,6 +1,6 @@
 import { graphql } from 'msw';
 
-import { MenuQuery } from '../domain/headless-cms/graphql/__generated__';
+import { MenuQuery } from '../domain/headlessCms/graphql/__generated__';
 import { fakePage } from '../utils/cmsMockDataUtils';
 import { server } from './msw/server';
 

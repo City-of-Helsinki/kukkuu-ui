@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "generate:api-graphql": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes --excludes=src/domain/headless-cms/**",
+    "generate:api-graphql": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes --excludes=src/domain/headlessCms/**",
     "generate:cms-graphql": "DOTENV_CONFIG_PATH=\"./.env.development\" graphql-codegen -r dotenv/config --config codegen.yml",
     "generate:graphql": "yarn generate:api-graphql && yarn generate:cms-graphql",
     "lint": "eslint --ext js,ts,tsx src",

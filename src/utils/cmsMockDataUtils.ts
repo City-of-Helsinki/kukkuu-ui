@@ -9,7 +9,7 @@ import {
   Page,
   Post,
   Seo,
-} from '../domain/headless-cms/graphql/__generated__';
+} from '../domain/headlessCms/graphql/__generated__';
 
 const generateUri = () => faker.random.words().split(' ').join('/');
 

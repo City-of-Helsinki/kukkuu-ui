@@ -1,7 +1,7 @@
 overwrite: true
 generates:
-  ./src/domain/headless-cms/graphql/__generated__.ts:
-    documents: ./src/domain/headless-cms/graphql/{mutation,query,fragment}.ts
+  ./src/domain/headlessCms/graphql/__generated__.ts:
+    documents: ./src/domain/headlessCms/graphql/{mutation,query,fragment}.ts
     schema: ${REACT_APP_CMS_URI}
     plugins:
       - 'typescript'
