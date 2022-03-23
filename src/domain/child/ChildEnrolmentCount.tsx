@@ -34,7 +34,7 @@ export default function ChildEnrolmentCount({ childId }: Props) {
       iconLeft={areAllEnrolmentsUsed && <IconCheck />}
       name={
         <>
-          {t('child.message.eventVisitsThisYear')}{' '}
+          {t('child.message.eventVisitsThisYear')}:{' '}
           {data ? (
             `${pastEnrolmentCount}/${enrolmentLimit}`
           ) : (
