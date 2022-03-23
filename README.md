@@ -88,9 +88,17 @@ Fetches translation data from our Google Spreadsheet and updates translation fil
 
 You need to update jest snapshots and add the translation files to the git repository manually after updating translations.
 
-### `yarn graphql-types`
+### `yarn generate:api-graphql`
 
 Generate static types for GraphQL queries by using the schema from the backend server.
+
+### `yarn generate:cms-graphql`
+
+Generate static types for GraphQL queries by using the schema from the headless cms server.
+
+### `yarn generate:graphql`
+
+Generate static types by calling the both `yarn generate:api-graphql` and `yarn generate:cms-graphql` together.
 
 ### `yarn test:browser`
 
