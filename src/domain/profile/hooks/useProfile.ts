@@ -2,8 +2,8 @@ import { useQuery, QueryResult as GenericQueryResult } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Sentry from '@sentry/browser';
 import { useHistory } from 'react-router';
-import { useTranslation } from 'react-i18next';
 
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelectors';
 import {
   profileQuery as ProfileQueryType,
@@ -22,10 +22,10 @@ export type ProfileQueryResult = Omit<
 };
 
 function useProfile(skipRedirect = false): ProfileQueryResult {
-  const { i18n } = useTranslation();
   const history = useHistory();
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(isAuthenticatedSelector);
+  const getPathname = useGetPathname();
 
   const result = useQuery<ProfileQueryType>(profileQuery, {
     skip: !isAuthenticated,
@@ -46,7 +46,7 @@ function useProfile(skipRedirect = false): ProfileQueryResult {
       // authenticated. However, it seems that this does not always
       // hold and we have to check authentication again in the callback.
       if (!skipRedirect && isAuthenticated && !data?.myProfile) {
-        history.replace(`/${i18n.language}/home#register`);
+        history.replace(getPathname('/home#register'));
       }
     },
     onError: (error) => {

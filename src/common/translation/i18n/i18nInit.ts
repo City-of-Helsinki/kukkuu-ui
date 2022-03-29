@@ -1,12 +1,14 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { History } from 'history';
 
+import replaceLocaleInPathname from '../../route/utils/replaceLocaleInPathname';
 import setLocale, { Locale } from '../../localization/setLocale';
+import { SUPPORT_LANGUAGES } from '../TranslationConstants';
 import en from './en.json';
 import fi from './fi.json';
 import sv from './sv.json';
-import { SUPPORT_LANGUAGES } from '../TranslationConstants';
 
 // The language of the application is controlled by LanguageDetector.
 // When the language is changed, the application is reloaded. This
@@ -18,7 +20,22 @@ import { SUPPORT_LANGUAGES } from '../TranslationConstants';
 // locale of the application in sync. We first initialize i18next, and
 // then use the language it determines to be the most appropriate to
 // use to set the locale.
-function initI18next() {
+export function initI18next(history: History) {
+  // Replace language in url so that the pathname will reflect the current
+  // language when language is changed by using i18n.changeLanguage
+  i18n.on('languageChanged', (nextLanguage) => {
+    // If necessary, change language in pathname
+    const { pathname, ...rest } = window.location;
+    const nextPathname = replaceLocaleInPathname(nextLanguage, pathname);
+
+    if (nextPathname) {
+      history.replace({
+        pathname: nextPathname,
+        ...rest,
+      });
+    }
+  });
+
   i18n
     .use(LanguageDetector)
     .use(initReactI18next)
@@ -56,11 +73,8 @@ function initI18next() {
         },
       },
     });
-  const language = i18n.language as Locale;
 
-  setLocale(language);
+  setLocale(i18n.language as Locale);
 }
-
-initI18next();
 
 export default i18n;

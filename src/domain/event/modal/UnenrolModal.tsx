@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 import unenrolOccurrenceMutation from '../mutations/unenrolOccurrenceMutation';
 import {
   unenrolOccurrenceMutation as UnenrolOccurrenceMutation,
@@ -33,6 +34,7 @@ const UnenrolModal = ({
   const history = useHistory();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const getPathname = useGetPathname();
 
   const [unenrolOccurrence] = useMutation<
     UnenrolOccurrenceMutation,
@@ -52,7 +54,7 @@ const UnenrolModal = ({
           })
         );
       }
-      history.replace(`/profile/child/${childId}`);
+      history.replace(getPathname(`/profile/child/${childId}`));
     },
   });
 

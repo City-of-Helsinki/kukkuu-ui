@@ -1,5 +1,11 @@
 # Change Log
 
+# [Unreleased]
+
+### Added
+
+- Support for defining menu and pages in the CMS
+
 # 1.8.0
 
 ### Changed

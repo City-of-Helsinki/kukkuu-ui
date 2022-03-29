@@ -1,10 +1,9 @@
 import { graphql } from 'msw';
+import { PageDocument } from 'react-helsinki-headless-cms/apollo';
 
 import { server } from '../../../test/msw/server';
 import { fakePage } from '../../../utils/cmsMockDataUtils';
 import client from '../client';
-import { PageIdType } from '../graphql/__generated__';
-import { PAGE_QUERY } from '../graphql/query';
 
 const page = fakePage();
 
@@ -13,7 +12,7 @@ beforeEach(() => {
     'https://kukkuu.hkih.stage.geniem.io/graphql'
   );
   server.use(
-    headlessCms.query('Page', (req, res, ctx) => {
+    headlessCms.query('page', (req, res, ctx) => {
       return res(
         ctx.data({
           page,
@@ -26,10 +25,10 @@ beforeEach(() => {
 describe('Headless CMS Client', () => {
   it('returns a page when a page query is requested', async () => {
     const { data } = await client.query({
-      query: PAGE_QUERY,
+      query: PageDocument,
       variables: {
-        id: 'cG9zdDox',
-        idType: PageIdType.Id,
+        id: '/en/slug',
+        language: 'EN',
       },
     });
     expect(data.page.id).toEqual(page.id);

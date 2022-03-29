@@ -17,6 +17,7 @@ import { initialFormDataSelector } from './RegistrationFormSelectors';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
 import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import PageWrapper from '../../app/layout/PageWrapper';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
@@ -78,6 +79,7 @@ const RegistrationForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const getPathname = useGetPathname();
 
   const initialValues = useSelector(initialFormDataSelector);
   const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
@@ -106,7 +108,7 @@ const RegistrationForm = () => {
   }
   if (data?.myProfile) {
     // No need to save profile here, that will be done after the redirect
-    return <Redirect to="/profile" />;
+    return <Redirect to={getPathname('/profile')} />;
   }
 
   return (
@@ -164,7 +166,7 @@ const RegistrationForm = () => {
                     );
                   }
                   dispatch(resetFormValues());
-                  history.push('/registration/success');
+                  history.push(getPathname('/registration/success'));
                 })
                 .catch((error) => {
                   toast.error(t('registration.submitMutation.errorMessage'));

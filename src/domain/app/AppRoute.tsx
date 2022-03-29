@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
+import useGetPathname from '../../common/route/utils/useGetPathname';
 import {
   isLoadingUserSelector,
   isAuthenticatedSelector,
@@ -17,12 +18,13 @@ function useAuthenticated(enabled = true) {
   const isLoadingUser = useSelector(isLoadingUserSelector);
   const history = useHistory();
   const location = useLocation();
+  const getPathname = useGetPathname();
 
   useEffect(() => {
     if (!isLoadingUser && !isAuthenticated && enabled) {
-      history.replace('/home', { from: location });
+      history.replace(getPathname('/home'), { from: location });
     }
-  }, [isAuthenticated, enabled, history, location, isLoadingUser]);
+  }, [isAuthenticated, enabled, history, location, isLoadingUser, getPathname]);
 
   return !enabled || (!isLoadingUser && isAuthenticated);
 }
@@ -56,7 +58,7 @@ function useInstantLogin(enabled = true) {
   });
 }
 
-type Props = RouteProps & {
+export type AppRouteProps = RouteProps & {
   isPrivate?: boolean;
   title?: string;
   noTitle?: boolean;
@@ -69,7 +71,7 @@ function AppRoute({
   render,
   component,
   ...routeProps
-}: Props) {
+}: AppRouteProps) {
   // Note that instant login should be checked first so that it has
   // access to the path the user attempted to navigate to.
   //

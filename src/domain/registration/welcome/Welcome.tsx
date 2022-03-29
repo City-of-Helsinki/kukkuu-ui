@@ -4,13 +4,15 @@ import { useTranslation } from 'react-i18next';
 
 import tadaImage from '../../../assets/icons/svg/tada.svg';
 import Icon from '../../../common/components/icon/Icon';
-import styles from './welcome.module.scss';
-import PageWrapper from '../../app/layout/PageWrapper';
 import Button from '../../../common/components/button/Button';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
+import PageWrapper from '../../app/layout/PageWrapper';
+import styles from './welcome.module.scss';
 
 const Welcome: FunctionComponent = () => {
   const { t } = useTranslation();
   const history = useHistory();
+  const getPathname = useGetPathname();
 
   return (
     <PageWrapper>
@@ -19,7 +21,7 @@ const Welcome: FunctionComponent = () => {
         <Icon src={tadaImage} className={styles.tada} />
         <Button
           aria-label={t('common.profile.goToProfile.buttonText')}
-          onClick={() => history.push('/profile')}
+          onClick={() => history.push(getPathname('/profile'))}
           className={styles.submitButton}
         >
           {t('common.profile.goToProfile.buttonText')}

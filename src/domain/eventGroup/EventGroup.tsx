@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 
 import CultureKidsImage from '../../assets/images/Culture_kids_transparent@2x.png';
+import useGetPathname from '../../common/route/utils/useGetPathname';
 import Page from '../app/layout/utilityComponents/Page';
 import HeroLayout from '../app/layout/utilityComponents/HeroLayout';
 import {
@@ -24,6 +25,7 @@ type Props = {
 const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
   const { t } = useTranslation();
   const history = useHistory();
+  const getPathname = useGetPathname();
 
   const eventGroup = data?.eventGroup;
   const isReady = !loading && Boolean(eventGroup);
@@ -35,7 +37,7 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
       isReady={isReady}
       isLoading={loading}
     >
-      <HeroLayout backTo={`/profile/child/${childId}`}>
+      <HeroLayout backTo={getPathname(`/profile/child/${childId}`)}>
         <div className={styles.container}>
           <img
             className={styles.eventGroupDecoration}
@@ -52,7 +54,9 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
                 key={event.id}
                 event={event}
                 action={() => {
-                  history.push(`/profile/child/${childId}/event/${event.id}`);
+                  history.push(
+                    getPathname(`/profile/child/${childId}/event/${event.id}`)
+                  );
                 }}
                 actionText={
                   event.canChildEnroll

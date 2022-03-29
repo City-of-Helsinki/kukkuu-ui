@@ -16,6 +16,7 @@ import {
 import RelayList from '../../api/relayList';
 import Text from '../../../common/components/text/Text';
 import List from '../../../common/components/list/List';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 import OccurrenceInfo from '../../event/partial/OccurrenceInfo';
 import EventCard from '../../event/eventCard/EventCard';
 import Config from '../../config';
@@ -70,18 +71,25 @@ const ProfileEventsList = ({
       childId: childId,
     },
   });
+  const getPathname = useGetPathname();
 
   const gotoEventPage = (eventId: string, past = false) => {
     const pastUrl = past ? '/past' : '';
-    history.push(`/profile/child/${childId}/event/${eventId}${pastUrl}`);
+    history.push(
+      getPathname(`/profile/child/${childId}/event/${eventId}${pastUrl}`)
+    );
   };
 
   const gotoEventGroupPage = (eventGroupId: string) => {
-    history.push(`/profile/child/${childId}/event-group/${eventGroupId}`);
+    history.push(
+      getPathname(`/profile/child/${childId}/event-group/${eventGroupId}`)
+    );
   };
 
   const gotoOccurrencePage = (occurrenceId: string) => {
-    history.push(`/profile/child/${childId}/occurrence/${occurrenceId}`);
+    history.push(
+      getPathname(`/profile/child/${childId}/occurrence/${occurrenceId}`)
+    );
   };
 
   const upcomingEventsAndEventGroups = upcomingEventsAndEventGroupsList(

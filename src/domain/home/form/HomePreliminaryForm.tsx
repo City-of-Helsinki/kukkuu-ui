@@ -21,6 +21,7 @@ import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import Button from '../../../common/components/button/Button';
 import TermsField from '../../../common/components/form/fields/terms/TermsField';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 
 interface Props {
   isAuthenticated: boolean;
@@ -38,6 +39,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
 }) => {
   const { t } = useTranslation();
   const history = useHistory();
+  const getPathname = useGetPathname();
 
   const handleSubmit = (values: HomeFormValues) => {
     const payload: HomeFormPayload = {
@@ -58,9 +60,9 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
 
   const handleRedirect = (payload: HomeFormPayload) => {
     if (!isChildEligible(payload.child)) {
-      history.push('/registration/not-eligible');
+      history.push(getPathname('/registration/not-eligible'));
     } else if (isAuthenticated) {
-      history.push('/registration/form');
+      history.push(getPathname('/registration/form'));
     } else {
       loginTunnistamo(`/registration/form`);
     }

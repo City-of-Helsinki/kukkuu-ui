@@ -6,9 +6,12 @@ import styles from './notFound.module.scss';
 import Container from '../layout/Container';
 import Icon from '../../../common/components/icon/Icon';
 import adultFace from '../../../assets/icons/svg/adultFace.svg';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 
 const NotFound: FunctionComponent = () => {
   const { t } = useTranslation();
+  const getPathname = useGetPathname();
+
   return (
     <Container>
       <div className={styles.notFound}>
@@ -16,7 +19,7 @@ const NotFound: FunctionComponent = () => {
         <Icon src={adultFace} className={styles.icon} />
         <p>{t('notFound.text')}</p>
 
-        <Link className={styles.returnLink} to="/">
+        <Link className={styles.returnLink} to={getPathname('/')}>
           {t('notFound.return.text')}
         </Link>
       </div>

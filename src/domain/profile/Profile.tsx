@@ -10,6 +10,7 @@ import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
 import GiveFeedbackButton from '../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import Text from '../../common/components/text/Text';
+import useGetPathname from '../../common/route/utils/useGetPathname';
 import ListPageLayout from '../app/layout/ListPageLayout';
 import { clearProfile } from './state/ProfileActions';
 import useProfile from './hooks/useProfile';
@@ -21,6 +22,7 @@ const Profile = () => {
   const { loading, error, data } = useProfile();
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const getPathname = useGetPathname();
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
@@ -33,7 +35,7 @@ const Profile = () => {
 
   if (!data) {
     // User has logged in, but not created a profile, send them to front page for registration.
-    return <Redirect to="/" />;
+    return <Redirect to={getPathname('/')} />;
   }
 
   return (

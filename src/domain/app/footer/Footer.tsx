@@ -7,11 +7,13 @@ import { Koros } from 'hds-react';
 import styles from './footer.module.scss';
 import Container from '../layout/Container';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 
 const Footer: FunctionComponent = () => {
   const { t, i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
   const logoLang = currentLocale === 'sv' ? styles.sv : styles.fi;
+  const getPathname = useGetPathname();
 
   return (
     <div className={styles.footerWrapper}>
@@ -23,10 +25,12 @@ const Footer: FunctionComponent = () => {
             <p>{t('footer.copyrightText')}</p>
           </div>
           <div className={styles.links}>
-            <Link to="/accessibility#start">
+            <Link to={getPathname('/accessibility#start')}>
               {t('accessibilityStatement.title')}
             </Link>{' '}
-            • <Link to="/terms#">{t('termsOfService.title')}</Link> •{' '}
+            •{' '}
+            <Link to={getPathname('/terms#')}>{t('termsOfService.title')}</Link>{' '}
+            •{' '}
             <a
               href={t('descriptionOfTheFile.url')}
               target="_blank"

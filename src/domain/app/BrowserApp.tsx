@@ -1,28 +1,33 @@
-import { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { BrowserRouter } from 'react-router-dom';
-import { Switch, Route, Redirect } from 'react-router';
+import { Router, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { OidcProvider } from 'redux-oidc';
 import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
+import {
+  ConfigProvider,
+  defaultConfig,
+  LanguageCodeEnum,
+} from 'react-helsinki-headless-cms';
+import { History } from 'history';
 
-import App from './App';
+import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
+import { ScrollToTop } from '../../common/route/RouteUtils';
+import useSyncLanguageBetweenI18nAndReactRouter from '../../common/route/useSyncLanguageBetweenI18nAndReactRouter';
+import AriaLiveProvider from '../../common/AriaLive/AriaLiveProvider';
+import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import graphqlClient from '../api/client';
 import enableOidcLogging from '../auth/enableOidcLogging';
-import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import userManager from '../auth/userManager';
-import PageLayout from './layout/PageLayout';
+import headlessCmsClient from '../headlessCms/client';
+import HeadlessCmsPage from '../headlessCms/HeadlessCmsPage';
 import { persistor, store } from './state/AppStore';
-import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
-import OidcCallback from '../auth/OidcCallback';
-import { ScrollToTop } from '../../common/route/RouteUtils';
-import AriaLiveProvider from '../../common/AriaLive/AriaLiveProvider';
-
-const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})`;
+import App from './App';
+import appRoutes from './appRoutes';
 
 if (process.env.NODE_ENV === 'development') {
   enableOidcLogging();
@@ -41,30 +46,62 @@ if (process.env.REACT_APP_ENVIRONMENT !== 'production') {
   window._paq.push(['requireConsent']);
 }
 
+const pathsWithAppLayout = Object.values(appRoutes).map(
+  ({ path, exact = false }) => (exact ? path : `${path}*`)
+) as string[];
+
 // Export for testing purpose
 export const AppRoutes: FunctionComponent = () => {
-  const { i18n } = useTranslation();
-  const currentLocale = getCurrentLanguage(i18n);
+  useSyncLanguageBetweenI18nAndReactRouter();
 
   return (
-    <PageLayout>
-      <Switch>
-        <Route exact path="/callback" component={OidcCallback} />
-        <Redirect exact path="/" to={`/${currentLocale}/home`} />
-        <Route path={`/${localeParam}/*`} component={App} />
-        <Route
-          render={(props) => {
-            return (
-              <Redirect to={`/${currentLocale}${props.location.pathname}`} />
-            );
-          }}
-        />
-      </Switch>
-    </PageLayout>
+    <Switch>
+      {/* Try to find from app specific pages. */}
+      <Route exact path={pathsWithAppLayout} component={App} />
+      {/* If not found, try to find from the CMS. */}
+      {/* Also handles not found pages. */}
+      <Route path="*" component={HeadlessCmsPage} />
+    </Switch>
   );
 };
 
-const BrowserApp: FunctionComponent = () => {
+const ReactRouterLinkWrapper = ({
+  href,
+  ...delegatedProps
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+  <Link {...delegatedProps} to={href as string} />
+);
+
+const appLanguageToRHHCLanguageMap = {
+  [SUPPORT_LANGUAGES.FI]: LanguageCodeEnum.Fi,
+  [SUPPORT_LANGUAGES.SV]: LanguageCodeEnum.Sv,
+  [SUPPORT_LANGUAGES.EN]: LanguageCodeEnum.En,
+};
+
+type Props = {
+  history: History;
+};
+
+const BrowserApp: FunctionComponent<Props> = ({ history }) => {
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
+  const config = useMemo(
+    () => ({
+      ...defaultConfig,
+      siteName: t('appName'),
+      apolloClient: headlessCmsClient,
+      currentLanguageCode:
+        appLanguageToRHHCLanguageMap[language] ?? LanguageCodeEnum.Fi,
+      components: {
+        Img: defaultConfig.components.Img,
+        A: ReactRouterLinkWrapper,
+      },
+    }),
+    [t, language]
+  );
+
   return (
     <AriaLiveProvider>
       <Provider store={store}>
@@ -74,12 +111,14 @@ const BrowserApp: FunctionComponent = () => {
         >
           <OidcProvider store={store} userManager={userManager}>
             <ApolloProvider client={graphqlClient}>
-              <BrowserRouter>
-                <ScrollToTop />
-                <MatomoProvider value={instance}>
-                  <AppRoutes />
-                </MatomoProvider>
-              </BrowserRouter>
+              <ConfigProvider config={config}>
+                <Router history={history}>
+                  <ScrollToTop />
+                  <MatomoProvider value={instance}>
+                    <AppRoutes />
+                  </MatomoProvider>
+                </Router>
+              </ConfigProvider>
             </ApolloProvider>
           </OidcProvider>
         </PersistGate>

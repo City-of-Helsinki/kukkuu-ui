@@ -22,6 +22,7 @@ import ErrorMessage from '../../../common/components/error/Error';
 import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
 import { GQLErrors } from './EnrolConstants';
 import Enrol from './Enrol';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 
 function containsAlreadyJoinedError(
   errors: ReadonlyArray<GraphQLError>
@@ -64,10 +65,13 @@ const EnrolPage = () => {
       childId: params.childId,
     },
   });
+  const getPathname = useGetPathname();
 
   const goToOccurrence = () =>
     history.replace(
-      `/${language}/profile/child/${params.childId}/occurrence/${data?.occurrence?.id}`
+      getPathname(
+        `/profile/child/${params.childId}/occurrence/${data?.occurrence?.id}`
+      )
     );
 
   // If redirect to /profile, need to do refetchquery
@@ -147,7 +151,9 @@ const EnrolPage = () => {
 
   const goToEvent = () => {
     history.push(
-      `/${language}/profile/child/${params.childId}/event/${params.eventId}`
+      getPathname(
+        `/${language}/profile/child/${params.childId}/event/${params.eventId}`
+      )
     );
   };
 

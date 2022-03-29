@@ -14,6 +14,7 @@ import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton
 import ErrorMessage from '../../../../common/components/error/Error';
 import Button from '../../../../common/components/button/Button';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
+import useGetPathname from '../../../../common/route/utils/useGetPathname';
 import {
   deleteChildMutation,
   editChildMutation,
@@ -39,6 +40,7 @@ const ProfileChildDetail = () => {
       id: params.childId,
     },
   });
+  const getPathname = useGetPathname();
 
   const [deleteChild] = useMutation<DeleteChildPayload>(deleteChildMutation, {
     refetchQueries: [{ query: profileQuery }],
@@ -118,7 +120,7 @@ const ProfileChildDetail = () => {
                   });
 
                   if (res) {
-                    history.push('/profile');
+                    history.push(getPathname('/profile'));
                   }
                 } catch (error) {
                   toast.error(t('registration.submitMutation.errorMessage'));

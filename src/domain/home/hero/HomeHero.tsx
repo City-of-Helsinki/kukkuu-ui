@@ -2,10 +2,11 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
 import { IconAlertCircle } from 'hds-react';
 
-import styles from './hero.module.scss';
-import { loginTunnistamo } from '../../auth/authenticate';
 import Button from '../../../common/components/button/Button';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
+import { loginTunnistamo } from '../../auth/authenticate';
 import Config from '../../config';
+import styles from './hero.module.scss';
 
 type HomeHero = {
   userHasProfile: boolean;
@@ -20,6 +21,7 @@ const HomeHero = ({
 }: HomeHero) => {
   const { t } = useTranslation();
   const history = useHistory();
+  const getPathname = useGetPathname();
 
   return (
     <section className={styles.heroWrapper}>
@@ -47,7 +49,7 @@ const HomeHero = ({
             {userHasProfile && userIsAuthenticated && (
               <Button
                 className={styles.authenticateButton}
-                onClick={() => history.push('/profile')}
+                onClick={() => history.push(getPathname('/profile'))}
               >
                 {t('common.profile.goToProfile.buttonText')}
               </Button>

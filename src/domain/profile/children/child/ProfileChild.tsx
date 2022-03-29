@@ -7,6 +7,7 @@ import childIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import Text from '../../../../common/components/text/Text';
 import { newMoment } from '../../../../common/time/utils';
+import useGetPathname from '../../../../common/route/utils/useGetPathname';
 import {
   profileQuery_myProfile_children_edges_node as ChildType,
   profileQuery_myProfile_children_edges_node_enrolments_edges_node as EnrolmentType,
@@ -31,6 +32,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
       childId: child.id,
     },
   });
+  const getPathname = useGetPathname();
 
   const upcomingEventsAndEventGroups =
     child.upcomingEventsAndEventGroups?.edges[0]?.node?.name;
@@ -109,7 +111,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
       <Link
         className={styles.readMoreLink}
         ref={linkRef}
-        to={`/profile/child/${child.id}`}
+        to={getPathname(`/profile/child/${child.id}`)}
       >
         <IconAngleRight
           aria-label={t('profile.child.navigateToDetail.buttonLabel')}

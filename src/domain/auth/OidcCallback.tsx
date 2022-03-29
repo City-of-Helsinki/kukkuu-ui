@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 
 import ErrorMessage from '../../common/components/error/Error';
+import useGetPathname from '../../common/route/utils/useGetPathname';
 import PageWrapper from '../app/layout/PageWrapper';
 import { store } from '../app/state/AppStore';
 import { authenticateWithBackend } from '../auth/authenticate';
@@ -14,6 +15,7 @@ import userManager from './userManager';
 
 function OidcCallback(props: RouteChildrenProps) {
   const { t } = useTranslation();
+  const getPathname = useGetPathname();
 
   const [callbackMessage, setCallbackMessage] = useState({
     message: <p>{t('authentication.redirect.text')}</p>,
@@ -22,8 +24,8 @@ function OidcCallback(props: RouteChildrenProps) {
   const onSuccess = async (user: User) => {
     await authenticateWithBackend(user.access_token, store.dispatch);
 
-    if (user.state.path) props.history.replace(user.state.path);
-    else props.history.replace('/profile');
+    if (user.state.path) props.history.replace(getPathname(user.state.path));
+    else props.history.replace(getPathname('/profile'));
   };
 
   const onError = async (error: Error) => {
