@@ -33,7 +33,7 @@ function buildEditChild() {
   };
 }
 
-const childName = /.* Hertta Citron .*/;
+const childName = /Hertta Citron/;
 
 fixture`Children feature`
   .page(route())
@@ -86,16 +86,10 @@ test('As a guardian I want to edit the details of my child', async (t) => {
 });
 
 test('As a guardian I want to add and delete a child', async (t) => {
-  const {
-    birthDate,
-    city,
-    postalCode,
-    firstName,
-    lastName,
-    relationship,
-  } = t.ctx.addChild;
+  const { birthDate, city, postalCode, firstName, lastName, relationship } =
+    t.ctx.addChild;
   const newChildName = `${firstName} ${lastName}`;
-  const newChildNameRegepx = new RegExp(`${newChildName} .*`);
+  const newChildNameRegepx = new RegExp(newChildName);
 
   // Open child add modal
   await t.click(godchildrenProfilePage.addChildButton);

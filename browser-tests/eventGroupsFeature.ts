@@ -10,7 +10,7 @@ fixture`Event groups feature`.page(route()).beforeEach(async (t) => {
 
 test('As a user I can use event groups to find events', async (t) => {
   // Select first child
-  await t.click(godchildrenProfilePage.child(/.* Hertta Citron .*/));
+  await t.click(godchildrenProfilePage.child(/Hertta Citron/));
 
   // Expect to see event group invitations
   await t.expect(childrenProfilePage.selectEventGroupButtons.count).gt(0);

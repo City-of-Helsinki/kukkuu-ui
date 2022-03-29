@@ -25,14 +25,11 @@ export function initI18next(history: History) {
   // language when language is changed by using i18n.changeLanguage
   i18n.on('languageChanged', (nextLanguage) => {
     // If necessary, change language in pathname
-    const { pathname, ...rest } = window.location;
+    const { pathname } = window.location;
     const nextPathname = replaceLocaleInPathname(nextLanguage, pathname);
 
     if (nextPathname) {
-      history.replace({
-        pathname: nextPathname,
-        ...rest,
-      });
+      history.replace(nextPathname);
     }
   });
 

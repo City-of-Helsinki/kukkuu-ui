@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 
 export const childrenProfilePage = {
   editChildProfileButton: screen.getByRole('button', {
-    name: 'Muokkaa tietoja',
+    name: 'Muokkaa tietojasi',
   }),
   childName: Selector('h1'),
   selectEventGroupButtons: screen.getAllByRole('button', {

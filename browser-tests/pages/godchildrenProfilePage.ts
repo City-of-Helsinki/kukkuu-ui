@@ -6,10 +6,12 @@ import { deleteChild as childProfilePageDeleteChild } from './childrenProfilePag
 
 export const godchildrenProfilePage = {
   child: (name: string | RegExp) =>
-    screen.getAllByRole('button', {
+    screen.getAllByRole('heading', {
       name: name,
+      level: 4,
+      exact: false,
     }),
-  editProfileButton: screen.getByRole('button', { name: 'Muokkaa tietoja' }),
+  editProfileButton: screen.getByRole('button', { name: 'Muokkaa tietojasi' }),
   profileName: Selector('h1'),
   addChildButton: screen.getByRole('button', { name: 'Lisää lapsi' }),
 };
