@@ -15,9 +15,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "generate:api-graphql": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes --excludes=src/domain/headlessCms/**",
-    "generate:cms-graphql": "DOTENV_CONFIG_PATH=\"./.env.development\" graphql-codegen -r dotenv/config --config codegen.yml",
-    "generate:graphql": "yarn generate:api-graphql",
+    "generate:graphql": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes --excludes=src/domain/headlessCms/**",
     "lint": "eslint --ext js,ts,tsx src",
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
     "format:code": "eslint --ext js,ts,tsx src --fix",
@@ -120,10 +118,6 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^6.0.0",
-    "@graphql-codegen/cli": "^2.6.2",
-    "@graphql-codegen/typescript": "^2.4.8",
-    "@graphql-codegen/typescript-operations": "^2.3.5",
-    "@graphql-codegen/typescript-react-apollo": "^3.2.11",
     "@testing-library/jest-dom": "^5.11.9",
     "apollo": "^2.33.9",
     "codecov": "^3.7.1",
