@@ -70,6 +70,10 @@ const ProfileChildrenList = () => {
                 {t('profile.message.projectDescription', {
                   projectYear: project.year,
                   projectName: project.name,
+                  // Try to find amount of organizers by analyzing the name.
+                  // Very brittle. Can easily break when new languages are
+                  // added.
+                  count: project.name?.split(/,|ja|and|och/)?.length ?? 0,
                 })}
               </Text>
               <List

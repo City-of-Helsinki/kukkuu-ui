@@ -507,7 +507,8 @@
       "allSignupsSpent": "Onnittelut, olet osallistunut jo kahteen tapahtumaan tänä vuonna. Ensi vuonna nähdään!",
       "enrollToEvent": "Sinulla on voimassaoleva tapahtumakutsu. Ilmoittaudu mukaan!",
       "greetings": "Hei {{firstName}}",
-      "projectDescription": "{{projectYear}} • Kummitoimija: {{projectName}}",
+      "projectDescription_one": "{{projectYear}} • Kummi: {{projectName}}",
+      "projectDescription_other": "{{projectYear}} • Kummit: {{projectName}}",
       "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!",
       "youAreEnrolled": "Olet ilmoittautunut tapahtumaan:"
     },

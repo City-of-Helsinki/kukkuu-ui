@@ -507,7 +507,8 @@
       "allSignupsSpent": "",
       "enrollToEvent": "",
       "greetings": "Hej {{firstName}}",
-      "projectDescription": "",
+      "projectDescription_one": "",
+      "projectDescription_other": "",
       "serviceDescription": "",
       "youAreEnrolled": ""
     },
