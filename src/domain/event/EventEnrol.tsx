@@ -41,7 +41,7 @@ const EventEnrol = ({
       <h2>{t('enrollPage.enrolShort')}</h2>
       {!data?.event?.canChildEnroll && (
         <Notification type="alert">
-          {t('enrollPage.message.alreadyEnrolledNotice')}
+          {t('enrollPage.message.cantEnrollNotice')}
         </Notification>
       )}
       <div className={styles.signup}>

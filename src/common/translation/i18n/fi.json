@@ -212,7 +212,7 @@
     "enrol": "Ilmoittaudu tapahtumaan",
     "enrolShort": "Ilmoittaudu",
     "message": {
-      "alreadyEnrolledNotice": "Huomioithan, että olet jo ilmoittautunut yhteen tapahtumaan."
+      "cantEnrollNotice": "Huomioithan, että et voi ilmoittautua tähän tapahtumaan."
     }
   },
   "event": {

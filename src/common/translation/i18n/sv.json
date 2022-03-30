@@ -212,7 +212,7 @@
     "enrol": "Anmäl dig till evenemanget",
     "enrolShort": "Anmäl",
     "message": {
-      "alreadyEnrolledNotice": ""
+      "cantEnrollNotice": ""
     }
   },
   "event": {
