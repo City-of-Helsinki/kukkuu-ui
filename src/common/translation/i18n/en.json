@@ -521,8 +521,8 @@
   },
   "profileEventList": {
     "message": {
-      "alrepadyEnrolledEvent": "",
-      "alrepadyEnrolledEventGroup": "",
+      "alreadyEnrolledEvent": "",
+      "alreadyEnrolledEventGroup": "",
       "noEnrollEvent": "",
       "noEnrollEventGroup": ""
     }

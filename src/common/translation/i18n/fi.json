@@ -521,8 +521,8 @@
   },
   "profileEventList": {
     "message": {
-      "alrepadyEnrolledEvent": "Huomioithan, että et voi ilmoittautua tähän tapahtumaan.",
-      "alrepadyEnrolledEventGroup": "Huomioithan, että et voi ilmoittautua tämän ryhmän tapahtumiin.",
+      "alreadyEnrolledEvent": "Huomioithan, että et voi ilmoittautua tähän tapahtumaan.",
+      "alreadyEnrolledEventGroup": "Huomioithan, että et voi ilmoittautua tämän ryhmän tapahtumiin.",
       "noEnrollEvent": "Olet jo ilmoittautunut toiseen tapahtumaan.",
       "noEnrollEventGroup": "Huomioithan, että olet jo ilmoittautunut yhteen tapahtumaan."
     }
