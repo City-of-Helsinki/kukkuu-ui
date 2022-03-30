@@ -499,7 +499,8 @@
         "heading": "Menneet tapahtumat"
       },
       "enrolled": {
-        "heading": "Olet ilmoittautunut tapahtumaan"
+        "heading_one": "Olet ilmoittautunut tapahtumaan",
+        "heading_other": "Olet ilmoittautunut tapahtumiin"
       }
     },
     "heading": "Kummilapset",

@@ -499,7 +499,8 @@
         "heading": "Gångna evenemang"
       },
       "enrolled": {
-        "heading": ""
+        "heading_one": "",
+        "heading_other": ""
       }
     },
     "heading": "Fadderbarn",

@@ -499,7 +499,8 @@
         "heading": "Past events"
       },
       "enrolled": {
-        "heading": ""
+        "heading_one": "",
+        "heading_other": ""
       }
     },
     "heading": "Culture Kids",
