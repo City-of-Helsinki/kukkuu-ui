@@ -498,8 +498,8 @@
       "past": {
         "heading": "Gångna evenemang"
       },
-      "upcoming": {
-        "heading": "Kommande evenemang"
+      "enrolled": {
+        "heading": ""
       }
     },
     "heading": "Fadderbarn",

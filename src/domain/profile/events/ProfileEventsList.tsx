@@ -160,7 +160,7 @@ const ProfileEventsList = ({
           ),
           occurrences.length > 0 && (
             <React.Fragment key="occurrences">
-              <Text variant="h2">{t('profile.events.upcoming.heading')}</Text>
+              <Text variant="h2">{t('profile.events.enrolled.heading')}</Text>
               <List
                 variant="spacing-layout-2-xs"
                 items={occurrences.map((occurrence) => (

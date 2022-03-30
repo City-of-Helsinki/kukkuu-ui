@@ -498,8 +498,8 @@
       "past": {
         "heading": "Menneet tapahtumat"
       },
-      "upcoming": {
-        "heading": "Tulevat tapahtumat"
+      "enrolled": {
+        "heading": "Olet ilmoittautunut tapahtumaan"
       }
     },
     "heading": "Kummilapset",
