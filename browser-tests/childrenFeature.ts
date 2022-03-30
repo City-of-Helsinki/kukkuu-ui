@@ -89,7 +89,7 @@ test('As a guardian I want to add and delete a child', async (t) => {
   const { birthDate, city, postalCode, firstName, lastName, relationship } =
     t.ctx.addChild;
   const newChildName = `${firstName} ${lastName}`;
-  const newChildNameRegepx = new RegExp(newChildName);
+  const newChildNameRegExp = new RegExp(newChildName);
 
   // Open child add modal
   await t.click(godchildrenProfilePage.addChildButton);
@@ -115,8 +115,8 @@ test('As a guardian I want to add and delete a child', async (t) => {
   await t.wait(1500); // 1.5s
 
   // Assert that the child can be found
-  await t.expect(godchildrenProfilePage.child(newChildNameRegepx).exists).ok();
+  await t.expect(godchildrenProfilePage.child(newChildNameRegExp).exists).ok();
 
   // Remove the created child
-  await deleteChild(t, newChildNameRegepx);
+  await deleteChild(t, newChildNameRegExp);
 });
