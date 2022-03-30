@@ -6,6 +6,10 @@
 
 - Support for defining menu and pages in the CMS
 
+### Fixed
+
+- Inaccessible modal content when it overflowed container
+
 # 1.8.0
 
 ### Changed

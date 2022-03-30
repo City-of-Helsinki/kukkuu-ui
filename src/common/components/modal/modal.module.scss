@@ -6,8 +6,11 @@ $modalPadding: 2rem;
 $modalWidthLg: 800px;
 
 .modal {
-  background-color: var(--color-white);
   position: relative;
+
+  background-color: var(--color-white);
+  margin: auto;
+
   &:focus {
     outline: none;
   }
@@ -31,12 +34,11 @@ $modalWidthLg: 800px;
   left: 0;
   right: 0;
   bottom: 0;
+
   // Cannot use var(--color-black-30) here because browsers don't support rgba-ing it.
   background-color: rgba(#b2b2b2, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 10;
+  overflow: auto;
 }
 
 .closeButtonWrapper {
