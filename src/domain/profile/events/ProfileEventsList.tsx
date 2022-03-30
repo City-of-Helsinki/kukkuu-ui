@@ -108,6 +108,40 @@ const ProfileEventsList = ({
       <List
         variant="spacing-xl"
         items={[
+          occurrences.length > 0 && (
+            <React.Fragment key="occurrences">
+              <Text variant="h2">{t('profile.events.enrolled.heading')}</Text>
+              <List
+                variant="spacing-layout-2-xs"
+                items={occurrences.map((occurrence) => (
+                  <EventCard
+                    key={occurrence.event.id}
+                    imageElement={
+                      <div className={styles.qrWrapper}>
+                        <QRCode
+                          quietZone={0}
+                          size={QR_CODE_SIZE_PX}
+                          value={getTicketValidationUrl(
+                            occurrence?.enrolments?.edges?.[0]?.node
+                              ?.referenceId
+                          )}
+                          ecLevel={'H'}
+                        />
+                      </div>
+                    }
+                    event={occurrence.event}
+                    action={() => gotoOccurrencePage(occurrence.id)}
+                    actionText={t('enrollment.showEventInfo.buttonText')}
+                    primaryAction="hidden"
+                    focalContent={OccurrenceInfo({
+                      occurrence,
+                      show: ['time', 'duration', 'venue'],
+                    })}
+                  />
+                ))}
+              />
+            </React.Fragment>
+          ),
           upcomingEventsAndEventGroups.length > 0 && (
             <React.Fragment key="upcomingEventsAndEventGroups">
               <Text variant="h2">
@@ -155,40 +189,6 @@ const ProfileEventsList = ({
                     />
                   );
                 })}
-              />
-            </React.Fragment>
-          ),
-          occurrences.length > 0 && (
-            <React.Fragment key="occurrences">
-              <Text variant="h2">{t('profile.events.enrolled.heading')}</Text>
-              <List
-                variant="spacing-layout-2-xs"
-                items={occurrences.map((occurrence) => (
-                  <EventCard
-                    key={occurrence.event.id}
-                    imageElement={
-                      <div className={styles.qrWrapper}>
-                        <QRCode
-                          quietZone={0}
-                          size={QR_CODE_SIZE_PX}
-                          value={getTicketValidationUrl(
-                            occurrence?.enrolments?.edges?.[0]?.node
-                              ?.referenceId
-                          )}
-                          ecLevel={'H'}
-                        />
-                      </div>
-                    }
-                    event={occurrence.event}
-                    action={() => gotoOccurrencePage(occurrence.id)}
-                    actionText={t('enrollment.showEventInfo.buttonText')}
-                    primaryAction="hidden"
-                    focalContent={OccurrenceInfo({
-                      occurrence,
-                      show: ['time', 'duration', 'venue'],
-                    })}
-                  />
-                ))}
               />
             </React.Fragment>
           ),
