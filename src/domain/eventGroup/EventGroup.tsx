@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 
 import CultureKidsImage from '../../assets/images/Culture_kids_transparent@2x.png';
 import useGetPathname from '../../common/route/utils/useGetPathname';
+import List from '../../common/components/list/List';
 import Page from '../app/layout/utilityComponents/Page';
 import HeroLayout from '../app/layout/utilityComponents/HeroLayout';
 import {
@@ -48,8 +49,9 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
             <h1 className={styles.title}>{eventGroup?.name}</h1>
             {eventGroup?.description && nlToParagraph(eventGroup?.description)}
           </div>
-          <div className={styles.eventList}>
-            {EventList(eventGroup?.events).items.map((event) => (
+          <List
+            variant="spacing-layout-2-xs"
+            items={EventList(eventGroup?.events).items.map((event) => (
               <EventCard
                 key={event.id}
                 event={event}
@@ -67,7 +69,7 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
                 }
               />
             ))}
-          </div>
+          />
         </div>
       </HeroLayout>
     </Page>
