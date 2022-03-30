@@ -12,8 +12,14 @@ export default function useChildEnrolmentCount(
     ChildEnrolmentCountVariablesQuery
   >
 ) {
-  return useQuery<ChildEnrolmentCountQuery, ChildEnrolmentCountVariablesQuery>(
-    childEnrolmentCountQuery,
-    options
-  );
+  const { data, ...delegatedQuery } = useQuery<
+    ChildEnrolmentCountQuery,
+    ChildEnrolmentCountVariablesQuery
+  >(childEnrolmentCountQuery, options);
+
+  const pastEnrolmentCount = data?.child?.pastEnrolmentCount ?? ' ';
+  const enrolmentLimit = data?.child?.project?.enrolmentLimit ?? ' ';
+  const areAllEnrollmentsUsed = data && pastEnrolmentCount >= enrolmentLimit;
+
+  return { data, ...delegatedQuery, convenience: { areAllEnrollmentsUsed } };
 }

@@ -27,7 +27,10 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
   const linkRef = React.useRef<HTMLAnchorElement | null>(null);
   const downRef = React.useRef<Date | null>(null);
   const { t } = useTranslation();
-  const { data } = useChildEnrolmentCount({
+  const {
+    data,
+    convenience: { areAllEnrollmentsUsed },
+  } = useChildEnrolmentCount({
     variables: {
       childId: child.id,
     },
@@ -100,7 +103,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
           )}
         </div>
         <div className={styles.additionalDetails}>
-          {upcomingEventsAndEventGroups && (
+          {upcomingEventsAndEventGroups && !areAllEnrollmentsUsed && (
             <div className={styles.invitationLabel}>
               {t('profile.child.invitationLabel.text')}
             </div>
