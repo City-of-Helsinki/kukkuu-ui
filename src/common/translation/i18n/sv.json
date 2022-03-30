@@ -523,8 +523,10 @@
     "message": {
       "alreadyEnrolledEvent": "",
       "alreadyEnrolledEventGroup": "",
-      "noEnrollEvent": "",
-      "noEnrollEventGroup": ""
+      "noEnrollEvent_one": "",
+      "noEnrollEvent_other": "",
+      "noEnrollEventGroup_one": "",
+      "noEnrollEventGroup_other": ""
     }
   },
   "registration": {

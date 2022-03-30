@@ -24,6 +24,10 @@ export interface ChildEnrolmentCount_child {
    */
   id: string;
   /**
+   * How many enrolments child has this year.
+   */
+  enrolmentCount: number | null;
+  /**
    * How many past enrolments child has this year.
    */
   pastEnrolmentCount: number | null;

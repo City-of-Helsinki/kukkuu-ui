@@ -523,8 +523,10 @@
     "message": {
       "alreadyEnrolledEvent": "Huomioithan, että et voi ilmoittautua tähän tapahtumaan.",
       "alreadyEnrolledEventGroup": "Huomioithan, että et voi ilmoittautua tämän ryhmän tapahtumiin.",
-      "noEnrollEvent": "Olet jo ilmoittautunut toiseen tapahtumaan.",
-      "noEnrollEventGroup": "Huomioithan, että olet jo ilmoittautunut yhteen tapahtumaan."
+      "noEnrollEvent_one": "Olet jo ilmoittautunut toiseen tapahtumaan.",
+      "noEnrollEvent_other": "Olet jo ilmoittautunut {{count}} tapahtumaan.",
+      "noEnrollEventGroup_one": "Huomioithan, että olet jo ilmoittautunut yhteen tapahtumaan.",
+      "noEnrollEventGroup_other": "Huomioithan, että olet jo ilmoittautunut {{count}} tapahtumaan."
     }
   },
   "registration": {

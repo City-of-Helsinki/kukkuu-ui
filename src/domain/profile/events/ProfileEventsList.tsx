@@ -97,6 +97,7 @@ const ProfileEventsList = ({
   ).items;
   const occurrences = occurrencesList(occurrenceData).items;
   const pastEvents = pastEventsList(pastEventsData).items;
+  const enrolmentCount = data?.child?.enrolmentCount;
   const pastEnrolmentCount = data?.child?.pastEnrolmentCount;
   const enrolmentLimit = data?.child?.project?.enrolmentLimit;
   const childDoesNotHaveEnrolmentsLeft = Boolean(
@@ -158,7 +159,13 @@ const ProfileEventsList = ({
                   return (
                     <EventCard
                       focalContent={
-                        focalContent ? <>{t(focalContent)}</> : undefined
+                        focalContent ? (
+                          <>
+                            {t(focalContent, {
+                              count: enrolmentCount ?? 0,
+                            })}
+                          </>
+                        ) : undefined
                       }
                       key={eventOrEventGroup.id}
                       event={eventOrEventGroup}
