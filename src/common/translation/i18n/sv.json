@@ -89,6 +89,8 @@
     "backButton": {
       "label": "Tillbaka"
     },
+    "breadcrumbListLabel": "",
+    "breadcrumbNavigationLabel": "",
     "closeButton": {
       "altText": "Stäng"
     },
@@ -116,6 +118,7 @@
       "closeMenuText": "Stäng meny",
       "openMenuText": "Öppna meny"
     },
+    "menuToggleAriaLabel": "Meny",
     "modal": {
       "cancel": {
         "text": "Tillbaka"
@@ -127,6 +130,8 @@
         "text": "Spara"
       }
     },
+    "openInExternalDomainAriaLabel": "",
+    "openInNewTabAriaLabel": "Öppnas i ett nytt mellanblad",
     "profile": {
       "goToProfile": {
         "buttonText": "Min fadderbarnsprofil"
@@ -139,7 +144,8 @@
       "default": {
         "text": "Välj"
       }
-    }
+    },
+    "skipToContentLabel": "Gå direkt till innehållet"
   },
   "dataProtection": {
     "title": "Dataskydd",

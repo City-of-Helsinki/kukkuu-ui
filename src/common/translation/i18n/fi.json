@@ -89,6 +89,8 @@
     "backButton": {
       "label": "Palaa"
     },
+    "breadcrumbListLabel": "",
+    "breadcrumbNavigationLabel": "",
     "closeButton": {
       "altText": "Sulje"
     },
@@ -116,6 +118,7 @@
       "closeMenuText": "Sulje valikko",
       "openMenuText": "Avaa valikko"
     },
+    "menuToggleAriaLabel": "Valikko",
     "modal": {
       "cancel": {
         "text": "Peruuta"
@@ -127,6 +130,8 @@
         "text": "Tallenna"
       }
     },
+    "openInExternalDomainAriaLabel": "Avautuu toisella nettisivulla",
+    "openInNewTabAriaLabel": "Avautuu uudessa välilehdessä",
     "profile": {
       "goToProfile": {
         "buttonText": "Oma kummilapsiprofiili"
@@ -139,7 +144,8 @@
       "default": {
         "text": "Valitse"
       }
-    }
+    },
+    "skipToContentLabel": "Siirry suoraan sisältöön"
   },
   "dataProtection": {
     "title": "Tietosuoja",

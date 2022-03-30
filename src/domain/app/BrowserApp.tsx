@@ -12,6 +12,7 @@ import {
   ConfigProvider,
   defaultConfig,
   LanguageCodeEnum,
+  Link as RHHCLink,
 } from 'react-helsinki-headless-cms';
 import { History } from 'history';
 
@@ -72,6 +73,21 @@ const ReactRouterLinkWrapper = ({
   <Link {...delegatedProps} to={href as string} />
 );
 
+const ReactRouterStyledLinkWrapper = ({
+  href,
+  ...delegatedProps
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+  const internalLink = !href?.startsWith('http');
+
+  if (internalLink) {
+    return (
+      <Link {...delegatedProps} to={href as string} component={RHHCLink} />
+    );
+  }
+
+  return <RHHCLink {...delegatedProps} href={href} />;
+};
+
 const appLanguageToRHHCLanguageMap = {
   [SUPPORT_LANGUAGES.FI]: LanguageCodeEnum.Fi,
   [SUPPORT_LANGUAGES.SV]: LanguageCodeEnum.Sv,
@@ -89,7 +105,6 @@ const BrowserApp: FunctionComponent<Props> = ({ history }) => {
   } = useTranslation();
   const config = useMemo(
     () => ({
-      ...defaultConfig,
       siteName: t('appName'),
       apolloClient: headlessCmsClient,
       currentLanguageCode:
@@ -97,6 +112,20 @@ const BrowserApp: FunctionComponent<Props> = ({ history }) => {
       components: {
         Img: defaultConfig.components.Img,
         A: ReactRouterLinkWrapper,
+        Link: ReactRouterStyledLinkWrapper,
+      },
+      copy: {
+        breadcrumbNavigationLabel: t('common.breadcrumbNavigationLabel'),
+        breadcrumbListLabel: t('common.breadcrumbListLabel'),
+        menuToggleAriaLabel: t('common.menuToggleAriaLabel'),
+        skipToContentLabel: t('common.skipToContentLabel'),
+        openInExternalDomainAriaLabel: t(
+          'common.openInExternalDomainAriaLabel'
+        ),
+        openInNewTabAriaLabel: t('common.openInNewTabAriaLabel'),
+      },
+      utils: {
+        getIsHrefExternal: defaultConfig.utils.getIsHrefExternal,
       },
     }),
     [t, language]

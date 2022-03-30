@@ -89,6 +89,8 @@
     "backButton": {
       "label": "Back"
     },
+    "breadcrumbListLabel": "Breadcrumbs",
+    "breadcrumbNavigationLabel": "Breadcrumb navigation",
     "closeButton": {
       "altText": "Close"
     },
@@ -116,6 +118,7 @@
       "closeMenuText": "Close menu",
       "openMenuText": "Open menu"
     },
+    "menuToggleAriaLabel": "Menu",
     "modal": {
       "cancel": {
         "text": "Cancel"
@@ -127,6 +130,8 @@
         "text": "Submit"
       }
     },
+    "openInExternalDomainAriaLabel": "Opens a different website",
+    "openInNewTabAriaLabel": "Opens in a new tab",
     "profile": {
       "goToProfile": {
         "buttonText": "Go to your Culture Kid profile"
@@ -139,7 +144,8 @@
       "default": {
         "text": "Choose"
       }
-    }
+    },
+    "skipToContentLabel": "Go directly to content"
   },
   "dataProtection": {
     "title": "Data Protection",
