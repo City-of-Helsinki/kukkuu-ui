@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import copy from 'copy-to-clipboard';
 import { IconCheck } from 'hds-react';
-import { useLocation, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { useQuery } from '@apollo/client';
 
 import PageWrapper from '../app/layout/PageWrapper';
@@ -16,10 +16,7 @@ import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
 import useEventOccurrence from './queries/useEventOccurrence';
 import useAriaLive from '../../common/AriaLive/useAriaLive';
-
-function getEventPathname(pathname: string): string {
-  return pathname.split('/').slice(0, 7).join('/');
-}
+import useGetPathname from '../../common/route/utils/useGetPathname';
 
 const CopyStates = {
   initial: 'INITIAL',
@@ -38,6 +35,9 @@ type Params = {
 const EventOccurrenceRedirect = () => {
   const { t } = useTranslation();
   const params = useParams<Params>();
+
+  const getPathname = useGetPathname();
+
   const { loading, error, data } = useQuery<EventQueryType>(eventQuery, {
     variables: {
       id: params.eventId,
@@ -48,7 +48,6 @@ const EventOccurrenceRedirect = () => {
     params.occurrenceId,
     params.childId
   );
-  const location = useLocation();
   const [copyStatus, setCopyStatus] = useState<CopyState>(CopyStates.initial);
   const { sendMessage } = useAriaLive();
 
@@ -123,7 +122,9 @@ const EventOccurrenceRedirect = () => {
         <div className={styles.row}>
           <LinkButton
             variant="secondary"
-            to={getEventPathname(location.pathname)}
+            to={getPathname(
+              `/profile/child/${params.childId}/event/${params.eventId}`
+            )}
           >
             {t('eventOccurrenceRedirectPage.back')}
           </LinkButton>
