@@ -11,101 +11,7 @@ exports[`Renders snapshot correctly 1`] = `
       <h2
         class="text h2 "
       >
-        Tapahtumakutsut
-      </h2>
-      <ul
-        class="list spacing-layout-2-xs"
-      >
-        <li
-          class="item"
-        >
-          <div
-            class="wrapper"
-          >
-            <div
-              class="image"
-            >
-              <img
-                alt="huhuu"
-                class="image"
-                src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
-              />
-            </div>
-            <div
-              class="content"
-            >
-              <h3
-                class="text h3 title"
-              >
-                pentti
-              </h3>
-              <p
-                class="text body "
-              >
-                eventti
-              </p>
-              <div
-                class="focalPoint"
-              >
-                <button
-                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO primaryActionButton"
-                  style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
-                  type="button"
-                >
-                  <span
-                    class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-                  >
-                    Lue lisää
-                  </span>
-                </button>
-                <span />
-              </div>
-            </div>
-            <div
-              class="cta"
-            >
-              <button
-                aria-label="Lue lisää"
-                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
-                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
-                type="button"
-              >
-                <span
-                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-                >
-                  <svg
-                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
-                    role="img"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <g
-                      fill="none"
-                      fill-rule="evenodd"
-                    >
-                      <polygon
-                        points="0 24 0 0 24 0 24 24"
-                      />
-                      <polygon
-                        fill="currentColor"
-                        points="13.5 12 8.5 7 10 5.5 16.5 12 10 18.5 8.5 17"
-                      />
-                    </g>
-                  </svg>
-                </span>
-              </button>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </li>
-    <li
-      class="item"
-    >
-      <h2
-        class="text h2 "
-      >
-        Tulevat tapahtumat
+        Olet ilmoittautunut tapahtumaan
       </h2>
       <ul
         class="list spacing-layout-2-xs"
@@ -251,6 +157,100 @@ exports[`Renders snapshot correctly 1`] = `
             >
               <button
                 aria-label="Näytä tapahtuman tiedot"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                type="button"
+              >
+                <span
+                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                >
+                  <svg
+                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g
+                      fill="none"
+                      fill-rule="evenodd"
+                    >
+                      <polygon
+                        points="0 24 0 0 24 0 24 24"
+                      />
+                      <polygon
+                        fill="currentColor"
+                        points="13.5 12 8.5 7 10 5.5 16.5 12 10 18.5 8.5 17"
+                      />
+                    </g>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </li>
+    <li
+      class="item"
+    >
+      <h2
+        class="text h2 "
+      >
+        Tapahtumat
+      </h2>
+      <ul
+        class="list spacing-layout-2-xs"
+      >
+        <li
+          class="item"
+        >
+          <div
+            class="wrapper"
+          >
+            <div
+              class="image"
+            >
+              <img
+                alt="huhuu"
+                class="image"
+                src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
+              />
+            </div>
+            <div
+              class="content"
+            >
+              <h3
+                class="text h3 title"
+              >
+                pentti
+              </h3>
+              <p
+                class="text body "
+              >
+                eventti
+              </p>
+              <div
+                class="focalPoint"
+              >
+                <button
+                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO primaryActionButton"
+                  style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                  type="button"
+                >
+                  <span
+                    class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                  >
+                    Lue lisää
+                  </span>
+                </button>
+                <span />
+              </div>
+            </div>
+            <div
+              class="cta"
+            >
+              <button
+                aria-label="Lue lisää"
                 class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"

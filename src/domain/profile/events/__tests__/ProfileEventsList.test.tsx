@@ -161,10 +161,10 @@ test('Renders only upcoming events and event groups when no other inputs', () =>
     </MockedProvider>
   );
   expect(
-    screen.getByRole('heading', { name: 'Tapahtumakutsut' })
+    screen.getByRole('heading', { name: 'Tapahtumat' })
   ).toBeInTheDocument();
   expect(
-    screen.queryByRole('heading', { name: 'Tulevat tapahtumat' })
+    screen.queryByRole('heading', { name: 'Olet ilmoittautunut tapahtumaan' })
   ).not.toBeInTheDocument();
   expect(
     screen.queryByRole('heading', { name: 'Menneet tapahtumat' })
@@ -186,10 +186,10 @@ test('Renders only enrolments when no other inputs', () => {
   );
 
   expect(
-    screen.queryByRole('heading', { name: 'Tapahtumakutsut' })
+    screen.queryByRole('heading', { name: 'Tapahtumat' })
   ).not.toBeInTheDocument();
   expect(
-    screen.getByRole('heading', { name: 'Tulevat tapahtumat' })
+    screen.getByRole('heading', { name: 'Olet ilmoittautunut tapahtumaan' })
   ).toBeInTheDocument();
   expect(
     screen.queryByRole('heading', { name: 'Menneet tapahtumat' })
@@ -211,10 +211,10 @@ test('Renders only past events when no other inputs', () => {
   );
 
   expect(
-    screen.queryByRole('heading', { name: 'Tapahtumakutsut' })
+    screen.queryByRole('heading', { name: 'Tapahtumat' })
   ).not.toBeInTheDocument();
   expect(
-    screen.queryByRole('heading', { name: 'Tulevat tapahtumat' })
+    screen.queryByRole('heading', { name: 'Olet ilmoittautunut tapahtumaan' })
   ).not.toBeInTheDocument();
   expect(
     screen.getByRole('heading', { name: 'Menneet tapahtumat' })
