@@ -12,7 +12,7 @@ export default function ChildEnrolmentCount({ childId }: Props) {
   const { t } = useTranslation();
   const {
     data,
-    convenience: { areAllEnrollmentsUsed },
+    convenience: { areAllEnrolmentsUsed },
   } = useChildEnrolmentCount({
     variables: {
       childId,
@@ -33,8 +33,8 @@ export default function ChildEnrolmentCount({ childId }: Props) {
 
   return (
     <KukkuuPill
-      variant={areAllEnrollmentsUsed ? 'success' : 'default'}
-      iconLeft={areAllEnrollmentsUsed && <IconCheck />}
+      variant={areAllEnrolmentsUsed ? 'success' : 'default'}
+      iconLeft={areAllEnrolmentsUsed && <IconCheck />}
       name={
         <>
           {t('child.message.eventVisitsThisYear')}:{' '}
