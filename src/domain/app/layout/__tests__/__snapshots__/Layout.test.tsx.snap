@@ -7,7 +7,10 @@ exports[`renders snapshot correctly 1`] = `
   <div
     className="pageWrapper"
   >
-    <Navigation />
+    <div>
+      <Navigation />
+      <Notification />
+    </div>
     <div
       className="pageBody"
     />

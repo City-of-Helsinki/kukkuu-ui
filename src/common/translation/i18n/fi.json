@@ -94,6 +94,7 @@
     "closeButton": {
       "altText": "Sulje"
     },
+    "closeButtonLabelText": "Sulje",
     "error": {
       "description": "Yritä myöhemmin uudestaan",
       "title": "Tapahtui virhe"

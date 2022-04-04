@@ -5711,6 +5711,11 @@ date-fns@^1.27.2:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
 
+date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
+
 debounce@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/debounce/-/debounce-1.2.1.tgz#38881d8f4166a5c5848020c11827b834bcb3e0a5"
@@ -12568,10 +12573,10 @@ react-helmet-async@^1.0.6:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
-react-helsinki-headless-cms@^1.0.0-alpha1:
-  version "1.0.0-alpha1"
-  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha1.tgz#5db24146686384adb2c46dccea633e0384d6f62d"
-  integrity sha512-s+oR/mrPsaDLCdo3YaHYz4KR7aax/H93cgb7VHBKjeGD41hX8PM3nX0Tt4sWDS/XKj9UE+6tnk4eEyU2S33qwA==
+react-helsinki-headless-cms@^1.0.0-alpha1-canary-36caae4:
+  version "1.0.0-alpha1-canary-36caae4"
+  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha1-canary-36caae4.tgz#dcb43ed986745d1d1a248a8acc4a1b5ba3728bf1"
+  integrity sha512-cnlGx//ymSWRYR/hhNXGmqSfDMvdX7vlFx7J6J6XNIKEwAdA4GdgZFvXVfUFS2/THRj5cUDFZB9ej7RS/Rw+6g==
   dependencies:
     hds-design-tokens "^1.11.1"
     html-react-parser "^1.4.8"

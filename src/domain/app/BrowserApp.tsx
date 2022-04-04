@@ -123,6 +123,7 @@ const BrowserApp: FunctionComponent<Props> = ({ history }) => {
           'common.openInExternalDomainAriaLabel'
         ),
         openInNewTabAriaLabel: t('common.openInNewTabAriaLabel'),
+        closeButtonLabelText: t('common.closeButtonLabelText'),
       },
       utils: {
         getIsHrefExternal: defaultConfig.utils.getIsHrefExternal,

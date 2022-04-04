@@ -94,6 +94,7 @@
     "closeButton": {
       "altText": "Stäng"
     },
+    "closeButtonLabelText": "Stäng",
     "error": {
       "description": "Försök igen senare",
       "title": "Ett fel uppstod"

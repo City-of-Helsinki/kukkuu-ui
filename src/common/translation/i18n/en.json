@@ -94,6 +94,7 @@
     "closeButton": {
       "altText": "Close"
     },
+    "closeButtonLabelText": "Close",
     "error": {
       "description": "Please try again later",
       "title": "An error occured"
