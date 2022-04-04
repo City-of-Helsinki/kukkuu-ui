@@ -27,16 +27,13 @@ function Navigation() {
 
         history.push(rootPath);
       }}
-      getUrlForLanguage={(language) => {
+      getPathnameForLanguage={(language) => {
         const nextPathname = replaceLocaleInPathname(
           language.slug as string,
           location.pathname
         );
 
-        return new URL(
-          nextPathname ?? location.pathname,
-          window.location.origin
-        );
+        return nextPathname ?? location.pathname;
       }}
       getIsItemActive={({ path }) => {
         return path === location.pathname;

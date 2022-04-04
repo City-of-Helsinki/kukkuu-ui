@@ -1,5 +1,4 @@
-import { PageContent } from 'react-helsinki-headless-cms/apollo';
-import { Page } from 'react-helsinki-headless-cms';
+import { Page, PageContent } from 'react-helsinki-headless-cms/apollo';
 import { useLocation } from 'react-router';
 
 import Navigation from '../app/navigation/Navigation';
@@ -12,14 +11,10 @@ const HeadlessCmsPage = () => {
 
   return (
     <Page
+      uri={location.pathname}
       navigation={<Navigation />}
       notification={<Notification />}
-      content={
-        <PageContent
-          uri={location.pathname}
-          notFoundPageContent={<NotFound />}
-        />
-      }
+      content={<PageContent notFoundPageContent={<NotFound />} />}
       footer={<Footer />}
     />
   );
