@@ -1,14 +1,19 @@
 # Change Log
 
-# [Unreleased]
+# 1.9.0
 
 ### Added
 
-- Support for defining menu and pages in the CMS
+- [#409](https://github.com/City-of-Helsinki/kukkuu-ui/pull/409) The venue address under the venue name
+- [#411](https://github.com/City-of-Helsinki/kukkuu-ui/pull/411) The amount of the enrolment are limited by the values set in project. The full program can always be seen
+- [#413](https://github.com/City-of-Helsinki/kukkuu-ui/pull/413) Support for defining menu and pages in the CMS
+- [#419](https://github.com/City-of-Helsinki/kukkuu-ui/pull/419) Show notifications from the CMS
+- [#422](https://github.com/City-of-Helsinki/kukkuu-ui/pull/422) Don't show new event label if child can't enrol into upcoming events.
+- [#423](https://github.com/City-of-Helsinki/kukkuu-ui/pull/423) Use new upcomingWithOngoing filter
 
 ### Fixed
 
-- Inaccessible modal content when it overflowed container
+- [#414](https://github.com/City-of-Helsinki/kukkuu-ui/pull/414) Inaccessible modal content when it overflowed container
 
 ### Changed
 
