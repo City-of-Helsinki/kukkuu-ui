@@ -19,7 +19,7 @@ const unenrolOccurrenceMutation = gql`
             }
           }
         }
-        occurrences(upcomingWithLeeway: true) {
+        occurrences(upcomingWithOngoing: true) {
           edges {
             node {
               id
