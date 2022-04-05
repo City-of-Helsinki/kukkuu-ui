@@ -13,9 +13,10 @@ import {
   profileQuery_myProfile_children_edges_node_enrolments_edges_node as EnrolmentType,
 } from '../../../api/generatedTypes/profileQuery';
 import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
+import useChildEnrolmentCount from '../../../child/useChildEnrolmentCount';
+import ChildEventInvitationLabel from '../../../child/ChildEventInvitationLabel';
 import ProfileChildEnrolment from './ProfileChildEnrolment';
 import styles from './profileChild.module.scss';
-import useChildEnrolmentCount from '../../../child/useChildEnrolmentCount';
 
 interface ProfileChildProps {
   child: ChildType;
@@ -27,10 +28,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
   const linkRef = React.useRef<HTMLAnchorElement | null>(null);
   const downRef = React.useRef<Date | null>(null);
   const { t } = useTranslation();
-  const {
-    data,
-    convenience: { areAllEnrolmentsUsed },
-  } = useChildEnrolmentCount({
+  const { data } = useChildEnrolmentCount({
     variables: {
       childId: child.id,
     },
@@ -103,11 +101,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
           )}
         </div>
         <div className={styles.additionalDetails}>
-          {upcomingEventsAndEventGroups && !areAllEnrolmentsUsed && (
-            <div className={styles.invitationLabel}>
-              {t('profile.child.invitationLabel.text')}
-            </div>
-          )}
+          <ChildEventInvitationLabel childId={child.id} />
           <ChildEnrolmentCount childId={child.id} />
         </div>
       </div>

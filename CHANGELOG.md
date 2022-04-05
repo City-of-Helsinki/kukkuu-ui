@@ -10,6 +10,10 @@
 
 - Inaccessible modal content when it overflowed container
 
+### Changed
+
+- Show new event label only when child has upcoming events they cane enrol into
+
 # 1.8.0
 
 ### Changed

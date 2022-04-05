@@ -122,16 +122,6 @@
   }
 }
 
-.invitationLabel {
-  padding: var(--spacing-3-xs) var(--spacing-xs);
-
-  font-size: var(--font-size-base);
-  font-weight: 500;
-
-  // Tokens can't be used because color has opacity
-  background-color: rgba(255, 198, 30, 0.5);
-}
-
 .contentDescription {
   font-weight: 500;
 }
