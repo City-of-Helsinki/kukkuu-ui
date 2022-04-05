@@ -5,6 +5,7 @@ import Navigation from '../app/navigation/Navigation';
 import Notification from '../app/notification/Notification';
 import Footer from '../app/footer/Footer';
 import NotFound from '../app/notFound/NotFound';
+import styles from './headlessCmsPage.module.scss';
 
 const HeadlessCmsPage = () => {
   const location = useLocation();
@@ -15,7 +16,7 @@ const HeadlessCmsPage = () => {
       navigation={<Navigation />}
       notification={<Notification />}
       content={<PageContent notFoundPageContent={<NotFound />} />}
-      footer={<Footer />}
+      footer={<Footer className={styles.noFooterOverflow} />}
     />
   );
 };

@@ -9,14 +9,18 @@ import Container from '../layout/Container';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 
-const Footer: FunctionComponent = () => {
+type Props = {
+  className?: string;
+};
+
+const Footer: FunctionComponent<Props> = ({ className }) => {
   const { t, i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
   const logoLang = currentLocale === 'sv' ? styles.sv : styles.fi;
   const getPathname = useGetPathname();
 
   return (
-    <div className={styles.footerWrapper}>
+    <div className={joinClassNames(styles.footerWrapper, className)}>
       <Koros className={styles.koros} />
       <Container>
         <div className={styles.footer}>
