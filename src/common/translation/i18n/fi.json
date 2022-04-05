@@ -148,6 +148,91 @@
     },
     "skipToContentLabel": "Siirry suoraan sisältöön"
   },
+  "profile": {
+    "common": {
+      "message": {
+        "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!"
+      }
+    },
+    "addChildMutation": {
+      "errorMessage": "Lapsen tietojen lisäämisessä tapahtui virhe. Yritä uudestaan."
+    },
+    "child": {
+      "default": {
+        "name": {
+          "text": "Kummilapsi"
+        }
+      },
+      "detail": {
+        "availableEvent": {
+          "readMoreAndEnrolButton": "Lue lisää ja ilmoittaudu",
+          "readMoreButton": "Lue lisää"
+        },
+        "availableEventGroup": {
+          "readMoreButton": "Selaa tapahtumia"
+        },
+        "birthdate": "Lapsen syntymäaika",
+        "delete": {
+          "prompt": {
+            "heading": "Haluatko varmasti poistaa lapsen tiedot?",
+            "text": "Poistamalla lapsen tiedot, lapsi ei enää saa kutsuja tapahtumiin."
+          },
+          "text": "Poista lapsen tiedot"
+        },
+        "edit": {
+          "text": "Päivitä lapsen tiedot"
+        },
+        "guardiansName": "Lähiaikuisen nimi",
+        "page": {
+          "title": "Kummilapsen tiedot"
+        },
+        "phoneNumber": "Puhelinnumero"
+      },
+      "invitationLabel": {
+        "text": "Uusi kutsu!"
+      },
+      "navigateToDetail": {
+        "buttonLabel": "Näytä Kummilapsen tiedot"
+      }
+    },
+    "children": {
+      "noChild": {
+        "text": "Ei kummilapsia"
+      }
+    },
+    "edit": {
+      "button": {
+        "text": "Muokkaa tietojasi"
+      }
+    },
+    "events": {
+      "enrolled": {
+        "heading_one": "Olet ilmoittautunut tapahtumaan",
+        "heading_other": "Olet ilmoittautunut tapahtumiin"
+      },
+      "invitations": {
+        "heading": "Tapahtumat"
+      },
+      "past": {
+        "heading": "Menneet tapahtumat"
+      }
+    },
+    "heading": "Kummilapset",
+    "message": {
+      "allSignupsSpent": "Onnittelut, olet osallistunut jo kahteen tapahtumaan tänä vuonna. Ensi vuonna nähdään!",
+      "enrollToEvent": "Sinulla on voimassaoleva tapahtumakutsu. Ilmoittaudu mukaan!",
+      "greetings": "Hei {{firstName}}",
+      "projectDescription_one": "{{projectYear}} • Kummi: {{projectName}}",
+      "projectDescription_other": "{{projectYear}} • Kummit: {{projectName}}",
+      "youAreEnrolled": "Olet ilmoittautunut tapahtumaan:"
+    },
+    "noupcomingevents": {
+      "hero": {
+        "heading": "Tapahtumakutsut"
+      },
+      "text": "Tänne saapuvat sinulle lähetetyt tapahtumakutsut. Pääset myös ilmoittautumaan tapahtumiin ja perumaan ilmoittautumisen, jos et jostain syystä pääsekään osallistumaan tapahtumaan."
+    }
+  },
   "dataProtection": {
     "title": "Tietosuoja",
     "url": "https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/tietoa-helsingista/tietosuoja/"
@@ -439,87 +524,6 @@
   },
   "partners": {
     "2020": "2020 syntyneet"
-  },
-  "profile": {
-    "addChildMutation": {
-      "errorMessage": "Lapsen tietojen lisäämisessä tapahtui virhe. Yritä uudestaan."
-    },
-    "child": {
-      "default": {
-        "name": {
-          "text": "Kummilapsi"
-        }
-      },
-      "detail": {
-        "availableEvent": {
-          "readMoreAndEnrolButton": "Lue lisää ja ilmoittaudu",
-          "readMoreButton": "Lue lisää"
-        },
-        "availableEventGroup": {
-          "readMoreButton": "Selaa tapahtumia"
-        },
-        "birthdate": "Lapsen syntymäaika",
-        "delete": {
-          "prompt": {
-            "heading": "Haluatko varmasti poistaa lapsen tiedot?",
-            "text": "Poistamalla lapsen tiedot, lapsi ei enää saa kutsuja tapahtumiin."
-          },
-          "text": "Poista lapsen tiedot"
-        },
-        "edit": {
-          "text": "Päivitä lapsen tiedot"
-        },
-        "guardiansName": "Lähiaikuisen nimi",
-        "page": {
-          "title": "Kummilapsen tiedot"
-        },
-        "phoneNumber": "Puhelinnumero"
-      },
-      "invitationLabel": {
-        "text": "Uusi kutsu!"
-      },
-      "navigateToDetail": {
-        "buttonLabel": "Näytä Kummilapsen tiedot"
-      }
-    },
-    "children": {
-      "noChild": {
-        "text": "Ei kummilapsia"
-      }
-    },
-    "edit": {
-      "button": {
-        "text": "Muokkaa tietojasi"
-      }
-    },
-    "events": {
-      "invitations": {
-        "heading": "Tapahtumat"
-      },
-      "past": {
-        "heading": "Menneet tapahtumat"
-      },
-      "enrolled": {
-        "heading_one": "Olet ilmoittautunut tapahtumaan",
-        "heading_other": "Olet ilmoittautunut tapahtumiin"
-      }
-    },
-    "heading": "Kummilapset",
-    "message": {
-      "allSignupsSpent": "Onnittelut, olet osallistunut jo kahteen tapahtumaan tänä vuonna. Ensi vuonna nähdään!",
-      "enrollToEvent": "Sinulla on voimassaoleva tapahtumakutsu. Ilmoittaudu mukaan!",
-      "greetings": "Hei {{firstName}}",
-      "projectDescription_one": "{{projectYear}} • Kummi: {{projectName}}",
-      "projectDescription_other": "{{projectYear}} • Kummit: {{projectName}}",
-      "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Huomioithan, että kummilapsi voi osallistua vuosittain kahteen tapahtumaan, ellei toisin ilmoiteta. Nähdään kulttuurin parissa!",
-      "youAreEnrolled": "Olet ilmoittautunut tapahtumaan:"
-    },
-    "noupcomingevents": {
-      "hero": {
-        "heading": "Tapahtumakutsut"
-      },
-      "text": "Tänne saapuvat sinulle lähetetyt tapahtumakutsut. Pääset myös ilmoittautumaan tapahtumiin ja perumaan ilmoittautumisen, jos et jostain syystä pääsekään osallistumaan tapahtumaan."
-    }
   },
   "profileEventList": {
     "message": {

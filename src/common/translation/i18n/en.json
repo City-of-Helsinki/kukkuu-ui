@@ -148,6 +148,91 @@
     },
     "skipToContentLabel": "Go directly to content"
   },
+  "profile": {
+    "common": {
+      "message": {
+        "serviceDescription": ""
+      }
+    },
+    "addChildMutation": {
+      "errorMessage": "Error adding child. Please try again."
+    },
+    "child": {
+      "default": {
+        "name": {
+          "text": "Culture Kid"
+        }
+      },
+      "detail": {
+        "availableEvent": {
+          "readMoreAndEnrolButton": "Read more and register for event",
+          "readMoreButton": "Read more"
+        },
+        "availableEventGroup": {
+          "readMoreButton": "Browse events"
+        },
+        "birthdate": "Child's date of birth",
+        "delete": {
+          "prompt": {
+            "heading": "Are you sure you want to delete the child's information?",
+            "text": "By removing the child's information you will stop receiving invites to events."
+          },
+          "text": "Remove child profile"
+        },
+        "edit": {
+          "text": "Update child information"
+        },
+        "guardiansName": "Guardian's name",
+        "page": {
+          "title": "Child detail page"
+        },
+        "phoneNumber": "Guardian’s telephone number"
+      },
+      "invitationLabel": {
+        "text": "New invitation!"
+      },
+      "navigateToDetail": {
+        "buttonLabel": "Navigate to child detail"
+      }
+    },
+    "children": {
+      "noChild": {
+        "text": "No children have been added"
+      }
+    },
+    "edit": {
+      "button": {
+        "text": "Edit information"
+      }
+    },
+    "events": {
+      "enrolled": {
+        "heading_one": "",
+        "heading_other": ""
+      },
+      "invitations": {
+        "heading": ""
+      },
+      "past": {
+        "heading": "Past events"
+      }
+    },
+    "heading": "Culture Kids",
+    "message": {
+      "allSignupsSpent": "",
+      "enrollToEvent": "",
+      "greetings": "Hello {{firstName}}",
+      "projectDescription_one": "",
+      "projectDescription_other": "",
+      "youAreEnrolled": ""
+    },
+    "noupcomingevents": {
+      "hero": {
+        "heading": "Event invitations"
+      },
+      "text": "Event invitations sent to you will be displayed here. You can sign up for events and cancel your attendance if you, for some reason, are unable to attend."
+    }
+  },
   "dataProtection": {
     "title": "Data Protection",
     "url": "https://www.hel.fi/helsinki/en/administration/information/data-protection"
@@ -439,87 +524,6 @@
   },
   "partners": {
     "2020": "Children born in 2020"
-  },
-  "profile": {
-    "addChildMutation": {
-      "errorMessage": "Error adding child. Please try again."
-    },
-    "child": {
-      "default": {
-        "name": {
-          "text": "Culture Kid"
-        }
-      },
-      "detail": {
-        "availableEvent": {
-          "readMoreAndEnrolButton": "Read more and register for event",
-          "readMoreButton": "Read more"
-        },
-        "availableEventGroup": {
-          "readMoreButton": "Browse events"
-        },
-        "birthdate": "Child's date of birth",
-        "delete": {
-          "prompt": {
-            "heading": "Are you sure you want to delete the child's information?",
-            "text": "By removing the child's information you will stop receiving invites to events."
-          },
-          "text": "Remove child profile"
-        },
-        "edit": {
-          "text": "Update child information"
-        },
-        "guardiansName": "Guardian's name",
-        "page": {
-          "title": "Child detail page"
-        },
-        "phoneNumber": "Guardian’s telephone number"
-      },
-      "invitationLabel": {
-        "text": "New invitation!"
-      },
-      "navigateToDetail": {
-        "buttonLabel": "Navigate to child detail"
-      }
-    },
-    "children": {
-      "noChild": {
-        "text": "No children have been added"
-      }
-    },
-    "edit": {
-      "button": {
-        "text": "Edit information"
-      }
-    },
-    "events": {
-      "invitations": {
-        "heading": ""
-      },
-      "past": {
-        "heading": "Past events"
-      },
-      "enrolled": {
-        "heading_one": "",
-        "heading_other": ""
-      }
-    },
-    "heading": "Culture Kids",
-    "message": {
-      "allSignupsSpent": "",
-      "enrollToEvent": "",
-      "greetings": "Hello {{firstName}}",
-      "projectDescription_one": "",
-      "projectDescription_other": "",
-      "serviceDescription": "",
-      "youAreEnrolled": ""
-    },
-    "noupcomingevents": {
-      "hero": {
-        "heading": "Event invitations"
-      },
-      "text": "Event invitations sent to you will be displayed here. You can sign up for events and cancel your attendance if you, for some reason, are unable to attend."
-    }
   },
   "profileEventList": {
     "message": {

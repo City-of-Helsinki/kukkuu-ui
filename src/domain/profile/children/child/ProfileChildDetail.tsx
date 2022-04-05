@@ -14,6 +14,7 @@ import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton
 import ErrorMessage from '../../../../common/components/error/Error';
 import Button from '../../../../common/components/button/Button';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
+import Text from '../../../../common/components/text/Text';
 import useGetPathname from '../../../../common/route/utils/useGetPathname';
 import {
   deleteChildMutation,
@@ -75,6 +76,11 @@ const ProfileChildDetail = () => {
               child.firstName
                 ? `${child.firstName} ${child.lastName}`
                 : t('profile.child.default.name.text')
+            }
+            content={
+              <Text variant="body-l">
+                {t('profile.common.message.serviceDescription')}
+              </Text>
             }
             actions={
               <>

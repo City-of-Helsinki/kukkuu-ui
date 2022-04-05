@@ -148,6 +148,91 @@
     },
     "skipToContentLabel": "Gå direkt till innehållet"
   },
+  "profile": {
+    "common": {
+      "message": {
+        "serviceDescription": ""
+      }
+    },
+    "addChildMutation": {
+      "errorMessage": "Ett fel uppstod när du lade till information om barnet. Försök igen."
+    },
+    "child": {
+      "default": {
+        "name": {
+          "text": "Fadderbarn"
+        }
+      },
+      "detail": {
+        "availableEvent": {
+          "readMoreAndEnrolButton": "Läs mer och anmäl dig till evenemang",
+          "readMoreButton": "Läs mer"
+        },
+        "availableEventGroup": {
+          "readMoreButton": "Bläddra i händelser"
+        },
+        "birthdate": "Barnets födelsedatum",
+        "delete": {
+          "prompt": {
+            "heading": "Är du säker på att du vill radera barnets uppgifter?",
+            "text": "Om du raderar barnets uppgifter får barnet inte längre inbjudan till evenemang."
+          },
+          "text": "Radera barnets uppgifter"
+        },
+        "edit": {
+          "text": "Uppdatera barnets uppgifter"
+        },
+        "guardiansName": "Närstående vuxens namn",
+        "page": {
+          "title": "Fadderbarnets uppgifter"
+        },
+        "phoneNumber": "Telefonnummer"
+      },
+      "invitationLabel": {
+        "text": "Ny inbjudan!"
+      },
+      "navigateToDetail": {
+        "buttonLabel": "Visa Fadderbarnets uppgifter"
+      }
+    },
+    "children": {
+      "noChild": {
+        "text": "Inga fadderbarn"
+      }
+    },
+    "edit": {
+      "button": {
+        "text": "Redigera information"
+      }
+    },
+    "events": {
+      "enrolled": {
+        "heading_one": "",
+        "heading_other": ""
+      },
+      "invitations": {
+        "heading": ""
+      },
+      "past": {
+        "heading": "Gångna evenemang"
+      }
+    },
+    "heading": "Fadderbarn",
+    "message": {
+      "allSignupsSpent": "",
+      "enrollToEvent": "",
+      "greetings": "Hej {{firstName}}",
+      "projectDescription_one": "",
+      "projectDescription_other": "",
+      "youAreEnrolled": ""
+    },
+    "noupcomingevents": {
+      "hero": {
+        "heading": "Inbjudan till evenemang"
+      },
+      "text": "Inbjudan till de evenemang som skickats till dig visas här. Här kan du också anmäla dig till evenemang och avboka din anmälan om du av någon orsak inte kan delta."
+    }
+  },
   "dataProtection": {
     "title": "Dataskydd",
     "url": "https://www.hel.fi/helsinki/sv/stad-och-forvaltning/information/dataskydd"
@@ -439,87 +524,6 @@
   },
   "partners": {
     "2020": "Födda 2020"
-  },
-  "profile": {
-    "addChildMutation": {
-      "errorMessage": "Ett fel uppstod när du lade till information om barnet. Försök igen."
-    },
-    "child": {
-      "default": {
-        "name": {
-          "text": "Fadderbarn"
-        }
-      },
-      "detail": {
-        "availableEvent": {
-          "readMoreAndEnrolButton": "Läs mer och anmäl dig till evenemang",
-          "readMoreButton": "Läs mer"
-        },
-        "availableEventGroup": {
-          "readMoreButton": "Bläddra i händelser"
-        },
-        "birthdate": "Barnets födelsedatum",
-        "delete": {
-          "prompt": {
-            "heading": "Är du säker på att du vill radera barnets uppgifter?",
-            "text": "Om du raderar barnets uppgifter får barnet inte längre inbjudan till evenemang."
-          },
-          "text": "Radera barnets uppgifter"
-        },
-        "edit": {
-          "text": "Uppdatera barnets uppgifter"
-        },
-        "guardiansName": "Närstående vuxens namn",
-        "page": {
-          "title": "Fadderbarnets uppgifter"
-        },
-        "phoneNumber": "Telefonnummer"
-      },
-      "invitationLabel": {
-        "text": "Ny inbjudan!"
-      },
-      "navigateToDetail": {
-        "buttonLabel": "Visa Fadderbarnets uppgifter"
-      }
-    },
-    "children": {
-      "noChild": {
-        "text": "Inga fadderbarn"
-      }
-    },
-    "edit": {
-      "button": {
-        "text": "Redigera information"
-      }
-    },
-    "events": {
-      "invitations": {
-        "heading": ""
-      },
-      "past": {
-        "heading": "Gångna evenemang"
-      },
-      "enrolled": {
-        "heading_one": "",
-        "heading_other": ""
-      }
-    },
-    "heading": "Fadderbarn",
-    "message": {
-      "allSignupsSpent": "",
-      "enrollToEvent": "",
-      "greetings": "Hej {{firstName}}",
-      "projectDescription_one": "",
-      "projectDescription_other": "",
-      "serviceDescription": "",
-      "youAreEnrolled": ""
-    },
-    "noupcomingevents": {
-      "hero": {
-        "heading": "Inbjudan till evenemang"
-      },
-      "text": "Inbjudan till de evenemang som skickats till dig visas här. Här kan du också anmäla dig till evenemang och avboka din anmälan om du av någon orsak inte kan delta."
-    }
   },
   "profileEventList": {
     "message": {

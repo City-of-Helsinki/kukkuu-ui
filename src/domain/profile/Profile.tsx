@@ -46,7 +46,7 @@ const Profile = () => {
         })}
         content={
           <Text variant="body-l">
-            {t('profile.message.serviceDescription')}
+            {t('profile.common.message.serviceDescription')}
           </Text>
         }
         actions={
