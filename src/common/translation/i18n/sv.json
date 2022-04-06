@@ -76,7 +76,7 @@
       }
     },
     "message": {
-      "eventVisitsThisYear": ""
+      "eventVisitsThisYear": "Dina evenemangsbesök i år:"
     }
   },
   "combobox": {
@@ -89,8 +89,8 @@
     "backButton": {
       "label": "Tillbaka"
     },
-    "breadcrumbListLabel": "",
-    "breadcrumbNavigationLabel": "",
+    "breadcrumbListLabel": "Brödsmulor",
+    "breadcrumbNavigationLabel": "Brödsmulnavigering",
     "closeButton": {
       "altText": "Stäng"
     },
@@ -131,7 +131,7 @@
         "text": "Spara"
       }
     },
-    "openInExternalDomainAriaLabel": "",
+    "openInExternalDomainAriaLabel": "Öppnar en annan webbplats",
     "openInNewTabAriaLabel": "Öppnas i ett nytt mellanblad",
     "profile": {
       "goToProfile": {
@@ -151,7 +151,7 @@
   "profile": {
     "common": {
       "message": {
-        "serviceDescription": ""
+        "serviceDescription": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang. Observera att fadderbarnen kan delta i två evenemang årligen, om inte något annat uppges. Vi ses i kulturens tecken! "
       }
     },
     "addChildMutation": {
@@ -207,11 +207,11 @@
     },
     "events": {
       "enrolled": {
-        "heading_one": "",
-        "heading_other": ""
+        "heading_one": "Du har anmält dig till evenemanget ",
+        "heading_other": "Du har anmält dig till evenemangen"
       },
       "invitations": {
-        "heading": ""
+        "heading": "Evenemangen"
       },
       "past": {
         "heading": "Gångna evenemang"
@@ -219,12 +219,12 @@
     },
     "heading": "Fadderbarn",
     "message": {
-      "allSignupsSpent": "",
-      "enrollToEvent": "",
+      "allSignupsSpent": "Gratulerar, du har redan deltagit i två evenemang i år. Vi ses igen nästa år! ",
+      "enrollToEvent": "Du har en giltig evenemangsinbjudan. Anmäl dig till evenemanget! ",
       "greetings": "Hej {{firstName}}",
-      "projectDescription_one": "",
-      "projectDescription_other": "",
-      "youAreEnrolled": ""
+      "projectDescription_one": "{{projectYear}} • Fadder: {{projectName}}",
+      "projectDescription_other": "{{projectYear}} • Fadder: {{projectName}}",
+      "youAreEnrolled": "Du har anmält dig till evenemanget"
     },
     "noupcomingevents": {
       "hero": {
@@ -298,7 +298,7 @@
     "enrol": "Anmäl dig till evenemanget",
     "enrolShort": "Anmäl",
     "message": {
-      "cantEnrollNotice": ""
+      "cantEnrollNotice": "Vänligen observera att du inte kan anmäla dig till detta evenemang. "
     }
   },
   "event": {
@@ -527,12 +527,12 @@
   },
   "profileEventList": {
     "message": {
-      "alreadyEnrolledEvent": "",
-      "alreadyEnrolledEventGroup": "",
-      "noEnrollEvent_one": "",
-      "noEnrollEvent_other": "",
-      "noEnrollEventGroup_one": "",
-      "noEnrollEventGroup_other": ""
+      "alreadyEnrolledEvent": "Vänligen observera att du inte kan anmäla dig till detta evenemang. ",
+      "alreadyEnrolledEventGroup": "Vänligen observera att du inte kan anmäla dig till evenemang i denna grupp. ",
+      "noEnrollEvent_one": "Du har redan anmält dig till ett annat evenemang.  ",
+      "noEnrollEvent_other": "Du har redan anmält dig till {{count}} evenemang.  ",
+      "noEnrollEventGroup_one": "Vänligen observera att du redan har anmält dig till ett evenemang. ",
+      "noEnrollEventGroup_other": "Vänligen observera att du redan har anmält dig till {{count}} evenemang. "
     }
   },
   "registration": {

@@ -89,8 +89,8 @@
     "backButton": {
       "label": "Palaa"
     },
-    "breadcrumbListLabel": "",
-    "breadcrumbNavigationLabel": "",
+    "breadcrumbListLabel": "Leivänmurut",
+    "breadcrumbNavigationLabel": "Leivänmurunavigaatio",
     "closeButton": {
       "altText": "Sulje"
     },
