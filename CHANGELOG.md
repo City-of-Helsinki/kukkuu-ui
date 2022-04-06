@@ -1,5 +1,11 @@
 # Change Log
 
+# [Unreleased]
+
+### Fixed
+
+- [#426](https://github.com/City-of-Helsinki/kukkuu-ui/pull/426) Remove unnecessary colon
+
 # 1.9.0
 
 ### Added
