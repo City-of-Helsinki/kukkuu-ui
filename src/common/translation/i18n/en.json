@@ -207,7 +207,7 @@
     },
     "events": {
       "enrolled": {
-        "heading_one": "You are registered for the event. ",
+        "heading_one": "You are registered for the event",
         "heading_other": "You have registered for the events"
       },
       "invitations": {
