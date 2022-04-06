@@ -60,7 +60,7 @@ exports[`renders snapshot correctly 1`] = `
         </Icon>
         <div>
           <h1>
-            Tapahtumaan ilmoittautuminen onnistui! 
+            Tapahtumaan ilmoittautuminen onnistui!
           </h1>
           <p>
             Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot

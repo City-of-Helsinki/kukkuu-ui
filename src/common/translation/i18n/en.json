@@ -19,7 +19,7 @@
     },
     "errorMessage": "An error occured while logging in. Please try again",
     "loadUserError": {
-      "message": "An error occurred. Please try logging in again. "
+      "message": "An error occurred. Please try logging in again."
     },
     "login": {
       "text": "Log in"
@@ -219,12 +219,12 @@
     },
     "heading": "Culture Kids",
     "message": {
-      "allSignupsSpent": "Congratulations! You have already attended two events this year. See you next year! ",
-      "enrollToEvent": "You have a valid invitation to events. Sign up! ",
+      "allSignupsSpent": "Congratulations! You have already attended two events this year. See you next year!",
+      "enrollToEvent": "You have a valid invitation to events. Sign up!",
       "greetings": "Hello {{firstName}}",
       "projectDescription_one": "{{projectYear}} • Sponsor: {{projectName}}",
       "projectDescription_other": "{{projectYear}} • Sponsors: {{projectName}}",
-      "youAreEnrolled": "You are registered for the event. "
+      "youAreEnrolled": "You are registered for the event."
     },
     "noupcomingevents": {
       "hero": {
@@ -298,7 +298,7 @@
     "enrol": "Register for event",
     "enrolShort": "Register",
     "message": {
-      "cantEnrollNotice": "Please note, that you cannot register for this event. "
+      "cantEnrollNotice": "Please note, that you cannot register for this event."
     }
   },
   "event": {
@@ -527,12 +527,12 @@
   },
   "profileEventList": {
     "message": {
-      "alreadyEnrolledEvent": "Please note, that you cannot register for this event. ",
-      "alreadyEnrolledEventGroup": "Please note, that you cannot register for this group of events. ",
-      "noEnrollEvent_one": "You are already registered for another event. ",
-      "noEnrollEvent_other": "You are registered for the event. ",
-      "noEnrollEventGroup_one": "Please note that you are already registered for one event. ",
-      "noEnrollEventGroup_other": "Please note that you are already registered for one event. "
+      "alreadyEnrolledEvent": "Please note, that you cannot register for this event.",
+      "alreadyEnrolledEventGroup": "Please note, that you cannot register for this group of events.",
+      "noEnrollEvent_one": "You are already registered for another event.",
+      "noEnrollEvent_other": "You are registered for the event.",
+      "noEnrollEventGroup_one": "Please note that you are already registered for one event.",
+      "noEnrollEventGroup_other": "Please note that you are already registered for one event."
     }
   },
   "registration": {

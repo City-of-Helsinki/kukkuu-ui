@@ -151,7 +151,7 @@
   "profile": {
     "common": {
       "message": {
-        "serviceDescription": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang. Observera att fadderbarnen kan delta i två evenemang årligen, om inte något annat uppges. Vi ses i kulturens tecken! "
+        "serviceDescription": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang. Observera att fadderbarnen kan delta i två evenemang årligen, om inte något annat uppges. Vi ses i kulturens tecken!"
       }
     },
     "addChildMutation": {
@@ -207,7 +207,7 @@
     },
     "events": {
       "enrolled": {
-        "heading_one": "Du har anmält dig till evenemanget ",
+        "heading_one": "Du har anmält dig till evenemange.",
         "heading_other": "Du har anmält dig till evenemangen"
       },
       "invitations": {
@@ -219,8 +219,8 @@
     },
     "heading": "Fadderbarn",
     "message": {
-      "allSignupsSpent": "Gratulerar, du har redan deltagit i två evenemang i år. Vi ses igen nästa år! ",
-      "enrollToEvent": "Du har en giltig evenemangsinbjudan. Anmäl dig till evenemanget! ",
+      "allSignupsSpent": "Gratulerar, du har redan deltagit i två evenemang i år. Vi ses igen nästa år!",
+      "enrollToEvent": "Du har en giltig evenemangsinbjudan. Anmäl dig till evenemanget!",
       "greetings": "Hej {{firstName}}",
       "projectDescription_one": "{{projectYear}} • Fadder: {{projectName}}",
       "projectDescription_other": "{{projectYear}} • Fadder: {{projectName}}",
@@ -298,7 +298,7 @@
     "enrol": "Anmäl dig till evenemanget",
     "enrolShort": "Anmäl",
     "message": {
-      "cantEnrollNotice": "Vänligen observera att du inte kan anmäla dig till detta evenemang. "
+      "cantEnrollNotice": "Vänligen observera att du inte kan anmäla dig till detta evenemang."
     }
   },
   "event": {
@@ -388,7 +388,7 @@
           "text": "Du kan uppleva trevliga kulturstunder tillsammans med barnet. Evenemangen har planerats så att de stöder barnens utveckling och välbefinnande."
         },
         "ticket": {
-          "text": "Du får en inbjudan till din e-post två gånger per år och via tjänsten kan du anmäla dig till de evenemang som passar dig bäst. "
+          "text": "Du får en inbjudan till din e-post två gånger per år och via tjänsten kan du anmäla dig till de evenemang som passar dig bäst."
         }
       }
     },
@@ -450,7 +450,7 @@
       }
     },
     "registration": {
-      "text": "Börja med att mata in det deltagande barnets hemort och födelsedatum. Därefter kan du registrera dig till tjänsten och komplettera ditt barns fadderbarnsprofil. Det tar några minuter. "
+      "text": "Börja med att mata in det deltagande barnets hemort och födelsedatum. Därefter kan du registrera dig till tjänsten och komplettera ditt barns fadderbarnsprofil. Det tar några minuter."
     },
     "video": {
       "youtubeId": "cDB8iN3bVnY"
@@ -459,7 +459,7 @@
   "homePage": {
     "hero": {
       "buttonText": "Anmäl dig",
-      "descriptionText": "Alla barn i Helsingfors som är födda år 2020 eller senare bjuds in som Kulturens fadderbarn. Fadderbarnen får årligen inbjudan till två evenemang, tills barnet börjar skolan. Evenemangen är avgiftsfria. ",
+      "descriptionText": "Alla barn i Helsingfors som är födda år 2020 eller senare bjuds in som Kulturens fadderbarn. Fadderbarnen får årligen inbjudan till två evenemang, tills barnet börjar skolan. Evenemangen är avgiftsfria.",
       "heading": "Kulturens fadderbarn",
       "underConstruction": {
         "heading": "Registreringen börjar den 31 januari 2020",
@@ -527,12 +527,12 @@
   },
   "profileEventList": {
     "message": {
-      "alreadyEnrolledEvent": "Vänligen observera att du inte kan anmäla dig till detta evenemang. ",
-      "alreadyEnrolledEventGroup": "Vänligen observera att du inte kan anmäla dig till evenemang i denna grupp. ",
-      "noEnrollEvent_one": "Du har redan anmält dig till ett annat evenemang.  ",
-      "noEnrollEvent_other": "Du har redan anmält dig till {{count}} evenemang.  ",
-      "noEnrollEventGroup_one": "Vänligen observera att du redan har anmält dig till ett evenemang. ",
-      "noEnrollEventGroup_other": "Vänligen observera att du redan har anmält dig till {{count}} evenemang. "
+      "alreadyEnrolledEvent": "Vänligen observera att du inte kan anmäla dig till detta evenemang.",
+      "alreadyEnrolledEventGroup": "Vänligen observera att du inte kan anmäla dig till evenemang i denna grupp.",
+      "noEnrollEvent_one": "Du har redan anmält dig till ett annat evenemang.",
+      "noEnrollEvent_other": "Du har redan anmält dig till {{count}} evenemang.",
+      "noEnrollEventGroup_one": "Vänligen observera att du redan har anmält dig till ett evenemang.",
+      "noEnrollEventGroup_other": "Vänligen observera att du redan har anmält dig till {{count}} evenemang."
     }
   },
   "registration": {

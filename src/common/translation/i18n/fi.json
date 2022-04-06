@@ -290,7 +290,7 @@
       "buttonText": "Näytä tapahtuman tiedot"
     },
     "successToast": {
-      "heading": "Tapahtumaan ilmoittautuminen onnistui! ",
+      "heading": "Tapahtumaan ilmoittautuminen onnistui!",
       "paragraph": "Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot"
     }
   },
