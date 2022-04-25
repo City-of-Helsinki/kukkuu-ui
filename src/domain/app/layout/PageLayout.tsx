@@ -1,5 +1,7 @@
 import { FunctionComponent } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
+import { Page } from 'react-helsinki-headless-cms/apollo';
+import { useLocation } from 'react-router';
 
 import Navigation from '../navigation/Navigation';
 import Notification from '../notification/Notification';
@@ -9,16 +11,13 @@ import styles from './pageLayout.module.scss';
 const PageLayout: FunctionComponent = ({ children }) => {
   return (
     <HelmetProvider>
-      <div className={styles.pageWrapper}>
-        <div>
-          <Navigation />
-          <Notification />
-        </div>
-
-        <div className={styles.pageBody}>{children}</div>
-
-        <Footer />
-      </div>
+      <Page
+        uri={useLocation().pathname}
+        navigation={<Navigation />}
+        notification={<Notification />}
+        content={<div className={styles.content}>{children}</div>}
+        footer={<Footer />}
+      />
     </HelmetProvider>
   );
 };

@@ -1,15 +1,3 @@
-@import 'styles/variables';
-
-.pageWrapper {
-  height: 100%;
-  width: 100%;
-
-  display: grid;
-
-  grid-template-rows: auto 1fr $footerHeight;
-  min-height: 100vh;
-}
-
-.pageBody {
-  display: grid;
+.content {
+  margin-top: -1rem;
 }
