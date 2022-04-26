@@ -6,7 +6,7 @@ import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants
 import { localeParam } from '../../domain/app/appRoutes';
 
 function persistLanguageChoice(language: string) {
-  document.cookie = `i18next=${language}; SameSite=Strict`;
+  document.cookie = `i18next=${language}; SameSite=Strict; path=/`;
 }
 
 export default function useSyncLanguageBetweenI18nAndReactRouter() {
