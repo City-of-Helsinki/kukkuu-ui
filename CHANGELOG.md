@@ -1,10 +1,11 @@
 # Change Log
 
-# [Unreleased]
+# 1.9.1
 
 ### Fixed
 
 - [#426](https://github.com/City-of-Helsinki/kukkuu-ui/pull/426) Remove unnecessary colon
+- [#429](https://github.com/City-of-Helsinki/kukkuu-ui/pull/429) Fix login when using some other language than Finnish
 
 # 1.9.0
 
