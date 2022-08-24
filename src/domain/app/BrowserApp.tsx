@@ -75,6 +75,7 @@ const ReactRouterLinkWrapper = ({
 
 const ReactRouterStyledLinkWrapper = ({
   href,
+  target,
   ...delegatedProps
 }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   const internalLink = !href?.startsWith('http');
@@ -85,7 +86,13 @@ const ReactRouterStyledLinkWrapper = ({
     );
   }
 
-  return <RHHCLink {...delegatedProps} href={href} />;
+  return (
+    <RHHCLink
+      {...delegatedProps}
+      openInNewTab={target === '_blank'}
+      href={href}
+    />
+  );
 };
 
 const appLanguageToRHHCLanguageMap = {
