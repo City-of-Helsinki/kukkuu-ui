@@ -31,6 +31,7 @@ jobs:
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-review
           DOCKER_BUILD_ARG_REACT_APP_ENVIRONMENT: 'review'
           DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.${{ env.BASE_DOMAIN }}'
+          DOCKER_BUILD_ARG_REACT_APP_ORIGIN: https://${{ env.K8S_NAMESPACE }}.${{ env.BASE_DOMAIN }}
           DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.${{ env.BASE_DOMAIN }}/graphql'
           DOCKER_BUILD_ARG_REACT_APP_CMS_URI: 'https://kukkuu.hkih.stage.geniem.io/graphql'
           DOCKER_BUILD_ARG_REACT_APP_OIDC_CLIENT_ID: ${{ env.K8S_NAMESPACE }}
@@ -50,6 +51,13 @@ jobs:
         env:
           ENVIRONMENT_URL: https://${{ env.K8S_NAMESPACE }}.${{ env.BASE_DOMAIN }}
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-review
+      - name: Create PR comment for Deploy URL
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: deployment-url
+          message: |
+            **Kukkuu-ui branch is deployed to: https://${{ env.K8S_NAMESPACE }}.${{ env.BASE_DOMAIN }}** :rocket::rocket::rocket:
 
       - name: Setup Tunnistamo
         uses: City-of-Helsinki/setup-tunnistamo-action@main
@@ -89,13 +97,14 @@ jobs:
         run: yarn --prefer-offline --frozen-lockfile --check-files
 
       - name: Run Acceptance Tests
+        id: testcafe
         run: yarn test:browser:ci
         env:
           BROWSER_TESTS_USER_NAME: ${{ secrets.BROWSER_TESTS_USER_NAME }}
           BROWSER_TESTS_USER_PASSWORD: ${{ secrets.BROWSER_TESTS_USER_PASSWORD }}
-      - name: Upload screenshots of failed tests
+      - name: Upload screenshots and videos of failed tests to artifact
         uses: actions/upload-artifact@v2
-        if: failure()
         with:
-          name: screenshots
-          path: screenshots/
+          name: report
+          path: ./report
+        if: always() && steps.testcafe.outcome == 'failure'

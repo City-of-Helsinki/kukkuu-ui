@@ -690,5 +690,6 @@
       }
     }
   },
-  "": "Continue"
+  "": "Continue",
+  "loadMoreButtonLabelText": "Load more"
 }

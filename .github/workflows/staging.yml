@@ -33,6 +33,7 @@ jobs:
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-staging
           DOCKER_BUILD_ARG_REACT_APP_ENVIRONMENT: 'staging'
           DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://tunnistamo.${{ env.BASE_DOMAIN }}'
+          DOCKER_BUILD_ARG_REACT_APP_ORIGIN: https://${{ secrets.ENVIRONMENT_URL_STAGING }}
           DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.${{ env.BASE_DOMAIN }}/graphql'
           DOCKER_BUILD_ARG_REACT_APP_CMS_URI: 'https://kukkuu.hkih.stage.geniem.io/graphql'
           DOCKER_BUILD_ARG_REACT_APP_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
