@@ -50,6 +50,13 @@ jobs:
         env:
           ENVIRONMENT_URL: https://${{ env.K8S_NAMESPACE }}.${{ env.BASE_DOMAIN }}
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-review
+      - name: Create PR comment for Deploy URL
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: deployment-url
+          message: |
+            **Kukkuu-ui branch is deployed to: https://${{ env.K8S_NAMESPACE }}.${{ env.BASE_DOMAIN }}** :rocket::rocket::rocket:
 
       - name: Setup Tunnistamo
         uses: City-of-Helsinki/setup-tunnistamo-action@main
