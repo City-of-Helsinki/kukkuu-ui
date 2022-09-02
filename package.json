@@ -89,7 +89,7 @@
     "react": "^17.0.2",
     "react-dom": "17.0.2",
     "react-helmet-async": "^1.0.6",
-    "react-helsinki-headless-cms": "1.0.0-alpha2-canary-6084e6e",
+    "react-helsinki-headless-cms": "1.0.0-alpha4",
     "react-i18next": "^11.7.0",
     "react-modal": "^3.11.2",
     "react-qrcode-logo": "^2.2.1",
