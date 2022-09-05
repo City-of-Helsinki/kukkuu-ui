@@ -81,6 +81,7 @@ export default function useRHHCConfig() {
         openInNewTabAriaLabel: t('common.openInNewTabAriaLabel'),
         closeButtonLabelText: t('common.closeButtonLabelText'),
         loadMoreButtonLabelText: t('common.loadMoreButtonLabelText'),
+        showAllText: t('common.showAllText'),
       },
       utils: {
         getIsHrefExternal: defaultConfig.utils.getIsHrefExternal,
@@ -98,6 +99,7 @@ export default function useRHHCConfig() {
           });
           return link;
         },
+        getShowAllUrl: () => '',
       },
     }),
     [t, internalHrefOrigins, language]

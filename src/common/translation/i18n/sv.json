@@ -691,5 +691,6 @@
     }
   },
   "": "Fortsätta",
-  "loadMoreButtonLabelText": "Ladda mer"
+  "loadMoreButtonLabelText": "Ladda mer",
+  "showAll": "Visa alt"
 }
