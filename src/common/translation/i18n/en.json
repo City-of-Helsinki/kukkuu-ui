@@ -691,5 +691,6 @@
     }
   },
   "": "Continue",
-  "loadMoreButtonLabelText": "Load more"
+  "loadMoreButtonLabelText": "Load more",
+  "showAll": "Show all"
 }
