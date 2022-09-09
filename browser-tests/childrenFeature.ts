@@ -1,4 +1,5 @@
 import { login } from './utils/login';
+import { register } from './utils/register';
 import getDropdownOption from './utils/getDropdownOption';
 import {
   route,
@@ -39,6 +40,7 @@ fixture`Children feature`
   .page(route())
   .beforeEach(async (t) => {
     await login(t);
+    await register(t); // this is required first time login only for user
 
     t.ctx.addChild = buildAddChild();
     t.ctx.editChild = buildEditChild();
@@ -58,6 +60,7 @@ fixture`Children feature`
 //    .match(/Hertta Citron .*/);
 //});
 
+// test assume children 'Hertta Citron' exists
 test('As a guardian I want to edit the details of my child', async (t) => {
   const nextLastName = t.ctx.editChild.lastName;
 
