@@ -94,11 +94,15 @@ Generate static types for GraphQL queries by using the schema from the backend s
 
 ### `yarn test:browser`
 
-This command runs the browser tests.
+This command runs the browser tests. This is meant for developer usage. It runs browser tests with live and development modes e.g. open browser to follow test run and diagnose errors. It uses github login. Sometimes github login asks device verification and it is recommended to use github mobile for verification.
 
-The command should warn when some of the necessary environment is missing. You should provide at least the following: `BROWSER_TESTS_USER_NAME`, `BROWSER_TESTS_USER_PASSWORD` and `BROWSER_ENV_URL`. The two first you can find from from the secrets repo within the file `kukkuu-admin_e2e-test-keys.txt`.
+The command should warn when some of the necessary environment is missing. You should provide at least the following: `BROWSER_TESTS_USER_NAME`, `BROWSER_TESTS_USER_PASSWORD` and `BROWSER_ENV_URL`. The two first are personal github credentials. It is possible use helsinki-tunnus test credentials by remove option '--dev' from package.json. Test credentials you can find from from the vault secrets share/kukkuu-admin.
 
-Browser tests are ran with GitHub actions on new PRs and merges into master with the `yarn test:browser:ci` command which runs the tests in headless mode.
+`BROWSER_ENV_URL` is url to the service. It can be local or hosted (staging/review). NOTE: url should not end with '/' or tests will fail!!
+
+### `yarn test:browser:ci`
+
+Browser tests are ran with GitHub actions on new PRs and merges into master. The command runs the tests in headless mode. It uses helsinki-tunnus login.
 
 ## Docker
 
