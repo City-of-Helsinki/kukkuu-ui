@@ -6,7 +6,7 @@ import {
   childByIdQuery_child as ChildByIdResponse,
   childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEventsAndEventGroupsType,
   childByIdQuery_child_pastEvents as PastEventsType,
-  childByIdQuery_child_occurrences as OccurrencesType,
+  childByIdQuery_child_activeInternalAndTicketSystemEnrolments as InternalAndTicketSystemEnrolmentsType,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
@@ -30,7 +30,7 @@ const childData: ChildByIdResponse = {
   },
   relationships: { edges: [] },
   upcomingEventsAndEventGroups: { edges: [] },
-  occurrences: { edges: [] },
+  activeInternalAndTicketSystemEnrolments: { edges: [] },
   pastEvents: { edges: [] },
 };
 
@@ -61,16 +61,20 @@ const venueData = {
   address: 'ssfas uus 12',
 };
 
-const occurrences: OccurrencesType = {
+const enrolments: InternalAndTicketSystemEnrolmentsType = {
   edges: [
     {
       node: {
-        id: '',
-        time: '2020-02-24T07:07:18+00:00', // 09.07
-        venue: venueData,
-        event: eventData,
-        enrolments: {
-          edges: [],
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        __typename: 'EnrolmentNode',
+        id: 'foo',
+        referenceId: 'bar',
+        occurrence: {
+          id: '',
+          time: '2020-02-24T07:07:18+00:00', // 09.07
+          venue: venueData,
+          event: eventData,
         },
       },
     },
@@ -88,14 +92,14 @@ const pastEvents: PastEventsType = {
 const childWithEvents: ChildByIdResponse = {
   ...childData,
   upcomingEventsAndEventGroups,
-  occurrences: occurrences,
+  activeInternalAndTicketSystemEnrolments: enrolments,
   pastEvents: pastEvents,
 };
 
 const childOnlyAvailableEvents = {
   ...childData,
   upcomingEventsAndEventGroups,
-  occurrences: {
+  enrolments: {
     edges: [],
   },
   pastEvents: null,
@@ -104,17 +108,41 @@ const childOnlyAvailableEvents = {
 const childOnlyEnrolments: ChildByIdResponse = {
   ...childData,
   upcomingEventsAndEventGroups: null,
-  occurrences: {
+  activeInternalAndTicketSystemEnrolments: {
     edges: [
       {
         node: {
-          id: 'uu',
-          time: '2020-02-24T09:09:09+00:00',
-          venue: venueData,
-          event: eventData,
-          enrolments: {
-            edges: [],
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          __typename: 'EnrolmentNode',
+          id: 'foo',
+          referenceId: 'bar',
+          occurrence: {
+            id: 'uu',
+            time: '2020-02-24T09:09:09+00:00',
+            venue: venueData,
+            event: eventData,
           },
+        },
+      },
+    ],
+  },
+  pastEvents: null,
+};
+
+const childWithTicketmasterEnrolment: ChildByIdResponse = {
+  ...childData,
+  upcomingEventsAndEventGroups: null,
+  activeInternalAndTicketSystemEnrolments: {
+    edges: [
+      {
+        node: {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          __typename: 'TicketmasterEnrolmentNode',
+          id: 'foo',
+          referenceId: 'bar',
+          event: eventData,
         },
       },
     ],
@@ -125,9 +153,7 @@ const childOnlyEnrolments: ChildByIdResponse = {
 const childOnlyPastEvents: ChildByIdResponse = {
   ...childData,
   upcomingEventsAndEventGroups: null,
-  occurrences: {
-    edges: [],
-  },
+  activeInternalAndTicketSystemEnrolments: { edges: [] },
   pastEvents: pastEvents,
 };
 
@@ -138,7 +164,7 @@ test('Renders snapshot correctly', () => {
         upcomingEventsAndEventGroups={
           childWithEvents.upcomingEventsAndEventGroups
         }
-        occurrences={childWithEvents.occurrences}
+        enrolments={childOnlyEnrolments.activeInternalAndTicketSystemEnrolments}
         pastEvents={childWithEvents.pastEvents}
         childId="zzaf"
       />
@@ -154,17 +180,19 @@ test('Renders only upcoming events and event groups when no other inputs', () =>
         upcomingEventsAndEventGroups={
           childOnlyAvailableEvents.upcomingEventsAndEventGroups
         }
-        occurrences={childOnlyAvailableEvents.occurrences}
+        enrolments={
+          childOnlyAvailableEvents.activeInternalAndTicketSystemEnrolments
+        }
         pastEvents={childOnlyAvailableEvents.pastEvents}
         childId="zzaf"
       />
     </MockedProvider>
   );
   expect(
-    screen.getByRole('heading', { name: 'Tapahtumat' })
+    screen.getByRole('heading', { name: 'Tapahtumakutsut' })
   ).toBeInTheDocument();
   expect(
-    screen.queryByRole('heading', { name: 'Olet ilmoittautunut tapahtumaan' })
+    screen.queryByRole('heading', { name: 'Tulevat tapahtumasi' })
   ).not.toBeInTheDocument();
   expect(
     screen.queryByRole('heading', { name: 'Menneet tapahtumat' })
@@ -178,7 +206,7 @@ test('Renders only enrolments when no other inputs', () => {
         upcomingEventsAndEventGroups={
           childOnlyEnrolments.upcomingEventsAndEventGroups
         }
-        occurrences={childOnlyEnrolments.occurrences}
+        enrolments={childOnlyEnrolments.activeInternalAndTicketSystemEnrolments}
         pastEvents={childOnlyEnrolments.pastEvents}
         childId="zzaf"
       />
@@ -186,37 +214,35 @@ test('Renders only enrolments when no other inputs', () => {
   );
 
   expect(
-    screen.queryByRole('heading', { name: 'Tapahtumat' })
+    screen.queryByRole('heading', { name: 'Tapahtumakutsut' })
   ).not.toBeInTheDocument();
   expect(
-    screen.getByRole('heading', { name: 'Olet ilmoittautunut tapahtumaan' })
+    screen.getByRole('heading', { name: 'Tulevat tapahtumasi' })
   ).toBeInTheDocument();
   expect(
     screen.queryByRole('heading', { name: 'Menneet tapahtumat' })
   ).not.toBeInTheDocument();
 });
 
-test('Renders only past events when no other inputs', () => {
+test('Renders Ticketmaster enrolment', () => {
   render(
     <MockedProvider>
       <ProfileEventsList
-        upcomingEventsAndEventGroups={
-          childOnlyPastEvents.upcomingEventsAndEventGroups
+        upcomingEventsAndEventGroups={{
+          edges: [],
+        }}
+        enrolments={
+          childWithTicketmasterEnrolment.activeInternalAndTicketSystemEnrolments
         }
-        occurrences={childOnlyPastEvents.occurrences}
-        pastEvents={childOnlyPastEvents.pastEvents}
+        pastEvents={{
+          edges: [],
+        }}
         childId="zzaf"
       />
     </MockedProvider>
   );
 
   expect(
-    screen.queryByRole('heading', { name: 'Tapahtumat' })
-  ).not.toBeInTheDocument();
-  expect(
-    screen.queryByRole('heading', { name: 'Olet ilmoittautunut tapahtumaan' })
-  ).not.toBeInTheDocument();
-  expect(
-    screen.getByRole('heading', { name: 'Menneet tapahtumat' })
+    screen.getByText('Lippujen varaus Ticketmasterissa')
   ).toBeInTheDocument();
 });

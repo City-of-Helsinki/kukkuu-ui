@@ -207,11 +207,10 @@
     },
     "events": {
       "enrolled": {
-        "heading_one": "Du har anmält dig till evenemange.",
-        "heading_other": "Du har anmält dig till evenemangen"
+        "heading": ""
       },
       "invitations": {
-        "heading": "Evenemangen"
+        "heading": ""
       },
       "past": {
         "heading": "Gångna evenemang"
@@ -532,7 +531,8 @@
       "noEnrollEvent_one": "Du har redan anmält dig till ett annat evenemang.",
       "noEnrollEvent_other": "Du har redan anmält dig till {{count}} evenemang.",
       "noEnrollEventGroup_one": "Vänligen observera att du redan har anmält dig till ett evenemang.",
-      "noEnrollEventGroup_other": "Vänligen observera att du redan har anmält dig till {{count}} evenemang."
+      "noEnrollEventGroup_other": "Vänligen observera att du redan har anmält dig till {{count}} evenemang.",
+      "ticketMasterInfo": ""
     }
   },
   "registration": {

@@ -18,7 +18,7 @@ export interface childByIdQuery_child_project {
   year: number;
 }
 
-export interface childByIdQuery_child_occurrences_edges_node_venue {
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence_venue {
   /**
    * The ID of the object.
    */
@@ -27,7 +27,7 @@ export interface childByIdQuery_child_occurrences_edges_node_venue {
   address: string | null;
 }
 
-export interface childByIdQuery_child_occurrences_edges_node_event {
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence_event {
   /**
    * The ID of the object.
    */
@@ -43,7 +43,17 @@ export interface childByIdQuery_child_occurrences_edges_node_event {
   participantsPerInvite: EventParticipantsPerInvite;
 }
 
-export interface childByIdQuery_child_occurrences_edges_node_enrolments_edges_node {
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  time: any;
+  venue: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence_venue;
+  event: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence_event;
+}
+
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode {
   /**
    * The ID of the object.
    */
@@ -52,45 +62,47 @@ export interface childByIdQuery_child_occurrences_edges_node_enrolments_edges_no
    * An unique encoded reference id
    */
   referenceId: string | null;
+  occurrence: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence;
 }
 
-export interface childByIdQuery_child_occurrences_edges_node_enrolments_edges {
-  /**
-   * The item at the end of the edge
-   */
-  node: childByIdQuery_child_occurrences_edges_node_enrolments_edges_node | null;
-}
-
-export interface childByIdQuery_child_occurrences_edges_node_enrolments {
-  /**
-   * Contains the nodes in this connection.
-   */
-  edges: (childByIdQuery_child_occurrences_edges_node_enrolments_edges | null)[];
-}
-
-export interface childByIdQuery_child_occurrences_edges_node {
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode_event {
   /**
    * The ID of the object.
    */
   id: string;
-  time: any;
-  venue: childByIdQuery_child_occurrences_edges_node_venue;
-  event: childByIdQuery_child_occurrences_edges_node_event;
-  enrolments: childByIdQuery_child_occurrences_edges_node_enrolments;
+  name: string | null;
+  shortDescription: string | null;
+  /**
+   * In minutes
+   */
+  duration: number | null;
+  image: string;
+  imageAltText: string | null;
+  participantsPerInvite: EventParticipantsPerInvite;
 }
 
-export interface childByIdQuery_child_occurrences_edges {
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  event: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode_event;
+}
+
+export type childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node = childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode;
+
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges {
   /**
    * The item at the end of the edge
    */
-  node: childByIdQuery_child_occurrences_edges_node | null;
+  node: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node | null;
 }
 
-export interface childByIdQuery_child_occurrences {
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments {
   /**
    * Contains the nodes in this connection.
    */
-  edges: (childByIdQuery_child_occurrences_edges | null)[];
+  edges: (childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges | null)[];
 }
 
 export interface childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode {
@@ -215,7 +227,10 @@ export interface childByIdQuery_child {
   birthdate: any;
   postalCode: string;
   project: childByIdQuery_child_project;
-  occurrences: childByIdQuery_child_occurrences;
+  /**
+   * All upcoming and ongoing (with leeway) internal and ticket system enrolments sorted by time.
+   */
+  activeInternalAndTicketSystemEnrolments: childByIdQuery_child_activeInternalAndTicketSystemEnrolments | null;
   /**
    * All upcoming events and event groups for the child's project.
    */

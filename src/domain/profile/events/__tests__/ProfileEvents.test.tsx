@@ -8,7 +8,7 @@ import {
   childByIdQuery_child as ChildByIdResponse,
   childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEvents,
   childByIdQuery_child_pastEvents as PastEvents,
-  childByIdQuery_child_occurrences as Occurrences,
+  childByIdQuery_child_activeInternalAndTicketSystemEnrolments as InternalAndTicketSystemEnrolmentsType,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
@@ -27,7 +27,7 @@ const childData: ChildByIdResponse = {
     edges: [],
   },
   upcomingEventsAndEventGroups: { edges: [] },
-  occurrences: { edges: [] },
+  activeInternalAndTicketSystemEnrolments: { edges: [] },
   pastEvents: { edges: [] },
 };
 
@@ -57,29 +57,34 @@ const upcomingEventsAndEventGroups: UpcomingEvents = {
   ],
 };
 
-const occurrences: Occurrences = {
+const enrolments: InternalAndTicketSystemEnrolmentsType = {
   edges: [
     {
       node: {
-        id: '',
-        time: '',
-        venue: {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        __typename: 'EnrolmentNode',
+        id: 'foo',
+        referenceId: 'bar',
+        occurrence: {
           id: '',
-          address: '',
-          name: '',
-        },
-        event: {
-          id: 'RXZlbnROb2RlOjE=',
-          duration: 12,
-          name: 'pentti',
-          participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
-          shortDescription: 'eventti',
-          image:
-            'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
-          imageAltText: 'uooo',
-        },
-        enrolments: {
-          edges: [],
+          time: '2020-02-24T07:07:18+00:00', // 09.07
+          venue: {
+            id: '',
+            address: '',
+            name: '',
+          },
+          event: {
+            id: 'RXZlbnROb2RlOjE=',
+            duration: 12,
+            name: 'pentti',
+            participantsPerInvite:
+              EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
+            shortDescription: 'eventti',
+            image:
+              'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
+            imageAltText: 'uooo',
+          },
         },
       },
     },
@@ -108,14 +113,14 @@ const pastEvents: PastEvents = {
 const childWithEvents: ChildByIdResponse = {
   ...childData,
   upcomingEventsAndEventGroups,
-  occurrences: occurrences,
+  activeInternalAndTicketSystemEnrolments: enrolments,
   pastEvents: pastEvents,
 };
 
-const childOnlyAvailableEvents: ChildByIdResponse = {
+const childOnlyAvailableEvents = {
   ...childData,
   upcomingEventsAndEventGroups,
-  occurrences: {
+  enrolments: {
     edges: [],
   },
   pastEvents: null,
@@ -124,29 +129,34 @@ const childOnlyAvailableEvents: ChildByIdResponse = {
 const childOnlyEnrolments: ChildByIdResponse = {
   ...childData,
   upcomingEventsAndEventGroups: null,
-  occurrences: {
+  activeInternalAndTicketSystemEnrolments: {
     edges: [
       {
         node: {
-          id: '',
-          time: '',
-          venue: {
-            id: '',
-            address: '',
-            name: '',
-          },
-          event: {
-            id: 'RXZlbnROb2RlOjE=',
-            name: 'pentti',
-            shortDescription: 'eventti',
-            duration: null,
-            participantsPerInvite: EventParticipantsPerInvite.FAMILY,
-            imageAltText: 'uooo',
-            image:
-              'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
-          },
-          enrolments: {
-            edges: [],
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          __typename: 'EnrolmentNode',
+          id: 'foo',
+          referenceId: 'bar',
+          occurrence: {
+            id: 'uu',
+            time: '2020-02-24T09:09:09+00:00',
+            venue: {
+              id: '',
+              address: '',
+              name: '',
+            },
+            event: {
+              id: 'RXZlbnROb2RlOjE=',
+              duration: 12,
+              name: 'pentti',
+              participantsPerInvite:
+                EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
+              shortDescription: 'eventti',
+              image:
+                'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
+              imageAltText: 'uooo',
+            },
           },
         },
       },
@@ -179,7 +189,7 @@ test('Renders "No events" when no events"', () => {
         upcomingEventsAndEventGroups={
           childWithEvents.upcomingEventsAndEventGroups
         }
-        occurrences={childWithEvents.occurrences}
+        enrolments={childWithEvents.activeInternalAndTicketSystemEnrolments}
         pastEvents={childWithEvents.pastEvents}
       />
     )
@@ -195,7 +205,7 @@ test('Renders events list when events of any type', () => {
         upcomingEventsAndEventGroups={
           childWithEvents.upcomingEventsAndEventGroups
         }
-        occurrences={childWithEvents.occurrences}
+        enrolments={childWithEvents.activeInternalAndTicketSystemEnrolments}
         pastEvents={childWithEvents.pastEvents}
       />
     )
@@ -211,7 +221,9 @@ test('Renders events list when only upcomingEventsAndEventGroups', () => {
         upcomingEventsAndEventGroups={
           childOnlyAvailableEvents.upcomingEventsAndEventGroups
         }
-        occurrences={childOnlyAvailableEvents.occurrences}
+        enrolments={
+          childOnlyAvailableEvents.activeInternalAndTicketSystemEnrolments
+        }
         pastEvents={childOnlyAvailableEvents.pastEvents}
       />
     )
@@ -227,7 +239,7 @@ test('Renders events list when only enrolments', () => {
         upcomingEventsAndEventGroups={
           childOnlyEnrolments.upcomingEventsAndEventGroups
         }
-        occurrences={childOnlyEnrolments.occurrences}
+        enrolments={childOnlyEnrolments.activeInternalAndTicketSystemEnrolments}
         pastEvents={childOnlyEnrolments.pastEvents}
       />
     )
@@ -243,7 +255,7 @@ test('Renders events list when only past events', () => {
         upcomingEventsAndEventGroups={
           childOnlyPastEvents.upcomingEventsAndEventGroups
         }
-        occurrences={childOnlyPastEvents.enrolments}
+        enrolments={childOnlyPastEvents.activeInternalAndTicketSystemEnrolments}
         pastEvents={childOnlyPastEvents.pastEvents}
       />
     )

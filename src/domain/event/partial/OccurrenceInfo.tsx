@@ -4,7 +4,8 @@ import { IconCalendar, IconLocation, IconClock } from 'hds-react';
 
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
-import { childByIdQuery_child_occurrences_edges_node as OccurrenceType } from '../../api/generatedTypes/childByIdQuery';
+// eslint-disable-next-line max-len
+import { childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence as OccurrenceType } from '../../api/generatedTypes/childByIdQuery';
 import { occurrenceQuery_occurrence as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
 import { formatOccurrenceTime, getParticipantsIcon } from '../EventUtils';
 import InfoItem, { InfoItemProps } from './InfoItem';

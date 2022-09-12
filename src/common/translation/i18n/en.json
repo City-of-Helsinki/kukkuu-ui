@@ -207,11 +207,10 @@
     },
     "events": {
       "enrolled": {
-        "heading_one": "You are registered for the event",
-        "heading_other": "You have registered for the events"
+        "heading": "Your upcoming events"
       },
       "invitations": {
-        "heading": "Events"
+        "heading": "Event invitations"
       },
       "past": {
         "heading": "Past events"
@@ -532,7 +531,8 @@
       "noEnrollEvent_one": "You are already registered for another event.",
       "noEnrollEvent_other": "You are registered for the event.",
       "noEnrollEventGroup_one": "Please note that you are already registered for one event.",
-      "noEnrollEventGroup_other": "Please note that you are already registered for one event."
+      "noEnrollEventGroup_other": "Please note that you are already registered for one event.",
+      "ticketMasterInfo": "Registration in the Ticketmaster ticket service"
     }
   },
   "registration": {

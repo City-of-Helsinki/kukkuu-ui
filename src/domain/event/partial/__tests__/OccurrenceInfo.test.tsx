@@ -4,10 +4,10 @@ import toJson from 'enzyme-to-json';
 import OccurrenceInfo from '../OccurrenceInfo';
 import { mockedOccurrenceNode } from '../../__tests__/EventPage.test';
 // eslint-disable-next-line max-len
-import { childByIdQuery_child_occurrences_edges_node as OccurrenceNodes } from '../../../api/generatedTypes/childByIdQuery';
+import { childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence as OccurrenceNode } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 
-const z: OccurrenceNodes = {
+const z: OccurrenceNode = {
   id: 'aa',
   time: '2020-03-08T04:00:00+00:00',
   event: {
@@ -21,7 +21,6 @@ const z: OccurrenceNodes = {
   },
   venue: {
     id: 'auppss',
-    description: 'some venue description',
     name: 'Musiikkitalo',
     address: 'Urho Kekkosen katu 12',
   },
