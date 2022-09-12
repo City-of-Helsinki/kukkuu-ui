@@ -690,5 +690,7 @@
       }
     }
   },
-  "": "Jatka"
+  "": "Jatka",
+  "loadMoreButtonLabelText": "Lataa lisää",
+  "showAll": "Näytä kaikki"
 }

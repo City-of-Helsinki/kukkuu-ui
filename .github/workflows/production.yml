@@ -19,7 +19,6 @@ env:
   K8S_LIMIT_CPU: 50m
   K8S_LIMIT_RAM: 20Mi
   K8S_REPLICACOUNT: 2
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,6 +31,7 @@ jobs:
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-production
           DOCKER_BUILD_ARG_REACT_APP_ENVIRONMENT: 'production'
           DOCKER_BUILD_ARG_REACT_APP_OIDC_AUTHORITY: 'https://api.hel.fi/sso'
+          DOCKER_BUILD_ARG_REACT_APP_ORIGIN: https://${{ secrets.ENVIRONMENT_URL_STABLE }}
           DOCKER_BUILD_ARG_REACT_APP_API_URI: 'https://kukkuu.api.hel.fi/graphql'
           DOCKER_BUILD_ARG_REACT_APP_CMS_URI: 'https://kukkuu.content.api.hel.fi/graphql'
           DOCKER_BUILD_ARG_REACT_APP_OIDC_CLIENT_ID: 'https://id.hel.fi/apps/kukkuu-ui-prod'

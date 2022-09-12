@@ -690,5 +690,7 @@
       }
     }
   },
-  "": "Continue"
+  "": "Continue",
+  "loadMoreButtonLabelText": "Load more",
+  "showAll": "Show all"
 }

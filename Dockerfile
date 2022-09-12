@@ -54,6 +54,7 @@ CMD ["react-scripts", "start"]
 FROM appbase as staticbuilder
 # ===================================
 
+ARG REACT_APP_ORIGIN
 ARG REACT_APP_API_URI
 ARG REACT_APP_CMS_URI
 ARG REACT_APP_OIDC_AUTHORITY

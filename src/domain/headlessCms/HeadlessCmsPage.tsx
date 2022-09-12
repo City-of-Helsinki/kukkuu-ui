@@ -15,7 +15,12 @@ const HeadlessCmsPage = () => {
       uri={location.pathname}
       navigation={<Navigation />}
       notification={<Notification />}
-      content={<PageContent notFoundPageContent={<NotFound />} />}
+      content={
+        <PageContent
+          notFoundPageContent={<NotFound />}
+          collections={() => null}
+        />
+      }
       footer={<Footer className={styles.noFooterOverflow} />}
     />
   );
