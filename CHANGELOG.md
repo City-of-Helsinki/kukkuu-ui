@@ -1,5 +1,16 @@
 # Change Log
 
+# 1.9.2
+
+### Added
+
+- [#439](https://github.com/City-of-Helsinki/kukkuu-ui/pull/439) Browser tests with github login
+
+### Changed
+
+- [#436](https://github.com/City-of-Helsinki/kukkuu-ui/pull/436) Update rhhc and change link props + updated/refactored default configuration
+- [#437](https://github.com/City-of-Helsinki/kukkuu-ui/pull/437) Replace Hurjaruuth's logo with a new one
+
 # 1.9.1
 
 ### Fixed
