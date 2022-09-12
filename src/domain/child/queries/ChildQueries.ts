@@ -13,31 +13,41 @@ export const childByIdQuery = gql`
         name
         year
       }
-      occurrences(upcomingWithOngoing: true) {
+      activeInternalAndTicketSystemEnrolments {
         edges {
           node {
-            id
-            time
-            venue {
+            ... on EnrolmentNode {
               id
-              name
-              address
-            }
-            event {
-              id
-              name
-              shortDescription
-              duration
-              image
-              imageAltText
-              participantsPerInvite
-            }
-            enrolments(first: 1) {
-              edges {
-                node {
+              referenceId
+              occurrence {
+                id
+                time
+                venue {
                   id
-                  referenceId
+                  name
+                  address
                 }
+                event {
+                  id
+                  name
+                  shortDescription
+                  duration
+                  image
+                  imageAltText
+                  participantsPerInvite
+                }
+              }
+            }
+            ... on TicketmasterEnrolmentNode {
+              id
+              event {
+                id
+                name
+                shortDescription
+                duration
+                image
+                imageAltText
+                participantsPerInvite
               }
             }
           }

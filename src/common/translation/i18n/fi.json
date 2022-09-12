@@ -207,11 +207,10 @@
     },
     "events": {
       "enrolled": {
-        "heading_one": "Olet ilmoittautunut tapahtumaan",
-        "heading_other": "Olet ilmoittautunut tapahtumiin"
+        "heading": "Tulevat tapahtumasi"
       },
       "invitations": {
-        "heading": "Tapahtumat"
+        "heading": "Tapahtumakutsut"
       },
       "past": {
         "heading": "Menneet tapahtumat"
@@ -532,7 +531,8 @@
       "noEnrollEvent_one": "Olet jo ilmoittautunut toiseen tapahtumaan.",
       "noEnrollEvent_other": "Olet jo ilmoittautunut {{count}} tapahtumaan.",
       "noEnrollEventGroup_one": "Huomioithan, että olet jo ilmoittautunut yhteen tapahtumaan.",
-      "noEnrollEventGroup_other": "Huomioithan, että olet jo ilmoittautunut {{count}} tapahtumaan."
+      "noEnrollEventGroup_other": "Huomioithan, että olet jo ilmoittautunut {{count}} tapahtumaan.",
+      "ticketMasterInfo": "Lippujen varaus Ticketmasterissa"
     }
   },
   "registration": {
