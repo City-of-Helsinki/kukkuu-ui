@@ -23,9 +23,9 @@
     "update-translations": "fetch-translations 1b5qAamjhmSNiME3matBINaeyz8TvoRWVB6wU5HvKy4g -l en,fi,sv -o src/common/translation/i18n",
     "test": "TZ=UTC react-scripts test --transformIgnorePatterns \"node_modules/(?!(react-helsinki-headless-cms|react-helsinki-headless-cms/apollo))/\"",
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
-    "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --dev --lang=fi-FI --skip-js-errors",
-    "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev --lang=fi-FI --skip-js-errors",
-    "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/ --skip-js-errors"
+    "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --dev --lang=fi-FI",
+    "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev --lang=fi-FI",
+    "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/"
   },
   "eslintConfig": {
     "extends": "react-app"

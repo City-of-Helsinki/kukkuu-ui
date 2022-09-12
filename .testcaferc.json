@@ -1,5 +1,10 @@
 {
+  "skipJsErrors": {
+    "message": "Failed to execute 'replaceState' on 'History'"
+  },
   "clientScripts": [
-    { "module": "@testing-library/dom/dist/@testing-library/dom.umd.js" }
+    {
+      "module": "@testing-library/dom/dist/@testing-library/dom.umd.js"
+    }
   ]
 }
