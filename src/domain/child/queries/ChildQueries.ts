@@ -1,6 +1,15 @@
 import { gql } from '@apollo/client';
 
 export const childByIdQuery = gql`
+  fragment EnrolmentEventFields on EventNode {
+    id
+    name
+    shortDescription
+    duration
+    image
+    imageAltText
+    participantsPerInvite
+  }
   query childByIdQuery($id: ID!) {
     child(id: $id) {
       id
@@ -28,27 +37,17 @@ export const childByIdQuery = gql`
                   address
                 }
                 event {
-                  id
-                  name
-                  shortDescription
-                  duration
-                  image
-                  imageAltText
-                  participantsPerInvite
+                  ...EnrolmentEventFields
                 }
               }
+              __typename
             }
             ... on TicketmasterEnrolmentNode {
               id
               event {
-                id
-                name
-                shortDescription
-                duration
-                image
-                imageAltText
-                participantsPerInvite
+                ...EnrolmentEventFields
               }
+              __typename
             }
           }
         }
@@ -64,6 +63,7 @@ export const childByIdQuery = gql`
               imageAltText
               participantsPerInvite
               canChildEnroll(childId: $id)
+              __typename
             }
             ... on EventGroupNode {
               id
@@ -72,6 +72,7 @@ export const childByIdQuery = gql`
               image
               imageAltText
               canChildEnroll(childId: $id)
+              __typename
             }
           }
         }

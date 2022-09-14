@@ -1,3 +1,4 @@
+import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
 
 import { render, screen } from '../../../../common/test/testingLibraryUtils';
@@ -44,6 +45,7 @@ const eventData = {
   participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
   occurrences: { edges: [] },
   canChildEnroll: true,
+  __typename: 'EventNode',
 };
 
 const upcomingEventsAndEventGroups: UpcomingEventsAndEventGroupsType = {
@@ -137,11 +139,8 @@ const childWithTicketmasterEnrolment: ChildByIdResponse = {
     edges: [
       {
         node: {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           __typename: 'TicketmasterEnrolmentNode',
           id: 'foo',
-          referenceId: 'bar',
           event: eventData,
         },
       },
