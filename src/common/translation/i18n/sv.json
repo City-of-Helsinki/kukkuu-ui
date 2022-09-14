@@ -207,10 +207,10 @@
     },
     "events": {
       "enrolled": {
-        "heading": ""
+        "heading": "Dina kommande evenemang"
       },
       "invitations": {
-        "heading": ""
+        "heading": "Evenemangsinbjudningar"
       },
       "past": {
         "heading": "Gångna evenemang"
@@ -532,7 +532,7 @@
       "noEnrollEvent_other": "Du har redan anmält dig till {{count}} evenemang.",
       "noEnrollEventGroup_one": "Vänligen observera att du redan har anmält dig till ett evenemang.",
       "noEnrollEventGroup_other": "Vänligen observera att du redan har anmält dig till {{count}} evenemang.",
-      "ticketMasterInfo": ""
+      "ticketMasterInfo": "Reservera biljetter på Ticketmaster"
     }
   },
   "registration": {
