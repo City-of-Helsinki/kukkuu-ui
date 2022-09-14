@@ -32,46 +32,35 @@ const upcomingEventsAndEventGroupsList =
 const pastEventsList = RelayList<PastEventNode>();
 const enrolmentsList = RelayList<InternalOrTicketSystemEnrolmentNode>();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function switchEventOrEventGroup<R = any>(
+function switchEventOrEventGroup<R>(
   model: UpcomingEventsAndEventGroupsNode,
   isEvent: (event: EventNode) => R,
   isEventGroup: (eventGroup: EventGroupNode) => R
 ) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const isEventGroupType = model['__typename'] === 'EventGroupNode';
-
-  if (isEventGroupType) {
-    const eventGroup = model as EventGroupNode;
-
-    return isEventGroup(eventGroup);
-  }
-
-  const event = model as EventNode;
-
-  return isEvent(event);
+  const typeHandlers: Record<
+    UpcomingEventsAndEventGroupsNode['__typename'],
+    () => R
+  > = {
+    EventGroupNode: () => isEventGroup(model as EventGroupNode),
+    EventNode: () => isEvent(model as EventNode),
+  };
+  return typeHandlers[model['__typename']]();
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function switchInternalOrTicketSystemEnrolment<R = any>(
-  model: InternalOrTicketSystemEnrolmentNode,
+function switchInternalOrTicketSystemEnrolment<R>(
+  enrolmentNode: InternalOrTicketSystemEnrolmentNode,
   isInternal: (internalEnrolment: EnrolmentNode) => R,
   isTicketmaster: (ticketmasterEnrolment: TicketmasterEnrolmentNode) => R
 ) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  const isInternalType = model['__typename'] === 'EnrolmentNode';
-
-  if (isInternalType) {
-    const enrolment = model as EnrolmentNode;
-
-    return isInternal(enrolment);
-  }
-
-  const ticketmasterEnrolment = model as TicketmasterEnrolmentNode;
-
-  return isTicketmaster(ticketmasterEnrolment);
+  const typeHandlers: Record<
+    InternalOrTicketSystemEnrolmentNode['__typename'],
+    () => R
+  > = {
+    EnrolmentNode: () => isInternal(enrolmentNode as EnrolmentNode),
+    TicketmasterEnrolmentNode: () =>
+      isTicketmaster(enrolmentNode as TicketmasterEnrolmentNode),
+  };
+  return typeHandlers[enrolmentNode['__typename']]();
 }
 
 type Props = {
@@ -128,139 +117,135 @@ const ProfileEventsList = ({
     pastEnrolmentCount && enrolmentLimit && pastEnrolmentCount >= enrolmentLimit
   );
   const enrolments = enrolmentsList(enrolmentsData).items;
-  return (
-    <>
-      <List
-        variant="spacing-xl"
-        items={[
-          enrolments.length > 0 && (
-            <React.Fragment key="enrolments">
-              <Text variant="h2">{t('profile.events.enrolled.heading')}</Text>
-              <List
-                variant="spacing-layout-2-xs"
-                items={enrolments.map((internalOrTicketSystemEnrolment) =>
-                  switchInternalOrTicketSystemEnrolment(
-                    internalOrTicketSystemEnrolment,
-                    (internalEnrolment) => (
-                      <EventCard
-                        key={internalEnrolment.id}
-                        imageElement={
-                          <div className={styles.qrWrapper}>
-                            <QRCode
-                              quietZone={0}
-                              size={QR_CODE_SIZE_PX}
-                              value={getTicketValidationUrl(
-                                internalEnrolment?.referenceId
-                              )}
-                              ecLevel={'H'}
-                            />
-                          </div>
-                        }
-                        event={internalEnrolment.occurrence.event}
-                        action={() =>
-                          gotoOccurrencePage(internalEnrolment.occurrence.id)
-                        }
-                        actionText={t('enrollment.showEventInfo.buttonText')}
-                        primaryAction="hidden"
-                        focalContent={OccurrenceInfo({
-                          occurrence: internalEnrolment.occurrence,
-                          show: ['time', 'duration', 'venue'],
-                        })}
-                      />
-                    ),
-                    (ticketmasterEnrolment) => (
-                      <EventCard
-                        key={internalOrTicketSystemEnrolment.id}
-                        event={ticketmasterEnrolment.event}
-                        action={() =>
-                          gotoEventPage(ticketmasterEnrolment.event.id)
-                        }
-                        actionText={t('enrollment.showEventInfo.buttonText')}
-                        primaryAction="hidden"
-                        focalContent={TicketMasterInfo()}
-                      />
-                    )
-                  )
-                )}
-              />
-            </React.Fragment>
-          ),
-          upcomingEventsAndEventGroups.length > 0 && (
-            <React.Fragment key="upcomingEventsAndEventGroups">
-              <Text variant="h2">
-                {t('profile.events.invitations.heading')}
-              </Text>
-              <List
-                variant="spacing-layout-2-xs"
-                items={upcomingEventsAndEventGroups.map((eventOrEventGroup) => {
-                  const focalContent = getFocalContent(
-                    eventOrEventGroup,
-                    childDoesNotHaveEnrolmentsLeft
-                  );
 
-                  return (
-                    <EventCard
-                      focalContent={
-                        focalContent ? (
-                          <>
-                            {t(focalContent, {
-                              count: enrolmentCount ?? 0,
-                            })}
-                          </>
-                        ) : undefined
-                      }
-                      key={eventOrEventGroup.id}
-                      event={eventOrEventGroup}
-                      primaryAction={switchEventOrEventGroup(
-                        eventOrEventGroup,
-                        (event) =>
-                          event.canChildEnroll ? 'visible' : 'hidden',
-                        () => 'visible'
+  const enrolmentsListItems: JSX.Element | null = enrolments.length ? (
+    <React.Fragment key="enrolments">
+      <Text variant="h2">{t('profile.events.enrolled.heading')}</Text>
+      <List
+        variant="spacing-layout-2-xs"
+        items={enrolments.map((internalOrTicketSystemEnrolment) =>
+          switchInternalOrTicketSystemEnrolment(
+            internalOrTicketSystemEnrolment,
+            (internalEnrolment) => (
+              <EventCard
+                key={internalEnrolment.id}
+                imageElement={
+                  <div className={styles.qrWrapper}>
+                    <QRCode
+                      quietZone={0}
+                      size={QR_CODE_SIZE_PX}
+                      value={getTicketValidationUrl(
+                        internalEnrolment?.referenceId
                       )}
-                      action={() =>
-                        switchEventOrEventGroup(
-                          eventOrEventGroup,
-                          () => gotoEventPage(eventOrEventGroup.id),
-                          () => gotoEventGroupPage(eventOrEventGroup.id)
-                        )
-                      }
-                      actionText={switchEventOrEventGroup<string>(
-                        eventOrEventGroup,
-                        () =>
-                          t(
-                            'profile.child.detail.availableEvent.readMoreButton'
-                          ),
-                        () =>
-                          t(
-                            'profile.child.detail.availableEventGroup.readMoreButton'
-                          )
-                      )}
+                      ecLevel={'H'}
                     />
-                  );
+                  </div>
+                }
+                event={internalEnrolment.occurrence.event}
+                action={() =>
+                  gotoOccurrencePage(internalEnrolment.occurrence.id)
+                }
+                actionText={t('enrollment.showEventInfo.buttonText')}
+                primaryAction="hidden"
+                focalContent={OccurrenceInfo({
+                  occurrence: internalEnrolment.occurrence,
+                  show: ['time', 'duration', 'venue'],
                 })}
               />
-            </React.Fragment>
-          ),
-          pastEvents.length > 0 && (
-            <React.Fragment key="pastEvents">
-              <Text variant="h2">{t('profile.events.past.heading')}</Text>
-              <List
-                variant="spacing-layout-2-xs"
-                items={pastEvents.map((pastEvent) => (
-                  <EventCard
-                    key={pastEvent.id}
-                    event={pastEvent}
-                    action={() => gotoEventPage(pastEvent.id, true)}
-                    actionText={t('enrollment.showEventInfo.buttonText')}
-                    primaryAction="hidden"
-                  />
-                ))}
+            ),
+            (ticketmasterEnrolment) => (
+              <EventCard
+                key={internalOrTicketSystemEnrolment.id}
+                event={ticketmasterEnrolment.event}
+                action={() => gotoEventPage(ticketmasterEnrolment.event.id)}
+                actionText={t('enrollment.showEventInfo.buttonText')}
+                primaryAction="hidden"
+                focalContent={TicketMasterInfo()}
               />
-            </React.Fragment>
-          ),
-        ]}
+            )
+          )
+        )}
       />
-    </>
+    </React.Fragment>
+  ) : null;
+
+  const upcomingEventsAndEventGroupsListItems: JSX.Element | null =
+    upcomingEventsAndEventGroups.length ? (
+      <React.Fragment key="upcomingEventsAndEventGroups">
+        <Text variant="h2">{t('profile.events.invitations.heading')}</Text>
+        <List
+          variant="spacing-layout-2-xs"
+          items={upcomingEventsAndEventGroups.map((eventOrEventGroup) => {
+            const focalContent = getFocalContent(
+              eventOrEventGroup,
+              childDoesNotHaveEnrolmentsLeft
+            );
+
+            return (
+              <EventCard
+                focalContent={
+                  focalContent ? (
+                    <>
+                      {t(focalContent, {
+                        count: enrolmentCount ?? 0,
+                      })}
+                    </>
+                  ) : undefined
+                }
+                key={eventOrEventGroup.id}
+                event={eventOrEventGroup}
+                primaryAction={switchEventOrEventGroup(
+                  eventOrEventGroup,
+                  (event) => (event.canChildEnroll ? 'visible' : 'hidden'),
+                  () => 'visible'
+                )}
+                action={() =>
+                  switchEventOrEventGroup(
+                    eventOrEventGroup,
+                    () => gotoEventPage(eventOrEventGroup.id),
+                    () => gotoEventGroupPage(eventOrEventGroup.id)
+                  )
+                }
+                actionText={switchEventOrEventGroup<string>(
+                  eventOrEventGroup,
+                  () => t('profile.child.detail.availableEvent.readMoreButton'),
+                  () =>
+                    t('profile.child.detail.availableEventGroup.readMoreButton')
+                )}
+              />
+            );
+          })}
+        />
+      </React.Fragment>
+    ) : null;
+
+  const pastEventsListItems: JSX.Element | null = pastEvents.length ? (
+    <React.Fragment key="pastEvents">
+      <Text variant="h2">{t('profile.events.past.heading')}</Text>
+      <List
+        variant="spacing-layout-2-xs"
+        items={pastEvents.map((pastEvent) => (
+          <EventCard
+            key={pastEvent.id}
+            event={pastEvent}
+            action={() => gotoEventPage(pastEvent.id, true)}
+            actionText={t('enrollment.showEventInfo.buttonText')}
+            primaryAction="hidden"
+          />
+        ))}
+      />
+    </React.Fragment>
+  ) : null;
+
+  return (
+    <List
+      variant="spacing-xl"
+      items={[
+        enrolmentsListItems,
+        upcomingEventsAndEventGroupsListItems,
+        pastEventsListItems,
+      ]}
+    />
   );
 };
 
