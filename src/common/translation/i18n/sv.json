@@ -344,6 +344,12 @@
     },
     "ticketmasterNotice": "Anmälningen till evenemanget sker via Ticketmasters-biljettjänst. Du behöver ett gratis användarkonto för biljetterna. Du kan skapa kontot då du bokar, ifall du inte har ett från tidigare. Information om lediga platser för evenemanget hittar du på Ticketmaster."
   },
+  "ticketmasterEvent": {
+    "description": "",
+    "passwordLabel": "",
+    "continueButton": "",
+    "participantsPerInviteText": ""
+  },
   "eventOccurrenceRedirectPage": {
     "back": "Tillbaka",
     "continue": "Fortsätt till Ticketmaster",

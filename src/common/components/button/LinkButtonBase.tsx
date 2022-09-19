@@ -1,7 +1,9 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { ButtonProps } from 'hds-react';
+import { ButtonProps, IconLinkExternal } from 'hds-react';
+import { useTranslation } from 'react-i18next';
 
+import { getNodeText } from '../../commonUtils';
 import styles from './buttonOverrides.module.scss';
 
 const variantClassNameMap = {
@@ -15,6 +17,7 @@ const variantClassNameMap = {
 
 export type LinkButtonBaseProps = {
   variant?: ButtonProps['variant'];
+  openInNewTab?: boolean;
 };
 
 type Props = LinkButtonBaseProps & {
@@ -26,14 +29,26 @@ type Props = LinkButtonBaseProps & {
 
 const LinkButtonBase = ({
   as = 'a',
+  openInNewTab = false,
   children,
   className,
   ...delegated
 }: Props) => {
+  const { t } = useTranslation();
   const variant = delegated.variant;
+  const externalLinkIcon = openInNewTab ? (
+    <div className={classNames(styles.externalLinkIcon)} aria-hidden="true">
+      <IconLinkExternal />
+    </div>
+  ) : null;
   return React.createElement(
     as,
     {
+      ...(openInNewTab && {
+        target: '_blank',
+        'aria-label':
+          getNodeText(children) + '. ' + t('common.openInNewTabAriaLabel'),
+      }),
       ...delegated,
       className: classNames(
         className,
@@ -42,7 +57,10 @@ const LinkButtonBase = ({
         variant ? variantClassNameMap[variant] : variant
       ),
     },
-    <span className="hds-button__label">{children}</span>
+    <>
+      <span className="hds-button__label">{children}</span>
+      {externalLinkIcon}
+    </>
   );
 };
 

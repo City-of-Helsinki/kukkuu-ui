@@ -8,6 +8,7 @@ import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EventOccurrenceRedirect from '../../event/EventOccurrenceRedirect';
 import EventGroupPage from '../../eventGroup/EventGroupPage';
 import ProfileChildDetail from '../children/child/ProfileChildDetail';
+import TicketmasterEventIsEnrolled from '../../event/TicketmasterEventIsEnrolled';
 
 const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
   const { t } = useTranslation();
@@ -43,6 +44,12 @@ const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
         exact
         component={EventIsEnrolled}
         path={`${path}/occurrence/:occurrenceId`}
+      />
+      <AppRoute
+        noTitle
+        exact
+        component={TicketmasterEventIsEnrolled}
+        path={`${path}/event/:eventId/external-enrolment`}
       />
       <AppRoute
         title={t('enrolPage.enrol')}

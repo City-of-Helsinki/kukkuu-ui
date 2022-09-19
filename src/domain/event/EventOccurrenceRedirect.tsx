@@ -1,7 +1,4 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import copy from 'copy-to-clipboard';
-import { IconCheck } from 'hds-react';
 import { useParams } from 'react-router';
 import { useQuery } from '@apollo/client';
 
@@ -15,16 +12,8 @@ import styles from './eventOccurrenceRedirect.module.scss';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
 import useEventOccurrence from './queries/useEventOccurrence';
-import useAriaLive from '../../common/AriaLive/useAriaLive';
 import useGetPathname from '../../common/route/utils/useGetPathname';
-
-const CopyStates = {
-  initial: 'INITIAL',
-  success: 'SUCCESS',
-  error: 'ERROR',
-} as const;
-
-type CopyState = typeof CopyStates[keyof typeof CopyStates];
+import TicketmasterPassword from './TicketmasterPassword';
 
 type Params = {
   eventId: string;
@@ -48,8 +37,6 @@ const EventOccurrenceRedirect = () => {
     params.occurrenceId,
     params.childId
   );
-  const [copyStatus, setCopyStatus] = useState<CopyState>(CopyStates.initial);
-  const { sendMessage } = useAriaLive();
 
   const ticketSystem = data?.event?.ticketSystem;
   const ticketmasterPassword =
@@ -62,20 +49,6 @@ const EventOccurrenceRedirect = () => {
     occurrenceTicketSystem && 'url' in occurrenceTicketSystem
       ? occurrenceTicketSystem.url
       : null;
-
-  const handlePasswordCopy = () => {
-    if (ticketmasterPassword) {
-      const success = copy(ticketmasterPassword);
-
-      // If copying was successful, true is returned. Otherwise the
-      // copy-to-clipboard package will render a modal which advises the user
-      // to copy by other means.
-      if (success) {
-        sendMessage(t('eventOccurrenceRedirectPage.passwordCopySuccess'));
-        setCopyStatus(CopyStates.success);
-      }
-    }
-  };
 
   if (loading) {
     return <LoadingSpinner isLoading={true} />;
@@ -107,17 +80,7 @@ const EventOccurrenceRedirect = () => {
           {t('eventOccurrenceRedirectPage.passwordLabel')}
         </Text>
         <div className={styles.row}>
-          <div className={styles.password}>{ticketmasterPassword}</div>
-          <button
-            type="button"
-            onClick={handlePasswordCopy}
-            className={styles.copyButton}
-          >
-            {t('eventOccurrenceRedirectPage.copyPassword')}
-          </button>
-          {copyStatus === CopyStates.success && (
-            <IconCheck className={styles.successCheckMark} />
-          )}
+          <TicketmasterPassword password={ticketmasterPassword} />
         </div>
         <div className={styles.row}>
           <LinkButton

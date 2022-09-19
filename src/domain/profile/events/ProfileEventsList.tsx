@@ -106,6 +106,14 @@ const ProfileEventsList = ({
     );
   };
 
+  const gotoExternalEnrolmentEventPage = (eventId: string) => {
+    history.push(
+      getPathname(
+        `/profile/child/${childId}/event/${eventId}/external-enrolment`
+      )
+    );
+  };
+
   const upcomingEventsAndEventGroups = upcomingEventsAndEventGroupsList(
     upcomingEventsAndEventGroupsData
   ).items;
@@ -157,7 +165,9 @@ const ProfileEventsList = ({
               <EventCard
                 key={internalOrTicketSystemEnrolment.id}
                 event={ticketmasterEnrolment.event}
-                action={() => gotoEventPage(ticketmasterEnrolment.event.id)}
+                action={() =>
+                  gotoExternalEnrolmentEventPage(ticketmasterEnrolment.event.id)
+                }
                 actionText={t('enrollment.showEventInfo.buttonText')}
                 primaryAction="hidden"
                 focalContent={TicketMasterInfo()}
