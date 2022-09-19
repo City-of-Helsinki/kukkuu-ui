@@ -344,6 +344,12 @@
     },
     "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista."
   },
+  "ticketmasterEvent": {
+    "description": "Huomaathan että sinun tulee varata liput tähän tapahtumaan Ticketmasterissa, jos et ole sitä jo tehnyt.",
+    "passwordLabel": "Henkilökohtainen salasanasi lippujen varaamista varten:",
+    "continueButton": "Jatka Ticketmasterin palveluun",
+    "participantsPerInviteText": "Lippujen määrä per salasana: {{ participantsPerInvite }}."
+  },
   "eventOccurrenceRedirectPage": {
     "back": "Takaisin",
     "continue": "Jatka Ticketmasteriin",

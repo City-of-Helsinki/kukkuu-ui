@@ -8,9 +8,11 @@ import PageWrapper from '../app/layout/PageWrapper';
 import backIcon from '../../assets/icons/svg/arrowLeft.svg';
 import { eventQuery_event as EventQueryType } from '../api/generatedTypes/eventQuery';
 import { occurrenceQuery_occurrence_event as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
+// eslint-disable-next-line max-len
+import { ticketmasterEventQuery_event as TicketmasterEventQueryType } from '../api/generatedTypes/ticketmasterEventQuery';
 
 type EventProps = {
-  event: EventQueryType | OccurrenceQueryType;
+  event: EventQueryType | OccurrenceQueryType | TicketmasterEventQueryType;
   children?: ReactElement | Array<ReactElement | false>;
   success?: ReactElement;
   backTo?: string;
