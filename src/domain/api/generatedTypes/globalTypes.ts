@@ -44,6 +44,12 @@ export interface AddChildMutationInput {
   clientMutationId?: string | null;
 }
 
+export interface AssignTicketSystemPasswordMutationInput {
+  eventId: string;
+  childId: string;
+  clientMutationId?: string | null;
+}
+
 export interface ChildInput {
   firstName?: string | null;
   lastName?: string | null;

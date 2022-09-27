@@ -45,7 +45,7 @@ const TicketmasterPassword = ({ password }: Props) => {
           onClick={handlePasswordCopy}
           className={styles.copyButton}
         >
-          {t('eventOccurrenceRedirectPage.copyPassword')}
+          {t('eventRedirectPage.copyPassword')}
         </button>
         {copyStatus === CopyStates.success && (
           <div className={styles.successWrapper}>

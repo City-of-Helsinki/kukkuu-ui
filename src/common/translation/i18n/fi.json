@@ -350,15 +350,18 @@
     "continueButton": "Jatka Ticketmasterin palveluun",
     "participantsPerInviteText": "Lippujen määrä per salasana: {{ participantsPerInvite }}."
   },
-  "eventOccurrenceRedirectPage": {
+  "eventRedirectPage": {
     "back": "Takaisin",
-    "continue": "Jatka Ticketmasteriin",
+    "continue": "Kyllä, lunastan salasanan!",
     "copyPassword": "Kopioi salasana",
-    "description": "Ticketmaster-lippupalvelussa voit selata kaikkia {{eventName}}-tapahtumia. Voit ilmoittautua mihin tahansa niistä, kunhan paikkoja on vapaana.",
-    "metaTitle": "Olet siirtymässä Ticketmasteriin",
+    "description": "Tapahtumaan ilmoittaudutaan Ticketmasterissa, jonne voit luoda ilmaisen tilin, ellei sellainen löydy entuudestaan. Ticketmasterissa voit selata kaikkia Taaperoiden talvirieha -tapahtumia. Voit ilmoittautua mihin tahansa niistä, kunhan paikkoja on vapaana.",
+    "passwordAcquireHeading": "Lunasta henkilökohtainen salasana",
+    "passwordAcquireDescription": "Jos päätät ilmoittautua tapahtumaan, saat henkilökohtaisen salasanan, jolla pääset varaamaan liput Ticketmasterista. Huomaathan, että lunastettu salasana vastaa yhtä ilmoittautumista Kulttuurin kummilapset -palvelussa.",
+    "metaTitle": "Ilmoittaudu tapahtumaan",
     "passwordCopySuccess": "Salasana kopioitiin onnistuneesti",
-    "passwordLabel": "Käytä varatessasi tätä henkilökohtaista salasanaa:",
-    "title": "Olet siirtymässä Ticketmasteriin",
+    "passwordLabel": "Henkilökohtainen salasanasi:",
+    "title": "Ilmoittaudu tapahtumaan",
+    "passwordCopyDescription": "Kopioi salasana ja jatka sitten Ticketmasterin palveluun varaamaan lippusi.",
     "unexpectedError": "Odottamaton virhe"
   },
   "feedback": {

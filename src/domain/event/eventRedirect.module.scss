@@ -9,11 +9,16 @@
 
   background-color: $color-white;
 
+  h1,
+  h2 {
+    margin-bottom: $spacing-l;
+  }
+
   @include respond-above(sm) {
     padding: $spacing-layout-m $spacing-layout-l;
   }
 
-  .row {
+  .acquireButtonRow {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -43,12 +48,30 @@
       }
     }
   }
-}
 
-.lessMargin {
-  margin-bottom: $spacing-s;
+  .passwordWrapper {
+    & > *:not(:last-child) {
+      margin-bottom: $spacing-m;
+    }
+
+    & > *:last-child {
+      margin-top: $spacing-s;
+    }
+  }
+
+  .continueButton {
+    width: 100%;
+
+    @include respond-above(sm) {
+      width: initial;
+    }
+  }
 }
 
 .grey {
   background-color: $color-black-5;
+}
+
+hr {
+  border-top: 1px solid rgb(216, 216, 216);
 }

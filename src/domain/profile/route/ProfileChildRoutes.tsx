@@ -5,7 +5,7 @@ import AppRoute from '../../app/AppRoute';
 import Event from '../../event/Event';
 import EnrolPage from '../../event/enrol/EnrolPage';
 import EventIsEnrolled from '../../event/EventIsEnrolled';
-import EventOccurrenceRedirect from '../../event/EventOccurrenceRedirect';
+import EventRedirect from '../../event/EventRedirect';
 import EventGroupPage from '../../eventGroup/EventGroupPage';
 import ProfileChildDetail from '../children/child/ProfileChildDetail';
 import TicketmasterEventIsEnrolled from '../../event/TicketmasterEventIsEnrolled';
@@ -58,10 +58,10 @@ const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
         path={`${path}/event/:eventId/occurrence/:occurrenceId/enrol`}
       />
       <AppRoute
-        title={t('eventOccurrenceRedirectPage.metaTitle')}
+        title={t('eventRedirectPage.metaTitle')}
         exact
-        component={EventOccurrenceRedirect}
-        path={`${path}/event/:eventId/occurrence/:occurrenceId/redirect`}
+        component={EventRedirect}
+        path={`${path}/event/:eventId/redirect`}
       />
     </Switch>
   );

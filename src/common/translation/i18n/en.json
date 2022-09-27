@@ -350,15 +350,18 @@
     "continueButton": "",
     "participantsPerInviteText": ""
   },
-  "eventOccurrenceRedirectPage": {
+  "eventRedirectPage": {
     "back": "Back",
     "continue": "Continue to Ticketmaster",
     "copyPassword": "Copy Password",
     "description": "The Ticketmaster Ticket Service allows you to browse all {{eventName}} events. You can sign up for any of them as long as there are places available.",
+    "passwordAcquireHeading": "",
+    "passwordAcquireDescription": "",
     "metaTitle": "You are being redirected to Ticketmaster",
     "passwordCopySuccess": "Password was copied succesfully",
     "passwordLabel": "Use this personal password when making a reservation:",
     "title": "You are being redirected to Ticketmaster",
+    "passwordCopyDescription": "Kopioi salasana ja jatka sitten Ticketmasterin palveluun varaamaan lippusi.",
     "unexpectedError": "An unexpected error took place"
   },
   "feedback": {
