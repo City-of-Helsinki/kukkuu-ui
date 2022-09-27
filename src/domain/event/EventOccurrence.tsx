@@ -75,14 +75,15 @@ const EventOccurrence = ({
   const remainingCapacity = hasCapacity
     ? occurrence?.remainingCapacity
     : t('event.register.occurrenceTableBody.full');
-  const occurrenceUrl = `${occurrence.event.id}/occurrence/${occurrence.id}`;
+  const eventUrl = `${occurrence.event.id}/redirect`;
+  const occurrenceUrl = `${occurrence.event.id}/occurrence/${occurrence.id}/enrol`;
   const isTicketmaster =
     occurrence?.ticketSystem?.type === TicketSystem.TICKETMASTER;
   const submitType = getSubmitType(isTicketmaster, hasCapacity);
   const submitCell = (
     <>
       {submitType === SubmitTypes.enrol && (
-        <LinkButton to={`${occurrenceUrl}/enrol`}>
+        <LinkButton to={occurrenceUrl}>
           {t('event.register.occurrenceTableHeader.buttonText')}
         </LinkButton>
       )}
@@ -99,7 +100,7 @@ const EventOccurrence = ({
         />
       )}
       {submitType === SubmitTypes.ticketmaster && (
-        <LinkButton to={`${occurrenceUrl}/redirect`}>
+        <LinkButton to={eventUrl}>
           {t('event.register.occurrenceTableHeader.buttonText')}
         </LinkButton>
       )}

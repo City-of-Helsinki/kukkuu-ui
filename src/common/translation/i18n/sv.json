@@ -350,15 +350,18 @@
     "continueButton": "",
     "participantsPerInviteText": ""
   },
-  "eventOccurrenceRedirectPage": {
+  "eventRedirectPage": {
     "back": "Tillbaka",
     "continue": "Fortsätt till Ticketmaster",
     "copyPassword": "Kopiera lösenord",
     "description": "Ticketmaster Ticket Service låter dig bläddra bland alla {{eventName}} händelser. Du kan anmäla dig till någon av dem så länge det finns lediga platser.",
+    "passwordAcquireHeading": "",
+    "passwordAcquireDescription": "",
     "metaTitle": "Du omdirigeras till Ticketmaster",
     "passwordCopySuccess": "Lösenordet har kopierats",
     "passwordLabel": "Använd detta personliga lösenord när du gör en bokning:",
     "title": "Du omdirigeras till Ticketmaster",
+    "passwordCopyDescription": "",
     "unexpectedError": "Ett oväntat fel inträffade"
   },
   "feedback": {
