@@ -100,7 +100,7 @@ const EventOccurrence = ({
       )}
       {submitType === SubmitTypes.ticketmaster && (
         <LinkButton to={`${occurrenceUrl}/redirect`}>
-          {t('event.register.occurrenceTableHeader.buttonContinueText')}
+          {t('event.register.occurrenceTableHeader.buttonText')}
         </LinkButton>
       )}
     </>
