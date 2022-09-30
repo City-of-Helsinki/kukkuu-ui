@@ -28,7 +28,7 @@ type Params = {
 
 const EventRedirect = () => {
   const { t } = useTranslation();
-  const params = useParams<Params>();
+  const {eventId, childId} = useParams<Params>();
 
   const getPathname = useGetPathname();
 
@@ -38,8 +38,8 @@ const EventRedirect = () => {
     data: queryData,
   } = useQuery<TicketmasterEventQueryType>(eventTicketmasterPasswordQuery, {
     variables: {
-      id: params.eventId,
-      childId: params.childId,
+      id: eventId,
+      childId,
     },
     fetchPolicy: 'network-only',
   });
@@ -58,8 +58,8 @@ const EventRedirect = () => {
   >(assignTicketSystemPasswordMutation, {
     variables: {
       input: {
-        eventId: params.eventId,
-        childId: params.childId,
+        eventId,
+        childId,
       },
     },
     onCompleted: async (data) => {
@@ -129,7 +129,7 @@ const EventRedirect = () => {
             <LinkButton
               variant="secondary"
               to={getPathname(
-                `/profile/child/${params.childId}/event/${params.eventId}`
+                `/profile/child/${childId}/event/${eventId}`
               )}
             >
               {t('eventRedirectPage.back')}
