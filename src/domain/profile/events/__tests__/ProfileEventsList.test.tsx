@@ -45,13 +45,12 @@ const eventData = {
   participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
   occurrences: { edges: [] },
   canChildEnroll: true,
-  __typename: 'EventNode',
 };
 
 const upcomingEventsAndEventGroups: UpcomingEventsAndEventGroupsType = {
   edges: [
     {
-      node: eventData,
+      node: { ...eventData, __typename: 'EventNode' },
     },
   ],
 };
@@ -147,13 +146,6 @@ const childWithTicketmasterEnrolment: ChildByIdResponse = {
     ],
   },
   pastEvents: null,
-};
-
-const childOnlyPastEvents: ChildByIdResponse = {
-  ...childData,
-  upcomingEventsAndEventGroups: null,
-  activeInternalAndTicketSystemEnrolments: { edges: [] },
-  pastEvents: pastEvents,
 };
 
 test('Renders snapshot correctly', () => {
