@@ -28,7 +28,7 @@ type Params = {
 
 const EventRedirect = () => {
   const { t } = useTranslation();
-  const {eventId, childId} = useParams<Params>();
+  const { eventId, childId } = useParams<Params>();
 
   const getPathname = useGetPathname();
 
@@ -128,9 +128,7 @@ const EventRedirect = () => {
           <div className={styles.acquireButtonRow}>
             <LinkButton
               variant="secondary"
-              to={getPathname(
-                `/profile/child/${childId}/event/${eventId}`
-              )}
+              to={getPathname(`/profile/child/${childId}/event/${eventId}`)}
             >
               {t('eventRedirectPage.back')}
             </LinkButton>
