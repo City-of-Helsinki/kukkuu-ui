@@ -25,6 +25,7 @@ export const ticketmasterEventQuery = gql`
         type
         ... on TicketmasterEventTicketSystem {
           childPassword(childId: $childId)
+          url
         }
       }
     }

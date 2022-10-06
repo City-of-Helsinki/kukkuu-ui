@@ -140,7 +140,8 @@ export interface eventQuery_event_ticketSystem_InternalEventTicketSystem {
 
 export interface eventQuery_event_ticketSystem_TicketmasterEventTicketSystem {
   type: TicketSystem;
-  childPassword: string;
+  childPassword: string | null;
+  url: string;
 }
 
 export type eventQuery_event_ticketSystem = eventQuery_event_ticketSystem_InternalEventTicketSystem | eventQuery_event_ticketSystem_TicketmasterEventTicketSystem;

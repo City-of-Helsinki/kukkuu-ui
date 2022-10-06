@@ -59,6 +59,7 @@ const eventQuery = gql`
         type
         ... on TicketmasterEventTicketSystem {
           childPassword(childId: $childId)
+          url
         }
       }
     }
@@ -84,6 +85,7 @@ export const eventTicketmasterPasswordQuery = gql`
       ticketSystem {
         ... on TicketmasterEventTicketSystem {
           childPassword(childId: $childId)
+          url
         }
       }
     }
