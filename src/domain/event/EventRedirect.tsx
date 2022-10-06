@@ -81,6 +81,9 @@ const EventRedirect = () => {
       ? ticketSystem.childPassword
       : null) || mutationData?.assignTicketSystemPassword?.password;
 
+  const ticketSystemUrl =
+    ticketSystem && 'url' in ticketSystem ? ticketSystem.url : undefined;
+
   if (queryLoading) {
     return <LoadingSpinner isLoading={true} />;
   }
@@ -144,10 +147,9 @@ const EventRedirect = () => {
             <Text variant="body-l">
               {t('eventRedirectPage.passwordCopyDescription')}
             </Text>
-            {/* TODO replace this with the event's TM URL once available */}
             <AnchorButton
               className={styles.continueButton}
-              href={'https://www.example.com'}
+              href={ticketSystemUrl}
               openInNewTab
             >
               {t('ticketmasterEvent.continueButton')}

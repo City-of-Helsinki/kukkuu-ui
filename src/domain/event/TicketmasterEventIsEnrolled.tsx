@@ -8,8 +8,6 @@ import {
   ticketmasterEventQuery as TicketmasterEventQueryType,
   // eslint-disable-next-line max-len
   ticketmasterEventQuery_event_ticketSystem_TicketmasterEventTicketSystem as EventTicketSystem,
-  // eslint-disable-next-line max-len
-  ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem as OccurrenceTicketSystem,
 } from '../api/generatedTypes/ticketmasterEventQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import Paragraph from '../../common/components/paragraph/Paragraph';
@@ -40,13 +38,6 @@ const TicketmasterEventIsEnrolled = () => {
   if (error || !data?.event) return errorMessage;
 
   const eventTicketSystem = data?.event.ticketSystem as EventTicketSystem;
-  /* TODO Currently we don't have Ticketmaster URLs for whole events, so as a workaround
-      the URL of the first occurrence is used for now.
-   */
-  const ticketmasterUrl = (
-    data?.event?.occurrences?.edges[0]?.node
-      ?.ticketSystem as OccurrenceTicketSystem
-  ).url;
 
   return (
     <EventPage event={data.event} backTo={goBackTo}>
@@ -57,7 +48,7 @@ const TicketmasterEventIsEnrolled = () => {
       <Text>{t('ticketmasterEvent.passwordLabel')}</Text>
       <div className={styles.passwordRow}>
         <TicketmasterPassword password={eventTicketSystem?.childPassword} />
-        <AnchorButton href={ticketmasterUrl} openInNewTab>
+        <AnchorButton href={eventTicketSystem?.url} openInNewTab>
           {t('ticketmasterEvent.continueButton')}
         </AnchorButton>
       </div>
