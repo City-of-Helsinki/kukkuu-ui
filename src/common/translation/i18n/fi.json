@@ -666,6 +666,7 @@
   "ticketmasterEvent": {
     "continueButton": "Jatka Ticketmasterin palveluun",
     "description": "Jos et ole vielä varannut lippujasi, tee se mahdollisimman pian.",
+    "extraInfo": "Mikäli et varaa paikkoja nyt, löydät salasanasi myöhempää käyttöä varten lapsen tulevista tapahtumista.",
     "participantsPerInviteText": "Paikkojen määrä per salasana:",
     "passwordLabel": "Henkilökohtainen salasanasi:"
   },
