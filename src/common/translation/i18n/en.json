@@ -667,7 +667,7 @@
     "continueButton": "Continue to the Ticketmaster service",
     "description": "If you have not booked your tickets yet, please do so as soon as possible.",
     "extraInfo": "If you do not want to book places now, you will find your password for later use under your child’s future events.",
-    "participantsPerInviteText": "Number of places per password:",
+    "participantsPerInviteText": "Number of places per password: {{participantsPerInvite}}.",
     "passwordLabel": "Your personal password:"
   },
   "termsOfService": {
