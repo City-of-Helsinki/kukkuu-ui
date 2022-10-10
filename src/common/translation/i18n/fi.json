@@ -536,8 +536,7 @@
       "noEnrollEvent_one": "Olet jo ilmoittautunut toiseen tapahtumaan.",
       "noEnrollEvent_other": "Olet jo ilmoittautunut {{count}} tapahtumaan.",
       "noEnrollEventGroup_one": "Huomioithan, että olet jo ilmoittautunut yhteen tapahtumaan.",
-      "noEnrollEventGroup_other": "Huomioithan, että olet jo ilmoittautunut {{count}} tapahtumaan.",
-      "ticketMasterInfo": "Lippujen varaus Ticketmasterissa"
+      "noEnrollEventGroup_other": "Huomioithan, että olet jo ilmoittautunut {{count}} tapahtumaan."
     }
   },
   "registration": {

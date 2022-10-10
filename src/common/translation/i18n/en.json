@@ -536,8 +536,7 @@
       "noEnrollEvent_one": "You are already registered for another event.",
       "noEnrollEvent_other": "You are registered for the event.",
       "noEnrollEventGroup_one": "Please note that you are already registered for one event.",
-      "noEnrollEventGroup_other": "Please note that you are already registered for one event.",
-      "ticketMasterInfo": "Registration in the Ticketmaster ticket service"
+      "noEnrollEventGroup_other": "Please note that you are already registered for one event."
     }
   },
   "registration": {
