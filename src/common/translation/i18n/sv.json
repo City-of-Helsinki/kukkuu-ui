@@ -1,7 +1,5 @@
 {
-  "accessibilityStatement": {
-    "title": "Tillgänglighetsredogörelse"
-  },
+  "openInExternalDomainAriaLabel": "Tillgänglighetsredogörelse",
   "api": {
     "errorMessage": "Ett fel uppstod. Försök igen senare"
   },
@@ -342,30 +340,24 @@
       },
       "participants": "Deltagare"
     },
-    "ticketmasterNotice": "Anmälningen till evenemanget sker via Ticketmasters-biljettjänst. Du behöver ett gratis användarkonto för biljetterna. Du kan skapa kontot då du bokar, ifall du inte har ett från tidigare. Information om lediga platser för evenemanget hittar du på Ticketmaster.",
     "ticketmasterButtons": {
-      "continue": "Fortsätt till anmälan",
-      "back": "Tillbaka"
-    }
-  },
-  "ticketmasterEvent": {
-    "description": "",
-    "passwordLabel": "",
-    "continueButton": "",
-    "participantsPerInviteText": ""
+      "back": "Tillbaka",
+      "continue": "Fortsätt till anmälan"
+    },
+    "ticketmasterNotice": "Anmälningen till evenemanget sker via Ticketmasters-biljettjänst. Du behöver ett gratis användarkonto för biljetterna. Du kan skapa kontot då du bokar, ifall du inte har ett från tidigare. Information om lediga platser för evenemanget hittar du på Ticketmaster."
   },
   "eventRedirectPage": {
     "back": "Tillbaka",
-    "continue": "Fortsätt till Ticketmaster",
-    "copyPassword": "Kopiera lösenord",
-    "description": "Ticketmaster Ticket Service låter dig bläddra bland alla {{eventName}} händelser. Du kan anmäla dig till någon av dem så länge det finns lediga platser.",
-    "passwordAcquireHeading": "",
-    "passwordAcquireDescription": "",
-    "metaTitle": "Du omdirigeras till Ticketmaster",
+    "continue": "Ja, jag löser ut ett läsenord!",
+    "copyPassword": "Kopiera lösenordet",
+    "description": "Anmälan sker i Ticketmaster dit du kan skapa ett gratis konto om du ännu inte har sådant. I Ticketmaster kan du bläddra i alla evenemang. Du kan anmäla dig till vilket som helst av dem om det finns lediga platser. ",
+    "metaTitle": "Anmäl dig till evenemang",
+    "passwordAcquireHeading": "Personligt lösenord",
+    "passwordAcquireDescription": "I följande skede får du ett personligt lösenord med vilket du kan boka biljetter i Ticketmaster. Observera att dessa evenemang är tillgängliga i Ticketmasters webbutik endast genom länken nedan. ",
+    "passwordCopyDescription": "Kopiera lösenordet och fortsätt till Ticketmaster.",
     "passwordCopySuccess": "Lösenordet har kopierats",
-    "passwordLabel": "Använd detta personliga lösenord när du gör en bokning:",
-    "title": "Du omdirigeras till Ticketmaster",
-    "passwordCopyDescription": "",
+    "passwordLabel": "Ditt personligt lösenord:",
+    "title": "Anmäl dig till evenemang",
     "unexpectedError": "Ett oväntat fel inträffade"
   },
   "feedback": {
@@ -545,7 +537,7 @@
       "noEnrollEvent_other": "Du har redan anmält dig till {{count}} evenemang.",
       "noEnrollEventGroup_one": "Vänligen observera att du redan har anmält dig till ett evenemang.",
       "noEnrollEventGroup_other": "Vänligen observera att du redan har anmält dig till {{count}} evenemang.",
-      "ticketMasterInfo": "Reservera biljetter på Ticketmaster"
+      "ticketMasterInfo": "Biljetterna bokas från Ticketmaster"
     }
   },
   "registration": {
@@ -672,6 +664,12 @@
     }
   },
   "sanityCheck": "kukkuu.sv",
+  "ticketmasterEvent": {
+    "continueButton": "Fortsätt till Ticketmaster.",
+    "description": "Om du ännu inte har bokat dina biljetter, gör det så snart som möjligt.",
+    "participantsPerInviteText": "Antal platser per lösenord:",
+    "passwordLabel": "Ditt personligt lösenord:"
+  },
   "termsOfService": {
     "title": "Användningsvillkor"
   },
@@ -703,7 +701,5 @@
       }
     }
   },
-  "": "Fortsätta",
-  "loadMoreButtonLabelText": "Ladda mer",
-  "showAll": "Visa alt"
+  "": "Fortsätta"
 }
