@@ -50,17 +50,15 @@
   }
 
   .passwordWrapper {
-    & > *:not(:last-child) {
+    & > * {
       margin-bottom: $spacing-m;
-    }
-
-    & > *:last-child {
-      margin-top: $spacing-s;
     }
   }
 
   .continueButton {
     width: 100%;
+    margin-top: $spacing-s;
+    margin-bottom: $spacing-l;
 
     @include respond-above(sm) {
       width: initial;

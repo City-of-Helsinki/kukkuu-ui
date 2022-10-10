@@ -154,6 +154,7 @@ const EventRedirect = () => {
             >
               {t('ticketmasterEvent.continueButton')}
             </AnchorButton>
+            <Text variant="body-l">{t('ticketmasterEvent.extraInfo')}</Text>
           </div>
         )}
       </div>
