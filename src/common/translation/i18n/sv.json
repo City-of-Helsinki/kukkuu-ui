@@ -667,7 +667,7 @@
     "continueButton": "Fortsätt till Ticketmaster.",
     "description": "Om du ännu inte har bokat dina biljetter, gör det så snart som möjligt.",
     "extraInfo": "Om du inte bokar platser nu, hittar du lösenordet för senare användning i barnets kommande evenemang.",
-    "participantsPerInviteText": "Antal platser per lösenord:",
+    "participantsPerInviteText": "Antal platser per lösenord: {{participantsPerInvite}}.",
     "passwordLabel": "Ditt personligt lösenord:"
   },
   "termsOfService": {
