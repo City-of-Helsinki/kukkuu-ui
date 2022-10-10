@@ -25,7 +25,6 @@ import EventCard from '../../event/eventCard/EventCard';
 import Config from '../../config';
 import styles from './profileEventsList.module.scss';
 import useChildEnrolmentCount from '../../child/useChildEnrolmentCount';
-import TicketMasterInfo from '../../event/partial/TicketMasterInfo';
 
 const upcomingEventsAndEventGroupsList =
   RelayList<UpcomingEventsAndEventGroupsNode>();
@@ -170,7 +169,6 @@ const ProfileEventsList = ({
                 }
                 actionText={t('enrollment.showEventInfo.buttonText')}
                 primaryAction="hidden"
-                focalContent={TicketMasterInfo()}
               />
             )
           )

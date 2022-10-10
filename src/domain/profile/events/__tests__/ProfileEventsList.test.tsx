@@ -233,7 +233,5 @@ test('Renders Ticketmaster enrolment', () => {
     </MockedProvider>
   );
 
-  expect(
-    screen.getByText('Lippujen varaus Ticketmasterissa')
-  ).toBeInTheDocument();
+  expect(screen.getByText('eventti')).toBeInTheDocument();
 });
