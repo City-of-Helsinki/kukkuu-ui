@@ -342,7 +342,11 @@
       },
       "participants": "Osallistujat"
     },
-    "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista."
+    "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista.",
+    "ticketmasterButtons": {
+      "continue": "Jatka ilmoittautumaan",
+      "back": "Takaisin"
+    }
   },
   "ticketmasterEvent": {
     "description": "Huomaathan että sinun tulee varata liput tähän tapahtumaan Ticketmasterissa, jos et ole sitä jo tehnyt.",
