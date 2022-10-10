@@ -1,7 +1,5 @@
 {
-  "accessibilityStatement": {
-    "title": "Accessibility Statement"
-  },
+  "openInExternalDomainAriaLabel": "Accessibility Statement",
   "api": {
     "errorMessage": "An error occured. Please try again later"
   },
@@ -342,30 +340,24 @@
       },
       "participants": "Participants"
     },
-    "ticketmasterNotice": "Registration for the event takes place in the Ticketmaster ticket service. To reserve tickets you will need a user account which you can create during the reservation process if you do not already have one. The up to date status for placing can be found from Ticketmaster.",
     "ticketmasterButtons": {
-      "continue": "Continue to register",
-      "back": "Back"
-    }
-  },
-  "ticketmasterEvent": {
-    "description": "",
-    "passwordLabel": "",
-    "continueButton": "",
-    "participantsPerInviteText": ""
+      "back": "Back",
+      "continue": "Continue to register"
+    },
+    "ticketmasterNotice": "Registration for the event takes place in the Ticketmaster ticket service. To reserve tickets you will need a user account which you can create during the reservation process if you do not already have one. The up to date status for placing can be found from Ticketmaster."
   },
   "eventRedirectPage": {
     "back": "Back",
-    "continue": "Continue to Ticketmaster",
-    "copyPassword": "Copy Password",
-    "description": "The Ticketmaster Ticket Service allows you to browse all {{eventName}} events. You can sign up for any of them as long as there are places available.",
-    "passwordAcquireHeading": "",
-    "passwordAcquireDescription": "",
-    "metaTitle": "You are being redirected to Ticketmaster",
+    "continue": "Yes, I want to receive my password!",
+    "copyPassword": "Copy the password",
+    "description": "Registration for an event takes place on Ticketmaster, where you can create a free-of-charge account, if you do not already have one. You can browse all the events on Ticketmaster. You can register for any of them, as long as there are still places available.",
+    "metaTitle": "Register for an event",
+    "passwordAcquireHeading": "Personal password",
+    "passwordAcquireDescription": "In the next phase, you will receive a personal password that will allow you to book tickets on Ticketmaster. Please note that these events are only available in the Ticketmaster online shop using the link below.",
+    "passwordCopyDescription": "Copy the password and then continue to the Ticketmaster service.",
     "passwordCopySuccess": "Password was copied succesfully",
-    "passwordLabel": "Use this personal password when making a reservation:",
-    "title": "You are being redirected to Ticketmaster",
-    "passwordCopyDescription": "Kopioi salasana ja jatka sitten Ticketmasterin palveluun varaamaan lippusi.",
+    "passwordLabel": "Your personal password:",
+    "title": "Register for an event",
     "unexpectedError": "An unexpected error took place"
   },
   "feedback": {
@@ -672,6 +664,12 @@
     }
   },
   "sanityCheck": "kukkuu.en",
+  "ticketmasterEvent": {
+    "continueButton": "Continue to the Ticketmaster service",
+    "description": "If you have not booked your tickets yet, please do so as soon as possible.",
+    "participantsPerInviteText": "Number of places per password:",
+    "passwordLabel": "Your personal password:"
+  },
   "termsOfService": {
     "title": "Terms Of Service"
   },
@@ -703,7 +701,5 @@
       }
     }
   },
-  "": "Continue",
-  "loadMoreButtonLabelText": "Load more",
-  "showAll": "Show all"
+  "": "Continue"
 }

@@ -1,7 +1,5 @@
 {
-  "accessibilityStatement": {
-    "title": "Saavutettavuusseloste"
-  },
+  "openInExternalDomainAriaLabel": "Saavutettavuusseloste",
   "api": {
     "errorMessage": "Tapahtui virhe. Yritä myöhemmin uudestaan"
   },
@@ -342,30 +340,24 @@
       },
       "participants": "Osallistujat"
     },
-    "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista.",
     "ticketmasterButtons": {
-      "continue": "Jatka ilmoittautumaan",
-      "back": "Takaisin"
-    }
-  },
-  "ticketmasterEvent": {
-    "description": "Huomaathan että sinun tulee varata liput tähän tapahtumaan Ticketmasterissa, jos et ole sitä jo tehnyt.",
-    "passwordLabel": "Henkilökohtainen salasanasi lippujen varaamista varten:",
-    "continueButton": "Jatka Ticketmasterin palveluun",
-    "participantsPerInviteText": "Lippujen määrä per salasana: {{ participantsPerInvite }}."
+      "back": "Takaisin",
+      "continue": "Jatka ilmoittautumaan"
+    },
+    "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista."
   },
   "eventRedirectPage": {
     "back": "Takaisin",
     "continue": "Kyllä, lunastan salasanan!",
     "copyPassword": "Kopioi salasana",
-    "description": "Tapahtumaan ilmoittaudutaan Ticketmasterissa, jonne voit luoda ilmaisen tilin, ellei sellainen löydy entuudestaan. Ticketmasterissa voit selata kaikkia Taaperoiden talvirieha -tapahtumia. Voit ilmoittautua mihin tahansa niistä, kunhan paikkoja on vapaana.",
-    "passwordAcquireHeading": "Lunasta henkilökohtainen salasana",
-    "passwordAcquireDescription": "Jos päätät ilmoittautua tapahtumaan, saat henkilökohtaisen salasanan, jolla pääset varaamaan liput Ticketmasterista. Huomaathan, että lunastettu salasana vastaa yhtä ilmoittautumista Kulttuurin kummilapset -palvelussa.",
+    "description": "Tapahtumaan ilmoittaudutaan Ticketmasterissa, jonne voit luoda ilmaisen tilin, ellei sellainen löydy entuudestaan. Ticketmasterissa voit selata kaikkia tapahtumia. Voit ilmoittautua niistä mihin tahansa, kunhan paikkoja on vielä vapaana.",
     "metaTitle": "Ilmoittaudu tapahtumaan",
+    "passwordAcquireHeading": "Henkilökohtainen salasana",
+    "passwordAcquireDescription": "Seuraavassa vaiheessa saat henkilökohtaisen salasanan, jolla pääset varaamaan liput Ticketmasterista. Huomioi, että nämä tapahtumat ovat saatavilla Ticketmasterin verkkokaupassa ainoastaan alla olevaa linkkiä käyttäen.",
+    "passwordCopyDescription": "Kopioi salasana ja jatka sitten Ticketmasterin palveluun.",
     "passwordCopySuccess": "Salasana kopioitiin onnistuneesti",
     "passwordLabel": "Henkilökohtainen salasanasi:",
     "title": "Ilmoittaudu tapahtumaan",
-    "passwordCopyDescription": "Kopioi salasana ja jatka sitten Ticketmasterin palveluun varaamaan lippusi.",
     "unexpectedError": "Odottamaton virhe"
   },
   "feedback": {
@@ -672,6 +664,12 @@
     }
   },
   "sanityCheck": "kukkuu.fi",
+  "ticketmasterEvent": {
+    "continueButton": "Jatka Ticketmasterin palveluun",
+    "description": "Jos et ole vielä varannut lippujasi, tee se mahdollisimman pian.",
+    "participantsPerInviteText": "Paikkojen määrä per salasana:",
+    "passwordLabel": "Henkilökohtainen salasanasi:"
+  },
   "termsOfService": {
     "title": "Käyttöehdot"
   },
@@ -703,7 +701,5 @@
       }
     }
   },
-  "": "Jatka",
-  "loadMoreButtonLabelText": "Lataa lisää",
-  "showAll": "Näytä kaikki"
+  "": "Jatka"
 }
