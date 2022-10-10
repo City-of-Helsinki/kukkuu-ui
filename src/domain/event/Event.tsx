@@ -28,6 +28,8 @@ import EventParticipantsPerInvite from './EventParticipantsPerInvite';
 import styles from './event.module.scss';
 import { TicketSystem } from '../api/generatedTypes/globalTypes';
 import { useEventRouteGoBackTo } from './route/EventRoute';
+import LinkButton from '../../common/components/button/LinkButton';
+import useGetPathname from '../../common/route/utils/useGetPathname';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
@@ -85,10 +87,11 @@ const Event = () => {
   const { t } = useTranslation();
   const location = useLocation();
   const goBackTo = useEventRouteGoBackTo();
-  const params = useParams<{
+  const { childId, eventId } = useParams<{
     childId: string;
     eventId: string;
   }>();
+  const getPathname = useGetPathname();
 
   const past = location.pathname.includes('/past') ? true : false;
 
@@ -96,8 +99,8 @@ const Event = () => {
     useState<FilterValues>(initialFilterValues);
 
   const variables = {
-    id: params.eventId,
-    childId: params.childId,
+    id: eventId,
+    childId: childId,
   };
 
   const { loading, error, data, refetch } = useQuery<EventQueryType>(
@@ -138,38 +141,56 @@ const Event = () => {
     return <div>No event</div>;
   }
 
-  const isTicketmaster =
-    data?.event?.ticketSystem?.type === TicketSystem.TICKETMASTER;
+  const event = data.event;
+  const isTicketmaster = event.ticketSystem?.type === TicketSystem.TICKETMASTER;
 
   return (
-    <EventPage event={data.event} backTo={goBackTo}>
+    <EventPage event={event} backTo={goBackTo}>
       <EventParticipantsPerInvite
-        participantsPerInvite={data?.event?.participantsPerInvite}
+        participantsPerInvite={event.participantsPerInvite}
       />
       <div className={styles.description}>
-        <Paragraph text={data.event.description || ''} />
+        <Paragraph text={event.description || ''} />
         {isTicketmaster && (
           <p>
             <Trans i18nKey="event.ticketmasterNotice" />{' '}
             <strong>
               <Trans
-                i18nKey={`event.participantsPerInviteEnumLong.${data?.event?.participantsPerInvite}`}
+                i18nKey={`event.participantsPerInviteEnumLong.${event.participantsPerInvite}`}
               />
             </strong>
           </p>
         )}
       </div>
-      {!past && (
-        <EventEnrol
-          data={data}
-          filterValues={selectedFilterValues}
-          options={{
-            dates: optionsDates,
-            times: optionsTimes,
-          }}
-          onFilterUpdate={updateFilterValues}
-        />
-      )}
+      {!past &&
+        (!isTicketmaster ? (
+          <EventEnrol
+            data={data}
+            filterValues={selectedFilterValues}
+            options={{
+              dates: optionsDates,
+              times: optionsTimes,
+            }}
+            onFilterUpdate={updateFilterValues}
+          />
+        ) : (
+          <>
+            <hr className={styles.divider} />
+            <div className={styles.ticketmasterButtons}>
+              <LinkButton variant="secondary" to={goBackTo}>
+                {t('event.ticketmasterButtons.back')}
+              </LinkButton>
+              <LinkButton
+                variant="primary"
+                to={getPathname(
+                  `/profile/child/${childId}/event/${eventId}/redirect`
+                )}
+              >
+                {t('event.ticketmasterButtons.continue')}
+              </LinkButton>
+            </div>
+          </>
+        ))}
     </EventPage>
   );
 };

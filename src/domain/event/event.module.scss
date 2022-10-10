@@ -154,3 +154,35 @@
     justify-content: normal;
   }
 }
+
+.divider {
+  margin-top: $spacing-m;
+  margin-bottom: $spacing-l;
+}
+
+.ticketmasterButtons {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  & > * {
+    width: 100%;
+  }
+
+  & > *:not(:last-child) {
+    margin-bottom: $spacing-s;
+  }
+
+  @include respond-above(sm) {
+    flex-direction: row;
+
+    & > * {
+      width: initial;
+    }
+
+    & > *:not(:last-child) {
+      margin-bottom: 0;
+      margin-right: $spacing-s;
+    }
+  }
+}
