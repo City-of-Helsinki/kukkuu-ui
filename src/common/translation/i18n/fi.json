@@ -1,5 +1,7 @@
 {
-  "openInExternalDomainAriaLabel": "Saavutettavuusseloste",
+  "accessibilityStatement": {
+    "title": "Saavutettavuusseloste"
+  },
   "api": {
     "errorMessage": "Tapahtui virhe. Yritä myöhemmin uudestaan"
   },
@@ -526,6 +528,7 @@
     },
     "text": "Etsimääsi sivua ei löytynyt"
   },
+  "openInExternalDomainAriaLabel": "Saavutettavuusseloste",
   "partners": {
     "2020": "2020 syntyneet"
   },
