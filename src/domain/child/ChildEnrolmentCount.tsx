@@ -19,9 +19,7 @@ export default function ChildEnrolmentCount({ childId }: Props) {
     },
   });
 
-  const pastEnrolmentCount = data?.child?.pastEnrolmentCount ?? ' ';
-  const enrolmentLimit = data?.child?.project?.enrolmentLimit ?? ' ';
-  const enrolmentsUsed = `${pastEnrolmentCount}/${enrolmentLimit}`;
+  const enrolmentsUsed = data?.child?.pastEnrolmentCount ?? ' ';
   const loadingSpinner = (
     <LoadingSpinner
       theme={{
