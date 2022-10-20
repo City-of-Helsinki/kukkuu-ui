@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.9.3
+
+### Changed
+
+- [#450](https://github.com/City-of-Helsinki/kukkuu-ui/pull/450) Hide enrolment limit
+
 # 1.9.2
 
 ### Added
