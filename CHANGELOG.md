@@ -1,5 +1,20 @@
 # Change Log
 
+# 1.10.0
+
+### Added
+
+- [#445](https://github.com/City-of-Helsinki/kukkuu-ui/pull/445) Add enrolled Ticketmaster event page
+
+### Changed
+
+- [#443](https://github.com/City-of-Helsinki/kukkuu-ui/pull/443) [#451](https://github.com/City-of-Helsinki/kukkuu-ui/pull/451) Update Azure-pipeline configurations
+- [#446](https://github.com/City-of-Helsinki/kukkuu-ui/pull/446) Implement new Ticketmaster password acquring flow
+- [#449](https://github.com/City-of-Helsinki/kukkuu-ui/pull/449) Update Ticketmaster texts and translations
+
+### Removed
+- [#448](https://github.com/City-of-Helsinki/kukkuu-ui/pull/448) Remove occurrences from unenrolled Ticketmaster event page
+
 # 1.9.3
 
 ### Changed
