@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
@@ -151,16 +151,6 @@ const Event = () => {
       />
       <div className={styles.description}>
         <Paragraph text={event.description || ''} />
-        {isTicketmaster && (
-          <p>
-            <Trans i18nKey="event.ticketmasterNotice" />{' '}
-            <strong>
-              <Trans
-                i18nKey={`event.participantsPerInviteEnumLong.${event.participantsPerInvite}`}
-              />
-            </strong>
-          </p>
-        )}
       </div>
       {!past &&
         (!isTicketmaster ? (

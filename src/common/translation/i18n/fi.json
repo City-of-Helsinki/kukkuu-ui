@@ -345,8 +345,7 @@
     "ticketmasterButtons": {
       "back": "Takaisin",
       "continue": "Jatka ilmoittautumaan"
-    },
-    "ticketmasterNotice": "Ilmoittautuminen tapahtumaan tapahtuu Ticketmaster-lippupalvelussa. Lippuja varten tarvitset ilmaisen käyttäjätilin jonka voit luoda varauksen yhteydessä, ellei sellainen löydy entuudestaan. Tapahtumien ajantasaiset paikkatilanteet näet Ticketmasterista."
+    }
   },
   "eventRedirectPage": {
     "back": "Takaisin",

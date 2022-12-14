@@ -345,8 +345,7 @@
     "ticketmasterButtons": {
       "back": "Back",
       "continue": "Continue to register"
-    },
-    "ticketmasterNotice": "Registration for the event takes place in the Ticketmaster ticket service. To reserve tickets you will need a user account which you can create during the reservation process if you do not already have one. The up to date status for placing can be found from Ticketmaster."
+    }
   },
   "eventRedirectPage": {
     "back": "Back",
