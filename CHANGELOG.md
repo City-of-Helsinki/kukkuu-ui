@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.10.1
+
+### Fixed
+
+- Fix registration page redirect when profile exists
+
 # 1.10.0
 
 ### Added
@@ -13,6 +19,7 @@
 - [#449](https://github.com/City-of-Helsinki/kukkuu-ui/pull/449) Update Ticketmaster texts and translations
 
 ### Removed
+
 - [#448](https://github.com/City-of-Helsinki/kukkuu-ui/pull/448) Remove occurrences from unenrolled Ticketmaster event page
 
 # 1.9.3
