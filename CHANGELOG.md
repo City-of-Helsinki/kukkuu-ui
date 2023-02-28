@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Fix registration page redirect when profile exists
+- [#458](https://github.com/City-of-Helsinki/kukkuu-ui/pull/458) Fix registration page redirect when profile exists
 
 # 1.10.0
 
