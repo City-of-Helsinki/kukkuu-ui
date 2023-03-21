@@ -7,7 +7,7 @@ export default function replaceLocaleInPathname(
   const supportedLanguages = Object.values(SUPPORT_LANGUAGES);
 
   const currentLanguage = supportedLanguages.find((language) =>
-    pathname.includes(`/${language}`)
+    pathname.startsWith(`/${language}`)
   );
 
   // If next language is Finnish and the path does not have a language, do
@@ -19,7 +19,7 @@ export default function replaceLocaleInPathname(
   // If next language is Finnish and the path does have a language, remove the
   // existing language
   if (currentLanguage && nextLanguage === SUPPORT_LANGUAGES.FI) {
-    return pathname.replace(`/${currentLanguage}`, '');
+    return pathname.replace(new RegExp(`^/${currentLanguage}`), '');
   }
 
   // If no current language, but not Finnish, add language
@@ -27,5 +27,8 @@ export default function replaceLocaleInPathname(
     return `/${nextLanguage}${pathname}`;
   }
 
-  return pathname.replace(`/${currentLanguage}`, `/${nextLanguage}`);
+  return pathname.replace(
+    new RegExp(`^/${currentLanguage}`),
+    `/${nextLanguage}`
+  );
 }
