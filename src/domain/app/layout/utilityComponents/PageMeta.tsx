@@ -34,7 +34,7 @@ const PageMeta = ({
       ? t(description)
       : t('homePage.hero.descriptionText');
 
-  const path = window.location.pathname.replace(`/${lang}/`, '');
+  const path = window.location.pathname.replace(new RegExp(`^/${lang}/`), '');
 
   useEffect(() => {
     if (translatedTitle) {
