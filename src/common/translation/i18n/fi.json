@@ -405,21 +405,21 @@
         "text": "Lisätietoa palvelusta eri kielillä"
       },
       "links": {
-        "ar": "Arabia",
-        "ckb": "Kurdi",
-        "en": "Englanti",
-        "es": "Espanja",
-        "et": "Viro",
-        "fas": "Persia",
-        "fi": "Suomi",
-        "fr": "Ranska",
-        "npi": "Nepali",
-        "ru": "Venäjä",
-        "som": "Somali",
-        "sv": "Ruotsi",
-        "tur": "Turkki",
-        "vi": "Vietnam",
-        "zh": "Kiina"
+        "ar": "arabia",
+        "ckb": "kurdi",
+        "en": "englanti",
+        "es": "espanja",
+        "et": "viro",
+        "fas": "persia",
+        "fi": "suomi",
+        "fr": "ranska",
+        "npi": "nepali",
+        "ru": "venäjä",
+        "som": "somali",
+        "sv": "ruotsi",
+        "tur": "turkki",
+        "vi": "vietnam",
+        "zh": "kiina"
       }
     },
     "partners": {
