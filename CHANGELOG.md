@@ -1,8 +1,14 @@
 # Change Log
 
+# 1.11.0
+
+### Added
+
+- [#461](https://github.com/City-of-Helsinki/kukkuu-ui/pull/461) Show localized language names in parentheses on main page
+
 # 1.10.2
 
-### FIXED
+### Fixed
 
 - [#460](https://github.com/City-of-Helsinki/kukkuu-ui/pull/460) Fix the URL locale handling
 
