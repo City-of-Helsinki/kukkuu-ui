@@ -151,7 +151,7 @@
   "profile": {
     "common": {
       "message": {
-        "serviceDescription": "We are delighted that you are involved in Culture Kids! Here you can view event invitations and register for events. Please note that each Culture Kid may attend two events per year, unless otherwise stated. We are looking forward to seeing you!"
+        "serviceDescription": "We are delighted that you are involved in Culture Kids! Here you can view event invitations and register for events. All Culture Kids are welcome to attend two events per year, one event in the spring and one in the autumn. Sometimes there may be more events available, in which case we will announce it separately. We are looking forward to seeing you!"
       }
     },
     "addChildMutation": {
