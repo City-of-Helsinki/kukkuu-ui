@@ -151,7 +151,7 @@
   "profile": {
     "common": {
       "message": {
-        "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Kummilapsi voi osallistua vuosittain kahteen tapahtumaan, yhteen tapahtumaan keväällä ja yhteen tapahtumaan syksyllä. Joskus tapahtumia voi olla tarjolla enemmän, silloin ilmoitamme siitä erikseen. Nähdään kulttuurin parissa!"
+        "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin.\nKummilapsi voi osallistua vuosittain kahteen tapahtumaan, yhteen tapahtumaan keväällä ja yhteen tapahtumaan syksyllä. Joskus tapahtumia voi olla tarjolla enemmän, silloin ilmoitamme siitä erikseen. Nähdään kulttuurin parissa!"
       }
     },
     "addChildMutation": {
