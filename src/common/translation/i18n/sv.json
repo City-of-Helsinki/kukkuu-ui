@@ -151,7 +151,7 @@
   "profile": {
     "common": {
       "message": {
-        "serviceDescription": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang. Varje fadderbarn kan delta i två evenemang per år, ett evenemang på våren och ett evenemang på hösten. Ibland kan det finnas fler evenemang tillgängliga, om dem informerar vi separat. Vi ses i kulturens tecken!"
+        "serviceDescription": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang.\nVarje fadderbarn kan delta i två evenemang per år, ett evenemang på våren och ett evenemang på hösten. Ibland kan det finnas fler evenemang tillgängliga, om dem informerar vi separat. Vi ses i kulturens tecken!"
       }
     },
     "addChildMutation": {
