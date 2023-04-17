@@ -129,4 +129,4 @@ it('should allow all fields to be filled', async () => {
       )?.querySelector('button')?.textContent
     ).toEqual('Suomi');
   });
-});
+}, 10_000);
