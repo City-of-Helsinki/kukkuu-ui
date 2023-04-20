@@ -26,5 +26,6 @@ yarn-error.log*
 
 xeno
 
-# browser test screenshots
+# browser test screenshots and report
 screenshots
+report
