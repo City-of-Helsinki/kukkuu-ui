@@ -146,7 +146,11 @@
         "text": "Choose"
       }
     },
-    "skipToContentLabel": "Go directly to content"
+    "skipToContentLabel": "Go directly to content",
+    "button": {
+      "next": "Next",
+      "previous": "Previous"
+    }
   },
   "profile": {
     "common": {
@@ -702,5 +706,16 @@
       }
     }
   },
-  "": "Continue"
+  "": "Continue",
+  "cms": {
+    "archiveSearch": {
+      "title": "News",
+      "searchTextPlaceholder": "Search text",
+      "searchButtonLabelText": "Search",
+      "loadMoreButtonLabelText": "Load more",
+      "noResultsTitle": "No search results",
+      "noResultsText": "You can try to change or reduce the search criteria.",
+      "buttonClearFilters": "Clear filters"
+    }
+  }
 }

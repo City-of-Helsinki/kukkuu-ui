@@ -146,7 +146,11 @@
         "text": "Valitse"
       }
     },
-    "skipToContentLabel": "Siirry suoraan sisältöön"
+    "skipToContentLabel": "Siirry suoraan sisältöön",
+    "button": {
+      "next": "Seuraava",
+      "previous": "Edellinen"
+    }
   },
   "profile": {
     "common": {
@@ -702,5 +706,16 @@
       }
     }
   },
-  "": "Jatka"
+  "": "Jatka",
+  "cms": {
+    "archiveSearch": {
+      "title": "Ajankohtaista",
+      "searchTextPlaceholder": "Hakusana",
+      "searchButtonLabelText": "Hae",
+      "loadMoreButtonLabelText": "Lataa lisää",
+      "noResultsTitle": "Valitsemillasi hakuehdoilla ei löytynyt ajankohtaisia aiheita",
+      "noResultsText": "Voit koittaa muuttaa tai vähentää hakuehtoja.",
+      "buttonClearFilters": "Tyhjennä hakuehdot"
+    }
+  }
 }

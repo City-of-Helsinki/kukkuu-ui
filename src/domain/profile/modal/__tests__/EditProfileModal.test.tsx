@@ -1,4 +1,5 @@
 import { MockedProvider } from '@apollo/client/testing';
+import React from 'react';
 
 import EditProfileModal from '../EditProfileModal';
 import { ProfileType } from '../../type/ProfileTypes';
@@ -32,7 +33,7 @@ const defaultProps = {
   setIsOpen: () => {},
 };
 const getWrapper = (props?: unknown) =>
-  render(<EditProfileModal {...defaultProps} {...props} />);
+  render(<EditProfileModal {...defaultProps} {...(props ?? {})} />);
 
 const formData = {
   email: 'some@domain.fi',
@@ -88,23 +89,31 @@ it('renders snapshot correctly', () => {
 it('should allow all fields to be filled', async () => {
   initModal();
   const result = getWrapper();
-  const { getByLabelText, getAllByLabelText, queryByDisplayValue } = result;
+  const { getByRole, getAllByRole, queryByDisplayValue } = result;
 
-  fireEvent.change(getByLabelText('Sähköpostiosoite *'), {
-    target: { value: formData.email },
-  });
-  fireEvent.change(getByLabelText('Puhelinnumero *'), {
+  fireEvent.change(
+    getByRole('textbox', {
+      name: 'Sähköpostiosoite *',
+    }),
+    {
+      target: { value: formData.email },
+    }
+  );
+  fireEvent.change(getByRole('textbox', { name: 'Puhelinnumero *' }), {
     target: { value: formData.phoneNumber },
   });
-  fireEvent.change(getByLabelText('Etunimi *'), {
+  fireEvent.change(getByRole('textbox', { name: 'Etunimi *' }), {
     target: { value: formData.firstName },
   });
-  fireEvent.change(getByLabelText('Sukunimi *'), {
+  fireEvent.change(getByRole('textbox', { name: 'Sukunimi *' }), {
     target: {
       value: formData.lastName,
     },
   });
-  selectOption(getHdsSelect(getAllByLabelText('Asiointikieli *')), 'Suomi');
+  selectOption(
+    getHdsSelect(getAllByRole('button', { name: /asiointikieli \*/i })),
+    'Suomi'
+  );
 
   // Because the component submits with a GraphQL hook we don't look
   // at the submit function, but instead just try and verify that we can
@@ -115,9 +124,9 @@ it('should allow all fields to be filled', async () => {
   // Handle select as a special case because it has no input
   await waitFor(() => {
     expect(
-      getHdsSelect(getAllByLabelText('Asiointikieli *'))?.querySelector(
-        'button'
-      )?.textContent
+      getHdsSelect(
+        getAllByRole('button', { name: /asiointikieli \*/i })
+      )?.querySelector('button')?.textContent
     ).toEqual('Suomi');
   });
 });

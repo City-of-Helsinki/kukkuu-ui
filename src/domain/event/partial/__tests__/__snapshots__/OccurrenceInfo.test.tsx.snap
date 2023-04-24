@@ -15,7 +15,7 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
   />
   <InfoItem
     className="label"
-    icon={<B />}
+    icon={<A />}
     id="time"
     key="1"
     label="8.3.2020"
@@ -51,7 +51,7 @@ exports[`renders occurrence snapshot correctly 1`] = `
   />
   <InfoItem
     className="label"
-    icon={<B />}
+    icon={<A />}
     id="time"
     key="1"
     label="8.3.2020"

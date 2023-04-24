@@ -146,7 +146,11 @@
         "text": "Välj"
       }
     },
-    "skipToContentLabel": "Gå direkt till innehållet"
+    "skipToContentLabel": "Gå direkt till innehållet",
+    "button": {
+      "next": "Nästa",
+      "previous": "Föregående"
+    }
   },
   "profile": {
     "common": {
@@ -702,5 +706,15 @@
       }
     }
   },
-  "": "Fortsätta"
+  "": "Fortsätta",
+  "cms": {
+    "archiveSearch": {
+      "title": "Aktuellt",
+      "searchTextPlaceholder": "Söktext",
+      "searchButtonLabelText": "Sök",
+      "loadMoreButtonLabelText": "Ladda fler",
+      "noResultsText": "Inga resultat",
+      "buttonClearFilters": "Töm sökfilter"
+    }
+  }
 }
