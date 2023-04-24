@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
+import React from 'react';
 
 import OccurrenceInfo from '../OccurrenceInfo';
 import { mockedOccurrenceNode } from '../../__tests__/EventPage.test';

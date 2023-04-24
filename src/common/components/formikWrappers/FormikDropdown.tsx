@@ -12,6 +12,8 @@ type DropdownProps = Omit<
 
 type Props = DropdownProps & {
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  label: any;
   onChange?: (selected: Option) => void;
   value?: string;
   options: Option[];

@@ -8,16 +8,18 @@ import client from '../client';
 const page = fakePage();
 
 beforeEach(() => {
-  const headlessCms = graphql.link(
-    'https://kukkuu.hkih.stage.geniem.io/graphql'
-  );
+  const link =
+    process.env.REACT_APP_CMS_URI ??
+    'https://kukkuu.hkih.stage.geniem.io/graphql';
+  const headlessCms = graphql.link(link);
   server.use(
     headlessCms.query('page', (req, res, ctx) => {
-      return res(
+      const response = res(
         ctx.data({
           page,
         })
       );
+      return response;
     })
   );
 });
@@ -30,6 +32,8 @@ describe('Headless CMS Client', () => {
         id: '/en/slug',
         language: 'EN',
       },
+      // NOTE: The React-helsinki-headless-cms library sets a cache here by default
+      fetchPolicy: 'no-cache',
     });
     expect(data.page.id).toEqual(page.id);
   });

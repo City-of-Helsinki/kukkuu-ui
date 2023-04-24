@@ -20,6 +20,8 @@ type DropdownProps = Omit<
 
 export type ComboboxProps = Omit<DropdownProps, 'toggleButtonAriaLabel'> & {
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  label: any;
   toggleButtonAriaLabel?: string;
 };
 

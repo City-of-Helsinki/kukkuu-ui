@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.12.0
+
+### Added
+
+- [#466](https://github.com/City-of-Helsinki/kukkuu-ui/pull/466) Support embedded videos in CMS pages. The feature is provided by a new version of React-Helsinki-Headless-Cms -library.
+
 # 1.11.0
 
 ### Added
