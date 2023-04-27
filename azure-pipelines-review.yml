@@ -36,7 +36,6 @@ resources:
     # Azure DevOps repository
     - repository: kukkuu-pipelines
       type: git
-      ref: refs/heads/review_pipeline
       # Azure DevOps project/repository
       name: kukkuu/kukkuu-pipelines
 
@@ -48,7 +47,7 @@ extends:
   parameters:
     # Application build arguments and config map values as key value pairs.
     # Does not contain all buildArguments, the rest located in harrastukset-pipelines/harrastukset-variables-development.yml and harrastukset-variables-common.yml
-    # The values here will override the values defined in the harrastukset-pipelines repository.
+    # The values here will override the values defined in the harrastukset-pipelines repository
     buildArgs:
       REACT_APP_CMS_URI: 'https://kukkuu.hkih.stage.geniem.io/graphql'
       REACT_APP_API_URI: 'https://kukkuu.api.test.hel.ninja/graphql'
