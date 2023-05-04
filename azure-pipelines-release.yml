@@ -20,16 +20,6 @@ trigger:
 # Opt out of pull request validation
 pr: none
 
-# By default, use self-hosted agents
-pool: Default
-
-# Image tag name for Fuse projects
-#parameters:
-#- name: imagetag
-#  displayName: Image tag to be built and/or deployed
-#  type: string
-#  default: latest
-
 resources:
   repositories:
     # Azure DevOps repository
