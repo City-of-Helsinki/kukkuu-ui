@@ -91,7 +91,32 @@ export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_ed
   __typename: "TicketmasterEnrolmentNode";
 }
 
-export type childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node = childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode;
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode_event {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  name: string | null;
+  shortDescription: string | null;
+  /**
+   * In minutes
+   */
+  duration: number | null;
+  image: string;
+  imageAltText: string | null;
+  participantsPerInvite: EventParticipantsPerInvite;
+}
+
+export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode {
+  /**
+   * The ID of the object.
+   */
+  id: string;
+  event: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode_event;
+  __typename: "LippupisteEnrolmentNode";
+}
+
+export type childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node = childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode;
 
 export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges {
   /**

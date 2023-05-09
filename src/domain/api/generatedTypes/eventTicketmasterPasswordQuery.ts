@@ -16,7 +16,12 @@ export interface eventTicketmasterPasswordQuery_event_ticketSystem_TicketmasterE
   url: string;
 }
 
-export type eventTicketmasterPasswordQuery_event_ticketSystem = eventTicketmasterPasswordQuery_event_ticketSystem_InternalEventTicketSystem | eventTicketmasterPasswordQuery_event_ticketSystem_TicketmasterEventTicketSystem;
+export interface eventTicketmasterPasswordQuery_event_ticketSystem_LippupisteEventTicketSystem {
+  childPassword: string | null;
+  url: string;
+}
+
+export type eventTicketmasterPasswordQuery_event_ticketSystem = eventTicketmasterPasswordQuery_event_ticketSystem_InternalEventTicketSystem | eventTicketmasterPasswordQuery_event_ticketSystem_TicketmasterEventTicketSystem | eventTicketmasterPasswordQuery_event_ticketSystem_LippupisteEventTicketSystem;
 
 export interface eventTicketmasterPasswordQuery_event {
   participantsPerInvite: EventParticipantsPerInvite;

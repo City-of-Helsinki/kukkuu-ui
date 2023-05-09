@@ -49,6 +49,13 @@ export const childByIdQuery = gql`
               }
               __typename
             }
+            ... on LippupisteEnrolmentNode {
+              id
+              event {
+                ...EnrolmentEventFields
+              }
+              __typename
+            }
           }
         }
       }

@@ -21,6 +21,9 @@ const OccurrenceFragment = gql`
       ... on TicketmasterOccurrenceTicketSystem {
         url
       }
+      ... on LippupisteOccurrenceTicketSystem {
+        url
+      }
     }
   }
 `;
@@ -61,6 +64,10 @@ const eventQuery = gql`
           childPassword(childId: $childId)
           url
         }
+        ... on LippupisteEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
       }
     }
   }
@@ -84,6 +91,10 @@ export const eventTicketmasterPasswordQuery = gql`
       participantsPerInvite
       ticketSystem {
         ... on TicketmasterEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
+        ... on LippupisteEventTicketSystem {
           childPassword(childId: $childId)
           url
         }
