@@ -139,7 +139,24 @@ const childWithTicketmasterEnrolment: ChildByIdResponse = {
       {
         node: {
           __typename: 'TicketmasterEnrolmentNode',
-          id: 'foo',
+          id: 'ticketmaster-123',
+          event: eventData,
+        },
+      },
+    ],
+  },
+  pastEvents: null,
+};
+
+const childWithLippupisteEnrolment: ChildByIdResponse = {
+  ...childData,
+  upcomingEventsAndEventGroups: null,
+  activeInternalAndTicketSystemEnrolments: {
+    edges: [
+      {
+        node: {
+          __typename: 'LippupisteEnrolmentNode',
+          id: 'lippupiste-123',
           event: eventData,
         },
       },
@@ -215,16 +232,23 @@ test('Renders only enrolments when no other inputs', () => {
   ).not.toBeInTheDocument();
 });
 
-test('Renders Ticketmaster enrolment', () => {
+test.each([
+  [
+    'Ticketmaster',
+    childWithTicketmasterEnrolment.activeInternalAndTicketSystemEnrolments,
+  ],
+  [
+    'Lippupiste',
+    childWithLippupisteEnrolment.activeInternalAndTicketSystemEnrolments,
+  ],
+])('Renders %s enrolment', (_, enrolments) => {
   render(
     <MockedProvider>
       <ProfileEventsList
         upcomingEventsAndEventGroups={{
           edges: [],
         }}
-        enrolments={
-          childWithTicketmasterEnrolment.activeInternalAndTicketSystemEnrolments
-        }
+        enrolments={enrolments}
         pastEvents={{
           edges: [],
         }}
