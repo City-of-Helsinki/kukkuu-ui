@@ -346,7 +346,7 @@
       },
       "participants": "Participants"
     },
-    "ticketmasterButtons": {
+    "externalTicketSystemButtons": {
       "back": "Back",
       "continue": "Continue to register"
     }
@@ -668,7 +668,7 @@
     }
   },
   "sanityCheck": "kukkuu.en",
-  "ticketmasterEvent": {
+  "externalTicketSystemEvent": {
     "continueButton": "Continue to the Ticketmaster service",
     "description": "If you have not booked your tickets yet, please do so as soon as possible.",
     "extraInfo": "If you do not want to book places now, you will find your password for later use under your child’s future events.",

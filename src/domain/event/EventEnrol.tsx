@@ -33,8 +33,10 @@ const EventEnrol = ({
 
   if (!data?.event) return <div></div>;
 
-  const isTicketmasterTicketingSystem =
-    data?.event?.ticketSystem?.type === TicketSystem.TICKETMASTER;
+  const isExternalTicketSystem = [
+    TicketSystem.TICKETMASTER,
+    TicketSystem.LIPPUPISTE,
+  ].includes(data?.event?.ticketSystem?.type as TicketSystem);
 
   return (
     <>
@@ -86,7 +88,7 @@ const EventEnrol = ({
       {data.event.occurrences.edges && (
         <EventOccurrenceList
           occurrences={data.event.occurrences}
-          showFreePlaces={!isTicketmasterTicketingSystem}
+          showFreePlaces={!isExternalTicketSystem}
           canEnroll={data?.event?.canChildEnroll}
         />
       )}

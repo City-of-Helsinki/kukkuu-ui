@@ -346,7 +346,7 @@
       },
       "participants": "Deltagare"
     },
-    "ticketmasterButtons": {
+    "externalTicketSystemButtons": {
       "back": "Tillbaka",
       "continue": "Fortsätt till anmälan"
     }
@@ -668,7 +668,7 @@
     }
   },
   "sanityCheck": "kukkuu.sv",
-  "ticketmasterEvent": {
+  "externalTicketSystemEvent": {
     "continueButton": "Fortsätt till Ticketmaster.",
     "description": "Om du ännu inte har bokat dina biljetter, gör det så snart som möjligt.",
     "extraInfo": "Om du inte bokar platser nu, hittar du lösenordet för senare användning i barnets kommande evenemang.",

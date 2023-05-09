@@ -346,7 +346,7 @@
       },
       "participants": "Osallistujat"
     },
-    "ticketmasterButtons": {
+    "externalTicketSystemButtons": {
       "back": "Takaisin",
       "continue": "Jatka ilmoittautumaan"
     }
@@ -668,7 +668,7 @@
     }
   },
   "sanityCheck": "kukkuu.fi",
-  "ticketmasterEvent": {
+  "externalTicketSystemEvent": {
     "continueButton": "Jatka Ticketmasterin palveluun",
     "description": "Jos et ole vielä varannut lippujasi, tee se mahdollisimman pian.",
     "extraInfo": "Mikäli et varaa paikkoja nyt, löydät salasanasi myöhempää käyttöä varten lapsen tulevista tapahtumista.",

@@ -15,6 +15,8 @@ import {
   childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode as EnrolmentNode,
   // eslint-disable-next-line max-len
   childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode as TicketmasterEnrolmentNode,
+  // eslint-disable-next-line max-len
+  childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode as LippupisteEnrolmentNode,
 } from '../../api/generatedTypes/childByIdQuery';
 import RelayList from '../../api/relayList';
 import Text from '../../../common/components/text/Text';
@@ -49,7 +51,8 @@ function switchEventOrEventGroup<R>(
 function switchInternalOrTicketSystemEnrolment<R>(
   enrolmentNode: InternalOrTicketSystemEnrolmentNode,
   isInternal: (internalEnrolment: EnrolmentNode) => R,
-  isTicketmaster: (ticketmasterEnrolment: TicketmasterEnrolmentNode) => R
+  isTicketmaster: (ticketmasterEnrolment: TicketmasterEnrolmentNode) => R,
+  isLippupiste: (lippupisteEnrolment: LippupisteEnrolmentNode) => R
 ) {
   const typeHandlers: Record<
     InternalOrTicketSystemEnrolmentNode['__typename'],
@@ -58,6 +61,8 @@ function switchInternalOrTicketSystemEnrolment<R>(
     EnrolmentNode: () => isInternal(enrolmentNode as EnrolmentNode),
     TicketmasterEnrolmentNode: () =>
       isTicketmaster(enrolmentNode as TicketmasterEnrolmentNode),
+    LippupisteEnrolmentNode: () =>
+      isLippupiste(enrolmentNode as LippupisteEnrolmentNode),
   };
   return typeHandlers[enrolmentNode['__typename']]();
 }
@@ -125,6 +130,46 @@ const ProfileEventsList = ({
   );
   const enrolments = enrolmentsList(enrolmentsData).items;
 
+  const getInternalEnrolmentEventCard = (internalEnrolment: EnrolmentNode) => (
+    <EventCard
+      key={internalEnrolment.id}
+      imageElement={
+        <div className={styles.qrWrapper}>
+          <QRCode
+            quietZone={0}
+            size={QR_CODE_SIZE_PX}
+            value={getTicketValidationUrl(internalEnrolment?.referenceId)}
+            ecLevel={'H'}
+          />
+        </div>
+      }
+      event={internalEnrolment.occurrence.event}
+      action={() => gotoOccurrencePage(internalEnrolment.occurrence.id)}
+      actionText={t('enrollment.showEventInfo.buttonText')}
+      primaryAction="hidden"
+      focalContent={OccurrenceInfo({
+        occurrence: internalEnrolment.occurrence,
+        show: ['time', 'duration', 'venue'],
+      })}
+    />
+  );
+
+  const getExternalEnrolmentEventCard = (
+    externalTicketSystemEnrolment:
+      | TicketmasterEnrolmentNode
+      | LippupisteEnrolmentNode
+  ) => (
+    <EventCard
+      key={externalTicketSystemEnrolment.id}
+      event={externalTicketSystemEnrolment.event}
+      action={() =>
+        gotoExternalEnrolmentEventPage(externalTicketSystemEnrolment.event.id)
+      }
+      actionText={t('enrollment.showEventInfo.buttonText')}
+      primaryAction="hidden"
+    />
+  );
+
   const enrolmentsListItems: JSX.Element | null = enrolments.length ? (
     <React.Fragment key="enrolments">
       <Text variant="h2">{t('profile.events.enrolled.heading')}</Text>
@@ -133,44 +178,9 @@ const ProfileEventsList = ({
         items={enrolments.map((internalOrTicketSystemEnrolment) =>
           switchInternalOrTicketSystemEnrolment(
             internalOrTicketSystemEnrolment,
-            (internalEnrolment) => (
-              <EventCard
-                key={internalEnrolment.id}
-                imageElement={
-                  <div className={styles.qrWrapper}>
-                    <QRCode
-                      quietZone={0}
-                      size={QR_CODE_SIZE_PX}
-                      value={getTicketValidationUrl(
-                        internalEnrolment?.referenceId
-                      )}
-                      ecLevel={'H'}
-                    />
-                  </div>
-                }
-                event={internalEnrolment.occurrence.event}
-                action={() =>
-                  gotoOccurrencePage(internalEnrolment.occurrence.id)
-                }
-                actionText={t('enrollment.showEventInfo.buttonText')}
-                primaryAction="hidden"
-                focalContent={OccurrenceInfo({
-                  occurrence: internalEnrolment.occurrence,
-                  show: ['time', 'duration', 'venue'],
-                })}
-              />
-            ),
-            (ticketmasterEnrolment) => (
-              <EventCard
-                key={internalOrTicketSystemEnrolment.id}
-                event={ticketmasterEnrolment.event}
-                action={() =>
-                  gotoExternalEnrolmentEventPage(ticketmasterEnrolment.event.id)
-                }
-                actionText={t('enrollment.showEventInfo.buttonText')}
-                primaryAction="hidden"
-              />
-            )
+            getInternalEnrolmentEventCard,
+            getExternalEnrolmentEventCard,
+            getExternalEnrolmentEventCard
           )
         )}
       />

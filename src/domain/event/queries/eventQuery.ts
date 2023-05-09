@@ -85,8 +85,8 @@ export const eventOccurrenceQuery = gql`
   ${OccurrenceFragment}
 `;
 
-export const eventTicketmasterPasswordQuery = gql`
-  query eventTicketmasterPasswordQuery($id: ID!, $childId: ID!) {
+export const eventExternalTicketSystemPasswordQuery = gql`
+  query eventExternalTicketSystemPasswordQuery($id: ID!, $childId: ID!) {
     event(id: $id) {
       participantsPerInvite
       ticketSystem {
