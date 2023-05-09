@@ -6,8 +6,8 @@ import styles from './externalTicketSystemEventIsEnrolled.module.scss';
 import { externalTicketSystemEventQuery } from './queries/externalTicketSystemEventQuery';
 import {
   externalTicketSystemEventQuery as ExternalTicketSystemEventQueryType,
-  // eslint-disable-next-line max-len
-  externalTicketSystemEventQuery_event_ticketSystem_TicketmasterEventTicketSystem as EventTicketSystem,
+  externalTicketSystemEventQuery_event_ticketSystem_TicketmasterEventTicketSystem as TicketMasterEventTicketSystem,
+  externalTicketSystemEventQuery_event_ticketSystem_LippupisteEventTicketSystem as LippupisteEventTicketSystem,
 } from '../api/generatedTypes/externalTicketSystemEventQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import Paragraph from '../../common/components/paragraph/Paragraph';
@@ -17,6 +17,10 @@ import { useChildRouteGoBackTo } from '../profile/route/ProfileRoute';
 import AnchorButton from '../../common/components/button/AnchorButton';
 import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Text from '../../common/components/text/Text';
+
+type EventTicketSystem =
+  | TicketMasterEventTicketSystem
+  | LippupisteEventTicketSystem;
 
 const ExternalTicketSystemEventIsEnrolled = () => {
   const { t } = useTranslation();
