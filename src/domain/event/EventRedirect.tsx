@@ -66,6 +66,10 @@ const EventRedirect = () => {
         childId,
       },
     },
+    onError: (error) => {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    },
     onCompleted: async (data) => {
       // Because it is not trivial to figure out how to invalidate exactly all the
       // needed parts of the cache, and invalidating the whole thing doesn't cause any
