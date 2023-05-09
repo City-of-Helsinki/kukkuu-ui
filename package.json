@@ -104,7 +104,7 @@
     "yup": "0.32.11"
   },
   "resolutions": {
-    "graphql": "^16.3.0",
+    "graphql": "^15.0.0",
     "css-what": "^5.0.1 ",
     "browserslist": "^4.16.5",
     "eslint": "^7.32.0",
@@ -117,6 +117,7 @@
     "@faker-js/faker": "^6.0.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
+    "apollo": "^2.33.9",
     "codecov": "^3.7.1",
     "dotenv": "^16.0.0",
     "enzyme": "^3.11.0",
