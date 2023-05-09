@@ -39,7 +39,12 @@ export interface OccurrenceFragment_ticketSystem_TicketmasterOccurrenceTicketSys
   url: string;
 }
 
-export type OccurrenceFragment_ticketSystem = OccurrenceFragment_ticketSystem_InternalOccurrenceTicketSystem | OccurrenceFragment_ticketSystem_TicketmasterOccurrenceTicketSystem;
+export interface OccurrenceFragment_ticketSystem_LippupisteOccurrenceTicketSystem {
+  type: TicketSystem;
+  url: string;
+}
+
+export type OccurrenceFragment_ticketSystem = OccurrenceFragment_ticketSystem_InternalOccurrenceTicketSystem | OccurrenceFragment_ticketSystem_TicketmasterOccurrenceTicketSystem | OccurrenceFragment_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface OccurrenceFragment {
   /**

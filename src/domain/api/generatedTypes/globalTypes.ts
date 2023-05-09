@@ -31,6 +31,7 @@ export enum RelationshipTypeEnum {
 
 export enum TicketSystem {
   INTERNAL = "INTERNAL",
+  LIPPUPISTE = "LIPPUPISTE",
   TICKETMASTER = "TICKETMASTER",
 }
 

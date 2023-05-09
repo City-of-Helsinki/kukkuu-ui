@@ -46,7 +46,12 @@ export interface eventQuery_event_occurrences_edges_node_ticketSystem_Ticketmast
   url: string;
 }
 
-export type eventQuery_event_occurrences_edges_node_ticketSystem = eventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | eventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem;
+export interface eventQuery_event_occurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem {
+  type: TicketSystem;
+  url: string;
+}
+
+export type eventQuery_event_occurrences_edges_node_ticketSystem = eventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | eventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem | eventQuery_event_occurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface eventQuery_event_occurrences_edges_node {
   /**
@@ -105,7 +110,12 @@ export interface eventQuery_event_allOccurrences_edges_node_ticketSystem_Ticketm
   url: string;
 }
 
-export type eventQuery_event_allOccurrences_edges_node_ticketSystem = eventQuery_event_allOccurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | eventQuery_event_allOccurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem;
+export interface eventQuery_event_allOccurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem {
+  type: TicketSystem;
+  url: string;
+}
+
+export type eventQuery_event_allOccurrences_edges_node_ticketSystem = eventQuery_event_allOccurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | eventQuery_event_allOccurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem | eventQuery_event_allOccurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface eventQuery_event_allOccurrences_edges_node {
   /**
@@ -144,7 +154,13 @@ export interface eventQuery_event_ticketSystem_TicketmasterEventTicketSystem {
   url: string;
 }
 
-export type eventQuery_event_ticketSystem = eventQuery_event_ticketSystem_InternalEventTicketSystem | eventQuery_event_ticketSystem_TicketmasterEventTicketSystem;
+export interface eventQuery_event_ticketSystem_LippupisteEventTicketSystem {
+  type: TicketSystem;
+  childPassword: string | null;
+  url: string;
+}
+
+export type eventQuery_event_ticketSystem = eventQuery_event_ticketSystem_InternalEventTicketSystem | eventQuery_event_ticketSystem_TicketmasterEventTicketSystem | eventQuery_event_ticketSystem_LippupisteEventTicketSystem;
 
 export interface eventQuery_event {
   /**

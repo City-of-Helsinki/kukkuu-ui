@@ -39,7 +39,12 @@ export interface eventOccurrenceQuery_occurrence_ticketSystem_TicketmasterOccurr
   url: string;
 }
 
-export type eventOccurrenceQuery_occurrence_ticketSystem = eventOccurrenceQuery_occurrence_ticketSystem_InternalOccurrenceTicketSystem | eventOccurrenceQuery_occurrence_ticketSystem_TicketmasterOccurrenceTicketSystem;
+export interface eventOccurrenceQuery_occurrence_ticketSystem_LippupisteOccurrenceTicketSystem {
+  type: TicketSystem;
+  url: string;
+}
+
+export type eventOccurrenceQuery_occurrence_ticketSystem = eventOccurrenceQuery_occurrence_ticketSystem_InternalOccurrenceTicketSystem | eventOccurrenceQuery_occurrence_ticketSystem_TicketmasterOccurrenceTicketSystem | eventOccurrenceQuery_occurrence_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface eventOccurrenceQuery_occurrence {
   /**

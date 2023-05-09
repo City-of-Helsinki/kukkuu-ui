@@ -17,6 +17,9 @@ export const ticketmasterEventQuery = gql`
               ... on TicketmasterOccurrenceTicketSystem {
                 url
               }
+              ... on LippupisteOccurrenceTicketSystem {
+                url
+              }
             }
           }
         }
@@ -24,6 +27,10 @@ export const ticketmasterEventQuery = gql`
       ticketSystem {
         type
         ... on TicketmasterEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
+        ... on LippupisteEventTicketSystem {
           childPassword(childId: $childId)
           url
         }

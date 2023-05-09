@@ -18,7 +18,12 @@ export interface ticketmasterEventQuery_event_occurrences_edges_node_ticketSyste
   url: string;
 }
 
-export type ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem = ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem;
+export interface ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem {
+  type: TicketSystem;
+  url: string;
+}
+
+export type ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem = ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem | ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface ticketmasterEventQuery_event_occurrences_edges_node {
   ticketSystem: ticketmasterEventQuery_event_occurrences_edges_node_ticketSystem | null;
@@ -48,7 +53,13 @@ export interface ticketmasterEventQuery_event_ticketSystem_TicketmasterEventTick
   url: string;
 }
 
-export type ticketmasterEventQuery_event_ticketSystem = ticketmasterEventQuery_event_ticketSystem_InternalEventTicketSystem | ticketmasterEventQuery_event_ticketSystem_TicketmasterEventTicketSystem;
+export interface ticketmasterEventQuery_event_ticketSystem_LippupisteEventTicketSystem {
+  type: TicketSystem;
+  childPassword: string | null;
+  url: string;
+}
+
+export type ticketmasterEventQuery_event_ticketSystem = ticketmasterEventQuery_event_ticketSystem_InternalEventTicketSystem | ticketmasterEventQuery_event_ticketSystem_TicketmasterEventTicketSystem | ticketmasterEventQuery_event_ticketSystem_LippupisteEventTicketSystem;
 
 export interface ticketmasterEventQuery_event {
   /**
