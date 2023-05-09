@@ -2,28 +2,28 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import styles from './ticketmasterEventIsEnrolled.module.scss';
-import { ticketmasterEventQuery } from './queries/ticketmasterEventQuery';
+import styles from './externalTicketSystemEventIsEnrolled.module.scss';
+import { externalTicketSystemEventQuery } from './queries/externalTicketSystemEventQuery';
 import {
-  ticketmasterEventQuery as TicketmasterEventQueryType,
+  externalTicketSystemEventQuery as ExternalTicketSystemEventQueryType,
   // eslint-disable-next-line max-len
-  ticketmasterEventQuery_event_ticketSystem_TicketmasterEventTicketSystem as EventTicketSystem,
-} from '../api/generatedTypes/ticketmasterEventQuery';
+  externalTicketSystemEventQuery_event_ticketSystem_TicketmasterEventTicketSystem as EventTicketSystem,
+} from '../api/generatedTypes/externalTicketSystemEventQuery';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
 import ErrorMessage from '../../common/components/error/Error';
 import { useChildRouteGoBackTo } from '../profile/route/ProfileRoute';
 import AnchorButton from '../../common/components/button/AnchorButton';
-import TicketmasterPassword from './TicketmasterPassword';
+import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Text from '../../common/components/text/Text';
 
-const TicketmasterEventIsEnrolled = () => {
+const ExternalTicketSystemEventIsEnrolled = () => {
   const { t } = useTranslation();
   const goBackTo = useChildRouteGoBackTo();
   const params = useParams<{ childId: string; eventId: string }>();
-  const { loading, error, data } = useQuery<TicketmasterEventQueryType>(
-    ticketmasterEventQuery,
+  const { loading, error, data } = useQuery<ExternalTicketSystemEventQueryType>(
+    externalTicketSystemEventQuery,
     {
       variables: {
         eventId: params.eventId,
@@ -44,16 +44,18 @@ const TicketmasterEventIsEnrolled = () => {
       <div className={styles.description}>
         <Paragraph text={data.event.description || ''} />
       </div>
-      <Text>{t('ticketmasterEvent.description')}</Text>
-      <Text>{t('ticketmasterEvent.passwordLabel')}</Text>
+      <Text>{t('externalTicketSystemEvent.description')}</Text>
+      <Text>{t('externalTicketSystemEvent.passwordLabel')}</Text>
       <div className={styles.passwordRow}>
-        <TicketmasterPassword password={eventTicketSystem?.childPassword} />
+        <ExternalTicketSystemPassword
+          password={eventTicketSystem?.childPassword}
+        />
         <AnchorButton href={eventTicketSystem?.url} openInNewTab>
-          {t('ticketmasterEvent.continueButton')}
+          {t('externalTicketSystemEvent.continueButton')}
         </AnchorButton>
       </div>
       <Text>
-        {t('ticketmasterEvent.participantsPerInviteText', {
+        {t('externalTicketSystemEvent.participantsPerInviteText', {
           participantsPerInvite: t(
             `event.participantsPerInviteEnum.${data.event.participantsPerInvite}`
           ),
@@ -63,4 +65,4 @@ const TicketmasterEventIsEnrolled = () => {
   );
 };
 
-export default TicketmasterEventIsEnrolled;
+export default ExternalTicketSystemEventIsEnrolled;

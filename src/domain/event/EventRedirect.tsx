@@ -7,8 +7,9 @@ import PageWrapper from '../app/layout/PageWrapper';
 import Text from '../../common/components/text/Text';
 import LinkButton from '../../common/components/button/LinkButton';
 import AnchorButton from '../../common/components/button/AnchorButton';
-import { ticketmasterEventQuery as TicketmasterEventQueryType } from '../api/generatedTypes/ticketmasterEventQuery';
-import { eventTicketmasterPasswordQuery } from './queries/eventQuery';
+// eslint-disable-next-line max-len
+import { externalTicketSystemEventQuery as ExternalTicketSystemEventQueryType } from '../api/generatedTypes/externalTicketSystemEventQuery';
+import { eventExternalTicketSystemPasswordQuery } from './queries/eventQuery';
 import assignTicketSystemPasswordMutation from './mutations/assignTicketSystemPasswordMutation';
 import {
   assignTicketSystemPasswordMutation as assignTicketSystemMutationData,
@@ -18,7 +19,7 @@ import styles from './eventRedirect.module.scss';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
 import useGetPathname from '../../common/route/utils/useGetPathname';
-import TicketmasterPassword from './TicketmasterPassword';
+import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Button from '../../common/components/button/Button';
 
 type Params = {
@@ -36,13 +37,16 @@ const EventRedirect = () => {
     loading: queryLoading,
     error: queryError,
     data: queryData,
-  } = useQuery<TicketmasterEventQueryType>(eventTicketmasterPasswordQuery, {
-    variables: {
-      id: eventId,
-      childId,
-    },
-    fetchPolicy: 'network-only',
-  });
+  } = useQuery<ExternalTicketSystemEventQueryType>(
+    eventExternalTicketSystemPasswordQuery,
+    {
+      variables: {
+        id: eventId,
+        childId,
+      },
+      fetchPolicy: 'network-only',
+    }
+  );
 
   const [
     assignTicketSystemPassword,
@@ -76,7 +80,7 @@ const EventRedirect = () => {
   // password will be null, but in some special occasions, like when reloading the page,
   // the query might already return the password.
   const ticketSystem = queryData?.event?.ticketSystem;
-  const ticketmasterPassword =
+  const externalTicketSystemPassword =
     (ticketSystem && 'childPassword' in ticketSystem
       ? ticketSystem.childPassword
       : null) || mutationData?.assignTicketSystemPassword?.password;
@@ -119,7 +123,7 @@ const EventRedirect = () => {
           {t('eventRedirectPage.passwordAcquireDescription')}
         </Text>
         <Text variant="body-l">
-          {t('ticketmasterEvent.participantsPerInviteText', {
+          {t('externalTicketSystemEvent.participantsPerInviteText', {
             participantsPerInvite: t(
               `event.participantsPerInviteEnum.${event?.participantsPerInvite}`
             ),
@@ -127,7 +131,7 @@ const EventRedirect = () => {
         </Text>
         {mutationLoading ? (
           <LoadingSpinner isLoading={true} />
-        ) : !ticketmasterPassword ? (
+        ) : !externalTicketSystemPassword ? (
           <div className={styles.acquireButtonRow}>
             <LinkButton
               variant="secondary"
@@ -143,7 +147,9 @@ const EventRedirect = () => {
           <div className={styles.passwordWrapper}>
             <hr />
             <Text variant="body-l">{t('eventRedirectPage.passwordLabel')}</Text>
-            <TicketmasterPassword password={ticketmasterPassword} />
+            <ExternalTicketSystemPassword
+              password={externalTicketSystemPassword}
+            />
             <Text variant="body-l">
               {t('eventRedirectPage.passwordCopyDescription')}
             </Text>
@@ -152,9 +158,11 @@ const EventRedirect = () => {
               href={ticketSystemUrl}
               openInNewTab
             >
-              {t('ticketmasterEvent.continueButton')}
+              {t('externalTicketSystemEvent.continueButton')}
             </AnchorButton>
-            <Text variant="body-l">{t('ticketmasterEvent.extraInfo')}</Text>
+            <Text variant="body-l">
+              {t('externalTicketSystemEvent.extraInfo')}
+            </Text>
           </div>
         )}
       </div>

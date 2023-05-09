@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import copy from 'copy-to-clipboard';
 import { IconCheck } from 'hds-react';
 
-import styles from './ticketmasterPassword.module.scss';
+import styles from './externalTicketSystemPassword.module.scss';
 import useAriaLive from '../../common/AriaLive/useAriaLive';
 
 const CopyStates = {
@@ -18,7 +18,7 @@ type Props = {
   password: string | null;
 };
 
-const TicketmasterPassword = ({ password }: Props) => {
+const ExternalTicketSystemPassword = ({ password }: Props) => {
   const { t } = useTranslation();
   const [copyStatus, setCopyStatus] = useState<CopyState>(CopyStates.initial);
   const { sendMessage } = useAriaLive();
@@ -57,4 +57,4 @@ const TicketmasterPassword = ({ password }: Props) => {
   );
 };
 
-export default TicketmasterPassword;
+export default ExternalTicketSystemPassword;

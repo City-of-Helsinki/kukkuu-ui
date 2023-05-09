@@ -8,7 +8,7 @@ import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EventRedirect from '../../event/EventRedirect';
 import EventGroupPage from '../../eventGroup/EventGroupPage';
 import ProfileChildDetail from '../children/child/ProfileChildDetail';
-import TicketmasterEventIsEnrolled from '../../event/TicketmasterEventIsEnrolled';
+import ExternalTicketSystemEventIsEnrolled from '../../event/ExternalTicketSystemEventIsEnrolled';
 
 const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
   const { t } = useTranslation();
@@ -48,7 +48,7 @@ const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
       <AppRoute
         noTitle
         exact
-        component={TicketmasterEventIsEnrolled}
+        component={ExternalTicketSystemEventIsEnrolled}
         path={`${path}/event/:eventId/external-enrolment`}
       />
       <AppRoute

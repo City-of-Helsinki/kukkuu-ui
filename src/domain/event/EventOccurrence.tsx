@@ -15,17 +15,17 @@ import styles from './eventOccurrence.module.scss';
 const SubmitTypes = {
   enrol: 'ENROL',
   notification: 'NOTIFICATION',
-  ticketmaster: 'TICKETMASTER',
+  externalTicketSystem: 'EXTERNAL_TICKET_SYSTEM',
 } as const;
 
 type SubmitType = typeof SubmitTypes[keyof typeof SubmitTypes];
 
 function getSubmitType(
-  isTicketmaster: boolean,
+  isExternalTicketSystem: boolean,
   hasCapacity: boolean
 ): SubmitType {
-  if (isTicketmaster) {
-    return SubmitTypes.ticketmaster;
+  if (isExternalTicketSystem) {
+    return SubmitTypes.externalTicketSystem;
   }
 
   if (hasCapacity) {
@@ -77,9 +77,11 @@ const EventOccurrence = ({
     : t('event.register.occurrenceTableBody.full');
   const eventUrl = `${occurrence.event.id}/redirect`;
   const occurrenceUrl = `${occurrence.event.id}/occurrence/${occurrence.id}/enrol`;
-  const isTicketmaster =
-    occurrence?.ticketSystem?.type === TicketSystem.TICKETMASTER;
-  const submitType = getSubmitType(isTicketmaster, hasCapacity);
+  const isExternalTicketSystem = [
+    TicketSystem.TICKETMASTER,
+    TicketSystem.LIPPUPISTE,
+  ].includes(occurrence?.ticketSystem?.type as TicketSystem);
+  const submitType = getSubmitType(isExternalTicketSystem, hasCapacity);
   const submitCell = (
     <>
       {submitType === SubmitTypes.enrol && (
@@ -99,7 +101,7 @@ const EventOccurrence = ({
           subscribeLabel={t('enrollment.button.subscribeToNotifications')}
         />
       )}
-      {submitType === SubmitTypes.ticketmaster && (
+      {submitType === SubmitTypes.externalTicketSystem && (
         <LinkButton to={eventUrl}>
           {t('event.register.occurrenceTableHeader.buttonText')}
         </LinkButton>

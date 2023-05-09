@@ -142,7 +142,10 @@ const Event = () => {
   }
 
   const event = data.event;
-  const isTicketmaster = event.ticketSystem?.type === TicketSystem.TICKETMASTER;
+  const isExternalTicketSystem = [
+    TicketSystem.TICKETMASTER,
+    TicketSystem.LIPPUPISTE,
+  ].includes(event?.ticketSystem?.type as TicketSystem);
 
   return (
     <EventPage event={event} backTo={goBackTo}>
@@ -153,7 +156,7 @@ const Event = () => {
         <Paragraph text={event.description || ''} />
       </div>
       {!past &&
-        (!isTicketmaster ? (
+        (!isExternalTicketSystem ? (
           <EventEnrol
             data={data}
             filterValues={selectedFilterValues}
@@ -166,9 +169,9 @@ const Event = () => {
         ) : (
           <>
             <hr className={styles.divider} />
-            <div className={styles.ticketmasterButtons}>
+            <div className={styles.externalTicketSystemButtons}>
               <LinkButton variant="secondary" to={goBackTo}>
-                {t('event.ticketmasterButtons.back')}
+                {t('event.externalTicketSystemButtons.back')}
               </LinkButton>
               <LinkButton
                 variant="primary"
@@ -176,7 +179,7 @@ const Event = () => {
                   `/profile/child/${childId}/event/${eventId}/redirect`
                 )}
               >
-                {t('event.ticketmasterButtons.continue')}
+                {t('event.externalTicketSystemButtons.continue')}
               </LinkButton>
             </div>
           </>

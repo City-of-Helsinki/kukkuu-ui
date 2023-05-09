@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const ticketmasterEventQuery = gql`
-  query ticketmasterEventQuery($eventId: ID!, $childId: ID!) {
+export const externalTicketSystemEventQuery = gql`
+  query externalTicketSystemEventQuery($eventId: ID!, $childId: ID!) {
     event(id: $eventId) {
       id
       name
