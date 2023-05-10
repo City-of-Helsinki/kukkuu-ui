@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.13.0
+
+### Added
+
+- [#470](https://github.com/City-of-Helsinki/kukkuu-ui/pull/470) Add Lippupiste ticket system
+
 # 1.12.0
 
 ### Added
