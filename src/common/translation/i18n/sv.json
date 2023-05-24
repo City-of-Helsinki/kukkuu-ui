@@ -155,7 +155,7 @@
   "profile": {
     "common": {
       "message": {
-        "serviceDescription": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang.\nVarje fadderbarn kan delta i två evenemang per år, ett evenemang på våren och ett evenemang på hösten. Ibland kan det finnas fler evenemang tillgängliga, om dem informerar vi separat. Vi ses i kulturens tecken!"
+        "serviceDescription": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang. Varje fadderbarn kan delta i två evenemang per år, ett evenemang på våren och ett evenemang på hösten. Ibland kan det finnas fler evenemang tillgängliga, om dem informerar vi separat. Vi ses i kulturens tecken!"
       }
     },
     "addChildMutation": {
@@ -355,10 +355,10 @@
     "back": "Tillbaka",
     "continue": "Ja, jag löser ut ett läsenord!",
     "copyPassword": "Kopiera lösenordet",
-    "description": "Anmälan sker i den externa biljettservicen dit du kan skapa ett gratis konto om du ännu inte har sådant. I biljettservicen kan du bläddra i alla evenemang. Du kan anmäla dig till vilket som helst av dem om det finns lediga platser. ",
+    "description": "Anmälan sker i den externa biljettservicen dit du kan skapa ett gratis konto om du ännu inte har sådant. I biljettservicen kan du bläddra i alla evenemang. Du kan anmäla dig till vilket som helst av dem om det finns lediga platser.",
     "metaTitle": "Anmäl dig till evenemang",
     "passwordAcquireHeading": "Personligt lösenord",
-    "passwordAcquireDescription": "I följande skede får du ett personligt lösenord med vilket du kan boka biljetter i biljettservicen. Observera att dessa evenemang är tillgängliga i biljettservicen webbutik endast genom länken nedan. ",
+    "passwordAcquireDescription": "I följande skede får du ett personligt lösenord med vilket du kan boka biljetter i biljettservicen. Observera att dessa evenemang är tillgängliga i biljettservicen webbutik endast genom länken nedan.",
     "passwordCopyDescription": "Kopiera lösenordet och fortsätt till den externa biljettservicen.",
     "passwordCopySuccess": "Lösenordet har kopierats",
     "passwordLabel": "Ditt personligt lösenord:",
@@ -669,7 +669,7 @@
   },
   "sanityCheck": "kukkuu.sv",
   "externalTicketSystemEvent": {
-    "continueButton": "Fortsätt till extern biljettservice.",
+    "continueButton": "Fortsätt till extern biljettservice",
     "description": "Om du ännu inte har bokat dina biljetter, gör det så snart som möjligt.",
     "extraInfo": "Om du inte bokar platser nu, hittar du lösenordet för senare användning i barnets kommande evenemang.",
     "participantsPerInviteText": "Antal platser per lösenord: {{participantsPerInvite}}.",
@@ -713,7 +713,8 @@
       "searchTextPlaceholder": "Söktext",
       "searchButtonLabelText": "Sök",
       "loadMoreButtonLabelText": "Ladda fler",
-      "noResultsText": "Inga resultat",
+      "noResultsTitle": "Inga resultat",
+      "noResultsText": "",
       "buttonClearFilters": "Töm sökfilter"
     }
   }
