@@ -1,5 +1,11 @@
 # Change Log
 
+# 1.13.1
+
+### Updated
+
+- [#481](https://github.com/City-of-Helsinki/kukkuu-ui/pull/481) Update and sync the translations (from the spreadsheet).
+
 # 1.13.0
 
 ### Added
