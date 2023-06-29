@@ -1,0 +1,13 @@
+{
+  "bootstrap-sha": "36b9494d73c7b8494819eb525b480b665e942bed",
+  "sequential-calls": true,
+  "packages": {
+    ".": {
+      "release-type": "node",
+      "package-name": "kukkuu-ui"
+    }
+  },
+  "plugins": [
+    "sentence-case"
+  ]
+}

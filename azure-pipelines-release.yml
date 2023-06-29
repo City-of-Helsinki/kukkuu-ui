@@ -4,7 +4,7 @@ trigger:
   batch: true
   tags:
     include:
-      - release-*
+      - kukkuu-ui-v*
   paths:
     exclude:
       - README.md
