@@ -38,6 +38,7 @@ resources:
     # Azure DevOps repository
     - repository: kukkuu-pipelines
       type: git
+      ref: refs/heads/review_tunnistamo
       # Azure DevOps project/repository
       name: kukkuu/kukkuu-pipelines
 
