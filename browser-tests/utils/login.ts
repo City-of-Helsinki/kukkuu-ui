@@ -2,6 +2,12 @@ import { ssoLogin } from '../pages/ssoLogin';
 import { githubLogin } from '../pages/githubLogin';
 import { testUsername, testUserPassword } from './settings';
 
+const selectLoginLanguage = async (t: TestController, language: string) => {
+  await t.click(ssoLogin.localeDropdown);
+  // select correct language from dropdown list
+  await t.click(ssoLogin.localeDropdown.find('li').withText(language));
+};
+
 const givePermission = async (t: TestController) => {
   // If the user is show a permission request page
   if (await ssoLogin.permissionPage.exists) {
@@ -30,14 +36,18 @@ export const login = async (t: TestController) => {
   // sso login used by ci builds
   else {
     console.log("Helsinki-tunnus login")
+    await t.click(ssoLogin.loginLink);
+
+    // select locale English
+    await selectLoginLanguage(t, ssoLogin.localeLanguage);
+
     await t
-      .click(ssoLogin.loginLink)
       .typeText(ssoLogin.username, testUsername())
       .typeText(ssoLogin.password, testUserPassword())
       .click(ssoLogin.loginButton);
 
     await givePermission(t);
 
-    await t.wait(3500); // 3.5s
+    await t.wait(1500); // 1.5s
   }
 };
