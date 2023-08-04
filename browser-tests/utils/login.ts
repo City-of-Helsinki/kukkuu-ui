@@ -36,7 +36,11 @@ export const login = async (t: TestController) => {
   // sso login used by ci builds
   else {
     console.log("Helsinki-tunnus login")
-    await t.click(ssoLogin.loginLink);
+    if (await ssoLogin.loginLink.exists) {
+      await t.click(ssoLogin.loginLink);
+    } else {
+      await t.click(ssoLogin.loginLinkShort);
+    }
 
     // select locale English
     await selectLoginLanguage(t, ssoLogin.localeLanguage);
