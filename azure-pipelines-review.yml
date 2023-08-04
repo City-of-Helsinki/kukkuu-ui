@@ -53,7 +53,7 @@ extends:
     # The values here will override the values defined in the harrastukset-pipelines repository
     buildArgs:
       REACT_APP_CMS_URI: 'https://kukkuu.hkih.stage.geniem.io/graphql'
-      REACT_APP_API_URI: 'https://kukkuu.api.test.hel.ninja/graphql'
+      REACT_APP_API_URI: 'https://kukkuu-local.api.dev.hel.ninja'
       REACT_APP_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.test.hel.ninja/check-ticket-validity'
       REACT_APP_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
     # configMap: # pod environment variables
