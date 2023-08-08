@@ -12,7 +12,9 @@ test('As a user I can use event groups to find events', async (t) => {
   // Select first child
   await t.click(godchildrenProfilePage.child(/Hertta Citron/));
 
-  if (process.env['REVIEW'] == '') {
+  console.log(process.env['REVIEW']);
+  // no event data on empty db (on review ), skip until know how to add initial data to db
+  if (!process.env['REVIEW'] || process.env['REVIEW'] === '0') {
     // Expect to see event group invitations
     await t.expect(childrenProfilePage.selectEventGroupButtons.count).gt(0);
 
