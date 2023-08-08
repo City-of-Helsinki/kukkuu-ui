@@ -3,7 +3,6 @@ import { Selector } from 'testcafe';
 
 export const ssoLogin = {
   loginLink: screen.getByText(/Helsinki-tunnus|Helusername/i),
-  loginLinkShort: screen.getByText('Helusername'),
   username: screen.getByLabelText('Email'),
   password: screen.getByLabelText('Password'),
   loginButton: screen.getByDisplayValue('Log In'),
