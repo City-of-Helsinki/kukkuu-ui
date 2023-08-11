@@ -7,7 +7,7 @@ export const register = async (t: TestController) => {
     birthDate: {
       day: '01',
       month: '01',
-      year: '2022',
+      year: '2020',
     },
     city: 'Helsinki',
     postalCode: '00000',
