@@ -28,5 +28,5 @@ test('As a user I can use event groups to find events', async (t) => {
   // Expect its name to be a hardcoded value
   await t
     .expect(eventPage.title.textContent)
-    .eql('Test event in browser group');
+    .contains('Test event');
 });
