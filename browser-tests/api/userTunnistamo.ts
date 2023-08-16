@@ -9,13 +9,13 @@ export const user = {
   selectByUsername: Selector('tr').withText(`${testUsername()}`),
   selectByEmail: Selector('.field-email').withText(`${testUsername()}`).sibling('.field-username').child('a'),
   // user change
-  staffStatus: screen.getByLabelText('Staff status'),
+  staffStatus: screen.getByLabelText(/Ylläpitäjä|Staff status/i),
   staffStatusCheckbox: Selector('#id_is_staff'),
-  superUserStatus: screen.getByLabelText('Superuser status'),
+  superUserStatus: screen.getByLabelText(/Pääkäyttäjä|Superuser status/i),
   superUserStatusCheckbox: Selector('#id_is_superuser'),
   chooseAllPermissions: Selector('#id_user_permissions_add_all_link'),
 
-  saveButton: screen.getByText('Save'),
+  saveButton: screen.getByText(/Tallenna ja poistu|Save/i),
 };
 
 export const routeLogin = () => `${apiUrl()}/admin/`;

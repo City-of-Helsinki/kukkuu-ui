@@ -2,9 +2,9 @@ import { screen } from '@testing-library/testcafe';
 import { testUsername, testUserPassword } from '../utils/settings';
 
 export const loginPage = {
-  loginButton: screen.getByText('Log in'),
-  username: screen.getByLabelText('Username:'),
-  password: screen.getByLabelText('Password:'),
+  loginButton: screen.getByText(/Kirjaudu sisään|Log in/i),
+  username: screen.getByLabelText(/Käyttäjätunnus:|Username:/i),
+  password: screen.getByLabelText(/Salasana:|Password:/i),
 };
 
 export const login = async (t: TestController) => {
