@@ -30,7 +30,7 @@ COPY --chown=1001:1001 package*.json *yarn* ./
 # Install npm depepndencies
 ENV PATH /app/node_modules/.bin:$PATH
 
-RUN yarn
+RUN yarn && yarn cache clean --force
 
 # =============================
 FROM appbase as development
