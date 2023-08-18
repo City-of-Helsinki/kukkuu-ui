@@ -20,7 +20,6 @@ const getApiBaseUrl = () => {
   return url.replace(re, "");
 };
 
-
 export const testUsername = (): string =>
   getEnvOrError('BROWSER_TESTS_USER_NAME');
 
