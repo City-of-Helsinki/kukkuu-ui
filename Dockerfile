@@ -1,6 +1,13 @@
 # ===============================================
-FROM helsinkitest/node:14-slim as appbase
+FROM registry.access.redhat.com/ubi8/nodejs-14 as appbase
 # ===============================================
+# install yarn
+USER root
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN yum -y install yarn
+
+WORKDIR /app
+
 # Offical image has npm log verbosity as info. More info - https://github.com/nodejs/docker-node#verbosity
 ENV NPM_CONFIG_LOGLEVEL warn
 
@@ -17,24 +24,13 @@ ENV PATH=$PATH:/app/.npm-global/bin
 ENV YARN_VERSION 1.19.1
 RUN yarn policies set-version $YARN_VERSION
 
-# Use non-root user
-USER appuser
-
 # Copy package.json and package-lock.json/yarn.lock files
-COPY --chown=appuser:appuser package*.json *yarn* ./
+COPY --chown=default:root package*.json *yarn* ./
 
 # Install npm depepndencies
 ENV PATH /app/node_modules/.bin:$PATH
 
-USER root
-
-RUN apt-install.sh build-essential
-
-USER appuser
 RUN yarn && yarn cache clean --force
-
-USER root
-RUN apt-cleanup.sh build-essential
 
 # =============================
 FROM appbase as development
@@ -45,7 +41,9 @@ ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
 
 # copy in our source code last, as it changes the most
-COPY --chown=appuser:appuser . .
+COPY --chown=default:root . .
+# Use non-root user
+USER default
 
 # Bake package.json start command into the image
 CMD ["react-scripts", "start"]
@@ -69,6 +67,9 @@ RUN yarn build
 # =============================
 FROM nginx:1.17 as production
 # =============================
+
+# Use non-root user
+USER default
 
 # Nginx runs with user "nginx" by default
 COPY --from=staticbuilder --chown=nginx:nginx /app/build /usr/share/nginx/html
