@@ -7,6 +7,9 @@ import helIcon from '../../../../assets/icons/svg/helsinki-fi.svg';
 import helIconSv from '../../../../assets/icons/svg/helsinki-sv.svg';
 import helsinginkaupunginmuseoIcon from '../../../../assets/icons/partners/helsinginkaupunginmuseo.png';
 import helsinginkaupunginorkesteriIcon from '../../../../assets/icons/partners/helsinginkaupunginorkesteri.png';
+import museumFlameIconEN from '../../../../assets/icons/partners/Museum_Flame_EN.svg';
+import museumFlameIconFI from '../../../../assets/icons/partners/Museum_Flame_FI.svg';
+import museumFlameIconSV from '../../../../assets/icons/partners/Museum_Flame_SV.svg';
 import hktIcon from '../../../../assets/icons/partners/hkt.png';
 import hotellijaravintolamuseoIcon from '../../../../assets/icons/partners/hotellijaravintolamuseo.png';
 import hurjaruuthIcon from '../../../../assets/icons/partners/hurjaruuth.png';
@@ -194,6 +197,19 @@ export const partnerList: Partner[] = [
       fi: 'https://www.kulttuuriperintokasvatus.fi/',
       sv: 'https://www.kulttuuriperintokasvatus.fi/pa-svenska/',
       en: 'https://www.kulttuuriperintokasvatus.fi/in-english/',
+    },
+  },
+  {
+    name: 'tiedemuseoliekki',
+    icon: museumFlameIconFI,
+    altLangIcons: {
+      en: museumFlameIconEN,
+      sv: museumFlameIconSV,
+    },
+    url: {
+      fi: 'https://www.helsinki.fi/fi/tiedemuseo-liekki',
+      sv: 'https://www.helsinki.fi/sv/vetenskapsmuseet-lagan',
+      en: 'https://www.helsinki.fi/en/helsinki-university-museum-flame',
     },
   },
   {

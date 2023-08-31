@@ -188,6 +188,19 @@ exports[`renders snapshot correctly 1`] = `
               },
             },
             Object {
+              "altLangIcons": Object {
+                "en": "Museum_Flame_EN.svg",
+                "sv": "Museum_Flame_SV.svg",
+              },
+              "icon": "Museum_Flame_FI.svg",
+              "name": "tiedemuseoliekki",
+              "url": Object {
+                "en": "https://www.helsinki.fi/en/helsinki-university-museum-flame",
+                "fi": "https://www.helsinki.fi/fi/tiedemuseo-liekki",
+                "sv": "https://www.helsinki.fi/sv/vetenskapsmuseet-lagan",
+              },
+            },
+            Object {
               "icon": "mfa.png",
               "name": "mfa",
               "url": Object {
