@@ -399,6 +399,18 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [1.14.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.13.1...kukkuu-ui-v1.14.0) (2023-08-31)
+
+
+### Features
+
+* **logos:** Add Tiedemuseo Liekki & update Hotelli- ja ravintolamuseo ([4d4bfee](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4d4bfeea410419598b14643d7e13445df79484d2))
+
+
+### Bug Fixes
+
+* Dockerfile base on ubi image DEVOPS-560 ([#486](https://github.com/City-of-Helsinki/kukkuu-ui/issues/486)) ([d9b119b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d9b119be6ef8a64c18aeed3a2b593222de11fbea))
+
 ## 0.1.2 (February 6th, 2020)
 
 Special thanks to [@hugovk](https://github.com/hugovk) for the first contributions from outside our team!
