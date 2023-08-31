@@ -211,8 +211,19 @@ exports[`renders snapshot correctly 2`] = `
   </a>
   <a
     className="container"
-    href="https://www.mfa.fi/"
+    href="https://www.helsinki.fi/fi/tiedemuseo-liekki"
     key="16"
+  >
+    <Icon
+      alt="Tiedemuseo Liekki"
+      className="icon"
+      src="Museum_Flame_FI.svg"
+    />
+  </a>
+  <a
+    className="container"
+    href="https://www.mfa.fi/"
+    key="17"
   >
     <Icon
       alt="Arkkitehtuurimuseo"
@@ -223,7 +234,7 @@ exports[`renders snapshot correctly 2`] = `
   <a
     className="container"
     href="https://nukketeatterisampo.fi/"
-    key="17"
+    key="18"
   >
     <Icon
       alt="Nukketeatteri Sampo"
@@ -234,7 +245,7 @@ exports[`renders snapshot correctly 2`] = `
   <a
     className="container"
     href="https://oopperabaletti.fi/"
-    key="18"
+    key="19"
   >
     <Icon
       alt="Suomen kansallisooppera ja -baletti"
@@ -245,7 +256,7 @@ exports[`renders snapshot correctly 2`] = `
   <a
     className="container"
     href="http://www.q-teatteri.fi/"
-    key="19"
+    key="20"
   >
     <Icon
       alt="Q-teatteri"
@@ -256,7 +267,7 @@ exports[`renders snapshot correctly 2`] = `
   <a
     className="container"
     href="https://svenskateatern.fi/fi/alku/"
-    key="20"
+    key="21"
   >
     <Icon
       alt="Svenska Teatern"
@@ -267,7 +278,7 @@ exports[`renders snapshot correctly 2`] = `
   <a
     className="container"
     href="https://www.tanssintalo.fi/"
-    key="21"
+    key="22"
   >
     <Icon
       alt="Tanssin talo"
@@ -278,7 +289,7 @@ exports[`renders snapshot correctly 2`] = `
   <a
     className="container"
     href="https://www.teatteri-ilmio.fi/"
-    key="22"
+    key="23"
   >
     <Icon
       alt="Teatteri ILMI Ö"
@@ -289,7 +300,7 @@ exports[`renders snapshot correctly 2`] = `
   <a
     className="container"
     href="https://www.teatterimuseo.fi/"
-    key="23"
+    key="24"
   >
     <Icon
       alt="Teatterimuseo"
@@ -300,7 +311,7 @@ exports[`renders snapshot correctly 2`] = `
   <a
     className="container"
     href="https://www.valokuvataiteenmuseo.fi/fi"
-    key="24"
+    key="25"
   >
     <Icon
       alt="Suomen valokuvataiteen museo"
