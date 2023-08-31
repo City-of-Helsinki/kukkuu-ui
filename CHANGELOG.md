@@ -399,6 +399,13 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [1.14.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.14.0...kukkuu-ui-v1.14.1) (2023-08-31)
+
+
+### Bug Fixes
+
+* **dockerfile:** Add REACT_APP_ADMIN_TICKET_VALIDATION_URL argument ([7642b17](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7642b17eeae2226df085b29774b26b32789a65e4))
+
 ## [1.14.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.13.1...kukkuu-ui-v1.14.0) (2023-08-31)
 
 
