@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 
 import Navigation from '../navigation/Navigation';
@@ -6,7 +5,9 @@ import Notification from '../notification/Notification';
 import Footer from '../footer/Footer';
 import styles from './pageLayout.module.scss';
 
-const PageLayout: FunctionComponent = ({ children }) => {
+type PageLayoutProps = { children: React.ReactNode };
+
+function PageLayout({ children }: PageLayoutProps) {
   return (
     <HelmetProvider>
       <div className={styles.pageWrapper}>
@@ -21,6 +22,6 @@ const PageLayout: FunctionComponent = ({ children }) => {
       </div>
     </HelmetProvider>
   );
-};
+}
 
 export default PageLayout;
