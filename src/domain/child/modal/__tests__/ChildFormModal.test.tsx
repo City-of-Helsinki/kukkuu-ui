@@ -1,8 +1,6 @@
-import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
-
 import ChildFormModal from '../ChildFormModal';
 import { defaultRegistrationData } from '../../../registration/state/RegistrationReducers';
+import { render } from '../../../../common/test/testingLibraryUtils';
 
 it('renders snapshot correctly', () => {
   const initialValues = Object.assign(
@@ -11,14 +9,15 @@ it('renders snapshot correctly', () => {
     { birthdate: '01-11-2019' }
   );
 
-  const element = shallow(
+  const { container } = render(
     <ChildFormModal
       initialValues={initialValues}
       onSubmit={jest.fn()}
       label="foo"
       isOpen={false}
       setIsOpen={jest.fn()}
+      onCancel={jest.fn()}
     />
   );
-  expect(toJson(element)).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });

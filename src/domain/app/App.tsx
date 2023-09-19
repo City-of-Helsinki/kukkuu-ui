@@ -12,7 +12,6 @@ const App = () => {
   useHashAnchorLinks();
 
   const isSessionPromptOpen = useSelector(isSessionExpiredPromptOpenSelector);
-
   return (
     <PageLayout>
       <AppTitleAnnouncer />

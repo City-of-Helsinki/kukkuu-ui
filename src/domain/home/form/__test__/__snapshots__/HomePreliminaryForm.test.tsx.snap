@@ -1,33 +1,191 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<section
-  className="wrapper"
-  id="register"
->
-  <div
-    className="homeForm"
+<div>
+  <section
+    class="wrapper"
+    id="register"
   >
     <div
-      className="heading"
+      class="homeForm"
     >
-      <h2>
-        Tule mukaan
-      </h2>
-      <p>
-        <Trans
-          i18nKey="multiline"
-        >
+      <div
+        class="heading"
+      >
+        <h2>
+          Tule mukaan
+        </h2>
+        <p>
           Aloita syöttämällä toimintaan osallistuvan lapsen kotipaikkakunta ja syntymäpäivä. Tämän jälkeen pääset kirjautumaan palveluun ja täydentämään lapsesi kummilapsiprofiilin. Tähän menee muutama minuutti.
-        </Trans>
-      </p>
+        </p>
+      </div>
+      <form
+        action="#"
+        id="homePageForm"
+        novalidate=""
+      >
+        <div
+          class="inputWrapper"
+        >
+          <div
+            class="birthdateField"
+          >
+            <label>
+              Lapsen syntymäaika (pp.kk.vvvv)*
+            </label>
+            <div
+              class="inputWrapper"
+            >
+              <div>
+                <div
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                >
+                  <div
+                    class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                  >
+                    <input
+                      aria-label="pv"
+                      class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                      id="child.birthdate.day"
+                      max="31"
+                      maxlength="2"
+                      min="1"
+                      name="child.birthdate.day"
+                      placeholder="pv"
+                      required=""
+                      type="number"
+                      value="1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="dot"
+              >
+                .
+              </div>
+              <div>
+                <div
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                >
+                  <div
+                    class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                  >
+                    <input
+                      aria-label="kk"
+                      class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                      id="child.birthdate.month"
+                      max="12"
+                      maxlength="2"
+                      min="1"
+                      name="child.birthdate.month"
+                      placeholder="kk"
+                      required=""
+                      type="number"
+                      value="1"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="dot"
+              >
+                .
+              </div>
+              <div>
+                <div
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                >
+                  <div
+                    class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                  >
+                    <input
+                      aria-label="vuosi"
+                      class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                      id="child.birthdate.year"
+                      maxlength="4"
+                      min="2019"
+                      name="child.birthdate.year"
+                      placeholder="vuosi"
+                      required=""
+                      type="number"
+                      value="2023"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div
+              class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+            >
+              <label
+                class="FieldLabel-module_label__1zrXK "
+                for="child.homeCity"
+              >
+                Lapsen kotipaikkakunta
+                <span
+                  class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                >
+                  *
+                </span>
+              </label>
+              <div
+                class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+              >
+                <input
+                  class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                  id="child.homeCity"
+                  name="child.homeCity"
+                  placeholder="Lisää lapsen kotipaikkakunta"
+                  required=""
+                  type="text"
+                  value="Helsinki"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz"
+            style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
+          >
+            <input
+              checked=""
+              class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
+              id="verifyInformation"
+              name="verifyInformation"
+              required=""
+              type="checkbox"
+              value="true"
+            />
+            <label
+              class="Checkbox-module_label__L5AN1 checkbox_hds-checkbox__label__3HoD3"
+              for="verifyInformation"
+            >
+              <span
+                class="listLabel"
+              >
+                Vakuutan antamani tiedot oikeaksi
+              </span>
+            </label>
+          </div>
+        </div>
+        <button
+          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO submitButton"
+          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+          type="submit"
+        >
+          <span
+            class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+          >
+            Ilmoittaudu mukaan
+          </span>
+        </button>
+      </form>
     </div>
-    <Formik
-      onSubmit={[Function]}
-      validate={[Function]}
-    >
-      <Component />
-    </Formik>
-  </div>
-</section>
+  </section>
+</div>
 `;

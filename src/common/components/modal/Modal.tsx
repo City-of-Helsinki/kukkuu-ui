@@ -18,6 +18,7 @@ interface ModalProps {
   showHeading?: boolean;
   className?: string;
   icon?: string;
+  children?: React.ReactNode;
 }
 
 const Modal: React.FunctionComponent<ModalProps> = ({
@@ -41,6 +42,8 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   return (
     <div className={styles.modalWrapper}>
       {isOpen && (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore ts2786
         <ReactModal
           isOpen={isOpen}
           onRequestClose={onClose}

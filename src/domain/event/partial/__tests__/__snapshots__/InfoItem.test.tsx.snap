@@ -1,16 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<div
-  className="class"
->
-  <div>
-    <Text
-      className="label"
-      variant="body"
-    >
-      infoItemLabel
-    </Text>
+<div>
+  <div
+    class="class"
+  >
+    <i>
+      iconSource
+    </i>
+    <div>
+      <p
+        class="text body label"
+      >
+        infoItemLabel
+      </p>
+    </div>
   </div>
 </div>
 `;

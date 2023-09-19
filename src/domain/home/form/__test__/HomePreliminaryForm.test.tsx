@@ -1,16 +1,21 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import { UnconnectedHomePreliminaryForm } from '../HomePreliminaryForm';
 import { defaultRegistrationData } from '../../../registration/state/RegistrationReducers';
+import { render } from '../../../../common/test/testingLibraryUtils';
+
+const child = {
+  birthdate: { day: 1, month: 1, year: 2023 },
+  homeCity: 'Helsinki',
+};
 
 it('renders snapshot correctly', () => {
-  const element = shallow(
+  const { container } = render(
     <UnconnectedHomePreliminaryForm
       isAuthenticated={true}
       stateFormValues={defaultRegistrationData.formValues}
-      setFormValues={jest.fn()}
+      setHomeFormValues={jest.fn()}
+      initialValues={{ child, verifyInformation: true }}
+      forwardRef={null}
     />
   );
-  expect(toJson(element)).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });

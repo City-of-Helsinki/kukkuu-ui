@@ -1,3 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders snapshot correctly 1`] = `"<div class=\\"birthdateField\\"><label>Lapsen syntymäaika (pp.kk.vvvv)*</label><div class=\\"inputWrapper\\"><div><div class=\\"TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField\\"><div class=\\"TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG\\"><input type=\\"number\\" class=\\"TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C\\" id=\\"foo.day\\" required=\\"\\" name=\\"foo.day\\" aria-label=\\"pv\\" placeholder=\\"pv\\" min=\\"1\\" max=\\"31\\" maxLength=\\"2\\"/></div></div></div><div class=\\"dot\\">.</div><div><div class=\\"TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField\\"><div class=\\"TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG\\"><input type=\\"number\\" class=\\"TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C\\" id=\\"foo.month\\" required=\\"\\" name=\\"foo.month\\" aria-label=\\"kk\\" placeholder=\\"kk\\" min=\\"1\\" max=\\"12\\" maxLength=\\"2\\"/></div></div></div><div class=\\"dot\\">.</div><div><div class=\\"TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField\\"><div class=\\"TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG\\"><input type=\\"number\\" class=\\"TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C\\" id=\\"foo.year\\" required=\\"\\" name=\\"foo.year\\" maxLength=\\"4\\" min=\\"2019\\" aria-label=\\"vuosi\\" placeholder=\\"vuosi\\"/></div></div></div></div></div>"`;
+exports[`renders snapshot correctly 1`] = `
+<div>
+  <div
+    class="birthdateField"
+  >
+    <label>
+      Lapsen syntymäaika (pp.kk.vvvv)*
+    </label>
+    <div
+      class="inputWrapper"
+    >
+      <div>
+        <div
+          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+        >
+          <div
+            class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+          >
+            <input
+              aria-label="pv"
+              class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+              id="foo.day"
+              max="31"
+              maxlength="2"
+              min="1"
+              name="foo.day"
+              placeholder="pv"
+              required=""
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="dot"
+      >
+        .
+      </div>
+      <div>
+        <div
+          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+        >
+          <div
+            class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+          >
+            <input
+              aria-label="kk"
+              class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+              id="foo.month"
+              max="12"
+              maxlength="2"
+              min="1"
+              name="foo.month"
+              placeholder="kk"
+              required=""
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="dot"
+      >
+        .
+      </div>
+      <div>
+        <div
+          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+        >
+          <div
+            class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+          >
+            <input
+              aria-label="vuosi"
+              class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+              id="foo.year"
+              maxlength="4"
+              min="2019"
+              name="foo.year"
+              placeholder="vuosi"
+              required=""
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

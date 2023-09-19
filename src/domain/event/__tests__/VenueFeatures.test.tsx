@@ -1,8 +1,6 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import VenueFeatures from '../VenueFeatures';
 import { occurrenceQuery_occurrence_venue as VenueType } from '../../api/generatedTypes/occurrenceQuery';
+import { render } from '../../../common/test/testingLibraryUtils';
 
 const venue: VenueType = {
   id: 'auppss',
@@ -16,6 +14,6 @@ const venue: VenueType = {
 };
 
 it('renders snapshot correctly', () => {
-  const element = shallow(<VenueFeatures venue={venue} />);
-  expect(toJson(element)).toMatchSnapshot();
+  const { container } = render(<VenueFeatures venue={venue} />);
+  expect(container).toMatchSnapshot();
 });

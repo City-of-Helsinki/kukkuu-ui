@@ -9,7 +9,7 @@ interface CardProps {
   action: () => void;
   actionText: string;
   alt?: string;
-  children: ReactNode;
+  children?: ReactNode;
   imageElement?: ReactElement;
   focalContent?: ReactNode;
   imageSrc?: string;

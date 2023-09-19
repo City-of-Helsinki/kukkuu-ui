@@ -1,38 +1,130 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<Fragment>
-  <Collapsible
-    item={
-      Object {
-        "body": "zz jk ølk",
-        "header": "Saapuminen",
-      }
-    }
-  />
-  <Collapsible
-    item={
-      Object {
-        "body": "a",
-        "header": "Esteettömyys",
-      }
-    }
-  />
-  <Collapsible
-    item={
-      Object {
-        "body": "zup",
-        "header": "WC-tilat ja lastenhoitohuone",
-      }
-    }
-  />
-  <Collapsible
-    item={
-      Object {
-        "body": "b",
-        "header": "Lisätietoa",
-      }
-    }
-  />
-</Fragment>
+<div>
+  <div
+    class=""
+  >
+    <button
+      aria-controls="collapsible_1"
+      aria-expanded="false"
+      class="header"
+    >
+      <h3>
+        Saapuminen
+      </h3>
+      <div
+        class="imgWrapper arrow"
+      >
+        <img
+          alt=""
+          src="angleDown.svg"
+        />
+      </div>
+    </button>
+    <div
+      aria-hidden="true"
+      class="content"
+      id="collapsible_1"
+    >
+      <p>
+        zz jk ølk
+      </p>
+    </div>
+    <hr />
+  </div>
+  <div
+    class=""
+  >
+    <button
+      aria-controls="collapsible_2"
+      aria-expanded="false"
+      class="header"
+    >
+      <h3>
+        Esteettömyys
+      </h3>
+      <div
+        class="imgWrapper arrow"
+      >
+        <img
+          alt=""
+          src="angleDown.svg"
+        />
+      </div>
+    </button>
+    <div
+      aria-hidden="true"
+      class="content"
+      id="collapsible_2"
+    >
+      <p>
+        a
+      </p>
+    </div>
+    <hr />
+  </div>
+  <div
+    class=""
+  >
+    <button
+      aria-controls="collapsible_3"
+      aria-expanded="false"
+      class="header"
+    >
+      <h3>
+        WC-tilat ja lastenhoitohuone
+      </h3>
+      <div
+        class="imgWrapper arrow"
+      >
+        <img
+          alt=""
+          src="angleDown.svg"
+        />
+      </div>
+    </button>
+    <div
+      aria-hidden="true"
+      class="content"
+      id="collapsible_3"
+    >
+      <p>
+        zup
+      </p>
+    </div>
+    <hr />
+  </div>
+  <div
+    class=""
+  >
+    <button
+      aria-controls="collapsible_4"
+      aria-expanded="false"
+      class="header"
+    >
+      <h3>
+        Lisätietoa
+      </h3>
+      <div
+        class="imgWrapper arrow"
+      >
+        <img
+          alt=""
+          src="angleDown.svg"
+        />
+      </div>
+    </button>
+    <div
+      aria-hidden="true"
+      class="content"
+      id="collapsible_4"
+    >
+      <p>
+        b
+      </p>
+    </div>
+    <hr />
+  </div>
+</div>
 `;

@@ -1,55 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<Fragment>
+<div>
   <div
-    className="heroWrapper"
-    style={
-      Object {
-        "backgroundImage": "url(\\"a\\")",
-      }
-    }
+    class="heroWrapper"
+    style="background-image: url(a);"
     title="b"
   >
     <div
-      className="backButtonWrapper"
+      class="backButtonWrapper"
     >
       <div
-        className="backButtonInnerWrapper"
+        class="backButtonInnerWrapper"
       >
-        <Link
+        <a
           aria-label="Palaa"
-          className="backButton"
-          to="/back-to"
+          class="backButton"
+          href="/back-to"
         >
-          <Icon
-            className="backButtonIcon"
-            src="arrowLeft.svg"
-          />
-        </Link>
+          <div
+            class="imgWrapper backButtonIcon"
+          >
+            <img
+              alt=""
+              src="arrowLeft.svg"
+            />
+          </div>
+        </a>
       </div>
     </div>
   </div>
-  <PageWrapper
-    className="wrapper"
-    title="event name"
+  <div
+    class="pageWrapper wrapper"
   >
     <div
-      className="eventWrapper"
-      role="main"
+      class="container"
     >
       <div
-        className="event"
+        class="eventWrapper"
+        role="main"
       >
         <div
-          className="heading"
+          class="event"
         >
-          <h1>
-            event name
-          </h1>
+          <div
+            class="heading"
+          >
+            <h1>
+              event name
+            </h1>
+          </div>
         </div>
       </div>
     </div>
-  </PageWrapper>
-</Fragment>
+  </div>
+</div>
 `;

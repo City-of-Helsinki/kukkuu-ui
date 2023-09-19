@@ -1,3 +1,95 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders snapshot correctly 1`] = `"<div class=\\"footerWrapper\\"><div class=\\"Koros-module_koros__1r3rg koros\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" aria-hidden=\\"true\\" width=\\"100%\\" height=\\"85\\"><defs><pattern id=\\"koros_basic-1\\" x=\\"0\\" y=\\"0\\" width=\\"106\\" height=\\"85\\" patternUnits=\\"userSpaceOnUse\\"><path transform=\\"scale(5.3)\\" d=\\"M0,800h20V0c-4.9,0-5,2.6-9.9,2.6S5,0,0,0V800z\\"></path></pattern></defs><rect fill=\\"url(#koros_basic-1)\\" width=\\"100%\\" height=\\"85\\"></rect></svg></div><div class=\\"container\\"><div class=\\"footer\\"><div class=\\"helsinkiLogo fi\\"></div><div class=\\"copyright\\"><p>© Helsingin kaupunki</p></div><div class=\\"links\\"><a href=\\"/accessibility#start\\">Saavutettavuusseloste</a> • <a href=\\"/terms\\">Käyttöehdot</a> • <a href=\\"https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kuva/Kulttuurin%20kummilapset%20-kummiperherekisteri.pdf\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">Rekisteriseloste</a> • <a href=\\"https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/tietoa-helsingista/tietosuoja/\\" rel=\\"noopener noreferrer\\">Tietosuoja</a></div></div></div></div>"`;
+exports[`renders snapshot correctly 1`] = `
+<div>
+  <div
+    class="footerWrapper"
+  >
+    <div
+      class="Koros-module_koros__1r3rg koros"
+    >
+      <svg
+        aria-hidden="true"
+        height="85"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <pattern
+            height="85"
+            id="koros_basic-1"
+            patternUnits="userSpaceOnUse"
+            width="106"
+            x="0"
+            y="0"
+          >
+            <path
+              d="M0,800h20V0c-4.9,0-5,2.6-9.9,2.6S5,0,0,0V800z"
+              transform="scale(5.3)"
+            />
+          </pattern>
+        </defs>
+        <rect
+          fill="url(#koros_basic-1)"
+          height="85"
+          width="100%"
+        />
+      </svg>
+    </div>
+    <div
+      class="container"
+    >
+      <div
+        class="footer"
+      >
+        <div
+          class="helsinkiLogo fi"
+        />
+        <div
+          class="copyright"
+        >
+          <p>
+            © Helsingin kaupunki
+          </p>
+        </div>
+        <div
+          class="links"
+        >
+          <a
+            href="/accessibility#start"
+          >
+            Saavutettavuusseloste
+          </a>
+           
+          •
+           
+          <a
+            href="/terms"
+          >
+            Käyttöehdot
+          </a>
+           
+          •
+           
+          <a
+            href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kuva/Kulttuurin%20kummilapset%20-kummiperherekisteri.pdf"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Rekisteriseloste
+          </a>
+           
+          •
+           
+          <a
+            href="https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/tietoa-helsingista/tietosuoja/"
+            rel="noopener noreferrer"
+          >
+            Tietosuoja
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
