@@ -1,48 +1,1069 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Home /> renders snapshot correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
->
-  <MockedProvider
-    addTypename={false}
+<div>
+  <div
+    class="pageWrapper"
   >
-    <HelmetProvider
-      context={Object {}}
+    <div
+      class="container gridLayoutOverride"
     >
-      <Router
-        history={
-          Object {
-            "action": "POP",
-            "block": [Function],
-            "createHref": [Function],
-            "go": [Function],
-            "goBack": [Function],
-            "goForward": [Function],
-            "length": 1,
-            "listen": [Function],
-            "location": Object {
-              "hash": "",
-              "pathname": "/",
-              "search": "",
-              "state": undefined,
-            },
-            "push": [Function],
-            "replace": [Function],
-          }
-        }
+      <div
+        class="home"
       >
-        <Home />
-      </Router>
-    </HelmetProvider>
-  </MockedProvider>
-</Provider>
+        <section
+          class="heroWrapper"
+        >
+          <div
+            class="heroContainer"
+          >
+            <div
+              class="hero"
+            >
+              <h1>
+                Kulttuurin kummilapset
+              </h1>
+              <p
+                class="bodyXl"
+              >
+                Kaikki vuodesta 2020 eteenpäin syntyvät helsinkiläiset lapset kutsutaan kulttuurin kummilapsiksi. Kummilapset saavat kutsun vuosittain kahteen tapahtumaan, kunnes lapsi aloittaa koulun. Tapahtumat ovat maksuttomia.
+              </p>
+              <div
+                class="buttonGroup"
+              >
+                <button
+                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO registerButton"
+                  style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                  type="button"
+                >
+                  <span
+                    class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                  >
+                    Ilmoittaudu mukaan
+                  </span>
+                </button>
+                <button
+                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO authenticateButton"
+                  style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                  type="button"
+                >
+                  <span
+                    class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                  >
+                    Kirjaudu sisään
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="kidsImageContainer"
+          >
+            <div
+              class="kidsImage"
+            />
+          </div>
+        </section>
+        <section
+          class="wrapper"
+        >
+          <div
+            class="innerwrapper"
+          >
+            <h2>
+              Lisätietoa palvelusta eri kielillä
+            </h2>
+            <p>
+              Lataa lisätietoa Kultuurin kummilapset -palvelusta omalla kielelläsi.
+            </p>
+            <div
+              class="link"
+            >
+              <a
+                href="/brochures/fr.pdf"
+              >
+                <span
+                  lang="fr"
+                >
+                  Français
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  ranska
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/ru.pdf"
+              >
+                <span
+                  lang="ru"
+                >
+                  Русский
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  venäjä
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/es.pdf"
+              >
+                <span
+                  lang="es"
+                >
+                  Español
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  espanja
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/zh.pdf"
+              >
+                <span
+                  lang="zh"
+                >
+                  中文
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  kiina
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/npi.pdf"
+              >
+                <span
+                  lang="npi"
+                >
+                  नेपाली गण
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  nepali
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/som.pdf"
+              >
+                <span
+                  lang="som"
+                >
+                  Somali
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  somali
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/fas.pdf"
+              >
+                <span
+                  lang="fas"
+                >
+                  زبان فارسی
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  persia
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/et.pdf"
+              >
+                <span
+                  lang="et"
+                >
+                  Eesti
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  viro
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/tur.pdf"
+              >
+                <span
+                  lang="tur"
+                >
+                  Türkçe
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  turkki
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/ara.pdf"
+              >
+                <span
+                  lang="ar"
+                >
+                  اَلْعَرَبِيَّةُ
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  arabia
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/ckb.pdf"
+              >
+                <span
+                  lang="ckb"
+                >
+                  کوردی
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  kurdi
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/vi.pdf"
+              >
+                <span
+                  lang="vi"
+                >
+                  Tiếng Việt
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  vietnam
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/en.pdf"
+              >
+                <span
+                  lang="en"
+                >
+                  English
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  englanti
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/sv.pdf"
+              >
+                <span
+                  lang="sv"
+                >
+                  Svenska
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  ruotsi
+                  )
+                </span>
+              </a>
+              <a
+                href="/brochures/fi.pdf"
+              >
+                <span
+                  lang="fi"
+                >
+                  Suomi
+                </span>
+                <span>
+                   
+                </span>
+                <span
+                  class="localizedLanguage"
+                  lang="fi"
+                >
+                  (
+                  suomi
+                  )
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section
+          class="wrapper"
+        >
+          <div
+            class="instructions"
+          >
+            <h2>
+              Miten pääset mukaan toimintaan?
+            </h2>
+            <div
+              class="iconContainer"
+            >
+              <div
+                class="iconBox"
+              >
+                <div
+                  class="imgWrapper icon"
+                >
+                  <img
+                    alt=""
+                    src="homeKid.svg"
+                  />
+                </div>
+                <p>
+                  Jos lapsi asuu Helsingissä ja on syntynyt vuonna 2020 tai sen jälkeen, voit ilmoittaa hänet kummilapseksi ja rekisteröityä palveluun.
+                </p>
+              </div>
+              <div
+                class="iconBox"
+              >
+                <div
+                  class="imgWrapper icon"
+                >
+                  <img
+                    alt=""
+                    src="homeTicket.svg"
+                  />
+                </div>
+                <p>
+                  Saat sähköpostiisi kaksi kertaa vuodessa kutsun ja palvelun kautta pääset ilmoittautumaan sinulle parhaiten sopiviin tapahtumiin.
+                </p>
+              </div>
+              <div
+                class="iconBox"
+              >
+                <div
+                  class="imgWrapper icon"
+                >
+                  <img
+                    alt=""
+                    src="homeTheater.svg"
+                  />
+                </div>
+                <p>
+                  Voit kokea lapsen kanssa hauskoja, yhteisiä hetkiä kulttuurin parissa. Tapahtumat on suunniteltu tukemaan lapsen kehitystä ja hyvinvointia.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="wrapper"
+          id="register"
+        >
+          <div
+            class="homeForm"
+          >
+            <div
+              class="heading"
+            >
+              <h2>
+                Tule mukaan
+              </h2>
+              <p>
+                Aloita syöttämällä toimintaan osallistuvan lapsen kotipaikkakunta ja syntymäpäivä. Tämän jälkeen pääset kirjautumaan palveluun ja täydentämään lapsesi kummilapsiprofiilin. Tähän menee muutama minuutti.
+              </p>
+            </div>
+            <form
+              action="#"
+              id="homePageForm"
+              novalidate=""
+            >
+              <div
+                class="inputWrapper"
+              >
+                <div
+                  class="birthdateField"
+                >
+                  <label>
+                    Lapsen syntymäaika (pp.kk.vvvv)*
+                  </label>
+                  <div
+                    class="inputWrapper"
+                  >
+                    <div>
+                      <div
+                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                      >
+                        <div
+                          class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                        >
+                          <input
+                            aria-label="pv"
+                            class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                            id="child.birthdate.day"
+                            max="31"
+                            maxlength="2"
+                            min="1"
+                            name="child.birthdate.day"
+                            placeholder="pv"
+                            required=""
+                            type="number"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="dot"
+                    >
+                      .
+                    </div>
+                    <div>
+                      <div
+                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                      >
+                        <div
+                          class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                        >
+                          <input
+                            aria-label="kk"
+                            class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                            id="child.birthdate.month"
+                            max="12"
+                            maxlength="2"
+                            min="1"
+                            name="child.birthdate.month"
+                            placeholder="kk"
+                            required=""
+                            type="number"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="dot"
+                    >
+                      .
+                    </div>
+                    <div>
+                      <div
+                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                      >
+                        <div
+                          class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                        >
+                          <input
+                            aria-label="vuosi"
+                            class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                            id="child.birthdate.year"
+                            maxlength="4"
+                            min="2019"
+                            name="child.birthdate.year"
+                            placeholder="vuosi"
+                            required=""
+                            type="number"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                  >
+                    <label
+                      class="FieldLabel-module_label__1zrXK "
+                      for="child.homeCity"
+                    >
+                      Lapsen kotipaikkakunta
+                      <span
+                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                      >
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                    >
+                      <input
+                        class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                        id="child.homeCity"
+                        name="child.homeCity"
+                        placeholder="Lisää lapsen kotipaikkakunta"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz"
+                  style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
+                >
+                  <input
+                    class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
+                    id="verifyInformation"
+                    name="verifyInformation"
+                    required=""
+                    type="checkbox"
+                    value="false"
+                  />
+                  <label
+                    class="Checkbox-module_label__L5AN1 checkbox_hds-checkbox__label__3HoD3"
+                    for="verifyInformation"
+                  >
+                    <span
+                      class="listLabel"
+                    >
+                      Vakuutan antamani tiedot oikeaksi
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <button
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO submitButton"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                type="submit"
+              >
+                <span
+                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                >
+                  Ilmoittaudu mukaan
+                </span>
+              </button>
+            </form>
+          </div>
+        </section>
+        <section
+          class="wrapper"
+        >
+          <div
+            class="innerwrapper"
+          >
+            <div
+              class="embedContainer"
+            >
+              <iframe
+                allowfullscreen=""
+                frameborder="0"
+                id="ytplayer"
+                src="https://www.youtube.com/embed/jYteckzo1uA?controls=0&fs=0&hl=fi&autoplay=1"
+                title="video"
+              />
+            </div>
+          </div>
+        </section>
+        <section
+          class="wrapper"
+        >
+          <div
+            class="innerwrapper"
+          >
+            <h2>
+              Yhteistyökumppanit
+            </h2>
+            <div
+              class="partners"
+            >
+              <div
+                class="big"
+              >
+                <a
+                  class="container"
+                  href="https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/fi/palvelut/yleiset-kulttuuripalvelut/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="home.partners.partner.hel"
+                      src="helsinki-fi.svg"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://jaes.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Jane ja Aatos Erkon säätiö"
+                      src="jaes.png"
+                    />
+                  </div>
+                </a>
+              </div>
+              <div
+                class="small"
+              >
+                <a
+                  class="container"
+                  href="https://amosrex.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Amos Rex"
+                      src="amosrex.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://cirko.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Cirko – Uuden sirkuksen keskus"
+                      src="cirko.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://dotdot.fi/suomeksi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="DOT ry"
+                      src="dotdot.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.designmuseum.fi/fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Designmuseo"
+                      src="designmuseum.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.hamhelsinki.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Helsingin taidemuseo HAM"
+                      src="hamhelsinki.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.helsinginkaupunginmuseo.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Helsingin kaupunginmuseo"
+                      src="helsinginkaupunginmuseo.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://helsinginkaupunginorkesteri.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Helsingin kaupunginorkesteri"
+                      src="helsinginkaupunginorkesteri.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://hkt.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Helsingin Kaupunginteatteri"
+                      src="hkt.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.hotellijaravintolamuseo.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Hotelli- ja ravintolamuseo"
+                      src="hotellijaravintolamuseo.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.hurjaruuth.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Tanssiteatteri Hurjaruuth"
+                      src="hurjaruuth.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.kaapelitehdas.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="home.partners.partner.kaapeli"
+                      src="Kaapeli.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="home.partners.partner.kansallisgalleria"
+                      src="Finnish_National_Gallery_Logo_FI.svg"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.kansallismuseo.fi/fi/kansallismuseo"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Kansallismuseo"
+                      src="kansallismuseo.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://kansallisteatteri.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Kansallisteatteri"
+                      src="kansallisteatteri.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://kavi.fi/kansallinen-audiovisuaalinen-instituutti-palvelee/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Kansallinen audiovisuaalinen instituutti"
+                      src="kavi.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.kulttuuriperintokasvatus.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Suomen Kulttuuriperintökasvatuksen seura"
+                      src="kulttuuriperintokasvatus.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.helsinki.fi/fi/tiedemuseo-liekki"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Tiedemuseo Liekki"
+                      src="Museum_Flame_FI.svg"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.mfa.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Arkkitehtuurimuseo"
+                      src="mfa.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://nukketeatterisampo.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Nukketeatteri Sampo"
+                      src="nukketeatterisampo.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://oopperabaletti.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Suomen kansallisooppera ja -baletti"
+                      src="oopperabaletti.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="http://www.q-teatteri.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Q-teatteri"
+                      src="qteatteri.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://svenskateatern.fi/fi/alku/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Svenska Teatern"
+                      src="svenskateatern.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.tanssintalo.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Tanssin talo"
+                      src="tanssintalo.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.teatteri-ilmio.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Teatteri ILMI Ö"
+                      src="teatteriilmio.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.teatterimuseo.fi/"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Teatterimuseo"
+                      src="teatterimuseo.png"
+                    />
+                  </div>
+                </a>
+                <a
+                  class="container"
+                  href="https://www.valokuvataiteenmuseo.fi/fi"
+                >
+                  <div
+                    class="imgWrapper icon"
+                  >
+                    <img
+                      alt="Suomen valokuvataiteen museo"
+                      src="valokuvataiteenmuseo.png"
+                    />
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="wrapper"
+        >
+          <div
+            class="contact"
+          >
+            <h2>
+              Ota yhteyttä
+            </h2>
+            <div
+              class="contactPersons"
+            >
+              <div
+                class="service"
+              >
+                <h3>
+                  Kulttuurin kummilapset -palvelu
+                </h3>
+                <p>
+                  Ota yhteyttä, jos haluat lisätietoja tai antaa palautetta verkkopalvelun toiminnasta.
+                </p>
+                <a
+                  href="mailto:kulttuurin.kummilapset@hel.fi"
+                >
+                  kulttuurin.kummilapset@hel.fi
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
 `;

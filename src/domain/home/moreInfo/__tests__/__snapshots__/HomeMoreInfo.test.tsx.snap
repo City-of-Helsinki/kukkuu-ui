@@ -1,99 +1,324 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<section
-  className="wrapper"
->
-  <div
-    className="innerwrapper"
+<div>
+  <section
+    class="wrapper"
   >
-    <h2>
-      Lisätietoa palvelusta eri kielillä
-    </h2>
-    <p>
-      Lataa lisätietoa Kultuurin kummilapset -palvelusta omalla kielelläsi.
-    </p>
-    <MoreInfoLinkList
-      links={
-        Array [
-          Object {
-            "langCode": "fr",
-            "langName": "Français",
-            "url": "/brochures/fr.pdf",
-          },
-          Object {
-            "langCode": "ru",
-            "langName": "Русский",
-            "url": "/brochures/ru.pdf",
-          },
-          Object {
-            "langCode": "es",
-            "langName": "Español",
-            "url": "/brochures/es.pdf",
-          },
-          Object {
-            "langCode": "zh",
-            "langName": "中文",
-            "url": "/brochures/zh.pdf",
-          },
-          Object {
-            "langCode": "npi",
-            "langName": "नेपाली गण",
-            "url": "/brochures/npi.pdf",
-          },
-          Object {
-            "langCode": "som",
-            "langName": "Somali",
-            "url": "/brochures/som.pdf",
-          },
-          Object {
-            "langCode": "fas",
-            "langName": "زبان فارسی",
-            "url": "/brochures/fas.pdf",
-          },
-          Object {
-            "langCode": "et",
-            "langName": "Eesti",
-            "url": "/brochures/et.pdf",
-          },
-          Object {
-            "langCode": "tur",
-            "langName": "Türkçe",
-            "url": "/brochures/tur.pdf",
-          },
-          Object {
-            "langCode": "ar",
-            "langName": "اَلْعَرَبِيَّةُ",
-            "url": "/brochures/ara.pdf",
-          },
-          Object {
-            "langCode": "ckb",
-            "langName": "کوردی",
-            "url": "/brochures/ckb.pdf",
-          },
-          Object {
-            "langCode": "vi",
-            "langName": "Tiếng Việt",
-            "url": "/brochures/vi.pdf",
-          },
-          Object {
-            "langCode": "en",
-            "langName": "English",
-            "url": "/brochures/en.pdf",
-          },
-          Object {
-            "langCode": "sv",
-            "langName": "Svenska",
-            "url": "/brochures/sv.pdf",
-          },
-          Object {
-            "langCode": "fi",
-            "langName": "Suomi",
-            "url": "/brochures/fi.pdf",
-          },
-        ]
-      }
-    />
-  </div>
-</section>
+    <div
+      class="innerwrapper"
+    >
+      <h2>
+        Lisätietoa palvelusta eri kielillä
+      </h2>
+      <p>
+        Lataa lisätietoa Kultuurin kummilapset -palvelusta omalla kielelläsi.
+      </p>
+      <div
+        class="link"
+      >
+        <a
+          href="/brochures/fr.pdf"
+        >
+          <span
+            lang="fr"
+          >
+            Français
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            ranska
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/ru.pdf"
+        >
+          <span
+            lang="ru"
+          >
+            Русский
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            venäjä
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/es.pdf"
+        >
+          <span
+            lang="es"
+          >
+            Español
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            espanja
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/zh.pdf"
+        >
+          <span
+            lang="zh"
+          >
+            中文
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            kiina
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/npi.pdf"
+        >
+          <span
+            lang="npi"
+          >
+            नेपाली गण
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            nepali
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/som.pdf"
+        >
+          <span
+            lang="som"
+          >
+            Somali
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            somali
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/fas.pdf"
+        >
+          <span
+            lang="fas"
+          >
+            زبان فارسی
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            persia
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/et.pdf"
+        >
+          <span
+            lang="et"
+          >
+            Eesti
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            viro
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/tur.pdf"
+        >
+          <span
+            lang="tur"
+          >
+            Türkçe
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            turkki
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/ara.pdf"
+        >
+          <span
+            lang="ar"
+          >
+            اَلْعَرَبِيَّةُ
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            arabia
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/ckb.pdf"
+        >
+          <span
+            lang="ckb"
+          >
+            کوردی
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            kurdi
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/vi.pdf"
+        >
+          <span
+            lang="vi"
+          >
+            Tiếng Việt
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            vietnam
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/en.pdf"
+        >
+          <span
+            lang="en"
+          >
+            English
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            englanti
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/sv.pdf"
+        >
+          <span
+            lang="sv"
+          >
+            Svenska
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            ruotsi
+            )
+          </span>
+        </a>
+        <a
+          href="/brochures/fi.pdf"
+        >
+          <span
+            lang="fi"
+          >
+            Suomi
+          </span>
+          <span>
+             
+          </span>
+          <span
+            class="localizedLanguage"
+            lang="fi"
+          >
+            (
+            suomi
+            )
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
 `;

@@ -1,13 +1,7 @@
-import { shallow } from 'enzyme';
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import { render } from '../../../../common/test/testingLibraryUtils';
 import Footer from '../Footer';
 
 it('renders snapshot correctly', () => {
-  const footer = shallow(
-    <Router>
-      <Footer />
-    </Router>
-  );
-  expect(footer.html()).toMatchSnapshot();
+  const { container } = render(<Footer />);
+  expect(container).toMatchSnapshot();
 });

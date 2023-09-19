@@ -1,9 +1,8 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import { render } from '@testing-library/react';
 
 import NavigationConfirm from '../NavigationConfirm';
 
 it('renders snapshot correctly', () => {
-  const prompt = shallow(<NavigationConfirm isHalfFilling={true} />);
-  expect(toJson(prompt)).toMatchSnapshot();
+  const { container } = render(<NavigationConfirm isHalfFilling={true} />);
+  expect(container).toMatchSnapshot();
 });

@@ -1,12 +1,8 @@
-import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
-
+import { render } from '../../../../common/test/testingLibraryUtils';
 import { moreInfoLinks } from '../constants/MoreInfoConstants';
 import MoreInfoLinkList from '../MoreInfoLinkList';
 
 it('renders snapshot correctly', () => {
-  const mainPartnersLogoList = shallow(
-    <MoreInfoLinkList links={moreInfoLinks} />
-  );
-  expect(toJson(mainPartnersLogoList)).toMatchSnapshot();
+  const { container } = render(<MoreInfoLinkList links={moreInfoLinks} />);
+  expect(container).toMatchSnapshot();
 });

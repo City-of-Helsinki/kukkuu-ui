@@ -1,9 +1,8 @@
-import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import HomeVideo from '../HomeVideo';
 
 it('renders snapshot correctly', () => {
-  const homeVideo = shallow(<HomeVideo />);
-  expect(toJson(homeVideo)).toMatchSnapshot();
+  const { container } = render(<HomeVideo />);
+  expect(container).toMatchSnapshot();
 });

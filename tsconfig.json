@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,16 +14,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["node", "jest", "@testing-library/jest-dom"]
   },
-  "include": [
-    "src"
-  ],
+  "include": ["src"],
   "exclude": [
-    "**/__mocks__/*",
     "src/**/*.stories.*",
-    "**/*.test.*",
-    "src/test/**",
     "src/domain/api/generatedTypes/**/*.ts",
     "src/utils/cmsMockDataUtils.ts"
   ]

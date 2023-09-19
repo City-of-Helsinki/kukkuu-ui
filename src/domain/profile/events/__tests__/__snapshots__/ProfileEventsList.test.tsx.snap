@@ -27,9 +27,7 @@ exports[`Renders snapshot correctly 1`] = `
             >
               <div
                 class="qrWrapper"
-              >
-                <div />
-              </div>
+              />
             </div>
             <div
               class="content"
@@ -114,7 +112,6 @@ exports[`Renders snapshot correctly 1`] = `
                         >
                           24.2.2020
                         </p>
-                        
                       </div>
                     </div>
                     <div
@@ -145,7 +142,6 @@ exports[`Renders snapshot correctly 1`] = `
                         >
                           09:09 - 10:09
                         </p>
-                        
                       </div>
                     </div>
                   </div>

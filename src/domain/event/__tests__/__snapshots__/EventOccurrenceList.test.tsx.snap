@@ -1,83 +1,173 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<table
-  className="eventOccurrenceList"
->
-  <tbody>
-    <tr
-      className="mobileHeader"
-    >
-      <th>
-        Tapahtuman tiedot
-      </th>
-      <th>
-        Vapaat paikat
-      </th>
-    </tr>
-    <tr
-      className="desktopHeader"
-    >
-      <th>
-        Päivämäärä
-      </th>
-      <th>
-        Kellonaika
-      </th>
-      <th>
-        Tapahtumapaikka
-      </th>
-      <th
-        className="freePlaces"
+<div>
+  <table
+    class="eventOccurrenceList"
+  >
+    <tbody>
+      <tr
+        class="mobileHeader"
       >
-        Vapaat paikat
-      </th>
-      <th />
-    </tr>
-    <EventOccurrence
-      canEnroll={true}
-      key="T2NjdXJyZW5jZU5vZGU6Mg=="
-      occurrence={
-        Object {
-          "event": Object {
-            "id": "asdf",
-            "name": "asdf",
-          },
-          "id": "T2NjdXJyZW5jZU5vZGU6Mg==",
-          "remainingCapacity": 99,
-          "time": "2020-03-08T04:00:00+00:00",
-          "venue": Object {
-            "address": "Mannerheimintie 13A, Helsinki",
-            "description": "Helsingin oma Musiikkitalo",
-            "id": "fdsa",
-            "name": "Musiikkitalo",
-          },
-        }
-      }
-      showFreePlaces={true}
-    />
-    <EventOccurrence
-      canEnroll={true}
-      key="T2NjdXJyZW5jZU5vZGU6Mg=="
-      occurrence={
-        Object {
-          "event": Object {
-            "id": "asdf",
-            "name": "asdf",
-          },
-          "id": "T2NjdXJyZW5jZU5vZGU6Mg==",
-          "remainingCapacity": 88,
-          "time": "2020-04-08T04:00:00+00:00",
-          "venue": Object {
-            "address": "Rainbow 123",
-            "description": "Under the",
-            "id": "fdsa1",
-            "name": "Somewhere",
-          },
-        }
-      }
-      showFreePlaces={true}
-    />
-  </tbody>
-</table>
+        <th>
+          Tapahtuman tiedot
+        </th>
+        <th>
+          Vapaat paikat
+        </th>
+      </tr>
+      <tr
+        class="desktopHeader"
+      >
+        <th>
+          Päivämäärä
+        </th>
+        <th>
+          Kellonaika
+        </th>
+        <th>
+          Tapahtumapaikka
+        </th>
+        <th
+          class="freePlaces"
+        >
+          Vapaat paikat
+        </th>
+        <th />
+      </tr>
+      <tr
+        class="occurrence isMobile"
+      >
+        <td>
+          Musiikkitalo
+           
+          <time
+            datetime="2020-03-08 04:00:00.000"
+          >
+            su 8.3.2020
+             
+            04:00
+          </time>
+        </td>
+        <td
+          class="remainingCapacity"
+        >
+          99
+        </td>
+        <td
+          class="occurrenceSubmit"
+        >
+          <a
+            class="hds-button button"
+            href="/asdf/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
+          >
+            <span
+              class="hds-button__label"
+            >
+              Ilmoittaudu
+            </span>
+          </a>
+        </td>
+      </tr>
+      <tr
+        class="occurrence"
+      >
+        <td>
+          su 8.3.2020
+        </td>
+        <td>
+          04:00
+        </td>
+        <td>
+          Musiikkitalo
+        </td>
+        <td
+          class="remainingCapacity"
+        >
+          99
+        </td>
+        <td
+          class="occurrenceSubmit"
+        >
+          <a
+            class="hds-button button"
+            href="/asdf/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
+          >
+            <span
+              class="hds-button__label"
+            >
+              Ilmoittaudu
+            </span>
+          </a>
+        </td>
+      </tr>
+      <tr
+        class="occurrence isMobile"
+      >
+        <td>
+          Somewhere
+           
+          <time
+            datetime="2020-04-08 04:00:00.000"
+          >
+            ke 8.4.2020
+             
+            04:00
+          </time>
+        </td>
+        <td
+          class="remainingCapacity"
+        >
+          88
+        </td>
+        <td
+          class="occurrenceSubmit"
+        >
+          <a
+            class="hds-button button"
+            href="/asdf/redirect"
+          >
+            <span
+              class="hds-button__label"
+            >
+              Ilmoittaudu
+            </span>
+          </a>
+        </td>
+      </tr>
+      <tr
+        class="occurrence"
+      >
+        <td>
+          ke 8.4.2020
+        </td>
+        <td>
+          04:00
+        </td>
+        <td>
+          Somewhere
+        </td>
+        <td
+          class="remainingCapacity"
+        >
+          88
+        </td>
+        <td
+          class="occurrenceSubmit"
+        >
+          <a
+            class="hds-button button"
+            href="/asdf/redirect"
+          >
+            <span
+              class="hds-button__label"
+            >
+              Ilmoittaudu
+            </span>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 `;

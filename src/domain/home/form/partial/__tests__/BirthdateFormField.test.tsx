@@ -1,19 +1,17 @@
-import { shallow } from 'enzyme';
 import { FieldArray } from 'formik';
 
 import BirthdateFormField from '../BirthdateFormField';
 import TestForm from '../../../../../common/test/TestForm';
+import { render } from '../../../../../common/test/testingLibraryUtils';
 
 it('renders snapshot correctly', () => {
-  const element = shallow(
+  const { container } = render(
     <TestForm>
-      {() => (
-        <FieldArray
-          name="foo"
-          render={(props) => <BirthdateFormField {...props} />}
-        />
-      )}
+      <FieldArray
+        name="foo"
+        render={(props) => <BirthdateFormField {...props} />}
+      />
     </TestForm>
   );
-  expect(element.html()).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });

@@ -1,3 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders snapshot correctly 1`] = `"<div class=\\"Select-module_root__Ka5uO formField\\"><label id=\\"fooSelect-label\\" for=\\"fooSelect-toggle-button\\" class=\\"FieldLabel-module_label__1zrXK \\">select label</label><div class=\\"Select-module_wrapper__1WQXs\\"><button type=\\"button\\" id=\\"fooSelect-toggle-button\\" aria-haspopup=\\"listbox\\" aria-expanded=\\"false\\" aria-labelledby=\\"fooSelect-label fooSelect-toggle-button\\" aria-owns=\\"fooSelect-menu\\" class=\\"Select-module_button__1aIsm\\"><svg xmlns=\\"http://www.w3.org/2000/svg\\" class=\\"Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik Select-module_angleIcon__2-9AD\\" viewBox=\\"0 0 24 24\\" aria-hidden=\\"true\\" role=\\"img\\"><g fill=\\"none\\" fill-rule=\\"evenodd\\"><path d=\\"M0 0h24v24H0z\\"></path><path fill=\\"currentColor\\" d=\\"M12 13.5l5-5 1.5 1.5-6.5 6.5L5.5 10 7 8.5z\\"></path></g></svg></button><ul id=\\"fooSelect-menu\\" role=\\"listbox\\" aria-labelledby=\\"fooSelect-label\\" tabindex=\\"-1\\" style=\\"max-height:260px\\" class=\\"Select-module_menu__1H2aU\\"></ul></div></div>"`;
+exports[`renders snapshot correctly 1`] = `
+<div>
+  <div
+    class="Select-module_root__Ka5uO formField"
+  >
+    <label
+      class="FieldLabel-module_label__1zrXK "
+      for="fooSelect-toggle-button"
+      id="fooSelect-label"
+    >
+      select label
+    </label>
+    <div
+      class="Select-module_wrapper__1WQXs"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="fooSelect-label fooSelect-toggle-button"
+        aria-owns="fooSelect-menu"
+        class="Select-module_button__1aIsm"
+        id="fooSelect-toggle-button"
+        type="button"
+      >
+        <svg
+          aria-hidden="true"
+          class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik Select-module_angleIcon__2-9AD"
+          role="img"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            fill="none"
+            fill-rule="evenodd"
+          >
+            <path
+              d="M0 0h24v24H0z"
+            />
+            <path
+              d="M12 13.5l5-5 1.5 1.5-6.5 6.5L5.5 10 7 8.5z"
+              fill="currentColor"
+            />
+          </g>
+        </svg>
+      </button>
+      <ul
+        aria-labelledby="fooSelect-label"
+        class="Select-module_menu__1H2aU"
+        id="fooSelect-menu"
+        role="listbox"
+        style="max-height: 260px;"
+        tabindex="-1"
+      />
+    </div>
+  </div>
+</div>
+`;

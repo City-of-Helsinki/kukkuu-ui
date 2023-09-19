@@ -38,6 +38,8 @@ import TermsField from '../../../common/components/form/fields/terms/TermsField'
 import ChildFormFields from './partial/childFormFields';
 import LanguagesCombobox from '../../languages/LanguagesCombobox';
 
+export const FORM_TESTID = 'registrationForm';
+
 const schema = yup.object().shape({
   guardian: yup.object().shape({
     firstName: yup
@@ -183,7 +185,11 @@ const RegistrationForm = () => {
               errors,
               touched,
             }: FormikProps<RegistrationFormValues>) => (
-              <form onSubmit={handleSubmit} id="registrationForm">
+              <form
+                onSubmit={handleSubmit}
+                id="registrationForm"
+                data-testid={FORM_TESTID}
+              >
                 <div className={styles.registrationGrayContainer}>
                   <h1>{t('registration.heading')}</h1>
                 </div>

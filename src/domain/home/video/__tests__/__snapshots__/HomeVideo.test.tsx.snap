@@ -1,23 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<section
-  className="wrapper"
->
-  <div
-    className="innerwrapper"
+<div>
+  <section
+    class="wrapper"
   >
     <div
-      className="embedContainer"
+      class="innerwrapper"
     >
-      <iframe
-        allowFullScreen={true}
-        frameBorder="0"
-        id="ytplayer"
-        src="https://www.youtube.com/embed/jYteckzo1uA?controls=0&fs=0&hl=fi&autoplay=1"
-        title="video"
-      />
+      <div
+        class="embedContainer"
+      >
+        <iframe
+          allowfullscreen=""
+          frameborder="0"
+          id="ytplayer"
+          src="https://www.youtube.com/embed/jYteckzo1uA?controls=0&fs=0&hl=fi&autoplay=1"
+          title="video"
+        />
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 `;

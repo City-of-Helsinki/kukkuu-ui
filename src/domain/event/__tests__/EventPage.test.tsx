@@ -1,9 +1,7 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import { occurrenceQuery_occurrence as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
 import EventPage from '../EventPage';
 import { EventParticipantsPerInvite } from '../../api/generatedTypes/globalTypes';
+import { render } from '../../../common/test/testingLibraryUtils';
 
 export const mockedOccurrenceNode: OccurrenceQueryType = {
   id: 'T2NjdXJyZW5jZU5vZGU6Mg==',
@@ -36,8 +34,8 @@ export const mockedOccurrenceNode: OccurrenceQueryType = {
 };
 
 it('renders snapshot correctly', () => {
-  const element = shallow(
+  const { container } = render(
     <EventPage event={mockedOccurrenceNode.event} backTo={'/back-to'} />
   );
-  expect(toJson(element)).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });

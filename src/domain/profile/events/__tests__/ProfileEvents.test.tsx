@@ -1,9 +1,4 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
 import ProfileEvents from '../ProfileEvents';
-import ProfileNoEvent from '../ProfileNoEvent';
-import ProfileEventsList from '../ProfileEventsList';
 import {
   childByIdQuery_child as ChildByIdResponse,
   childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEvents,
@@ -11,6 +6,7 @@ import {
   childByIdQuery_child_activeInternalAndTicketSystemEnrolments as InternalAndTicketSystemEnrolmentsType,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
+import { render } from '../../../../common/test/testingLibraryUtils';
 
 const childData: ChildByIdResponse = {
   id: '',
@@ -52,6 +48,7 @@ const upcomingEventsAndEventGroups: UpcomingEvents = {
           'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
         imageAltText: 'uooo',
         canChildEnroll: true,
+        __typename: 'EventNode',
       },
     },
   ],
@@ -174,90 +171,29 @@ const childOnlyPastEvents = {
   pastEvents: pastEvents,
 };
 
-test('Renders snapshot correctly', () => {
-  const input = shallow(<ProfileEvents child={childNoEvents} />);
-  expect(toJson(input)).toMatchSnapshot();
-});
-
 test('Renders "No events" when no events"', () => {
-  const wrapper = shallow(<ProfileEvents child={childNoEvents} />);
-  expect(wrapper.equals(<ProfileNoEvent />)).toEqual(true);
-  expect(
-    wrapper.equals(
-      <ProfileEventsList
-        childId={childWithEvents.id}
-        upcomingEventsAndEventGroups={
-          childWithEvents.upcomingEventsAndEventGroups
-        }
-        enrolments={childWithEvents.activeInternalAndTicketSystemEnrolments}
-        pastEvents={childWithEvents.pastEvents}
-      />
-    )
-  ).toEqual(false);
+  const { container } = render(<ProfileEvents child={childNoEvents} />);
+  expect(container).toMatchSnapshot();
 });
 
 test('Renders events list when events of any type', () => {
-  const wrapper = shallow(<ProfileEvents child={childWithEvents} />);
-  expect(
-    wrapper.equals(
-      <ProfileEventsList
-        childId={childWithEvents.id}
-        upcomingEventsAndEventGroups={
-          childWithEvents.upcomingEventsAndEventGroups
-        }
-        enrolments={childWithEvents.activeInternalAndTicketSystemEnrolments}
-        pastEvents={childWithEvents.pastEvents}
-      />
-    )
-  ).toEqual(true);
+  const { container } = render(<ProfileEvents child={childWithEvents} />);
+  expect(container).toMatchSnapshot();
 });
 
 test('Renders events list when only upcomingEventsAndEventGroups', () => {
-  const wrapper = shallow(<ProfileEvents child={childOnlyAvailableEvents} />);
-  expect(
-    wrapper.equals(
-      <ProfileEventsList
-        childId={childOnlyAvailableEvents.id}
-        upcomingEventsAndEventGroups={
-          childOnlyAvailableEvents.upcomingEventsAndEventGroups
-        }
-        enrolments={
-          childOnlyAvailableEvents.activeInternalAndTicketSystemEnrolments
-        }
-        pastEvents={childOnlyAvailableEvents.pastEvents}
-      />
-    )
-  ).toEqual(true);
+  const { container } = render(
+    <ProfileEvents child={childOnlyAvailableEvents} />
+  );
+  expect(container).toMatchSnapshot();
 });
 
 test('Renders events list when only enrolments', () => {
-  const wrapper = shallow(<ProfileEvents child={childOnlyEnrolments} />);
-  expect(
-    wrapper.equals(
-      <ProfileEventsList
-        childId={childOnlyEnrolments.id}
-        upcomingEventsAndEventGroups={
-          childOnlyEnrolments.upcomingEventsAndEventGroups
-        }
-        enrolments={childOnlyEnrolments.activeInternalAndTicketSystemEnrolments}
-        pastEvents={childOnlyEnrolments.pastEvents}
-      />
-    )
-  ).toEqual(true);
+  const { container } = render(<ProfileEvents child={childOnlyEnrolments} />);
+  expect(container).toMatchSnapshot();
 });
 
 test('Renders events list when only past events', () => {
-  const wrapper = shallow(<ProfileEvents child={childOnlyPastEvents} />);
-  expect(
-    wrapper.equals(
-      <ProfileEventsList
-        childId={childOnlyPastEvents.id}
-        upcomingEventsAndEventGroups={
-          childOnlyPastEvents.upcomingEventsAndEventGroups
-        }
-        enrolments={childOnlyPastEvents.activeInternalAndTicketSystemEnrolments}
-        pastEvents={childOnlyPastEvents.pastEvents}
-      />
-    )
-  ).toEqual(true);
+  const { container } = render(<ProfileEvents child={childOnlyPastEvents} />);
+  expect(container).toMatchSnapshot();
 });

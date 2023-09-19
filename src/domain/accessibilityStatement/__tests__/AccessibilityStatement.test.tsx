@@ -1,14 +1,12 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
+import { render } from '../../../common/test/testingLibraryUtils';
 import AccessibilityStatement from '../AccessibilityStatement';
 import AccessibilityStatementFi from '../AccessibilityStatementFi';
 
 it('renders snapshot correctly', () => {
-  const element = shallow(
+  const { container } = render(
     <AccessibilityStatement>
       <AccessibilityStatementFi />
     </AccessibilityStatement>
   );
-  expect(toJson(element)).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });

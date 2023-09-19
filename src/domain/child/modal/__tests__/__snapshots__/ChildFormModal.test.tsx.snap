@@ -2,29 +2,10 @@
 
 exports[`renders snapshot correctly 1`] = `
 <div>
-  <Modal
-    isOpen={false}
-    label="foo"
-    setFormIsFilling={[Function]}
-    toggleModal={[Function]}
-  >
-    <ChildForm
-      formType="ADD"
-      initialValues={
-        Object {
-          "birthdate": "01-11-2019",
-          "firstName": "",
-          "homeCity": "",
-          "lastName": "",
-          "postalCode": "",
-          "relationship": Object {
-            "type": null,
-          },
-        }
-      }
-      onSubmit={[MockFunction]}
-      setFormIsFilling={[Function]}
+  <div>
+    <div
+      class="modalWrapper"
     />
-  </Modal>
+  </div>
 </div>
 `;
