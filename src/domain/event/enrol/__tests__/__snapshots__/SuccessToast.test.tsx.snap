@@ -1,73 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<SuccessToast>
-  <CSSTransition
-    className="successToast"
-    classNames={Object {}}
-    in={true}
-    onClick={[Function]}
-    onEntered={[Function]}
-    onExited={[Function]}
-    timeout={
-      Object {
-        "appear": 300,
-        "enter": 300,
-        "exit": 300,
-      }
-    }
-    unmountOnExit={true}
+<div>
+  <div
+    class="successToast"
   >
-    <Transition
-      appear={false}
-      className="successToast"
-      enter={true}
-      exit={true}
-      in={true}
-      mountOnEnter={false}
-      onClick={[Function]}
-      onEnter={[Function]}
-      onEntered={[Function]}
-      onEntering={[Function]}
-      onExit={[Function]}
-      onExited={[Function]}
-      onExiting={[Function]}
-      timeout={
-        Object {
-          "appear": 300,
-          "enter": 300,
-          "exit": 300,
-        }
-      }
-      unmountOnExit={true}
+    <div
+      class="imgWrapper tadaIcon"
     >
-      <div
-        className="successToast"
-        onClick={[Function]}
-      >
-        <Icon
-          className="tadaIcon"
-          src="tada.svg"
-        >
-          <div
-            className="imgWrapper tadaIcon"
-          >
-            <img
-              alt=""
-              src="tada.svg"
-            />
-          </div>
-        </Icon>
-        <div>
-          <h1>
-            Tapahtumaan ilmoittautuminen onnistui!
-          </h1>
-          <p>
-            Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot
-          </p>
-        </div>
-      </div>
-    </Transition>
-  </CSSTransition>
-</SuccessToast>
+      <img
+        alt=""
+        src="tada.svg"
+      />
+    </div>
+    <div>
+      <h1>
+        Tapahtumaan ilmoittautuminen onnistui!
+      </h1>
+      <p>
+        Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot
+      </p>
+    </div>
+  </div>
+</div>
 `;

@@ -4,13 +4,13 @@ require('dotenv').config({ path: './.env.test' });
 
 import { TextEncoder, TextDecoder } from 'util';
 
-import Adapter from '@cfaester/enzyme-adapter-react-18';
-import Enzyme from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 
 import setLocale from './common/localization/setLocale';
 import './common/test/testi18nInit';
 import { server } from './test/msw/server';
+
+import '@testing-library/jest-dom';
 
 // To avoid error: ReferenceError: TextEncoder is not defined
 // discussed here: https://github.com/jsdom/jsdom/issues/2524
@@ -18,23 +18,22 @@ global.TextEncoder = TextEncoder;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 global.TextDecoder = TextDecoder as any;
 
-React.useLayoutEffect = React.useEffect;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(React.useLayoutEffect as any) = React.useEffect;
 
 // Suppress useLayoutEffect warning from Formik
 
-Enzyme.configure({ adapter: new Adapter() });
-
 jest.mock('react-router-dom', () => ({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  __esModule: true,
   ...jest.requireActual('react-router-dom'),
-
-  useHistory: () => ({
-    push: jest.fn(),
-  }),
   useParams: () => ({
     match: jest.fn(),
   }),
+}));
+
+jest.mock('react-redux', () => ({
+  __esModule: true,
+  ...jest.requireActual('react-redux'),
 }));
 
 setLocale('fi');

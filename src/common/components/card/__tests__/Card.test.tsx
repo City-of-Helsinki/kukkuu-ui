@@ -1,8 +1,11 @@
-import { shallow } from 'enzyme';
-
+import { render } from '../../../test/testingLibraryUtils';
 import Card from '../Card';
 
 it('renders snapshot correctly', () => {
-  const card = shallow(<Card>foo</Card>);
-  expect(card.html()).toMatchSnapshot();
+  const { container } = render(
+    <Card action={jest.fn()} actionText={''} title={''}>
+      foo
+    </Card>
+  );
+  expect(container).toMatchSnapshot();
 });

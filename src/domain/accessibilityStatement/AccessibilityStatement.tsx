@@ -26,7 +26,9 @@ const Statement: FunctionComponent<StatementProps> = (props) => {
   }
 };
 
-const AccessibilityStatement: FunctionComponent = () => {
+const AccessibilityStatement: FunctionComponent<{
+  children?: React.ReactNode;
+}> = () => {
   const { i18n } = useTranslation();
   const locale = getCurrentLanguage(i18n);
 

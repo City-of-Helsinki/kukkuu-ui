@@ -1,16 +1,14 @@
-import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
-
+import { render } from '../../../../common/test/testingLibraryUtils';
 import { mainPartnerList, partnerList } from '../constants/PartnersConstants';
 import Partners from '../PartnerLogoList';
 
 it('renders snapshot correctly', () => {
-  const mainPartnersLogoList = shallow(
+  const { container: smallContainer } = render(
     <Partners partners={mainPartnerList} size="big" />
   );
-  expect(toJson(mainPartnersLogoList)).toMatchSnapshot();
-  const partnersLogoList = shallow(
+  expect(smallContainer).toMatchSnapshot();
+  const { container: bigContainer } = render(
     <Partners partners={partnerList} size="small" />
   );
-  expect(toJson(partnersLogoList)).toMatchSnapshot();
+  expect(bigContainer).toMatchSnapshot();
 });

@@ -1,11 +1,9 @@
-import toJson from 'enzyme-to-json';
-
+import { render } from '../../../../common/test/testingLibraryUtils';
 import AddNewChildFormModal from '../AddNewChildFormModal';
-import { shallowWithProvider } from '../../../../common/test/testUtils';
 
 it('renders snapshot correctly', () => {
-  const element = shallowWithProvider(
-    <AddNewChildFormModal isOpen={true} setIsOpen={jest.fn()} />
+  const { container } = render(
+    <AddNewChildFormModal addChild={jest.fn()} setIsOpen={jest.fn()} />
   );
-  expect(toJson(element)).toMatchSnapshot();
+  expect(container).toMatchSnapshot();
 });

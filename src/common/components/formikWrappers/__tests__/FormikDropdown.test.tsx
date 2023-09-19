@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import FormikDropdown from '../FormikDropdown';
 import TestForm from '../../../test/TestForm';
@@ -21,8 +21,7 @@ it('renders snapshot correctly', () => {
       },
     ],
   };
-  const input = shallow(
-    <TestForm>{() => <FormikDropdown {...props} />}</TestForm>
-  );
-  expect(input.html()).toMatchSnapshot();
+  const Dropdown = () => <FormikDropdown {...props} />;
+  const { container } = render(<TestForm>{<Dropdown />}</TestForm>);
+  expect(container).toMatchSnapshot();
 });

@@ -1,323 +1,310 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders snapshot correctly 1`] = `
-<div
-  className="link"
->
-  <a
-    href="/brochures/fr.pdf"
-    key="0"
+<div>
+  <div
+    class="link"
   >
-    <span
-      lang="fr"
+    <a
+      href="/brochures/fr.pdf"
     >
-      Français
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
+      <span
+        lang="fr"
+      >
+        Français
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        ranska
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/ru.pdf"
     >
-      (
-      ranska
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/ru.pdf"
-    key="1"
-  >
-    <span
-      lang="ru"
+      <span
+        lang="ru"
+      >
+        Русский
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        venäjä
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/es.pdf"
     >
-      Русский
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
+      <span
+        lang="es"
+      >
+        Español
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        espanja
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/zh.pdf"
     >
-      (
-      venäjä
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/es.pdf"
-    key="2"
-  >
-    <span
-      lang="es"
+      <span
+        lang="zh"
+      >
+        中文
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        kiina
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/npi.pdf"
     >
-      Español
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
+      <span
+        lang="npi"
+      >
+        नेपाली गण
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        nepali
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/som.pdf"
     >
-      (
-      espanja
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/zh.pdf"
-    key="3"
-  >
-    <span
-      lang="zh"
+      <span
+        lang="som"
+      >
+        Somali
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        somali
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/fas.pdf"
     >
-      中文
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
+      <span
+        lang="fas"
+      >
+        زبان فارسی
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        persia
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/et.pdf"
     >
-      (
-      kiina
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/npi.pdf"
-    key="4"
-  >
-    <span
-      lang="npi"
+      <span
+        lang="et"
+      >
+        Eesti
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        viro
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/tur.pdf"
     >
-      नेपाली गण
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
+      <span
+        lang="tur"
+      >
+        Türkçe
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        turkki
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/ara.pdf"
     >
-      (
-      nepali
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/som.pdf"
-    key="5"
-  >
-    <span
-      lang="som"
+      <span
+        lang="ar"
+      >
+        اَلْعَرَبِيَّةُ
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        arabia
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/ckb.pdf"
     >
-      Somali
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
+      <span
+        lang="ckb"
+      >
+        کوردی
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        kurdi
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/vi.pdf"
     >
-      (
-      somali
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/fas.pdf"
-    key="6"
-  >
-    <span
-      lang="fas"
+      <span
+        lang="vi"
+      >
+        Tiếng Việt
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        vietnam
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/en.pdf"
     >
-      زبان فارسی
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
+      <span
+        lang="en"
+      >
+        English
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        englanti
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/sv.pdf"
     >
-      (
-      persia
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/et.pdf"
-    key="7"
-  >
-    <span
-      lang="et"
+      <span
+        lang="sv"
+      >
+        Svenska
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        ruotsi
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/fi.pdf"
     >
-      Eesti
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
-    >
-      (
-      viro
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/tur.pdf"
-    key="8"
-  >
-    <span
-      lang="tur"
-    >
-      Türkçe
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
-    >
-      (
-      turkki
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/ara.pdf"
-    key="9"
-  >
-    <span
-      lang="ar"
-    >
-      اَلْعَرَبِيَّةُ
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
-    >
-      (
-      arabia
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/ckb.pdf"
-    key="10"
-  >
-    <span
-      lang="ckb"
-    >
-      کوردی
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
-    >
-      (
-      kurdi
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/vi.pdf"
-    key="11"
-  >
-    <span
-      lang="vi"
-    >
-      Tiếng Việt
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
-    >
-      (
-      vietnam
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/en.pdf"
-    key="12"
-  >
-    <span
-      lang="en"
-    >
-      English
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
-    >
-      (
-      englanti
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/sv.pdf"
-    key="13"
-  >
-    <span
-      lang="sv"
-    >
-      Svenska
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
-    >
-      (
-      ruotsi
-      )
-    </span>
-  </a>
-  <a
-    href="/brochures/fi.pdf"
-    key="14"
-  >
-    <span
-      lang="fi"
-    >
-      Suomi
-    </span>
-    <span>
-       
-    </span>
-    <span
-      className="localizedLanguage"
-      lang="fi"
-    >
-      (
-      suomi
-      )
-    </span>
-  </a>
+      <span
+        lang="fi"
+      >
+        Suomi
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="localizedLanguage"
+        lang="fi"
+      >
+        (
+        suomi
+        )
+      </span>
+    </a>
+  </div>
 </div>
 `;

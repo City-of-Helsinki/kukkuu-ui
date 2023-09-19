@@ -1,9 +1,7 @@
-import toJson from 'enzyme-to-json';
-import { shallow } from 'enzyme';
-
+import { render } from '../../../../common/test/testingLibraryUtils';
 import HomePartners from '../HomePartners';
 
 it('renders snapshot correctly', () => {
-  const homePartners = shallow(<HomePartners />);
-  expect(toJson(homePartners)).toMatchSnapshot();
+  const { container } = render(<HomePartners />);
+  expect(container).toMatchSnapshot();
 });

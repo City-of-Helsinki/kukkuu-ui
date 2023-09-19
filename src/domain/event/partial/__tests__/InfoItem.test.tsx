@@ -1,18 +1,15 @@
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-
+import { render } from '../../../../common/test/testingLibraryUtils';
 import InfoItem from '../InfoItem';
-import { InfoItem as InfoItemType } from '../OccurrenceInfo';
 
-const infoItem: InfoItemType = {
+const infoItem = {
   id: 'time',
   className: 'class',
-  iconSrc: 'iconSource',
+  icon: <i>iconSource</i>,
   iconAlt: 'Alt text',
   label: 'infoItemLabel',
 };
 
 it('renders snapshot correctly', () => {
-  const element = shallow(<InfoItem key={1} {...infoItem} />);
-  expect(toJson(element)).toMatchSnapshot();
+  const { container } = render(<InfoItem key={1} {...infoItem} />);
+  expect(container).toMatchSnapshot();
 });
