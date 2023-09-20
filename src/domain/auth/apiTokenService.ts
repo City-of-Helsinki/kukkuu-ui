@@ -1,19 +1,19 @@
 const API_TOKEN = 'kukkuu-api-token';
 
 class ApiTokenService {
-  get apiToken() {
+  static get apiToken() {
     return localStorage.getItem(API_TOKEN);
   }
 
-  set apiToken(token: string | null) {
+  static set apiToken(token: string | null) {
     if (token !== null) {
       localStorage.setItem(API_TOKEN, token);
     }
   }
 
-  clear() {
+  static clear() {
     localStorage.removeItem(API_TOKEN);
   }
 }
 
-export default new ApiTokenService();
+export default ApiTokenService;
