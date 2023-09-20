@@ -14,15 +14,15 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "build": "react-scripts build",
+    "build": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts build",
+    "start": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts start",
+    "test": "cross-env SASS_PATH=$(cd ./src/assets && pwd) TZ=UTC react-scripts test --transformIgnorePatterns \"node_modules/(?!(react-helsinki-headless-cms|react-helsinki-headless-cms/apollo))/\"",
+    "test:debug": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts --inspect-brk test --runInBand --no-cache",
     "generate:graphql": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes --excludes=src/domain/headlessCms/**",
     "lint": "eslint --ext js,ts,tsx src",
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
     "format:code": "eslint --ext js,ts,tsx src --fix",
-    "start": "react-scripts start",
     "update-translations": "fetch-translations 1b5qAamjhmSNiME3matBINaeyz8TvoRWVB6wU5HvKy4g -l en,fi,sv -o src/common/translation/i18n",
-    "test": "cross-env TZ=UTC react-scripts test --transformIgnorePatterns \"node_modules/(?!(react-helsinki-headless-cms|react-helsinki-headless-cms/apollo))/\"",
-    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --dev --lang=fi-FI",
     "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev --lang=fi-FI",
     "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/"
