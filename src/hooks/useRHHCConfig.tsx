@@ -33,7 +33,9 @@ const ReactRouterStyledLinkWrapper = ({
 
   if (internalLink) {
     return (
-      <Link {...delegatedProps} to={href as string} component={RHHCLink} />
+      <Link {...delegatedProps} to={href as string}>
+        <RHHCLink />
+      </Link>
     );
   }
 
@@ -124,7 +126,7 @@ export default function useRHHCConfig() {
           ],
         },
         fallbackImageUrls: [''], // A hacky way to hide the Hero image from HeadlessCmsPage
-      } as unknown as Config),
+      }) as unknown as Config,
     [t, internalHrefOrigins, language]
   );
 }

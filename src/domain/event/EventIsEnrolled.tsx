@@ -72,7 +72,7 @@ const EventIsEnrolled = () => {
         <UnenrolModal
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          childId={params.childId}
+          childId={params.childId ?? ''}
           occurrenceId={data.occurrence.id}
           eventGroupId={data?.occurrence?.event?.eventGroup?.id}
         />
