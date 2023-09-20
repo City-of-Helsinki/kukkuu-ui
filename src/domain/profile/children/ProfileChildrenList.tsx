@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { useMatomo } from '@jonkoops/matomo-tracker-react';
 import { IconPlus } from 'hds-react';
 
 import { profileQuery_myProfile_children as Children } from '../../api/generatedTypes/profileQuery';
