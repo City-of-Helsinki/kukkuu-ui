@@ -5,7 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { OidcProvider } from 'redux-oidc';
 import { ToastContainer } from 'react-toastify';
-import { MatomoProvider, createInstance } from '@datapunt/matomo-tracker-react';
+import { MatomoProvider, createInstance } from '@jonkoops/matomo-tracker-react';
 import { ConfigProvider } from 'react-helsinki-headless-cms';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';

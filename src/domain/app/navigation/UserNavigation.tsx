@@ -2,7 +2,7 @@ import { Navigation, IconUser, IconSignout } from 'hds-react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelectors';
