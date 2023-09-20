@@ -10,6 +10,7 @@ interface AlertModalProps {
   onClose: Function;
   heading: string;
   ok: string;
+  children?: React.ReactNode;
 }
 
 const AlertModal: FunctionComponent<AlertModalProps> = ({

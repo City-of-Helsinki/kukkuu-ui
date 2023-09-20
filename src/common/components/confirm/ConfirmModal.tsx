@@ -13,6 +13,7 @@ interface ConfirmModalProps {
   heading: string;
   cancel: string;
   ok: string;
+  children?: React.ReactNode;
 }
 
 const ConfirmModal: FunctionComponent<ConfirmModalProps> = ({

@@ -12,7 +12,7 @@ const CopyStates = {
   error: 'ERROR',
 } as const;
 
-type CopyState = typeof CopyStates[keyof typeof CopyStates];
+type CopyState = (typeof CopyStates)[keyof typeof CopyStates];
 
 type Props = {
   password: string | null;

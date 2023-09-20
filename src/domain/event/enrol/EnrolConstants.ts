@@ -3,4 +3,4 @@ export const GQLErrors = Object.freeze({
   OCCURRENCE_IS_FULL_ERROR: 'OCCURRENCE_IS_FULL_ERROR',
 } as const);
 
-export type GQLErrorsType = typeof GQLErrors[keyof typeof GQLErrors];
+export type GQLErrorsType = (typeof GQLErrors)[keyof typeof GQLErrors];

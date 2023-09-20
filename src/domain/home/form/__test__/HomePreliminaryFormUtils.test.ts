@@ -17,6 +17,7 @@ const convertFrom: RegistrationFormValues = {
     firstName: 'gfn',
     lastName: 'gln',
     email: 'yomama@example.com',
+    languagesSpokenAtHome: ['fi'],
   },
   preferLanguage: 'en',
   agree: false,

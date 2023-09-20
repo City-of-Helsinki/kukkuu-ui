@@ -18,7 +18,7 @@ const EventGroupPage = () => {
     },
   });
 
-  return <EventGroup query={query} childId={childId} />;
+  return <EventGroup query={query} childId={childId ?? ''} />;
 };
 
 export default EventGroupPage;
