@@ -2,20 +2,18 @@
 // https://sentry.hel.ninja/aok/kukkuu-ui/issues/12094/
 import 'finally-polyfill';
 
-import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
 import './assets/styles/main.scss';
 import 'hds-core/lib/base.css';
 import Modal from 'react-modal';
-import { createBrowserHistory } from 'history';
+import { createRoot } from 'react-dom/client';
+import React from 'react';
 
 import BrowserApp from './domain/app/BrowserApp';
 import * as serviceWorker from './serviceWorker';
 import { initI18next } from './common/translation/i18n/i18nInit';
 
-export const history = createBrowserHistory();
-
-initI18next(history);
+initI18next();
 Modal.setAppElement('#root');
 
 if (process.env.NODE_ENV === 'production') {
@@ -26,10 +24,12 @@ if (process.env.NODE_ENV === 'production') {
     autoSessionTracking: false,
   });
 }
-
-ReactDOM.render(
-  <BrowserApp history={history} />,
-  document.getElementById('root')
+const container = document.getElementById('root') as Element;
+const root = createRoot(container);
+root.render(
+  <React.StrictMode>
+    <BrowserApp />
+  </React.StrictMode>
 );
 
 // If you want your app to work offline and load faster, you can change
