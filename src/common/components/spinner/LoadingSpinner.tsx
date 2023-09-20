@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './loadingSpinner.module.scss';
 
-const LoadingSpinner: FunctionComponent<{ isLoading: boolean }> = ({
-  isLoading,
-  children,
-}) => {
+const LoadingSpinner: FunctionComponent<{
+  isLoading: boolean;
+  children?: React.ReactNode;
+}> = ({ isLoading, children }) => {
   const { t } = useTranslation();
 
   return (

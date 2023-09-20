@@ -3,7 +3,7 @@ import { Formik, FormikProps, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/client';
 import { useTranslation, Trans } from 'react-i18next';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
@@ -76,7 +76,7 @@ const schema = yup.object().shape({
 const RegistrationForm = () => {
   const { i18n, t } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const getPathname = useGetPathname();
@@ -107,8 +107,8 @@ const RegistrationForm = () => {
     dispatch(clearProfile());
   }
   if (data?.myProfile) {
-    // No need to save profile here, that will be done after the redirect
-    return <Redirect to={getPathname('/profile')} />;
+    // No need to save profile here, that will be done after the Navigate
+    return <Navigate to={getPathname('/profile')} />;
   }
 
   return (
@@ -166,7 +166,7 @@ const RegistrationForm = () => {
                     );
                   }
                   dispatch(resetFormValues());
-                  history.push(getPathname('/registration/success'));
+                  navigate(getPathname('/registration/success'));
                 })
                 .catch((error) => {
                   toast.error(t('registration.submitMutation.errorMessage'));

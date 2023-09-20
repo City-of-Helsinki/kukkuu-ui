@@ -10,75 +10,73 @@ import TermsOfService from '../termsOfService/TermsOfService';
 import ProfileRoute from '../profile/route/ProfileRoute';
 import EventRoute from '../event/route/EventRoute';
 import { AppRouteProps } from './AppRoute';
+import HeadlessCmsPage from '../headlessCms/HeadlessCmsPage';
 
 export const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})?`;
 
 const appRoutes: Record<string, AppRouteProps> = {
   callback: {
-    path: `/${localeParam}/callback`,
-    component: OidcCallback,
+    path: `/callback`,
+    element: <OidcCallback />,
   },
   home: {
     title: 'appName',
-    exact: true,
-    path: `/${localeParam}`,
-    component: Home,
+    path: ``,
+    element: <Home />,
   },
   oldHome: {
     title: 'appName',
-    exact: true,
-    path: `/${localeParam}/home`,
-    component: Home,
+    path: `/home`,
+    element: <Home />,
   },
   registrationNotEligible: {
     title: 'registration.notEligible.title',
-    exact: true,
-    path: `/${localeParam}/registration/not-eligible`,
-    component: NotEligible,
+    path: `/registration/not-eligible`,
+    element: <NotEligible />,
   },
   wrongLoginMethod: {
     title: 'auth.wrongLoginMethod.title',
-    exact: true,
-    path: `/${localeParam}/wrong-login-method`,
-    component: WrongLoginMethod,
+    path: `/wrong-login-method`,
+    element: <WrongLoginMethod />,
   },
   accessibility: {
     title: 'accessibilityStatement.title',
-    exact: true,
-    path: `/${localeParam}/accessibility`,
-    component: AccessibilityStatement,
+    path: `/accessibility`,
+    element: <AccessibilityStatement />,
   },
   termsOfService: {
     title: 'termsOfService.title',
-    exact: true,
-    path: `/${localeParam}/terms`,
-    component: TermsOfService,
+    path: `/terms`,
+    element: <TermsOfService />,
   },
   registrationForm: {
     title: 'registration.heading',
     isPrivate: true,
-    exact: true,
-    path: `/${localeParam}/registration/form`,
-    component: RegistrationForm,
+    path: `/registration/form`,
+    element: <RegistrationForm />,
   },
   registrationSuccess: {
     title: 'registration.welcome.hero.header',
     isPrivate: true,
-    exact: true,
-    path: `/${localeParam}/registration/success`,
-    component: Welcome,
+    path: `/registration/success`,
+    element: <Welcome />,
   },
   profile: {
     noTitle: true,
     isPrivate: true,
-    path: `/${localeParam}/profile`,
-    component: ProfileRoute,
+    path: `/profile`,
+    element: <ProfileRoute />,
   },
   event: {
     noTitle: true,
     isPrivate: true,
-    path: `/${localeParam}/event`,
-    component: EventRoute,
+    path: `/event`,
+    element: <EventRoute />,
+  },
+  cms: {
+    noTitle: true,
+    path: `/cms`,
+    element: <HeadlessCmsPage />,
   },
 } as const;
 

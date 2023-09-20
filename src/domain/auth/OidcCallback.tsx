@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { CallbackComponent } from 'redux-oidc';
 import { User } from 'oidc-client';
-import { RouteChildrenProps } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
+import { RouteProps, useNavigate } from 'react-router';
 
 import ErrorMessage from '../../common/components/error/Error';
 import useGetPathname from '../../common/route/utils/useGetPathname';
@@ -13,10 +13,10 @@ import { store } from '../app/state/AppStore';
 import { authenticateWithBackend } from '../auth/authenticate';
 import userManager from './userManager';
 
-function OidcCallback(props: RouteChildrenProps) {
+function OidcCallback(props: RouteProps) {
   const { t } = useTranslation();
   const getPathname = useGetPathname();
-
+  const navigate = useNavigate();
   const [callbackMessage, setCallbackMessage] = useState({
     message: <p>{t('authentication.redirect.text')}</p>,
   });
@@ -24,8 +24,9 @@ function OidcCallback(props: RouteChildrenProps) {
   const onSuccess = async (user: User) => {
     await authenticateWithBackend(user.access_token, store.dispatch);
 
-    if (user.state.path) props.history.replace(getPathname(user.state.path));
-    else props.history.replace(getPathname('/profile'));
+    if (user.state.path)
+      navigate(getPathname(user.state.path), { replace: true });
+    else navigate(getPathname('/profile'), { replace: true });
   };
 
   const onError = async (error: Error) => {
@@ -87,6 +88,8 @@ function OidcCallback(props: RouteChildrenProps) {
 
   return (
     <PageWrapper>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-ignore */}
       <CallbackComponent
         successCallback={onSuccess}
         errorCallback={onError}

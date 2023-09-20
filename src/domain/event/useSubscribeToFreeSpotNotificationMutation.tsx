@@ -1,7 +1,6 @@
 import { ApolloError } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
 
 import subscribeToFreeSpotNotificationMutation from './mutations/subscribeToFreeSpotNotificationMutation';
 // eslint-disable-next-line max-len
@@ -18,7 +17,6 @@ function useSubscribeToFreeSpotNotificationMutation(
 ) {
   const defaultErrorHandler = useDefaultErrorHandler();
   const { t } = useTranslation();
-  const history = useHistory();
 
   return useMutation<SubscribeToFreeSpotNotificationMutation>(
     subscribeToFreeSpotNotificationMutation,
@@ -44,7 +42,7 @@ function useSubscribeToFreeSpotNotificationMutation(
             // Reload in order to refresh page data. The current page is
             // likely just out of date. After a refresh, the user should
             // see an UI which reflects the correct subscription status.
-            history.go(0);
+            window.location.reload();
           } else if (
             getIsError(
               graphQLError,

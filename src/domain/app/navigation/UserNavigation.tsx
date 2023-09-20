@@ -1,7 +1,7 @@
 import { Navigation, IconUser, IconSignout } from 'hds-react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useMatomo } from '@datapunt/matomo-tracker-react';
 
 import useGetPathname from '../../../common/route/utils/useGetPathname';
@@ -12,7 +12,7 @@ import useProfile from '../../profile/hooks/useProfile';
 
 function UserNavigation() {
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const isAuthenticated = useSelector(isAuthenticatedSelector);
   const doLogout = useLogout();
   const getPathname = useGetPathname();
@@ -39,7 +39,7 @@ function UserNavigation() {
       label: t('navbar.profileDropdown.profile.text'),
       icon: <IconUser />,
       onClick: () => {
-        history.push(getPathname('/profile'));
+        navigate(getPathname('/profile'));
       },
     },
     {

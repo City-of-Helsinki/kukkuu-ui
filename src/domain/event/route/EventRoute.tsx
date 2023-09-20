@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Switch, useParams } from 'react-router-dom';
+import { Routes, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 
@@ -12,8 +12,10 @@ import eventQuery from '../queries/eventQuery';
 export const useEventRouteGoBackTo = () => {
   const { i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
-  const { childId, eventId } =
-    useParams<{ childId: string; eventId: string }>();
+  const { childId, eventId } = useParams<{
+    childId: string;
+    eventId: string;
+  }>();
 
   const { data: eventData } = useQuery<EventQueryType>(eventQuery, {
     variables: { id: eventId, childId },
@@ -35,14 +37,13 @@ const EventRoute: FunctionComponent = () => {
   const { i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
   return (
-    <Switch>
+    <Routes>
       <AppRoute
         noTitle
-        exact
-        component={Event}
+        element={<Event />}
         path={`/${currentLocale}/event/:eventId`}
       />
-    </Switch>
+    </Routes>
   );
 };
 export default EventRoute;
