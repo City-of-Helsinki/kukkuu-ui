@@ -1,6 +1,6 @@
 import { QueryResult } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 import CultureKidsImage from '../../assets/images/Culture_kids_transparent@2x.png';
 import useGetPathname from '../../common/route/utils/useGetPathname';
@@ -25,7 +25,7 @@ type Props = {
 
 const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const getPathname = useGetPathname();
 
   const eventGroup = data?.eventGroup;
@@ -56,7 +56,7 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
                 key={event.id}
                 event={event}
                 action={() => {
-                  history.push(
+                  navigate(
                     getPathname(`/profile/child/${childId}/event/${event.id}`)
                   );
                 }}

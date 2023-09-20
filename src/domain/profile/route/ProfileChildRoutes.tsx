@@ -1,4 +1,4 @@
-import { Switch, RouteComponentProps } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import AppRoute from '../../app/AppRoute';
@@ -10,60 +10,49 @@ import EventGroupPage from '../../eventGroup/EventGroupPage';
 import ProfileChildDetail from '../children/child/ProfileChildDetail';
 import ExternalTicketSystemEventIsEnrolled from '../../event/ExternalTicketSystemEventIsEnrolled';
 
-const ProfileChildRoute = ({ match: { path } }: RouteComponentProps) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const ProfileChildRoute = ({ match: { path } }: any) => {
   const { t } = useTranslation();
 
   return (
-    <Switch>
+    <Routes>
       <AppRoute
         title={t('profile.child.detail.page.title')}
-        exact
-        component={ProfileChildDetail}
+        element={<ProfileChildDetail />}
         path={path}
       />
       <AppRoute
         noTitle
-        exact
-        component={EventGroupPage}
+        element={<EventGroupPage />}
         path={`${path}/event-group/:eventGroupId`}
       />
+      <AppRoute noTitle element={<Event />} path={`${path}/event/:eventId`} />
       <AppRoute
         noTitle
-        exact
-        component={Event}
-        path={`${path}/event/:eventId`}
-      />
-      <AppRoute
-        noTitle
-        exact
-        component={Event}
+        element={<Event />}
         path={`${path}/event/:eventId/past`}
       />
       <AppRoute
         noTitle
-        exact
-        component={EventIsEnrolled}
+        element={<EventIsEnrolled />}
         path={`${path}/occurrence/:occurrenceId`}
       />
       <AppRoute
         noTitle
-        exact
-        component={ExternalTicketSystemEventIsEnrolled}
+        element={<ExternalTicketSystemEventIsEnrolled />}
         path={`${path}/event/:eventId/external-enrolment`}
       />
       <AppRoute
         title={t('enrolPage.enrol')}
-        exact
-        component={EnrolPage}
+        element={<EnrolPage />}
         path={`${path}/event/:eventId/occurrence/:occurrenceId/enrol`}
       />
       <AppRoute
         title={t('eventRedirectPage.metaTitle')}
-        exact
-        component={EventRedirect}
+        element={<EventRedirect />}
         path={`${path}/event/:eventId/redirect`}
       />
-    </Switch>
+    </Routes>
   );
 };
 export default ProfileChildRoute;

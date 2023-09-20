@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useHistory } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import { useMutation, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
@@ -34,7 +34,7 @@ export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
 const ProfileChildDetail = () => {
   const { t } = useTranslation();
   const params = useParams<{ childId: string }>();
-  const history = useHistory();
+  const navigate = useNavigate();
   const goBackTo = useProfileRouteGoBackTo();
   const { loading, error, data } = useQuery<ChildByIdResponse>(childByIdQuery, {
     variables: {
@@ -126,7 +126,7 @@ const ProfileChildDetail = () => {
                   });
 
                   if (res) {
-                    history.push(getPathname('/profile'));
+                    navigate(getPathname('/profile'));
                   }
                 } catch (error) {
                   toast.error(t('registration.submitMutation.errorMessage'));

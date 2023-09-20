@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
 import { IconPen } from 'hds-react';
 
@@ -35,7 +35,7 @@ const Profile = () => {
 
   if (!data) {
     // User has logged in, but not created a profile, send them to front page for registration.
-    return <Redirect to={getPathname('/')} />;
+    return <Navigate to={getPathname('/')} />;
   }
 
   return (

@@ -2,7 +2,7 @@ import { FunctionComponent, Ref } from 'react';
 import { Formik, FieldArray, FormikErrors, Form } from 'formik';
 import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { loginTunnistamo } from '../../auth/authenticate';
 import styles from './homePreliminaryForm.module.scss';
@@ -38,7 +38,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
   forwardRef,
 }) => {
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const getPathname = useGetPathname();
 
   const handleSubmit = (values: HomeFormValues) => {
@@ -60,9 +60,9 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
 
   const handleRedirect = (payload: HomeFormPayload) => {
     if (!isChildEligible(payload.child)) {
-      history.push(getPathname('/registration/not-eligible'));
+      navigate(getPathname('/registration/not-eligible'));
     } else if (isAuthenticated) {
-      history.push(getPathname('/registration/form'));
+      navigate(getPathname('/registration/form'));
     } else {
       loginTunnistamo(`/registration/form`);
     }

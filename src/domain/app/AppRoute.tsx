@@ -1,75 +1,23 @@
-import { createElement, useEffect } from 'react';
-import { Route, RouteProps, useHistory, useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { Route, RouteProps } from 'react-router-dom';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import useGetPathname from '../../common/route/utils/useGetPathname';
-import {
-  isLoadingUserSelector,
-  isAuthenticatedSelector,
-} from '../auth/state/AuthenticationSelectors';
-import { loginTunnistamo } from '../auth/authenticate';
-import { isSessionExpiredPromptOpenSelector } from './state/ui/UISelectors';
+import useInstantLogin from '../auth/useInstantLogin';
+import useAuthenticated from '../auth/useAuthenticated';
 
-function useAuthenticated(enabled = true) {
-  const isAuthenticated = useSelector(isAuthenticatedSelector);
-  const isLoadingUser = useSelector(isLoadingUserSelector);
-  const history = useHistory();
-  const location = useLocation();
-  const getPathname = useGetPathname();
-
-  useEffect(() => {
-    if (!isLoadingUser && !isAuthenticated && enabled) {
-      history.replace(getPathname('/home'), { from: location });
-    }
-  }, [isAuthenticated, enabled, history, location, isLoadingUser, getPathname]);
-
-  return !enabled || (!isLoadingUser && isAuthenticated);
-}
-
-function useInstantLogin(enabled = true) {
-  const isAuthenticated = useSelector(isAuthenticatedSelector);
-  const location = useLocation();
-  const isSessionExpiredPromptOpen = useSelector(
-    isSessionExpiredPromptOpenSelector
-  );
-
-  useEffect(() => {
-    const justLoggedOutCookie = document.cookie
-      .split(';')
-      .some((item) => item.includes('loggedOut=1'));
-
-    if (
-      enabled &&
-      !justLoggedOutCookie &&
-      !isAuthenticated &&
-      !isSessionExpiredPromptOpen
-    ) {
-      // If user opens an invitation link from an email, we want to log them in and
-      // redirect to the invitation.
-      loginTunnistamo(location?.pathname);
-    }
-  }, [enabled, isAuthenticated, location, isSessionExpiredPromptOpen]);
-
-  useEffect(() => {
-    document.cookie = 'loggedOut=0';
-  });
-}
-
-export type AppRouteProps = RouteProps & {
+export type AppRouteProps = Omit<RouteProps, 'lazy' | 'index' | 'children'> & {
   isPrivate?: boolean;
   title?: string;
   noTitle?: boolean;
+  index?: true;
 };
 
 function AppRoute({
   isPrivate = false,
   title,
   noTitle,
-  render,
-  component,
+  element,
   ...routeProps
 }: AppRouteProps) {
   // Note that instant login should be checked first so that it has
@@ -81,13 +29,6 @@ function AppRoute({
   const canRenderComponent = useAuthenticated(isPrivate);
   const { t } = useTranslation();
 
-  if (render) {
-    // eslint-disable-next-line no-console
-    console.warn(
-      'Render support is not implemented in AppRoute! Implement it or use the component prop.'
-    );
-  }
-
   if (!title && !noTitle) {
     // eslint-disable-next-line no-console
     console.warn(
@@ -97,25 +38,23 @@ function AppRoute({
   }
 
   return (
-    <>
-      <Helmet>
-        {title && (
-          <title>
-            {title} - {t('appName')}
-          </title>
-        )}
-      </Helmet>
-      <Route
-        {...routeProps}
-        render={(routeRenderProps) => (
+    <Route
+      {...routeProps}
+      element={
+        <>
+          <Helmet>
+            {title && (
+              <title>
+                {title} - {t('appName')}
+              </title>
+            )}
+          </Helmet>
           <LoadingSpinner isLoading={!canRenderComponent}>
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore */}
-            {createElement(component, routeRenderProps)}
+            {element}
           </LoadingSpinner>
-        )}
-      />
-    </>
+        </>
+      }
+    />
   );
 }
 

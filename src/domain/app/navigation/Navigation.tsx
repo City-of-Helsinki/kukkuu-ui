@@ -1,6 +1,6 @@
 import { Navigation as RHHCNavigation } from 'react-helsinki-headless-cms/apollo';
 import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
 import replaceLocaleInPathname from '../../../common/route/utils/replaceLocaleInPathname';
@@ -14,7 +14,7 @@ const languageToMenuNameMap = {
 
 function Navigation() {
   const { i18n } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   return (
@@ -25,7 +25,7 @@ function Navigation() {
       onTitleClick={() => {
         const rootPath = i18n.language === 'fi' ? '/' : `/${i18n.language}`;
 
-        history.push(rootPath);
+        navigate(rootPath);
       }}
       getPathnameForLanguage={(language) => {
         const nextPathname = replaceLocaleInPathname(

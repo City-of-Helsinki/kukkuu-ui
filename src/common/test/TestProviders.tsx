@@ -1,9 +1,8 @@
 import { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
-import { createBrowserHistory } from 'history';
-import { Router } from 'react-router';
 import { HelmetProvider } from 'react-helmet-async';
+import { BrowserRouter } from 'react-router-dom';
 
 import { store } from '../../domain/app/state/AppStore';
 
@@ -17,7 +16,7 @@ const TestProviders = ({ children, mocks }: Props) => {
     <Provider store={store}>
       <MockedProvider mocks={mocks} addTypename={false}>
         <HelmetProvider>
-          <Router history={createBrowserHistory()}>{children}</Router>
+          <BrowserRouter>{children}</BrowserRouter>
         </HelmetProvider>
       </MockedProvider>
     </Provider>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { QRCode } from 'react-qrcode-logo';
 
 import {
@@ -82,7 +82,7 @@ const ProfileEventsList = ({
   pastEvents: pastEventsData,
   enrolments: enrolmentsData,
 }: Props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const { data } = useChildEnrolmentCount({
     variables: {
@@ -93,25 +93,25 @@ const ProfileEventsList = ({
 
   const gotoEventPage = (eventId: string, past = false) => {
     const pastUrl = past ? '/past' : '';
-    history.push(
+    navigate(
       getPathname(`/profile/child/${childId}/event/${eventId}${pastUrl}`)
     );
   };
 
   const gotoEventGroupPage = (eventGroupId: string) => {
-    history.push(
+    navigate(
       getPathname(`/profile/child/${childId}/event-group/${eventGroupId}`)
     );
   };
 
   const gotoOccurrencePage = (occurrenceId: string) => {
-    history.push(
+    navigate(
       getPathname(`/profile/child/${childId}/occurrence/${occurrenceId}`)
     );
   };
 
   const gotoExternalEnrolmentEventPage = (eventId: string) => {
-    history.push(
+    navigate(
       getPathname(
         `/profile/child/${childId}/event/${eventId}/external-enrolment`
       )

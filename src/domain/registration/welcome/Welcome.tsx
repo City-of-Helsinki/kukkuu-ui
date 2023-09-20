@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import tadaImage from '../../../assets/icons/svg/tada.svg';
@@ -11,7 +11,7 @@ import styles from './welcome.module.scss';
 
 const Welcome: FunctionComponent = () => {
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const getPathname = useGetPathname();
 
   return (
@@ -21,7 +21,7 @@ const Welcome: FunctionComponent = () => {
         <Icon src={tadaImage} className={styles.tada} />
         <Button
           aria-label={t('common.profile.goToProfile.buttonText')}
-          onClick={() => history.push(getPathname('/profile'))}
+          onClick={() => navigate(getPathname('/profile'))}
           className={styles.submitButton}
         >
           {t('common.profile.goToProfile.buttonText')}
