@@ -1,4 +1,4 @@
-import { Switch, useRouteMatch, useParams } from 'react-router-dom';
+import { useMatch, useParams, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import ProtectedRoute from '../../auth/route/ProtectedRoute';
@@ -32,25 +32,24 @@ export const useChildRouteGoBackTo = () => {
 const ProfileRoute = () => {
   const { t } = useTranslation();
   const childRoutePath = `${appRoutes.profile.path}/child/:childId`;
-  const match = useRouteMatch<{ childId: string }>(childRoutePath);
+  const match = useMatch(childRoutePath);
   const [queryIsChildOfProfile] = useIsChildOfProfile();
   const getPathname = useGetPathname();
 
   return (
-    <Switch>
+    <Routes>
       <AppRoute
         title={t('profile.heading')}
-        component={Profile}
-        exact
+        element={<Profile />}
         path={appRoutes.profile.path}
       />
       <ProtectedRoute
         isAuthorized={() => queryIsChildOfProfile(match?.params.childId)}
         redirectTo={getPathname('/wrong-login-method')}
-        component={ProfileChildRoutes}
+        element={<ProfileChildRoutes />}
         path={childRoutePath}
       />
-    </Switch>
+    </Routes>
   );
 };
 export default ProfileRoute;

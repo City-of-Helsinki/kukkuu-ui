@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
 import { toast } from 'react-toastify';
@@ -43,7 +43,7 @@ function containsOccurrenceFullError(
 }
 
 const EnrolPage = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const {
     t,
     i18n: { language },
@@ -68,11 +68,14 @@ const EnrolPage = () => {
   const getPathname = useGetPathname();
 
   const goToOccurrence = () =>
-    history.replace(
+    navigate(
       getPathname(
         `/profile/child/${params.childId}/occurrence/${data?.occurrence?.id}`
-      )
+      ),
+      { replace: true }
     );
+
+  const childId = params.childId ?? '';
 
   // If redirect to /profile, need to do refetchquery
   // Might need to refetch myProfile in any case
@@ -81,14 +84,14 @@ const EnrolPage = () => {
     EnrolOccurrenceMutationVariables
   >(enrolOccurrenceMutation, {
     refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({
-      childId: params.childId,
+      childId,
       eventGroupId: data?.occurrence?.event?.eventGroup?.id,
     }),
     onCompleted: (data) => {
       if (data?.enrolOccurrence?.enrolment?.child?.occurrences?.edges) {
         dispatch(
           saveChildEvents({
-            childId: params.childId,
+            childId,
             occurrences: data.enrolOccurrence.enrolment.child.occurrences,
           })
         );
@@ -117,7 +120,7 @@ const EnrolPage = () => {
     },
   });
 
-  if (loading) return <LoadingSpinner isLoading={true} />;
+  if (loading || !childId) return <LoadingSpinner isLoading={true} />;
   if (error) {
     // eslint-disable-next-line no-console
     console.error(error);
@@ -143,14 +146,14 @@ const EnrolPage = () => {
       variables: {
         input: {
           occurrenceId: data.occurrence.id,
-          childId: params.childId,
+          childId,
         },
       },
     });
   };
 
   const goToEvent = () => {
-    history.push(
+    navigate(
       getPathname(
         `/${language}/profile/child/${params.childId}/event/${params.eventId}`
       )
@@ -167,7 +170,7 @@ const EnrolPage = () => {
       containerClassName={joinClassNames(styles.enrolContainer)}
     >
       <Enrol
-        childId={params.childId}
+        childId={childId}
         occurrence={data.occurrence}
         onCancel={() => goToEvent()}
         onEnrol={() => enrol()}

@@ -1,42 +1,10 @@
 import * as React from 'react';
-import { Route, Redirect, RouteProps, useLocation } from 'react-router-dom';
+import { Route, RouteProps, Navigate, useLocation } from 'react-router-dom';
 
-type Authorization = (() => Promise<boolean>) | boolean;
+import type { Authorization } from '../useAuthorization';
+import { useAuthorization } from '../useAuthorization';
 
-function useAuthorization(authorization: Authorization): [boolean, boolean] {
-  const [isAuthorized, setAuthorized] = React.useState<boolean | null>(null);
-  const [isLoading, setLoading] = React.useState<boolean>(true);
-
-  React.useEffect(() => {
-    let ignore = false;
-
-    if (typeof authorization === 'function') {
-      authorization()
-        .then((result) => {
-          if (!ignore) {
-            setAuthorized(result);
-          }
-        })
-        .finally(() => {
-          if (!ignore) {
-            setLoading(false);
-          }
-        });
-    }
-
-    return () => {
-      ignore = true;
-    };
-  });
-
-  if (typeof authorization === 'boolean') {
-    return [false, authorization];
-  }
-
-  return [isLoading, Boolean(isAuthorized)];
-}
-
-type Props = RouteProps & {
+type Props = Omit<RouteProps, 'lazy' | 'index'> & {
   isAuthorized: Authorization;
   redirectTo?: string;
   loading?: React.ReactElement | null;
@@ -46,27 +14,31 @@ const ProtectedRoute = ({
   isAuthorized: authorization,
   redirectTo = '/home',
   loading: loadingPlaceholder = null,
+  element,
   ...rest
 }: Props) => {
   const location = useLocation();
   const [loading, isAuthorized] = useAuthorization(authorization);
 
-  if (loading) {
-    return loadingPlaceholder;
-  }
+  const ProtectedElement = () => {
+    if (loading) {
+      return loadingPlaceholder;
+    }
 
-  if (!isAuthorized) {
-    return (
-      <Redirect
-        to={{
-          pathname: redirectTo,
-          state: { from: location },
-        }}
-      />
-    );
-  }
+    if (!isAuthorized) {
+      return (
+        <Navigate
+          to={{
+            pathname: redirectTo,
+          }}
+          state={{ from: location }}
+        />
+      );
+    }
+    return element;
+  };
 
-  return <Route {...rest} />;
+  return <Route {...rest} element={<ProtectedElement />} />;
 };
 
 export default ProtectedRoute;

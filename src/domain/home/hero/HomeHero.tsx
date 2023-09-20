@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { IconAlertCircle } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
@@ -20,7 +20,7 @@ const HomeHero = ({
   userIsAuthenticated,
 }: HomeHero) => {
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const getPathname = useGetPathname();
 
   return (
@@ -49,7 +49,7 @@ const HomeHero = ({
             {userHasProfile && userIsAuthenticated && (
               <Button
                 className={styles.authenticateButton}
-                onClick={() => history.push(getPathname('/profile'))}
+                onClick={() => navigate(getPathname('/profile'))}
               >
                 {t('common.profile.goToProfile.buttonText')}
               </Button>
