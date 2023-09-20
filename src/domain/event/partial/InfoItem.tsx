@@ -14,6 +14,7 @@ export type InfoItemProps = {
 };
 
 const InfoItem: FunctionComponent<InfoItemProps> = ({
+  id,
   className,
   icon,
   label = '',
@@ -21,7 +22,10 @@ const InfoItem: FunctionComponent<InfoItemProps> = ({
   fullWidth = false,
 }) => {
   return (
-    <div className={classNames(className, { [styles.fullWidth]: fullWidth })}>
+    <div
+      id={id}
+      className={classNames(className, { [styles.fullWidth]: fullWidth })}
+    >
       {icon}
       <div>
         <Text variant="body" className={styles.label}>

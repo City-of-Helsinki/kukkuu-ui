@@ -18,7 +18,7 @@ const SubmitTypes = {
   externalTicketSystem: 'EXTERNAL_TICKET_SYSTEM',
 } as const;
 
-type SubmitType = typeof SubmitTypes[keyof typeof SubmitTypes];
+type SubmitType = (typeof SubmitTypes)[keyof typeof SubmitTypes];
 
 function getSubmitType(
   isExternalTicketSystem: boolean,
@@ -91,8 +91,8 @@ const EventOccurrence = ({
       )}
       {submitType === SubmitTypes.notification && (
         <EventOccurrenceNotificationControlButton
-          childId={childId}
-          eventId={eventId}
+          childId={childId ?? ''}
+          eventId={eventId ?? ''}
           isSubscribed={childHasSubscription}
           occurrence={occurrence}
           unsubscribeLabel={t(

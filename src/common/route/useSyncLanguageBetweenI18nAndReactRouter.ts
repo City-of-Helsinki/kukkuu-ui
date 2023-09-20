@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useRouteMatch } from 'react-router';
+import { useMatch } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
@@ -11,7 +11,7 @@ function persistLanguageChoice(language: string) {
 
 export default function useSyncLanguageBetweenI18nAndReactRouter() {
   const { i18n } = useTranslation();
-  const localeMatch = useRouteMatch<{ locale?: string }>(`/${localeParam}`);
+  const localeMatch = useMatch(`/${localeParam}`);
   const locale = localeMatch?.params?.locale ?? SUPPORT_LANGUAGES.FI;
 
   useEffect(() => {

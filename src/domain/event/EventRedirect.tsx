@@ -62,8 +62,8 @@ const EventRedirect = () => {
   >(assignTicketSystemPasswordMutation, {
     variables: {
       input: {
-        eventId,
-        childId,
+        eventId: eventId ?? '',
+        childId: childId ?? '',
       },
     },
     onError: (error) => {

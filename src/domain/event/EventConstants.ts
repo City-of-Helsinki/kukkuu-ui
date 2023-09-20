@@ -5,4 +5,4 @@ export const SubscribeToFreeSpotNotificationGQLErrors = Object.freeze({
 
 // eslint-disable-next-line max-len
 export type SubscribeToFreeSpotNotificationGQLErrorsType =
-  typeof SubscribeToFreeSpotNotificationGQLErrors[keyof typeof SubscribeToFreeSpotNotificationGQLErrors];
+  (typeof SubscribeToFreeSpotNotificationGQLErrors)[keyof typeof SubscribeToFreeSpotNotificationGQLErrors];

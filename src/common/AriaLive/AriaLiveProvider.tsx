@@ -47,7 +47,7 @@ function AriaLiveProvider({ children, id = 'aria-live-root' }: Props) {
       }}
     >
       {children}
-      {ReactDOM.createPortal(<AriaLiveRegion />, rootElement)}
+      {ReactDOM.createPortal(<AriaLiveRegion />, rootElement) as ReactNode}
     </AriaLiveContext.Provider>
   );
 }
