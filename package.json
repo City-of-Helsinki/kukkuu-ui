@@ -44,8 +44,8 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.16",
-    "@datapunt/matomo-tracker-react": "^0.5.1",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@sentry/browser": "^7.69.0",
     "@testing-library/react": "^14.0.0",

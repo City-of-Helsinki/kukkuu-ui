@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useMatomo } from '@datapunt/matomo-tracker-react';
+import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import { logoutTunnistamo } from './authenticate';
 import { flushAllState } from './state/AuthenticationUtils';
