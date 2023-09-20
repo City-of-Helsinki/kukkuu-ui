@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Prompt } from 'react-router-dom';
+import ReactRouterPrompt from 'react-router-prompt';
 
 interface NavigationConfirmProps {
   isHalfFilling: boolean;
@@ -19,7 +19,11 @@ const NavigationConfirm: FunctionComponent<NavigationConfirmProps> = ({
   }
 
   return promptExists ? (
-    <Prompt when={isHalfFilling} message={message} />
+    <ReactRouterPrompt when={isHalfFilling}>
+      {({ isActive, onConfirm, onCancel }) =>
+        isActive ? <div>{message}</div> : null
+      }
+    </ReactRouterPrompt>
   ) : null;
 };
 
