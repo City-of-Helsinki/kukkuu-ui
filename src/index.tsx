@@ -1,7 +1,3 @@
-// Polyfill for iOS versions that are older than 11.3
-// https://sentry.hel.ninja/aok/kukkuu-ui/issues/12094/
-import 'finally-polyfill';
-
 import * as Sentry from '@sentry/browser';
 import './assets/styles/main.scss';
 import 'hds-core/lib/base.css';

@@ -69,7 +69,6 @@
     "date-fns": "^2.30.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "finally-polyfill": "^0.2.0",
     "formik": "^2.4.5",
     "hds-design-tokens": "^2.17.0",
     "helsinki-utils": "City-of-Helsinki/helsinki-utils-js.git#0.1.0",
