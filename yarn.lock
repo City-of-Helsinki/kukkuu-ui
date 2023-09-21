@@ -7085,11 +7085,6 @@ finalhandler@1.2.0:
     statuses "2.0.1"
     unpipe "~1.0.0"
 
-finally-polyfill@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/finally-polyfill/-/finally-polyfill-0.2.0.tgz#1b34c6e555a6c1603d2ae046e2e176d08687bfdb"
-  integrity sha512-3w46w5Vo4TRtk5jrLT3c8ITGxnPJhMAg3Ogbj4nmgL6thNep9+UgBgk+IRVmRpZDbwNkR7tyGsE3S3J4Qt2zVw==
-
 find-babel-config@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/find-babel-config/-/find-babel-config-2.0.0.tgz#a8216f825415a839d0f23f4d18338a1cc966f701"
