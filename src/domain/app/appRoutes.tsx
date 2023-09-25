@@ -11,7 +11,7 @@ import EventRoute from '../event/route/EventRoute';
 import { AppRouteProps } from './AppRoute';
 import HeadlessCmsPage from '../headlessCms/HeadlessCmsPage';
 
-export const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})?`;
+export const localeParam = `:locale`;
 
 const appRoutes: Record<string, AppRouteProps> = {
   home: {
