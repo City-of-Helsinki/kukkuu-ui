@@ -1,5 +1,4 @@
 import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
-import OidcCallback from '../auth/OidcCallback';
 import Home from '../home/Home';
 import NotEligible from '../registration/notEligible/NotEligible';
 import WrongLoginMethod from '../auth/WrongLoginMethod';

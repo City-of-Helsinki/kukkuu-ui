@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import ProtectedRoute from '../../auth/route/ProtectedRoute';
 import AppRoute from '../../app/AppRoute';
-import appRoutes, { localeParam } from '../../app/appRoutes';
+import appRoutes from '../../app/appRoutes';
 import Profile from '../Profile';
 import ProfileChildRoutes from './ProfileChildRoutes';
 import useIsChildOfProfile from './useIsChildOfProfile';

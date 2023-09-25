@@ -10,6 +10,7 @@ export type AppRouteProps = Omit<RouteProps, 'lazy' | 'index' | 'children'> & {
   isPrivate?: boolean;
   title?: string;
   noTitle?: boolean;
+  // eslint-disable-next-line react/no-unused-prop-types
   index?: true;
 };
 
@@ -38,6 +39,7 @@ function AppRoute({
 
   return (
     <>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore ts2786 - https://github.com/nfl/react-helmet/issues/646 */}
       <Helmet>
         {title && (
