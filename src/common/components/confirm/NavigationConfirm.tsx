@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import ReactRouterPrompt from 'react-router-prompt';
+import { Prompt } from '../prompt/Prompt';
 
 interface NavigationConfirmProps {
   isHalfFilling: boolean;
@@ -18,12 +18,13 @@ const NavigationConfirm: FunctionComponent<NavigationConfirmProps> = ({
     window.onbeforeunload = null;
   }
 
+  // TODO: Does people ever get here because the browser blocks the rendering?
   return promptExists ? (
-    <ReactRouterPrompt when={isHalfFilling}>
-      {({ isActive, onConfirm, onCancel }) =>
-        isActive ? <div>{message}</div> : null
-      }
-    </ReactRouterPrompt>
+    <Prompt
+      message={message}
+      onConfirm={() => (window.onbeforeunload = null)}
+      onCancel={() => {}}
+    />
   ) : null;
 };
 
