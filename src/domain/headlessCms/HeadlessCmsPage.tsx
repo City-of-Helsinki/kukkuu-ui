@@ -13,7 +13,7 @@ const HeadlessCmsPage = () => {
   return (
     <Page
       uri={location.pathname}
-      navigation={<Navigation />}
+      navigation={undefined}
       notification={<Notification />}
       content={
         <PageContent
@@ -21,7 +21,7 @@ const HeadlessCmsPage = () => {
           collections={() => null}
         />
       }
-      footer={<Footer className={styles.noFooterOverflow} />}
+      footer={undefined}
     />
   );
 };
