@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Routes, useParams } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 
@@ -34,14 +34,10 @@ export const useEventRouteGoBackTo = () => {
 };
 
 const EventRoute: FunctionComponent = () => {
-  const { i18n } = useTranslation();
-  const currentLocale = getCurrentLanguage(i18n);
   return (
     <Routes>
-      <AppRoute
-        noTitle
-        element={<Event />}
-        path={`/${currentLocale}/event/:eventId`}
+      <Route
+        element={<AppRoute noTitle element={<Event />} path={`/:eventId`} />}
       />
     </Routes>
   );

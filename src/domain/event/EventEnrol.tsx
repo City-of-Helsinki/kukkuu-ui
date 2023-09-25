@@ -6,8 +6,8 @@ import FormikDropdown from '../../common/components/formikWrappers/FormikDropdow
 import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
-import styles from './event.module.scss';
 import { TicketSystem } from '../api/generatedTypes/globalTypes';
+import styles from './event.module.scss';
 
 export type EventEnrolProps = {
   data: EventQueryType;
