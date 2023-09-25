@@ -1,11 +1,5 @@
 import * as React from 'react';
-import {
-  Route,
-  RouteProps,
-  Navigate,
-  useLocation,
-  Routes,
-} from 'react-router-dom';
+import { RouteProps, Navigate, useLocation } from 'react-router-dom';
 
 import type { Authorization } from '../useAuthorization';
 import { useAuthorization } from '../useAuthorization';
