@@ -76,7 +76,7 @@ const EventOccurrence = ({
     ? occurrence?.remainingCapacity
     : t('event.register.occurrenceTableBody.full');
   const eventUrl = `${occurrence.event.id}/redirect`;
-  const occurrenceUrl = `${occurrence.event.id}/occurrence/${occurrence.id}/enrol`;
+  const occurrenceUrl = `occurrence/${occurrence.id}/enrol`;
   const isExternalTicketSystem = [
     TicketSystem.TICKETMASTER,
     TicketSystem.LIPPUPISTE,

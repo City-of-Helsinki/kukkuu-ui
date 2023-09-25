@@ -15,13 +15,10 @@ import HeadlessCmsPage from '../headlessCms/HeadlessCmsPage';
 export const localeParam = `:locale(${SUPPORT_LANGUAGES.EN}|${SUPPORT_LANGUAGES.FI}|${SUPPORT_LANGUAGES.SV})?`;
 
 const appRoutes: Record<string, AppRouteProps> = {
-  callback: {
-    path: `/callback`,
-    element: <OidcCallback />,
-  },
   home: {
+    index: true,
     title: 'appName',
-    path: ``,
+    path: `/`,
     element: <Home />,
   },
   oldHome: {
@@ -64,18 +61,18 @@ const appRoutes: Record<string, AppRouteProps> = {
   profile: {
     noTitle: true,
     isPrivate: true,
-    path: `/profile`,
+    path: `/profile/*`,
     element: <ProfileRoute />,
   },
   event: {
     noTitle: true,
     isPrivate: true,
-    path: `/event`,
+    path: `/event/*`,
     element: <EventRoute />,
   },
   cms: {
     noTitle: true,
-    path: `/cms`,
+    path: `/cms/*`,
     element: <HeadlessCmsPage />,
   },
 } as const;

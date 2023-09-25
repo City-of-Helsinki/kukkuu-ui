@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { Route, RouteProps, Navigate, useLocation } from 'react-router-dom';
+import {
+  Route,
+  RouteProps,
+  Navigate,
+  useLocation,
+  Routes,
+} from 'react-router-dom';
 
 import type { Authorization } from '../useAuthorization';
 import { useAuthorization } from '../useAuthorization';
@@ -38,7 +44,7 @@ const ProtectedRoute = ({
     return element;
   };
 
-  return <Route {...rest} element={<ProtectedElement />} />;
+  return <ProtectedElement />;
 };
 
 export default ProtectedRoute;
