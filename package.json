@@ -14,10 +14,10 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "build": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts build",
-    "start": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts start",
-    "test": "cross-env SASS_PATH=$(cd ./src/assets && pwd) TZ=UTC react-scripts test --transformIgnorePatterns \"node_modules/(?!(react-helsinki-headless-cms|react-helsinki-headless-cms/apollo))/\"",
-    "test:debug": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts --inspect-brk test --runInBand --no-cache",
+    "build": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts --openssl-legacy-provider build",
+    "start": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts --openssl-legacy-provider start",
+    "test": "cross-env SASS_PATH=$(cd ./src/assets && pwd) TZ=UTC react-scripts --openssl-legacy-provider test --transformIgnorePatterns \"node_modules/(?!(react-helsinki-headless-cms|react-helsinki-headless-cms/apollo))/\"",
+    "test:debug": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts --openssl-legacy-provider --inspect-brk test --runInBand --no-cache",
     "generate:graphql": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes --excludes=src/domain/headlessCms/**",
     "lint": "eslint --ext js,ts,tsx src",
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
