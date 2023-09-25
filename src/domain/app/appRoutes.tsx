@@ -71,7 +71,7 @@ const appRoutes: Record<string, AppRouteProps> = {
   },
   cms: {
     noTitle: true,
-    path: `/cms/*`,
+    path: `*`,
     element: <HeadlessCmsPage />,
   },
 } as const;
