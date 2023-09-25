@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { userHasProfileSelector } from '../../registration/state/RegistrationSelectors';
@@ -21,26 +21,24 @@ const LocaleRoutes: React.FC<{ locale: Lowercase<Language> }> = ({
 
   return (
     <Routes>
-      {Object.values(appRoutes).map(
-        ({ title, path, element, isPrivate, noTitle }) => {
-          // Don't render registration form when user has a profile,
-          // but redirect the user to the profile page instead.
-          if (path === appRoutes.registrationForm.path && userHasProfile) {
-            <Navigate to={getPathname('/profile', locale)} />;
-          }
-
-          return (
-            <AppRoute
-              key={path as string}
-              title={title ? t(title) : undefined}
-              path={path}
-              element={element}
-              isPrivate={isPrivate}
-              noTitle={noTitle}
-            />
-          );
+      {Object.values(appRoutes).map((routeProps) => {
+        const { title, path } = routeProps;
+        // Don't render registration form when user has a profile,
+        // but redirect the user to the profile page instead.
+        if (path === appRoutes.registrationForm.path && userHasProfile) {
+          <Navigate to={getPathname('/profile', locale)} />;
         }
-      )}
+
+        return (
+          <Route
+            key={path as string}
+            {...routeProps}
+            element={
+              <AppRoute {...routeProps} title={title ? t(title) : undefined} />
+            }
+          />
+        );
+      })}
     </Routes>
   );
 };

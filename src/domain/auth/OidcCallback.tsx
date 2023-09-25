@@ -30,6 +30,7 @@ function OidcCallback(props: RouteProps) {
   };
 
   const onError = async (error: Error) => {
+    console.error('OidcCallback', 'onError', error);
     let message = <ErrorMessage message={t('authentication.errorMessage')} />;
     let shortMessage = t('authentication.errorMessage');
 
@@ -77,6 +78,10 @@ function OidcCallback(props: RouteProps) {
           Sentry.captureException(error);
         });
       }
+
+      // NOTE: We don't want to toast this error,
+      // since it seems to happen every time the connection closes from idle.
+      return;
     } else {
       // Send other errors to Sentry for analysis - they might be bugs:
       Sentry.captureException(error);

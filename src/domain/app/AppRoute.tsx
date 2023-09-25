@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { Route, RouteProps } from 'react-router-dom';
+import { RouteProps } from 'react-router-dom';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import useInstantLogin from '../auth/useInstantLogin';
@@ -18,7 +18,6 @@ function AppRoute({
   title,
   noTitle,
   element,
-  ...routeProps
 }: AppRouteProps) {
   // Note that instant login should be checked first so that it has
   // access to the path the user attempted to navigate to.
@@ -38,23 +37,17 @@ function AppRoute({
   }
 
   return (
-    <Route
-      {...routeProps}
-      element={
-        <>
-          <Helmet>
-            {title && (
-              <title>
-                {title} - {t('appName')}
-              </title>
-            )}
-          </Helmet>
-          <LoadingSpinner isLoading={!canRenderComponent}>
-            {element}
-          </LoadingSpinner>
-        </>
-      }
-    />
+    <>
+      {/* @ts-ignore ts2786 - https://github.com/nfl/react-helmet/issues/646 */}
+      <Helmet>
+        {title && (
+          <title>
+            {title} - {t('appName')}
+          </title>
+        )}
+      </Helmet>
+      <LoadingSpinner isLoading={!canRenderComponent}>{element}</LoadingSpinner>
+    </>
   );
 }
 
