@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+
 import { Prompt } from '../prompt/Prompt';
 
 interface NavigationConfirmProps {
@@ -23,6 +24,7 @@ const NavigationConfirm: FunctionComponent<NavigationConfirmProps> = ({
     <Prompt
       message={message}
       onConfirm={() => (window.onbeforeunload = null)}
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       onCancel={() => {}}
     />
   ) : null;

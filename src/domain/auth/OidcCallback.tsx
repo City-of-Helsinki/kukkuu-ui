@@ -30,6 +30,7 @@ function OidcCallback(props: RouteProps) {
   };
 
   const onError = async (error: Error) => {
+    // eslint-disable-next-line
     console.error('OidcCallback', 'onError', error);
     let message = <ErrorMessage message={t('authentication.errorMessage')} />;
     let shortMessage = t('authentication.errorMessage');
