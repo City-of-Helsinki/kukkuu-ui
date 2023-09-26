@@ -37,6 +37,7 @@ import FormikTextInput from '../../../common/components/formikWrappers/FormikTex
 import TermsField from '../../../common/components/form/fields/terms/TermsField';
 import ChildFormFields from './partial/childFormFields';
 import LanguagesCombobox from '../../languages/LanguagesCombobox';
+import { userHasProfileSelector } from '../state/RegistrationSelectors';
 
 export const FORM_TESTID = 'registrationForm';
 
@@ -82,7 +83,6 @@ const RegistrationForm = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const getPathname = useGetPathname();
-
   const initialValues = useSelector(initialFormDataSelector);
   const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
   const [submitChildrenAndGuardian] =
@@ -99,16 +99,19 @@ const RegistrationForm = () => {
   // in the path 'registration.formValues.preferLanguage'.
   initialValues.preferLanguage = initialValues.preferLanguage || currentLocale;
 
+  // TODO: userHasProfile selector might be totally needles here.
+  // The selector was moved here while refactoring during KK-1017.
+  const userHasProfile = useSelector(userHasProfileSelector) || data?.myProfile;
+
   // isFilling is true when user has started filling out the form.
   // They will lose all their local form state if they change URL
   // or reload the page unless they submit first.
   const [isFilling, setFormIsFilling] = useState(false);
-
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (!data || error) {
     dispatch(clearProfile());
   }
-  if (data?.myProfile) {
+  if (userHasProfile) {
     // No need to save profile here, that will be done after the Navigate
     return <Navigate to={getPathname('/profile')} />;
   }
