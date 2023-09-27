@@ -1,29 +1,31 @@
 import { FunctionComponent } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { OidcProvider } from 'redux-oidc';
 import { ToastContainer } from 'react-toastify';
-import { MatomoProvider, createInstance } from '@jonkoops/matomo-tracker-react';
+import {
+  MatomoProvider,
+  createInstance as createMatomoInstance,
+} from '@jonkoops/matomo-tracker-react';
 import { ConfigProvider } from 'react-helsinki-headless-cms';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import { ScrollToTop } from '../../common/route/RouteUtils';
 import AriaLiveProvider from '../../common/AriaLive/AriaLiveProvider';
 import graphqlClient from '../api/client';
 import enableOidcLogging from '../auth/enableOidcLogging';
 import userManager from '../auth/userManager';
 import { persistor, store } from './state/AppStore';
-import App from './App';
 import useRHHCConfig from '../../hooks/useRHHCConfig';
+import browserRouter from './routes/browserRouter';
 
 if (process.env.NODE_ENV === 'development') {
   enableOidcLogging();
 }
 
 // TODO maybe: Variables for these:
-const instance = createInstance({
+const matomoInstance = createMatomoInstance({
   urlBase: 'https://analytics.hel.ninja/',
   siteId: 56,
 });
@@ -50,12 +52,9 @@ const BrowserApp: FunctionComponent = () => {
           <OidcProvider store={store} userManager={userManager}>
             <ApolloProvider client={graphqlClient}>
               <ConfigProvider config={config}>
-                <BrowserRouter>
-                  <ScrollToTop />
-                  <MatomoProvider value={instance}>
-                    <App />
-                  </MatomoProvider>
-                </BrowserRouter>
+                <MatomoProvider value={matomoInstance}>
+                  <RouterProvider router={browserRouter} />
+                </MatomoProvider>
               </ConfigProvider>
             </ApolloProvider>
           </OidcProvider>

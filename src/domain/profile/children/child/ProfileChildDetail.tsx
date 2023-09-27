@@ -25,11 +25,21 @@ import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
 import ListPageLayout from '../../../app/layout/ListPageLayout';
 import ProfileEvents from '../../events/ProfileEvents';
 import profileQuery from '../../queries/ProfileQuery';
-import { useProfileRouteGoBackTo } from '../../route/ProfileRoute';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
+import useAppRouteHref from '../../../app/useAppRouteHref';
 
 export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
+
+export const useProfileRouteGoBackTo = () => {
+  return useAppRouteHref('/profile');
+};
+
+export const useChildRouteGoBackTo = () => {
+  const { childId } = useParams<{ childId: string }>();
+  const profileUrl = useProfileRouteGoBackTo();
+  return `${profileUrl}/child/${childId}`;
+};
 
 const ProfileChildDetail = () => {
   const { t } = useTranslation();

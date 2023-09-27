@@ -15,6 +15,7 @@ import { store } from '../../domain/app/state/AppStore';
 
 type Props = {
   children: ReactElement | ReactNode;
+  // eslint-disable-next-line react/no-unused-prop-types
   mocks?: MockedResponse[];
 };
 

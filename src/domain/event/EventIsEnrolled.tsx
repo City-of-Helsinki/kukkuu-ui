@@ -16,7 +16,7 @@ import EventPage from './EventPage';
 import SuccessToast from './enrol/SuccessToast';
 import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
-import { useChildRouteGoBackTo } from '../profile/route/ProfileRoute';
+import { useChildRouteGoBackTo } from '../profile/children/child/ProfileChildDetail';
 
 const EventIsEnrolled = () => {
   const { t } = useTranslation();

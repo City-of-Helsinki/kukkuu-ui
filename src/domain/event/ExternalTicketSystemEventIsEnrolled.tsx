@@ -13,10 +13,10 @@ import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
 import ErrorMessage from '../../common/components/error/Error';
-import { useChildRouteGoBackTo } from '../profile/route/ProfileRoute';
 import AnchorButton from '../../common/components/button/AnchorButton';
 import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Text from '../../common/components/text/Text';
+import { useChildRouteGoBackTo } from '../profile/children/child/ProfileChildDetail';
 
 type EventTicketSystem =
   | TicketMasterEventTicketSystem
