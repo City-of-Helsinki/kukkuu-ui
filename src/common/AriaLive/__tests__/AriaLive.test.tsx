@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '../../test/testingLibraryUtils';
 import useAriaLive from '../useAriaLive';
 import AriaLiveProvider from '../AriaLiveProvider';
 
-const TestUpdater = ({ message }) => {
+const TestUpdater = ({ message }: any) => {
   const { sendMessage } = useAriaLive();
 
   return (

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { EventParticipantsPerInvite, TicketSystem } from "./globalTypes";
+import { EventParticipantsPerInvite, TicketSystem } from './globalTypes';
 
 // ====================================================
 // GraphQL query operation: externalTicketSystemEventQuery
@@ -23,7 +23,11 @@ export interface externalTicketSystemEventQuery_event_occurrences_edges_node_tic
   url: string;
 }
 
-export type externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem = externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem | externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
+export type externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem =
+
+    | externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem
+    | externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem
+    | externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface externalTicketSystemEventQuery_event_occurrences_edges_node {
   ticketSystem: externalTicketSystemEventQuery_event_occurrences_edges_node_ticketSystem | null;
@@ -59,7 +63,10 @@ export interface externalTicketSystemEventQuery_event_ticketSystem_LippupisteEve
   url: string;
 }
 
-export type externalTicketSystemEventQuery_event_ticketSystem = externalTicketSystemEventQuery_event_ticketSystem_InternalEventTicketSystem | externalTicketSystemEventQuery_event_ticketSystem_TicketmasterEventTicketSystem | externalTicketSystemEventQuery_event_ticketSystem_LippupisteEventTicketSystem;
+export type externalTicketSystemEventQuery_event_ticketSystem =
+  | externalTicketSystemEventQuery_event_ticketSystem_InternalEventTicketSystem
+  | externalTicketSystemEventQuery_event_ticketSystem_TicketmasterEventTicketSystem
+  | externalTicketSystemEventQuery_event_ticketSystem_LippupisteEventTicketSystem;
 
 export interface externalTicketSystemEventQuery_event {
   /**

@@ -1,9 +1,11 @@
+/* eslint-disable import/no-anonymous-default-export */
 import path from 'path';
-import { loadEnv } from 'vite';
-import { defineConfig } from 'vitest/config';
-import react from '@vitejs/plugin-react';
+
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import svgr from 'vite-plugin-svgr';
+import eslint from 'vite-plugin-eslint';
 
 export default ({ mode }) => {
   // Load app-level env vars to node-level env vars.
@@ -34,14 +36,10 @@ export default ({ mode }) => {
     },
     plugins: [
       react(),
+      eslint(),
       viteTsconfigPaths(),
       // svgr options: https://react-svgr.com/docs/options/
       svgr({ svgrOptions: { icon: true } }),
     ],
-    test: {
-      globals: true,
-      environment: 'jsdom',
-      setupFiles: './tests/vite-setup.ts',
-    },
   });
 };

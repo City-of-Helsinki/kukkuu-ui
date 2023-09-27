@@ -14,10 +14,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": [
+      "node",
+      "vitest/globals",
+      "vite/client",
+      "@testing-library/jest-dom/vitest"
+    ]
   },
   "lib": ["WebWorker"],
-  "types": ["node", "vitest/globals", "vite/client"],
   "include": ["src"],
   "exclude": [
     "src/**/*.stories.*",

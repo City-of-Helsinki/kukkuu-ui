@@ -3,7 +3,12 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ChildInput, GuardianInput, Language, RelationshipTypeEnum } from "./globalTypes";
+import {
+  ChildInput,
+  GuardianInput,
+  Language,
+  RelationshipTypeEnum,
+} from './globalTypes';
 
 // ====================================================
 // GraphQL mutation operation: submitChildrenAndGuardian

@@ -8,31 +8,31 @@
 //==============================================================
 
 export enum EventParticipantsPerInvite {
-  CHILD_AND_1_OR_2_GUARDIANS = "CHILD_AND_1_OR_2_GUARDIANS",
-  CHILD_AND_GUARDIAN = "CHILD_AND_GUARDIAN",
-  FAMILY = "FAMILY",
+  CHILD_AND_1_OR_2_GUARDIANS = 'CHILD_AND_1_OR_2_GUARDIANS',
+  CHILD_AND_GUARDIAN = 'CHILD_AND_GUARDIAN',
+  FAMILY = 'FAMILY',
 }
 
 /**
  * An enumeration.
  */
 export enum Language {
-  EN = "EN",
-  FI = "FI",
-  SV = "SV",
+  EN = 'EN',
+  FI = 'FI',
+  SV = 'SV',
 }
 
 export enum RelationshipTypeEnum {
-  ADVOCATE = "ADVOCATE",
-  OTHER_GUARDIAN = "OTHER_GUARDIAN",
-  OTHER_RELATION = "OTHER_RELATION",
-  PARENT = "PARENT",
+  ADVOCATE = 'ADVOCATE',
+  OTHER_GUARDIAN = 'OTHER_GUARDIAN',
+  OTHER_RELATION = 'OTHER_RELATION',
+  PARENT = 'PARENT',
 }
 
 export enum TicketSystem {
-  INTERNAL = "INTERNAL",
-  LIPPUPISTE = "LIPPUPISTE",
-  TICKETMASTER = "TICKETMASTER",
+  INTERNAL = 'INTERNAL',
+  LIPPUPISTE = 'LIPPUPISTE',
+  TICKETMASTER = 'TICKETMASTER',
 }
 
 export interface AddChildMutationInput {

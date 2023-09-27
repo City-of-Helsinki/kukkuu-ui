@@ -7,7 +7,5 @@
       "package-name": "kukkuu-ui"
     }
   },
-  "plugins": [
-    "sentence-case"
-  ]
+  "plugins": ["sentence-case"]
 }

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { EventParticipantsPerInvite, TicketSystem } from "./globalTypes";
+import { EventParticipantsPerInvite, TicketSystem } from './globalTypes';
 
 // ====================================================
 // GraphQL query operation: eventQuery
@@ -51,7 +51,10 @@ export interface eventQuery_event_occurrences_edges_node_ticketSystem_Lippupiste
   url: string;
 }
 
-export type eventQuery_event_occurrences_edges_node_ticketSystem = eventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | eventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem | eventQuery_event_occurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
+export type eventQuery_event_occurrences_edges_node_ticketSystem =
+  | eventQuery_event_occurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem
+  | eventQuery_event_occurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem
+  | eventQuery_event_occurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface eventQuery_event_occurrences_edges_node {
   /**
@@ -115,7 +118,10 @@ export interface eventQuery_event_allOccurrences_edges_node_ticketSystem_Lippupi
   url: string;
 }
 
-export type eventQuery_event_allOccurrences_edges_node_ticketSystem = eventQuery_event_allOccurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem | eventQuery_event_allOccurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem | eventQuery_event_allOccurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
+export type eventQuery_event_allOccurrences_edges_node_ticketSystem =
+  | eventQuery_event_allOccurrences_edges_node_ticketSystem_InternalOccurrenceTicketSystem
+  | eventQuery_event_allOccurrences_edges_node_ticketSystem_TicketmasterOccurrenceTicketSystem
+  | eventQuery_event_allOccurrences_edges_node_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface eventQuery_event_allOccurrences_edges_node {
   /**
@@ -160,7 +166,10 @@ export interface eventQuery_event_ticketSystem_LippupisteEventTicketSystem {
   url: string;
 }
 
-export type eventQuery_event_ticketSystem = eventQuery_event_ticketSystem_InternalEventTicketSystem | eventQuery_event_ticketSystem_TicketmasterEventTicketSystem | eventQuery_event_ticketSystem_LippupisteEventTicketSystem;
+export type eventQuery_event_ticketSystem =
+  | eventQuery_event_ticketSystem_InternalEventTicketSystem
+  | eventQuery_event_ticketSystem_TicketmasterEventTicketSystem
+  | eventQuery_event_ticketSystem_LippupisteEventTicketSystem;
 
 export interface eventQuery_event {
   /**

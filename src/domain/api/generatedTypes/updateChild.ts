@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { UpdateChildMutationInput, RelationshipTypeEnum } from "./globalTypes";
+import { UpdateChildMutationInput, RelationshipTypeEnum } from './globalTypes';
 
 // ====================================================
 // GraphQL mutation operation: updateChild

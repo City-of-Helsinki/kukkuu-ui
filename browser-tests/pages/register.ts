@@ -34,5 +34,7 @@ export const registrationForm = {
 };
 
 export const registrationDone = {
-  continueButton: screen.getByRole('button', { name: 'Oma kummilapsiprofiili' }),
-}
+  continueButton: screen.getByRole('button', {
+    name: 'Oma kummilapsiprofiili',
+  }),
+};

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { SubscribeToFreeSpotNotificationMutationInput } from "./globalTypes";
+import { SubscribeToFreeSpotNotificationMutationInput } from './globalTypes';
 
 // ====================================================
 // GraphQL mutation operation: subscribeToFreeSpotNotificationMutation

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { EventParticipantsPerInvite } from "./globalTypes";
+import { EventParticipantsPerInvite } from './globalTypes';
 
 // ====================================================
 // GraphQL query operation: eventExternalTicketSystemPasswordQuery
@@ -21,7 +21,10 @@ export interface eventExternalTicketSystemPasswordQuery_event_ticketSystem_Lippu
   url: string;
 }
 
-export type eventExternalTicketSystemPasswordQuery_event_ticketSystem = eventExternalTicketSystemPasswordQuery_event_ticketSystem_InternalEventTicketSystem | eventExternalTicketSystemPasswordQuery_event_ticketSystem_TicketmasterEventTicketSystem | eventExternalTicketSystemPasswordQuery_event_ticketSystem_LippupisteEventTicketSystem;
+export type eventExternalTicketSystemPasswordQuery_event_ticketSystem =
+  | eventExternalTicketSystemPasswordQuery_event_ticketSystem_InternalEventTicketSystem
+  | eventExternalTicketSystemPasswordQuery_event_ticketSystem_TicketmasterEventTicketSystem
+  | eventExternalTicketSystemPasswordQuery_event_ticketSystem_LippupisteEventTicketSystem;
 
 export interface eventExternalTicketSystemPasswordQuery_event {
   participantsPerInvite: EventParticipantsPerInvite;

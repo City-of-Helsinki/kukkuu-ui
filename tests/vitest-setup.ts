@@ -3,12 +3,10 @@
 require('dotenv').config({ path: './.env.test' });
 import { beforeAll, afterEach, afterAll } from 'vitest';
 import { cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
+
 import setLocale from '../src/common/localization/setLocale';
 import { server } from '../src/test/msw/server';
-
-import 'moment/dist/locale/fi';
-import '@testing-library/jest-dom';
-import '@testing-library/jest-dom/vitest';
 import '../src/common/test/testi18nInit';
 
 afterEach(() => {

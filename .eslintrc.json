@@ -1,11 +1,11 @@
 {
   "extends": [
     "react-app",
-    "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:testcafe/recommended"
   ],
   "rules": {
     "@typescript-eslint/brace-style": [
@@ -13,14 +13,7 @@
       "1tbs",
       { "allowSingleLine": true }
     ],
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/func-call-spacing": ["error"],
-    "@typescript-eslint/member-ordering": ["warn"],
-    "@typescript-eslint/no-require-imports": ["error"],
-    "@typescript-eslint/no-redeclare": "off",
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
     "react/no-unused-prop-types": ["warn", { "skipShapeProps": true }],
     "array-bracket-spacing": ["warn", "never"],
     "import/order": [
