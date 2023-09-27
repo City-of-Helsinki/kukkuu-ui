@@ -8,10 +8,10 @@ export const loginPage = {
 };
 
 export const login = async (t: TestController) => {
-  const username = testUsername(), password = testUserPassword();
+  const username = testUsername(),
+    password = testUserPassword();
 
-  await t
-    .click(loginPage.loginButton)
+  await t.click(loginPage.loginButton);
 
   await t
     .typeText(loginPage.username, username)

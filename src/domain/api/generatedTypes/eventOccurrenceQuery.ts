@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { TicketSystem } from "./globalTypes";
+import { TicketSystem } from './globalTypes';
 
 // ====================================================
 // GraphQL query operation: eventOccurrenceQuery
@@ -44,7 +44,10 @@ export interface eventOccurrenceQuery_occurrence_ticketSystem_LippupisteOccurren
   url: string;
 }
 
-export type eventOccurrenceQuery_occurrence_ticketSystem = eventOccurrenceQuery_occurrence_ticketSystem_InternalOccurrenceTicketSystem | eventOccurrenceQuery_occurrence_ticketSystem_TicketmasterOccurrenceTicketSystem | eventOccurrenceQuery_occurrence_ticketSystem_LippupisteOccurrenceTicketSystem;
+export type eventOccurrenceQuery_occurrence_ticketSystem =
+  | eventOccurrenceQuery_occurrence_ticketSystem_InternalOccurrenceTicketSystem
+  | eventOccurrenceQuery_occurrence_ticketSystem_TicketmasterOccurrenceTicketSystem
+  | eventOccurrenceQuery_occurrence_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface eventOccurrenceQuery_occurrence {
   /**

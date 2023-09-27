@@ -1,17 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+  <head> </head>
 
-<head>
-</head>
-
-<body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.11.5/oidc-client.min.js"></script>
-  <script>
-    var mgr = new Oidc.UserManager();
-    mgr.signinSilentCallback().catch(error => {
-      console.error('silent_renew.html error', error);
-    });
-  </script>
-</body>
-
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/oidc-client/1.11.5/oidc-client.min.js"></script>
+    <script>
+      var mgr = new Oidc.UserManager();
+      mgr.signinSilentCallback().catch((error) => {
+        console.error('silent_renew.html error', error);
+      });
+    </script>
+  </body>
 </html>

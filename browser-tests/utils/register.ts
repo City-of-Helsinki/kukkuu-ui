@@ -1,4 +1,8 @@
-import { registerForm, registrationForm, registrationDone } from '../pages/register';
+import {
+  registerForm,
+  registrationForm,
+  registrationDone,
+} from '../pages/register';
 import getDropdownOption from './getDropdownOption';
 
 // Firstime sign up requires registration
@@ -14,14 +18,14 @@ export const register = async (t: TestController) => {
     firstName: 'Hertta',
     lastName: 'Citron',
     relationship: 'Vanhempi',
-  }
+  };
   const guardian = {
     phoneNumber: '0000000000',
     language: 'suomi',
-  }
+  };
 
   if (await registerForm.section.exists) {
-    console.log("Register user")
+    console.log('Register user');
 
     await t
       .typeText(registerForm.birthDayDayInput, registerChild.birthDate.day)
@@ -43,7 +47,10 @@ export const register = async (t: TestController) => {
         .click(registrationForm.agreeCheckbox)
         .click(registrationForm.languagesSpokenAtHomeCombobox)
         .click(getDropdownOption(guardian.language))
-        .typeText(registrationForm.guardianPhoneNumberInput, guardian.phoneNumber)
+        .typeText(
+          registrationForm.guardianPhoneNumberInput,
+          guardian.phoneNumber
+        )
         .click(registrationForm.submitButton);
 
       await t.wait(2500); // 2.5s

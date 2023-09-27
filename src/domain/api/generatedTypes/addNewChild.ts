@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { AddChildMutationInput } from "./globalTypes";
+import { AddChildMutationInput } from './globalTypes';
 
 // ====================================================
 // GraphQL mutation operation: addNewChild

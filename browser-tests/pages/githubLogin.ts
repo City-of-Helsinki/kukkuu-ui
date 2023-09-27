@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/testcafe';
 
-export const githubLogin =
-{
+export const githubLogin = {
   loginLink: screen.getByText('GitHub'),
   username: screen.getByLabelText('Username or email address'),
   password: screen.getByLabelText('Password'),

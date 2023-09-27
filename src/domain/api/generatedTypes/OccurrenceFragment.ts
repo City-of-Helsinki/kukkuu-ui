@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { TicketSystem } from "./globalTypes";
+import { TicketSystem } from './globalTypes';
 
 // ====================================================
 // GraphQL fragment: OccurrenceFragment
@@ -44,7 +44,10 @@ export interface OccurrenceFragment_ticketSystem_LippupisteOccurrenceTicketSyste
   url: string;
 }
 
-export type OccurrenceFragment_ticketSystem = OccurrenceFragment_ticketSystem_InternalOccurrenceTicketSystem | OccurrenceFragment_ticketSystem_TicketmasterOccurrenceTicketSystem | OccurrenceFragment_ticketSystem_LippupisteOccurrenceTicketSystem;
+export type OccurrenceFragment_ticketSystem =
+  | OccurrenceFragment_ticketSystem_InternalOccurrenceTicketSystem
+  | OccurrenceFragment_ticketSystem_TicketmasterOccurrenceTicketSystem
+  | OccurrenceFragment_ticketSystem_LippupisteOccurrenceTicketSystem;
 
 export interface OccurrenceFragment {
   /**

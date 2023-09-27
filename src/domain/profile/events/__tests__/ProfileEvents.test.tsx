@@ -1,3 +1,5 @@
+import * as reactQrCodeLogo from 'react-qrcode-logo';
+
 import ProfileEvents from '../ProfileEvents';
 import {
   childByIdQuery_child as ChildByIdResponse,
@@ -7,9 +9,8 @@ import {
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
 import { render } from '../../../../common/test/testingLibraryUtils';
-import * as reactQrCodeLogo from 'react-qrcode-logo';
 
-vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => <div />);
+vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => (<div />) as any);
 
 const childData: ChildByIdResponse = {
   id: '',

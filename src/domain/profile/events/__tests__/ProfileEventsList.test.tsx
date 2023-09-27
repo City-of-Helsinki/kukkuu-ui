@@ -1,5 +1,6 @@
 import React from 'react';
 import { MockedProvider } from '@apollo/client/testing';
+import * as reactQrCodeLogo from 'react-qrcode-logo';
 
 import { render, screen } from '../../../../common/test/testingLibraryUtils';
 import ProfileEventsList from '../ProfileEventsList';
@@ -10,9 +11,8 @@ import {
   childByIdQuery_child_activeInternalAndTicketSystemEnrolments as InternalAndTicketSystemEnrolmentsType,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
-import * as reactQrCodeLogo from 'react-qrcode-logo';
 
-vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => <div />);
+vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => (<div />) as any);
 
 const childData: ChildByIdResponse = {
   id: '',

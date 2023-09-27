@@ -26,7 +26,5 @@ test('As a user I can use event groups to find events', async (t) => {
   await t.click(eventGroupPage.selectEventButtons.nth(0));
 
   // Expect its name to be a hardcoded value
-  await t
-    .expect(eventPage.title.textContent)
-    .contains('Test event');
+  await t.expect(eventPage.title.textContent).contains('Test event');
 });

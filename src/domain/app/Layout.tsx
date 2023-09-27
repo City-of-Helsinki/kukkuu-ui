@@ -1,6 +1,6 @@
-import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { Outlet } from 'react-router';
+import { useSelector } from 'react-redux';
 
 import { isSessionExpiredPromptOpenSelector } from './state/ui/UISelectors';
 import SessionAlert from './sessionAlert/SessionAlert';

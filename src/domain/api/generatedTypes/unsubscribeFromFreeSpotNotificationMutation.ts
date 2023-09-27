@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { UnsubscribeFromFreeSpotNotificationMutationInput } from "./globalTypes";
+import { UnsubscribeFromFreeSpotNotificationMutationInput } from './globalTypes';
 
 // ====================================================
 // GraphQL mutation operation: unsubscribeFromFreeSpotNotificationMutation

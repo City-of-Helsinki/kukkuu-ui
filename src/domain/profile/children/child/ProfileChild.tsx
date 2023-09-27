@@ -165,7 +165,7 @@ function Content({
 }
 
 function getIsNotEmpty<V>(val: V): val is Exclude<V, undefined | null> {
-  return typeof val !== undefined || val !== null;
+  return typeof val !== 'undefined' || val !== null;
 }
 
 function findNextEnrolment(enrolments: EnrolmentType[]) {
