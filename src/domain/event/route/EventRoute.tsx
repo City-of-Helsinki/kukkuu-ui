@@ -1,11 +1,8 @@
-import { FunctionComponent } from 'react';
-import { Route, Routes, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
-import AppRoute from '../../app/AppRoute';
-import Event from '../Event';
 import { eventQuery as EventQueryType } from '../../api/generatedTypes/eventQuery';
 import eventQuery from '../queries/eventQuery';
 
@@ -32,14 +29,3 @@ export const useEventRouteGoBackTo = () => {
   // Fallback if the eventGroupId could not be resolved
   return `/${currentLocale}/profile/child/${childId}`;
 };
-
-const EventRoute: FunctionComponent = () => {
-  return (
-    <Routes>
-      <Route
-        element={<AppRoute noTitle element={<Event />} path={`/:eventId`} />}
-      />
-    </Routes>
-  );
-};
-export default EventRoute;

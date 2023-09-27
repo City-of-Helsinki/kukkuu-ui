@@ -1,24 +1,28 @@
 import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
+import { Outlet } from 'react-router';
 
 import { isSessionExpiredPromptOpenSelector } from './state/ui/UISelectors';
 import SessionAlert from './sessionAlert/SessionAlert';
 import PageLayout from './layout/PageLayout';
 import useHashAnchorLinks from './useHashAnchorLinks';
 import AppTitleAnnouncer from './AppTitleAnnouncer';
-import AppRoutes from './routes/AppRoutes';
+import { ScrollToTop } from '../../common/route/RouteUtils';
 
-const App = () => {
+const Layout = () => {
   useHashAnchorLinks();
 
   const isSessionPromptOpen = useSelector(isSessionExpiredPromptOpenSelector);
   return (
-    <PageLayout>
-      <AppTitleAnnouncer />
-      {isSessionPromptOpen && <SessionAlert isOpen={isSessionPromptOpen} />}
-      <AppRoutes />
-    </PageLayout>
+    <>
+      <ScrollToTop />
+      <PageLayout>
+        <AppTitleAnnouncer />
+        {isSessionPromptOpen && <SessionAlert isOpen={isSessionPromptOpen} />}
+        <Outlet />
+      </PageLayout>
+    </>
   );
 };
 
-export default App;
+export default Layout;
