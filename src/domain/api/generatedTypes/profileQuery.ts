@@ -3,7 +3,11 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { Language, RelationshipTypeEnum, EventParticipantsPerInvite } from "./globalTypes";
+import {
+  Language,
+  RelationshipTypeEnum,
+  EventParticipantsPerInvite,
+} from './globalTypes';
 
 // ====================================================
 // GraphQL query operation: profileQuery
@@ -61,7 +65,10 @@ export interface profileQuery_myProfile_children_edges_node_upcomingEventsAndEve
   participantsPerInvite: EventParticipantsPerInvite;
 }
 
-export type profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node = profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node_EventGroupNode | profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node_EventNode;
+export type profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node =
+
+    | profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node_EventGroupNode
+    | profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges_node_EventNode;
 
 export interface profileQuery_myProfile_children_edges_node_upcomingEventsAndEventGroups_edges {
   /**

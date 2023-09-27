@@ -23,7 +23,10 @@ export interface ChildEventInvitationLabelQuery_child_upcomingEventsAndEventGrou
   canChildEnroll: boolean | null;
 }
 
-export type ChildEventInvitationLabelQuery_child_upcomingEventsAndEventGroups_edges_node = ChildEventInvitationLabelQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode | ChildEventInvitationLabelQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode;
+export type ChildEventInvitationLabelQuery_child_upcomingEventsAndEventGroups_edges_node =
+
+    | ChildEventInvitationLabelQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode
+    | ChildEventInvitationLabelQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode;
 
 export interface ChildEventInvitationLabelQuery_child_upcomingEventsAndEventGroups_edges {
   /**

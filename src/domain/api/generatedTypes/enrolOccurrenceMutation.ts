@@ -3,7 +3,10 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { EnrolOccurrenceMutationInput, EventParticipantsPerInvite } from "./globalTypes";
+import {
+  EnrolOccurrenceMutationInput,
+  EventParticipantsPerInvite,
+} from './globalTypes';
 
 // ====================================================
 // GraphQL mutation operation: enrolOccurrenceMutation

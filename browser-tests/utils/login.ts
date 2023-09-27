@@ -18,7 +18,7 @@ const givePermission = async (t: TestController) => {
 
 export const login = async (t: TestController) => {
   // @ts-ignore
-  const developmentMode = t.testRun.opts.developmentMode
+  const developmentMode = t.testRun.opts.developmentMode;
 
   //  development mode, use github login
   if (developmentMode) {

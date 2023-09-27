@@ -3,7 +3,10 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { EventParticipantsPerInvite, RelationshipTypeEnum } from "./globalTypes";
+import {
+  EventParticipantsPerInvite,
+  RelationshipTypeEnum,
+} from './globalTypes';
 
 // ====================================================
 // GraphQL query operation: childByIdQuery
@@ -63,7 +66,7 @@ export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_ed
    */
   referenceId: string | null;
   occurrence: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence;
-  __typename: "EnrolmentNode";
+  __typename: 'EnrolmentNode';
 }
 
 export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode_event {
@@ -88,7 +91,7 @@ export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_ed
    */
   id: string;
   event: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode_event;
-  __typename: "TicketmasterEnrolmentNode";
+  __typename: 'TicketmasterEnrolmentNode';
 }
 
 export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode_event {
@@ -113,10 +116,14 @@ export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_ed
    */
   id: string;
   event: childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode_event;
-  __typename: "LippupisteEnrolmentNode";
+  __typename: 'LippupisteEnrolmentNode';
 }
 
-export type childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node = childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode;
+export type childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node =
+
+    | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode
+    | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode
+    | childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode;
 
 export interface childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges {
   /**
@@ -143,7 +150,7 @@ export interface childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_Ev
   imageAltText: string | null;
   participantsPerInvite: EventParticipantsPerInvite;
   canChildEnroll: boolean | null;
-  __typename: "EventNode";
+  __typename: 'EventNode';
 }
 
 export interface childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode {
@@ -156,10 +163,12 @@ export interface childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_Ev
   image: string;
   imageAltText: string | null;
   canChildEnroll: boolean | null;
-  __typename: "EventGroupNode";
+  __typename: 'EventGroupNode';
 }
 
-export type childByIdQuery_child_upcomingEventsAndEventGroups_edges_node = childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode | childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode;
+export type childByIdQuery_child_upcomingEventsAndEventGroups_edges_node =
+  | childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode
+  | childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode;
 
 export interface childByIdQuery_child_upcomingEventsAndEventGroups_edges {
   /**

@@ -8,7 +8,7 @@ import { loginTunnistamo } from '../../auth/authenticate';
 import Config from '../../config';
 import styles from './hero.module.scss';
 
-type HomeHero = {
+type HomeHeroProps = {
   userHasProfile: boolean;
   userIsAuthenticated: boolean;
   scrollToForm: () => void;
@@ -18,7 +18,7 @@ const HomeHero = ({
   userHasProfile,
   scrollToForm,
   userIsAuthenticated,
-}: HomeHero) => {
+}: HomeHeroProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const getPathname = useGetPathname();

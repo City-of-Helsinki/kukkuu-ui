@@ -30,7 +30,7 @@ const defaultProps = {
   occurrence: mockedNode,
 };
 
-const getWrapper = (props: unknown = {}) =>
+const getWrapper = (props: any = {}) =>
   render(
     <table>
       <tbody>

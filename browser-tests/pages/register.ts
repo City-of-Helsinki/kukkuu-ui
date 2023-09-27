@@ -7,7 +7,9 @@ export const registerForm = {
   birthDayMonthInput: Selector('#child\\.birthdate\\.month'),
   birthDayYearInput: Selector('#child\\.birthdate\\.year'),
   cityInput: screen.getByLabelText('Lapsen kotipaikkakunta *'),
-  verifyInformationCheckbox: screen.getByLabelText('Vakuutan antamani tiedot oikeaksi'),
+  verifyInformationCheckbox: screen.getByLabelText(
+    'Vakuutan antamani tiedot oikeaksi'
+  ),
   submitButton: Selector('#register').find('button'),
 };
 
@@ -23,12 +25,16 @@ export const registrationForm = {
 
   // Lähiaikuisen tiedot
   guardianPhoneNumberInput: screen.getByLabelText('Puhelinnumero *'),
-  languagesSpokenAtHomeCombobox: Selector('#languagesSpokenAtHome-toggle-button'),
+  languagesSpokenAtHomeCombobox: Selector(
+    '#languagesSpokenAtHome-toggle-button'
+  ),
   agreeCheckbox: screen.getByLabelText(/Olen tutustunut/),
 
   submitButton: screen.getByRole('button', { name: 'Ilmoittaudu mukaan' }),
 };
 
 export const registrationDone = {
-  continueButton: screen.getByRole('button', { name: 'Oma kummilapsiprofiili' }),
-}
+  continueButton: screen.getByRole('button', {
+    name: 'Oma kummilapsiprofiili',
+  }),
+};
