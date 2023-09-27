@@ -3,3 +3,5 @@ export const SUPPORT_LANGUAGES = {
   SV: 'sv',
   EN: 'en',
 };
+
+export const DEFAULT_LANGUAGE = SUPPORT_LANGUAGES.FI;

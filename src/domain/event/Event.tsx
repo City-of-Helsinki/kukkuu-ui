@@ -105,7 +105,7 @@ const Event = () => {
 
   const { loading, error, data, refetch } = useQuery<EventQueryType>(
     eventQuery,
-    { variables }
+    { skip: !eventId, variables }
   );
 
   const updateFilterValues = (filterValues: FilterValues) => {

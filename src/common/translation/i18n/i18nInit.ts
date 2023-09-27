@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 import setLocale, { Locale } from '../../localization/setLocale';
-import { SUPPORT_LANGUAGES } from '../TranslationConstants';
+import { DEFAULT_LANGUAGE, SUPPORT_LANGUAGES } from '../TranslationConstants';
 import en from './en.json';
 import fi from './fi.json';
 import sv from './sv.json';
@@ -35,7 +35,7 @@ export function initI18next() {
           'subdomain',
         ],
       },
-      fallbackLng: 'fi',
+      fallbackLng: DEFAULT_LANGUAGE,
       interpolation: {
         escapeValue: false,
         skipOnVariables: false,
