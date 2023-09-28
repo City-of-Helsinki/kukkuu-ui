@@ -16,6 +16,7 @@ const mockedNode: OccurrenceEdgeNode = {
   event: {
     id: 'zzaaz',
     name: 'event name',
+    duration: 60,
   },
   venue: {
     id: 'auppss',
@@ -23,6 +24,7 @@ const mockedNode: OccurrenceEdgeNode = {
     address: '',
   },
   childHasFreeSpotNotificationSubscription: false,
+  ticketSystem: null,
 };
 const defaultProps = {
   occurrence: mockedNode,
@@ -32,7 +34,7 @@ const getWrapper = (props: unknown = {}) =>
   render(
     <table>
       <tbody>
-        <EventOccurrence {...defaultProps} {...props} />
+        <EventOccurrence {...defaultProps} {...(props as any)} />
       </tbody>
     </table>
   );
