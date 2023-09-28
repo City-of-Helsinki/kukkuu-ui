@@ -14,10 +14,10 @@
     "node": ">=16.0.0"
   },
   "scripts": {
-    "build": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts --openssl-legacy-provider build",
-    "start": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts --openssl-legacy-provider start",
-    "test": "cross-env SASS_PATH=$(cd ./src/assets && pwd) TZ=UTC react-scripts --openssl-legacy-provider test --transformIgnorePatterns \"node_modules/(?!(react-helsinki-headless-cms|react-helsinki-headless-cms/apollo))/\"",
-    "test:debug": "cross-env SASS_PATH=$(cd ./src/assets && pwd) react-scripts --openssl-legacy-provider --inspect-brk test --runInBand --no-cache",
+    "start": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "test": "vitest",
     "generate:graphql": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes --excludes=src/domain/headlessCms/**",
     "lint": "eslint --ext js,ts,tsx src",
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
@@ -61,6 +61,7 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/react-transition-group": "^4.4.6",
     "@types/validator": "^13.11.1",
+    "@vitejs/plugin-react": "^4.0.4",
     "axios": "^1.5.0",
     "browserslist": "^4.21.10",
     "classnames": "^2.3.2",
@@ -71,7 +72,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "formik": "^2.4.5",
-    "hds-design-tokens": "^2.17.0",
+    "hds-core": "^2.17.0",
     "helsinki-utils": "City-of-Helsinki/helsinki-utils-js.git#0.1.0",
     "html-react-parser": "^4.2.2",
     "i18next": "^23.5.1",
@@ -92,7 +93,6 @@
     "react-redux": "^8.1.2",
     "react-router": "^6.16.0",
     "react-router-dom": "^6.16.0",
-    "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.3",
     "react-transition-group": "^4.4.5",
     "redux": "^4.2.1",
@@ -101,6 +101,9 @@
     "sass": "^1.67.0",
     "typescript": "^5.2.2",
     "validator": "^13.11.0",
+    "vite": "^4.4.9",
+    "vite-plugin-svgr": "^4.0.0",
+    "vite-tsconfig-paths": "^4.2.1",
     "yup": "^1.2.0"
   },
   "resolutions": {
@@ -117,7 +120,9 @@
     "dotenv": "^16.3.1",
     "hds-react": "^2.17.0",
     "jest-fetch-mock": "^3.0.3",
-    "testcafe": "^3.3.0"
+    "jsdom": "^22.1.0",
+    "testcafe": "^3.3.0",
+    "vitest": "^0.34.4"
   },
   "jest": {
     "collectCoverageFrom": [

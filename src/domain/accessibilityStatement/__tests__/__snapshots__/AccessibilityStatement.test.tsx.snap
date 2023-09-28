@@ -1,15 +1,15 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="pageWrapper"
+    class="_pageWrapper_e42bcd"
   >
     <div
-      class="container"
+      class="_container_533ff0"
     >
       <div
-        class="accessibilityStatement"
+        class="_accessibilityStatement_f31282"
       >
         <h1>
           Saavutettavuus­seloste

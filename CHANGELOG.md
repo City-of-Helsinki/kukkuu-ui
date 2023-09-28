@@ -401,22 +401,19 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 
 ## [1.14.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.14.0...kukkuu-ui-v1.14.1) (2023-08-31)
 
-
 ### Bug Fixes
 
-* **dockerfile:** Add REACT_APP_ADMIN_TICKET_VALIDATION_URL argument ([7642b17](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7642b17eeae2226df085b29774b26b32789a65e4))
+- **dockerfile:** Add VITE_ADMIN_TICKET_VALIDATION_URL argument ([7642b17](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7642b17eeae2226df085b29774b26b32789a65e4))
 
 ## [1.14.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.13.1...kukkuu-ui-v1.14.0) (2023-08-31)
 
-
 ### Features
 
-* **logos:** Add Tiedemuseo Liekki & update Hotelli- ja ravintolamuseo ([4d4bfee](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4d4bfeea410419598b14643d7e13445df79484d2))
-
+- **logos:** Add Tiedemuseo Liekki & update Hotelli- ja ravintolamuseo ([4d4bfee](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4d4bfeea410419598b14643d7e13445df79484d2))
 
 ### Bug Fixes
 
-* Dockerfile base on ubi image DEVOPS-560 ([#486](https://github.com/City-of-Helsinki/kukkuu-ui/issues/486)) ([d9b119b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d9b119be6ef8a64c18aeed3a2b593222de11fbea))
+- Dockerfile base on ubi image DEVOPS-560 ([#486](https://github.com/City-of-Helsinki/kukkuu-ui/issues/486)) ([d9b119b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d9b119be6ef8a64c18aeed3a2b593222de11fbea))
 
 ## 0.1.2 (February 6th, 2020)
 

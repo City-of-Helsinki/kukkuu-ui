@@ -135,15 +135,12 @@ const ProfileEventsList = ({
       key={internalEnrolment.id}
       imageElement={
         <div className={styles.qrWrapper}>
-          {/* FIXME: The QRCode should work also in the testing environment. */}
-          {process.env.NODE_ENV !== 'test' && (
-            <QRCode
-              quietZone={0}
-              size={QR_CODE_SIZE_PX}
-              value={getTicketValidationUrl(internalEnrolment?.referenceId)}
-              ecLevel={'H'}
-            />
-          )}
+          <QRCode
+            quietZone={0}
+            size={QR_CODE_SIZE_PX}
+            value={getTicketValidationUrl(internalEnrolment?.referenceId)}
+            ecLevel={'H'}
+          />
         </div>
       }
       event={internalEnrolment.occurrence.event}

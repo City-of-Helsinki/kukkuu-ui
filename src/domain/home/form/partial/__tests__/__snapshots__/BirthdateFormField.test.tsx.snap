@@ -1,19 +1,19 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="birthdateField"
+    class="_birthdateField_3e5209"
   >
     <label>
       Lapsen syntymäaika (pp.kk.vvvv)*
     </label>
     <div
-      class="inputWrapper"
+      class="_inputWrapper_3e5209"
     >
       <div>
         <div
-          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
         >
           <div
             class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
@@ -35,13 +35,13 @@ exports[`renders snapshot correctly 1`] = `
         </div>
       </div>
       <div
-        class="dot"
+        class="_dot_3e5209"
       >
         .
       </div>
       <div>
         <div
-          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
         >
           <div
             class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
@@ -63,13 +63,13 @@ exports[`renders snapshot correctly 1`] = `
         </div>
       </div>
       <div
-        class="dot"
+        class="_dot_3e5209"
       >
         .
       </div>
       <div>
         <div
-          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+          class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
         >
           <div
             class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"

@@ -12,16 +12,19 @@ import { initI18next } from './common/translation/i18n/i18nInit';
 initI18next();
 Modal.setAppElement('#root');
 
-if (process.env.NODE_ENV === 'production') {
+if (import.meta.env.NODE_ENV === 'production') {
   Sentry.init({
-    dsn: process.env.REACT_APP_SENTRY_DSN,
-    environment: process.env.REACT_APP_ENVIRONMENT,
-    release: `${process.env.REACT_APP_APPLICATION_NAME}@${process.env.REACT_APP_VERSION}`,
+    dsn: import.meta.env.VITE_SENTRY_DSN,
+    environment: import.meta.env.VITE_ENVIRONMENT,
+    release: `${import.meta.env.VITE_APPLICATION_NAME}@${
+      import.meta.env.VITE_VERSION
+    }`,
     autoSessionTracking: false,
   });
 }
 const container = document.getElementById('root') as Element;
 const root = createRoot(container);
+
 root.render(
   <React.StrictMode>
     <BrowserApp />

@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <table
-    class="eventOccurrenceList"
+    class="_eventOccurrenceList_e8d8f8"
   >
     <tbody>
       <tr
-        class="mobileHeader"
+        class="_mobileHeader_e8d8f8"
       >
         <th>
           Tapahtuman tiedot
@@ -17,7 +17,7 @@ exports[`renders snapshot correctly 1`] = `
         </th>
       </tr>
       <tr
-        class="desktopHeader"
+        class="_desktopHeader_e8d8f8"
       >
         <th>
           Päivämäärä
@@ -29,36 +29,36 @@ exports[`renders snapshot correctly 1`] = `
           Tapahtumapaikka
         </th>
         <th
-          class="freePlaces"
+          class="_freePlaces_e8d8f8"
         >
           Vapaat paikat
         </th>
         <th />
       </tr>
       <tr
-        class="occurrence isMobile"
+        class="_occurrence_cdc216 _isMobile_cdc216"
       >
         <td>
           Musiikkitalo
            
           <time
-            datetime="2020-03-08 04:00:00.000"
+            datetime="2020-03-08 06:00:00.000"
           >
             su 8.3.2020
              
-            04:00
+            06:00
           </time>
         </td>
         <td
-          class="remainingCapacity"
+          class="_remainingCapacity_cdc216"
         >
           99
         </td>
         <td
-          class="occurrenceSubmit"
+          class="_occurrenceSubmit_cdc216"
         >
           <a
-            class="hds-button button"
+            class="hds-button _button_f33f10"
             href="/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
           >
             <span
@@ -70,27 +70,27 @@ exports[`renders snapshot correctly 1`] = `
         </td>
       </tr>
       <tr
-        class="occurrence"
+        class="_occurrence_cdc216"
       >
         <td>
           su 8.3.2020
         </td>
         <td>
-          04:00
+          06:00
         </td>
         <td>
           Musiikkitalo
         </td>
         <td
-          class="remainingCapacity"
+          class="_remainingCapacity_cdc216"
         >
           99
         </td>
         <td
-          class="occurrenceSubmit"
+          class="_occurrenceSubmit_cdc216"
         >
           <a
-            class="hds-button button"
+            class="hds-button _button_f33f10"
             href="/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
           >
             <span
@@ -102,29 +102,29 @@ exports[`renders snapshot correctly 1`] = `
         </td>
       </tr>
       <tr
-        class="occurrence isMobile"
+        class="_occurrence_cdc216 _isMobile_cdc216"
       >
         <td>
           Somewhere
            
           <time
-            datetime="2020-04-08 04:00:00.000"
+            datetime="2020-04-08 07:00:00.000"
           >
             ke 8.4.2020
              
-            04:00
+            07:00
           </time>
         </td>
         <td
-          class="remainingCapacity"
+          class="_remainingCapacity_cdc216"
         >
           88
         </td>
         <td
-          class="occurrenceSubmit"
+          class="_occurrenceSubmit_cdc216"
         >
           <a
-            class="hds-button button"
+            class="hds-button _button_f33f10"
             href="/asdf/redirect"
           >
             <span
@@ -136,27 +136,27 @@ exports[`renders snapshot correctly 1`] = `
         </td>
       </tr>
       <tr
-        class="occurrence"
+        class="_occurrence_cdc216"
       >
         <td>
           ke 8.4.2020
         </td>
         <td>
-          04:00
+          07:00
         </td>
         <td>
           Somewhere
         </td>
         <td
-          class="remainingCapacity"
+          class="_remainingCapacity_cdc216"
         >
           88
         </td>
         <td
-          class="occurrenceSubmit"
+          class="_occurrenceSubmit_cdc216"
         >
           <a
-            class="hds-button button"
+            class="hds-button _button_f33f10"
             href="/asdf/redirect"
           >
             <span

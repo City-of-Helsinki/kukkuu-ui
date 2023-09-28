@@ -1,6 +1,6 @@
-@import 'styles/variables';
-@import 'styles/fonts';
-@import 'styles/layout';
+@import '~styles/variables';
+@import '~styles/fonts';
+@import '~styles/layout';
 
 @include respond-between(md, xlg) {
   .heroWrapper {

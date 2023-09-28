@@ -1,38 +1,38 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`<Home /> renders snapshot correctly 1`] = `
+exports[`<Home /> > renders snapshot correctly 1`] = `
 <div>
   <div
-    class="pageWrapper"
+    class="_pageWrapper_e42bcd"
   >
     <div
-      class="container gridLayoutOverride"
+      class="_container_533ff0 _gridLayoutOverride_e7e15b"
     >
       <div
-        class="home"
+        class="_home_e7e15b"
       >
         <section
-          class="heroWrapper"
+          class="_heroWrapper_b04a84"
         >
           <div
-            class="heroContainer"
+            class="_heroContainer_b04a84"
           >
             <div
-              class="hero"
+              class="_hero_b04a84"
             >
               <h1>
                 Kulttuurin kummilapset
               </h1>
               <p
-                class="bodyXl"
+                class="_bodyXl_b04a84"
               >
                 Kaikki vuodesta 2020 eteenpäin syntyvät helsinkiläiset lapset kutsutaan kulttuurin kummilapsiksi. Kummilapset saavat kutsun vuosittain kahteen tapahtumaan, kunnes lapsi aloittaa koulun. Tapahtumat ovat maksuttomia.
               </p>
               <div
-                class="buttonGroup"
+                class="_buttonGroup_b04a84"
               >
                 <button
-                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO registerButton"
+                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _registerButton_b04a84"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
@@ -43,7 +43,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                   </span>
                 </button>
                 <button
-                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO authenticateButton"
+                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _authenticateButton_b04a84"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
@@ -57,18 +57,18 @@ exports[`<Home /> renders snapshot correctly 1`] = `
             </div>
           </div>
           <div
-            class="kidsImageContainer"
+            class="_kidsImageContainer_b04a84"
           >
             <div
-              class="kidsImage"
+              class="_kidsImage_b04a84"
             />
           </div>
         </section>
         <section
-          class="wrapper"
+          class="_wrapper_557708"
         >
           <div
-            class="innerwrapper"
+            class="_innerwrapper_557708"
           >
             <h2>
               Lisätietoa palvelusta eri kielillä
@@ -77,10 +77,10 @@ exports[`<Home /> renders snapshot correctly 1`] = `
               Lataa lisätietoa Kultuurin kummilapset -palvelusta omalla kielelläsi.
             </p>
             <div
-              class="link"
+              class="_link_0c660e"
             >
               <a
-                href="/brochures/fr.pdf"
+                href="undefined/brochures/fr.pdf"
               >
                 <span
                   lang="fr"
@@ -91,7 +91,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -100,7 +100,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/ru.pdf"
+                href="undefined/brochures/ru.pdf"
               >
                 <span
                   lang="ru"
@@ -111,7 +111,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -120,7 +120,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/es.pdf"
+                href="undefined/brochures/es.pdf"
               >
                 <span
                   lang="es"
@@ -131,7 +131,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -140,7 +140,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/zh.pdf"
+                href="undefined/brochures/zh.pdf"
               >
                 <span
                   lang="zh"
@@ -151,7 +151,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -160,7 +160,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/npi.pdf"
+                href="undefined/brochures/npi.pdf"
               >
                 <span
                   lang="npi"
@@ -171,7 +171,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -180,7 +180,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/som.pdf"
+                href="undefined/brochures/som.pdf"
               >
                 <span
                   lang="som"
@@ -191,7 +191,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -200,7 +200,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/fas.pdf"
+                href="undefined/brochures/fas.pdf"
               >
                 <span
                   lang="fas"
@@ -211,7 +211,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -220,7 +220,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/et.pdf"
+                href="undefined/brochures/et.pdf"
               >
                 <span
                   lang="et"
@@ -231,7 +231,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -240,7 +240,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/tur.pdf"
+                href="undefined/brochures/tur.pdf"
               >
                 <span
                   lang="tur"
@@ -251,7 +251,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -260,7 +260,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/ara.pdf"
+                href="undefined/brochures/ara.pdf"
               >
                 <span
                   lang="ar"
@@ -271,7 +271,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -280,7 +280,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/ckb.pdf"
+                href="undefined/brochures/ckb.pdf"
               >
                 <span
                   lang="ckb"
@@ -291,7 +291,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -300,7 +300,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/vi.pdf"
+                href="undefined/brochures/vi.pdf"
               >
                 <span
                   lang="vi"
@@ -311,7 +311,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -320,7 +320,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/en.pdf"
+                href="undefined/brochures/en.pdf"
               >
                 <span
                   lang="en"
@@ -331,7 +331,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -340,7 +340,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/sv.pdf"
+                href="undefined/brochures/sv.pdf"
               >
                 <span
                   lang="sv"
@@ -351,7 +351,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -360,7 +360,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </span>
               </a>
               <a
-                href="/brochures/fi.pdf"
+                href="undefined/brochures/fi.pdf"
               >
                 <span
                   lang="fi"
@@ -371,7 +371,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="localizedLanguage"
+                  class="_localizedLanguage_0c660e"
                   lang="fi"
                 >
                   (
@@ -383,26 +383,26 @@ exports[`<Home /> renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="wrapper"
+          class="_wrapper_f9e21e"
         >
           <div
-            class="instructions"
+            class="_instructions_f9e21e"
           >
             <h2>
               Miten pääset mukaan toimintaan?
             </h2>
             <div
-              class="iconContainer"
+              class="_iconContainer_f9e21e"
             >
               <div
-                class="iconBox"
+                class="_iconBox_f9e21e"
               >
                 <div
-                  class="imgWrapper icon"
+                  class="_imgWrapper_73ff55 _icon_f9e21e"
                 >
                   <img
                     alt=""
-                    src="homeKid.svg"
+                    src="/src/assets/icons/svg/homeKid.svg"
                   />
                 </div>
                 <p>
@@ -410,14 +410,14 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </p>
               </div>
               <div
-                class="iconBox"
+                class="_iconBox_f9e21e"
               >
                 <div
-                  class="imgWrapper icon"
+                  class="_imgWrapper_73ff55 _icon_f9e21e"
                 >
                   <img
                     alt=""
-                    src="homeTicket.svg"
+                    src="/src/assets/icons/svg/homeTicket.svg"
                   />
                 </div>
                 <p>
@@ -425,14 +425,14 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </p>
               </div>
               <div
-                class="iconBox"
+                class="_iconBox_f9e21e"
               >
                 <div
-                  class="imgWrapper icon"
+                  class="_imgWrapper_73ff55 _icon_f9e21e"
                 >
                   <img
                     alt=""
-                    src="homeTheater.svg"
+                    src="/src/assets/icons/svg/homeTheater.svg"
                   />
                 </div>
                 <p>
@@ -443,14 +443,14 @@ exports[`<Home /> renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="wrapper"
+          class="_wrapper_1e8528"
           id="register"
         >
           <div
-            class="homeForm"
+            class="_homeForm_1e8528"
           >
             <div
-              class="heading"
+              class="_heading_1e8528"
             >
               <h2>
                 Tule mukaan
@@ -465,20 +465,20 @@ exports[`<Home /> renders snapshot correctly 1`] = `
               novalidate=""
             >
               <div
-                class="inputWrapper"
+                class="_inputWrapper_1e8528"
               >
                 <div
-                  class="birthdateField"
+                  class="_birthdateField_3e5209"
                 >
                   <label>
                     Lapsen syntymäaika (pp.kk.vvvv)*
                   </label>
                   <div
-                    class="inputWrapper"
+                    class="_inputWrapper_3e5209"
                   >
                     <div>
                       <div
-                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
                       >
                         <div
                           class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
@@ -500,13 +500,13 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="dot"
+                      class="_dot_3e5209"
                     >
                       .
                     </div>
                     <div>
                       <div
-                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
                       >
                         <div
                           class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
@@ -528,13 +528,13 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                       </div>
                     </div>
                     <div
-                      class="dot"
+                      class="_dot_3e5209"
                     >
                       .
                     </div>
                     <div>
                       <div
-                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
                       >
                         <div
                           class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
@@ -558,7 +558,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </div>
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
                   >
                     <label
                       class="FieldLabel-module_label__1zrXK "
@@ -605,7 +605,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                     for="verifyInformation"
                   >
                     <span
-                      class="listLabel"
+                      class="_listLabel_be7ab7"
                     >
                       Vakuutan antamani tiedot oikeaksi
                     </span>
@@ -613,7 +613,7 @@ exports[`<Home /> renders snapshot correctly 1`] = `
                 </div>
               </div>
               <button
-                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO submitButton"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _submitButton_1e8528"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="submit"
               >
@@ -627,13 +627,13 @@ exports[`<Home /> renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="wrapper"
+          class="_wrapper_6eb765"
         >
           <div
-            class="innerwrapper"
+            class="_innerwrapper_6eb765"
           >
             <div
-              class="embedContainer"
+              class="_embedContainer_6eb765"
             >
               <iframe
                 allowfullscreen=""
@@ -646,385 +646,385 @@ exports[`<Home /> renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="wrapper"
+          class="_wrapper_1b4993"
         >
           <div
-            class="innerwrapper"
+            class="_innerwrapper_1b4993"
           >
             <h2>
               Yhteistyökumppanit
             </h2>
             <div
-              class="partners"
+              class="_partners_1b4993"
             >
               <div
-                class="big"
+                class="_big_46f5db"
               >
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/fi/palvelut/yleiset-kulttuuripalvelut/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="home.partners.partner.hel"
-                      src="helsinki-fi.svg"
+                      src="/src/assets/icons/svg/helsinki-fi.svg"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://jaes.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Jane ja Aatos Erkon säätiö"
-                      src="jaes.png"
+                      src="/src/assets/icons/partners/jaes.png"
                     />
                   </div>
                 </a>
               </div>
               <div
-                class="small"
+                class="_small_46f5db"
               >
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://amosrex.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Amos Rex"
-                      src="amosrex.png"
+                      src="/src/assets/icons/partners/amosrex.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://cirko.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Cirko – Uuden sirkuksen keskus"
-                      src="cirko.png"
+                      src="/src/assets/icons/partners/cirko.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://dotdot.fi/suomeksi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="DOT ry"
-                      src="dotdot.png"
+                      src="/src/assets/icons/partners/dotdot.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.designmuseum.fi/fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Designmuseo"
-                      src="designmuseum.png"
+                      src="/src/assets/icons/partners/designmuseum.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.hamhelsinki.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Helsingin taidemuseo HAM"
-                      src="hamhelsinki.png"
+                      src="/src/assets/icons/partners/hamhelsinki.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.helsinginkaupunginmuseo.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Helsingin kaupunginmuseo"
-                      src="helsinginkaupunginmuseo.png"
+                      src="/src/assets/icons/partners/helsinginkaupunginmuseo.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://helsinginkaupunginorkesteri.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Helsingin kaupunginorkesteri"
-                      src="helsinginkaupunginorkesteri.png"
+                      src="/src/assets/icons/partners/helsinginkaupunginorkesteri.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://hkt.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Helsingin Kaupunginteatteri"
-                      src="hkt.png"
+                      src="/src/assets/icons/partners/hkt.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.hotellijaravintolamuseo.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Hotelli- ja ravintolamuseo"
-                      src="hotellijaravintolamuseo.png"
+                      src="/src/assets/icons/partners/hotellijaravintolamuseo.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.hurjaruuth.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Tanssiteatteri Hurjaruuth"
-                      src="hurjaruuth.png"
+                      src="/src/assets/icons/partners/hurjaruuth.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.kaapelitehdas.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="home.partners.partner.kaapeli"
-                      src="Kaapeli.png"
+                      src="/src/assets/icons/partners/Kaapeli.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="home.partners.partner.kansallisgalleria"
-                      src="Finnish_National_Gallery_Logo_FI.svg"
+                      src="/src/assets/icons/partners/Finnish_National_Gallery_Logo_FI.svg"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.kansallismuseo.fi/fi/kansallismuseo"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Kansallismuseo"
-                      src="kansallismuseo.png"
+                      src="/src/assets/icons/partners/kansallismuseo.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://kansallisteatteri.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Kansallisteatteri"
-                      src="kansallisteatteri.png"
+                      src="/src/assets/icons/partners/kansallisteatteri.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://kavi.fi/kansallinen-audiovisuaalinen-instituutti-palvelee/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Kansallinen audiovisuaalinen instituutti"
-                      src="kavi.png"
+                      src="/src/assets/icons/partners/kavi.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.kulttuuriperintokasvatus.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Suomen Kulttuuriperintökasvatuksen seura"
-                      src="kulttuuriperintokasvatus.png"
+                      src="/src/assets/icons/partners/kulttuuriperintokasvatus.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.helsinki.fi/fi/tiedemuseo-liekki"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Tiedemuseo Liekki"
-                      src="Museum_Flame_FI.svg"
+                      src="/src/assets/icons/partners/Museum_Flame_FI.svg"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.mfa.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Arkkitehtuurimuseo"
-                      src="mfa.png"
+                      src="/src/assets/icons/partners/mfa.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://nukketeatterisampo.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Nukketeatteri Sampo"
-                      src="nukketeatterisampo.png"
+                      src="/src/assets/icons/partners/nukketeatterisampo.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://oopperabaletti.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Suomen kansallisooppera ja -baletti"
-                      src="oopperabaletti.png"
+                      src="/src/assets/icons/partners/oopperabaletti.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="http://www.q-teatteri.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Q-teatteri"
-                      src="qteatteri.png"
+                      src="/src/assets/icons/partners/qteatteri.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://svenskateatern.fi/fi/alku/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Svenska Teatern"
-                      src="svenskateatern.png"
+                      src="/src/assets/icons/partners/svenskateatern.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.tanssintalo.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Tanssin talo"
-                      src="tanssintalo.png"
+                      src="/src/assets/icons/partners/tanssintalo.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.teatteri-ilmio.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Teatteri ILMI Ö"
-                      src="teatteriilmio.png"
+                      src="/src/assets/icons/partners/teatteriilmio.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.teatterimuseo.fi/"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Teatterimuseo"
-                      src="teatterimuseo.png"
+                      src="/src/assets/icons/partners/teatterimuseo.png"
                     />
                   </div>
                 </a>
                 <a
-                  class="container"
+                  class="_container_46f5db"
                   href="https://www.valokuvataiteenmuseo.fi/fi"
                 >
                   <div
-                    class="imgWrapper icon"
+                    class="_imgWrapper_73ff55 _icon_46f5db"
                   >
                     <img
                       alt="Suomen valokuvataiteen museo"
-                      src="valokuvataiteenmuseo.png"
+                      src="/src/assets/icons/partners/valokuvataiteenmuseo.png"
                     />
                   </div>
                 </a>
@@ -1033,19 +1033,19 @@ exports[`<Home /> renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="wrapper"
+          class="_wrapper_4c2f32"
         >
           <div
-            class="contact"
+            class="_contact_4c2f32"
           >
             <h2>
               Ota yhteyttä
             </h2>
             <div
-              class="contactPersons"
+              class="_contactPersons_4c2f32"
             >
               <div
-                class="service"
+                class="_service_4c2f32"
               >
                 <h3>
                   Kulttuurin kummilapset -palvelu

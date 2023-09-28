@@ -1,387 +1,387 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <section
-    class="wrapper"
+    class="_wrapper_1b4993"
   >
     <div
-      class="innerwrapper"
+      class="_innerwrapper_1b4993"
     >
       <h2>
         Yhteistyökumppanit
       </h2>
       <div
-        class="partners"
+        class="_partners_1b4993"
       >
         <div
-          class="big"
+          class="_big_46f5db"
         >
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/fi/palvelut/yleiset-kulttuuripalvelut/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="home.partners.partner.hel"
-                src="helsinki-fi.svg"
+                src="/src/assets/icons/svg/helsinki-fi.svg"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://jaes.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Jane ja Aatos Erkon säätiö"
-                src="jaes.png"
+                src="/src/assets/icons/partners/jaes.png"
               />
             </div>
           </a>
         </div>
         <div
-          class="small"
+          class="_small_46f5db"
         >
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://amosrex.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Amos Rex"
-                src="amosrex.png"
+                src="/src/assets/icons/partners/amosrex.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://cirko.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Cirko – Uuden sirkuksen keskus"
-                src="cirko.png"
+                src="/src/assets/icons/partners/cirko.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://dotdot.fi/suomeksi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="DOT ry"
-                src="dotdot.png"
+                src="/src/assets/icons/partners/dotdot.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.designmuseum.fi/fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Designmuseo"
-                src="designmuseum.png"
+                src="/src/assets/icons/partners/designmuseum.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.hamhelsinki.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Helsingin taidemuseo HAM"
-                src="hamhelsinki.png"
+                src="/src/assets/icons/partners/hamhelsinki.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.helsinginkaupunginmuseo.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Helsingin kaupunginmuseo"
-                src="helsinginkaupunginmuseo.png"
+                src="/src/assets/icons/partners/helsinginkaupunginmuseo.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://helsinginkaupunginorkesteri.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Helsingin kaupunginorkesteri"
-                src="helsinginkaupunginorkesteri.png"
+                src="/src/assets/icons/partners/helsinginkaupunginorkesteri.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://hkt.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Helsingin Kaupunginteatteri"
-                src="hkt.png"
+                src="/src/assets/icons/partners/hkt.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.hotellijaravintolamuseo.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Hotelli- ja ravintolamuseo"
-                src="hotellijaravintolamuseo.png"
+                src="/src/assets/icons/partners/hotellijaravintolamuseo.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.hurjaruuth.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Tanssiteatteri Hurjaruuth"
-                src="hurjaruuth.png"
+                src="/src/assets/icons/partners/hurjaruuth.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.kaapelitehdas.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="home.partners.partner.kaapeli"
-                src="Kaapeli.png"
+                src="/src/assets/icons/partners/Kaapeli.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="home.partners.partner.kansallisgalleria"
-                src="Finnish_National_Gallery_Logo_FI.svg"
+                src="/src/assets/icons/partners/Finnish_National_Gallery_Logo_FI.svg"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.kansallismuseo.fi/fi/kansallismuseo"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Kansallismuseo"
-                src="kansallismuseo.png"
+                src="/src/assets/icons/partners/kansallismuseo.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://kansallisteatteri.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Kansallisteatteri"
-                src="kansallisteatteri.png"
+                src="/src/assets/icons/partners/kansallisteatteri.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://kavi.fi/kansallinen-audiovisuaalinen-instituutti-palvelee/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Kansallinen audiovisuaalinen instituutti"
-                src="kavi.png"
+                src="/src/assets/icons/partners/kavi.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.kulttuuriperintokasvatus.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Suomen Kulttuuriperintökasvatuksen seura"
-                src="kulttuuriperintokasvatus.png"
+                src="/src/assets/icons/partners/kulttuuriperintokasvatus.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.helsinki.fi/fi/tiedemuseo-liekki"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Tiedemuseo Liekki"
-                src="Museum_Flame_FI.svg"
+                src="/src/assets/icons/partners/Museum_Flame_FI.svg"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.mfa.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Arkkitehtuurimuseo"
-                src="mfa.png"
+                src="/src/assets/icons/partners/mfa.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://nukketeatterisampo.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Nukketeatteri Sampo"
-                src="nukketeatterisampo.png"
+                src="/src/assets/icons/partners/nukketeatterisampo.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://oopperabaletti.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Suomen kansallisooppera ja -baletti"
-                src="oopperabaletti.png"
+                src="/src/assets/icons/partners/oopperabaletti.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="http://www.q-teatteri.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Q-teatteri"
-                src="qteatteri.png"
+                src="/src/assets/icons/partners/qteatteri.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://svenskateatern.fi/fi/alku/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Svenska Teatern"
-                src="svenskateatern.png"
+                src="/src/assets/icons/partners/svenskateatern.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.tanssintalo.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Tanssin talo"
-                src="tanssintalo.png"
+                src="/src/assets/icons/partners/tanssintalo.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.teatteri-ilmio.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Teatteri ILMI Ö"
-                src="teatteriilmio.png"
+                src="/src/assets/icons/partners/teatteriilmio.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.teatterimuseo.fi/"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Teatterimuseo"
-                src="teatterimuseo.png"
+                src="/src/assets/icons/partners/teatterimuseo.png"
               />
             </div>
           </a>
           <a
-            class="container"
+            class="_container_46f5db"
             href="https://www.valokuvataiteenmuseo.fi/fi"
           >
             <div
-              class="imgWrapper icon"
+              class="_imgWrapper_73ff55 _icon_46f5db"
             >
               <img
                 alt="Suomen valokuvataiteen museo"
-                src="valokuvataiteenmuseo.png"
+                src="/src/assets/icons/partners/valokuvataiteenmuseo.png"
               />
             </div>
           </a>

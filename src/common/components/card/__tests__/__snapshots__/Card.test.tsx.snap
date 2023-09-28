@@ -1,32 +1,32 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="wrapper"
+    class="_wrapper_f3c708"
   >
     <div
-      class="image"
+      class="_image_f3c708"
     />
     <div
-      class="content"
+      class="_content_f3c708"
     >
       <h3
-        class="text h3 title"
+        class="_text_e4e173 _h3_e4e173 _title_f3c708"
       />
       foo
       <div
-        class="focalPoint"
+        class="_focalPoint_f3c708"
       >
         <span />
       </div>
     </div>
     <div
-      class="cta"
+      class="_cta_f3c708"
     >
       <button
         aria-label=""
-        class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+        class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _actionWrapper_f3c708"
         style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
         type="button"
       >

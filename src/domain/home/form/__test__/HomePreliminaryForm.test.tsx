@@ -12,7 +12,7 @@ it('renders snapshot correctly', () => {
     <UnconnectedHomePreliminaryForm
       isAuthenticated={true}
       stateFormValues={defaultRegistrationData.formValues}
-      setHomeFormValues={jest.fn()}
+      setHomeFormValues={vi.fn()}
       initialValues={{ child, verifyInformation: true }}
       forwardRef={null}
     />
