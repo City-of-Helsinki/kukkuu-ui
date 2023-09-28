@@ -79,7 +79,7 @@ it('renders snapshot correctly', () => {
       <EditProfileModal
         initialValues={initialValues}
         isOpen={true}
-        setIsOpen={jest.fn()}
+        setIsOpen={vi.fn()}
       />
     </MockedProvider>
   );

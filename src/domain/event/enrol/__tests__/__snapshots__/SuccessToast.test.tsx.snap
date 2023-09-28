@@ -1,16 +1,16 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="successToast"
+    class="_successToast_663062"
   >
     <div
-      class="imgWrapper tadaIcon"
+      class="_imgWrapper_73ff55 _tadaIcon_663062"
     >
       <img
         alt=""
-        src="tada.svg"
+        src="/src/assets/icons/svg/tada.svg"
       />
     </div>
     <div>

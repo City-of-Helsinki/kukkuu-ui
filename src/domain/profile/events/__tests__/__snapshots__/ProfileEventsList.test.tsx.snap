@@ -1,56 +1,58 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Renders snapshot correctly 1`] = `
 <div>
   <ul
-    class="list spacing-xl"
+    class="_list_a90dcd _spacing-xl_a90dcd"
   >
     <li
-      class="item"
+      class="_item_a90dcd"
     >
       <h2
-        class="text h2 "
+        class="_text_e4e173 _h2_e4e173 "
       >
         Tulevat tapahtumasi
       </h2>
       <ul
-        class="list spacing-layout-2-xs"
+        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
       >
         <li
-          class="item"
+          class="_item_a90dcd"
         >
           <div
-            class="wrapper"
+            class="_wrapper_f3c708"
           >
             <div
-              class="image"
+              class="_image_f3c708"
             >
               <div
-                class="qrWrapper"
-              />
+                class="_qrWrapper_e3c7ac"
+              >
+                <div />
+              </div>
             </div>
             <div
-              class="content"
+              class="_content_f3c708"
             >
               <h3
-                class="text h3 title"
+                class="_text_e4e173 _h3_e4e173 _title_f3c708"
               >
                 pentti
               </h3>
               <p
-                class="text body "
+                class="_text_e4e173 _body_e4e173 "
               >
                 eventti
               </p>
               <div
-                class="focalPoint"
+                class="_focalPoint_f3c708"
               >
                 <span>
                   <div
-                    class="row"
+                    class="_row_e93b69"
                   >
                     <div
-                      class="label fullWidth"
+                      class="_label_e93b69 _fullWidth_e93b69"
                       id="venue"
                     >
                       <svg
@@ -74,19 +76,19 @@ exports[`Renders snapshot correctly 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="text body label"
+                          class="_text_e4e173 _body_e4e173 _label_e93b69"
                         >
                           aa
                         </p>
                         <p
-                          class="text body description"
+                          class="_text_e4e173 _body_e4e173 _description_e93b69"
                         >
                           ssfas uus 12
                         </p>
                       </div>
                     </div>
                     <div
-                      class="label"
+                      class="_label_e93b69"
                       id="time"
                     >
                       <svg
@@ -110,14 +112,14 @@ exports[`Renders snapshot correctly 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="text body label"
+                          class="_text_e4e173 _body_e4e173 _label_e93b69"
                         >
                           24.2.2020
                         </p>
                       </div>
                     </div>
                     <div
-                      class="label"
+                      class="_label_e93b69"
                       id="duration"
                     >
                       <svg
@@ -141,9 +143,9 @@ exports[`Renders snapshot correctly 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="text body label"
+                          class="_text_e4e173 _body_e4e173 _label_e93b69"
                         >
-                          09:09 - 10:09
+                          11:09 - 12:09
                         </p>
                       </div>
                     </div>
@@ -152,11 +154,11 @@ exports[`Renders snapshot correctly 1`] = `
               </div>
             </div>
             <div
-              class="cta"
+              class="_cta_f3c708"
             >
               <button
                 aria-label="Näytä tapahtuman tiedot"
-                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _actionWrapper_f3c708"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
@@ -190,49 +192,49 @@ exports[`Renders snapshot correctly 1`] = `
       </ul>
     </li>
     <li
-      class="item"
+      class="_item_a90dcd"
     >
       <h2
-        class="text h2 "
+        class="_text_e4e173 _h2_e4e173 "
       >
         Tapahtumakutsut
       </h2>
       <ul
-        class="list spacing-layout-2-xs"
+        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
       >
         <li
-          class="item"
+          class="_item_a90dcd"
         >
           <div
-            class="wrapper"
+            class="_wrapper_f3c708"
           >
             <div
-              class="image"
+              class="_image_f3c708"
             >
               <img
                 alt="huhuu"
-                class="image"
+                class="_image_f3c708"
                 src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
               />
             </div>
             <div
-              class="content"
+              class="_content_f3c708"
             >
               <h3
-                class="text h3 title"
+                class="_text_e4e173 _h3_e4e173 _title_f3c708"
               >
                 pentti
               </h3>
               <p
-                class="text body "
+                class="_text_e4e173 _body_e4e173 "
               >
                 eventti
               </p>
               <div
-                class="focalPoint"
+                class="_focalPoint_f3c708"
               >
                 <button
-                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO primaryActionButton"
+                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _primaryActionButton_f3c708"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
@@ -246,11 +248,11 @@ exports[`Renders snapshot correctly 1`] = `
               </div>
             </div>
             <div
-              class="cta"
+              class="_cta_f3c708"
             >
               <button
                 aria-label="Lue lisää"
-                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _actionWrapper_f3c708"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
@@ -284,56 +286,56 @@ exports[`Renders snapshot correctly 1`] = `
       </ul>
     </li>
     <li
-      class="item"
+      class="_item_a90dcd"
     >
       <h2
-        class="text h2 "
+        class="_text_e4e173 _h2_e4e173 "
       >
         Menneet tapahtumat
       </h2>
       <ul
-        class="list spacing-layout-2-xs"
+        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
       >
         <li
-          class="item"
+          class="_item_a90dcd"
         >
           <div
-            class="wrapper"
+            class="_wrapper_f3c708"
           >
             <div
-              class="image"
+              class="_image_f3c708"
             >
               <img
                 alt="huhuu"
-                class="image"
+                class="_image_f3c708"
                 src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
               />
             </div>
             <div
-              class="content"
+              class="_content_f3c708"
             >
               <h3
-                class="text h3 title"
+                class="_text_e4e173 _h3_e4e173 _title_f3c708"
               >
                 pentti
               </h3>
               <p
-                class="text body "
+                class="_text_e4e173 _body_e4e173 "
               >
                 eventti
               </p>
               <div
-                class="focalPoint"
+                class="_focalPoint_f3c708"
               >
                 <span />
               </div>
             </div>
             <div
-              class="cta"
+              class="_cta_f3c708"
             >
               <button
                 aria-label="Näytä tapahtuman tiedot"
-                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO actionWrapper"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _actionWrapper_f3c708"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >

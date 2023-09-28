@@ -8,27 +8,27 @@
 trigger: none
 
 # Pull request (PR) triggers cause a pipeline to run whenever a pull request is
-# opened with one of the specified target branches, or when updates are made to 
+# opened with one of the specified target branches, or when updates are made to
 # such a pull request.
 #
-# GitHub creates a new ref when a pull request is created. The ref points to a 
-# merge commit, which is the merged code between the source and target branches 
+# GitHub creates a new ref when a pull request is created. The ref points to a
+# merge commit, which is the merged code between the source and target branches
 # of the pull request.
 #
-# Opt out of pull request validation 
+# Opt out of pull request validation
 pr:
   # PR target branch
   branches:
     include:
-    - master
+      - master
   paths:
     exclude:
-    - '*release-please*'
-    - '**/*.md'
-    - '.github/'
-    - 'azure-pipelines-release.yml'
-    - 'azure-pipelines-test.yml'
-    - 'docker-compose*'
+      - '*release-please*'
+      - '**/*.md'
+      - '.github/'
+      - 'azure-pipelines-release.yml'
+      - 'azure-pipelines-test.yml'
+      - 'docker-compose*'
 
 # By default, use self-hosted agents
 pool: Default
@@ -51,8 +51,8 @@ extends:
     # Does not contain all buildArguments, the rest located in harrastukset-pipelines/harrastukset-variables-development.yml and harrastukset-variables-common.yml
     # The values here will override the values defined in the harrastukset-pipelines repository
     buildArgs:
-      REACT_APP_CMS_URI: 'https://kukkuu.hkih.stage.geniem.io/graphql'
-      REACT_APP_API_URI: 'https://kukkuu-local.api.dev.hel.ninja/graphql'
-      REACT_APP_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.test.hel.ninja/check-ticket-validity'
-      REACT_APP_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
+      VITE_CMS_URI: 'https://kukkuu.hkih.stage.geniem.io/graphql'
+      VITE_API_URI: 'https://kukkuu-local.api.dev.hel.ninja/graphql'
+      VITE_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.test.hel.ninja/check-ticket-validity'
+      VITE_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
     # configMap: # pod environment variables

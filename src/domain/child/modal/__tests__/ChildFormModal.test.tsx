@@ -12,11 +12,11 @@ it('renders snapshot correctly', () => {
   const { container } = render(
     <ChildFormModal
       initialValues={initialValues}
-      onSubmit={jest.fn()}
+      onSubmit={vi.fn()}
       label="foo"
       isOpen={false}
-      setIsOpen={jest.fn()}
-      onCancel={jest.fn()}
+      setIsOpen={vi.fn()}
+      onCancel={vi.fn()}
     />
   );
   expect(container).toMatchSnapshot();

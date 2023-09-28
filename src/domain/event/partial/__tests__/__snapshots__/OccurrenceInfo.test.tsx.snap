@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
 <div>
   <div
-    class="row"
+    class="_row_e93b69"
   >
     <div
-      class="label fullWidth"
+      class="_label_e93b69 _fullWidth_e93b69"
       id="venue"
     >
       <svg
@@ -30,19 +30,19 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="text body label"
+          class="_text_e4e173 _body_e4e173 _label_e93b69"
         >
           Musiikkitalo
         </p>
         <p
-          class="text body description"
+          class="_text_e4e173 _body_e4e173 _description_e93b69"
         >
           Urho Kekkosen katu 12
         </p>
       </div>
     </div>
     <div
-      class="label"
+      class="_label_e93b69"
       id="time"
     >
       <svg
@@ -66,14 +66,14 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="text body label"
+          class="_text_e4e173 _body_e4e173 _label_e93b69"
         >
           8.3.2020
         </p>
       </div>
     </div>
     <div
-      class="label"
+      class="_label_e93b69"
       id="duration"
     >
       <svg
@@ -97,14 +97,14 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="text body label"
+          class="_text_e4e173 _body_e4e173 _label_e93b69"
         >
-          04:00 - 04:12
+          06:00 - 06:12
         </p>
       </div>
     </div>
     <div
-      class="label"
+      class="_label_e93b69"
       id="participants"
     >
       <svg
@@ -128,7 +128,7 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="text body label"
+          class="_text_e4e173 _body_e4e173 _label_e93b69"
         >
           Perhe
         </p>
@@ -141,10 +141,10 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
 exports[`renders occurrence snapshot correctly 1`] = `
 <div>
   <div
-    class="row"
+    class="_row_e93b69"
   >
     <div
-      class="label fullWidth"
+      class="_label_e93b69 _fullWidth_e93b69"
       id="venue"
     >
       <svg
@@ -168,14 +168,14 @@ exports[`renders occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="text body label"
+          class="_text_e4e173 _body_e4e173 _label_e93b69"
         >
           Musiikkitalo
         </p>
       </div>
     </div>
     <div
-      class="label"
+      class="_label_e93b69"
       id="time"
     >
       <svg
@@ -199,14 +199,14 @@ exports[`renders occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="text body label"
+          class="_text_e4e173 _body_e4e173 _label_e93b69"
         >
           8.3.2020
         </p>
       </div>
     </div>
     <div
-      class="label"
+      class="_label_e93b69"
       id="duration"
     >
       <svg
@@ -230,14 +230,14 @@ exports[`renders occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="text body label"
+          class="_text_e4e173 _body_e4e173 _label_e93b69"
         >
-          04:00 - 04:12
+          06:00 - 06:12
         </p>
       </div>
     </div>
     <div
-      class="label"
+      class="_label_e93b69"
       id="participants"
     >
       <svg
@@ -261,7 +261,7 @@ exports[`renders occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="text body label"
+          class="_text_e4e173 _body_e4e173 _label_e93b69"
         >
           Perhe
         </p>
@@ -274,27 +274,27 @@ exports[`renders occurrence snapshot correctly 1`] = `
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="heroWrapper"
+    class="_heroWrapper_4ef685"
     style="background-image: url(a);"
     title="b"
   >
     <div
-      class="backButtonWrapper"
+      class="_backButtonWrapper_4ef685"
     >
       <div
-        class="backButtonInnerWrapper"
+        class="_backButtonInnerWrapper_4ef685"
       >
         <a
           aria-label="Palaa"
-          class="backButton"
+          class="_backButton_4ef685"
           href="/back-to"
         >
           <div
-            class="imgWrapper backButtonIcon"
+            class="_imgWrapper_73ff55 _backButtonIcon_4ef685"
           >
             <img
               alt=""
-              src="arrowLeft.svg"
+              src="/src/assets/icons/svg/arrowLeft.svg"
             />
           </div>
         </a>
@@ -302,20 +302,20 @@ exports[`renders snapshot correctly 1`] = `
     </div>
   </div>
   <div
-    class="pageWrapper wrapper"
+    class="_pageWrapper_e42bcd _wrapper_4ef685"
   >
     <div
-      class="container"
+      class="_container_533ff0"
     >
       <div
-        class="eventWrapper"
+        class="_eventWrapper_4ef685"
         role="main"
       >
         <div
-          class="event"
+          class="_event_4ef685"
         >
           <div
-            class="heading"
+            class="_heading_4ef685"
           >
             <h1>
               event name

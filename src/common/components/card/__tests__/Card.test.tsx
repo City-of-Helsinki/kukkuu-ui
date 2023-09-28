@@ -3,7 +3,7 @@ import Card from '../Card';
 
 it('renders snapshot correctly', () => {
   const { container } = render(
-    <Card action={jest.fn()} actionText={''} title={''}>
+    <Card action={vi.fn()} actionText={''} title={''}>
       foo
     </Card>
   );

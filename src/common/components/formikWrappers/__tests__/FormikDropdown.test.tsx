@@ -8,7 +8,7 @@ it('renders snapshot correctly', () => {
     id: 'fooSelect',
     name: 'fooSelect',
     label: 'select label',
-    onChange: () => jest.fn(),
+    onChange: () => vi.fn(),
     options: [
       {
         label: 'foo_label',

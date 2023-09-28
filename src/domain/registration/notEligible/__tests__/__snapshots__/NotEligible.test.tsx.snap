@@ -1,30 +1,30 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="pageWrapper"
+    class="_pageWrapper_e42bcd"
   >
     <div
-      class="container"
+      class="_container_533ff0"
     >
       <div>
         <div
-          class="notEligible"
+          class="_notEligible_cca70d"
         >
           <div
-            class="imgWrapper notEligibleFace"
+            class="_imgWrapper_73ff55 _notEligibleFace_cca70d"
           >
             <img
               alt=""
-              src="adultFace.svg"
+              src="/src/assets/icons/svg/adultFace.svg"
             />
           </div>
           <p>
             Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä kulttuurin kummilapset toimintaan.
           </p>
           <button
-            class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO goBackButton"
+            class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _goBackButton_cca70d"
             style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
             type="button"
           >

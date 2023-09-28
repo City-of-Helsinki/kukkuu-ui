@@ -1,29 +1,29 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="heroWrapper"
+    class="_heroWrapper_4ef685"
     style="background-image: url(a);"
     title="b"
   >
     <div
-      class="backButtonWrapper"
+      class="_backButtonWrapper_4ef685"
     >
       <div
-        class="backButtonInnerWrapper"
+        class="_backButtonInnerWrapper_4ef685"
       >
         <a
           aria-label="Palaa"
-          class="backButton"
+          class="_backButton_4ef685"
           href="/back-to"
         >
           <div
-            class="imgWrapper backButtonIcon"
+            class="_imgWrapper_73ff55 _backButtonIcon_4ef685"
           >
             <img
               alt=""
-              src="arrowLeft.svg"
+              src="/src/assets/icons/svg/arrowLeft.svg"
             />
           </div>
         </a>
@@ -31,20 +31,20 @@ exports[`renders snapshot correctly 1`] = `
     </div>
   </div>
   <div
-    class="pageWrapper wrapper"
+    class="_pageWrapper_e42bcd _wrapper_4ef685"
   >
     <div
-      class="container"
+      class="_container_533ff0"
     >
       <div
-        class="eventWrapper"
+        class="_eventWrapper_4ef685"
         role="main"
       >
         <div
-          class="event"
+          class="_event_4ef685"
         >
           <div
-            class="heading"
+            class="_heading_4ef685"
           >
             <h1>
               event name

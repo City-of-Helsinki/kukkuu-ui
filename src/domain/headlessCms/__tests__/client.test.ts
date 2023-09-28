@@ -9,7 +9,7 @@ const page = fakePage();
 
 beforeEach(() => {
   const link =
-    process.env.REACT_APP_CMS_URI ??
+    import.meta.env.VITE_CMS_URI ??
     'https://kukkuu.hkih.stage.geniem.io/graphql';
   const headlessCms = graphql.link(link);
   server.use(

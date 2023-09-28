@@ -10,13 +10,9 @@ import {
   childByIdQuery_child_activeInternalAndTicketSystemEnrolments as InternalAndTicketSystemEnrolmentsType,
 } from '../../../api/generatedTypes/childByIdQuery';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
+import * as reactQrCodeLogo from 'react-qrcode-logo';
 
-jest.mock('react-qrcode-logo', () => ({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  ...jest.requireActual('react-qrcode-logo'),
-  QRCode: () => <div />,
-}));
+vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => <div />);
 
 const childData: ChildByIdResponse = {
   id: '',

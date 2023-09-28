@@ -1,13 +1,13 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
     aria-label="Lataa"
-    class="spinnerWrapper"
+    class="_spinnerWrapper_ce417a"
   >
     <div
-      class="spinner"
+      class="_spinner_ce417a"
     />
   </div>
 </div>

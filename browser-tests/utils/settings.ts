@@ -17,7 +17,7 @@ const getApiBaseUrl = () => {
 
   // API url might ppoint to graphql, remvoe
   var re = /\/graphql$/;
-  return url.replace(re, "");
+  return url.replace(re, '');
 };
 
 export const testUsername = (): string =>
