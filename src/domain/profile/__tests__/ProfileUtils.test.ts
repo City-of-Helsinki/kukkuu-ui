@@ -16,9 +16,6 @@ describe('ProfileUtils', () => {
           year: 2020,
           name: 'Project name',
         },
-        occurrences: {
-          edges: [],
-        },
         upcomingEventsAndEventGroups: {
           edges: [],
         },
@@ -35,6 +32,7 @@ describe('ProfileUtils', () => {
             },
           ],
         },
+        activeInternalAndTicketSystemEnrolments: null,
       };
 
       // Have relationship and homeCity autofill
@@ -43,10 +41,10 @@ describe('ProfileUtils', () => {
         firstName: 'foo',
         lastName: 'bar',
         homeCity: 'Helsinki',
+        activeInternalAndTicketSystemEnrolments: null,
         birthdate: '2020-01-01',
         postalCode: '00100',
         project: { id: '1', name: 'Project name', year: 2020 },
-        occurrences: { edges: [] },
         upcomingEventsAndEventGroups: { edges: [] },
         pastEvents: { edges: [] },
         relationship: {

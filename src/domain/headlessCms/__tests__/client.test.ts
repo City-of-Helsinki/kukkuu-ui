@@ -35,6 +35,6 @@ describe('Headless CMS Client', () => {
       // NOTE: The React-helsinki-headless-cms library sets a cache here by default
       fetchPolicy: 'no-cache',
     });
-    expect(data.page.id).toEqual(page.id);
+    expect(data.page.id).toEqual(page!.id);
   });
 });
