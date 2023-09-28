@@ -4,6 +4,7 @@ exports[`renders snapshot correctly 1`] = `
 <div>
   <div
     class="class"
+    id="time"
   >
     <i>
       iconSource
