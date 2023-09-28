@@ -58,7 +58,7 @@ exports[`renders snapshot correctly 1`] = `
           class="occurrenceSubmit"
         >
           <a
-            class="hds-button _button_f33f10"
+            class="hds-button button"
             href="/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
           >
             <span
@@ -90,7 +90,7 @@ exports[`renders snapshot correctly 1`] = `
           class="occurrenceSubmit"
         >
           <a
-            class="hds-button _button_f33f10"
+            class="hds-button button"
             href="/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
           >
             <span

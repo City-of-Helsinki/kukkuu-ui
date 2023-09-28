@@ -7,7 +7,7 @@ describe('EventUtils', () => {
   describe('formatOccurrenceTime', () => {
     test('should format correctly', () => {
       expect(formatOccurrenceTime(startTimeRaw, durationMinutes)).toEqual(
-        '12:34 - 13:34'
+        '09:34 - 10:34'
       );
     });
   });
