@@ -1,22 +1,22 @@
 import i18n from '../../common/translation/i18n/i18nInit';
 class AppConfig {
   static get origin() {
-    return getEnvOrError(process.env.REACT_APP_ORIGIN, 'REACT_APP_ORIGIN');
+    return getEnvOrError(import.meta.env.VITE_ORIGIN, 'VITE_ORIGIN');
   }
 
   static get ApiUrl() {
-    return getEnvOrError(process.env.REACT_APP_API_URI, 'REACT_APP_API_URI');
+    return getEnvOrError(import.meta.env.VITE_API_URI, 'VITE_API_URI');
   }
 
   static get oidcAuthority() {
     return getEnvOrError(
-      process.env.REACT_APP_OIDC_AUTHORITY,
-      'REACT_APP_OIDC_AUTHORITY'
+      import.meta.env.VITE_OIDC_AUTHORITY,
+      'VITE_OIDC_AUTHORITY'
     );
   }
 
   static get cmsUri() {
-    return getEnvOrError(process.env.REACT_APP_CMS_URI, 'REACT_APP_CMS_URI');
+    return getEnvOrError(import.meta.env.VITE_CMS_URI, 'VITE_CMS_URI');
   }
 
   static get locales() {
@@ -38,8 +38,8 @@ class AppConfig {
 
 // Accept both variable and name so that variable can be correctly replaced
 // by build.
-// process.env.VAR => value
-// process.env["VAR"] => no value
+// import.meta.env.VAR => value
+// import.meta.env["VAR"] => no value
 // Name is used to make debugging easier.
 function getEnvOrError(variable?: string, name?: string) {
   if (!variable) {

@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="footerWrapper"
+    class="_footerWrapper_ca2122"
   >
     <div
-      class="Koros-module_koros__1r3rg koros"
+      class="Koros-module_koros__1r3rg _koros_ca2122"
     >
       <svg
         aria-hidden="true"
@@ -37,23 +37,23 @@ exports[`renders snapshot correctly 1`] = `
       </svg>
     </div>
     <div
-      class="container"
+      class="_container_533ff0"
     >
       <div
-        class="footer"
+        class="_footer_ca2122"
       >
         <div
-          class="helsinkiLogo fi"
+          class="_helsinkiLogo_ca2122 _fi_ca2122"
         />
         <div
-          class="copyright"
+          class="_copyright_ca2122"
         >
           <p>
             © Helsingin kaupunki
           </p>
         </div>
         <div
-          class="links"
+          class="_links_ca2122"
         >
           <a
             href="/accessibility#start"

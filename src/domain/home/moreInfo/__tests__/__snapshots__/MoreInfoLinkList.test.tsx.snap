@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="link"
+    class="_link_0c660e"
   >
     <a
-      href="/brochures/fr.pdf"
+      href="undefined/brochures/fr.pdf"
     >
       <span
         lang="fr"
@@ -17,7 +17,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -26,7 +26,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/ru.pdf"
+      href="undefined/brochures/ru.pdf"
     >
       <span
         lang="ru"
@@ -37,7 +37,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -46,7 +46,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/es.pdf"
+      href="undefined/brochures/es.pdf"
     >
       <span
         lang="es"
@@ -57,7 +57,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -66,7 +66,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/zh.pdf"
+      href="undefined/brochures/zh.pdf"
     >
       <span
         lang="zh"
@@ -77,7 +77,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -86,7 +86,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/npi.pdf"
+      href="undefined/brochures/npi.pdf"
     >
       <span
         lang="npi"
@@ -97,7 +97,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -106,7 +106,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/som.pdf"
+      href="undefined/brochures/som.pdf"
     >
       <span
         lang="som"
@@ -117,7 +117,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -126,7 +126,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/fas.pdf"
+      href="undefined/brochures/fas.pdf"
     >
       <span
         lang="fas"
@@ -137,7 +137,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -146,7 +146,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/et.pdf"
+      href="undefined/brochures/et.pdf"
     >
       <span
         lang="et"
@@ -157,7 +157,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -166,7 +166,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/tur.pdf"
+      href="undefined/brochures/tur.pdf"
     >
       <span
         lang="tur"
@@ -177,7 +177,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -186,7 +186,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/ara.pdf"
+      href="undefined/brochures/ara.pdf"
     >
       <span
         lang="ar"
@@ -197,7 +197,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -206,7 +206,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/ckb.pdf"
+      href="undefined/brochures/ckb.pdf"
     >
       <span
         lang="ckb"
@@ -217,7 +217,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -226,7 +226,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/vi.pdf"
+      href="undefined/brochures/vi.pdf"
     >
       <span
         lang="vi"
@@ -237,7 +237,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -246,7 +246,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/en.pdf"
+      href="undefined/brochures/en.pdf"
     >
       <span
         lang="en"
@@ -257,7 +257,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -266,7 +266,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/sv.pdf"
+      href="undefined/brochures/sv.pdf"
     >
       <span
         lang="sv"
@@ -277,7 +277,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (
@@ -286,7 +286,7 @@ exports[`renders snapshot correctly 1`] = `
       </span>
     </a>
     <a
-      href="/brochures/fi.pdf"
+      href="undefined/brochures/fi.pdf"
     >
       <span
         lang="fi"
@@ -297,7 +297,7 @@ exports[`renders snapshot correctly 1`] = `
          
       </span>
       <span
-        class="localizedLanguage"
+        class="_localizedLanguage_0c660e"
         lang="fi"
       >
         (

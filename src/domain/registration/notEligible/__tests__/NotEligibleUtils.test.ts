@@ -32,8 +32,8 @@ describe('notEligibleUtils.test.ts', () => {
     values.children[0].homeCity = 'Yokohama';
     expect(isChildEligible(values.children[0], true)).toEqual(true);
   });
-  test('Verify that all cities in REACT_APP_ELIGIBLE_CITIES are eligible', () => {
-    const eligibleCities: string = process.env.REACT_APP_ELIGIBLE_CITIES || '';
+  test('Verify that all cities in VITE_ELIGIBLE_CITIES are eligible', () => {
+    const eligibleCities: string = import.meta.env.VITE_ELIGIBLE_CITIES || '';
     const cities = eligibleCities.split(',') || [];
     cities.forEach((city) => {
       values.children[0].homeCity = city;
@@ -41,7 +41,7 @@ describe('notEligibleUtils.test.ts', () => {
     });
   });
   test('Verify that cities are eligible even when user adds whitespace', () => {
-    const eligibleCities: string = process.env.REACT_APP_ELIGIBLE_CITIES || '';
+    const eligibleCities: string = import.meta.env.VITE_ELIGIBLE_CITIES || '';
     const cities = eligibleCities.split(',') || [];
     cities.forEach((city) => {
       values.children[0].homeCity = `${city} `;
@@ -50,13 +50,13 @@ describe('notEligibleUtils.test.ts', () => {
   });
   test('Verify that getEligibleCities returns an array of eligible cities', () => {
     const eligibleCitiesTest: string =
-      process.env.REACT_APP_ELIGIBLE_CITIES || '';
+      import.meta.env.VITE_ELIGIBLE_CITIES || '';
     const citiesTest = eligibleCitiesTest.split(',') || [];
     const eligibleCities = getEligibleCities();
     expect(eligibleCities).toEqual(citiesTest);
   });
-  test('Verify that all cities in REACT_APP_ELIGIBLE_CITIES in uppercase are eligible', () => {
-    const eligibleCities: string = process.env.REACT_APP_ELIGIBLE_CITIES || '';
+  test('Verify that all cities in VITE_ELIGIBLE_CITIES in uppercase are eligible', () => {
+    const eligibleCities: string = import.meta.env.VITE_ELIGIBLE_CITIES || '';
     const cities = eligibleCities.toUpperCase().split(',') || [];
     cities.forEach((city) => {
       values.children[0].homeCity = city;

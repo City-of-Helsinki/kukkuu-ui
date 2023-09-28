@@ -1,2 +1,2 @@
-export const TUNNISTAMO_ENDPOINT = process.env.REACT_APP_OIDC_AUTHORITY;
+export const TUNNISTAMO_ENDPOINT = import.meta.env.VITE_OIDC_AUTHORITY;
 export const TUNNISTAMO_API_TOKEN_ENDPOINT = `${TUNNISTAMO_ENDPOINT}/api-tokens/`;

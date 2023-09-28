@@ -22,7 +22,7 @@ describe('<EventCard />', () => {
 
   it('should show primary action by default and it should map to action', () => {
     const actionText = 'Some action';
-    const action = jest.fn();
+    const action = vi.fn();
     const { getAllByRole } = getWrapper({
       event: {},
       action,
@@ -39,7 +39,7 @@ describe('<EventCard />', () => {
 
   it('should allow for primary action to be toggled off', () => {
     const actionText = 'Some action';
-    const action = jest.fn();
+    const action = vi.fn();
     const { getAllByRole } = getWrapper({
       event: {},
       action,

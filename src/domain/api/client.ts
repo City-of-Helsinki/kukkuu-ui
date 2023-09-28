@@ -17,7 +17,7 @@ import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { logoutTunnistamo } from '../auth/authenticate';
 
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_API_URI,
+  uri: import.meta.env.VITE_API_URI,
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
@@ -35,7 +35,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
       //  proven to work.
       Sentry.captureMessage(errorMessage);
 
-      if (process.env.NODE_ENV === 'development') {
+      if (import.meta.env.NODE_ENV === 'development') {
         // eslint-disable-next-line no-console
         console.error(errorMessage);
       }

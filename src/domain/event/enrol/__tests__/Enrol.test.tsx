@@ -26,12 +26,12 @@ const defaultProps = {
   childId: '123',
   isSubscriptionModalOpen: false,
   occurrence,
-  onCancel: jest.fn(),
-  onEnrol: jest.fn(),
-  onUnsubscribe: jest.fn(),
-  onSubscribe: jest.fn(),
-  onSubscribed: jest.fn(),
-  setIsSubscriptionModalOpen: jest.fn(),
+  onCancel: vi.fn(),
+  onEnrol: vi.fn(),
+  onUnsubscribe: vi.fn(),
+  onSubscribe: vi.fn(),
+  onSubscribed: vi.fn(),
+  setIsSubscriptionModalOpen: vi.fn(),
 };
 
 const getWrapper = (props?: unknown) =>
@@ -41,7 +41,7 @@ const getWrapper = (props?: unknown) =>
 
 describe('<Enrol />', () => {
   it('the user should be able to sign in to an event', async () => {
-    const onEnrol = jest.fn();
+    const onEnrol = vi.fn();
     const render = getWrapper({ onEnrol });
     const signUpButton = selectHdsButtonByText(
       render,
@@ -54,7 +54,7 @@ describe('<Enrol />', () => {
   });
 
   it('the user should be able to cancel', () => {
-    const onCancel = jest.fn();
+    const onCancel = vi.fn();
     const render = getWrapper({ onCancel });
     const cancelButton = selectHdsButtonByText(
       render,
@@ -80,8 +80,8 @@ describe('<Enrol />', () => {
     it('the user should be able to subscribe to notifications', async () => {
       initModal();
 
-      const onSubscribe = jest.fn();
-      const onSubscribed = jest.fn();
+      const onSubscribe = vi.fn();
+      const onSubscribed = vi.fn();
       const render = getFullOccurrenceWrapper({
         onSubscribe,
         onSubscribed,
@@ -123,7 +123,7 @@ describe('<Enrol />', () => {
 
   describe('when the event is full and te user has subscribed', () => {
     it('the user should be able to unsubscribe', async () => {
-      const onUnsubscribed = jest.fn();
+      const onUnsubscribed = vi.fn();
       const render = getWrapper({
         onUnsubscribed,
         occurrence: {

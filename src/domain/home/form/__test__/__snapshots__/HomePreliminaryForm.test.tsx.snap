@@ -1,16 +1,16 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <section
-    class="wrapper"
+    class="_wrapper_1e8528"
     id="register"
   >
     <div
-      class="homeForm"
+      class="_homeForm_1e8528"
     >
       <div
-        class="heading"
+        class="_heading_1e8528"
       >
         <h2>
           Tule mukaan
@@ -25,20 +25,20 @@ exports[`renders snapshot correctly 1`] = `
         novalidate=""
       >
         <div
-          class="inputWrapper"
+          class="_inputWrapper_1e8528"
         >
           <div
-            class="birthdateField"
+            class="_birthdateField_3e5209"
           >
             <label>
               Lapsen syntymäaika (pp.kk.vvvv)*
             </label>
             <div
-              class="inputWrapper"
+              class="_inputWrapper_3e5209"
             >
               <div>
                 <div
-                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
                 >
                   <div
                     class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
@@ -60,13 +60,13 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <div
-                class="dot"
+                class="_dot_3e5209"
               >
                 .
               </div>
               <div>
                 <div
-                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
                 >
                   <div
                     class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
@@ -88,13 +88,13 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <div
-                class="dot"
+                class="_dot_3e5209"
               >
                 .
               </div>
               <div>
                 <div
-                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
                 >
                   <div
                     class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
@@ -118,7 +118,7 @@ exports[`renders snapshot correctly 1`] = `
           </div>
           <div>
             <div
-              class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq formField"
+              class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
             >
               <label
                 class="FieldLabel-module_label__1zrXK "
@@ -166,7 +166,7 @@ exports[`renders snapshot correctly 1`] = `
               for="verifyInformation"
             >
               <span
-                class="listLabel"
+                class="_listLabel_be7ab7"
               >
                 Vakuutan antamani tiedot oikeaksi
               </span>
@@ -174,7 +174,7 @@ exports[`renders snapshot correctly 1`] = `
           </div>
         </div>
         <button
-          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO submitButton"
+          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _submitButton_1e8528"
           style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
           type="submit"
         >

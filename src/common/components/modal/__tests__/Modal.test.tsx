@@ -4,7 +4,7 @@ import Modal from '../Modal';
 
 it('renders snapshot correctly', () => {
   const { container: spinner } = render(
-    <Modal isOpen={false} label="foo" toggleModal={jest.fn()}>
+    <Modal isOpen={false} label="foo" toggleModal={vi.fn()}>
       foo
     </Modal>
   );

@@ -1,15 +1,15 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
   <section
-    class="wrapper"
+    class="_wrapper_6eb765"
   >
     <div
-      class="innerwrapper"
+      class="_innerwrapper_6eb765"
     >
       <div
-        class="embedContainer"
+        class="_embedContainer_6eb765"
       >
         <iframe
           allowfullscreen=""

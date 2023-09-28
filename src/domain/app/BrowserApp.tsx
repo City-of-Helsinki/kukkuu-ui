@@ -20,7 +20,7 @@ import { persistor, store } from './state/AppStore';
 import useRHHCConfig from '../../hooks/useRHHCConfig';
 import browserRouter from './routes/browserRouter';
 
-if (process.env.NODE_ENV === 'development') {
+if (import.meta.env.NODE_ENV === 'development') {
   enableOidcLogging();
 }
 
@@ -33,13 +33,12 @@ const matomoInstance = createMatomoInstance({
 // Prevent non-production data from being submitted to Matomo
 // by pretending to require consent to process analytics data and never ask for it.
 // https://developer.matomo.org/guides/tracking-javascript-guide#step-1-require-consent
-if (process.env.REACT_APP_ENVIRONMENT !== 'production') {
+if (import.meta.env.VITE_ENVIRONMENT !== 'production') {
   window._paq.push(['requireConsent']);
 }
 
 const BrowserApp: FunctionComponent = () => {
   const config = useRHHCConfig();
-
   return (
     <AriaLiveProvider>
       <Provider store={store}>

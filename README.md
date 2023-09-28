@@ -53,7 +53,7 @@ For isolated developing environment, you can use our Docker instructions.
 
 ### .env variables
 
-Change REACT_APP_ELIGIBLE_CITIES if you wish to use the project in another city or municipality.
+Change VITE_ELIGIBLE_CITIES if you wish to use the project in another city or municipality.
 
 ## Available Scripts
 
@@ -62,25 +62,33 @@ In the project directory, you can run:
 ### `yarn start`
 
 Runs the app in the development mode.<br>
+Aliases: `vite dev`, `vite serve`.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `yarn test`
+See more from [CLI guide](https://vitejs.dev/guide/cli.html#vite).
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `yarn build`
 
-### `yarn run build`
-
-Builds the app for production to the `build` folder.<br>
+Builds the app for production.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See the section about [building for production](https://vitejs.dev/guide/build.html) and [CLI guide](https://vitejs.dev/guide/cli.html#vite-build) for more information.
+
+### `yarn serve`
+
+Locally preview the production build. Do not use this as a production server as it's not designed for it.
+See more from [CLI guide](https://vitejs.dev/guide/cli.html#vite-preview).
+
+### `yarn test`
+
+Launches the test runner in the interactive watch mode.<br>
+See the section about [Getting started](https://vitest.dev/guide/) for more information.
 
 ### `yarn update-translations`
 
@@ -164,12 +172,12 @@ Clone the repository (https://github.com/City-of-Helsinki/kukkuu). Follow the in
 
 ### Headless CMS
 
-A headless CMS system is used to produce some dynamic pages. The Headless CMS server endpoint is set with `REACT_APP_CMS_URI` environment variable.
+A headless CMS system is used to produce some dynamic pages. The Headless CMS server endpoint is set with `VITE_CMS_URI` environment variable.
 
 The default server that is used is the test / staging server:
 
 ```
-REACT_APP_CMS_URI="https://kukkuu.hkih.stage.geniem.io/graphql"
+VITE_CMS_URI="https://kukkuu.hkih.stage.geniem.io/graphql"
 ```
 
 ### kukkuu-ui
@@ -221,6 +229,6 @@ Redux internal state can be visualized with [Redux-devtools](https://github.com/
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
 
 To learn React, check out the [React documentation](https://reactjs.org/).

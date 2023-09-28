@@ -14,8 +14,8 @@ describe('Event', () => {
       };
 
       expect(getDateOptions(occurrences)).toMatchInlineSnapshot(`
-        Array [
-          Object {
+        [
+          {
             "key": "1",
             "label": "7.12.2020",
             "value": "2020-12-07",
@@ -53,13 +53,13 @@ describe('Event', () => {
       };
 
       expect(getTimeOptions(occurrences)).toMatchInlineSnapshot(`
-        Array [
-          Object {
+        [
+          {
             "key": "1",
             "label": "08:00 - 08:15",
             "value": "08:00",
           },
-          Object {
+          {
             "key": "1",
             "label": "10:00 - 10:10",
             "value": "10:00",

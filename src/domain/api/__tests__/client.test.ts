@@ -1,9 +1,16 @@
 import profileQuery from '../../profile/queries/ProfileQuery';
 import client from '../client';
 
-jest.mock('../../auth/state/AuthenticationSelectors', () => ({
-  apiTokenSelector: () => 'foo',
-}));
+vi.mock(
+  '../../auth/state/AuthenticationSelectors',
+  async (importOriginal: any) => {
+    const mod = await importOriginal();
+    return {
+      ...mod,
+      apiTokenSelector: () => 'foo',
+    };
+  }
+);
 
 const jsonData = {
   data: {
@@ -25,7 +32,7 @@ const jsonData = {
 
 describe('graphql client', () => {
   it('sets Authorization-header to requests from currently authenticated user', async () => {
-    const fetchMock = jest.spyOn(global, 'fetch').mockImplementation(
+    const fetchMock = vi.spyOn(global, 'fetch').mockImplementation(
       () =>
         Promise.resolve({
           json: () => Promise.resolve(jsonData),

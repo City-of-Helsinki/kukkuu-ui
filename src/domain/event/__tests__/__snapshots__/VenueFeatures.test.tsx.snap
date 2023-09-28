@@ -1,4 +1,4 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
 <div>
@@ -8,23 +8,23 @@ exports[`renders snapshot correctly 1`] = `
     <button
       aria-controls="collapsible_1"
       aria-expanded="false"
-      class="header"
+      class="_header_b278db"
     >
       <h3>
         Saapuminen
       </h3>
       <div
-        class="imgWrapper arrow"
+        class="_imgWrapper_73ff55 _arrow_b278db"
       >
         <img
           alt=""
-          src="angleDown.svg"
+          src="/src/assets/icons/svg/angleDown.svg"
         />
       </div>
     </button>
     <div
       aria-hidden="true"
-      class="content"
+      class="_content_b278db"
       id="collapsible_1"
     >
       <p>
@@ -39,23 +39,23 @@ exports[`renders snapshot correctly 1`] = `
     <button
       aria-controls="collapsible_2"
       aria-expanded="false"
-      class="header"
+      class="_header_b278db"
     >
       <h3>
         Esteettömyys
       </h3>
       <div
-        class="imgWrapper arrow"
+        class="_imgWrapper_73ff55 _arrow_b278db"
       >
         <img
           alt=""
-          src="angleDown.svg"
+          src="/src/assets/icons/svg/angleDown.svg"
         />
       </div>
     </button>
     <div
       aria-hidden="true"
-      class="content"
+      class="_content_b278db"
       id="collapsible_2"
     >
       <p>
@@ -70,23 +70,23 @@ exports[`renders snapshot correctly 1`] = `
     <button
       aria-controls="collapsible_3"
       aria-expanded="false"
-      class="header"
+      class="_header_b278db"
     >
       <h3>
         WC-tilat ja lastenhoitohuone
       </h3>
       <div
-        class="imgWrapper arrow"
+        class="_imgWrapper_73ff55 _arrow_b278db"
       >
         <img
           alt=""
-          src="angleDown.svg"
+          src="/src/assets/icons/svg/angleDown.svg"
         />
       </div>
     </button>
     <div
       aria-hidden="true"
-      class="content"
+      class="_content_b278db"
       id="collapsible_3"
     >
       <p>
@@ -101,23 +101,23 @@ exports[`renders snapshot correctly 1`] = `
     <button
       aria-controls="collapsible_4"
       aria-expanded="false"
-      class="header"
+      class="_header_b278db"
     >
       <h3>
         Lisätietoa
       </h3>
       <div
-        class="imgWrapper arrow"
+        class="_imgWrapper_73ff55 _arrow_b278db"
       >
         <img
           alt=""
-          src="angleDown.svg"
+          src="/src/assets/icons/svg/angleDown.svg"
         />
       </div>
     </button>
     <div
       aria-hidden="true"
-      class="content"
+      class="_content_b278db"
       id="collapsible_4"
     >
       <p>
