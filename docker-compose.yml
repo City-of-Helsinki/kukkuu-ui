@@ -5,10 +5,12 @@ services:
     container_name: kukkuu-ui
     build:
       context: .
-      target: ${DOCKER_TARGET:-development}
+      target: ${DOCKER_TARGET:-development} # select the docker container from dockerFile
+    environment:
+      NODE_ENV: development # which node env the build uses. NOTE: Usually same as the ${DOCKER_TARGET}.
     volumes:
       - '.:/app'
       - '/app/node_modules'
     ports:
-      - '3000:3000'
-      
+      - '3000:3000' # for development mode
+      - '8080:8080' # for production mode
