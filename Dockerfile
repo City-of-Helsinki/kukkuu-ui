@@ -1,5 +1,5 @@
 # ===============================================
-FROM registry.access.redhat.com/ubi8/nodejs-14 as appbase
+FROM registry.access.redhat.com/ubi9/nodejs-18 as appbase
 # ===============================================
 # install yarn
 USER root
@@ -25,7 +25,7 @@ ENV YARN_VERSION 1.19.1
 RUN yarn policies set-version $YARN_VERSION
 
 # Copy package.json and package-lock.json/yarn.lock files
-COPY --chown=default:root package*.json *yarn* ./
+COPY --chown=root:root package*.json *yarn* ./
 
 # Install npm depepndencies
 ENV PATH /app/node_modules/.bin:$PATH
@@ -41,12 +41,10 @@ ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
 
 # copy in our source code last, as it changes the most
-COPY --chown=default:root . .
-# Use non-root user
-USER default
+COPY --chown=root:root . .
 
 # Bake package.json start command into the image
-CMD ["react-scripts", "start"]
+CMD ["yarn", "start"]
 
 # ===================================
 FROM appbase as staticbuilder
@@ -68,9 +66,6 @@ RUN yarn build
 # =============================
 FROM nginx:1.17 as production
 # =============================
-
-# Use non-root user
-USER default
 
 # Nginx runs with user "nginx" by default
 COPY --from=staticbuilder --chown=nginx:nginx /app/build /usr/share/nginx/html
