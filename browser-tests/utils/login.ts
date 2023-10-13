@@ -22,7 +22,8 @@ export const login = async (t: TestController) => {
 
   //  development mode, use github login
   if (developmentMode) {
-    console.log("GitHub login")
+    // eslint-disable-next-line no-console
+    console.log('GitHub login');
     await t
       .click(githubLogin.loginLink)
       .typeText(githubLogin.username, testUsername())
@@ -35,7 +36,8 @@ export const login = async (t: TestController) => {
   }
   // sso login used by ci builds
   else {
-    console.log("Helsinki-tunnus login");
+    // eslint-disable-next-line no-console
+    console.log('Helsinki-tunnus login');
 
     await t.click(ssoLogin.loginLink);
 

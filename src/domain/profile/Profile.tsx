@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Navigate } from 'react-router-dom';
 import * as Sentry from '@sentry/browser';
@@ -16,6 +16,8 @@ import { clearProfile } from './state/ProfileActions';
 import useProfile from './hooks/useProfile';
 import ProfileChildrenList from './children/ProfileChildrenList';
 import EditProfileModal from './modal/EditProfileModal';
+import { isAuthenticatedSelector } from '../auth/state/AuthenticationSelectors';
+import { loginTunnistamo } from '../auth/authenticate';
 
 const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +25,13 @@ const Profile = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const getPathname = useGetPathname();
+
+  const isAuthenticated = useSelector(isAuthenticatedSelector);
+
+  if (!isAuthenticated) {
+    // User has not logged in, so request authentication
+    loginTunnistamo();
+  }
 
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (error) {
