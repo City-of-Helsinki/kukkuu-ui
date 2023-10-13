@@ -34,6 +34,7 @@ const getWrapper = (props: unknown = {}) =>
   render(
     <table>
       <tbody>
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <EventOccurrence {...defaultProps} {...(props as any)} />
       </tbody>
     </table>
