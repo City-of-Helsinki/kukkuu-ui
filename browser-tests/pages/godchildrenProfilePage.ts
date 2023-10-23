@@ -18,7 +18,7 @@ export const godchildrenProfilePage = {
 
 export const editProfileModal = {
   container: screen.getByRole('dialog', { name: 'Lähiaikuisen tiedot' }),
-  firstNameInput: screen.getByLabelText('Etunimi *'),
+  firstNameInput: screen.getByLabelText(/Etunimi/i),
   submitButton: screen.getByRole('button', {
     name: 'Tallenna',
   }),
@@ -29,12 +29,14 @@ export const addChildModal = {
   birthDayDayInput: screen.getByLabelText('pv'),
   birthDayMonthInput: screen.getByLabelText('kk'),
   birthDayYearInput: screen.getByLabelText('vuosi'),
-  cityInput: screen.getByLabelText('Lapsen kotipaikkakunta *'),
-  postalCodeInput: screen.getByLabelText('Postinumero *'),
+  cityInput: screen.getByRole('textbox', {
+    name: /lapsen kotipaikkakunta/i,
+  }),
+  postalCodeInput: screen.getByLabelText(/postinumero/i),
   firstNameInput: screen.getByLabelText('Lapsen etunimi'),
   lastNameInput: screen.getByLabelText('Lapsen sukunimi'),
   relationshipInput: screen.getByRole('button', {
-    name: 'Ilmoittajan suhde lapseen *',
+    name: /ilmoittajan suhde lapseen/i,
   }),
   submitButton: screen.getByRole('button', { name: 'Lisää lapsi' }),
 };
