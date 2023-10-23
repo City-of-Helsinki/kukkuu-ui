@@ -718,5 +718,52 @@
       "noResultsText": "",
       "buttonClearFilters": "Töm sökfilter"
     }
+  },
+  "consent": {
+    "texts": {
+      "sections": {
+        "main": {
+          "text": "Denna webbplats använder obligatoriska kakor för att säkerställa de grundläggande funktionerna och prestandan. Dessutom använder vi inriktningskakor för en bättre användarupplevelse, analytik och individualiserat innehåll."
+        }
+      },
+      "ui": {
+        "approveOnlyRequiredConsents": "Acceptera endast nödvändiga kakor",
+        "hideSettings": "Stäng kakinställningarna"
+      }
+    },
+    "required": {
+      "title": "Nödvändiga kakor",
+      "text": "Du kan inte förbjuda användningen av nödvändiga kakor."
+    },
+    "optional": {
+      "title": "Valfria kakor"
+    },
+    "groups": {
+      "essential": {
+        "title": "Kakor för grundläggande funktioner",
+        "text": "Du kan inte förbjuda användningen av kakor för grundläggande funktioner. De möjliggör webbplatsens funktioner och påverkar användbarheten."
+      },
+      "matomo": {
+        "title": "Matomo",
+        "text": "Matomo Analytics-programvaran används för att spåra och utveckla webbplatsen för att möta användarnas behov.",
+        "expandAriaLabel": "Visa information om kakor som är relaterade till Matomo.",
+        "checkboxAriaDescription": "Matomo använder kakor."
+      }
+    },
+    "cookies": {
+      "matomo": "Kaka för statistiksystemet Matomo",
+      "linkedevents": "Kaka för att söka evenemang",
+      "i18next": "Kaka som sparar användarens språkval på webbplatsen",
+      "wordpress": "Kaka för användning av WordPress-innehållshanteringssystemet."
+    },
+    "expiration": {
+      "session": "Sessionskakan raderas när användaren lämnar webbsidan",
+      "year": "1 år",
+      "hour": "1 timme",
+      "day": "1 dag",
+      "years": "{{ days }} år",
+      "hours": "{{ hours }} timmar",
+      "days": "{{ days }} dagar"
+    }
   }
 }

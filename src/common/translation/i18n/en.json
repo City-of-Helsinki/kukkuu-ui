@@ -718,5 +718,52 @@
       "noResultsText": "",
       "buttonClearFilters": "Clear filters"
     }
+  },
+  "consent": {
+    "texts": {
+      "sections": {
+        "main": {
+          "text": "This website uses essential cookies to ensure the basic functionality and performance of the site. In addition, we use targeting cookies to improve the user experience, perform analytics and display personalised content."
+        }
+      },
+      "ui": {
+        "approveOnlyRequiredConsents": "Accept only essential cookies",
+        "hideSettings": "Hide cookie settings"
+      }
+    },
+    "required": {
+      "title": "Necessary cookies",
+      "text": "Necessary cookies cannot be rejected. They enable the proper functioning of the website and affect the usability."
+    },
+    "optional": {
+      "title": "Optional cookies"
+    },
+    "groups": {
+      "essential": {
+        "title": "Cookies related to basic functionalities",
+        "text": "Cookies related to basic functionalities cannot be rejected. They enable the proper functioning of the website and affect the usability."
+      },
+      "matomo": {
+        "title": "Matomo",
+        "text": "Matomo Analytics software is being used to follow and improve the website to better attend to user's needs.",
+        "expandAriaLabel": "Show cookie information related to the Matomo.",
+        "checkboxAriaDescription": "Matomo uses cookies."
+      }
+    },
+    "cookies": {
+      "matomo": "A cookie of the Matomo statistics system",
+      "linkedevents": "A cookie to authorise the retrieval of events",
+      "i18next": "A cookie to remember the website language selection",
+      "wordpress": "A cookie for operation of the WordPress-content management system."
+    },
+    "expiration": {
+      "session": "The session cookie is deleted once the user exits the page",
+      "year": "1 year",
+      "hour": "1 hour",
+      "day": "1 day",
+      "years": "{{ days }} years",
+      "hours": "{{ hours }} hours",
+      "days": "{{ days }} days"
+    }
   }
 }

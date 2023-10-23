@@ -718,5 +718,52 @@
       "noResultsText": "Voit koittaa muuttaa tai vähentää hakuehtoja.",
       "buttonClearFilters": "Tyhjennä hakuehdot"
     }
+  },
+  "consent": {
+    "texts": {
+      "sections": {
+        "main": {
+          "text": "Tämä sivusto käyttää välttämättömiä evästeitä sivun perustoimintojen ja suorituskyvyn varmistamiseksi. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi, analytiikkaan ja yksilöidyn sisällön näyttämiseen."
+        }
+      },
+      "ui": {
+        "approveOnlyRequiredConsents": "Hyväksy vain välttämättömät evästeet",
+        "hideSettings": "Piilota asetukset"
+      }
+    },
+    "required": {
+      "title": "Välttämättömät evästeet",
+      "text": "Välttämättömien evästeiden käyttöä ei voi kieltää. Ne mahdollistavat sivuston toiminnan ja vaikuttavat käytettävyyteen."
+    },
+    "optional": {
+      "title": "Valinnaiset evästeet"
+    },
+    "groups": {
+      "essential": {
+        "title": "Perustoimintoihin liittyvät evästeet",
+        "text": "Perustoimintoihin liittyviä evästeitä ei voi hylätä. Ne mahdollistavat sivuston kunnollisen toimivuuden ja vaikuttavat käytettävyyteen."
+      },
+      "matomo": {
+        "title": "Matomo",
+        "text": "Matomo-analytiikkaohjelmistolla seurataan ja kehitetään verkkosivustoa käyttäjien tarpeita vastaavaksi.",
+        "expandAriaLabel": "Näytä Matomoon liittyvät evästetiedot.",
+        "checkboxAriaDescription": "Matomo käyttää evästeitä."
+      }
+    },
+    "cookies": {
+      "matomo": "Matomo-tilastointijärjestelmän eväste",
+      "linkedevents": "Eväste tapahtumien hakemisen valtuuttamiseen",
+      "i18next": "Eväste sivuston kielivalinnan muistamiseen",
+      "wordpress": "Wordpress-sisällönhallintajärjestelmän toimintaan liittyvä eväste."
+    },
+    "expiration": {
+      "session": "Istunto-eväste tuhotaan, kun käyttäjä poistuu sivulta",
+      "year": "1 vuosi",
+      "hour": "1 tunti",
+      "day": "1 päivä",
+      "years": "{{ days }} vuotta",
+      "hours": "{{ hours }} tuntia",
+      "days": "{{ days }} päivää"
+    }
   }
 }
