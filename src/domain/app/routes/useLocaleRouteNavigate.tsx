@@ -24,15 +24,21 @@ export const useLocaleRouteNavigate = () => {
   const { i18n } = useTranslation();
 
   React.useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.info('Change current language to', locale);
-    i18n.changeLanguage(locale);
+    if (isSupportedLocale(locale)) {
+      // eslint-disable-next-line no-console
+      console.info('Change current language to', locale);
+      i18n.changeLanguage(locale);
+    }
   }, [i18n, locale]);
 
   React.useEffect(() => {
-    const shouldPrefixPathnameWithLocale = !isSupportedLocale(locale);
+    const shouldPrefixPathnameWithLocale =
+      !isSupportedLocale(locale) && isSupportedLocale(currentLocale);
     if (shouldPrefixPathnameWithLocale) {
-      navigate(`/${currentLocale}${location.pathname}${location.search}`, {
+      const redirectUrl = `/${currentLocale}${location.pathname}${location.search}`;
+      // eslint-disable-next-line no-console
+      console.info('Navigate to', redirectUrl);
+      navigate(redirectUrl, {
         replace: true,
       });
     }
