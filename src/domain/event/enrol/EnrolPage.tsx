@@ -155,7 +155,8 @@ const EnrolPage = () => {
   const goToEvent = () => {
     navigate(
       getPathname(
-        `/${language}/profile/child/${params.childId}/event/${params.eventId}`
+        `/profile/child/${params.childId}/event/${params.eventId}`,
+        language
       )
     );
   };
