@@ -1,7 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { EVENT_ACTIONS } from '../constants/EventActionConstants';
+import { justEnrolled } from './EventActions';
 
-export default createReducer(false, {
-  [EVENT_ACTIONS.JUST_ENROLLED]: (state) => !state,
+const reducer = createReducer(false, (builder) => {
+  builder.addCase(justEnrolled, (state) => !state);
 });
+
+export default reducer;
