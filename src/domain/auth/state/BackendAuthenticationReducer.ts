@@ -1,9 +1,15 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createAction, createReducer } from '@reduxjs/toolkit';
 import { USER_FOUND } from 'redux-oidc';
 
 import apiTokenService from '../../auth/apiTokenService';
-import { API_AUTHENTICATION_ACTIONS } from '../constants/BackendAuthenticationActionConstants';
 import { BackendAuthenticationData } from '../types/BackendAuthenticationTypes';
+import {
+  fetchTokenError,
+  fetchTokenSuccess,
+  resetBackendAuthentication,
+  startFetchingToken,
+  tokenFetched,
+} from './BackendAuthenticationActions';
 
 export const defaultApiAuthenticationData: BackendAuthenticationData = {
   isFetchingToken: false,
@@ -14,29 +20,33 @@ export const defaultApiAuthenticationData: BackendAuthenticationData = {
   errors: {},
 };
 
-export default createReducer(defaultApiAuthenticationData, {
-  // Renew backend API token after silent renew
-  [USER_FOUND]: (state, action) => {
-    state.mustRenewToken = true;
-  },
-  [API_AUTHENTICATION_ACTIONS.START_FETCHING_TOKEN]: (state) =>
-    Object.assign({}, state, { isFetchingToken: true }),
-  [API_AUTHENTICATION_ACTIONS.FETCH_TOKEN_SUCCESS]: (state, action) =>
-    Object.assign({}, state, {
+const userFound = createAction(USER_FOUND);
+
+const reducer = createReducer(defaultApiAuthenticationData, (builder) => {
+  builder
+    .addCase(userFound, (state) => ({ ...state, mustRenewToken: true }))
+    .addCase(startFetchingToken, (state) => ({
+      ...state,
+      isFetchingToken: true,
+    }))
+    .addCase(fetchTokenSuccess, (state, action) => ({
+      ...state,
       isFetchingToken: false,
       mustRenewToken: false,
       hasProfile: true,
       apiToken: Object.values(action.payload)[0],
-    }),
-  [API_AUTHENTICATION_ACTIONS.FETCH_TOKEN_ERROR]: (state, action) =>
-    Object.assign({}, state, {
+    }))
+    .addCase(fetchTokenError, (state, action) => ({
+      ...state,
       isFetchingToken: false,
       apiToken: null,
       hasProfile: false,
       errors: action.payload,
-    }),
-  [API_AUTHENTICATION_ACTIONS.RESET_BACKEND_AUTHENTICATION]: (state, action) =>
-    (state = defaultApiAuthenticationData),
-  [API_AUTHENTICATION_ACTIONS.TOKEN_FETCHED]: (state, action) =>
-    Object.assign({}, state, { isFetchingToken: false }),
+    }))
+    .addCase(resetBackendAuthentication, () => ({
+      ...defaultApiAuthenticationData,
+    }))
+    .addCase(tokenFetched, (state) => ({ ...state, isFetchingToken: false }));
 });
+
+export default reducer;

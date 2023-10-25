@@ -1,8 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { PROFILE_ACTIONS } from '../constants/ProfileActionConstants';
 import { ProfileType } from '../type/ProfileTypes';
 import { Language } from '../../api/generatedTypes/globalTypes';
+import { clearProfile, saveProfile } from './ProfileActions';
 
 export const defaultProfileData: ProfileType = {
   id: '',
@@ -19,7 +19,10 @@ export const defaultProfileData: ProfileType = {
   },
 };
 
-export default createReducer(defaultProfileData, {
-  [PROFILE_ACTIONS.SAVE_PROFILE]: (state, action) => (state = action.payload),
-  [PROFILE_ACTIONS.CLEAR_PROFILE]: (state) => (state = defaultProfileData),
+const reducer = createReducer(defaultProfileData, (builder) => {
+  builder
+    .addCase(saveProfile, (_state, action: any) => ({ ...action.payload }))
+    .addCase(clearProfile, () => ({ ...defaultProfileData }));
 });
+
+export default reducer;
