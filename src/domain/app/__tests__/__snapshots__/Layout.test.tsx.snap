@@ -275,6 +275,7 @@ exports[`renders without crashing 1`] = `
     </div>
     <div
       class="_pageBody_87a801"
+      id="main_content"
     />
     <div
       class="_footerWrapper_ca2122"
