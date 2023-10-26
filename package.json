@@ -11,6 +11,7 @@
     "Tuomas Haapala"
   ],
   "scripts": {
+    "app:version": "echo \"$npm_package_version\"",
     "build": "tsc & vite build",
     "format:code": "eslint --ext js,ts,tsx src --fix",
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
