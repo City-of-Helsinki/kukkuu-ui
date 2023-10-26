@@ -35,6 +35,10 @@ const Footer: FunctionComponent<Props> = ({ className }) => {
             •{' '}
             <Link to={getPathname('/terms#')}>{t('termsOfService.title')}</Link>{' '}
             •{' '}
+            <Link to={getPathname('/cookie-consent#')}>
+              {t('cookieConsent.title')}
+            </Link>{' '}
+            •{' '}
             <a
               href={t('descriptionOfTheFile.url')}
               target="_blank"

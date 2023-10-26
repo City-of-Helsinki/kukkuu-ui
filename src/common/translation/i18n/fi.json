@@ -679,6 +679,9 @@
   "termsOfService": {
     "title": "Käyttöehdot"
   },
+  "cookieConsent": {
+    "title": "Evästeasetukset"
+  },
   "validation": {
     "date": {
       "invalidFormat": "Virheellinen päivämäärä",

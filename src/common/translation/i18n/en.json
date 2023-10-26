@@ -679,6 +679,9 @@
   "termsOfService": {
     "title": "Terms Of Service"
   },
+  "cookieConsent": {
+    "title": "Cookie settings"
+  },
   "validation": {
     "date": {
       "invalidFormat": "Invalid date input",

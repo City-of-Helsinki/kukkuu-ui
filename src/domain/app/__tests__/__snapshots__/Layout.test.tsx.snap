@@ -347,6 +347,14 @@ exports[`renders without crashing 1`] = `
             •
              
             <a
+              href="/cookie-consent"
+            >
+              Evästeasetukset
+            </a>
+             
+            •
+             
+            <a
               href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kuva/Kulttuurin%20kummilapset%20-kummiperherekisteri.pdf"
               rel="noopener noreferrer"
               target="_blank"
