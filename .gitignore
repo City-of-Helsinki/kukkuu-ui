@@ -29,3 +29,6 @@ xeno
 # browser test screenshots and report
 screenshots
 report
+sonar-report.json
+
+sonar-report.xml

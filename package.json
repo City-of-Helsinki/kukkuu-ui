@@ -43,16 +43,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{ts,tsx}",
-      "!<rootDir>/node_modules/",
-      "!src/index.tsx",
-      "!src/domain/api/generatedTypes",
-      "!public/mockServiceWorker.js",
-      "!src/setupTests.ts"
-    ]
-  },
   "resolutions": {
     "ansi-regex": "^5.0.1",
     "eslint": "^8.0.0",
@@ -136,6 +126,7 @@
     "vite-plugin-svgr": "^4.0.0",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.4",
+    "vitest-sonar-reporter": "^0.4.1",
     "yup": "^1.2.0"
   },
   "engines": {
