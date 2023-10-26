@@ -679,6 +679,9 @@
   "termsOfService": {
     "title": "Användningsvillkor"
   },
+  "cookieConsent": {
+    "title": "Cookie -inställningar"
+  },
   "validation": {
     "date": {
       "invalidFormat": "Fel datumformat",

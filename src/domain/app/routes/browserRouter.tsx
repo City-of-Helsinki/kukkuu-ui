@@ -23,6 +23,7 @@ import ExternalTicketSystemEventIsEnrolled from '../../event/ExternalTicketSyste
 import EventRedirect from '../../event/EventRedirect';
 import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EnrolPage from '../../event/enrol/EnrolPage';
+import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
 
 const browserRouter = createBrowserRouter([
   { path: '/', Component: NavigateToLocalePath },
@@ -76,6 +77,15 @@ const browserRouter = createBrowserRouter([
           <AppRoute
             title={t('termsOfService.title')}
             element={<TermsOfService />}
+          />
+        ),
+      },
+      {
+        path: 'cookie-consent',
+        element: (
+          <AppRoute
+            title={t('cookieConsent.title')}
+            element={<CookieConsentPage />}
           />
         ),
       },

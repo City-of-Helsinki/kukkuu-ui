@@ -1,7 +1,8 @@
 import type { ContentSource } from 'hds-react';
-import { CookieModal } from 'hds-react';
-import React, { useEffect } from 'react';
+import { CookieModal, CookiePage, useCookies } from 'hds-react';
+import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { MAIN_CONTENT_ID } from '../constants';
@@ -9,11 +10,18 @@ import { MAIN_CONTENT_ID } from '../constants';
 type Props = {
   appName: string;
   allowLanguageSwitch?: boolean;
+  isModal?: boolean;
 };
 
-const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
+const CookieConsent: React.FC<Props> = ({
+  appName,
+  allowLanguageSwitch,
+  isModal = true,
+}) => {
   const { t, i18n } = useTranslation();
   const locale = getCurrentLanguage(i18n);
+  const { getAllConsents } = useCookies();
+  const { pushInstruction } = useMatomo();
 
   const [language, setLanguage] =
     React.useState<ContentSource['currentLanguage']>(locale);
@@ -24,6 +32,18 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
   useEffect(() => {
     setLanguage(i18n.language as ContentSource['currentLanguage']);
   }, [i18n.language]);
+
+  const handleMatomoUpdate = useCallback(() => {
+    const getConsentStatus = (cookieId: string) => {
+      const consents = getAllConsents();
+      return consents[cookieId];
+    };
+    if (getConsentStatus('matomo')) {
+      pushInstruction('requireCookieConsent');
+    } else {
+      pushInstruction('setCookieConsentGiven');
+    }
+  }, [getAllConsents, pushInstruction]);
 
   const onLanguageChange = React.useCallback(
     (newLang: string) => {
@@ -52,7 +72,10 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
         },
       },
       onAllConsentsGiven: () => {
-        setShowCookieConsentModal(false);
+        if (isModal) {
+          setShowCookieConsentModal(false);
+        }
+        handleMatomoUpdate();
       },
       currentLanguage: language as string as ContentSource['currentLanguage'],
       requiredCookies: {
@@ -117,12 +140,19 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
       },
       focusTargetSelector: MAIN_CONTENT_ID,
     }),
-    [t, language, appName, onLanguageChange]
+    [appName, t, language, onLanguageChange, isModal, handleMatomoUpdate]
   );
 
   if (!showCookieConsentModal) return null;
 
-  return <CookieModal contentSource={contentSource} />;
+  return (
+    <>
+      {isModal && showCookieConsentModal && (
+        <CookieModal contentSource={contentSource} />
+      )}
+      {!isModal && <CookiePage contentSource={contentSource} />}
+    </>
+  );
 };
 
 export default CookieConsent;
