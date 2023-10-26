@@ -53,7 +53,7 @@ function FormikDropdown({
     <Select<Option>
       {...field}
       className={styles.formField}
-      value={valueAsOption || emptyValue}
+      defaultValue={valueAsOption || emptyValue}
       options={options}
       onChange={handleChange}
       invalid={meta.touched && Boolean(meta.error)}
