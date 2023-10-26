@@ -60,17 +60,28 @@ ARG VITE_OIDC_CLIENT_ID
 ARG VITE_OIDC_SCOPE
 ARG VITE_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO
 ARG VITE_SENTRY_DSN
+ARG VITE_BUILDTIME
+ARG VITE_RELEASE
+ARG VITE_COMMITHASH
+
+# Use template and inject the environment variables into .prod/nginx.conf
+ENV VITE_BUILDTIME=${VITE_BUILDTIME:-""}
+ENV VITE_RELEASE=${VITE_RELEASE:-""}
+ENV VITE_COMMITHASH=${VITE_COMMITHASH:-""}
+COPY .prod/nginx.conf.template /tmp/.prod/nginx.conf.template
+RUN export APP_VERSION=$(yarn --silent app:version) && \
+  envsubst '${APP_VERSION},${VITE_BUILDTIME},${VITE_RELEASE},${VITE_COMMITHASH}' < \
+  "/tmp/.prod/nginx.conf.template" > \
+  "/tmp/.prod/nginx.conf"
 
 COPY . /app
 RUN yarn build
 
 # =============================
-FROM nginx:1.17 AS production
+FROM nginx:1.22 AS production
+# FROM registry.access.redhat.com/ubi9/nginx-122 AS production
 # =============================
-
 # Nginx runs with user "nginx" by default
 COPY --from=staticbuilder --chown=nginx:nginx /app/build /usr/share/nginx/html
-
-COPY .prod/nginx.conf /etc/nginx/conf.d/default.conf
-
+COPY --from=staticbuilder --chown=nginx:nginx /tmp/.prod/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 8080
