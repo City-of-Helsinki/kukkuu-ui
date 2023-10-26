@@ -11,6 +11,22 @@ export default defineConfig((configEnv) =>
         globals: true,
         environment: 'jsdom',
         setupFiles: './tests/vitest-setup.ts',
+        reporters: ['json', 'verbose', 'vitest-sonar-reporter'],
+        outputFile: {
+          json: 'sonar-report.json',
+          'vitest-sonar-reporter': 'sonar-report.xml',
+        },
+        coverage: {
+          provider: 'v8',
+          reporter: ['lcov', 'html'],
+          exclude: [
+            'node_modules/',
+            'src/index.tsx',
+            'src/domain/api/generatedTypes',
+            'public/mockServiceWorker.js',
+            'src/setupTests.ts',
+          ],
+        },
       },
     })
   )
