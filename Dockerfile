@@ -1,5 +1,5 @@
 # ===============================================
-FROM registry.access.redhat.com/ubi9/nodejs-18 as appbase
+FROM registry.access.redhat.com/ubi9/nodejs-18 AS appbase
 # ===============================================
 # install yarn
 USER root
@@ -22,7 +22,7 @@ ENV PATH=$PATH:/app/.npm-global/bin
 
 # Yarn
 ENV YARN_VERSION 1.19.1
-RUN yarn policies set-version $YARN_VERSION
+RUN yarn policies set-version ${YARN_VERSION}
 
 # Copy package.json and package-lock.json/yarn.lock files
 COPY --chown=root:root package*.json *yarn* ./
@@ -33,7 +33,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 RUN yarn && yarn cache clean --force
 
 # =============================
-FROM appbase as development
+FROM appbase AS development
 # =============================
 
 # Set NODE_ENV to development in the development container
@@ -44,10 +44,10 @@ ENV NODE_ENV $NODE_ENV
 COPY --chown=root:root . .
 
 # Bake package.json start command into the image
-CMD ["yarn", "start"]
+CMD ["yarn", "start", "--no-open", "--host"]
 
 # ===================================
-FROM appbase as staticbuilder
+FROM appbase AS staticbuilder
 # ===================================
 
 ARG VITE_ORIGIN
@@ -65,7 +65,7 @@ COPY . /app
 RUN yarn build
 
 # =============================
-FROM nginx:1.17 as production
+FROM nginx:1.17 AS production
 # =============================
 
 # Nginx runs with user "nginx" by default
