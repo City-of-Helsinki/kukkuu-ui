@@ -399,6 +399,43 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [2.0.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.14.1...kukkuu-ui-v2.0.0) (2023-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **vite:** replace the CRA with the Vite
+* **router:** migrate to router provider
+* migrate to react-router v6
+
+### Features
+
+* Cookie consent ([#497](https://github.com/City-of-Helsinki/kukkuu-ui/issues/497)) ([b346a42](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b346a42af4caacf557ae4609722c2d7ae4d535b9))
+* Cookie consent page ([#503](https://github.com/City-of-Helsinki/kukkuu-ui/issues/503)) ([1f6f496](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1f6f496e4fde4fd353bf6e82675dfe0b99baad0a))
+* **vite:** Replace the CRA with the Vite ([8c130a1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8c130a12fc59069ffa7b5c6861b82fc9eb1ccf37))
+
+
+### Bug Fixes
+
+* **cms:** Headless cms page route ([bf9d7b6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/bf9d7b6855f700ca1acc6773e6f1cfe7356c573f))
+* **dockerfile:** Development environment launching ([4c67fdd](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4c67fdd557b64563dafe94e70827c2c6458e232c))
+* Enrol page cancel url ([9354e58](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9354e5868cc4adcf277fb66181af46ff0e56b6b7))
+* Formik dropdown component in mobile view mode ([b5807ba](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b5807ba14a1ecd3216cf37237243eb6acdaeaada))
+* Language sync ([e8efc16](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e8efc1641044f51eeb9633d4355c5d67a3aac7bc))
+* Linter warnings ([f057331](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f0573313ccb4c5297fec9b9345ec55d1b3a3b2df))
+* Linter warnings and errors ([5993199](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5993199ca5f5a4baed33da6a40a8273dce629084))
+* Navigation confirm prompt ([be7857e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/be7857e3982b6e479194ebf187fb272d107660f0))
+* **navigation:** Language change ([e40d304](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e40d3046d031da5b110eef496288d5a6368e45d3))
+* **routes:** React-router can have only route-components as children ([c95f86a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c95f86a202b2ebcad78b3273219bc3678224b38d))
+* Sass-path needs to be absolute in the latest version of sass ([ccf4efa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ccf4efa5081787df0e5209a7730eb92aae01a6d1))
+* **vite:** Linter issues ([a38596a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a38596aba2977c4ac0a778f5257182d7379b6857))
+
+
+### Code Refactoring
+
+* Migrate to react-router v6 ([0d08dd1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0d08dd18e45d06d6c2826ec3de0b5869a5d148c9))
+* **router:** Migrate to router provider ([42e8db0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/42e8db0e4f0d85412a8c307b55dc4f1ea578444b))
+
 ## [1.14.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.14.0...kukkuu-ui-v1.14.1) (2023-08-31)
 
 ### Bug Fixes
