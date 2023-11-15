@@ -6191,6 +6191,14 @@ html-dom-parser@4.0.0:
     domhandler "5.0.3"
     htmlparser2 "9.0.0"
 
+html-dom-parser@5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-5.0.3.tgz#823ecc15292c36cb1611213384c9eb2fbb085e5c"
+  integrity sha512-slsc6ipw88OUZjAayRs5NTmfOQCwcUa3hNyk6AdsbQxY09H5Lr1Y3CZ4ZlconMKql3Ga6sWg3HMoUzo7KSItaQ==
+  dependencies:
+    domhandler "5.0.3"
+    htmlparser2 "9.0.0"
+
 html-encoding-sniffer@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/html-encoding-sniffer/-/html-encoding-sniffer-3.0.0.tgz#2cb1a8cf0db52414776e5b2a7a04d5dd98158de9"
@@ -6215,7 +6223,7 @@ html-parse-stringify@^3.0.1:
   dependencies:
     void-elements "3.1.0"
 
-html-react-parser@^4.2.1, html-react-parser@^4.2.2:
+html-react-parser@^4.2.1:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-4.2.2.tgz#91f1cc2138bc069d65cbd8b9d97b1e71ed423300"
   integrity sha512-lh0wEGISnFZEAmvQqK4xc0duFMUh/m9YYyAhFursWxdtNv+hCZge0kj1y4wep6qPB5Zm33L+2/P6TcGWAJJbjA==
@@ -6224,6 +6232,16 @@ html-react-parser@^4.2.1, html-react-parser@^4.2.2:
     html-dom-parser "4.0.0"
     react-property "2.0.0"
     style-to-js "1.1.4"
+
+html-react-parser@^4.2.9:
+  version "4.2.10"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-4.2.10.tgz#618364ce90b2eb5fa8b80fe359eb553f97aaefa3"
+  integrity sha512-JyKZVQ+kQ8PdycISwkuLbEEvV/k4hWhU6cb6TT7yGaYwdqA7cPt4VRYXkCZcix2vlQtgDBSMJUmPI2jpNjPGvg==
+  dependencies:
+    domhandler "5.0.3"
+    html-dom-parser "5.0.3"
+    react-property "2.0.2"
+    style-to-js "1.1.8"
 
 htmlparser2@9.0.0:
   version "9.0.0"
@@ -6442,6 +6460,11 @@ inline-style-parser@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/inline-style-parser/-/inline-style-parser-0.1.1.tgz#ec8a3b429274e9c0a1f1c4ffa9453a7fef72cea1"
   integrity sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==
+
+inline-style-parser@0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/inline-style-parser/-/inline-style-parser-0.2.2.tgz#d498b4e6de0373458fc610ff793f6b14ebf45633"
+  integrity sha512-EcKzdTHVe8wFVOGEYXiW9WmJXPjqi1T+234YpJr98RiFYKHV3cdy1+3mkTE+KHTHxFFLH51SfaGOoUdW+v7ViQ==
 
 inquirer@^8.2.0:
   version "8.2.5"
@@ -8304,6 +8327,11 @@ react-property@2.0.0:
   resolved "https://registry.yarnpkg.com/react-property/-/react-property-2.0.0.tgz#2156ba9d85fa4741faf1918b38efc1eae3c6a136"
   integrity sha512-kzmNjIgU32mO4mmH5+iUyrqlpFQhF8K2k7eZ4fdLSOPFrD1XgEuSBv9LDEgxRXTMBqMd8ppT0x6TIzqE5pdGdw==
 
+react-property@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/react-property/-/react-property-2.0.2.tgz#d5ac9e244cef564880a610bc8d868bd6f60fdda6"
+  integrity sha512-+PbtI3VuDV0l6CleQMsx2gtK0JZbZKbpdu5ynr+lbsuvtmgbNcS3VM0tuY2QjFNOcWxvXeHjDpy42RO+4U2rug==
+
 react-qrcode-logo@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-qrcode-logo/-/react-qrcode-logo-2.9.0.tgz#34270d563b4a15396b5e7e7656ea2d079673adad"
@@ -9148,12 +9176,26 @@ style-to-js@1.1.4:
   dependencies:
     style-to-object "0.4.2"
 
+style-to-js@1.1.8:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/style-to-js/-/style-to-js-1.1.8.tgz#b3357ad6cbd7cc1216a432ce89c31e554d0861a7"
+  integrity sha512-bPSspCXkkhETLXnEgDbaoWRWyv3lF2bj32YIc8IElok2IIMHUlZtQUrxYmAkKUNxpluhH0qnKWrmuoXUyTY12g==
+  dependencies:
+    style-to-object "1.0.3"
+
 style-to-object@0.4.2:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/style-to-object/-/style-to-object-0.4.2.tgz#a8247057111dea8bd3b8a1a66d2d0c9cf9218a54"
   integrity sha512-1JGpfPB3lo42ZX8cuPrheZbfQ6kqPPnPHlKMyeRYtfKD+0jG+QsXgXN57O/dvJlzlB2elI6dGmrPnl5VPQFPaA==
   dependencies:
     inline-style-parser "0.1.1"
+
+style-to-object@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/style-to-object/-/style-to-object-1.0.3.tgz#5ce90eb7f03ef5044bd70a3a23a3c1387fcac5b4"
+  integrity sha512-xOpx7S53E0V3DpVsvt7ySvoiumRpfXiC99PUXLqGB3wiAnN9ybEIpuzlZ8LAZg+h1sl9JkEUwtSQXxcCgFqbbg==
+  dependencies:
+    inline-style-parser "0.2.2"
 
 supports-color@^5.3.0:
   version "5.5.0"
