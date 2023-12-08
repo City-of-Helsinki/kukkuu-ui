@@ -11,6 +11,7 @@ type MoreInfoLinkListProps = {
 const MoreInfoLinkList = ({ links }: MoreInfoLinkListProps) => {
   const { t, i18n } = useTranslation();
   const currentLanguage = getCurrentLanguage(i18n);
+  console.log({ currentLanguage });
   return (
     <div className={styles.link}>
       {links.map((link, index: number) => {

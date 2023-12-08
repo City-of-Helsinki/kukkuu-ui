@@ -18,7 +18,7 @@ exports[`renders snapshot correctly 1`] = `
         class="_link_0c660e"
       >
         <a
-          href="undefined/brochures/fr.pdf"
+          href="/brochures/fr.pdf"
         >
           <span
             lang="fr"
@@ -38,7 +38,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/ru.pdf"
+          href="/brochures/ru.pdf"
         >
           <span
             lang="ru"
@@ -58,7 +58,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/es.pdf"
+          href="/brochures/es.pdf"
         >
           <span
             lang="es"
@@ -78,7 +78,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/zh.pdf"
+          href="/brochures/zh.pdf"
         >
           <span
             lang="zh"
@@ -98,7 +98,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/npi.pdf"
+          href="/brochures/npi.pdf"
         >
           <span
             lang="npi"
@@ -118,7 +118,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/som.pdf"
+          href="/brochures/som.pdf"
         >
           <span
             lang="som"
@@ -138,7 +138,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/fas.pdf"
+          href="/brochures/fas.pdf"
         >
           <span
             lang="fas"
@@ -158,7 +158,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/et.pdf"
+          href="/brochures/et.pdf"
         >
           <span
             lang="et"
@@ -178,7 +178,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/tur.pdf"
+          href="/brochures/tur.pdf"
         >
           <span
             lang="tur"
@@ -198,7 +198,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/ara.pdf"
+          href="/brochures/ara.pdf"
         >
           <span
             lang="ar"
@@ -218,7 +218,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/ckb.pdf"
+          href="/brochures/ckb.pdf"
         >
           <span
             lang="ckb"
@@ -238,7 +238,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/vi.pdf"
+          href="/brochures/vi.pdf"
         >
           <span
             lang="vi"
@@ -258,7 +258,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/en.pdf"
+          href="/brochures/en.pdf"
         >
           <span
             lang="en"
@@ -278,7 +278,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/sv.pdf"
+          href="/brochures/sv.pdf"
         >
           <span
             lang="sv"
@@ -298,7 +298,7 @@ exports[`renders snapshot correctly 1`] = `
           </span>
         </a>
         <a
-          href="undefined/brochures/fi.pdf"
+          href="/brochures/fi.pdf"
         >
           <span
             lang="fi"
