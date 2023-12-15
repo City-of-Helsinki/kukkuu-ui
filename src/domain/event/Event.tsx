@@ -26,10 +26,15 @@ import EventEnrol from './EventEnrol';
 import EventPage from './EventPage';
 import EventParticipantsPerInvite from './EventParticipantsPerInvite';
 import styles from './event.module.scss';
+import eventRedirectStyles from './eventRedirect.module.scss';
 import { TicketSystem } from '../api/generatedTypes/globalTypes';
 import { useEventRouteGoBackTo } from './route/EventRoute';
 import LinkButton from '../../common/components/button/LinkButton';
 import useGetPathname from '../../common/route/utils/useGetPathname';
+// eslint-disable-next-line max-len
+import { eventExternalTicketSystemPasswordCountQuery as EventExternalTicketSystemPasswordCountQueryType } from '../api/generatedTypes/eventExternalTicketSystemPasswordCountQuery';
+import eventExternalTicketSystemPasswordCountQuery from './queries/eventExternalTicketSystemPasswordCountQuery';
+import Text from '../../common/components/text/Text';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
@@ -103,10 +108,28 @@ const Event = () => {
     childId: childId,
   };
 
-  const { loading, error, data, refetch } = useQuery<EventQueryType>(
+  const { loading, queryError, data, refetch } = useQuery<EventQueryType>(
     eventQuery,
     { skip: !eventId, variables }
   );
+
+  const {
+    loading: passwordCountQueryLoading,
+    error: passwordCountQueryError,
+    data: passwordCountQueryData,
+  } = useQuery<EventExternalTicketSystemPasswordCountQueryType>(
+    eventExternalTicketSystemPasswordCountQuery,
+    {
+      variables: { id: eventId },
+      fetchPolicy: 'network-only',
+    }
+  );
+
+  const passwordCountTicketSystem = passwordCountQueryData?.event?.ticketSystem;
+  const hasFreePasswords = !!(passwordCountTicketSystem &&
+  'freePasswordCount' in passwordCountTicketSystem
+    ? passwordCountTicketSystem?.freePasswordCount
+    : null);
 
   const updateFilterValues = (filterValues: FilterValues) => {
     // If date or time is missing we force it to be present and undefined to
@@ -124,8 +147,10 @@ const Event = () => {
   const optionsDates = getDateOptions(data?.event?.allOccurrences);
   const optionsTimes = getTimeOptions(data?.event?.allOccurrences);
 
-  if (loading) return <LoadingSpinner isLoading={true} />;
+  if (loading || passwordCountQueryLoading)
+    return <LoadingSpinner isLoading={true} />;
 
+  const error = queryError ?? passwordCountQueryError;
   if (error) {
     // eslint-disable-next-line no-console
     console.error(error);
@@ -173,14 +198,25 @@ const Event = () => {
               <LinkButton variant="secondary" to={goBackTo}>
                 {t('event.externalTicketSystemButtons.back')}
               </LinkButton>
-              <LinkButton
-                variant="primary"
-                to={getPathname(
-                  `/profile/child/${childId}/event/${eventId}/redirect`
-                )}
-              >
-                {t('event.externalTicketSystemButtons.continue')}
-              </LinkButton>
+              {hasFreePasswords ? (
+                <LinkButton
+                  variant="primary"
+                  to={getPathname(
+                    `/profile/child/${childId}/event/${eventId}/redirect`
+                  )}
+                >
+                  {t('event.externalTicketSystemButtons.continue')}
+                </LinkButton>
+              ) : (
+                <Text
+                  variant="body-l"
+                  className={
+                    eventRedirectStyles.noFreeTicketSystemPasswordsLeftLabel
+                  }
+                >
+                  {t('eventRedirectPage.noFreeTicketSystemPasswordsLeftLabel')}
+                </Text>
+              )}
             </div>
           </>
         ))}

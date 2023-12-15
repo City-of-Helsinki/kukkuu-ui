@@ -363,7 +363,10 @@
     "passwordCopySuccess": "Password was copied succesfully",
     "passwordLabel": "Your personal password:",
     "title": "Register for an event",
-    "unexpectedError": "An unexpected error took place"
+    "unexpectedError": "An unexpected error took place",
+    "noFreeTicketSystemPasswordsLeftLabel": "Unfortunately there are no more passwords left",
+    "noFreeTicketSystemPasswordsErrorTitle": "Oh no!",
+    "noFreeTicketSystemPasswordsErrorDescription": "Unfortunately this event's passwords have already run out.<br/><br/>Please go back and choose another event."
   },
   "feedback": {
     "giveFeedback": {

@@ -16,7 +16,7 @@
   .infoPageLayoutFace {
     height: $spacing-5-xl;
     width: $spacing-5-xl;
-    margin: $spacing-l 0;
+    margin: 0 0 $spacing-m 0;
   }
 
   .infoPageLayoutTitle {
@@ -26,6 +26,7 @@
   .infoPageLayoutDescription {
     max-width: $container-width-m;
     margin-top: 0;
+    margin-bottom: $spacing-xl;
 
     font-size: $fontsize-body-l;
     text-align: center;
@@ -34,6 +35,6 @@
 
 .callToActionButton {
   margin: 2 * $baseMargin;
-  width: 100%;
+  width: min-content;
   max-width: $container-width-s;
 }

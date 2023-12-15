@@ -363,7 +363,10 @@
     "passwordCopySuccess": "Salasana kopioitiin onnistuneesti",
     "passwordLabel": "Henkilökohtainen salasanasi:",
     "title": "Ilmoittaudu tapahtumaan",
-    "unexpectedError": "Odottamaton virhe"
+    "unexpectedError": "Odottamaton virhe",
+    "noFreeTicketSystemPasswordsLeftLabel": "Valitettavasti salasanoja ei ole enää jäljellä",
+    "noFreeTicketSystemPasswordsErrorTitle": "Voi ei!",
+    "noFreeTicketSystemPasswordsErrorDescription": "Valitettavasti tämän tapahtumat salasanat ovat jo loppuneet.<br/><br/>Palaa takaisin ja valitse toinen tapahtuma."
   },
   "feedback": {
     "giveFeedback": {

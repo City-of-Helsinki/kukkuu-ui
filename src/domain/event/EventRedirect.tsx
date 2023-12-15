@@ -1,7 +1,8 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 import { useMutation, useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
+import { useNavigate } from 'react-router-dom';
 
 import PageWrapper from '../app/layout/PageWrapper';
 import Text from '../../common/components/text/Text';
@@ -9,8 +10,11 @@ import LinkButton from '../../common/components/button/LinkButton';
 import AnchorButton from '../../common/components/button/AnchorButton';
 // eslint-disable-next-line max-len
 import { externalTicketSystemEventQuery as ExternalTicketSystemEventQueryType } from '../api/generatedTypes/externalTicketSystemEventQuery';
+// eslint-disable-next-line max-len
+import { eventExternalTicketSystemPasswordCountQuery as EventExternalTicketSystemPasswordCountQueryType } from '../api/generatedTypes/eventExternalTicketSystemPasswordCountQuery';
 import { eventExternalTicketSystemPasswordQuery } from './queries/eventQuery';
 import assignTicketSystemPasswordMutation from './mutations/assignTicketSystemPasswordMutation';
+import eventExternalTicketSystemPasswordCountQuery from './queries/eventExternalTicketSystemPasswordCountQuery';
 import {
   assignTicketSystemPasswordMutation as assignTicketSystemMutationData,
   assignTicketSystemPasswordMutationVariables,
@@ -30,7 +34,7 @@ type Params = {
 const EventRedirect = () => {
   const { t } = useTranslation();
   const { eventId, childId } = useParams<Params>();
-
+  const navigate = useNavigate();
   const getPathname = useGetPathname();
 
   const {
@@ -44,6 +48,18 @@ const EventRedirect = () => {
         id: eventId,
         childId,
       },
+      fetchPolicy: 'network-only',
+    }
+  );
+
+  const {
+    loading: passwordCountQueryLoading,
+    error: passwordCountQueryError,
+    data: passwordCountQueryData,
+  } = useQuery<EventExternalTicketSystemPasswordCountQueryType>(
+    eventExternalTicketSystemPasswordCountQuery,
+    {
+      variables: { id: eventId },
       fetchPolicy: 'network-only',
     }
   );
@@ -89,16 +105,41 @@ const EventRedirect = () => {
       ? ticketSystem.childPassword
       : null) || mutationData?.assignTicketSystemPassword?.password;
 
+  const passwordCountTicketSystem = passwordCountQueryData?.event?.ticketSystem;
+  const hasFreePasswords = !!(passwordCountTicketSystem &&
+  'freePasswordCount' in passwordCountTicketSystem
+    ? passwordCountTicketSystem?.freePasswordCount
+    : null);
+
   const ticketSystemUrl =
     ticketSystem && 'url' in ticketSystem ? ticketSystem.url : undefined;
+  const backUrl = getPathname(`/profile/child/${childId}/event/${eventId}`);
 
-  if (queryLoading) {
+  if (queryLoading || passwordCountQueryLoading) {
     return <LoadingSpinner isLoading={true} />;
   }
 
-  const error = queryError || mutationError;
+  const error = queryError ?? mutationError ?? passwordCountQueryError;
   if (error) {
+    const isNoFreeTicketSystemPasswordsError =
+      error.graphQLErrors.length > 0 &&
+      error.graphQLErrors[0].extensions.code ===
+        'NO_FREE_TICKET_SYSTEM_PASSWORDS_ERROR';
     Sentry.captureException(error);
+    if (isNoFreeTicketSystemPasswordsError) {
+      return (
+        <InfoPageLayout
+          title={t('eventRedirectPage.noFreeTicketSystemPasswordsErrorTitle')}
+          description={
+            <Trans i18nKey="eventRedirectPage.noFreeTicketSystemPasswordsErrorDescription" />
+          }
+          callToAction={{
+            label: t('eventRedirectPage.back'),
+            onClick: () => navigate(backUrl),
+          }}
+        />
+      );
+    }
     return (
       <InfoPageLayout
         title={t('eventRedirectPage.unexpectedError')}
@@ -137,15 +178,21 @@ const EventRedirect = () => {
           <LoadingSpinner isLoading={true} />
         ) : !externalTicketSystemPassword ? (
           <div className={styles.acquireButtonRow}>
-            <LinkButton
-              variant="secondary"
-              to={getPathname(`/profile/child/${childId}/event/${eventId}`)}
-            >
+            <LinkButton variant="secondary" to={backUrl}>
               {t('eventRedirectPage.back')}
             </LinkButton>
-            <Button onClick={() => assignTicketSystemPassword()}>
-              {t('eventRedirectPage.continue')}
-            </Button>
+            {hasFreePasswords ? (
+              <Button onClick={() => assignTicketSystemPassword()}>
+                {t('eventRedirectPage.continue')}
+              </Button>
+            ) : (
+              <Text
+                variant="body-l"
+                className={styles.noFreeTicketSystemPasswordsLeftLabel}
+              >
+                {t('eventRedirectPage.noFreeTicketSystemPasswordsLeftLabel')}
+              </Text>
+            )}
           </div>
         ) : (
           <div className={styles.passwordWrapper}>

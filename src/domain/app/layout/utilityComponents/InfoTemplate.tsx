@@ -1,14 +1,16 @@
+import React from 'react';
+
 import adultFaceIcon from '../../../../assets/icons/svg/adultFace.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import Button from '../../../../common/components/button/Button';
 import styles from './infoTemplate.module.scss';
 
 type Props = {
-  title: string;
-  description: string;
+  title: string | React.ReactElement;
+  description: string | React.ReactElement;
   icon?: string;
   callToAction?: {
-    label: string;
+    label: string | React.ReactElement;
     onClick: () => void;
   };
 };
