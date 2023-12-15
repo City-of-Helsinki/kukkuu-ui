@@ -45,6 +45,9 @@ export function initI18next() {
         SUPPORT_LANGUAGES.FI,
         SUPPORT_LANGUAGES.SV,
       ],
+      react: {
+        transSupportBasicHtmlNodes: true,
+      },
       resources: {
         en: {
           translation: en,

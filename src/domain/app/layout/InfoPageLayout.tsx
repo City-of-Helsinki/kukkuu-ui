@@ -1,12 +1,14 @@
+import React from 'react';
+
 import PageWrapper from '../../app/layout/PageWrapper';
 import InfoTemplate from './utilityComponents/InfoTemplate';
 
 type Props = {
-  title: string;
-  description: string;
+  title: string | React.ReactElement;
+  description: string | React.ReactElement;
   icon?: string;
   callToAction?: {
-    label: string;
+    label: string | React.ReactElement;
     onClick: () => void;
   };
 };

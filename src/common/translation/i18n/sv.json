@@ -363,7 +363,10 @@
     "passwordCopySuccess": "Lösenordet har kopierats",
     "passwordLabel": "Ditt personligt lösenord:",
     "title": "Anmäl dig till evenemang",
-    "unexpectedError": "Ett oväntat fel inträffade"
+    "unexpectedError": "Ett oväntat fel inträffade",
+    "noFreeTicketSystemPasswordsLeftLabel": "Tyvärr finns det inga fler lösenord kvar",
+    "noFreeTicketSystemPasswordsErrorTitle": "Å nej!",
+    "noFreeTicketSystemPasswordsErrorDescription": "Tyvärr har evenemangets lösenorden redan tagit slut.<br/><br/>Gå tillbaka och välj en annan händelse."
   },
   "feedback": {
     "giveFeedback": {
