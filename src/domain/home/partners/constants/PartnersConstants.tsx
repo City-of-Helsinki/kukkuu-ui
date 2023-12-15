@@ -238,8 +238,8 @@ export const partnerList: Partner[] = [
     name: 'qteatteri',
     icon: qteatteriIcon,
     url: {
-      fi: 'http://www.q-teatteri.fi/',
-      en: 'http://www.q-teatteri.fi/q-in-english/',
+      fi: 'https://www.q-teatteri.fi/',
+      en: 'https://www.q-teatteri.fi/q-in-english/',
     },
   },
   {
