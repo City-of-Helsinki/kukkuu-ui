@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client';
 
 import styles from './event.module.scss';
 import occurrenceQuery from './queries/occurrenceQuery';
-import { occurrenceQuery as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
+import { OccurrenceQuery } from '../api/generatedTypes/graphql';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import OccurrenceInfo from './partial/OccurrenceInfo';
 import UnenrolModal from './modal/UnenrolModal';
@@ -23,15 +23,12 @@ const EventIsEnrolled = () => {
   const goBackTo = useChildRouteGoBackTo();
   const [isOpen, setIsOpen] = useState(false);
   const params = useParams<{ childId: string; occurrenceId: string }>();
-  const { loading, error, data } = useQuery<OccurrenceQueryType>(
-    occurrenceQuery,
-    {
-      variables: {
-        id: params.occurrenceId,
-        childId: params.childId,
-      },
-    }
-  );
+  const { loading, error, data } = useQuery<OccurrenceQuery>(occurrenceQuery, {
+    variables: {
+      id: params.occurrenceId,
+      childId: params.childId,
+    },
+  });
 
   const errorMessage = <ErrorMessage message={t('api.errorMessage')} />;
 

@@ -2,7 +2,7 @@ import { IconGroup } from 'hds-react';
 
 import { formatTime, newMoment } from '../../common/time/utils';
 import { DEFAULT_TIME_FORMAT } from '../../common/time/TimeConstants';
-import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../api/generatedTypes/globalTypes';
+import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../api/generatedTypes/graphql';
 
 export const formatOccurrenceTime = (
   startTimeRaw: Date,
@@ -24,9 +24,9 @@ export const formatOccurrenceTime = (
 
 export function getParticipantsIcon(iconType: EventParticipantsPerInviteEnum) {
   switch (iconType) {
-    case EventParticipantsPerInviteEnum.CHILD_AND_1_OR_2_GUARDIANS:
-    case EventParticipantsPerInviteEnum.CHILD_AND_GUARDIAN:
-    case EventParticipantsPerInviteEnum.FAMILY:
+    case EventParticipantsPerInviteEnum.ChildAnd_1Or_2Guardians:
+    case EventParticipantsPerInviteEnum.ChildAndGuardian:
+    case EventParticipantsPerInviteEnum.Family:
     default:
       return <IconGroup />;
   }

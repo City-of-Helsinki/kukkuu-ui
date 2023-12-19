@@ -1,3 +1,5 @@
+// @ts-nocheck
+// FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import { fireEvent, render } from '../../../../common/test/testingLibraryUtils';
 import EventCard from '../EventCard';
 

@@ -9,12 +9,14 @@ import * as yup from 'yup';
 
 import styles from './editProfileModal.module.scss';
 import { ProfileType, LanguagesSpokenAtHomeNode } from '../type/ProfileTypes';
-import { UpdateMyProfileMutationInput } from '../../guardian/types/GuardianTypes';
 import Modal from '../../../common/components/modal/Modal';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
 import profileQuery from '../queries/ProfileQuery';
 import updateMyProfileMutation from '../mutations/updateMyProfileMutation';
-import { updateMyProfile as UpdateMyProfileData } from '../../api/generatedTypes/updateMyProfile';
+import {
+  UpdateMyProfileMutation,
+  UpdateMyProfileMutationInput,
+} from '../../api/generatedTypes/graphql';
 import adultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
@@ -75,7 +77,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
   const { trackEvent } = useMatomo();
 
   const [isFilling, setFormIsFilling] = React.useState(false);
-  const [updateMyProfile] = useMutation<UpdateMyProfileData>(
+  const [updateMyProfile] = useMutation<UpdateMyProfileMutation>(
     updateMyProfileMutation,
     {
       refetchQueries: [{ query: profileQuery }],

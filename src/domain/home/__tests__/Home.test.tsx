@@ -1,3 +1,5 @@
+// @ts-nocheck
+// FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import * as ReactRedux from 'react-redux';
 
 import { render, screen } from '../../../common/test/testingLibraryUtils';

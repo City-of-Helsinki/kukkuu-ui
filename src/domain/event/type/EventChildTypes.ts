@@ -1,7 +1,17 @@
-// eslint-disable-next-line max-len
-import { enrolOccurrenceMutation_enrolOccurrence_enrolment_child_occurrences as EnrolOccurrences } from '../../api/generatedTypes/enrolOccurrenceMutation';
-// eslint-disable-next-line max-len
-import { unenrolOccurrenceMutation_unenrolOccurrence_child_occurrences as UnenrolOccurrences } from '../../api/generatedTypes/unenrolOccurrenceMutation';
+import {
+  EnrolOccurrenceMutation,
+  UnenrolOccurrenceMutation,
+} from '../../api/generatedTypes/graphql';
+
+type EnrolOccurrences = NonNullable<
+  NonNullable<
+    NonNullable<EnrolOccurrenceMutation['enrolOccurrence']>['enrolment']
+  >['child']
+>['occurrences'];
+
+type UnenrolOccurrences = NonNullable<
+  NonNullable<UnenrolOccurrenceMutation['unenrolOccurrence']>['child']
+>['occurrences'];
 
 export interface ChildEvents {
   childId: string;

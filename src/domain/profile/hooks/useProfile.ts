@@ -5,17 +5,16 @@ import { useNavigate } from 'react-router';
 
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelectors';
-import {
-  profileQuery as ProfileQueryType,
-  profileQuery_myProfile as Profile,
-} from '../../api/generatedTypes/profileQuery';
+import { ProfileQuery } from '../../api/generatedTypes/graphql';
 import { clearEvent, saveChildrenEvents } from '../../event/state/EventActions';
 import profileQuery from '../queries/ProfileQuery';
 import { clearProfile, saveProfile } from '../state/ProfileActions';
 import { defaultProfileData } from '../state/ProfileReducers';
 
+type Profile = NonNullable<ProfileQuery['myProfile']>;
+
 export type ProfileQueryResult = Omit<
-  GenericQueryResult<ProfileQueryType>,
+  GenericQueryResult<ProfileQuery>,
   'data'
 > & {
   data: Profile | null | undefined;
@@ -27,7 +26,7 @@ function useProfile(skipRedirect = false): ProfileQueryResult {
   const isAuthenticated = useSelector(isAuthenticatedSelector);
   const getPathname = useGetPathname();
 
-  const result = useQuery<ProfileQueryType>(profileQuery, {
+  const result = useQuery<ProfileQuery>(profileQuery, {
     skip: !isAuthenticated,
     onCompleted: (data) => {
       // Sync data to redux. Note that the redux state won't be updated

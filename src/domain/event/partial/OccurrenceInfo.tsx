@@ -4,16 +4,33 @@ import { IconCalendar, IconLocation, IconClock } from 'hds-react';
 
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
-// eslint-disable-next-line max-len
-import { childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence as OccurrenceType } from '../../api/generatedTypes/childByIdQuery';
-import { occurrenceQuery_occurrence as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
+import {
+  OccurrenceQuery,
+  ChildByIdQuery,
+} from '../../api/generatedTypes/graphql';
 import { formatOccurrenceTime, getParticipantsIcon } from '../EventUtils';
 import InfoItem, { InfoItemProps } from './InfoItem';
 import styles from './occurrenceInfo.module.scss';
+import { TypeByTypename } from '../../../common/commonUtils';
+
+type ChildByIdQueryEnrolmentNodeOccurrence = NonNullable<
+  TypeByTypename<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          ChildByIdQuery['child']
+        >['activeInternalAndTicketSystemEnrolments']
+      >['edges'][number]
+    >['node'],
+    'EnrolmentNode'
+  >['occurrence']
+>;
 
 type Props = {
   className?: string;
-  occurrence: OccurrenceQueryType | OccurrenceType;
+  occurrence:
+    | NonNullable<OccurrenceQuery['occurrence']>
+    | ChildByIdQueryEnrolmentNodeOccurrence;
   show?: string[];
 };
 

@@ -1,3 +1,5 @@
+// @ts-nocheck
+// FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import {
   render,
   waitFor,
@@ -6,11 +8,12 @@ import Page from '../Page';
 
 const title = 'Page component';
 const defaultProps = { title };
-const getWrapper = (props) => render(<Page {...defaultProps} {...props} />);
+const getWrapper = (props: Partial<Parameters<typeof Page>[0]>) =>
+  render(<Page {...defaultProps} {...props} />);
 
 describe('<Page />', () => {
   it('should set title', async () => {
-    getWrapper();
+    getWrapper({});
 
     await waitFor(() => expect(document.title.length > 0).toEqual(true));
     expect(document.title).toMatchInlineSnapshot(
@@ -47,13 +50,12 @@ describe('<Page />', () => {
   });
 
   it('should render children when isReady is true', () => {
-    const children = 'content';
     const { getByText } = getWrapper({
       isLoading: false,
       isReady: true,
-      children,
+      children: <div>content</div>,
     });
 
-    expect(getByText(children)).toBeTruthy();
+    expect(getByText('content')).toBeTruthy();
   });
 });

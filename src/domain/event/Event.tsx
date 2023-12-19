@@ -14,10 +14,10 @@ import {
 } from '../../common/time/TimeConstants';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import {
-  eventQuery as EventQueryType,
-  eventQuery_event_occurrences as Occurrences,
-  eventQuery_event_occurrences_edges_node as OccurrenceNode,
-} from '../api/generatedTypes/eventQuery';
+  EventQuery,
+  TicketSystem,
+  EventExternalTicketSystemPasswordCountQuery,
+} from '../api/generatedTypes/graphql';
 import RelayList from '../api/relayList';
 import PageWrapper from '../app/layout/PageWrapper';
 import eventQuery from './queries/eventQuery';
@@ -27,14 +27,14 @@ import EventPage from './EventPage';
 import EventParticipantsPerInvite from './EventParticipantsPerInvite';
 import styles from './event.module.scss';
 import eventRedirectStyles from './eventRedirect.module.scss';
-import { TicketSystem } from '../api/generatedTypes/globalTypes';
 import { useEventRouteGoBackTo } from './route/EventRoute';
 import LinkButton from '../../common/components/button/LinkButton';
 import useGetPathname from '../../common/route/utils/useGetPathname';
-// eslint-disable-next-line max-len
-import { eventExternalTicketSystemPasswordCountQuery as EventExternalTicketSystemPasswordCountQueryType } from '../api/generatedTypes/eventExternalTicketSystemPasswordCountQuery';
 import eventExternalTicketSystemPasswordCountQuery from './queries/eventExternalTicketSystemPasswordCountQuery';
 import Text from '../../common/components/text/Text';
+
+type Occurrences = NonNullable<EventQuery['event']>['occurrences'];
+type OccurrenceNode = NonNullable<Occurrences['edges'][number]>['node'];
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
@@ -108,16 +108,18 @@ const Event = () => {
     childId: childId,
   };
 
-  const { loading, queryError, data, refetch } = useQuery<EventQueryType>(
-    eventQuery,
-    { skip: !eventId, variables }
-  );
+  const {
+    loading,
+    error: queryError,
+    data,
+    refetch,
+  } = useQuery<EventQuery>(eventQuery, { skip: !eventId, variables });
 
   const {
     loading: passwordCountQueryLoading,
     error: passwordCountQueryError,
     data: passwordCountQueryData,
-  } = useQuery<EventExternalTicketSystemPasswordCountQueryType>(
+  } = useQuery<EventExternalTicketSystemPasswordCountQuery>(
     eventExternalTicketSystemPasswordCountQuery,
     {
       variables: { id: eventId },
@@ -168,8 +170,8 @@ const Event = () => {
 
   const event = data.event;
   const isExternalTicketSystem = [
-    TicketSystem.TICKETMASTER,
-    TicketSystem.LIPPUPISTE,
+    TicketSystem.Ticketmaster,
+    TicketSystem.Lippupiste,
   ].includes(event?.ticketSystem?.type as TicketSystem);
 
   return (

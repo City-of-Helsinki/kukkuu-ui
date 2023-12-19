@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
-import { eventQuery as EventQueryType } from '../../api/generatedTypes/eventQuery';
+import { EventQuery } from '../../api/generatedTypes/graphql';
 import eventQuery from '../queries/eventQuery';
 
 export const useEventRouteGoBackTo = () => {
@@ -14,7 +14,7 @@ export const useEventRouteGoBackTo = () => {
     eventId: string;
   }>();
 
-  const { data: eventData } = useQuery<EventQueryType>(eventQuery, {
+  const { data: eventData } = useQuery<EventQuery>(eventQuery, {
     variables: { id: eventId, childId },
     skip: !eventId,
   });

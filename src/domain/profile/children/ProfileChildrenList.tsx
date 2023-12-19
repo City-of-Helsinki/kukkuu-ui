@@ -6,7 +6,10 @@ import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 import { IconPlus } from 'hds-react';
 
-import { profileQuery_myProfile_children as Children } from '../../api/generatedTypes/profileQuery';
+import {
+  ProfileQuery,
+  UpdateChildMutationInput,
+} from '../../api/generatedTypes/graphql';
 import Button from '../../../common/components/button/Button';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import Text from '../../../common/components/text/Text';
@@ -14,12 +17,13 @@ import List from '../../../common/components/list/List';
 import AddNewChildFormModal from '../../registration/modal/AddNewChildFormModal';
 import { addChildMutation } from '../../child/mutation/ChildMutation';
 import { getSupportedChildData } from '../../child/ChildUtils';
-import { UpdateChildMutationInput } from '../../api/generatedTypes/globalTypes';
 import profileQuery from '../queries/ProfileQuery';
 import useProfile, { ProfileQueryResult } from '../hooks/useProfile';
 import { getProjectsFromProfileQuery } from '../ProfileUtil';
 import ProfileChild from './child/ProfileChild';
 import styles from './profileChildrenList.module.scss';
+
+type Children = NonNullable<ProfileQuery['myProfile']>['children'];
 
 function getChildrenFromProfile({
   data,

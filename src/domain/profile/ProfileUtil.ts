@@ -2,11 +2,15 @@ import capitalize from 'lodash/capitalize';
 
 import { Child } from '../child/types/ChildTypes';
 import { getEligibleCities } from '../registration/notEligible/NotEligibleUtils';
-import { childByIdQuery_child as ChildByIdResponse } from '../api/generatedTypes/childByIdQuery';
-import {
-  profileQuery_myProfile_children as Children,
-  profileQuery_myProfile_children_edges_node_project as Project,
-} from '../api/generatedTypes/profileQuery';
+import { ChildByIdQuery, ProfileQuery } from '../api/generatedTypes/graphql';
+
+type ChildByIdResponse = NonNullable<ChildByIdQuery['child']>;
+type Children = NonNullable<ProfileQuery['myProfile']>['children'];
+type Project = NonNullable<
+  NonNullable<
+    NonNullable<ProfileQuery['myProfile']>['children']['edges'][number]
+  >['node']
+>['project'];
 
 /**
  * Normalize child data from API response to a format usable by child form.

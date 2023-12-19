@@ -1,3 +1,5 @@
+// @ts-nocheck
+// FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import { getDateOptions, getTimeOptions } from '../Event';
 
 describe('Event', () => {

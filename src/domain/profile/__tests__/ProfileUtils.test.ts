@@ -1,6 +1,10 @@
 import { normalizeProfileChild } from '../ProfileUtil';
-import { RelationshipTypeEnum } from '../../api/generatedTypes/globalTypes';
-import { childByIdQuery_child as ChildByIdResponse } from '../../api/generatedTypes/childByIdQuery';
+import {
+  RelationshipTypeEnum,
+  ChildByIdQuery,
+} from '../../api/generatedTypes/graphql';
+
+type ChildByIdResponse = ChildByIdQuery['child'];
 
 describe('ProfileUtils', () => {
   describe('normalizeProfileChild', () => {
@@ -27,7 +31,7 @@ describe('ProfileUtils', () => {
             {
               node: {
                 id: '1',
-                type: RelationshipTypeEnum.PARENT,
+                type: RelationshipTypeEnum.Parent,
               },
             },
           ],

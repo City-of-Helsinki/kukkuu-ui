@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import {
   ChildEventInvitationLabelQuery,
   ChildEventInvitationLabelQueryVariables,
-} from '../api/generatedTypes/ChildEventInvitationLabelQuery';
+} from '../api/generatedTypes/graphql';
 import { childEventInvitationLabelQuery } from './queries/ChildEventInvitationLabelQuery';
 import useChildEnrolmentCount from './useChildEnrolmentCount';
 import styles from './childEventInvitationLabel.module.scss';

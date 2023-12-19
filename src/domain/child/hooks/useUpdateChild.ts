@@ -1,13 +1,13 @@
 import useMutation from '../../api/useMutation';
 import {
-  updateChild as UpdateChildMutation,
-  updateChildVariables,
-} from '../../api/generatedTypes/updateChild';
+  UpdateChildMutation,
+  UpdateChildMutationVariables,
+} from '../../api/generatedTypes/graphql';
 import { editChildMutation } from '../mutation/ChildMutation';
 import profileQuery from '../../profile/queries/ProfileQuery';
 
 function useUpdateChild() {
-  return useMutation<UpdateChildMutation, updateChildVariables>(
+  return useMutation<UpdateChildMutation, UpdateChildMutationVariables>(
     editChildMutation,
     {
       useDefaultErrorHandling: true,

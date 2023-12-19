@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 import { ProfileType } from '../type/ProfileTypes';
-import { Language } from '../../api/generatedTypes/globalTypes';
+import { Language } from '../../api/generatedTypes/graphql';
 import { clearProfile, saveProfile } from './ProfileActions';
 
 export const defaultProfileData: ProfileType = {
@@ -10,7 +10,7 @@ export const defaultProfileData: ProfileType = {
   lastName: '',
   phoneNumber: '',
   email: '',
-  language: Language.FI,
+  language: Language.Fi,
   children: {
     edges: [],
   },

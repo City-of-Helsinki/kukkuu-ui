@@ -1,14 +1,14 @@
 import * as reactQrCodeLogo from 'react-qrcode-logo';
 
 import ProfileEvents from '../ProfileEvents';
-import {
-  childByIdQuery_child as ChildByIdResponse,
-  childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEvents,
-  childByIdQuery_child_pastEvents as PastEvents,
-  childByIdQuery_child_activeInternalAndTicketSystemEnrolments as InternalAndTicketSystemEnrolmentsType,
-} from '../../../api/generatedTypes/childByIdQuery';
-import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
+import { EventParticipantsPerInvite } from '../../../api/generatedTypes/graphql';
 import { render } from '../../../../common/test/testingLibraryUtils';
+import {
+  ChildByIdResponse,
+  UpcomingEventsAndEventGroups,
+  PastEvents,
+  InternalAndTicketSystemEnrolments,
+} from '../../../child/types/ChildTypes';
 
 vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => (<div />) as any);
 
@@ -40,14 +40,14 @@ const childNoEvents = {
   pastEvents: null,
 };
 
-const upcomingEventsAndEventGroups: UpcomingEvents = {
+const upcomingEventsAndEventGroups: UpcomingEventsAndEventGroups = {
   edges: [
     {
       node: {
         id: 'RXZlbnROb2RlOjE=',
         name: 'pentti',
         shortDescription: 'eventti',
-        participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
+        participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
         image:
           'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
         imageAltText: 'uooo',
@@ -58,7 +58,7 @@ const upcomingEventsAndEventGroups: UpcomingEvents = {
   ],
 };
 
-const enrolments: InternalAndTicketSystemEnrolmentsType = {
+const enrolments: InternalAndTicketSystemEnrolments = {
   edges: [
     {
       node: {
@@ -79,8 +79,7 @@ const enrolments: InternalAndTicketSystemEnrolmentsType = {
             id: 'RXZlbnROb2RlOjE=',
             duration: 12,
             name: 'pentti',
-            participantsPerInvite:
-              EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
+            participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
             shortDescription: 'eventti',
             image:
               'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
@@ -97,7 +96,7 @@ const pastEvents: PastEvents = {
     {
       node: {
         id: 'RXZlbnROb2RlOjE=',
-        participantsPerInvite: EventParticipantsPerInvite.FAMILY,
+        participantsPerInvite: EventParticipantsPerInvite.Family,
         name: 'pentti',
         shortDescription: 'eventti',
         image:
@@ -152,7 +151,7 @@ const childOnlyEnrolments: ChildByIdResponse = {
               duration: 12,
               name: 'pentti',
               participantsPerInvite:
-                EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
+                EventParticipantsPerInvite.ChildAndGuardian,
               shortDescription: 'eventti',
               image:
                 'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',

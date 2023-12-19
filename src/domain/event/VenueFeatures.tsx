@@ -1,8 +1,12 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { occurrenceQuery_occurrence_venue as VenueTypes } from '../api/generatedTypes/occurrenceQuery';
+import { OccurrenceQuery } from '../api/generatedTypes/graphql';
 import Collapsible from '../../common/components/collapsible/Collapsible';
+
+type VenueTypes = NonNullable<
+  NonNullable<OccurrenceQuery['occurrence']>['venue']
+>;
 
 interface VenueFeaturesProps {
   venue: VenueTypes;

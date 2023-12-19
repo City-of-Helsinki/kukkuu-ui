@@ -10,13 +10,13 @@ import { GraphQLError } from 'graphql';
 import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
 import occurrenceQuery from '../queries/occurrenceQuery';
-import { occurrenceQuery as OccurrenceQueryType } from '../../api/generatedTypes/occurrenceQuery';
+import {
+  OccurrenceQuery,
+  EnrolOccurrenceMutation,
+  EnrolOccurrenceMutationVariables,
+} from '../../api/generatedTypes/graphql';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import enrolOccurrenceMutation from '../mutations/enrolOccurrenceMutation';
-import {
-  enrolOccurrenceMutation as EnrolOccurrenceMutationData,
-  enrolOccurrenceMutationVariables as EnrolOccurrenceMutationVariables,
-} from '../../api/generatedTypes/enrolOccurrenceMutation';
 import { saveChildEvents, justEnrolled } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
 import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
@@ -59,7 +59,7 @@ const EnrolPage = () => {
     error,
     data,
     refetch: refetchOccurrence,
-  } = useQuery<OccurrenceQueryType>(occurrenceQuery, {
+  } = useQuery<OccurrenceQuery>(occurrenceQuery, {
     variables: {
       id: params.occurrenceId,
       childId: params.childId,
@@ -80,7 +80,7 @@ const EnrolPage = () => {
   // If redirect to /profile, need to do refetchquery
   // Might need to refetch myProfile in any case
   const [enrolOccurrence] = useMutation<
-    EnrolOccurrenceMutationData,
+    EnrolOccurrenceMutation,
     EnrolOccurrenceMutationVariables
   >(enrolOccurrenceMutation, {
     refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({

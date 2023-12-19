@@ -3,7 +3,7 @@ import React from 'react';
 
 import EditProfileModal from '../EditProfileModal';
 import { ProfileType } from '../../type/ProfileTypes';
-import { Language } from '../../../api/generatedTypes/globalTypes';
+import { Language } from '../../../api/generatedTypes/graphql';
 import {
   render,
   fireEvent,
@@ -17,7 +17,7 @@ const initialValues: ProfileType = {
   lastName: 'fdsa',
   phoneNumber: '0904422233',
   email: 'email@example.com',
-  language: Language.SV,
+  language: Language.Sv,
   children: {
     edges: [],
   },

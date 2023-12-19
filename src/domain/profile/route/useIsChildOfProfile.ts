@@ -1,11 +1,11 @@
 import { useApolloClient } from '@apollo/client';
 
-import { profileChildrenQuery as ProfileChildrenQueryType } from '../../api/generatedTypes/profileChildrenQuery';
+import { ProfileChildrenQuery } from '../../api/generatedTypes/graphql';
 import profileChildrenQuery from '../../profile/queries/ProfileChildrenQuery';
 
 function getIsChildOfProfile(
   childId: string,
-  data?: ProfileChildrenQueryType
+  data?: ProfileChildrenQuery
 ): boolean | null {
   if (!data) {
     return null;
@@ -28,7 +28,7 @@ function useIsChildOfProfile(): Result {
       return false;
     }
 
-    const { data } = await client.query<ProfileChildrenQueryType>({
+    const { data } = await client.query<ProfileChildrenQuery>({
       query: profileChildrenQuery,
     });
 

@@ -1,7 +1,9 @@
-import {
-  profileQuery_myProfile as GeneratedProfile,
-  profileQuery_myProfile_languagesSpokenAtHome_edges_node as TLanguagesSpokenAtHomeNode,
-} from '../../api/generatedTypes/profileQuery';
+import { ProfileQuery } from '../../api/generatedTypes/graphql';
 
-export type ProfileType = GeneratedProfile;
-export type LanguagesSpokenAtHomeNode = TLanguagesSpokenAtHomeNode;
+export type ProfileType = NonNullable<ProfileQuery['myProfile']>;
+
+export type LanguagesSpokenAtHomeNode = NonNullable<
+  NonNullable<
+    ProfileQuery['myProfile']
+  >['languagesSpokenAtHome']['edges'][number]
+>['node'];

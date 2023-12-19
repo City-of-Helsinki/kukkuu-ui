@@ -8,9 +8,18 @@ import {
   DEFAULT_DATE_FORMAT,
   DEFAULT_TIME_FORMAT,
 } from '../../../../common/time/TimeConstants';
-// eslint-disable-next-line max-len
-import { profileQuery_myProfile_children_edges_node_enrolments_edges_node as EnrolmentType } from '../../../api/generatedTypes/profileQuery';
+import { ProfileQuery } from '../../../api/generatedTypes/graphql';
 import styles from './profileChildEnrolment.module.scss';
+
+type EnrolmentType = NonNullable<
+  NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<ProfileQuery['myProfile']>['children']['edges'][number]
+      >['node']
+    >['enrolments']['edges'][number]
+  >['node']
+>;
 
 type EnrolmentProps = {
   enrolment: EnrolmentType;

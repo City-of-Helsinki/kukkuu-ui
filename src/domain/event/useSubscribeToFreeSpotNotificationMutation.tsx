@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import subscribeToFreeSpotNotificationMutation from './mutations/subscribeToFreeSpotNotificationMutation';
 // eslint-disable-next-line max-len
-import { subscribeToFreeSpotNotificationMutation as SubscribeToFreeSpotNotificationMutation } from '../api/generatedTypes/subscribeToFreeSpotNotificationMutation';
+import { SubscribeToFreeSpotNotificationMutation } from '../api/generatedTypes/graphql';
 import useMutation from '../api/useMutation';
 import useDefaultErrorHandler from '../api/useDefaultErrorHandler';
 import getIsError from '../api/utils/getIsError';

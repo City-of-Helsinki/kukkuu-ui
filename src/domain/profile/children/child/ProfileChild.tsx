@@ -8,15 +8,28 @@ import Icon from '../../../../common/components/icon/Icon';
 import Text from '../../../../common/components/text/Text';
 import { newMoment } from '../../../../common/time/utils';
 import useGetPathname from '../../../../common/route/utils/useGetPathname';
-import {
-  profileQuery_myProfile_children_edges_node as ChildType,
-  profileQuery_myProfile_children_edges_node_enrolments_edges_node as EnrolmentType,
-} from '../../../api/generatedTypes/profileQuery';
+import { ProfileQuery } from '../../../api/generatedTypes/graphql';
 import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
 import useChildEnrolmentCount from '../../../child/useChildEnrolmentCount';
 import ChildEventInvitationLabel from '../../../child/ChildEventInvitationLabel';
 import ProfileChildEnrolment from './ProfileChildEnrolment';
 import styles from './profileChild.module.scss';
+
+type ChildType = NonNullable<
+  NonNullable<
+    NonNullable<ProfileQuery['myProfile']>['children']['edges'][number]
+  >['node']
+>;
+
+type EnrolmentType = NonNullable<
+  NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<ProfileQuery['myProfile']>['children']['edges'][number]
+      >['node']
+    >['enrolments']['edges'][number]
+  >['node']
+>;
 
 interface ProfileChildProps {
   child: ChildType;

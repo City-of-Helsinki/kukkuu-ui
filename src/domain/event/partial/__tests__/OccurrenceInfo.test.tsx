@@ -2,12 +2,27 @@ import React from 'react';
 
 import OccurrenceInfo from '../OccurrenceInfo';
 import { mockedOccurrenceNode } from '../../__tests__/EventPage.test';
-// eslint-disable-next-line max-len
-import { childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode_occurrence as OccurrenceNode } from '../../../api/generatedTypes/childByIdQuery';
-import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
+import {
+  ChildByIdQuery,
+  EventParticipantsPerInvite,
+} from '../../../api/generatedTypes/graphql';
 import { render } from '../../../../common/test/testingLibraryUtils';
+import { TypeByTypename } from '../../../../common/commonUtils';
 
-const mockOccurrence: OccurrenceNode = {
+type ChildByIdQueryEnrolmentNodeOccurrence = NonNullable<
+  TypeByTypename<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          ChildByIdQuery['child']
+        >['activeInternalAndTicketSystemEnrolments']
+      >['edges'][number]
+    >['node'],
+    'EnrolmentNode'
+  >['occurrence']
+>;
+
+const mockOccurrence: ChildByIdQueryEnrolmentNodeOccurrence = {
   id: 'aa',
   time: '2020-03-08T04:00:00+00:00',
   event: {
@@ -17,7 +32,7 @@ const mockOccurrence: OccurrenceNode = {
     imageAltText: 'b',
     shortDescription: 'd',
     duration: 12,
-    participantsPerInvite: EventParticipantsPerInvite.FAMILY,
+    participantsPerInvite: EventParticipantsPerInvite.Family,
   },
   venue: {
     id: 'auppss',

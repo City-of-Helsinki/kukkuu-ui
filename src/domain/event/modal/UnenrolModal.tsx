@@ -9,9 +9,9 @@ import { useDispatch } from 'react-redux';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import unenrolOccurrenceMutation from '../mutations/unenrolOccurrenceMutation';
 import {
-  unenrolOccurrenceMutation as UnenrolOccurrenceMutation,
-  unenrolOccurrenceMutationVariables as UnenrolOccurrenceMutationVariables,
-} from '../../api/generatedTypes/unenrolOccurrenceMutation';
+  UnenrolOccurrenceMutation,
+  UnenrolOccurrenceMutationVariables,
+} from '../../api/generatedTypes/graphql';
 import ConfirmModal from '../../../common/components/confirm/ConfirmModal';
 import { saveChildEvents } from '../state/EventActions';
 import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';

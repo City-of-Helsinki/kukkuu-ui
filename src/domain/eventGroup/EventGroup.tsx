@@ -7,14 +7,15 @@ import useGetPathname from '../../common/route/utils/useGetPathname';
 import List from '../../common/components/list/List';
 import Page from '../app/layout/utilityComponents/Page';
 import HeroLayout from '../app/layout/utilityComponents/HeroLayout';
-import {
-  eventGroupQuery as EventGroupQuery,
-  eventGroupQuery_eventGroup_events_edges_node as EventNode,
-} from '../api/generatedTypes/eventGroupQuery';
+import { EventGroupQuery } from '../api/generatedTypes/graphql';
 import { nlToParagraph } from '../../common/commonUtils';
 import RelayList from '../api/relayList';
 import EventCard from '../event/eventCard/EventCard';
 import styles from './eventGroup.module.scss';
+
+type EventNode = NonNullable<
+  NonNullable<EventGroupQuery['eventGroup']>['events']['edges'][number]
+>['node'];
 
 const EventList = RelayList<EventNode>();
 

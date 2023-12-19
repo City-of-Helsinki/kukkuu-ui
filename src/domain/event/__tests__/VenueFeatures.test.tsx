@@ -1,6 +1,8 @@
 import VenueFeatures from '../VenueFeatures';
-import { occurrenceQuery_occurrence_venue as VenueType } from '../../api/generatedTypes/occurrenceQuery';
+import { OccurrenceQuery } from '../../api/generatedTypes/graphql';
 import { render } from '../../../common/test/testingLibraryUtils';
+
+type VenueType = NonNullable<OccurrenceQuery['occurrence']>['venue'];
 
 const venue: VenueType = {
   id: 'auppss',

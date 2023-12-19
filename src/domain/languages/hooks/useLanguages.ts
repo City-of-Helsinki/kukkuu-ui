@@ -1,10 +1,11 @@
 import useQuery from '../../api/useQuery';
-import {
-  languageQuery as LanguageQuery,
-  languageQuery_languages_edges_node as LanguageNode,
-} from '../../api/generatedTypes/languageQuery';
+import { LanguageQuery } from '../../api/generatedTypes/graphql';
 import RelayList from '../../api/relayList';
 import { languagesQuery } from '../queries/LanguageQueries';
+
+type LanguageNode = NonNullable<
+  NonNullable<LanguageQuery['languages']>['edges'][number]
+>['node'];
 
 const LanguageList = RelayList<LanguageNode>();
 
