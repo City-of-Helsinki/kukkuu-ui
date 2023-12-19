@@ -4,13 +4,13 @@ import * as reactQrCodeLogo from 'react-qrcode-logo';
 
 import { render, screen } from '../../../../common/test/testingLibraryUtils';
 import ProfileEventsList from '../ProfileEventsList';
+import { EventParticipantsPerInvite } from '../../../api/generatedTypes/graphql';
 import {
-  childByIdQuery_child as ChildByIdResponse,
-  childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEventsAndEventGroupsType,
-  childByIdQuery_child_pastEvents as PastEventsType,
-  childByIdQuery_child_activeInternalAndTicketSystemEnrolments as InternalAndTicketSystemEnrolmentsType,
-} from '../../../api/generatedTypes/childByIdQuery';
-import { EventParticipantsPerInvite } from '../../../api/generatedTypes/globalTypes';
+  ChildByIdResponse,
+  UpcomingEventsAndEventGroups,
+  PastEvents,
+  InternalAndTicketSystemEnrolments,
+} from '../../../child/types/ChildTypes';
 
 vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => (<div />) as any);
 
@@ -38,12 +38,12 @@ const eventData = {
   image: 'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
   imageAltText: 'huhuu',
   duration: 60,
-  participantsPerInvite: EventParticipantsPerInvite.CHILD_AND_GUARDIAN,
+  participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
   occurrences: { edges: [] },
   canChildEnroll: true,
 };
 
-const upcomingEventsAndEventGroups: UpcomingEventsAndEventGroupsType = {
+const upcomingEventsAndEventGroups: UpcomingEventsAndEventGroups = {
   edges: [
     {
       node: { ...eventData, __typename: 'EventNode' },
@@ -58,7 +58,7 @@ const venueData = {
   address: 'ssfas uus 12',
 };
 
-const enrolments: InternalAndTicketSystemEnrolmentsType = {
+const enrolments: InternalAndTicketSystemEnrolments = {
   edges: [
     {
       node: {
@@ -78,7 +78,7 @@ const enrolments: InternalAndTicketSystemEnrolmentsType = {
   ],
 };
 
-const pastEvents: PastEventsType = {
+const pastEvents: PastEvents = {
   edges: [
     {
       node: eventData,

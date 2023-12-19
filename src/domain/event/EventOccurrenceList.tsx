@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-import { eventQuery_event_occurrences as Occurrences } from '../api/generatedTypes/eventQuery';
+import { EventQuery } from '../api/generatedTypes/graphql';
 import EventOccurrence from './EventOccurrence';
 import styles from './eventOccurrenceList.module.scss';
+
+type Occurrences = NonNullable<NonNullable<EventQuery['event']>['occurrences']>;
 
 type EventOccurrenceListProps = {
   occurrences: Occurrences;

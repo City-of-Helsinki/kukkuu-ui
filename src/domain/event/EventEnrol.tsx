@@ -3,14 +3,13 @@ import { Formik, Form } from 'formik';
 import { Notification } from 'hds-react';
 
 import FormikDropdown from '../../common/components/formikWrappers/FormikDropdown';
-import { eventQuery as EventQueryType } from '../api/generatedTypes/eventQuery';
+import { EventQuery, TicketSystem } from '../api/generatedTypes/graphql';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
-import { TicketSystem } from '../api/generatedTypes/globalTypes';
 import styles from './event.module.scss';
 
 export type EventEnrolProps = {
-  data: EventQueryType;
+  data: EventQuery;
   filterValues: FilterValues;
   options: FilterOptions;
   onFilterUpdate: (filterValues: FilterValues) => void;
@@ -34,8 +33,8 @@ const EventEnrol = ({
   if (!data?.event) return <div></div>;
 
   const isExternalTicketSystem = [
-    TicketSystem.TICKETMASTER,
-    TicketSystem.LIPPUPISTE,
+    TicketSystem.Ticketmaster,
+    TicketSystem.Lippupiste,
   ].includes(data?.event?.ticketSystem?.type as TicketSystem);
 
   return (

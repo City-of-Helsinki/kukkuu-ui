@@ -11,10 +11,12 @@ import {
 } from '../../../../child/ChildUtils';
 import { normalizeProfileChild } from '../../../ProfileUtil';
 import { ChildDetailEditModalPayload } from '../ProfileChildDetail';
-import { childByIdQuery_child as ChildByIdResponse } from '../../../../api/generatedTypes/childByIdQuery';
+import { ChildByIdQuery } from '../../../../api/generatedTypes/graphql';
 import ChildConfirmDeleteModal from '../../../../child/modal/confirm/delete/ChildConfirmDeleteModal';
 import { isChildEligible } from '../../../../registration/notEligible/NotEligibleUtils';
 import ChildAlertNonEligibleModal from '../../../../child/modal/alert/nonEligible/ChildAlertNonEligibleModal';
+
+type ChildByIdResponse = NonNullable<ChildByIdQuery['child']>;
 
 const ProfileChildDetailEditModal: FunctionComponent<{
   setIsOpen: (value: boolean) => void;

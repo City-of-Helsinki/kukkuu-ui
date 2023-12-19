@@ -1,7 +1,8 @@
 import { render } from '../../../common/test/testingLibraryUtils';
-import { eventQuery_event_occurrences as Occurrences } from '../../api/generatedTypes/eventQuery';
-import { TicketSystem } from '../../api/generatedTypes/globalTypes';
+import { EventQuery, TicketSystem } from '../../api/generatedTypes/graphql';
 import EventOccurrenceList from '../EventOccurrenceList';
+
+type Occurrences = NonNullable<NonNullable<EventQuery>['event']>['occurrences'];
 
 const mockedOccurrences: Occurrences = {
   edges: [
@@ -20,7 +21,7 @@ const mockedOccurrences: Occurrences = {
           name: 'Musiikkitalo',
           address: 'Mannerheimintie 13A, Helsinki',
         },
-        ticketSystem: { type: TicketSystem.INTERNAL },
+        ticketSystem: { type: TicketSystem.Internal },
         childHasFreeSpotNotificationSubscription: true,
       },
     },
@@ -39,7 +40,7 @@ const mockedOccurrences: Occurrences = {
           name: 'Somewhere',
           address: 'Rainbow 123',
         },
-        ticketSystem: { type: TicketSystem.LIPPUPISTE },
+        ticketSystem: { type: TicketSystem.Lippupiste },
         childHasFreeSpotNotificationSubscription: false,
       },
     },

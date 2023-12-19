@@ -22,14 +22,16 @@ import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import PageWrapper from '../../app/layout/PageWrapper';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import { getSupportedChildData } from '../../child/ChildUtils';
-// eslint-disable-next-line max-len
-import { submitChildrenAndGuardian as SubmitChildrenAndGuardianData } from '../../api/generatedTypes/submitChildrenAndGuardian';
+import {
+  SubmitChildrenAndGuardianMutation,
+  ProfileQuery,
+  GuardianInput,
+  Language,
+} from '../../api/generatedTypes/graphql';
 import { saveProfile, clearProfile } from '../../profile/state/ProfileActions';
 import profileQuery from '../../profile/queries/ProfileQuery';
-import { profileQuery as ProfileQueryType } from '../../api/generatedTypes/profileQuery';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
-import { GuardianInput, Language } from '../../api/generatedTypes/globalTypes';
 import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../types/RegistrationTypes';
 import Button from '../../../common/components/button/Button';
@@ -84,9 +86,9 @@ const RegistrationForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const getPathname = useGetPathname();
   const initialValues = useSelector(initialFormDataSelector);
-  const { loading, error, data } = useQuery<ProfileQueryType>(profileQuery);
+  const { loading, error, data } = useQuery<ProfileQuery>(profileQuery);
   const [submitChildrenAndGuardian] =
-    useMutation<SubmitChildrenAndGuardianData>(
+    useMutation<SubmitChildrenAndGuardianMutation>(
       submitChildrenAndGuardianMutation,
       {
         awaitRefetchQueries: true,

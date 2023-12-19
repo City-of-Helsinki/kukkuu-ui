@@ -9,3 +9,9 @@ export const getNodeText = (node: any): string => {
   if (typeof node === 'object' && node) return getNodeText(node.props.children);
   return node;
 };
+
+/**
+ * Extract object type from union type by __typename value.
+ * @example TypeByTypename<{__typename: 'A'} | {__typename: 'B'}, 'B'> == {__typename: 'B'}
+ */
+export type TypeByTypename<T, U extends string> = Extract<T, { __typename: U }>;

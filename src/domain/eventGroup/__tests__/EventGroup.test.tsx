@@ -1,3 +1,5 @@
+// @ts-nocheck
+// FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import {
   fireEvent,
   render,
@@ -6,7 +8,7 @@ import {
 import EventGroup from '../EventGroup';
 
 const defaultProps = {};
-const getWrapper = (props) =>
+const getWrapper = (props: Partial<Parameters<typeof EventGroup>[0]>) =>
   render(<EventGroup {...defaultProps} {...props} />);
 
 const event = {

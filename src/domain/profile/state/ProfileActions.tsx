@@ -2,10 +2,13 @@ import { createAction } from '@reduxjs/toolkit';
 
 import { PROFILE_ACTIONS } from '../constants/ProfileActionConstants';
 import { ProfileType } from '../type/ProfileTypes';
-// eslint-disable-next-line max-len
-import { submitChildrenAndGuardian_submitChildrenAndGuardian_guardian as SubmitChildrenAndGuardianType } from '../../api/generatedTypes/submitChildrenAndGuardian';
+import { SubmitChildrenAndGuardianMutation } from '../../api/generatedTypes/graphql';
 
-const saveProfile = createAction<ProfileType | SubmitChildrenAndGuardianType>(
+type Guardian = NonNullable<
+  SubmitChildrenAndGuardianMutation['submitChildrenAndGuardian']
+>['guardian'];
+
+const saveProfile = createAction<ProfileType | Guardian>(
   PROFILE_ACTIONS.SAVE_PROFILE
 );
 

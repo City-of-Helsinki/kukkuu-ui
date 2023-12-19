@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../api/generatedTypes/globalTypes';
+import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../api/generatedTypes/graphql';
 import styles from './eventParticipantsPerInvite.module.scss';
 import { getParticipantsIcon } from './EventUtils';
 

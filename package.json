@@ -15,13 +15,13 @@
     "build": "tsc & vite build",
     "format:code": "eslint --ext js,ts,tsx src --fix",
     "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
-    "generate:graphql": "apollo client:codegen --target=typescript --no-addTypename --outputFlat src/domain/api/generatedTypes --excludes=src/domain/headlessCms/**",
+    "generate:graphql": "cross-env DOTENV_CONFIG_PATH=./.env.development.local graphql-codegen -r dotenv/config --config ./codegen.ts",
     "lint": "eslint --ext js,ts,tsx src",
     "serve": "vite preview",
     "start": "vite",
-    "test": "TZ=Europe/Helsinki vitest run",
-    "test:coverage": "TZ=Europe/Helsinki vitest run --coverage",
-    "test:watch": "TZ=Europe/Helsinki vitest",
+    "test": "cross-env TZ=Europe/Helsinki vitest run",
+    "test:coverage": "cross-env TZ=Europe/Helsinki vitest run --coverage",
+    "test:watch": "cross-env TZ=Europe/Helsinki vitest",
     "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --dev --lang=fi-FI",
     "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/",
     "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev --lang=fi-FI",
@@ -119,7 +119,7 @@
     "redux-persist": "^6.0.0",
     "sass": "^1.67.0",
     "testcafe": "^3.3.0",
-    "typescript": "^5.2.2",
+    "typescript": "^5.3.3",
     "validator": "^13.11.0",
     "vite": "^4.4.9",
     "vite-plugin-eslint": "^1.8.1",
@@ -139,5 +139,11 @@
     "ignore": [
       "helsinki-utils"
     ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/add": "^5.0.0",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1"
   }
 }

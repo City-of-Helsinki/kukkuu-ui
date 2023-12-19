@@ -3,21 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { QRCode } from 'react-qrcode-logo';
 
-import {
-  childByIdQuery_child_upcomingEventsAndEventGroups as UpcomingEventsAndEventGroups,
-  childByIdQuery_child_upcomingEventsAndEventGroups_edges_node as UpcomingEventsAndEventGroupsNode,
-  childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventNode as EventNode,
-  childByIdQuery_child_upcomingEventsAndEventGroups_edges_node_EventGroupNode as EventGroupNode,
-  childByIdQuery_child_pastEvents as PastEventsTypes,
-  childByIdQuery_child_pastEvents_edges_node as PastEventNode,
-  childByIdQuery_child_activeInternalAndTicketSystemEnrolments as InternalAndTicketSystemEnrolments,
-  childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node as InternalOrTicketSystemEnrolmentNode,
-  childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_EnrolmentNode as EnrolmentNode,
-  // eslint-disable-next-line max-len
-  childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_TicketmasterEnrolmentNode as TicketmasterEnrolmentNode,
-  // eslint-disable-next-line max-len
-  childByIdQuery_child_activeInternalAndTicketSystemEnrolments_edges_node_LippupisteEnrolmentNode as LippupisteEnrolmentNode,
-} from '../../api/generatedTypes/childByIdQuery';
+import { ChildByIdQuery } from '../../api/generatedTypes/graphql';
 import RelayList from '../../api/relayList';
 import Text from '../../../common/components/text/Text';
 import List from '../../../common/components/list/List';
@@ -27,6 +13,54 @@ import EventCard from '../../event/eventCard/EventCard';
 import Config from '../../config';
 import styles from './profileEventsList.module.scss';
 import useChildEnrolmentCount from '../../child/useChildEnrolmentCount';
+import { TypeByTypename } from '../../../common/commonUtils';
+
+type UpcomingEventsAndEventGroups = NonNullable<
+  ChildByIdQuery['child']
+>['upcomingEventsAndEventGroups'];
+
+type UpcomingEventsAndEventGroupsNode = NonNullable<
+  NonNullable<
+    NonNullable<UpcomingEventsAndEventGroups>['edges'][number]
+  >['node']
+>;
+
+type EventNode = TypeByTypename<UpcomingEventsAndEventGroupsNode, 'EventNode'>;
+
+type EventGroupNode = TypeByTypename<
+  UpcomingEventsAndEventGroupsNode,
+  'EventGroupNode'
+>;
+
+type PastEventsTypes = NonNullable<ChildByIdQuery['child']>['pastEvents'];
+type PastEventNode = NonNullable<
+  NonNullable<PastEventsTypes>['edges'][number]
+>['node'];
+
+type InternalAndTicketSystemEnrolments = NonNullable<
+  ChildByIdQuery['child']
+>['activeInternalAndTicketSystemEnrolments'];
+
+type InternalOrTicketSystemEnrolmentNode = NonNullable<
+  NonNullable<
+    NonNullable<InternalAndTicketSystemEnrolments>['edges'][number]
+  >['node']
+>;
+
+type EnrolmentNode = TypeByTypename<
+  InternalOrTicketSystemEnrolmentNode,
+  'EnrolmentNode'
+>;
+
+type TicketmasterEnrolmentNode = TypeByTypename<
+  InternalOrTicketSystemEnrolmentNode,
+  'TicketmasterEnrolmentNode'
+>;
+
+type LippupisteEnrolmentNode = TypeByTypename<
+  InternalOrTicketSystemEnrolmentNode,
+  'LippupisteEnrolmentNode'
+>;
 
 const upcomingEventsAndEventGroupsList =
   RelayList<UpcomingEventsAndEventGroupsNode>();

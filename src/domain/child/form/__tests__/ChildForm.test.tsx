@@ -1,10 +1,12 @@
+// @ts-nocheck
+// FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import { render } from '../../../../common/test/testingLibraryUtils';
 import ChildForm, { CHILD_FORM_TYPES } from '../ChildForm';
 
 const defaultProps = {
   initialValues: {},
 };
-const getWrapper = (props) =>
+const getWrapper = (props: Partial<Parameters<typeof ChildForm>[0]>) =>
   render(<ChildForm {...defaultProps} {...props} />);
 
 describe('<ChildForm />', () => {

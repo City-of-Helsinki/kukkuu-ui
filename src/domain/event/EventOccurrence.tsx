@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
-import { TicketSystem } from '../api/generatedTypes/globalTypes';
-import { eventQuery_event_occurrences_edges_node as OccurrencesEdgeNode } from '../api/generatedTypes/eventQuery';
+import { TicketSystem, EventQuery } from '../api/generatedTypes/graphql';
 import { formatTime, newMoment } from '../../common/time/utils';
 import LinkButton from '../../common/components/button/LinkButton';
 import {
@@ -11,6 +10,12 @@ import {
 } from '../../common/time/TimeConstants';
 import EventOccurrenceNotificationControlButton from './EventOccurrenceNotificationControlButton';
 import styles from './eventOccurrence.module.scss';
+
+type OccurrencesEdgeNode = NonNullable<
+  NonNullable<
+    NonNullable<EventQuery['event']>['occurrences']['edges'][number]
+  >['node']
+>;
 
 const SubmitTypes = {
   enrol: 'ENROL',
@@ -78,8 +83,8 @@ const EventOccurrence = ({
   const eventUrl = `${occurrence.event.id}/redirect`;
   const occurrenceUrl = `occurrence/${occurrence.id}/enrol`;
   const isExternalTicketSystem = [
-    TicketSystem.TICKETMASTER,
-    TicketSystem.LIPPUPISTE,
+    TicketSystem.Ticketmaster,
+    TicketSystem.Lippupiste,
   ].includes(occurrence?.ticketSystem?.type as TicketSystem);
   const submitType = getSubmitType(isExternalTicketSystem, hasCapacity);
   const submitCell = (

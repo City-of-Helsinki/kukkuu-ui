@@ -6,10 +6,12 @@ import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { IconPen } from 'hds-react';
 
-import { deleteChild_deleteChild as DeleteChildPayload } from '../../../api/generatedTypes/deleteChild';
-import { UpdateChildMutationInput as EditChildInput } from '../../../api/generatedTypes/globalTypes';
-import { updateChild_updateChild as EditChildPayload } from '../../../api/generatedTypes/updateChild';
-import { childByIdQuery as ChildByIdResponse } from '../../../api/generatedTypes/childByIdQuery';
+import {
+  DeleteChildMutation,
+  UpdateChildMutationInput,
+  ChildByIdQuery,
+  UpdateChildMutation,
+} from '../../../api/generatedTypes/graphql';
 import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import ErrorMessage from '../../../../common/components/error/Error';
 import Button from '../../../../common/components/button/Button';
@@ -29,7 +31,10 @@ import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
 import useAppRouteHref from '../../../app/useAppRouteHref';
 
-export type ChildDetailEditModalPayload = Omit<EditChildInput, 'id'>;
+type DeleteChildPayload = NonNullable<DeleteChildMutation['deleteChild']>;
+type EditChildPayload = NonNullable<UpdateChildMutation['updateChild']>;
+
+export type ChildDetailEditModalPayload = Omit<UpdateChildMutationInput, 'id'>;
 
 export const useProfileRouteGoBackTo = () => {
   return useAppRouteHref('/profile');
@@ -46,7 +51,7 @@ const ProfileChildDetail = () => {
   const params = useParams<{ childId: string }>();
   const navigate = useNavigate();
   const goBackTo = useProfileRouteGoBackTo();
-  const { loading, error, data } = useQuery<ChildByIdResponse>(childByIdQuery, {
+  const { loading, error, data } = useQuery<ChildByIdQuery>(childByIdQuery, {
     variables: {
       id: params.childId,
     },

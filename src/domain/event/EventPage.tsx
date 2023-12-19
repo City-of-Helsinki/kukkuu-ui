@@ -6,16 +6,17 @@ import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
 import PageWrapper from '../app/layout/PageWrapper';
 import backIcon from '../../assets/icons/svg/arrowLeft.svg';
-import { eventQuery_event as EventQueryType } from '../api/generatedTypes/eventQuery';
-import { occurrenceQuery_occurrence_event as OccurrenceQueryType } from '../api/generatedTypes/occurrenceQuery';
-// eslint-disable-next-line max-len
-import { externalTicketSystemEventQuery_event as ExternalTicketSystemEventQueryType } from '../api/generatedTypes/externalTicketSystemEventQuery';
+import {
+  EventQuery,
+  OccurrenceQuery,
+  ExternalTicketSystemEventQuery,
+} from '../api/generatedTypes/graphql';
 
 type EventProps = {
   event:
-    | EventQueryType
-    | OccurrenceQueryType
-    | ExternalTicketSystemEventQueryType;
+    | EventQuery['event']
+    | NonNullable<OccurrenceQuery['occurrence']>['event']
+    | ExternalTicketSystemEventQuery['event'];
   children?: ReactElement | Array<ReactElement | false>;
   success?: ReactElement;
   backTo?: string;

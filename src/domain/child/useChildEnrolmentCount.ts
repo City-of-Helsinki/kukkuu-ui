@@ -1,20 +1,20 @@
 import { useQuery, QueryHookOptions } from '@apollo/client';
 
 import {
-  ChildEnrolmentCount as ChildEnrolmentCountQuery,
-  ChildEnrolmentCountVariables as ChildEnrolmentCountVariablesQuery,
-} from '../api/generatedTypes/childEnrolmentCount';
+  ChildEnrolmentCountQuery,
+  ChildEnrolmentCountQueryVariables,
+} from '../api/generatedTypes/graphql';
 import { childEnrolmentCountQuery } from './queries/ChildEnrolmentCountQuery';
 
 export default function useChildEnrolmentCount(
   options?: QueryHookOptions<
     ChildEnrolmentCountQuery,
-    ChildEnrolmentCountVariablesQuery
+    ChildEnrolmentCountQueryVariables
   >
 ) {
   const { data, ...delegatedQuery } = useQuery<
     ChildEnrolmentCountQuery,
-    ChildEnrolmentCountVariablesQuery
+    ChildEnrolmentCountQueryVariables
   >(childEnrolmentCountQuery, options);
 
   const pastEnrolmentCount = data?.child?.pastEnrolmentCount ?? ' ';

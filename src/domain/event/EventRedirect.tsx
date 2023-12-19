@@ -8,17 +8,15 @@ import PageWrapper from '../app/layout/PageWrapper';
 import Text from '../../common/components/text/Text';
 import LinkButton from '../../common/components/button/LinkButton';
 import AnchorButton from '../../common/components/button/AnchorButton';
-// eslint-disable-next-line max-len
-import { externalTicketSystemEventQuery as ExternalTicketSystemEventQueryType } from '../api/generatedTypes/externalTicketSystemEventQuery';
-// eslint-disable-next-line max-len
-import { eventExternalTicketSystemPasswordCountQuery as EventExternalTicketSystemPasswordCountQueryType } from '../api/generatedTypes/eventExternalTicketSystemPasswordCountQuery';
+import {
+  ExternalTicketSystemEventQuery,
+  EventExternalTicketSystemPasswordCountQuery,
+  AssignTicketSystemPasswordMutation,
+  AssignTicketSystemPasswordMutationVariables,
+} from '../api/generatedTypes/graphql';
 import { eventExternalTicketSystemPasswordQuery } from './queries/eventQuery';
 import assignTicketSystemPasswordMutation from './mutations/assignTicketSystemPasswordMutation';
 import eventExternalTicketSystemPasswordCountQuery from './queries/eventExternalTicketSystemPasswordCountQuery';
-import {
-  assignTicketSystemPasswordMutation as assignTicketSystemMutationData,
-  assignTicketSystemPasswordMutationVariables,
-} from '../api/generatedTypes/assignTicketSystemPasswordMutation';
 import styles from './eventRedirect.module.scss';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
@@ -41,7 +39,7 @@ const EventRedirect = () => {
     loading: queryLoading,
     error: queryError,
     data: queryData,
-  } = useQuery<ExternalTicketSystemEventQueryType>(
+  } = useQuery<ExternalTicketSystemEventQuery>(
     eventExternalTicketSystemPasswordQuery,
     {
       variables: {
@@ -56,7 +54,7 @@ const EventRedirect = () => {
     loading: passwordCountQueryLoading,
     error: passwordCountQueryError,
     data: passwordCountQueryData,
-  } = useQuery<EventExternalTicketSystemPasswordCountQueryType>(
+  } = useQuery<EventExternalTicketSystemPasswordCountQuery>(
     eventExternalTicketSystemPasswordCountQuery,
     {
       variables: { id: eventId },
@@ -73,13 +71,14 @@ const EventRedirect = () => {
       client,
     },
   ] = useMutation<
-    assignTicketSystemMutationData,
-    assignTicketSystemPasswordMutationVariables
+    AssignTicketSystemPasswordMutation,
+    AssignTicketSystemPasswordMutationVariables
   >(assignTicketSystemPasswordMutation, {
     variables: {
       input: {
         eventId: eventId ?? '',
         childId: childId ?? '',
+        clientMutationId: null,
       },
     },
     onError: (error) => {

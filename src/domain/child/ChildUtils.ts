@@ -2,7 +2,7 @@ import { TFunction } from 'i18next';
 import omit from 'lodash/omit';
 import pick from 'lodash/pick';
 
-import { RelationshipTypeEnum } from '../api/generatedTypes/globalTypes';
+import { RelationshipTypeEnum } from '../api/generatedTypes/graphql';
 import { Child, UpdateChild, AddChild } from './types/ChildTypes';
 import { newMoment } from '../../common/time/utils';
 import { defaultChildFormBirthdate } from './ChildConstants';
@@ -22,14 +22,14 @@ export const getTranslatedRelationshipOptions = (
 ): ChildRelationshipOptions[] => {
   return [
     {
-      label: t(`CHILD_RELATIONSHIP_OPTIONS.${RelationshipTypeEnum.PARENT}`),
-      value: RelationshipTypeEnum.PARENT,
+      label: t(`CHILD_RELATIONSHIP_OPTIONS.${RelationshipTypeEnum.Parent}`),
+      value: RelationshipTypeEnum.Parent,
     },
     {
       label: t(
-        `CHILD_RELATIONSHIP_OPTIONS.${RelationshipTypeEnum.OTHER_GUARDIAN}`
+        `CHILD_RELATIONSHIP_OPTIONS.${RelationshipTypeEnum.OtherGuardian}`
       ),
-      value: RelationshipTypeEnum.OTHER_GUARDIAN,
+      value: RelationshipTypeEnum.OtherGuardian,
     },
   ];
 };

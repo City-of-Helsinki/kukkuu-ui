@@ -4,11 +4,7 @@ import { useQuery } from '@apollo/client';
 
 import styles from './externalTicketSystemEventIsEnrolled.module.scss';
 import { externalTicketSystemEventQuery } from './queries/externalTicketSystemEventQuery';
-import {
-  externalTicketSystemEventQuery as ExternalTicketSystemEventQueryType,
-  externalTicketSystemEventQuery_event_ticketSystem_TicketmasterEventTicketSystem as TicketMasterEventTicketSystem,
-  externalTicketSystemEventQuery_event_ticketSystem_LippupisteEventTicketSystem as LippupisteEventTicketSystem,
-} from '../api/generatedTypes/externalTicketSystemEventQuery';
+import { ExternalTicketSystemEventQuery } from '../api/generatedTypes/graphql';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
@@ -17,6 +13,24 @@ import AnchorButton from '../../common/components/button/AnchorButton';
 import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Text from '../../common/components/text/Text';
 import { useChildRouteGoBackTo } from '../profile/children/child/ProfileChildDetail';
+import { TypeByTypename } from '../../common/commonUtils';
+
+type TicketSystem = NonNullable<
+  NonNullable<ExternalTicketSystemEventQuery['event']>['ticketSystem']
+>;
+
+type TicketSystemWithRequiredTypename = TicketSystem &
+  Required<Pick<TicketSystem, '__typename'>>;
+
+type TicketMasterEventTicketSystem = TypeByTypename<
+  TicketSystemWithRequiredTypename,
+  'TicketmasterEventTicketSystem'
+>;
+
+type LippupisteEventTicketSystem = TypeByTypename<
+  TicketSystemWithRequiredTypename,
+  'LippupisteEventTicketSystem'
+>;
 
 type EventTicketSystem =
   | TicketMasterEventTicketSystem
@@ -26,7 +40,7 @@ const ExternalTicketSystemEventIsEnrolled = () => {
   const { t } = useTranslation();
   const goBackTo = useChildRouteGoBackTo();
   const params = useParams<{ childId: string; eventId: string }>();
-  const { loading, error, data } = useQuery<ExternalTicketSystemEventQueryType>(
+  const { loading, error, data } = useQuery<ExternalTicketSystemEventQuery>(
     externalTicketSystemEventQuery,
     {
       variables: {

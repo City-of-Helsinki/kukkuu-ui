@@ -2,7 +2,9 @@ import { createAction } from '@reduxjs/toolkit';
 
 import { ChildOccurrences } from '../type/EventChildTypes';
 import { EVENT_ACTIONS } from '../constants/EventActionConstants';
-import { profileQuery_myProfile_children as Children } from '../../api/generatedTypes/profileQuery';
+import { ProfileQuery } from '../../api/generatedTypes/graphql';
+
+type Children = NonNullable<ProfileQuery['myProfile']>['children'];
 
 const clearEvent = createAction(EVENT_ACTIONS.CLEAR_EVENT);
 const saveChildEvents = createAction<ChildOccurrences>(

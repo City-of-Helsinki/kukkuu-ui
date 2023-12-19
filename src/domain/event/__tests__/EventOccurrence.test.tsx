@@ -6,8 +6,12 @@ import {
   screen,
 } from '../../../common/test/testingLibraryUtils';
 import initModal from '../../../common/test/initModal';
-import { eventQuery_event_occurrences_edges_node as OccurrenceEdgeNode } from '../../api/generatedTypes/eventQuery';
+import { EventQuery } from '../../api/generatedTypes/graphql';
 import EventOccurrence from '../EventOccurrence';
+
+type OccurrenceEdgeNode = NonNullable<
+  NonNullable<EventQuery['event']>['occurrences']['edges'][number]
+>['node'];
 
 const mockedNode: OccurrenceEdgeNode = {
   id: 'T2NjdXJyZW5jZU5vZGU6Mg==',

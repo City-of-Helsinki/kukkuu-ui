@@ -2,7 +2,9 @@ import { FunctionComponent } from 'react';
 
 import ProfileEventsList from './ProfileEventsList';
 import ProfileNoEvent from './ProfileNoEvent';
-import { childByIdQuery_child as ChildByIdResponse } from '../../api/generatedTypes/childByIdQuery';
+import { ChildByIdQuery } from '../../api/generatedTypes/graphql';
+
+type ChildByIdResponse = NonNullable<ChildByIdQuery['child']>;
 
 interface ProfileEventsProps {
   child: ChildByIdResponse;
