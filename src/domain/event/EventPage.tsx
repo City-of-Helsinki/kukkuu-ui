@@ -8,14 +8,14 @@ import PageWrapper from '../app/layout/PageWrapper';
 import backIcon from '../../assets/icons/svg/arrowLeft.svg';
 import {
   EventQuery,
-  OccurrenceQuery,
   ExternalTicketSystemEventQuery,
 } from '../api/generatedTypes/graphql';
+import { OccurrenceEvent } from './types/OccurrenceQueryTypes';
 
 type EventProps = {
   event:
     | EventQuery['event']
-    | NonNullable<OccurrenceQuery['occurrence']>['event']
+    | OccurrenceEvent
     | ExternalTicketSystemEventQuery['event'];
   children?: ReactElement | Array<ReactElement | false>;
   success?: ReactElement;

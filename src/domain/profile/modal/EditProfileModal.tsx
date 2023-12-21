@@ -8,7 +8,10 @@ import { useMatomo } from '@jonkoops/matomo-tracker-react';
 import * as yup from 'yup';
 
 import styles from './editProfileModal.module.scss';
-import { ProfileType, LanguagesSpokenAtHomeNode } from '../type/ProfileTypes';
+import {
+  MyProfile,
+  LanguagesSpokenAtHomeNode,
+} from '../types/ProfileQueryTypes';
 import Modal from '../../../common/components/modal/Modal';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
 import profileQuery from '../queries/ProfileQuery';
@@ -53,7 +56,7 @@ const LanguagesSpokenAtHome = RelayList<LanguagesSpokenAtHomeNode>();
 function getInitialValues({
   languagesSpokenAtHome,
   ...rest
-}: ProfileType): UpdateMyProfileMutationInput {
+}: MyProfile): UpdateMyProfileMutationInput {
   return {
     ...rest,
     languagesSpokenAtHome: LanguagesSpokenAtHome(
@@ -63,7 +66,7 @@ function getInitialValues({
 }
 
 interface EditProfileModalProps {
-  initialValues: ProfileType;
+  initialValues: MyProfile;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }

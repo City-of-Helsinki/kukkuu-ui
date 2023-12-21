@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import styles from './childForm.module.scss';
 import BirthdateFormField from '../../home/form/partial/BirthdateFormField';
 import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
-import { Child } from '../types/ChildTypes';
+import { Child } from '../types/ChildInputTypes';
 import { getTranslatedRelationshipOptions } from '../ChildUtils';
 import { validateDate } from '../../../common/components/form/validationUtils';
 import { formatTime, newMoment } from '../../../common/time/utils';

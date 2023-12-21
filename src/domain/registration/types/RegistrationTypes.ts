@@ -1,4 +1,4 @@
-import { Children } from '../../child/types/ChildTypes';
+import { Children } from '../../child/types/ChildInputTypes';
 
 export interface RegistrationFormValues {
   children: Children;

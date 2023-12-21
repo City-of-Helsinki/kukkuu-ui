@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
-import { TicketSystem, EventQuery } from '../api/generatedTypes/graphql';
+import { TicketSystem } from '../api/generatedTypes/graphql';
 import { formatTime, newMoment } from '../../common/time/utils';
 import LinkButton from '../../common/components/button/LinkButton';
 import {
@@ -10,12 +10,7 @@ import {
 } from '../../common/time/TimeConstants';
 import EventOccurrenceNotificationControlButton from './EventOccurrenceNotificationControlButton';
 import styles from './eventOccurrence.module.scss';
-
-type OccurrencesEdgeNode = NonNullable<
-  NonNullable<
-    NonNullable<EventQuery['event']>['occurrences']['edges'][number]
-  >['node']
->;
+import { OccurrenceNode } from './types/EventQueryTypes';
 
 const SubmitTypes = {
   enrol: 'ENROL',
@@ -46,7 +41,7 @@ type UrlParams = {
 };
 
 type EventOccurrenceProps = {
-  occurrence: OccurrencesEdgeNode;
+  occurrence: OccurrenceNode;
   showFreePlaces?: boolean;
   canEnroll?: boolean | null;
 };

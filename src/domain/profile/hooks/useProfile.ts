@@ -10,14 +10,13 @@ import { clearEvent, saveChildrenEvents } from '../../event/state/EventActions';
 import profileQuery from '../queries/ProfileQuery';
 import { clearProfile, saveProfile } from '../state/ProfileActions';
 import { defaultProfileData } from '../state/ProfileReducers';
-
-type Profile = NonNullable<ProfileQuery['myProfile']>;
+import { MyProfile } from '../types/ProfileQueryTypes';
 
 export type ProfileQueryResult = Omit<
   GenericQueryResult<ProfileQuery>,
   'data'
 > & {
-  data: Profile | null | undefined;
+  data: MyProfile | null | undefined;
 };
 
 function useProfile(skipRedirect = false): ProfileQueryResult {

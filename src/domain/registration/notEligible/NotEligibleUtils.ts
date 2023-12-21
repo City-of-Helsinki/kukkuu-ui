@@ -1,6 +1,6 @@
 import { newMoment } from '../../../common/time/utils';
 import { SUPPORTED_START_BIRTHDATE } from '../../../common/time/TimeConstants';
-import { Child } from '../../child/types/ChildTypes';
+import { Child } from '../../child/types/ChildInputTypes';
 
 /** isBirthdateEligible()
  * Check if child's birthdate is eligible for participation.

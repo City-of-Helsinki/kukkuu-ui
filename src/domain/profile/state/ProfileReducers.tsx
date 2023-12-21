@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { ProfileType } from '../type/ProfileTypes';
+import { MyProfile } from '../types/ProfileQueryTypes';
 import { Language } from '../../api/generatedTypes/graphql';
 import { clearProfile, saveProfile } from './ProfileActions';
 
-export const defaultProfileData: ProfileType = {
+export const defaultProfileData: MyProfile = {
   id: '',
   firstName: '',
   lastName: '',

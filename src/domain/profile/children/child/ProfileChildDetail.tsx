@@ -6,11 +6,11 @@ import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { IconPen } from 'hds-react';
 
+import { EditChildPayload } from '../../../child/types/UpdateChildMutationTypes';
+import { DeleteChildPayload } from '../../../child/types/DeleteChildMutationTypes';
 import {
-  DeleteChildMutation,
   UpdateChildMutationInput,
   ChildByIdQuery,
-  UpdateChildMutation,
 } from '../../../api/generatedTypes/graphql';
 import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import ErrorMessage from '../../../../common/components/error/Error';
@@ -30,9 +30,6 @@ import profileQuery from '../../queries/ProfileQuery';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
 import useAppRouteHref from '../../../app/useAppRouteHref';
-
-type DeleteChildPayload = NonNullable<DeleteChildMutation['deleteChild']>;
-type EditChildPayload = NonNullable<UpdateChildMutation['updateChild']>;
 
 export type ChildDetailEditModalPayload = Omit<UpdateChildMutationInput, 'id'>;
 

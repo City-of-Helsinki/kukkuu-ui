@@ -3,7 +3,7 @@ import omit from 'lodash/omit';
 import pick from 'lodash/pick';
 
 import { RelationshipTypeEnum } from '../api/generatedTypes/graphql';
-import { Child, UpdateChild, AddChild } from './types/ChildTypes';
+import { Child, UpdateChild, AddChild } from './types/ChildInputTypes';
 import { newMoment } from '../../common/time/utils';
 import { defaultChildFormBirthdate } from './ChildConstants';
 

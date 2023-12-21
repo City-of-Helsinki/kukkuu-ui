@@ -13,28 +13,7 @@ import AnchorButton from '../../common/components/button/AnchorButton';
 import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Text from '../../common/components/text/Text';
 import { useChildRouteGoBackTo } from '../profile/children/child/ProfileChildDetail';
-import { TypeByTypename } from '../../common/commonUtils';
-
-type TicketSystem = NonNullable<
-  NonNullable<ExternalTicketSystemEventQuery['event']>['ticketSystem']
->;
-
-type TicketSystemWithRequiredTypename = TicketSystem &
-  Required<Pick<TicketSystem, '__typename'>>;
-
-type TicketMasterEventTicketSystem = TypeByTypename<
-  TicketSystemWithRequiredTypename,
-  'TicketmasterEventTicketSystem'
->;
-
-type LippupisteEventTicketSystem = TypeByTypename<
-  TicketSystemWithRequiredTypename,
-  'LippupisteEventTicketSystem'
->;
-
-type EventTicketSystem =
-  | TicketMasterEventTicketSystem
-  | LippupisteEventTicketSystem;
+import { EventTicketSystem } from './types/ExternalTicketSystemEventQueryTypes';
 
 const ExternalTicketSystemEventIsEnrolled = () => {
   const { t } = useTranslation();

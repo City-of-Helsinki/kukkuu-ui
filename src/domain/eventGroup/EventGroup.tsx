@@ -12,11 +12,7 @@ import { nlToParagraph } from '../../common/commonUtils';
 import RelayList from '../api/relayList';
 import EventCard from '../event/eventCard/EventCard';
 import styles from './eventGroup.module.scss';
-
-type EventNode = NonNullable<
-  NonNullable<EventGroupQuery['eventGroup']>['events']['edges'][number]
->['node'];
-
+import { EventNode } from './types/EventGroupQueryTypes';
 const EventList = RelayList<EventNode>();
 
 type Props = {

@@ -8,7 +8,7 @@ import {
   UpcomingEventsAndEventGroups,
   PastEvents,
   InternalAndTicketSystemEnrolments,
-} from '../../../child/types/ChildTypes';
+} from '../../../child/types/ChildByIdQueryTypes';
 
 vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => (<div />) as any);
 

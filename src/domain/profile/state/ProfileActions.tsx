@@ -1,14 +1,10 @@
 import { createAction } from '@reduxjs/toolkit';
 
 import { PROFILE_ACTIONS } from '../constants/ProfileActionConstants';
-import { ProfileType } from '../type/ProfileTypes';
-import { SubmitChildrenAndGuardianMutation } from '../../api/generatedTypes/graphql';
+import { MyProfile } from '../types/ProfileQueryTypes';
+import { Guardian } from '../../registration/types/SubmitChildrenAndGuardianMutationTypes';
 
-type Guardian = NonNullable<
-  SubmitChildrenAndGuardianMutation['submitChildrenAndGuardian']
->['guardian'];
-
-const saveProfile = createAction<ProfileType | Guardian>(
+const saveProfile = createAction<MyProfile | Guardian>(
   PROFILE_ACTIONS.SAVE_PROFILE
 );
 
