@@ -1,15 +1,11 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { OccurrenceQuery } from '../api/generatedTypes/graphql';
+import { OccurrenceVenue } from './types/OccurrenceQueryTypes';
 import Collapsible from '../../common/components/collapsible/Collapsible';
 
-type VenueTypes = NonNullable<
-  NonNullable<OccurrenceQuery['occurrence']>['venue']
->;
-
 interface VenueFeaturesProps {
-  venue: VenueTypes;
+  venue: OccurrenceVenue;
 }
 
 const VenueFeatures: FunctionComponent<VenueFeaturesProps> = ({ venue }) => {

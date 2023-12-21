@@ -1,8 +1,7 @@
 import { render } from '../../../common/test/testingLibraryUtils';
-import { EventQuery, TicketSystem } from '../../api/generatedTypes/graphql';
+import { TicketSystem } from '../../api/generatedTypes/graphql';
 import EventOccurrenceList from '../EventOccurrenceList';
-
-type Occurrences = NonNullable<NonNullable<EventQuery>['event']>['occurrences'];
+import { Occurrences } from '../types/EventQueryTypes';
 
 const mockedOccurrences: Occurrences = {
   edges: [

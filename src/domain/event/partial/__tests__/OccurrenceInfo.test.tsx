@@ -2,27 +2,11 @@ import React from 'react';
 
 import OccurrenceInfo from '../OccurrenceInfo';
 import { mockedOccurrenceNode } from '../../__tests__/EventPage.test';
-import {
-  ChildByIdQuery,
-  EventParticipantsPerInvite,
-} from '../../../api/generatedTypes/graphql';
+import { EventParticipantsPerInvite } from '../../../api/generatedTypes/graphql';
 import { render } from '../../../../common/test/testingLibraryUtils';
-import { TypeByTypename } from '../../../../common/commonUtils';
+import { InternalEnrolmentOccurrence } from '../../../child/types/ChildByIdQueryTypes';
 
-type ChildByIdQueryEnrolmentNodeOccurrence = NonNullable<
-  TypeByTypename<
-    NonNullable<
-      NonNullable<
-        NonNullable<
-          ChildByIdQuery['child']
-        >['activeInternalAndTicketSystemEnrolments']
-      >['edges'][number]
-    >['node'],
-    'EnrolmentNode'
-  >['occurrence']
->;
-
-const mockOccurrence: ChildByIdQueryEnrolmentNodeOccurrence = {
+const mockOccurrence: InternalEnrolmentOccurrence = {
   id: 'aa',
   time: '2020-03-08T04:00:00+00:00',
   event: {

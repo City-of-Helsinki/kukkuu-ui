@@ -4,33 +4,17 @@ import { IconCalendar, IconLocation, IconClock } from 'hds-react';
 
 import { formatTime, newMoment } from '../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
-import {
-  OccurrenceQuery,
-  ChildByIdQuery,
-} from '../../api/generatedTypes/graphql';
+import { OccurrenceQuery } from '../../api/generatedTypes/graphql';
 import { formatOccurrenceTime, getParticipantsIcon } from '../EventUtils';
 import InfoItem, { InfoItemProps } from './InfoItem';
 import styles from './occurrenceInfo.module.scss';
-import { TypeByTypename } from '../../../common/commonUtils';
-
-type ChildByIdQueryEnrolmentNodeOccurrence = NonNullable<
-  TypeByTypename<
-    NonNullable<
-      NonNullable<
-        NonNullable<
-          ChildByIdQuery['child']
-        >['activeInternalAndTicketSystemEnrolments']
-      >['edges'][number]
-    >['node'],
-    'EnrolmentNode'
-  >['occurrence']
->;
+import { InternalEnrolmentOccurrence } from '../../child/types/ChildByIdQueryTypes';
 
 type Props = {
   className?: string;
   occurrence:
     | NonNullable<OccurrenceQuery['occurrence']>
-    | ChildByIdQueryEnrolmentNodeOccurrence;
+    | InternalEnrolmentOccurrence;
   show?: string[];
 };
 

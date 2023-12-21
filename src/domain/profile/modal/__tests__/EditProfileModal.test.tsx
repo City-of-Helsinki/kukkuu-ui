@@ -2,7 +2,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import React from 'react';
 
 import EditProfileModal from '../EditProfileModal';
-import { ProfileType } from '../../type/ProfileTypes';
+import { MyProfile } from '../../types/ProfileQueryTypes';
 import { Language } from '../../../api/generatedTypes/graphql';
 import {
   render,
@@ -11,7 +11,7 @@ import {
 } from '../../../../common/test/testingLibraryUtils';
 import initModal from '../../../../common/test/initModal';
 
-const initialValues: ProfileType = {
+const initialValues: MyProfile = {
   id: 'yuiop',
   firstName: 'asdf',
   lastName: 'fdsa',

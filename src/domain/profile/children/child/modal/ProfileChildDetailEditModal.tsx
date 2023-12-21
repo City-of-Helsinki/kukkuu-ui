@@ -1,7 +1,7 @@
 import { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Child } from '../../../../child/types/ChildTypes';
+import { Child } from '../../../../child/types/ChildInputTypes';
 import ChildFormModal, {
   CHILD_FORM_TYPES,
 } from '../../../../child/modal/ChildFormModal';
@@ -11,12 +11,10 @@ import {
 } from '../../../../child/ChildUtils';
 import { normalizeProfileChild } from '../../../ProfileUtil';
 import { ChildDetailEditModalPayload } from '../ProfileChildDetail';
-import { ChildByIdQuery } from '../../../../api/generatedTypes/graphql';
 import ChildConfirmDeleteModal from '../../../../child/modal/confirm/delete/ChildConfirmDeleteModal';
 import { isChildEligible } from '../../../../registration/notEligible/NotEligibleUtils';
 import ChildAlertNonEligibleModal from '../../../../child/modal/alert/nonEligible/ChildAlertNonEligibleModal';
-
-type ChildByIdResponse = NonNullable<ChildByIdQuery['child']>;
+import { ChildByIdResponse } from '../../../../child/types/ChildByIdQueryTypes';
 
 const ProfileChildDetailEditModal: FunctionComponent<{
   setIsOpen: (value: boolean) => void;

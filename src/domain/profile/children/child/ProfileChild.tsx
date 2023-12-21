@@ -8,31 +8,18 @@ import Icon from '../../../../common/components/icon/Icon';
 import Text from '../../../../common/components/text/Text';
 import { newMoment } from '../../../../common/time/utils';
 import useGetPathname from '../../../../common/route/utils/useGetPathname';
-import { ProfileQuery } from '../../../api/generatedTypes/graphql';
 import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
 import useChildEnrolmentCount from '../../../child/useChildEnrolmentCount';
 import ChildEventInvitationLabel from '../../../child/ChildEventInvitationLabel';
 import ProfileChildEnrolment from './ProfileChildEnrolment';
 import styles from './profileChild.module.scss';
-
-type ChildType = NonNullable<
-  NonNullable<
-    NonNullable<ProfileQuery['myProfile']>['children']['edges'][number]
-  >['node']
->;
-
-type EnrolmentType = NonNullable<
-  NonNullable<
-    NonNullable<
-      NonNullable<
-        NonNullable<ProfileQuery['myProfile']>['children']['edges'][number]
-      >['node']
-    >['enrolments']['edges'][number]
-  >['node']
->;
+import {
+  MyProfileChild,
+  MyProfileEnrolment,
+} from '../../types/ProfileQueryTypes';
 
 interface ProfileChildProps {
-  child: ChildType;
+  child: MyProfileChild;
 }
 
 const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
@@ -54,7 +41,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
   const childName = `${child.firstName} ${child.lastName}`;
   const enrolments = child.enrolments?.edges
     ?.map((edge) => edge?.node)
-    ?.filter((node): node is EnrolmentType => {
+    ?.filter((node): node is MyProfileEnrolment => {
       const now = new Date();
       const occurrenceTimeDate = new Date(node?.occurrence.time);
 
@@ -181,18 +168,21 @@ function getIsNotEmpty<V>(val: V): val is Exclude<V, undefined | null> {
   return typeof val !== 'undefined' || val !== null;
 }
 
-function findNextEnrolment(enrolments: EnrolmentType[]) {
-  return enrolments.reduce((incumbent: EnrolmentType | null, enrolment) => {
-    if (!incumbent) {
-      return enrolment;
-    }
+function findNextEnrolment(enrolments: MyProfileEnrolment[]) {
+  return enrolments.reduce(
+    (incumbent: MyProfileEnrolment | null, enrolment) => {
+      if (!incumbent) {
+        return enrolment;
+      }
 
-    const now = newMoment(new Date());
-    const untilIncumbent = now.diff(newMoment(incumbent.occurrence.time));
-    const untilEnrolment = now.diff(newMoment(enrolment.occurrence.time));
+      const now = newMoment(new Date());
+      const untilIncumbent = now.diff(newMoment(incumbent.occurrence.time));
+      const untilEnrolment = now.diff(newMoment(enrolment.occurrence.time));
 
-    return untilIncumbent < untilEnrolment ? enrolment : incumbent;
-  }, null);
+      return untilIncumbent < untilEnrolment ? enrolment : incumbent;
+    },
+    null
+  );
 }
 
 export default ProfileChild;

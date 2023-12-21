@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import { primaryChildFormDataSelector } from '../state/RegistrationSelectors';
-import { Child } from '../../child/types/ChildTypes';
+import { Child } from '../../child/types/ChildInputTypes';
 import ChildFormModal from '../../child/modal/ChildFormModal';
 import { getChildFormModalValues } from '../../child/ChildUtils';
 import { isChildEligible } from '../notEligible/NotEligibleUtils';

@@ -8,21 +8,11 @@ import {
   DEFAULT_DATE_FORMAT,
   DEFAULT_TIME_FORMAT,
 } from '../../../../common/time/TimeConstants';
-import { ProfileQuery } from '../../../api/generatedTypes/graphql';
 import styles from './profileChildEnrolment.module.scss';
-
-type EnrolmentType = NonNullable<
-  NonNullable<
-    NonNullable<
-      NonNullable<
-        NonNullable<ProfileQuery['myProfile']>['children']['edges'][number]
-      >['node']
-    >['enrolments']['edges'][number]
-  >['node']
->;
+import { MyProfileEnrolment } from '../../types/ProfileQueryTypes';
 
 type EnrolmentProps = {
-  enrolment: EnrolmentType;
+  enrolment: MyProfileEnrolment;
   childId: string;
 };
 

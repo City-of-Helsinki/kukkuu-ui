@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './childFormFields.module.scss';
 import { formatTime, newMoment } from '../../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
-import { Child } from '../../../child/types/ChildTypes';
+import { Child } from '../../../child/types/ChildInputTypes';
 import { getTranslatedRelationshipOptions } from '../../../child/ChildUtils';
 import Icon from '../../../../common/components/icon/Icon';
 import happyChildIcon from '../../../../assets/icons/svg/childFaceHappy.svg';

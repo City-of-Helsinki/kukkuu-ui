@@ -6,14 +6,10 @@ import {
   screen,
 } from '../../../common/test/testingLibraryUtils';
 import initModal from '../../../common/test/initModal';
-import { EventQuery } from '../../api/generatedTypes/graphql';
 import EventOccurrence from '../EventOccurrence';
+import { OccurrenceNode } from '../types/EventQueryTypes';
 
-type OccurrenceEdgeNode = NonNullable<
-  NonNullable<EventQuery['event']>['occurrences']['edges'][number]
->['node'];
-
-const mockedNode: OccurrenceEdgeNode = {
+const mockedNode: OccurrenceNode = {
   id: 'T2NjdXJyZW5jZU5vZGU6Mg==',
   time: '2020-03-08T04:00:00+00:00',
   remainingCapacity: 99,

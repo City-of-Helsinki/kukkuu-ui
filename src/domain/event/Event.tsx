@@ -32,9 +32,7 @@ import LinkButton from '../../common/components/button/LinkButton';
 import useGetPathname from '../../common/route/utils/useGetPathname';
 import eventExternalTicketSystemPasswordCountQuery from './queries/eventExternalTicketSystemPasswordCountQuery';
 import Text from '../../common/components/text/Text';
-
-type Occurrences = NonNullable<EventQuery['event']>['occurrences'];
-type OccurrenceNode = NonNullable<Occurrences['edges'][number]>['node'];
+import { Occurrences, OccurrenceNode } from './types/EventQueryTypes';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 

@@ -1,16 +1,9 @@
 import capitalize from 'lodash/capitalize';
 
-import { Child } from '../child/types/ChildTypes';
+import { Child } from '../child/types/ChildInputTypes';
 import { getEligibleCities } from '../registration/notEligible/NotEligibleUtils';
-import { ChildByIdQuery, ProfileQuery } from '../api/generatedTypes/graphql';
-
-type ChildByIdResponse = NonNullable<ChildByIdQuery['child']>;
-type Children = NonNullable<ProfileQuery['myProfile']>['children'];
-type Project = NonNullable<
-  NonNullable<
-    NonNullable<ProfileQuery['myProfile']>['children']['edges'][number]
-  >['node']
->['project'];
+import { ChildByIdResponse } from '../child/types/ChildByIdQueryTypes';
+import { Project, MyProfileChildren } from './types/ProfileQueryTypes';
 
 /**
  * Normalize child data from API response to a format usable by child form.
@@ -32,7 +25,9 @@ export const normalizeProfileChild = (
   };
 };
 
-export const getProjectsFromProfileQuery = (children: Children): Project[] => {
+export const getProjectsFromProfileQuery = (
+  children: MyProfileChildren
+): Project[] => {
   const empty: Project = {
     id: '',
     name: '',

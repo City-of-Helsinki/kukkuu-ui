@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { ChildEvents } from '../type/EventChildTypes';
+import { ChildEvents } from '../types/EventChildTypes';
 import {
   clearEvent,
   saveChildEvents,

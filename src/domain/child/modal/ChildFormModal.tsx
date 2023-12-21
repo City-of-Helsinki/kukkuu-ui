@@ -2,7 +2,7 @@ import { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Modal from '../../../common/components/modal/Modal';
-import { Child } from '../types/ChildTypes';
+import { Child } from '../types/ChildInputTypes';
 import ChildForm from '../form/ChildForm';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 

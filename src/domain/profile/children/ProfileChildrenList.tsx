@@ -6,10 +6,8 @@ import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 import { IconPlus } from 'hds-react';
 
-import {
-  ProfileQuery,
-  UpdateChildMutationInput,
-} from '../../api/generatedTypes/graphql';
+import { MyProfileChildren } from '../types/ProfileQueryTypes';
+import { UpdateChildMutationInput } from '../../api/generatedTypes/graphql';
 import Button from '../../../common/components/button/Button';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import Text from '../../../common/components/text/Text';
@@ -23,11 +21,9 @@ import { getProjectsFromProfileQuery } from '../ProfileUtil';
 import ProfileChild from './child/ProfileChild';
 import styles from './profileChildrenList.module.scss';
 
-type Children = NonNullable<ProfileQuery['myProfile']>['children'];
-
 function getChildrenFromProfile({
   data,
-}: ProfileQueryResult): Children | null | undefined {
+}: ProfileQueryResult): MyProfileChildren | null | undefined {
   return data?.children;
 }
 

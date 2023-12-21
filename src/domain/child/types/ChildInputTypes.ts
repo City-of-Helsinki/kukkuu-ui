@@ -2,7 +2,6 @@ import {
   ChildInput,
   AddChildMutationInput,
   UpdateChildMutationInput,
-  ChildByIdQuery,
 } from '../../api/generatedTypes/graphql';
 
 export interface Child extends ChildInput {
@@ -16,15 +15,5 @@ export interface AddChild extends AddChildMutationInput {
 export interface UpdateChild extends UpdateChildMutationInput {
   homeCity: string;
 }
-
-export type ChildByIdResponse = NonNullable<ChildByIdQuery['child']>;
-
-export type UpcomingEventsAndEventGroups =
-  ChildByIdResponse['upcomingEventsAndEventGroups'];
-
-export type PastEvents = ChildByIdResponse['pastEvents'];
-
-export type InternalAndTicketSystemEnrolments =
-  ChildByIdResponse['activeInternalAndTicketSystemEnrolments'];
 
 export type Children = Child[];

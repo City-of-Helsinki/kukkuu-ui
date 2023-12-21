@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { QRCode } from 'react-qrcode-logo';
 
-import { ChildByIdQuery } from '../../api/generatedTypes/graphql';
 import RelayList from '../../api/relayList';
 import Text from '../../../common/components/text/Text';
 import List from '../../../common/components/list/List';
@@ -13,90 +12,52 @@ import EventCard from '../../event/eventCard/EventCard';
 import Config from '../../config';
 import styles from './profileEventsList.module.scss';
 import useChildEnrolmentCount from '../../child/useChildEnrolmentCount';
-import { TypeByTypename } from '../../../common/commonUtils';
+import {
+  PastEvents,
+  PastEvent,
+  InternalAndTicketSystemEnrolments,
+  InternalOrTicketSystemEnrolment,
+  InternalEnrolment,
+  TicketmasterEnrolment,
+  LippupisteEnrolment,
+  UpcomingEventsAndEventGroups,
+  UpcomingEventOrEventGroup,
+  UpcomingEvent,
+  UpcomingEventGroup,
+} from '../../child/types/ChildByIdQueryTypes';
 
-type UpcomingEventsAndEventGroups = NonNullable<
-  ChildByIdQuery['child']
->['upcomingEventsAndEventGroups'];
-
-type UpcomingEventsAndEventGroupsNode = NonNullable<
-  NonNullable<
-    NonNullable<UpcomingEventsAndEventGroups>['edges'][number]
-  >['node']
->;
-
-type EventNode = TypeByTypename<UpcomingEventsAndEventGroupsNode, 'EventNode'>;
-
-type EventGroupNode = TypeByTypename<
-  UpcomingEventsAndEventGroupsNode,
-  'EventGroupNode'
->;
-
-type PastEventsTypes = NonNullable<ChildByIdQuery['child']>['pastEvents'];
-type PastEventNode = NonNullable<
-  NonNullable<PastEventsTypes>['edges'][number]
->['node'];
-
-type InternalAndTicketSystemEnrolments = NonNullable<
-  ChildByIdQuery['child']
->['activeInternalAndTicketSystemEnrolments'];
-
-type InternalOrTicketSystemEnrolmentNode = NonNullable<
-  NonNullable<
-    NonNullable<InternalAndTicketSystemEnrolments>['edges'][number]
-  >['node']
->;
-
-type EnrolmentNode = TypeByTypename<
-  InternalOrTicketSystemEnrolmentNode,
-  'EnrolmentNode'
->;
-
-type TicketmasterEnrolmentNode = TypeByTypename<
-  InternalOrTicketSystemEnrolmentNode,
-  'TicketmasterEnrolmentNode'
->;
-
-type LippupisteEnrolmentNode = TypeByTypename<
-  InternalOrTicketSystemEnrolmentNode,
-  'LippupisteEnrolmentNode'
->;
-
-const upcomingEventsAndEventGroupsList =
-  RelayList<UpcomingEventsAndEventGroupsNode>();
-const pastEventsList = RelayList<PastEventNode>();
-const enrolmentsList = RelayList<InternalOrTicketSystemEnrolmentNode>();
+const upcomingEventsAndEventGroupsList = RelayList<UpcomingEventOrEventGroup>();
+const pastEventsList = RelayList<PastEvent>();
+const enrolmentsList = RelayList<InternalOrTicketSystemEnrolment>();
 
 function switchEventOrEventGroup<R>(
-  model: UpcomingEventsAndEventGroupsNode,
-  isEvent: (event: EventNode) => R,
-  isEventGroup: (eventGroup: EventGroupNode) => R
+  model: UpcomingEventOrEventGroup,
+  isEvent: (event: UpcomingEvent) => R,
+  isEventGroup: (eventGroup: UpcomingEventGroup) => R
 ) {
-  const typeHandlers: Record<
-    UpcomingEventsAndEventGroupsNode['__typename'],
-    () => R
-  > = {
-    EventGroupNode: () => isEventGroup(model as EventGroupNode),
-    EventNode: () => isEvent(model as EventNode),
-  };
+  const typeHandlers: Record<UpcomingEventOrEventGroup['__typename'], () => R> =
+    {
+      EventGroupNode: () => isEventGroup(model as UpcomingEventGroup),
+      EventNode: () => isEvent(model as UpcomingEvent),
+    };
   return typeHandlers[model['__typename']]();
 }
 
 function switchInternalOrTicketSystemEnrolment<R>(
-  enrolmentNode: InternalOrTicketSystemEnrolmentNode,
-  isInternal: (internalEnrolment: EnrolmentNode) => R,
-  isTicketmaster: (ticketmasterEnrolment: TicketmasterEnrolmentNode) => R,
-  isLippupiste: (lippupisteEnrolment: LippupisteEnrolmentNode) => R
+  enrolmentNode: InternalOrTicketSystemEnrolment,
+  isInternal: (internalEnrolment: InternalEnrolment) => R,
+  isTicketmaster: (ticketmasterEnrolment: TicketmasterEnrolment) => R,
+  isLippupiste: (lippupisteEnrolment: LippupisteEnrolment) => R
 ) {
   const typeHandlers: Record<
-    InternalOrTicketSystemEnrolmentNode['__typename'],
+    InternalOrTicketSystemEnrolment['__typename'],
     () => R
   > = {
-    EnrolmentNode: () => isInternal(enrolmentNode as EnrolmentNode),
+    EnrolmentNode: () => isInternal(enrolmentNode as InternalEnrolment),
     TicketmasterEnrolmentNode: () =>
-      isTicketmaster(enrolmentNode as TicketmasterEnrolmentNode),
+      isTicketmaster(enrolmentNode as TicketmasterEnrolment),
     LippupisteEnrolmentNode: () =>
-      isLippupiste(enrolmentNode as LippupisteEnrolmentNode),
+      isLippupiste(enrolmentNode as LippupisteEnrolment),
   };
   return typeHandlers[enrolmentNode['__typename']]();
 }
@@ -104,7 +65,7 @@ function switchInternalOrTicketSystemEnrolment<R>(
 type Props = {
   upcomingEventsAndEventGroups: UpcomingEventsAndEventGroups | null;
   childId: string;
-  pastEvents: PastEventsTypes | null;
+  pastEvents: PastEvents | null;
   enrolments: InternalAndTicketSystemEnrolments | null;
 };
 
@@ -164,7 +125,9 @@ const ProfileEventsList = ({
   );
   const enrolments = enrolmentsList(enrolmentsData).items;
 
-  const getInternalEnrolmentEventCard = (internalEnrolment: EnrolmentNode) => (
+  const getInternalEnrolmentEventCard = (
+    internalEnrolment: InternalEnrolment
+  ) => (
     <EventCard
       key={internalEnrolment.id}
       imageElement={
@@ -189,9 +152,7 @@ const ProfileEventsList = ({
   );
 
   const getExternalEnrolmentEventCard = (
-    externalTicketSystemEnrolment:
-      | TicketmasterEnrolmentNode
-      | LippupisteEnrolmentNode
+    externalTicketSystemEnrolment: TicketmasterEnrolment | LippupisteEnrolment
   ) => (
     <EventCard
       key={externalTicketSystemEnrolment.id}
@@ -305,7 +266,7 @@ const getTicketValidationUrl = (referenceId?: string | null) =>
   referenceId ? `${Config.adminUrl}/${referenceId}` : undefined;
 
 const getFocalContent = (
-  eventOrEventGroup: UpcomingEventsAndEventGroupsNode,
+  eventOrEventGroup: UpcomingEventOrEventGroup,
   childDoesNotHaveEnrolmentsLeft: boolean
 ) => {
   if (childDoesNotHaveEnrolmentsLeft) {
