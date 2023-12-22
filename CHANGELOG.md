@@ -399,6 +399,20 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [2.1.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.0.1...kukkuu-ui-v2.1.0) (2023-12-22)
+
+
+### Features
+
+* Show "No free ticket system passwords" error & labels ([145e369](https://github.com/City-of-Helsinki/kukkuu-ui/commit/145e3696159fdef2f8ddb27fd52785f70d3ffaaa))
+
+
+### Bug Fixes
+
+* Fix "yarn generate:graphql" by using graphql-codegen ([4ea1fea](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4ea1fea06e1b34b7825bcfa65036a60db78a27d6))
+* Set correct background color behind hero image's lower grey part ([7deecab](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7deecab2b1f16888cddd978aa11a4aeffded56a9))
+* Use https instead of http in partner links, fix security warning ([aedceab](https://github.com/City-of-Helsinki/kukkuu-ui/commit/aedceab504a3c79c892c652980a0c14eea4a0d5e))
+
 ## [2.0.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.0.0...kukkuu-ui-v2.0.1) (2023-12-11)
 
 
