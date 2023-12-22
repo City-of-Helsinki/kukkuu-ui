@@ -1800,6 +1800,11 @@ export type AddNewChildMutation = {
   } | null;
 };
 
+export type DeleteChildMutationPayloadFieldsFragment = {
+  __typename?: 'DeleteChildMutationPayload';
+  clientMutationId: string | null;
+};
+
 export type DeleteChildMutationVariables = Exact<{
   input: DeleteChildMutationInput;
 }>;
@@ -1809,6 +1814,35 @@ export type DeleteChildMutation = {
   deleteChild: {
     __typename?: 'DeleteChildMutationPayload';
     clientMutationId: string | null;
+  } | null;
+};
+
+export type UpdateChildMutationPayloadFieldsFragment = {
+  __typename?: 'UpdateChildMutationPayload';
+  child: {
+    __typename?: 'ChildNode';
+    id: string;
+    firstName: string;
+    lastName: string;
+    birthdate: any;
+    postalCode: string;
+    project: {
+      __typename?: 'ProjectNode';
+      id: string;
+      name: string | null;
+      year: number;
+    };
+    relationships: {
+      __typename?: 'RelationshipNodeConnection';
+      edges: Array<{
+        __typename?: 'RelationshipNodeEdge';
+        node: {
+          __typename?: 'RelationshipNode';
+          id: string;
+          type: RelationshipTypeEnum | null;
+        } | null;
+      } | null>;
+    };
   } | null;
 };
 
@@ -1902,6 +1936,424 @@ export type EnrolmentEventFieldsFragment = {
   image: string;
   imageAltText: string | null;
   participantsPerInvite: EventParticipantsPerInvite;
+};
+
+export type PastEventOccurrenceFieldsFragment = {
+  __typename?: 'OccurrenceNode';
+  id: string;
+  time: any;
+};
+
+export type PastEventOccurrencesFieldsFragment = {
+  __typename?: 'OccurrenceNodeConnection';
+  edges: Array<{
+    __typename?: 'OccurrenceNodeEdge';
+    node: { __typename?: 'OccurrenceNode'; id: string; time: any } | null;
+  } | null>;
+};
+
+export type PastEventFieldsFragment = {
+  __typename?: 'EventNode';
+  id: string;
+  name: string | null;
+  shortDescription: string | null;
+  image: string;
+  imageAltText: string | null;
+  participantsPerInvite: EventParticipantsPerInvite;
+  occurrences: {
+    __typename?: 'OccurrenceNodeConnection';
+    edges: Array<{
+      __typename?: 'OccurrenceNodeEdge';
+      node: { __typename?: 'OccurrenceNode'; id: string; time: any } | null;
+    } | null>;
+  };
+};
+
+export type PastEventsFieldsFragment = {
+  __typename?: 'EventConnection';
+  edges: Array<{
+    __typename?: 'EventEdge';
+    node: {
+      __typename?: 'EventNode';
+      id: string;
+      name: string | null;
+      shortDescription: string | null;
+      image: string;
+      imageAltText: string | null;
+      participantsPerInvite: EventParticipantsPerInvite;
+      occurrences: {
+        __typename?: 'OccurrenceNodeConnection';
+        edges: Array<{
+          __typename?: 'OccurrenceNodeEdge';
+          node: { __typename?: 'OccurrenceNode'; id: string; time: any } | null;
+        } | null>;
+      };
+    } | null;
+  } | null>;
+};
+
+export type EnrolmentVenueFieldsFragment = {
+  __typename?: 'VenueNode';
+  id: string;
+  name: string | null;
+  address: string | null;
+};
+
+export type EnrolmentOccurrenceFieldsFragment = {
+  __typename?: 'OccurrenceNode';
+  id: string;
+  time: any;
+  venue: {
+    __typename?: 'VenueNode';
+    id: string;
+    name: string | null;
+    address: string | null;
+  };
+  event: {
+    __typename?: 'EventNode';
+    id: string;
+    name: string | null;
+    shortDescription: string | null;
+    duration: number | null;
+    image: string;
+    imageAltText: string | null;
+    participantsPerInvite: EventParticipantsPerInvite;
+  };
+};
+
+export type ActiveInternalEnrolmentFieldsFragment = {
+  __typename: 'EnrolmentNode';
+  id: string;
+  referenceId: string | null;
+  occurrence: {
+    __typename?: 'OccurrenceNode';
+    id: string;
+    time: any;
+    venue: {
+      __typename?: 'VenueNode';
+      id: string;
+      name: string | null;
+      address: string | null;
+    };
+    event: {
+      __typename?: 'EventNode';
+      id: string;
+      name: string | null;
+      shortDescription: string | null;
+      duration: number | null;
+      image: string;
+      imageAltText: string | null;
+      participantsPerInvite: EventParticipantsPerInvite;
+    };
+  };
+};
+
+export type ActiveTicketmasterEnrolmentFieldsFragment = {
+  __typename: 'TicketmasterEnrolmentNode';
+  id: string;
+  event: {
+    __typename?: 'EventNode';
+    id: string;
+    name: string | null;
+    shortDescription: string | null;
+    duration: number | null;
+    image: string;
+    imageAltText: string | null;
+    participantsPerInvite: EventParticipantsPerInvite;
+  };
+};
+
+export type ActiveLippupisteEnrolmentFieldsFragment = {
+  __typename: 'LippupisteEnrolmentNode';
+  id: string;
+  event: {
+    __typename?: 'EventNode';
+    id: string;
+    name: string | null;
+    shortDescription: string | null;
+    duration: number | null;
+    image: string;
+    imageAltText: string | null;
+    participantsPerInvite: EventParticipantsPerInvite;
+  };
+};
+
+export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
+  __typename?: 'InternalOrTicketSystemEnrolmentConnection';
+  edges: Array<{
+    __typename?: 'InternalOrTicketSystemEnrolmentEdge';
+    node:
+      | {
+          __typename: 'EnrolmentNode';
+          id: string;
+          referenceId: string | null;
+          occurrence: {
+            __typename?: 'OccurrenceNode';
+            id: string;
+            time: any;
+            venue: {
+              __typename?: 'VenueNode';
+              id: string;
+              name: string | null;
+              address: string | null;
+            };
+            event: {
+              __typename?: 'EventNode';
+              id: string;
+              name: string | null;
+              shortDescription: string | null;
+              duration: number | null;
+              image: string;
+              imageAltText: string | null;
+              participantsPerInvite: EventParticipantsPerInvite;
+            };
+          };
+        }
+      | {
+          __typename: 'LippupisteEnrolmentNode';
+          id: string;
+          event: {
+            __typename?: 'EventNode';
+            id: string;
+            name: string | null;
+            shortDescription: string | null;
+            duration: number | null;
+            image: string;
+            imageAltText: string | null;
+            participantsPerInvite: EventParticipantsPerInvite;
+          };
+        }
+      | {
+          __typename: 'TicketmasterEnrolmentNode';
+          id: string;
+          event: {
+            __typename?: 'EventNode';
+            id: string;
+            name: string | null;
+            shortDescription: string | null;
+            duration: number | null;
+            image: string;
+            imageAltText: string | null;
+            participantsPerInvite: EventParticipantsPerInvite;
+          };
+        }
+      | null;
+  } | null>;
+};
+
+export type UpcomingEventFieldsFragment = {
+  __typename: 'EventNode';
+  id: string;
+  name: string | null;
+  shortDescription: string | null;
+  image: string;
+  imageAltText: string | null;
+  participantsPerInvite: EventParticipantsPerInvite;
+  canChildEnroll: boolean | null;
+};
+
+export type UpcomingEventGroupFieldsFragment = {
+  __typename: 'EventGroupNode';
+  id: string;
+  name: string | null;
+  shortDescription: string | null;
+  image: string;
+  imageAltText: string | null;
+  canChildEnroll: boolean | null;
+};
+
+export type UpcomingEventsAndEventGroupsFieldsFragment = {
+  __typename?: 'EventOrEventGroupConnection';
+  edges: Array<{
+    __typename?: 'EventOrEventGroupEdge';
+    node:
+      | {
+          __typename: 'EventGroupNode';
+          id: string;
+          name: string | null;
+          shortDescription: string | null;
+          image: string;
+          imageAltText: string | null;
+          canChildEnroll: boolean | null;
+        }
+      | {
+          __typename: 'EventNode';
+          id: string;
+          name: string | null;
+          shortDescription: string | null;
+          image: string;
+          imageAltText: string | null;
+          participantsPerInvite: EventParticipantsPerInvite;
+          canChildEnroll: boolean | null;
+        }
+      | null;
+  } | null>;
+};
+
+export type RelationshipFieldsFragment = {
+  __typename?: 'RelationshipNode';
+  id: string;
+  type: RelationshipTypeEnum | null;
+};
+
+export type RelationshipsFieldsFragment = {
+  __typename?: 'RelationshipNodeConnection';
+  edges: Array<{
+    __typename?: 'RelationshipNodeEdge';
+    node: {
+      __typename?: 'RelationshipNode';
+      id: string;
+      type: RelationshipTypeEnum | null;
+    } | null;
+  } | null>;
+};
+
+export type ChildByIdQueryProjectFieldsFragment = {
+  __typename?: 'ProjectNode';
+  id: string;
+  name: string | null;
+  year: number;
+};
+
+export type ChildByIdQueryFieldsFragment = {
+  __typename?: 'ChildNode';
+  id: string;
+  firstName: string;
+  lastName: string;
+  birthdate: any;
+  postalCode: string;
+  project: {
+    __typename?: 'ProjectNode';
+    id: string;
+    name: string | null;
+    year: number;
+  };
+  activeInternalAndTicketSystemEnrolments: {
+    __typename?: 'InternalOrTicketSystemEnrolmentConnection';
+    edges: Array<{
+      __typename?: 'InternalOrTicketSystemEnrolmentEdge';
+      node:
+        | {
+            __typename: 'EnrolmentNode';
+            id: string;
+            referenceId: string | null;
+            occurrence: {
+              __typename?: 'OccurrenceNode';
+              id: string;
+              time: any;
+              venue: {
+                __typename?: 'VenueNode';
+                id: string;
+                name: string | null;
+                address: string | null;
+              };
+              event: {
+                __typename?: 'EventNode';
+                id: string;
+                name: string | null;
+                shortDescription: string | null;
+                duration: number | null;
+                image: string;
+                imageAltText: string | null;
+                participantsPerInvite: EventParticipantsPerInvite;
+              };
+            };
+          }
+        | {
+            __typename: 'LippupisteEnrolmentNode';
+            id: string;
+            event: {
+              __typename?: 'EventNode';
+              id: string;
+              name: string | null;
+              shortDescription: string | null;
+              duration: number | null;
+              image: string;
+              imageAltText: string | null;
+              participantsPerInvite: EventParticipantsPerInvite;
+            };
+          }
+        | {
+            __typename: 'TicketmasterEnrolmentNode';
+            id: string;
+            event: {
+              __typename?: 'EventNode';
+              id: string;
+              name: string | null;
+              shortDescription: string | null;
+              duration: number | null;
+              image: string;
+              imageAltText: string | null;
+              participantsPerInvite: EventParticipantsPerInvite;
+            };
+          }
+        | null;
+    } | null>;
+  } | null;
+  upcomingEventsAndEventGroups: {
+    __typename?: 'EventOrEventGroupConnection';
+    edges: Array<{
+      __typename?: 'EventOrEventGroupEdge';
+      node:
+        | {
+            __typename: 'EventGroupNode';
+            id: string;
+            name: string | null;
+            shortDescription: string | null;
+            image: string;
+            imageAltText: string | null;
+            canChildEnroll: boolean | null;
+          }
+        | {
+            __typename: 'EventNode';
+            id: string;
+            name: string | null;
+            shortDescription: string | null;
+            image: string;
+            imageAltText: string | null;
+            participantsPerInvite: EventParticipantsPerInvite;
+            canChildEnroll: boolean | null;
+          }
+        | null;
+    } | null>;
+  } | null;
+  pastEvents: {
+    __typename?: 'EventConnection';
+    edges: Array<{
+      __typename?: 'EventEdge';
+      node: {
+        __typename?: 'EventNode';
+        id: string;
+        name: string | null;
+        shortDescription: string | null;
+        image: string;
+        imageAltText: string | null;
+        participantsPerInvite: EventParticipantsPerInvite;
+        occurrences: {
+          __typename?: 'OccurrenceNodeConnection';
+          edges: Array<{
+            __typename?: 'OccurrenceNodeEdge';
+            node: {
+              __typename?: 'OccurrenceNode';
+              id: string;
+              time: any;
+            } | null;
+          } | null>;
+        };
+      } | null;
+    } | null>;
+  } | null;
+  relationships: {
+    __typename?: 'RelationshipNodeConnection';
+    edges: Array<{
+      __typename?: 'RelationshipNodeEdge';
+      node: {
+        __typename?: 'RelationshipNode';
+        id: string;
+        type: RelationshipTypeEnum | null;
+      } | null;
+    } | null>;
+  };
 };
 
 export type ChildByIdQueryVariables = Exact<{
@@ -2064,6 +2516,106 @@ export type AssignTicketSystemPasswordMutation = {
   } | null;
 };
 
+export type EnrolOccurrencesFieldsFragment = {
+  __typename?: 'OccurrenceNodeConnection';
+  edges: Array<{
+    __typename?: 'OccurrenceNodeEdge';
+    node: {
+      __typename?: 'OccurrenceNode';
+      id: string;
+      time: any;
+      event: {
+        __typename?: 'EventNode';
+        id: string;
+        image: string;
+        imageAltText: string | null;
+        description: string | null;
+        shortDescription: string | null;
+        name: string | null;
+        duration: number | null;
+        participantsPerInvite: EventParticipantsPerInvite;
+      };
+      venue: {
+        __typename?: 'VenueNode';
+        id: string;
+        name: string | null;
+        address: string | null;
+        accessibilityInfo: string | null;
+        arrivalInstructions: string | null;
+        additionalInfo: string | null;
+        wwwUrl: string | null;
+        wcAndFacilities: string | null;
+      };
+    } | null;
+  } | null>;
+};
+
+export type EnrolOccurrenceMutationPayloadFieldsFragment = {
+  __typename?: 'EnrolOccurrenceMutationPayload';
+  clientMutationId: string | null;
+  enrolment: {
+    __typename?: 'EnrolmentNode';
+    id: string;
+    occurrence: {
+      __typename?: 'OccurrenceNode';
+      id: string;
+      event: { __typename?: 'EventNode'; id: string };
+      venue: { __typename?: 'VenueNode'; id: string };
+    };
+    child: {
+      __typename?: 'ChildNode';
+      id: string;
+      occurrences: {
+        __typename?: 'OccurrenceNodeConnection';
+        edges: Array<{
+          __typename?: 'OccurrenceNodeEdge';
+          node: {
+            __typename?: 'OccurrenceNode';
+            id: string;
+            time: any;
+            event: {
+              __typename?: 'EventNode';
+              id: string;
+              image: string;
+              imageAltText: string | null;
+              description: string | null;
+              shortDescription: string | null;
+              name: string | null;
+              duration: number | null;
+              participantsPerInvite: EventParticipantsPerInvite;
+            };
+            venue: {
+              __typename?: 'VenueNode';
+              id: string;
+              name: string | null;
+              address: string | null;
+              accessibilityInfo: string | null;
+              arrivalInstructions: string | null;
+              additionalInfo: string | null;
+              wwwUrl: string | null;
+              wcAndFacilities: string | null;
+            };
+          } | null;
+        } | null>;
+      };
+      pastEvents: {
+        __typename?: 'EventConnection';
+        edges: Array<{
+          __typename?: 'EventEdge';
+          node: { __typename?: 'EventNode'; id: string } | null;
+        } | null>;
+      } | null;
+      availableEvents: {
+        __typename?: 'EventConnection';
+        edges: Array<{
+          __typename?: 'EventEdge';
+          node: { __typename?: 'EventNode'; id: string } | null;
+        } | null>;
+      } | null;
+    } | null;
+  } | null;
+};
+
 export type EnrolOccurrenceMutationVariables = Exact<{
   input: EnrolOccurrenceMutationInput;
 }>;
@@ -2146,6 +2698,101 @@ export type SubscribeToFreeSpotNotificationMutation = {
   subscribeToFreeSpotNotification: {
     __typename?: 'SubscribeToFreeSpotNotificationMutationPayload';
     clientMutationId: string | null;
+  } | null;
+};
+
+export type UnenrolOccurrencesFieldsFragment = {
+  __typename?: 'OccurrenceNodeConnection';
+  edges: Array<{
+    __typename?: 'OccurrenceNodeEdge';
+    node: {
+      __typename?: 'OccurrenceNode';
+      id: string;
+      time: any;
+      event: {
+        __typename?: 'EventNode';
+        id: string;
+        image: string;
+        imageAltText: string | null;
+        description: string | null;
+        shortDescription: string | null;
+        name: string | null;
+        duration: number | null;
+        participantsPerInvite: EventParticipantsPerInvite;
+      };
+      venue: {
+        __typename?: 'VenueNode';
+        id: string;
+        name: string | null;
+        address: string | null;
+        accessibilityInfo: string | null;
+        arrivalInstructions: string | null;
+        additionalInfo: string | null;
+        wwwUrl: string | null;
+        wcAndFacilities: string | null;
+      };
+    } | null;
+  } | null>;
+};
+
+export type UnenrolOccurrenceMutationPayloadFieldsFragment = {
+  __typename?: 'UnenrolOccurrenceMutationPayload';
+  clientMutationId: string | null;
+  occurrence: {
+    __typename?: 'OccurrenceNode';
+    id: string;
+    event: { __typename?: 'EventNode'; id: string };
+  } | null;
+  child: {
+    __typename?: 'ChildNode';
+    id: string;
+    availableEvents: {
+      __typename?: 'EventConnection';
+      edges: Array<{
+        __typename?: 'EventEdge';
+        node: { __typename?: 'EventNode'; id: string } | null;
+      } | null>;
+    } | null;
+    occurrences: {
+      __typename?: 'OccurrenceNodeConnection';
+      edges: Array<{
+        __typename?: 'OccurrenceNodeEdge';
+        node: {
+          __typename?: 'OccurrenceNode';
+          id: string;
+          time: any;
+          event: {
+            __typename?: 'EventNode';
+            id: string;
+            image: string;
+            imageAltText: string | null;
+            description: string | null;
+            shortDescription: string | null;
+            name: string | null;
+            duration: number | null;
+            participantsPerInvite: EventParticipantsPerInvite;
+          };
+          venue: {
+            __typename?: 'VenueNode';
+            id: string;
+            name: string | null;
+            address: string | null;
+            accessibilityInfo: string | null;
+            arrivalInstructions: string | null;
+            additionalInfo: string | null;
+            wwwUrl: string | null;
+            wcAndFacilities: string | null;
+          };
+        } | null;
+      } | null>;
+    };
+    pastEvents: {
+      __typename?: 'EventConnection';
+      edges: Array<{
+        __typename?: 'EventEdge';
+        node: { __typename?: 'EventNode'; id: string } | null;
+      } | null>;
+    } | null;
   } | null;
 };
 
@@ -2253,7 +2900,7 @@ export type EventExternalTicketSystemPasswordCountQuery = {
   } | null;
 };
 
-export type OccurrenceFragment = {
+export type EventOccurrenceFieldsFragment = {
   __typename?: 'OccurrenceNode';
   id: string;
   time: any;
@@ -2284,6 +2931,45 @@ export type OccurrenceFragment = {
         type: TicketSystem;
       }
     | null;
+};
+
+export type EventOccurrencesFieldsFragment = {
+  __typename?: 'OccurrenceNodeConnection';
+  edges: Array<{
+    __typename?: 'OccurrenceNodeEdge';
+    node: {
+      __typename?: 'OccurrenceNode';
+      id: string;
+      time: any;
+      remainingCapacity: number | null;
+      childHasFreeSpotNotificationSubscription: boolean | null;
+      event: {
+        __typename?: 'EventNode';
+        id: string;
+        name: string | null;
+        duration: number | null;
+      };
+      venue: {
+        __typename?: 'VenueNode';
+        id: string;
+        name: string | null;
+        address: string | null;
+      };
+      ticketSystem:
+        | { __typename?: 'InternalOccurrenceTicketSystem'; type: TicketSystem }
+        | {
+            __typename?: 'LippupisteOccurrenceTicketSystem';
+            url: string;
+            type: TicketSystem;
+          }
+        | {
+            __typename?: 'TicketmasterOccurrenceTicketSystem';
+            url: string;
+            type: TicketSystem;
+          }
+        | null;
+    } | null;
+  } | null>;
 };
 
 export type EventQueryVariables = Exact<{
@@ -2475,6 +3161,68 @@ export type EventExternalTicketSystemPasswordQuery = {
   } | null;
 };
 
+export type TicketmasterEventFieldsFragment = {
+  __typename?: 'TicketmasterEventTicketSystem';
+  childPassword: string | null;
+  url: string;
+};
+
+export type LippupisteEventFieldsFragment = {
+  __typename?: 'LippupisteEventTicketSystem';
+  childPassword: string | null;
+  url: string;
+};
+
+export type ExternalTicketSystemEventFieldsFragment = {
+  __typename?: 'EventNode';
+  id: string;
+  name: string | null;
+  description: string | null;
+  image: string;
+  imageAltText: string | null;
+  participantsPerInvite: EventParticipantsPerInvite;
+  occurrences: {
+    __typename?: 'OccurrenceNodeConnection';
+    edges: Array<{
+      __typename?: 'OccurrenceNodeEdge';
+      node: {
+        __typename?: 'OccurrenceNode';
+        ticketSystem:
+          | {
+              __typename?: 'InternalOccurrenceTicketSystem';
+              type: TicketSystem;
+            }
+          | {
+              __typename?: 'LippupisteOccurrenceTicketSystem';
+              url: string;
+              type: TicketSystem;
+            }
+          | {
+              __typename?: 'TicketmasterOccurrenceTicketSystem';
+              url: string;
+              type: TicketSystem;
+            }
+          | null;
+      } | null;
+    } | null>;
+  };
+  ticketSystem:
+    | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
+    | {
+        __typename?: 'LippupisteEventTicketSystem';
+        type: TicketSystem;
+        childPassword: string | null;
+        url: string;
+      }
+    | {
+        __typename?: 'TicketmasterEventTicketSystem';
+        type: TicketSystem;
+        childPassword: string | null;
+        url: string;
+      }
+    | null;
+};
+
 export type ExternalTicketSystemEventQueryVariables = Exact<{
   eventId: Scalars['ID']['input'];
   childId: Scalars['ID']['input'];
@@ -2519,18 +3267,74 @@ export type ExternalTicketSystemEventQuery = {
       | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
       | {
           __typename?: 'LippupisteEventTicketSystem';
+          type: TicketSystem;
           childPassword: string | null;
           url: string;
-          type: TicketSystem;
         }
       | {
           __typename?: 'TicketmasterEventTicketSystem';
+          type: TicketSystem;
           childPassword: string | null;
           url: string;
-          type: TicketSystem;
         }
       | null;
   } | null;
+};
+
+export type OccurrenceEventFieldsFragment = {
+  __typename?: 'EventNode';
+  id: string;
+  image: string;
+  imageAltText: string | null;
+  description: string | null;
+  shortDescription: string | null;
+  name: string | null;
+  duration: number | null;
+  participantsPerInvite: EventParticipantsPerInvite;
+  eventGroup: { __typename?: 'EventGroupNode'; id: string } | null;
+};
+
+export type OccurrenceVenueFieldsFragment = {
+  __typename?: 'VenueNode';
+  id: string;
+  name: string | null;
+  address: string | null;
+  accessibilityInfo: string | null;
+  arrivalInstructions: string | null;
+  additionalInfo: string | null;
+  wwwUrl: string | null;
+  wcAndFacilities: string | null;
+};
+
+export type OccurrenceFieldsFragment = {
+  __typename?: 'OccurrenceNode';
+  id: string;
+  time: any;
+  remainingCapacity: number | null;
+  childHasFreeSpotNotificationSubscription: boolean | null;
+  event: {
+    __typename?: 'EventNode';
+    id: string;
+    image: string;
+    imageAltText: string | null;
+    description: string | null;
+    shortDescription: string | null;
+    name: string | null;
+    duration: number | null;
+    participantsPerInvite: EventParticipantsPerInvite;
+    eventGroup: { __typename?: 'EventGroupNode'; id: string } | null;
+  };
+  venue: {
+    __typename?: 'VenueNode';
+    id: string;
+    name: string | null;
+    address: string | null;
+    accessibilityInfo: string | null;
+    arrivalInstructions: string | null;
+    additionalInfo: string | null;
+    wwwUrl: string | null;
+    wcAndFacilities: string | null;
+  };
 };
 
 export type OccurrenceQueryVariables = Exact<{
@@ -2570,6 +3374,55 @@ export type OccurrenceQuery = {
       wcAndFacilities: string | null;
     };
   } | null;
+};
+
+export type EventGroupEventFieldsFragment = {
+  __typename?: 'EventNode';
+  id: string;
+  name: string | null;
+  shortDescription: string | null;
+  image: string;
+  imageAltText: string | null;
+  canChildEnroll: boolean | null;
+};
+
+export type EventGroupEventsFieldsFragment = {
+  __typename?: 'EventNodeConnection';
+  edges: Array<{
+    __typename?: 'EventNodeEdge';
+    node: {
+      __typename?: 'EventNode';
+      id: string;
+      name: string | null;
+      shortDescription: string | null;
+      image: string;
+      imageAltText: string | null;
+      canChildEnroll: boolean | null;
+    } | null;
+  } | null>;
+};
+
+export type EventGroupFieldsFragment = {
+  __typename?: 'EventGroupNode';
+  id: string;
+  name: string | null;
+  shortDescription: string | null;
+  description: string | null;
+  events: {
+    __typename?: 'EventNodeConnection';
+    edges: Array<{
+      __typename?: 'EventNodeEdge';
+      node: {
+        __typename?: 'EventNode';
+        id: string;
+        name: string | null;
+        shortDescription: string | null;
+        image: string;
+        imageAltText: string | null;
+        canChildEnroll: boolean | null;
+      } | null;
+    } | null>;
+  };
 };
 
 export type EventGroupQueryVariables = Exact<{
@@ -2640,6 +3493,24 @@ export type GuardiansQuery = {
   } | null;
 };
 
+export type LanguageFieldsFragment = {
+  __typename?: 'LanguageNode';
+  id: string;
+  name: string | null;
+};
+
+export type LanguagesFieldsFragment = {
+  __typename?: 'LanguageNodeConnection';
+  edges: Array<{
+    __typename?: 'LanguageNodeEdge';
+    node: {
+      __typename?: 'LanguageNode';
+      id: string;
+      name: string | null;
+    } | null;
+  } | null>;
+};
+
 export type LanguageQueryVariables = Exact<{ [key: string]: never }>;
 
 export type LanguageQuery = {
@@ -2691,6 +3562,346 @@ export type ProfileChildrenQuery = {
       } | null>;
     };
   } | null;
+};
+
+export type MyProfileEnrolmentFieldsFragment = {
+  __typename?: 'EnrolmentNode';
+  id: string;
+  occurrence: {
+    __typename?: 'OccurrenceNode';
+    id: string;
+    time: any;
+    venue: { __typename?: 'VenueNode'; id: string; name: string | null };
+    event: {
+      __typename?: 'EventNode';
+      id: string;
+      name: string | null;
+      duration: number | null;
+    };
+  };
+};
+
+export type MyProfileEnrolmentsFieldsFragment = {
+  __typename?: 'EnrolmentNodeConnection';
+  edges: Array<{
+    __typename?: 'EnrolmentNodeEdge';
+    node: {
+      __typename?: 'EnrolmentNode';
+      id: string;
+      occurrence: {
+        __typename?: 'OccurrenceNode';
+        id: string;
+        time: any;
+        venue: { __typename?: 'VenueNode'; id: string; name: string | null };
+        event: {
+          __typename?: 'EventNode';
+          id: string;
+          name: string | null;
+          duration: number | null;
+        };
+      };
+    } | null;
+  } | null>;
+};
+
+export type MyProfileChildProjectFieldsFragment = {
+  __typename?: 'ProjectNode';
+  id: string;
+  name: string | null;
+  year: number;
+};
+
+export type MyProfileChildFieldsFragment = {
+  __typename?: 'ChildNode';
+  id: string;
+  firstName: string;
+  lastName: string;
+  birthdate: any;
+  postalCode: string;
+  project: {
+    __typename?: 'ProjectNode';
+    id: string;
+    name: string | null;
+    year: number;
+  };
+  relationships: {
+    __typename?: 'RelationshipNodeConnection';
+    edges: Array<{
+      __typename?: 'RelationshipNodeEdge';
+      node: {
+        __typename?: 'RelationshipNode';
+        id: string;
+        type: RelationshipTypeEnum | null;
+      } | null;
+    } | null>;
+  };
+  upcomingEventsAndEventGroups: {
+    __typename?: 'EventOrEventGroupConnection';
+    edges: Array<{
+      __typename?: 'EventOrEventGroupEdge';
+      node:
+        | { __typename?: 'EventGroupNode'; id: string; name: string | null }
+        | {
+            __typename?: 'EventNode';
+            id: string;
+            name: string | null;
+            duration: number | null;
+            participantsPerInvite: EventParticipantsPerInvite;
+          }
+        | null;
+    } | null>;
+  } | null;
+  occurrences: {
+    __typename?: 'OccurrenceNodeConnection';
+    edges: Array<{
+      __typename?: 'OccurrenceNodeEdge';
+      node: {
+        __typename?: 'OccurrenceNode';
+        id: string;
+        event: {
+          __typename?: 'EventNode';
+          id: string;
+          name: string | null;
+          shortDescription: string | null;
+        };
+      } | null;
+    } | null>;
+  };
+  enrolments: {
+    __typename?: 'EnrolmentNodeConnection';
+    edges: Array<{
+      __typename?: 'EnrolmentNodeEdge';
+      node: {
+        __typename?: 'EnrolmentNode';
+        id: string;
+        occurrence: {
+          __typename?: 'OccurrenceNode';
+          id: string;
+          time: any;
+          venue: { __typename?: 'VenueNode'; id: string; name: string | null };
+          event: {
+            __typename?: 'EventNode';
+            id: string;
+            name: string | null;
+            duration: number | null;
+          };
+        };
+      } | null;
+    } | null>;
+  };
+};
+
+export type MyProfileChildrenFieldsFragment = {
+  __typename?: 'ChildNodeConnection';
+  edges: Array<{
+    __typename?: 'ChildNodeEdge';
+    node: {
+      __typename?: 'ChildNode';
+      id: string;
+      firstName: string;
+      lastName: string;
+      birthdate: any;
+      postalCode: string;
+      project: {
+        __typename?: 'ProjectNode';
+        id: string;
+        name: string | null;
+        year: number;
+      };
+      relationships: {
+        __typename?: 'RelationshipNodeConnection';
+        edges: Array<{
+          __typename?: 'RelationshipNodeEdge';
+          node: {
+            __typename?: 'RelationshipNode';
+            id: string;
+            type: RelationshipTypeEnum | null;
+          } | null;
+        } | null>;
+      };
+      upcomingEventsAndEventGroups: {
+        __typename?: 'EventOrEventGroupConnection';
+        edges: Array<{
+          __typename?: 'EventOrEventGroupEdge';
+          node:
+            | { __typename?: 'EventGroupNode'; id: string; name: string | null }
+            | {
+                __typename?: 'EventNode';
+                id: string;
+                name: string | null;
+                duration: number | null;
+                participantsPerInvite: EventParticipantsPerInvite;
+              }
+            | null;
+        } | null>;
+      } | null;
+      occurrences: {
+        __typename?: 'OccurrenceNodeConnection';
+        edges: Array<{
+          __typename?: 'OccurrenceNodeEdge';
+          node: {
+            __typename?: 'OccurrenceNode';
+            id: string;
+            event: {
+              __typename?: 'EventNode';
+              id: string;
+              name: string | null;
+              shortDescription: string | null;
+            };
+          } | null;
+        } | null>;
+      };
+      enrolments: {
+        __typename?: 'EnrolmentNodeConnection';
+        edges: Array<{
+          __typename?: 'EnrolmentNodeEdge';
+          node: {
+            __typename?: 'EnrolmentNode';
+            id: string;
+            occurrence: {
+              __typename?: 'OccurrenceNode';
+              id: string;
+              time: any;
+              venue: {
+                __typename?: 'VenueNode';
+                id: string;
+                name: string | null;
+              };
+              event: {
+                __typename?: 'EventNode';
+                id: string;
+                name: string | null;
+                duration: number | null;
+              };
+            };
+          } | null;
+        } | null>;
+      };
+    } | null;
+  } | null>;
+};
+
+export type LanguageSpokenAtHomeFieldsFragment = {
+  __typename?: 'LanguageNode';
+  id: string;
+};
+
+export type LanguagesSpokenAtHomeFieldsFragment = {
+  __typename?: 'LanguageNodeConnection';
+  edges: Array<{
+    __typename?: 'LanguageNodeEdge';
+    node: { __typename?: 'LanguageNode'; id: string } | null;
+  } | null>;
+};
+
+export type MyProfileFieldsFragment = {
+  __typename?: 'GuardianNode';
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  language: Language;
+  children: {
+    __typename?: 'ChildNodeConnection';
+    edges: Array<{
+      __typename?: 'ChildNodeEdge';
+      node: {
+        __typename?: 'ChildNode';
+        id: string;
+        firstName: string;
+        lastName: string;
+        birthdate: any;
+        postalCode: string;
+        project: {
+          __typename?: 'ProjectNode';
+          id: string;
+          name: string | null;
+          year: number;
+        };
+        relationships: {
+          __typename?: 'RelationshipNodeConnection';
+          edges: Array<{
+            __typename?: 'RelationshipNodeEdge';
+            node: {
+              __typename?: 'RelationshipNode';
+              id: string;
+              type: RelationshipTypeEnum | null;
+            } | null;
+          } | null>;
+        };
+        upcomingEventsAndEventGroups: {
+          __typename?: 'EventOrEventGroupConnection';
+          edges: Array<{
+            __typename?: 'EventOrEventGroupEdge';
+            node:
+              | {
+                  __typename?: 'EventGroupNode';
+                  id: string;
+                  name: string | null;
+                }
+              | {
+                  __typename?: 'EventNode';
+                  id: string;
+                  name: string | null;
+                  duration: number | null;
+                  participantsPerInvite: EventParticipantsPerInvite;
+                }
+              | null;
+          } | null>;
+        } | null;
+        occurrences: {
+          __typename?: 'OccurrenceNodeConnection';
+          edges: Array<{
+            __typename?: 'OccurrenceNodeEdge';
+            node: {
+              __typename?: 'OccurrenceNode';
+              id: string;
+              event: {
+                __typename?: 'EventNode';
+                id: string;
+                name: string | null;
+                shortDescription: string | null;
+              };
+            } | null;
+          } | null>;
+        };
+        enrolments: {
+          __typename?: 'EnrolmentNodeConnection';
+          edges: Array<{
+            __typename?: 'EnrolmentNodeEdge';
+            node: {
+              __typename?: 'EnrolmentNode';
+              id: string;
+              occurrence: {
+                __typename?: 'OccurrenceNode';
+                id: string;
+                time: any;
+                venue: {
+                  __typename?: 'VenueNode';
+                  id: string;
+                  name: string | null;
+                };
+                event: {
+                  __typename?: 'EventNode';
+                  id: string;
+                  name: string | null;
+                  duration: number | null;
+                };
+              };
+            } | null;
+          } | null>;
+        };
+      } | null;
+    } | null>;
+  };
+  languagesSpokenAtHome: {
+    __typename?: 'LanguageNodeConnection';
+    edges: Array<{
+      __typename?: 'LanguageNodeEdge';
+      node: { __typename?: 'LanguageNode'; id: string } | null;
+    } | null>;
+  };
 };
 
 export type ProfileQueryVariables = Exact<{ [key: string]: never }>;
@@ -2803,6 +4014,91 @@ export type ProfileQuery = {
       edges: Array<{
         __typename?: 'LanguageNodeEdge';
         node: { __typename?: 'LanguageNode'; id: string } | null;
+      } | null>;
+    };
+  } | null;
+};
+
+export type SubmitGuardianFieldsFragment = {
+  __typename?: 'GuardianNode';
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  language: Language;
+  children: {
+    __typename?: 'ChildNodeConnection';
+    edges: Array<{
+      __typename?: 'ChildNodeEdge';
+      node: {
+        __typename?: 'ChildNode';
+        id: string;
+        firstName: string;
+        lastName: string;
+        birthdate: any;
+        postalCode: string;
+        project: {
+          __typename?: 'ProjectNode';
+          id: string;
+          name: string | null;
+          year: number;
+        };
+        relationships: {
+          __typename?: 'RelationshipNodeConnection';
+          edges: Array<{
+            __typename?: 'RelationshipNodeEdge';
+            node: {
+              __typename?: 'RelationshipNode';
+              id: string;
+              type: RelationshipTypeEnum | null;
+            } | null;
+          } | null>;
+        };
+      } | null;
+    } | null>;
+  };
+};
+
+export type SubmitChildrenAndGuardianMutationPayloadFieldsFragment = {
+  __typename?: 'SubmitChildrenAndGuardianMutationPayload';
+  guardian: {
+    __typename?: 'GuardianNode';
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    language: Language;
+    children: {
+      __typename?: 'ChildNodeConnection';
+      edges: Array<{
+        __typename?: 'ChildNodeEdge';
+        node: {
+          __typename?: 'ChildNode';
+          id: string;
+          firstName: string;
+          lastName: string;
+          birthdate: any;
+          postalCode: string;
+          project: {
+            __typename?: 'ProjectNode';
+            id: string;
+            name: string | null;
+            year: number;
+          };
+          relationships: {
+            __typename?: 'RelationshipNodeConnection';
+            edges: Array<{
+              __typename?: 'RelationshipNodeEdge';
+              node: {
+                __typename?: 'RelationshipNode';
+                id: string;
+                type: RelationshipTypeEnum | null;
+              } | null;
+            } | null>;
+          };
+        } | null;
       } | null>;
     };
   } | null;

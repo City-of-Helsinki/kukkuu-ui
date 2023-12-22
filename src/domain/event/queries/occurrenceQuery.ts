@@ -1,35 +1,47 @@
 import { gql } from '@apollo/client';
 
 const occurrenceQuery = gql`
+  fragment OccurrenceEventFields on EventNode {
+    id
+    image
+    imageAltText
+    description
+    shortDescription
+    name
+    duration
+    participantsPerInvite
+    eventGroup {
+      id
+    }
+  }
+
+  fragment OccurrenceVenueFields on VenueNode {
+    id
+    name
+    address
+    accessibilityInfo
+    arrivalInstructions
+    additionalInfo
+    wwwUrl
+    wcAndFacilities
+  }
+
+  fragment OccurrenceFields on OccurrenceNode {
+    id
+    time
+    remainingCapacity
+    event {
+      ...OccurrenceEventFields
+    }
+    venue {
+      ...OccurrenceVenueFields
+    }
+    childHasFreeSpotNotificationSubscription(childId: $childId)
+  }
+
   query occurrenceQuery($id: ID!, $childId: ID) {
     occurrence(id: $id) {
-      id
-      time
-      remainingCapacity
-      event {
-        id
-        image
-        imageAltText
-        description
-        shortDescription
-        name
-        duration
-        participantsPerInvite
-        eventGroup {
-          id
-        }
-      }
-      venue {
-        id
-        name
-        address
-        accessibilityInfo
-        arrivalInstructions
-        additionalInfo
-        wwwUrl
-        wcAndFacilities
-      }
-      childHasFreeSpotNotificationSubscription(childId: $childId)
+      ...OccurrenceFields
     }
   }
 `;

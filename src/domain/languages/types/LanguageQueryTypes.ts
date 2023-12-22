@@ -1,5 +1,3 @@
-import { LanguageQuery } from '../../api/generatedTypes/graphql';
+import { LanguageFieldsFragment } from '../../api/generatedTypes/graphql';
 
-export type LanguageNode = NonNullable<
-  NonNullable<LanguageQuery['languages']>['edges'][number]
->['node'];
+export type LanguageNode = LanguageFieldsFragment;

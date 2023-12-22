@@ -6,11 +6,11 @@ import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { IconPen } from 'hds-react';
 
-import { EditChildPayload } from '../../../child/types/UpdateChildMutationTypes';
-import { DeleteChildPayload } from '../../../child/types/DeleteChildMutationTypes';
 import {
   UpdateChildMutationInput,
   ChildByIdQuery,
+  UpdateChildMutationPayloadFieldsFragment,
+  DeleteChildMutationPayloadFieldsFragment,
 } from '../../../api/generatedTypes/graphql';
 import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import ErrorMessage from '../../../../common/components/error/Error';
@@ -55,15 +55,21 @@ const ProfileChildDetail = () => {
   });
   const getPathname = useGetPathname();
 
-  const [deleteChild] = useMutation<DeleteChildPayload>(deleteChildMutation, {
-    refetchQueries: [{ query: profileQuery }],
-  });
+  const [deleteChild] = useMutation<DeleteChildMutationPayloadFieldsFragment>(
+    deleteChildMutation,
+    {
+      refetchQueries: [{ query: profileQuery }],
+    }
+  );
 
-  const [editChild] = useMutation<EditChildPayload>(editChildMutation, {
-    refetchQueries: [
-      { query: childByIdQuery, variables: { id: params.childId } },
-    ],
-  });
+  const [editChild] = useMutation<UpdateChildMutationPayloadFieldsFragment>(
+    editChildMutation,
+    {
+      refetchQueries: [
+        { query: childByIdQuery, variables: { id: params.childId } },
+      ],
+    }
+  );
 
   const [isOpen, setIsOpen] = useState(false);
   if (loading) {

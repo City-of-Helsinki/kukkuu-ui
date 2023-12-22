@@ -1,5 +1,3 @@
-import { SubmitChildrenAndGuardianMutation } from '../../api/generatedTypes/graphql';
+import { SubmitGuardianFieldsFragment } from '../../api/generatedTypes/graphql';
 
-export type Guardian = NonNullable<
-  SubmitChildrenAndGuardianMutation['submitChildrenAndGuardian']
->['guardian'];
+export type Guardian = SubmitGuardianFieldsFragment;

@@ -1,19 +1,20 @@
-import { ProfileQuery } from '../../api/generatedTypes/graphql';
+import {
+  LanguageSpokenAtHomeFieldsFragment,
+  MyProfileChildProjectFieldsFragment,
+  MyProfileEnrolmentFieldsFragment,
+  MyProfileFieldsFragment,
+  MyProfileChildrenFieldsFragment,
+  MyProfileChildFieldsFragment,
+} from '../../api/generatedTypes/graphql';
 
-export type MyProfile = NonNullable<ProfileQuery['myProfile']>;
+export type MyProfile = MyProfileFieldsFragment;
 
-export type MyProfileChildren = MyProfile['children'];
+export type MyProfileChildren = MyProfileChildrenFieldsFragment;
 
-export type MyProfileChild = NonNullable<
-  NonNullable<MyProfileChildren['edges'][number]>['node']
->;
+export type MyProfileChild = MyProfileChildFieldsFragment;
 
-export type MyProfileEnrolment = NonNullable<
-  NonNullable<MyProfileChild['enrolments']['edges'][number]>['node']
->;
+export type MyProfileEnrolment = MyProfileEnrolmentFieldsFragment;
 
-export type LanguagesSpokenAtHomeNode = NonNullable<
-  MyProfile['languagesSpokenAtHome']['edges'][number]
->['node'];
+export type LanguagesSpokenAtHomeNode = LanguageSpokenAtHomeFieldsFragment;
 
-export type Project = MyProfileChild['project'];
+export type Project = MyProfileChildProjectFieldsFragment;

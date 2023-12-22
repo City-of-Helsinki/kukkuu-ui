@@ -1,5 +1,7 @@
-import { EnrolOccurrences } from './EnrolOccurrenceMutationTypes';
-import { UnenrolOccurrences } from './UnenrolOccurrenceMutationTypes';
+import {
+  EnrolOccurrencesFieldsFragment,
+  UnenrolOccurrencesFieldsFragment,
+} from '../../api/generatedTypes/graphql';
 
 export interface ChildEvents {
   childId: string;
@@ -8,5 +10,7 @@ export interface ChildEvents {
 
 export interface ChildOccurrences {
   childId: string;
-  occurrences: EnrolOccurrences | UnenrolOccurrences;
+  occurrences:
+    | EnrolOccurrencesFieldsFragment
+    | UnenrolOccurrencesFieldsFragment;
 }
