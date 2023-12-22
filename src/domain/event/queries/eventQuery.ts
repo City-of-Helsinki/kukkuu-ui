@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-const OccurrenceFragment = gql`
-  fragment OccurrenceFragment on OccurrenceNode {
+const eventQueryFragments = gql`
+  fragment EventOccurrenceFields on OccurrenceNode {
     id
     time
     remainingCapacity
@@ -26,6 +26,14 @@ const OccurrenceFragment = gql`
       }
     }
   }
+
+  fragment EventOccurrencesFields on OccurrenceNodeConnection {
+    edges {
+      node {
+        ...EventOccurrenceFields
+      }
+    }
+  }
 `;
 
 const eventQuery = gql`
@@ -45,18 +53,10 @@ const eventQuery = gql`
         id
       }
       occurrences(upcoming: true, date: $date, time: $time) {
-        edges {
-          node {
-            ...OccurrenceFragment
-          }
-        }
+        ...EventOccurrencesFields
       }
       allOccurrences: occurrences(upcoming: true) {
-        edges {
-          node {
-            ...OccurrenceFragment
-          }
-        }
+        ...EventOccurrencesFields
       }
       ticketSystem {
         type
@@ -72,17 +72,17 @@ const eventQuery = gql`
     }
   }
 
-  ${OccurrenceFragment}
+  ${eventQueryFragments}
 `;
 
 export const eventOccurrenceQuery = gql`
   query eventOccurrenceQuery($id: ID!, $childId: ID!) {
     occurrence(id: $id) {
-      ...OccurrenceFragment
+      ...EventOccurrenceFields
     }
   }
 
-  ${OccurrenceFragment}
+  ${eventQueryFragments}
 `;
 
 export const eventExternalTicketSystemPasswordQuery = gql`

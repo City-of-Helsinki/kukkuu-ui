@@ -1,56 +1,46 @@
-import { ChildByIdQuery } from '../../api/generatedTypes/graphql';
+import {
+  ChildByIdQueryFieldsFragment,
+  PastEventsFieldsFragment,
+  PastEventFieldsFragment,
+  ActiveInternalAndTicketSystemEnrolmentsFieldsFragment,
+  ActiveInternalEnrolmentFieldsFragment,
+  ActiveTicketmasterEnrolmentFieldsFragment,
+  ActiveLippupisteEnrolmentFieldsFragment,
+  EnrolmentOccurrenceFieldsFragment,
+  UpcomingEventsAndEventGroupsFieldsFragment,
+  UpcomingEventFieldsFragment,
+  UpcomingEventGroupFieldsFragment,
+} from '../../api/generatedTypes/graphql';
 
-export type ChildByIdResponse = NonNullable<ChildByIdQuery['child']>;
+export type ChildByIdResponse = ChildByIdQueryFieldsFragment;
 
-export type PastEvents = ChildByIdResponse['pastEvents'];
+export type PastEvents = PastEventsFieldsFragment;
 
-export type PastEvent = NonNullable<
-  NonNullable<PastEvents>['edges'][number]
->['node'];
+export type PastEvent = PastEventFieldsFragment;
 
 export type InternalAndTicketSystemEnrolments =
-  ChildByIdResponse['activeInternalAndTicketSystemEnrolments'];
+  ActiveInternalAndTicketSystemEnrolmentsFieldsFragment;
 
-export type InternalOrTicketSystemEnrolment = NonNullable<
-  NonNullable<
-    NonNullable<InternalAndTicketSystemEnrolments>['edges'][number]
-  >['node']
->;
+export type InternalEnrolment = ActiveInternalEnrolmentFieldsFragment;
 
-export type InternalEnrolment = Extract<
-  InternalOrTicketSystemEnrolment,
-  { __typename: 'EnrolmentNode' }
->;
+export type TicketmasterEnrolment = ActiveTicketmasterEnrolmentFieldsFragment;
 
-export type TicketmasterEnrolment = Extract<
-  InternalOrTicketSystemEnrolment,
-  { __typename: 'TicketmasterEnrolmentNode' }
->;
+export type LippupisteEnrolment = ActiveLippupisteEnrolmentFieldsFragment;
 
-export type LippupisteEnrolment = Extract<
-  InternalOrTicketSystemEnrolment,
-  { __typename: 'LippupisteEnrolmentNode' }
->;
+export type InternalOrTicketSystemEnrolment =
+  | ActiveInternalEnrolmentFieldsFragment
+  | ActiveTicketmasterEnrolmentFieldsFragment
+  | ActiveLippupisteEnrolmentFieldsFragment;
 
-export type InternalEnrolmentOccurrence = NonNullable<
-  InternalEnrolment['occurrence']
->;
+export type InternalEnrolmentOccurrence = EnrolmentOccurrenceFieldsFragment;
 
 export type UpcomingEventsAndEventGroups =
-  ChildByIdResponse['upcomingEventsAndEventGroups'];
+  UpcomingEventsAndEventGroupsFieldsFragment;
 
-export type UpcomingEventOrEventGroup = NonNullable<
-  NonNullable<
-    NonNullable<UpcomingEventsAndEventGroups>['edges'][number]
-  >['node']
->;
+export type UpcomingEvent = UpcomingEventFieldsFragment;
 
-export type UpcomingEvent = Extract<
-  UpcomingEventOrEventGroup,
-  { __typename: 'EventNode' }
->;
+export type UpcomingEventGroup = UpcomingEventGroupFieldsFragment;
 
-export type UpcomingEventGroup = Extract<
-  UpcomingEventOrEventGroup,
-  { __typename: 'EventGroupNode' }
->;
+export type UpcomingEventOrEventGroup =
+  | UpcomingEventFieldsFragment
+  | UpcomingEventGroupFieldsFragment;

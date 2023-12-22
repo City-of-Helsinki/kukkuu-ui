@@ -20,36 +20,44 @@ export const addChildMutation = gql`
 `;
 
 export const deleteChildMutation = gql`
+  fragment DeleteChildMutationPayloadFields on DeleteChildMutationPayload {
+    clientMutationId
+  }
+
   mutation deleteChild($input: DeleteChildMutationInput!) {
     deleteChild(input: $input) {
-      clientMutationId
+      ...DeleteChildMutationPayloadFields
     }
   }
 `;
 
 export const editChildMutation = gql`
-  mutation updateChild($input: UpdateChildMutationInput!) {
-    updateChild(input: $input) {
-      child {
+  fragment UpdateChildMutationPayloadFields on UpdateChildMutationPayload {
+    child {
+      id
+      firstName
+      lastName
+      birthdate
+      postalCode
+      project {
         id
-        firstName
-        lastName
-        birthdate
-        postalCode
-        project {
-          id
-          name
-          year
-        }
-        relationships {
-          edges {
-            node {
-              id
-              type
-            }
+        name
+        year
+      }
+      relationships {
+        edges {
+          node {
+            id
+            type
           }
         }
       }
+    }
+  }
+
+  mutation updateChild($input: UpdateChildMutationInput!) {
+    updateChild(input: $input) {
+      ...UpdateChildMutationPayloadFields
     }
   }
 `;

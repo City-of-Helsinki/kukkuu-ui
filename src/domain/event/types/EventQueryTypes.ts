@@ -1,9 +1,8 @@
-import { EventQuery } from '../../api/generatedTypes/graphql';
+import {
+  EventOccurrencesFieldsFragment,
+  EventOccurrenceFieldsFragment,
+} from '../../api/generatedTypes/graphql';
 
-export type Occurrences = NonNullable<
-  NonNullable<EventQuery['event']>['occurrences']
->;
+export type Occurrences = EventOccurrencesFieldsFragment;
 
-export type OccurrenceNode = NonNullable<
-  NonNullable<Occurrences['edges'][number]>['node']
->;
+export type OccurrenceNode = EventOccurrenceFieldsFragment;

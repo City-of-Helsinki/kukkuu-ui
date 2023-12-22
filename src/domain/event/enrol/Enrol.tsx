@@ -2,14 +2,14 @@ import { useTranslation } from 'react-i18next';
 import joinClassNames from 'classnames';
 
 import styles from './enrol.module.scss';
-import { OccurrenceQuery } from '../../api/generatedTypes/graphql';
 import OccurrenceInfo from '../partial/OccurrenceInfo';
 import Button from '../../../common/components/button/Button';
 import EventOccurrenceNotificationControlButton from '../EventOccurrenceNotificationControlButton';
+import { OccurrenceFields } from '../types/OccurrenceQueryTypes';
 
 type Props = {
   childId: string;
-  occurrence: NonNullable<OccurrenceQuery['occurrence']>;
+  occurrence: OccurrenceFields;
   onCancel: () => void;
   onEnrol: () => void;
   onUnsubscribed?: () => void;

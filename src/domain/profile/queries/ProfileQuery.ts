@@ -1,93 +1,125 @@
 import { gql } from '@apollo/client';
 
 const profileQuery = gql`
+  fragment MyProfileEnrolmentFields on EnrolmentNode {
+    id
+    occurrence {
+      id
+      time
+      venue {
+        id
+        name
+      }
+      event {
+        id
+        name
+        duration
+      }
+    }
+  }
+
+  fragment MyProfileEnrolmentsFields on EnrolmentNodeConnection {
+    edges {
+      node {
+        ...MyProfileEnrolmentFields
+      }
+    }
+  }
+
+  fragment MyProfileChildProjectFields on ProjectNode {
+    id
+    name
+    year
+  }
+
+  fragment MyProfileChildFields on ChildNode {
+    id
+    firstName
+    lastName
+    birthdate
+    postalCode
+    project {
+      ...MyProfileChildProjectFields
+    }
+    relationships {
+      edges {
+        node {
+          id
+          type
+        }
+      }
+    }
+    upcomingEventsAndEventGroups {
+      edges {
+        node {
+          ... on EventGroupNode {
+            id
+            name
+          }
+          ... on EventNode {
+            id
+            name
+            duration
+            participantsPerInvite
+          }
+        }
+      }
+    }
+    occurrences {
+      edges {
+        node {
+          id
+          event {
+            id
+            name
+            shortDescription
+          }
+        }
+      }
+    }
+    enrolments {
+      ...MyProfileEnrolmentsFields
+    }
+  }
+
+  fragment MyProfileChildrenFields on ChildNodeConnection {
+    edges {
+      node {
+        ...MyProfileChildFields
+      }
+    }
+  }
+
+  fragment LanguageSpokenAtHomeFields on LanguageNode {
+    id
+  }
+
+  fragment LanguagesSpokenAtHomeFields on LanguageNodeConnection {
+    edges {
+      node {
+        ...LanguageSpokenAtHomeFields
+      }
+    }
+  }
+
+  fragment MyProfileFields on GuardianNode {
+    id
+    firstName
+    lastName
+    email
+    phoneNumber
+    language
+    children {
+      ...MyProfileChildrenFields
+    }
+    languagesSpokenAtHome {
+      ...LanguagesSpokenAtHomeFields
+    }
+  }
+
   query profileQuery {
     myProfile {
-      id
-      firstName
-      lastName
-      email
-      phoneNumber
-      language
-      children {
-        edges {
-          node {
-            id
-            firstName
-            lastName
-            birthdate
-            postalCode
-            project {
-              id
-              name
-              year
-            }
-            relationships {
-              edges {
-                node {
-                  id
-                  type
-                }
-              }
-            }
-            upcomingEventsAndEventGroups {
-              edges {
-                node {
-                  ... on EventGroupNode {
-                    id
-                    name
-                  }
-                  ... on EventNode {
-                    id
-                    name
-                    duration
-                    participantsPerInvite
-                  }
-                }
-              }
-            }
-            occurrences {
-              edges {
-                node {
-                  id
-                  event {
-                    id
-                    name
-                    shortDescription
-                  }
-                }
-              }
-            }
-            enrolments {
-              edges {
-                node {
-                  id
-                  occurrence {
-                    id
-                    time
-                    venue {
-                      id
-                      name
-                    }
-                    event {
-                      id
-                      name
-                      duration
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      languagesSpokenAtHome {
-        edges {
-          node {
-            id
-          }
-        }
-      }
+      ...MyProfileFields
     }
   }
 `;
