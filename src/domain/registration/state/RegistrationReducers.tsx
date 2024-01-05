@@ -6,6 +6,7 @@ import {
   setFormValues,
   setHomeFormValues,
 } from './RegistrationActions';
+import { Language } from '../../api/generatedTypes/graphql';
 
 export const defaultRegistrationData: RegistrationData = {
   formValues: {
@@ -26,7 +27,7 @@ export const defaultRegistrationData: RegistrationData = {
       phoneNumber: '',
       languagesSpokenAtHome: [],
     },
-    preferLanguage: '',
+    preferLanguage: Language.Fi,
     agree: false,
     verifyInformation: false,
   },

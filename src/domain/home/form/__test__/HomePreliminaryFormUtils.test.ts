@@ -1,6 +1,7 @@
 import { RegistrationFormValues } from '../../../registration/types/RegistrationTypes';
 import { HomeFormValues } from '../types/HomeFormTypes';
 import { convertFormValues } from '../HomePreliminaryFormUtils';
+import { Language } from '../../../api/generatedTypes/graphql';
 
 const convertFrom: RegistrationFormValues = {
   children: [
@@ -19,7 +20,7 @@ const convertFrom: RegistrationFormValues = {
     email: 'yomama@example.com',
     languagesSpokenAtHome: ['fi'],
   },
-  preferLanguage: 'en',
+  preferLanguage: Language.En,
   agree: false,
   verifyInformation: false,
 };
