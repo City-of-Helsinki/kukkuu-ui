@@ -1,5 +1,6 @@
 import { getEligibleCities, isChildEligible } from '../NotEligibleUtils';
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
+import { Language } from '../../../api/generatedTypes/graphql';
 
 const values: RegistrationFormValues = {
   children: [
@@ -11,7 +12,7 @@ const values: RegistrationFormValues = {
       postalCode: '00100',
     },
   ],
-  preferLanguage: 'en',
+  preferLanguage: Language.En,
   guardian: {
     phoneNumber: '040444444',
     firstName: 'gfn',

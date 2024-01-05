@@ -14,7 +14,6 @@ import styles from './registrationForm.module.scss';
 import submitChildrenAndGuardianMutation from '../mutations/submitChildrenAndGuardianMutation';
 import { resetFormValues, setFormValues } from '../state/RegistrationActions';
 import { initialFormDataSelector } from './RegistrationFormSelectors';
-import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
 import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
@@ -144,10 +143,7 @@ const RegistrationForm = () => {
               );
 
               // Convert from language as a string ('fi', 'en') to the corresponding enum
-              const language: Language =
-                Language[
-                  values.preferLanguage.toUpperCase() as keyof typeof Language
-                ];
+              const language: Language = values.preferLanguage;
 
               const backendSupportGuardian: GuardianInput = {
                 firstName: values.guardian.firstName,
@@ -316,15 +312,15 @@ const RegistrationForm = () => {
                     options={[
                       {
                         label: t('common.language.en'),
-                        value: SUPPORT_LANGUAGES.EN,
+                        value: Language.En,
                       },
                       {
                         label: t('common.language.fi'),
-                        value: SUPPORT_LANGUAGES.FI,
+                        value: Language.Fi,
                       },
                       {
                         label: t('common.language.sv'),
-                        value: SUPPORT_LANGUAGES.SV,
+                        value: Language.Sv,
                       },
                     ]}
                     placeholder={t(

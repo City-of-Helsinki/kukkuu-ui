@@ -1,3 +1,4 @@
+import { Language } from '../../api/generatedTypes/graphql';
 import { Children } from '../../child/types/ChildInputTypes';
 
 export interface RegistrationFormValues {
@@ -9,7 +10,7 @@ export interface RegistrationFormValues {
     email: string;
     languagesSpokenAtHome: string[];
   };
-  preferLanguage: string;
+  preferLanguage: Language;
   agree: boolean;
   verifyInformation: boolean;
 }
