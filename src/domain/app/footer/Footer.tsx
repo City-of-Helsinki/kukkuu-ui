@@ -1,13 +1,11 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import joinClassNames from 'classnames';
-import { Koros } from 'hds-react';
+import { Link, Logo, Footer as HDSFooter, logoSv, logoFi } from 'hds-react';
 
 import styles from './footer.module.scss';
-import Container from '../layout/Container';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
+import { resetFocusId } from '../../../common/components/resetFocus/ResetFocus';
 
 type Props = {
   className?: string;
@@ -16,44 +14,66 @@ type Props = {
 const Footer: FunctionComponent<Props> = ({ className }) => {
   const { t, i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
-  const logoLang = currentLocale === 'sv' ? styles.sv : styles.fi;
   const getPathname = useGetPathname();
 
+  // override Footer component default behaviour which focuses skip-link
+  const handleBackToTop = () => {
+    window?.scrollTo({ top: 0 });
+    document.querySelector<HTMLDivElement>(`#${resetFocusId}`)?.focus();
+  };
+
+  const navigationItems = [
+    {
+      id: 'accessibilityStatement',
+      label: t('accessibilityStatement.title'),
+      path: getPathname('/accessibility#start'),
+    },
+    {
+      id: 'termsOfService',
+      label: t('termsOfService.title'),
+      path: getPathname('/terms#'),
+    },
+    {
+      id: 'cookieConsent',
+      label: t('cookieConsent.title'),
+      path: getPathname('/cookie-consent#'),
+    },
+    {
+      id: 'descriptionOfTheFile',
+      label: t('descriptionOfTheFile.title'),
+      path: t('descriptionOfTheFile.url'),
+    },
+    {
+      id: 'dataProtection',
+      label: t('dataProtection.title'),
+      path: t('dataProtection.url'),
+    },
+  ];
+
   return (
-    <div className={joinClassNames(styles.footerWrapper, className)}>
-      <Koros className={styles.koros} />
-      <Container>
-        <div className={styles.footer}>
-          <div className={joinClassNames(styles.helsinkiLogo, logoLang)}></div>
-          <div className={styles.copyright}>
-            <p>{t('footer.copyrightText')}</p>
-          </div>
-          <div className={styles.links}>
-            <Link to={getPathname('/accessibility#start')}>
-              {t('accessibilityStatement.title')}
-            </Link>{' '}
-            •{' '}
-            <Link to={getPathname('/terms#')}>{t('termsOfService.title')}</Link>{' '}
-            •{' '}
-            <Link to={getPathname('/cookie-consent#')}>
-              {t('cookieConsent.title')}
-            </Link>{' '}
-            •{' '}
-            <a
-              href={t('descriptionOfTheFile.url')}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {t('descriptionOfTheFile.title')}
-            </a>{' '}
-            •{' '}
-            <a href={t('dataProtection.url')} rel="noopener noreferrer">
-              {t('dataProtection.title')}
-            </a>
-          </div>
-        </div>
-      </Container>
-    </div>
+    <HDSFooter title={t('appName')} className={styles.footer}>
+      <HDSFooter.Base
+        copyrightHolder={t('common.cityOfHelsinki')}
+        logo={
+          <Logo
+            src={currentLocale === 'sv' ? logoSv : logoFi}
+            size="medium"
+            alt={t('common.cityOfHelsinki')}
+          />
+        }
+        backToTopLabel={t('footer.backToTop')}
+        onBackToTopClick={handleBackToTop}
+      >
+        {navigationItems.map((navigationItem) => (
+          <HDSFooter.Link
+            key={navigationItem?.id}
+            as={Link}
+            href={navigationItem?.path || ''}
+            label={navigationItem?.label ?? undefined}
+          />
+        ))}
+      </HDSFooter.Base>
+    </HDSFooter>
   );
 };
 

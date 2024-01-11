@@ -95,6 +95,7 @@
     "closeButton": {
       "altText": "Close"
     },
+    "cityOfHelsinki": "City of Helsinki",
     "closeButtonLabelText": "Close",
     "error": {
       "description": "Please try again later",
@@ -239,7 +240,7 @@
   },
   "dataProtection": {
     "title": "Data Protection",
-    "url": "https://www.hel.fi/helsinki/en/administration/information/data-protection"
+    "url": "https://www.hel.fi/en/decision-making/information-on-helsinki/data-protection-and-information-management/data-protection"
   },
   "descriptionOfTheFile": {
     "title": "Privacy policy",
@@ -376,7 +377,7 @@
     }
   },
   "footer": {
-    "copyrightText": "© City of Helsinki"
+    "backToTop": "Back to top"
   },
   "home": {
     "contact": {
