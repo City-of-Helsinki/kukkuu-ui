@@ -22,7 +22,8 @@
       "message": "Ett fel uppstod. Försök att logga in igen."
     },
     "login": {
-      "text": "Logga in"
+      "text": "Logga in",
+      "shortText": "Logga in"
     },
     "logout": {
       "text": "Logga ut"
