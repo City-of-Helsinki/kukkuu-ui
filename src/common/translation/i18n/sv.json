@@ -95,6 +95,7 @@
     "closeButton": {
       "altText": "Stäng"
     },
+    "cityOfHelsinki": "Helsingfors stad",
     "closeButtonLabelText": "Stäng",
     "error": {
       "description": "Försök igen senare",
@@ -239,7 +240,7 @@
   },
   "dataProtection": {
     "title": "Dataskydd",
-    "url": "https://www.hel.fi/helsinki/sv/stad-och-forvaltning/information/dataskydd"
+    "url": "https://www.hel.fi/sv/beslutsfattande-och-forvaltning/information-om-helsingfors/dataskydd-och-informationshantering/dataskydd"
   },
   "descriptionOfTheFile": {
     "title": "Integritetspolicy",
@@ -376,7 +377,7 @@
     }
   },
   "footer": {
-    "copyrightText": "© Helsingfors stad"
+    "backToTop": "Tillbaka till upp"
   },
   "home": {
     "contact": {

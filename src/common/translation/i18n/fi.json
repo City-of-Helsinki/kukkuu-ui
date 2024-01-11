@@ -95,6 +95,7 @@
     "closeButton": {
       "altText": "Sulje"
     },
+    "cityOfHelsinki": "Helsingin kaupunki",
     "closeButtonLabelText": "Sulje",
     "error": {
       "description": "Yritä myöhemmin uudestaan",
@@ -239,7 +240,7 @@
   },
   "dataProtection": {
     "title": "Tietosuoja",
-    "url": "https://www.hel.fi/helsinki/fi/kaupunki-ja-hallinto/tietoa-helsingista/tietosuoja/"
+    "url": "https://www.hel.fi/fi/paatoksenteko-ja-hallinto/tietoa-helsingista/tietosuoja-ja-tiedonhallinta/tietosuoja"
   },
   "descriptionOfTheFile": {
     "title": "Rekisteriseloste",
@@ -376,7 +377,7 @@
     }
   },
   "footer": {
-    "copyrightText": "© Helsingin kaupunki"
+    "backToTop": "Takaisin alkuun"
   },
   "home": {
     "contact": {

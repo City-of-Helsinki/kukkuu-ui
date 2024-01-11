@@ -3,59 +3,12 @@
 @import '~styles/fonts';
 @import '~styles/layout';
 
-$logoHeight: 3rem;
-$logoWidth: 5rem;
-
 .footer {
-  display: grid;
-  color: var(--color-black-60);
-
-  .links {
-    margin: $baseMargin 0;
-    a {
-      color: var(--color-black-60);
-    }
-  }
-
-  @include respond-below(sm) {
-    padding: 0 $basePadding;
-  }
-}
-
-.koros {
-  width: 100%;
-  fill: var(--color-black-10);
-  height: 10px;
-  margin-top: -50px;
-}
-
-.footerWrapper {
-  background-color: var(--color-black-10);
+  overflow: hidden;
   position: relative;
-  display: grid;
-  align-items: center;
-  > div {
-    padding: 0;
-  }
-}
-
-.helsinkiLogo {
-  @include helsinki-logo();
-  &.sv {
-    @include helsinki-logo('sv');
-  }
-  background-position: center;
-  height: $logoHeight;
-  width: $logoWidth;
-  margin-bottom: $baseMargin;
-}
-
-.copyright {
-  border-top: 1px solid var(--color-black-90);
-  padding-top: $basePadding;
-
-  p {
-    margin: 0;
+  margin-top: calc(var(--spacing-s) * -1);
+  --footer-background: var(--color-black-10) !important;
+  a, a:visited {
     color: var(--color-black-60);
   }
 }
