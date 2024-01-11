@@ -22,7 +22,8 @@
       "message": "Tapahtui virhe. Yritä kirjautua uudelleen."
     },
     "login": {
-      "text": "Kirjaudu sisään"
+      "text": "Kirjaudu sisään",
+      "shortText": "Kirjaudu"
     },
     "logout": {
       "text": "Kirjaudu ulos"

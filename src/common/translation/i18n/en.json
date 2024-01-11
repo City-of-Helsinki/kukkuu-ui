@@ -22,7 +22,8 @@
       "message": "An error occurred. Please try logging in again."
     },
     "login": {
-      "text": "Log in"
+      "text": "Log in",
+      "shortText": "Log in"
     },
     "logout": {
       "text": "Log out"

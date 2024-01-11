@@ -1,14 +1,36 @@
-import { Navigation, IconUser, IconSignout } from 'hds-react';
+import {
+  Header,
+  IconSignin,
+  IconUser,
+  IconSignout,
+  IconCross,
+} from 'hds-react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
+import Button from '../../../common/components/button/Button';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelectors';
 import { loginTunnistamo } from '../../auth/authenticate';
 import useLogout from '../../auth/useLogout';
 import useProfile from '../../profile/hooks/useProfile';
+
+type UserNavigationItem = {
+  id: string;
+  label: string;
+  icon: JSX.Element;
+  closeIcon?: JSX.Element;
+  closeLabel?: string;
+  onClick?: () => void;
+  dropdownItems: Array<{
+    id: string;
+    label: string;
+    icon: JSX.Element;
+    onClick: () => void;
+  }>;
+};
 
 function UserNavigation() {
   const { t } = useTranslation();
@@ -32,45 +54,63 @@ function UserNavigation() {
     loginTunnistamo();
   };
 
-  const userDropdownItems = [
-    {
-      included: isAuthenticated,
-      id: 'profileButton',
-      label: t('navbar.profileDropdown.profile.text'),
-      icon: <IconUser />,
-      onClick: () => {
-        navigate(getPathname('/profile'));
+  const userDropdownButton: UserNavigationItem = {
+    id: 'userDropdownButton',
+    label: data?.firstName ?? '',
+    icon: <IconUser />,
+    closeIcon: <IconCross />,
+    dropdownItems: [
+      {
+        id: 'profileButton',
+        label: t('navbar.profileDropdown.profile.text'),
+        icon: <IconUser />,
+        onClick: () => navigate(getPathname('/profile')),
       },
-    },
-    {
-      included: true,
-      label: t('authentication.logout.text'),
-      id: 'logoutButton',
-      icon: <IconSignout />,
-      onClick: () => {
-        doLogout();
+      {
+        label: t('authentication.logout.text'),
+        id: 'logoutButton',
+        icon: <IconSignout />,
+        onClick: doLogout,
       },
-    },
-  ].filter((item) => item.included);
+    ],
+  };
+
+  const signInButton: UserNavigationItem = {
+    id: 'signinButton',
+    label: t('authentication.login.shortText'),
+    icon: <IconSignin />,
+    onClick: handleSignIn,
+    dropdownItems: [],
+  };
+
+  const item: UserNavigationItem = isAuthenticated
+    ? userDropdownButton
+    : signInButton;
 
   return (
-    <Navigation.User
-      buttonAriaLabel={t('header.userMenu.ariaLabelButton')}
-      label={t('authentication.login.text')}
-      userName={data?.firstName ?? t('navbar.profileDropdown.profile.text')}
-      authenticated={isAuthenticated}
-      onSignIn={handleSignIn}
+    <Header.ActionBarItem
+      id={item.id}
+      key={item.id}
+      icon={item.icon}
+      label={item.label}
+      closeIcon={item.closeIcon ?? item.icon}
+      closeLabel={item.closeLabel ?? item.label}
+      onClick={item.onClick ?? undefined}
+      fixedRightPosition
+      preventButtonResize
     >
-      {userDropdownItems.map((item) => (
-        <Navigation.Item
-          key={item.id}
-          icon={item.icon}
-          label={item.label}
-          onClick={item.onClick}
+      {item.dropdownItems.map((dropdownItem) => (
+        <Button
+          id={dropdownItem.id}
+          key={dropdownItem.id}
+          iconLeft={dropdownItem.icon}
+          onClick={dropdownItem.onClick}
           variant="supplementary"
-        />
+        >
+          {dropdownItem.label}
+        </Button>
       ))}
-    </Navigation.User>
+    </Header.ActionBarItem>
   );
 }
 
