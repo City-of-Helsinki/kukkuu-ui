@@ -1,11 +1,10 @@
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { IconArrowLeft } from 'hds-react';
 
-import Icon from '../../common/components/icon/Icon';
 import styles from './event.module.scss';
 import PageWrapper from '../app/layout/PageWrapper';
-import backIcon from '../../assets/icons/svg/arrowLeft.svg';
 import {
   EventQuery,
   ExternalTicketSystemEventQuery,
@@ -48,7 +47,7 @@ const EventPage = ({ event, children, success, backTo }: EventProps) => {
                 className={styles.backButton}
                 to={backTo}
               >
-                <Icon src={backIcon} className={styles.backButtonIcon} />
+                <IconArrowLeft className={styles.backButtonIcon} />
               </Link>
             )}
           </div>

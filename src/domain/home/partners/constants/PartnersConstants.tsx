@@ -1,10 +1,10 @@
+import { logoFi as helIcon, logoSv as helIconSv } from 'hds-react';
+
 import amosrexIcon from '../../../../assets/icons/partners/amosrex.png';
 import cirkoIcon from '../../../../assets/icons/partners/cirko.png';
 import designmuseumIcon from '../../../../assets/icons/partners/designmuseum.png';
 import dotIcon from '../../../../assets/icons/partners/dotdot.png';
 import hamhelsinkiIcon from '../../../../assets/icons/partners/hamhelsinki.png';
-import helIcon from '../../../../assets/icons/svg/helsinki-fi.svg';
-import helIconSv from '../../../../assets/icons/svg/helsinki-sv.svg';
 import helsinginkaupunginmuseoIcon from '../../../../assets/icons/partners/helsinginkaupunginmuseo.png';
 import helsinginkaupunginorkesteriIcon from '../../../../assets/icons/partners/helsinginkaupunginorkesteri.png';
 import museumFlameIconEN from '../../../../assets/icons/partners/Museum_Flame_EN.svg';

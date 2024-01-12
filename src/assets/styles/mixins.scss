@@ -1,16 +1,6 @@
 @import '~styles/variables';
 @import '~styles/layout';
 
-// Helsinki logo
-@mixin helsinki-logo($lang: 'fi') {
-  background-image: url('../icons/svg/helsinki-fi.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  @if $lang == 'sv' {
-    background-image: url('../icons/svg/helsinki-sv.svg');
-  }
-}
-
 /*
  * Pure CSS spinner, taken from:
  * https://stephanwagner.me/only-css-loading-spinner
