@@ -54,7 +54,7 @@ const appLanguageToRHHCLanguageMap = {
   [SUPPORT_LANGUAGES.EN]: LanguageCodeEnum.En,
 };
 
-export default function useRHHCConfig() {
+export default function useRHHCConfig(): Config {
   const {
     t,
     i18n: { language },
@@ -62,71 +62,68 @@ export default function useRHHCConfig() {
 
   const internalHrefOrigins = useMemo(() => [APP_DOMAIN, API_URI, CMS_URI], []);
   return useMemo(
-    () =>
-      ({
-        siteName: t('appName'),
-        internalHrefOrigins,
-        apolloClient: headlessCmsClient,
-        currentLanguageCode:
-          appLanguageToRHHCLanguageMap[language] ?? LanguageCodeEnum.Fi,
-        components: {
-          Img: defaultConfig.components.Img,
-          A: ReactRouterLinkWrapper,
-          Link: ReactRouterStyledLinkWrapper,
-        },
-        copy: {
-          // breadcrumbNavigationLabel: t('common.breadcrumbNavigationLabel'),
-          breadcrumbListLabel: t('common.breadcrumbListLabel'),
-          menuToggleAriaLabel: t('common.menuToggleAriaLabel'),
-          skipToContentLabel: t('common.skipToContentLabel'),
-          openInExternalDomainAriaLabel: t(
-            'common.openInExternalDomainAriaLabel'
+    () => ({
+      ...defaultConfig,
+      siteName: t('appName'),
+      internalHrefOrigins,
+      apolloClient: headlessCmsClient,
+      currentLanguageCode:
+        appLanguageToRHHCLanguageMap[language] ?? LanguageCodeEnum.Fi,
+      components: {
+        Img: defaultConfig.components.Img,
+        A: ReactRouterLinkWrapper,
+        Link: ReactRouterStyledLinkWrapper,
+      },
+      copy: {
+        breadcrumbNavigationLabel: '', // t('common.breadcrumbNavigationLabel'),
+        breadcrumbListLabel: t('common.breadcrumbListLabel'),
+        menuToggleAriaLabel: t('common.menuToggleAriaLabel'),
+        skipToContentLabel: t('common.skipToContentLabel'),
+        openInExternalDomainAriaLabel: t(
+          'common.openInExternalDomainAriaLabel'
+        ),
+        openInNewTabAriaLabel: t('common.openInNewTabAriaLabel'),
+        closeButtonLabelText: t('common.closeButtonLabelText'),
+        loadMoreButtonLabelText: t('common.loadMoreButtonLabelText'),
+        showAllText: t('common.showAllText'),
+        archiveSearch: {
+          title: '', // t('cms:archiveSearch.title'),
+          searchTextPlaceholder: t('cms:archiveSearch.searchTextPlaceholder'),
+          searchButtonLabelText: t('cms:archiveSearch.searchButtonLabelText'),
+          loadMoreButtonLabelText: t(
+            'cms:archiveSearch.loadMoreButtonLabelText'
           ),
-          openInNewTabAriaLabel: t('common.openInNewTabAriaLabel'),
-          closeButtonLabelText: t('common.closeButtonLabelText'),
-          loadMoreButtonLabelText: t('common.loadMoreButtonLabelText'),
-          showAllText: t('common.showAllText'),
-          archiveSearch: {
-            title: '', // t('cms:archiveSearch.title'),
-            searchTextPlaceholder: t('cms:archiveSearch.searchTextPlaceholder'),
-            searchButtonLabelText: t('cms:archiveSearch.searchButtonLabelText'),
-            loadMoreButtonLabelText: t(
-              'cms:archiveSearch.loadMoreButtonLabelText'
-            ),
-            noResultsText: t('cms:archiveSearch.noResultsText'),
-            noResultsTitle: t('cms:archiveSearch.noResultsTitle'),
-            clearAll: t('cms:archiveSearch.buttonClearFilters'),
-          },
-          next: t('common:button.next'),
-          previous: t('common:button.previous'),
+          noResultsText: t('cms:archiveSearch.noResultsText'),
+          noResultsTitle: t('cms:archiveSearch.noResultsTitle'),
+          clearAll: t('cms:archiveSearch.buttonClearFilters'),
         },
-        utils: {
-          getIsHrefExternal: defaultConfig.utils.getIsHrefExternal,
-          getRoutedInternalHref: (
-            link?: string | null,
-            type?: ModuleItemTypeEnum
-          ) => {
-            if (!link) {
-              return '#';
+        next: t('common:button.next'),
+        previous: t('common:button.previous'),
+      },
+      utils: {
+        ...defaultConfig.utils,
+        getRoutedInternalHref: (
+          link?: string | null,
+          type?: ModuleItemTypeEnum
+        ) => {
+          if (!link) {
+            return '#';
+          }
+          internalHrefOrigins.forEach((origin) => {
+            if (link.includes(origin)) {
+              return link.replace(origin, '');
             }
-            internalHrefOrigins.forEach((origin) => {
-              if (link.includes(origin)) {
-                return link.replace(origin, '');
-              }
-            });
-            return link;
-          },
-          getShowAllUrl: () => '',
+          });
+          return link;
         },
-        htmlSanitizer: {
-          allowedUnsafeTags: ['iframe'],
-          trustedOrigins: [
-            'https://www.youtube.com',
-            'https://player.vimeo.com',
-          ],
-        },
-        fallbackImageUrls: [''], // A hacky way to hide the Hero image from HeadlessCmsPage
-      }) as unknown as Config,
+        getShowAllUrl: () => '',
+      },
+      htmlSanitizer: {
+        allowedUnsafeTags: ['iframe'],
+        trustedOrigins: ['https://www.youtube.com', 'https://player.vimeo.com'],
+      },
+      fallbackImageUrls: [''], // A hacky way to hide the Hero image from HeadlessCmsPage
+    }),
     [t, internalHrefOrigins, language]
   );
 }
