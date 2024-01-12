@@ -1,9 +1,8 @@
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { IconArrowLeft } from 'hds-react';
 
-import Icon from '../../../../common/components/icon/Icon';
-import backIcon from '../../../../assets/icons/svg/arrowLeft.svg';
 import styles from './heroLayout.module.scss';
 
 type Props = {
@@ -25,7 +24,7 @@ const PageContentWithHero = ({ children, backTo }: Props) => {
               className={styles.backButton}
               to={backTo}
             >
-              <Icon src={backIcon} className={styles.backButtonIcon} />
+              <IconArrowLeft className={styles.backButtonIcon} />
             </Link>
           )}
         </div>

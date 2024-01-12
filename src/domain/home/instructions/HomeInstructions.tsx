@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
+import { IconTicket } from 'hds-react';
 
 import styles from './homeInstructions.module.scss';
 import homeKidIcon from '../../../assets/icons/svg/homeKid.svg';
-import homeTicketIcon from '../../../assets/icons/svg/homeTicket.svg';
 import homeTheaterIcon from '../../../assets/icons/svg/homeTheater.svg';
 import Icon from '../../../common/components/icon/Icon';
 
@@ -19,7 +19,7 @@ const HomeInstructions: React.FunctionComponent = (props) => {
             <p>{t('home.instructions.icon.kid.text')}</p>
           </div>
           <div className={styles.iconBox}>
-            <Icon src={homeTicketIcon} className={styles.icon} />
+            <IconTicket className={styles.icon} />
             <p>{t('home.instructions.icon.ticket.text')}</p>
           </div>
           <div className={styles.iconBox}>

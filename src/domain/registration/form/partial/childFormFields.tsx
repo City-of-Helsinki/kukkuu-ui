@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ArrayHelpers, FormikState, FormikHelpers } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { IconCrossCircle } from 'hds-react';
 
 import styles from './childFormFields.module.scss';
 import { formatTime, newMoment } from '../../../../common/time/utils';
@@ -9,7 +10,6 @@ import { Child } from '../../../child/types/ChildInputTypes';
 import { getTranslatedRelationshipOptions } from '../../../child/ChildUtils';
 import Icon from '../../../../common/components/icon/Icon';
 import happyChildIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
-import deleteIcon from '../../../../assets/icons/svg/delete.svg';
 import FormikDropdown from '../../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
 import Button from '../../../../common/components/button/Button';
@@ -41,7 +41,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           {childIndex !== 0 && (
             <Button
               variant="supplementary"
-              iconRight={<Icon src={deleteIcon} />}
+              iconRight={<IconCrossCircle />}
               aria-label={t('child.form.modal.delete.label')}
               onClick={() => arrayHelpers.remove(childIndex)}
             >
