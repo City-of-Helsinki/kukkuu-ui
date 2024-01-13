@@ -11,7 +11,7 @@
 .kidsImageContainer {
   grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
   display: grid;
-  @include respond-above(lg) {
+  @include respond-above(xl-minus) {
     background-image:
       linear-gradient(to bottom, var(--color-summer) 276px, var(--color-black-5) 0),
       url('../../../assets/images/Culture_kids_background@2x.png');
@@ -24,7 +24,7 @@
 .kidsImage {
   grid-column: 2;
   min-height: calc(0.265 * 100vw);
-  @media (min-width: map-get($breakpoints, lg)) {
+  @media (min-width: map-get($breakpoints, xl-minus)) {
     min-height: calc(0.265 * #{$containerMaxWidth});
   }
   background-image: url('../../../assets/images/Culture_kids@2x.jpg');
@@ -46,7 +46,7 @@
 
     font-size: $fontsize-heading-l;
 
-    @include respond-above(sm) {
+    @include respond-above(m) {
       font-size: $fontsize-heading-xl;
     }
   }
@@ -63,7 +63,7 @@
     margin: $spacing-2-xl auto 0;
     button {
       width: 80%;
-      @include respond-above(sm) {
+      @include respond-above(m) {
         width: 60%;
       }
     }

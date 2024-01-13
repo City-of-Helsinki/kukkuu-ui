@@ -18,7 +18,7 @@
     width: 100%;
   }
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     flex-direction: row;
     flex-wrap: wrap;
     row-gap: $spacing-m;

@@ -17,7 +17,7 @@ $childIconHeight: 4rem;
 
 .childName,
 .childFixedInfo {
-  @include respond-above(md) {
+  @include respond-above(l) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: $baseMargin;

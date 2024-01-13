@@ -13,7 +13,7 @@
     border-bottom: 4px solid $color-summer;
   }
 
-  @include respond-above(md) {
+  @include respond-above(l) {
     tr.mobileHeader {
       display: none;
     }
@@ -21,7 +21,7 @@
       text-align: center;
     }
   }
-  @include respond-below(md) {
+  @include respond-below(l) {
     padding: 0 0.2rem;
     table,
     thead,

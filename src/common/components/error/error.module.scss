@@ -3,7 +3,7 @@
 
 .error {
   margin: $baseMargin;
-  @include respond-above(sm) {
+  @include respond-above(m) {
     grid-column: 2;
     margin: $baseMargin 0;
   }

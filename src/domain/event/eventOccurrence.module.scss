@@ -16,7 +16,7 @@ tr {
   display: none;
 
   & {
-    @include respond-above(md) {
+    @include respond-above(l) {
       display: table-row;
     }
   }
@@ -30,13 +30,13 @@ tr {
       grid-column: 1 / -1;
     }
 
-    @include respond-above(md) {
+    @include respond-above(l) {
       display: none;
     }
   }
 }
 
-@include respond-above(md) {
+@include respond-above(l) {
   table {
     border-collapse: collapse;
   }
@@ -55,7 +55,7 @@ tr {
     }
   }
 }
-@include respond-below(md) {
+@include respond-below(l) {
   tr {
     padding: 1rem 0;
   }

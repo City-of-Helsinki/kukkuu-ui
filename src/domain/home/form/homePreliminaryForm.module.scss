@@ -12,7 +12,7 @@
   .inputWrapper {
     display: grid;
     align-items: baseline;
-    @include respond-above(md) {
+    @include respond-above(l) {
       grid-template-columns: 1fr 1fr;
       gap: 0 $baseMargin;
     }
@@ -22,14 +22,14 @@
 .wrapper {
   @include formContainer();
 
-  @include respond-below(md) {
+  @include respond-below(l) {
     padding: 0 $baseMargin;
   }
 }
 
 .submitButton {
   width: 80%;
-  @include respond-above(sm) {
+  @include respond-above(m) {
     width: 60%;
   }
   justify-self: center;

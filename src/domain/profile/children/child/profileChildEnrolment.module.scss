@@ -24,7 +24,7 @@
 
   list-style-type: none;
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     flex-direction: row;
   }
 }

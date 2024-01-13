@@ -19,7 +19,7 @@
   margin: 0 auto;
   max-width: var(--breakpoint-xl);
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     row-gap: var(--spacing-layout-m);
 
     padding: 0 var(--spacing-m);
@@ -43,7 +43,7 @@ $backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
   row-gap: var(--spacing-layout-xs);
   align-items: center;
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     grid-template-rows: auto auto;
     grid-template-areas:
       'backButton backButton'

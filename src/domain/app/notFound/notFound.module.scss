@@ -7,7 +7,7 @@
 
   .returnLink {
     width: 50%;
-    @include respond-below(sm) {
+    @include respond-below(m) {
       width: 80%;
     }
 

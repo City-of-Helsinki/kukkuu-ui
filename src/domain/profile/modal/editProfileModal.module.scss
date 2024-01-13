@@ -16,7 +16,7 @@
 
 .buttonsWrapper {
   display: grid;
-  @include respond-above(sm) {
+  @include respond-above(m) {
     grid-template-columns: 1fr 1fr;
   }
   grid-gap: $baseMargin;
@@ -27,7 +27,7 @@
 }
 
 .cancelButton {
-  @include respond-below(sm) {
+  @include respond-below(m) {
     grid-row: 2;
   }
 
@@ -35,7 +35,7 @@
 }
 
 .submitButton {
-  @include respond-below(sm) {
+  @include respond-below(m) {
     grid-row: 1;
   }
 
@@ -43,7 +43,7 @@
 }
 
 .profileName {
-  @include respond-above(sm) {
+  @include respond-above(m) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: $baseMargin;

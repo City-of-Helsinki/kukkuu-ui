@@ -14,7 +14,7 @@
     margin-bottom: $spacing-l;
   }
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     padding: $spacing-layout-m $spacing-layout-l;
   }
 
@@ -35,7 +35,7 @@
       margin-bottom: $spacing-s;
     }
 
-    @include respond-above(sm) {
+    @include respond-above(m) {
       flex-direction: row;
 
       & > * {
@@ -60,7 +60,7 @@
     margin-top: $spacing-s;
     margin-bottom: $spacing-l;
 
-    @include respond-above(sm) {
+    @include respond-above(m) {
       width: initial;
     }
   }

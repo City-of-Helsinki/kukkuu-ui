@@ -10,7 +10,7 @@ $max-text-width: $container-width-s;
   justify-items: center;
   grid-template-rows: min-content;
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     padding: $largePadding;
   }
 }
@@ -52,7 +52,7 @@ $max-text-width: $container-width-s;
   padding: $spacing-xs;
   width: 100%;
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     width: unset;
   }
 }
@@ -60,7 +60,7 @@ $max-text-width: $container-width-s;
 .actions {
   margin-top: $spacing-s;
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     max-width: 55%;
   }
   button {

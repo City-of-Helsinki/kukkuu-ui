@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
 
-  @include respond-below(md) {
+  @include respond-below(l) {
     padding: 0 $baseMargin;
   }
 }

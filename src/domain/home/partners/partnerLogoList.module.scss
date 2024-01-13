@@ -3,18 +3,18 @@
 
 .big {
   display: grid;
-  @include respond-below(md) {
+  @include respond-below(l) {
     justify-content: center;
     gap: 2em;
   }
-  @include respond-above(sm) {
+  @include respond-above(m) {
     grid-template-columns: repeat(2, 1fr);
     gap: $xlargeMargin;
   }
   margin-bottom: $largeMargin;
 
   .container {
-    @include respond-above(sm) {
+    @include respond-above(m) {
       &:first-child {
         justify-self: end;
       }
@@ -39,7 +39,7 @@
     // Enlarge JAES logo to give it prominence as one of the main partners
     img {
       width: 180%;
-      @include respond-below(sm) {
+      @include respond-below(m) {
         margin-left: -40%;  // To center the icon horizontally in width 180%
       }
     }
@@ -50,10 +50,10 @@
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(2, 1fr);
-  @include respond-above(sm) {
+  @include respond-above(m) {
     grid-template-columns: repeat(4, 1fr);
   }
-  @include respond-above(md) {
+  @include respond-above(l) {
     grid-template-columns: repeat(5, 1fr);
   }
   .icon {
@@ -65,11 +65,11 @@
       width: 100%;
       height: auto;
     }
-    @include respond-above(sm) {
+    @include respond-above(m) {
       width: $xlargeMargin;
       height: 0.67 * $xlargeMargin;
     }
-    @include respond-above(md) {
+    @include respond-above(l) {
       width: 1.5 * $xlargeMargin;
       height: $xlargeMargin;
     }
