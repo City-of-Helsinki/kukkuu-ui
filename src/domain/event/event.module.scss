@@ -2,13 +2,13 @@
 @import '~styles/fonts';
 @import '~styles/layout';
 
-@include respond-between(md, xlg) {
+@include respond-between(l, xxl) {
   .heroWrapper {
     grid-template-columns: 1fr 10fr 1fr;
   }
 }
 
-@include respond-above(xlg) {
+@include respond-above(xxl) {
   .heroWrapper {
     grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
   }
@@ -39,7 +39,7 @@
     border-radius: 50%;
   }
 
-  @include respond-below(md) {
+  @include respond-below(l) {
     display: none;
   }
 }
@@ -48,7 +48,7 @@
   background: var(--color-black-5);
 
   margin-top: 20rem;
-  @include respond-above(md) {
+  @include respond-above(l) {
     margin-top: 12rem;
   }
 }
@@ -68,28 +68,28 @@
     display: grid;
     grid-gap: $baseMargin;
     grid-template-columns: auto;
-    @include respond-above(xs) {
+    @include respond-above(s) {
       grid-template-columns: auto auto;
     }
-    @include respond-above(md) {
+    @include respond-above(l) {
       grid-template-columns: 3fr minmax(170px, 2fr) 40%;
     }
   }
 }
 
 .dateField {
-  @include respond-above(md) {
+  @include respond-above(l) {
     min-width: 15rem;
   }
 }
 
 .eventWrapper {
-  @include respond-above(md) {
+  @include respond-above(l) {
     z-index: 1;
   }
   display: grid;
   .event {
-    @include respond-above(md) {
+    @include respond-above(l) {
       padding: $largePadding;
       h1 {
         margin-top: 0;
@@ -97,12 +97,12 @@
     }
     background-color: var(--color-white);
   }
-  @include respond-below(md) {
+  @include respond-below(l) {
     padding: 0 $basePadding;
     background: var(--color-white);
     padding-bottom: 5rem;
   }
-  @include respond-above(lg) {
+  @include respond-above(xl-minus) {
     grid-template-columns: 1fr 10fr 1fr;
 
     .event {
@@ -117,14 +117,14 @@
   padding: $spacing-2-xs;
 
   width: 100%;
-  @include respond-above(md) {
+  @include respond-above(l) {
     width: auto;
   }
   display: block;
   .label {
     display: inline-flex;
     width: min-content;
-    @include respond-above(sm) {
+    @include respond-above(m) {
       > * {
         margin-left: 0;
       }
@@ -150,7 +150,7 @@
     width: 100%;
   }
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     justify-content: normal;
   }
 }
@@ -173,7 +173,7 @@
     margin-bottom: $spacing-s;
   }
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     flex-direction: row;
 
     & > * {

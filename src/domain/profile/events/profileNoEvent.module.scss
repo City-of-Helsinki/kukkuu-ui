@@ -7,14 +7,14 @@ $iconSize: 2 * $xlargeMargin;
   padding: $largeMargin;
   display: grid;
   background: var(--color-white);
-  @include respond-above(sm) {
+  @include respond-above(m) {
     grid-template-columns: $iconSize 1fr;
     grid-gap: $baseMargin;
   }
   p {
     align-self: center;
 
-    @include respond-below(sm) {
+    @include respond-below(m) {
       text-align: center;
     }
   }
@@ -22,7 +22,7 @@ $iconSize: 2 * $xlargeMargin;
     height: $iconSize;
     width: $iconSize;
 
-    @include respond-below(sm) {
+    @include respond-below(m) {
       justify-self: center;
     }
   }

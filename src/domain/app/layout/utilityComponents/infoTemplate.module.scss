@@ -2,7 +2,7 @@
 @import '~styles/variables';
 
 .infoPageLayout {
-  @include respond-below(md) {
+  @include respond-below(l) {
     margin: 0 $baseMargin $largeMargin $baseMargin;
   }
 

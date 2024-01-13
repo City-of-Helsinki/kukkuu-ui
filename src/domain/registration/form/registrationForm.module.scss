@@ -14,17 +14,17 @@ $plusIconHeight: 2rem;
   h1 {
     margin-bottom: auto;
   }
-  @include respond-above(md) {
+  @include respond-above(l) {
     grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
   }
 
-  @include respond-below(md) {
+  @include respond-below(l) {
     grid-template-columns: 1fr 10fr 1fr;
   }
 }
 
 .guardianName {
-  @include respond-above(md) {
+  @include respond-above(l) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: $baseMargin;

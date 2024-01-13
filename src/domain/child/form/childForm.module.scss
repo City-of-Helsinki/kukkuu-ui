@@ -3,7 +3,7 @@
 
 .childName,
 .childInfo {
-  @include respond-above(md) {
+  @include respond-above(l) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: $baseMargin;
@@ -36,22 +36,22 @@
     width: 100% !important;
   }
   .submitButton {
-    @include respond-below(sm) {
+    @include respond-below(m) {
       grid-row: 1;
     }
   }
 
   .cancelButton {
-    @include respond-below(sm) {
+    @include respond-below(m) {
       grid-row: 2;
     }
   }
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     grid-auto-flow: column;
   }
 
-  @include respond-below(sm) {
+  @include respond-below(m) {
     grid-auto-flow: row;
   }
 }
@@ -64,7 +64,7 @@
 
 .submitButton {
   width: 80%;
-  @include respond-above(sm) {
+  @include respond-above(m) {
     width: 60%;
   }
 }

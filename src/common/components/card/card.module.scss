@@ -12,7 +12,7 @@
 
   background: var(--color-white);
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     display: grid;
     grid-template-columns: 2fr 10fr 1fr;
     align-items: center;
@@ -26,7 +26,7 @@
   margin: calc(#{var(--padding)} * -1);
   margin-bottom: unset;
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     width: 20vw;
     height: 20vw;
     min-width: 200px;
@@ -58,7 +58,7 @@
 .cta {
   display: none;
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     display: block;
     justify-self: center;
   }

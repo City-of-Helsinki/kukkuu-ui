@@ -6,11 +6,11 @@ $childHeadingMargin: 0.65rem;
 .childDetailWrapper {
   display: grid;
   padding: 0 $basePadding;
-  @include respond-above(sm) {
+  @include respond-above(m) {
     padding: 0;
     grid-template-columns: 1fr 10fr 1fr;
   }
-  @include respond-below(sm) {
+  @include respond-below(m) {
     grid-auto-rows: min-content;
   }
 }
@@ -32,13 +32,13 @@ $childHeadingMargin: 0.65rem;
     .childName {
       display: grid;
 
-      @include respond-below(sm) {
+      @include respond-below(m) {
         > div {
           display: none;
         }
         flex-grow: 1;
       }
-      @include respond-above(sm) {
+      @include respond-above(m) {
         grid-template-columns: $largeMargin 1fr;
         gap: $baseMargin;
         > div {
@@ -63,7 +63,7 @@ $childHeadingMargin: 0.65rem;
       }
       span {
         display: none;
-        @include respond-above(md) {
+        @include respond-above(l) {
           display: inline;
           white-space: nowrap;
         }
@@ -76,13 +76,13 @@ $childHeadingMargin: 0.65rem;
     display: grid;
     grid-template-columns: $largeMargin 1fr;
     gap: $baseMargin;
-    @include respond-above(sm) {
+    @include respond-above(m) {
       > span {
         align-self: center;
       }
     }
 
-    @include respond-below(sm) {
+    @include respond-below(m) {
       > span {
         align-self: start;
       }

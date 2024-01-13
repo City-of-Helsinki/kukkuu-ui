@@ -8,13 +8,13 @@
 .buttonGroup {
   margin: $largeMargin 0;
 
-  @include respond-above(sm) {
+  @include respond-above(m) {
     display: grid;
     grid-gap: $baseMargin;
     grid-auto-flow: column;
   }
 
-  @include respond-below(sm) {
+  @include respond-below(m) {
     display: flex;
     flex-direction: column-reverse;
     .okButton {

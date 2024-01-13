@@ -1,7 +1,5 @@
 @import '~hds-design-tokens/lib/all.scss';
 
-$footerHeight: 10rem;
-
 $basePadding: 1rem;
 $largePadding: 3rem;
 $baseMargin: $basePadding;
@@ -20,7 +18,7 @@ $imgHeight: 1.5rem;
 
 // Layout
 // (Designer proposal)
-$containerMaxWidth: 1200px;
+$containerMaxWidth: $container-width-xl;
 $containerFormMaxWidth: 800px;
 
 // Line height

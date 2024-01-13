@@ -14,7 +14,7 @@
   font-size: $fontsize-heading-l;
   line-height: $lineheight-l;
 
-  @include respond-above(xs) {
+  @include respond-above(s) {
     font-size: $fontsize-heading-xl;
   }
 }

@@ -5,7 +5,7 @@
   display: grid;
 }
 
-@include respond-between(sm, xlg) {
+@include respond-between(m, xxl) {
   .container {
     grid-template-columns: 1fr 10fr 1fr;
 
@@ -15,7 +15,7 @@
   }
 }
 
-@include respond-above(xlg) {
+@include respond-above(xxl) {
   .container {
     grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
 
