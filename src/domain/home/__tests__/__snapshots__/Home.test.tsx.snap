@@ -674,7 +674,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_46f5db _jaes-icon_46f5db"
                   href="https://jaes.fi/"
                 >
                   <div
@@ -682,7 +682,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Jane ja Aatos Erkon säätiö"
-                      src="/src/assets/icons/partners/jaes.png"
+                      src="/src/assets/icons/partners/jaes-logo-fi.svg"
                     />
                   </div>
                 </a>

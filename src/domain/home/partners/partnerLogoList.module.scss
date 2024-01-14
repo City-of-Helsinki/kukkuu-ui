@@ -34,6 +34,16 @@
       height: auto;
     }
   }
+
+  .jaes-icon {
+    // Enlarge JAES logo to give it prominence as one of the main partners
+    img {
+      width: 180%;
+      @include respond-below(sm) {
+        margin-left: -40%;  // To center the icon horizontally in width 180%
+      }
+    }
+  }
 }
 
 .small {

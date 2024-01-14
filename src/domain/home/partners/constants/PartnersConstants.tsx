@@ -13,7 +13,9 @@ import museumFlameIconSV from '../../../../assets/icons/partners/Museum_Flame_SV
 import hktIcon from '../../../../assets/icons/partners/hkt.png';
 import hotellijaravintolamuseoIcon from '../../../../assets/icons/partners/hotellijaravintolamuseo.png';
 import hurjaruuthIcon from '../../../../assets/icons/partners/hurjaruuth.png';
-import jaesIcon from '../../../../assets/icons/partners/jaes.png';
+import jaesIconEN from '../../../../assets/icons/partners/jaes-logo-en.svg';
+import jaesIconFI from '../../../../assets/icons/partners/jaes-logo-fi.svg';
+import jaesIconSV from '../../../../assets/icons/partners/jaes-logo-sv.svg';
 import kaapeliIcon from '../../../../assets/icons/partners/Kaapeli.png';
 import finnishNationalGalleryIconEN from '../../../../assets/icons/partners/Finnish_National_Gallery_Logo_EN.svg';
 import finnishNationalGalleryIconFI from '../../../../assets/icons/partners/Finnish_National_Gallery_Logo_FI.svg';
@@ -51,7 +53,12 @@ export const mainPartnerList: Partner[] = [
   },
   {
     name: 'jaes',
-    icon: jaesIcon,
+    icon: jaesIconFI,
+    iconClassName: 'jaes-icon',
+    altLangIcons: {
+      en: jaesIconEN,
+      sv: jaesIconSV,
+    },
     url: {
       fi: 'https://jaes.fi/',
       sv: 'https://jaes.fi/sv/',

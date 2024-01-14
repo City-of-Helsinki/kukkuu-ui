@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import classnames from 'classnames';
 
 import { Partner } from './types/partner';
 import Icon from '../../../common/components/icon/Icon';
@@ -26,7 +27,14 @@ const Partners = (props: Props) => {
           : partner.url.fi;
 
         return (
-          <a key={index} href={href} className={styles.container}>
+          <a
+            key={index}
+            href={href}
+            className={classnames(
+              styles.container,
+              partner.iconClassName && styles[partner.iconClassName]
+            )}
+          >
             <Icon
               className={styles.icon}
               src={icon}
