@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button as HdsButton, ButtonProps as HDSButtonProps } from 'hds-react';
 
 type ButtonProps = Omit<HDSButtonProps, 'variant'> & {
-  variant?: HDSButtonProps['variant'] | 'disabled';
+  variant?: HDSButtonProps['variant'] | 'disabled' | 'dropdown';
 };
 
 const kukkuuSecondaryButtonStyles = {
@@ -27,6 +27,17 @@ const kukkuuDisabledButtonStyles = {
   '--border-color-hover': 'var(--color-black-30)',
   '--border-color-hover-focus': 'var(--color-black-40)',
   '--border-color-focus': 'var(--color-black-40)',
+};
+const kukkuuDropdownButtonStyles = {
+  '--color': 'var(--color-black-90)',
+  '--color-hover': 'var(--color-white)',
+  '--color-focus': 'var(--color-white)',
+  '--color-hover-focus': 'var(--color-white)',
+  '--background-color': 'var(--color-white)',
+  '--background-color-hover': 'var(--color-bus)',
+  '--background-color-focus': 'var(--color-bus)',
+  '--background-color-hover-focus': 'var(--color-bus)',
+  '--border-color': 'none',
 };
 
 const kukkuuButtonStyles = {
@@ -75,6 +86,12 @@ const Button = ({
       style = {
         ...kukkuuButtonStyles,
         ...kukkuuDisabledButtonStyles,
+      };
+      break;
+    case 'dropdown':
+      style = {
+        ...kukkuuButtonStyles,
+        ...kukkuuDropdownButtonStyles,
       };
       break;
     default:

@@ -105,7 +105,7 @@ function UserNavigation() {
           key={dropdownItem.id}
           iconLeft={dropdownItem.icon}
           onClick={dropdownItem.onClick}
-          variant="supplementary"
+          variant="dropdown"
         >
           {dropdownItem.label}
         </Button>
