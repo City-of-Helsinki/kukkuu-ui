@@ -222,7 +222,9 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               className={styles.deleteChildButton}
               onClick={onDelete}
             >
-              {t('profile.child.detail.delete.text')}
+              <span className={styles.deleteChildButtonText}>
+                {t('profile.child.detail.delete.text')}
+              </span>
             </Button>
           )}
         </Form>
