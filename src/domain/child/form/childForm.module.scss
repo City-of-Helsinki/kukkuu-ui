@@ -12,12 +12,14 @@
 
 .deleteChildButton {
   margin-bottom: $largeMargin;
-  font-weight: 700;
-  text-decoration: underline;
   // Ensure that text is correctly left aligned despite HDS
   // extra whitespace
   transform: translateX(calc(var(--spacing-m) * -1));
   padding-left: 0;
+}
+
+.deleteChildButtonText {
+  text-decoration: underline;
 }
 
 .formField {
