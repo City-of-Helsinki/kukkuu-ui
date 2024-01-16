@@ -7316,20 +7316,20 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hds-core@3.3.0, hds-core@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-3.3.0.tgz#b277345177cc3ee6fb838a390286decd01742b4d"
-  integrity sha512-/u2OJCJchEGBatNQpgadIshD8zK+4pC3PlL09wMkukNKLFpcG+tG7ga1BLNeYP8cpSYf6mumosqkaeF0P6WqQg==
+hds-core@3.4.0, hds-core@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-3.4.0.tgz#8a221c1a219c78818f04c65ffecb2fe81e1fe447"
+  integrity sha512-1tmSdUkDlknonDOjjuIdl6ifT2t6ZM3BxVsPCHsAk1JfrJJIFRPekB6jH8xOqt9g98AQGKtNNzYjvFpPPKDYUQ==
 
-hds-design-tokens@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/hds-design-tokens/-/hds-design-tokens-3.3.0.tgz#352bd423e9dae6482c6e7c3c047133bd8e246c06"
-  integrity sha512-sSyPSxtkaamLMQ59KPdEtbeia0+JmM0wEtLxa0E6euBosZIG0CoSThY4OhRLnpb9GHZYyhSd+OAhYEJzUxUEVQ==
+hds-design-tokens@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/hds-design-tokens/-/hds-design-tokens-3.4.0.tgz#6b50c04dcceaafc0101c798c850d459106ca8c05"
+  integrity sha512-BFu7CI4ID3bqSOMzNVymSAj/eSixph4JWKKvYPIlQKV2JJOiUmxvCkHZoPVwXckAFv2Ur5xiEtLOOll87dCN3Q==
 
-hds-react@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/hds-react/-/hds-react-3.3.0.tgz#f4adf5ecc7369823722c317e53005dad5ced2048"
-  integrity sha512-DHSagtnrQTAVaSG8nB/pcqQsB1YpSSOQVZ5ubWozXzuxbK5k5j0Yxk3WwY5ILABjlt9WUmLgRta1EgprdUCjow==
+hds-react@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/hds-react/-/hds-react-3.4.0.tgz#e9d8cfa8ebd81d0a5694bb3ee846c6a493ab7fe9"
+  integrity sha512-4hK2N0CqA7t7YHDXMJi7a8UGHL4Qjc0bLOGARdQZh1iXSATY83rVClb2M9SZlE4gvhtlvTpgWedjDnh/1fWmiw==
   dependencies:
     "@babel/runtime" "7.17.9"
     "@emotion/styled-base" "^11.0.0"
@@ -7344,7 +7344,7 @@ hds-react@^3.3.0:
     crc-32 "1.2.0"
     date-fns "2.16.1"
     downshift "6.0.6"
-    hds-core "3.3.0"
+    hds-core "3.4.0"
     http-status-typed "^1.0.1"
     jwt-decode "^3.1.2"
     kashe "1.0.4"
@@ -9797,13 +9797,13 @@ react-helmet-async@^1.3.0:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
-react-helsinki-headless-cms@^1.0.0-alpha247:
-  version "1.0.0-alpha247"
-  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha247.tgz#28601ad091c048f26a06ec662153eaa397ffb039"
-  integrity sha512-+lNHWJ7dJQnPItd0Y3+oei5VkdmQvCLap81MQBxrs+mFuq9aopRpy6KAJ+fNypQ5D3Wx3bg3lV9oE7hpNkRC9g==
+react-helsinki-headless-cms@1.0.0-alpha250:
+  version "1.0.0-alpha250"
+  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha250.tgz#acb8a54a0117a495c0faddb37f14a1622b9e6ce1"
+  integrity sha512-XKt07WqFxZvkH43shxf1Dx3BokiqoVu1MVVb3dtPeXSxa89ymJoxvdFQ4THQyQ7XG9BNiqhehdAozhUAiC8qow==
   dependencies:
-    hds-core "^3.3.0"
-    hds-design-tokens "^3.3.0"
+    hds-core "^3.4.0"
+    hds-design-tokens "^3.4.0"
     html-entities "^2.4.0"
     html-react-parser "^4.2.9"
     isomorphic-dompurify "^1.8.0"
