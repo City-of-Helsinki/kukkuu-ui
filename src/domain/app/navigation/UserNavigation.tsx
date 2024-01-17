@@ -16,10 +16,11 @@ import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelector
 import { loginTunnistamo } from '../../auth/authenticate';
 import useLogout from '../../auth/useLogout';
 import useProfile from '../../profile/hooks/useProfile';
+import styles from './userNavigation.module.scss';
 
 type UserNavigationItem = {
   id: string;
-  label: string;
+  label: string | JSX.Element;
   icon: JSX.Element;
   closeIcon?: JSX.Element;
   closeLabel?: string;
@@ -31,6 +32,10 @@ type UserNavigationItem = {
     onClick: () => void;
   }>;
 };
+
+const hiddenBelowSmallSpan = (text: string) => (
+  <span className={styles.hideBelowSmall}>{text}</span>
+);
 
 function UserNavigation() {
   const { t } = useTranslation();
@@ -56,7 +61,7 @@ function UserNavigation() {
 
   const userDropdownButton: UserNavigationItem = {
     id: 'userDropdownButton',
-    label: data?.firstName ?? '',
+    label: hiddenBelowSmallSpan(data?.firstName ?? ''),
     icon: <IconUser />,
     closeIcon: <IconCross />,
     dropdownItems: [
@@ -77,7 +82,7 @@ function UserNavigation() {
 
   const signInButton: UserNavigationItem = {
     id: 'signinButton',
-    label: t('authentication.login.shortText'),
+    label: hiddenBelowSmallSpan(t('authentication.login.shortText')),
     icon: <IconSignin />,
     onClick: handleSignIn,
     dropdownItems: [],

@@ -1,0 +1,7 @@
+@import '~styles/layout';
+
+.hideBelowSmall {
+  @include respond-below(s) {
+    display: none;
+  }
+}
