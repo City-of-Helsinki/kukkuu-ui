@@ -13,14 +13,21 @@ exports[`renders snapshot correctly 1`] = `
       <h3>
         Saapuminen
       </h3>
-      <div
-        class="_imgWrapper_73ff55 _arrow_b278db"
+      <svg
+        aria-hidden="true"
+        aria-label="angle-down"
+        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik _arrow_b278db"
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <img
-          alt=""
-          src="/src/assets/icons/svg/angleDown.svg"
+        <path
+          clip-rule="evenodd"
+          d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+          fill="currentColor"
+          fill-rule="evenodd"
         />
-      </div>
+      </svg>
     </button>
     <div
       aria-hidden="true"
@@ -44,14 +51,21 @@ exports[`renders snapshot correctly 1`] = `
       <h3>
         Esteettömyys
       </h3>
-      <div
-        class="_imgWrapper_73ff55 _arrow_b278db"
+      <svg
+        aria-hidden="true"
+        aria-label="angle-down"
+        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik _arrow_b278db"
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <img
-          alt=""
-          src="/src/assets/icons/svg/angleDown.svg"
+        <path
+          clip-rule="evenodd"
+          d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+          fill="currentColor"
+          fill-rule="evenodd"
         />
-      </div>
+      </svg>
     </button>
     <div
       aria-hidden="true"
@@ -75,14 +89,21 @@ exports[`renders snapshot correctly 1`] = `
       <h3>
         WC-tilat ja lastenhoitohuone
       </h3>
-      <div
-        class="_imgWrapper_73ff55 _arrow_b278db"
+      <svg
+        aria-hidden="true"
+        aria-label="angle-down"
+        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik _arrow_b278db"
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <img
-          alt=""
-          src="/src/assets/icons/svg/angleDown.svg"
+        <path
+          clip-rule="evenodd"
+          d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+          fill="currentColor"
+          fill-rule="evenodd"
         />
-      </div>
+      </svg>
     </button>
     <div
       aria-hidden="true"
@@ -106,14 +127,21 @@ exports[`renders snapshot correctly 1`] = `
       <h3>
         Lisätietoa
       </h3>
-      <div
-        class="_imgWrapper_73ff55 _arrow_b278db"
+      <svg
+        aria-hidden="true"
+        aria-label="angle-down"
+        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik _arrow_b278db"
+        role="img"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <img
-          alt=""
-          src="/src/assets/icons/svg/angleDown.svg"
+        <path
+          clip-rule="evenodd"
+          d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+          fill="currentColor"
+          fill-rule="evenodd"
         />
-      </div>
+      </svg>
     </button>
     <div
       aria-hidden="true"
