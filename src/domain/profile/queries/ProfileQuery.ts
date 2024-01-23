@@ -34,9 +34,8 @@ const profileQuery = gql`
 
   fragment MyProfileChildFields on ChildNode {
     id
-    firstName
-    lastName
-    birthdate
+    name
+    birthyear
     postalCode
     project {
       ...MyProfileChildProjectFields

@@ -12,10 +12,9 @@ export const defaultRegistrationData: RegistrationData = {
   formValues: {
     children: [
       {
-        birthdate: '',
-        firstName: '',
+        birthyear: new Date().getFullYear(),
+        name: '',
         homeCity: '',
-        lastName: '',
         postalCode: '',
         relationship: { type: null },
       },
@@ -50,7 +49,7 @@ const reducer = createReducer(defaultRegistrationData, (builder) => {
         children: [
           {
             ...state.formValues.children[0],
-            birthdate: action.payload.child.birthdate,
+            birthyear: action.payload.child.birthyear,
             homeCity: action.payload.child.homeCity,
           },
           ...state.formValues.children.slice(1),

@@ -3,7 +3,7 @@ import { defaultRegistrationData } from '../../../registration/state/Registratio
 import { render } from '../../../../common/test/testingLibraryUtils';
 
 const child = {
-  birthdate: { day: 1, month: 1, year: 2023 },
+  birthyear: 2023,
   homeCity: 'Helsinki',
 };
 

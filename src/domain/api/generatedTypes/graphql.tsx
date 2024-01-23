@@ -32,11 +32,10 @@ export type Scalars = {
 };
 
 export type AddChildMutationInput = {
-  birthdate: Scalars['Date']['input'];
+  birthyear: Scalars['Int']['input'];
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  firstName?: InputMaybe<Scalars['String']['input']>;
   languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
-  lastName?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   postalCode: Scalars['String']['input'];
   relationship?: InputMaybe<RelationshipInput>;
 };
@@ -163,10 +162,9 @@ export type AssignTicketSystemPasswordMutationPayload = {
 };
 
 export type ChildInput = {
-  birthdate: Scalars['Date']['input'];
-  firstName?: InputMaybe<Scalars['String']['input']>;
+  birthyear: Scalars['Int']['input'];
   languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
-  lastName?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   postalCode: Scalars['String']['input'];
   relationship?: InputMaybe<RelationshipInput>;
 };
@@ -179,18 +177,17 @@ export type ChildNode = Node & {
   availableEvents: Maybe<EventConnection>;
   /** @deprecated Doesn't exclude events when yearly limit of enrolments have been exceeded. */
   availableEventsAndEventGroups: Maybe<EventOrEventGroupConnection>;
-  birthdate: Scalars['Date']['output'];
+  birthyear: Scalars['Int']['output'];
   createdAt: Scalars['DateTime']['output'];
   /** How many enrolments child has this year. */
   enrolmentCount: Maybe<Scalars['Int']['output']>;
   enrolments: EnrolmentNodeConnection;
-  firstName: Scalars['String']['output'];
   freeSpotNotificationSubscriptions: FreeSpotNotificationSubscriptionNodeConnection;
   guardians: GuardianNodeConnection;
   /** The ID of the object. */
   id: Scalars['ID']['output'];
   languagesSpokenAtHome: Maybe<LanguageNodeConnection>;
-  lastName: Scalars['String']['output'];
+  name: Scalars['String']['output'];
   occurrences: OccurrenceNodeConnection;
   /** How many past enrolments child has this year. */
   pastEnrolmentCount: Maybe<Scalars['Int']['output']>;
@@ -1579,12 +1576,10 @@ export type UnsubscribeFromFreeSpotNotificationMutationPayload = {
 };
 
 export type UpdateChildMutationInput = {
-  birthdate?: InputMaybe<Scalars['Date']['input']>;
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  firstName?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
   languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
-  lastName?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   postalCode?: InputMaybe<Scalars['String']['input']>;
   relationship?: InputMaybe<RelationshipInput>;
 };
@@ -1786,9 +1781,8 @@ export type AddNewChildMutation = {
     child: {
       __typename?: 'ChildNode';
       id: string;
-      firstName: string;
-      lastName: string;
-      birthdate: any;
+      name: string;
+      birthyear: number;
       postalCode: string;
       project: {
         __typename?: 'ProjectNode';
@@ -1822,9 +1816,8 @@ export type UpdateChildMutationPayloadFieldsFragment = {
   child: {
     __typename?: 'ChildNode';
     id: string;
-    firstName: string;
-    lastName: string;
-    birthdate: any;
+    name: string;
+    birthyear: number;
     postalCode: string;
     project: {
       __typename?: 'ProjectNode';
@@ -1857,9 +1850,8 @@ export type UpdateChildMutation = {
     child: {
       __typename?: 'ChildNode';
       id: string;
-      firstName: string;
-      lastName: string;
-      birthdate: any;
+      name: string;
+      birthyear: number;
       postalCode: string;
       project: {
         __typename?: 'ProjectNode';
@@ -2218,9 +2210,8 @@ export type ChildByIdQueryProjectFieldsFragment = {
 export type ChildByIdQueryFieldsFragment = {
   __typename?: 'ChildNode';
   id: string;
-  firstName: string;
-  lastName: string;
-  birthdate: any;
+  name: string;
+  birthyear: number;
   postalCode: string;
   project: {
     __typename?: 'ProjectNode';
@@ -2365,9 +2356,8 @@ export type ChildByIdQuery = {
   child: {
     __typename?: 'ChildNode';
     id: string;
-    firstName: string;
-    lastName: string;
-    birthdate: any;
+    name: string;
+    birthyear: number;
     postalCode: string;
     project: {
       __typename?: 'ProjectNode';
@@ -3614,9 +3604,8 @@ export type MyProfileChildProjectFieldsFragment = {
 export type MyProfileChildFieldsFragment = {
   __typename?: 'ChildNode';
   id: string;
-  firstName: string;
-  lastName: string;
-  birthdate: any;
+  name: string;
+  birthyear: number;
   postalCode: string;
   project: {
     __typename?: 'ProjectNode';
@@ -3698,9 +3687,8 @@ export type MyProfileChildrenFieldsFragment = {
     node: {
       __typename?: 'ChildNode';
       id: string;
-      firstName: string;
-      lastName: string;
-      birthdate: any;
+      name: string;
+      birthyear: number;
       postalCode: string;
       project: {
         __typename?: 'ProjectNode';
@@ -3809,9 +3797,8 @@ export type MyProfileFieldsFragment = {
       node: {
         __typename?: 'ChildNode';
         id: string;
-        firstName: string;
-        lastName: string;
-        birthdate: any;
+        name: string;
+        birthyear: number;
         postalCode: string;
         project: {
           __typename?: 'ProjectNode';
@@ -3923,9 +3910,8 @@ export type ProfileQuery = {
         node: {
           __typename?: 'ChildNode';
           id: string;
-          firstName: string;
-          lastName: string;
-          birthdate: any;
+          name: string;
+          birthyear: number;
           postalCode: string;
           project: {
             __typename?: 'ProjectNode';
@@ -4034,9 +4020,8 @@ export type SubmitGuardianFieldsFragment = {
       node: {
         __typename?: 'ChildNode';
         id: string;
-        firstName: string;
-        lastName: string;
-        birthdate: any;
+        name: string;
+        birthyear: number;
         postalCode: string;
         project: {
           __typename?: 'ProjectNode';
@@ -4077,9 +4062,8 @@ export type SubmitChildrenAndGuardianMutationPayloadFieldsFragment = {
         node: {
           __typename?: 'ChildNode';
           id: string;
-          firstName: string;
-          lastName: string;
-          birthdate: any;
+          name: string;
+          birthyear: number;
           postalCode: string;
           project: {
             __typename?: 'ProjectNode';
@@ -4128,9 +4112,8 @@ export type SubmitChildrenAndGuardianMutation = {
           node: {
             __typename?: 'ChildNode';
             id: string;
-            firstName: string;
-            lastName: string;
-            birthdate: any;
+            name: string;
+            birthyear: number;
             postalCode: string;
             project: {
               __typename?: 'ProjectNode';

@@ -177,7 +177,7 @@
         "availableEventGroup": {
           "readMoreButton": "Selaa tapahtumia"
         },
-        "birthdate": "Lapsen syntymäaika",
+        "birthyear": "Lapsen syntymävuosi",
         "delete": {
           "prompt": {
             "heading": "Haluatko varmasti poistaa lapsen tiedot?",
@@ -204,6 +204,11 @@
     "children": {
       "noChild": {
         "text": "Ei kummilapsia"
+      },
+      "edit": {
+        "button": {
+          "text": "Muokkaa lapsen tietoja"
+        }
       }
     },
     "edit": {
@@ -482,17 +487,11 @@
       }
     },
     "preliminaryForm": {
-      "childBirthdate": {
+      "childBirthyear": {
         "input": {
-          "day": {
-            "placeholder": "pv"
-          },
-          "label": "Lapsen syntymäaika (pp.kk.vvvv)",
-          "month": {
-            "placeholder": "kk"
-          },
+          "label": "Lapsen syntymävuosi",
           "year": {
-            "placeholder": "vuosi"
+            "placeholder": "Lisää lapsen syntymävuosi"
           }
         }
       },
@@ -559,16 +558,16 @@
         }
       },
       "child": {
-        "birthdate": {
+        "birthyear": {
           "input": {
-            "label": "Lapsen syntymäaika (pp.kk.vvvv)",
-            "placeholder": "Lisää lapsen syntymäaika"
+            "label": "Lapsen syntymävuosi",
+            "placeholder": "Lisää lapsen syntymävuosi"
           }
         },
-        "firstName": {
+        "name": {
           "input": {
-            "label": "Lapsen etunimi",
-            "placeholder": "Lisää lapsen etunimi"
+            "label": "Lapsen nimi",
+            "placeholder": "Lisää lapsen nimi"
           }
         },
         "homeCity": {
@@ -584,12 +583,6 @@
           "input": {
             "helper": "Mitä kieltä tai kieliä puhutte kotona? Jos kieli ei ole listassa, valitse “muu kieli”.",
             "label": "Kotona puhutut kielet"
-          }
-        },
-        "lastName": {
-          "input": {
-            "label": "Lapsen sukunimi",
-            "placeholder": "Lisää lapsen sukunimi"
           }
         },
         "postalCode": {
@@ -689,8 +682,8 @@
   },
   "validation": {
     "date": {
-      "invalidFormat": "Virheellinen päivämäärä",
-      "unSupported": "Syntymäpäivä ei voi olla tulevaisuudessa"
+      "invalidFormat": "Virheellinen syntymävuosi",
+      "unSupported": "Syntymävuosi ei ole kelvollinen ja ei voi olla tulevaisuudessa"
     },
     "general": {
       "required": "Pakollinen kenttä"

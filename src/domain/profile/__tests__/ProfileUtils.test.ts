@@ -11,9 +11,8 @@ describe('ProfileUtils', () => {
     test('input a fetched child and return a child for mutation', () => {
       const child: ChildByIdResponse = {
         id: 'foo',
-        firstName: 'foo',
-        lastName: 'bar',
-        birthdate: '2020-01-01',
+        name: 'foo bar',
+        birthyear: 2020,
         postalCode: '00100',
         project: {
           id: '1',
@@ -42,11 +41,10 @@ describe('ProfileUtils', () => {
       // Have relationship and homeCity autofill
       const expected = {
         id: 'foo',
-        firstName: 'foo',
-        lastName: 'bar',
+        name: 'foo bar',
         homeCity: 'Helsinki',
         activeInternalAndTicketSystemEnrolments: null,
-        birthdate: '2020-01-01',
+        birthyear: 2020,
         postalCode: '00100',
         project: { id: '1', name: 'Project name', year: 2020 },
         upcomingEventsAndEventGroups: { edges: [] },

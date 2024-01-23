@@ -15,7 +15,7 @@ export const convertFormValues = (
   return {
     child: {
       homeCity: child.homeCity,
-      birthdate: child.birthdate,
+      birthyear: child.birthyear,
     },
     verifyInformation: false,
   };

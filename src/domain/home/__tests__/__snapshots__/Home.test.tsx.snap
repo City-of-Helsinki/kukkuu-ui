@@ -474,92 +474,33 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
               <div
                 class="_inputWrapper_1e8528"
               >
-                <div
-                  class="_birthdateField_3e5209"
-                >
-                  <label>
-                    Lapsen syntymäaika (pp.kk.vvvv)*
-                  </label>
+                <div>
                   <div
-                    class="_inputWrapper_3e5209"
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
                   >
-                    <div>
-                      <div
-                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
-                      >
-                        <div
-                          class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
-                        >
-                          <input
-                            aria-label="pv"
-                            class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
-                            id="child.birthdate.day"
-                            max="31"
-                            maxlength="2"
-                            min="1"
-                            name="child.birthdate.day"
-                            placeholder="pv"
-                            required=""
-                            type="number"
-                            value=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="_dot_3e5209"
+                    <label
+                      class="FieldLabel-module_label__1zrXK "
+                      for="child.birthyear"
                     >
-                      .
-                    </div>
-                    <div>
-                      <div
-                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                      Lisää lapsen syntymävuosi
+                      <span
+                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
                       >
-                        <div
-                          class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
-                        >
-                          <input
-                            aria-label="kk"
-                            class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
-                            id="child.birthdate.month"
-                            max="12"
-                            maxlength="2"
-                            min="1"
-                            name="child.birthdate.month"
-                            placeholder="kk"
-                            required=""
-                            type="number"
-                            value=""
-                          />
-                        </div>
-                      </div>
-                    </div>
+                        *
+                      </span>
+                    </label>
                     <div
-                      class="_dot_3e5209"
+                      class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
                     >
-                      .
-                    </div>
-                    <div>
-                      <div
-                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
-                      >
-                        <div
-                          class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
-                        >
-                          <input
-                            aria-label="vuosi"
-                            class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
-                            id="child.birthdate.year"
-                            maxlength="4"
-                            min="2019"
-                            name="child.birthdate.year"
-                            placeholder="vuosi"
-                            required=""
-                            type="number"
-                            value=""
-                          />
-                        </div>
-                      </div>
+                      <input
+                        class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                        id="child.birthyear"
+                        name="child.birthyear"
+                        placeholder="Lisää lapsen syntymävuosi"
+                        required=""
+                        type="number"
+                        value="2024"
+                      />
                     </div>
                   </div>
                 </div>

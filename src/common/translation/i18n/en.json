@@ -177,7 +177,7 @@
         "availableEventGroup": {
           "readMoreButton": "Browse events"
         },
-        "birthdate": "Child's date of birth",
+        "birthyear": "Child's year of birth",
         "delete": {
           "prompt": {
             "heading": "Are you sure you want to delete the child's information?",
@@ -204,6 +204,11 @@
     "children": {
       "noChild": {
         "text": "No children have been added"
+      },
+      "edit": {
+        "button": {
+          "text": "Edit child's information"
+        }
       }
     },
     "edit": {
@@ -482,15 +487,9 @@
       }
     },
     "preliminaryForm": {
-      "childBirthdate": {
+      "childBirthyear": {
         "input": {
-          "day": {
-            "placeholder": "date"
-          },
-          "label": "Child's date of birth (dd.mm.yyyy)",
-          "month": {
-            "placeholder": "month"
-          },
+          "label": "Child's year of birth",
           "year": {
             "placeholder": "year"
           }
@@ -559,16 +558,16 @@
         }
       },
       "child": {
-        "birthdate": {
+        "birthyear": {
           "input": {
-            "label": "Child's date of birth (dd.mm.yyyy)",
-            "placeholder": "Enter child's date of birth"
+            "label": "Child's year of birth",
+            "placeholder": "Enter child's year of birth"
           }
         },
-        "firstName": {
+        "name": {
           "input": {
-            "label": "Child’s first name",
-            "placeholder": "Enter child's first name"
+            "label": "Child’s name",
+            "placeholder": "Enter child's name"
           }
         },
         "homeCity": {
@@ -584,12 +583,6 @@
           "input": {
             "helper": "What language or languages do you speak at home? If your language is not on the list, please choose “Other language”.",
             "label": "Languages spoken at home"
-          }
-        },
-        "lastName": {
-          "input": {
-            "label": "Child’s last name",
-            "placeholder": "Enter child’s last name"
           }
         },
         "postalCode": {
@@ -689,8 +682,8 @@
   },
   "validation": {
     "date": {
-      "invalidFormat": "Invalid date input",
-      "unSupported": "The date of birth can't be in the future"
+      "invalidFormat": "Invalid year input",
+      "unSupported": "The year of birth is unsupported and cannot be in future"
     },
     "general": {
       "required": "Mandatory field"

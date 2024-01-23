@@ -1,19 +1,16 @@
 import { FunctionComponent } from 'react';
-import { Formik, FieldArray, FormikErrors, FormikProps, Form } from 'formik';
+import { Formik, FormikProps, Form } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
 import * as yup from 'yup';
 
 import styles from './childForm.module.scss';
-import BirthdateFormField from '../../home/form/partial/BirthdateFormField';
 import FormikDropdown from '../../../common/components/formikWrappers/FormikDropdown';
 import { Child } from '../types/ChildInputTypes';
 import { getTranslatedRelationshipOptions } from '../ChildUtils';
-import { validateDate } from '../../../common/components/form/validationUtils';
-import { formatTime, newMoment } from '../../../common/time/utils';
-import { BACKEND_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import Button from '../../../common/components/button/Button';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
+import { SUPPORTED_START_BIRTH_YEAR } from '../../../common/time/TimeConstants';
 
 const schema = yup.object().shape({
   homeCity: yup.string().required('validation.general.required'),
@@ -21,27 +18,22 @@ const schema = yup.object().shape({
     .string()
     .length(5, 'registration.form.child.postalCode.input.error.length')
     .required('validation.general.required'),
-  birthdate: yup.object().shape({
-    day: yup.string().required('validation.general.required'),
-  }),
+  name: yup
+    .string()
+    .required('validation.general.required')
+    .max(255, 'validation.maxLength'),
+  birthyear: yup
+    .number()
+    .required('validation.general.required')
+    .min(SUPPORTED_START_BIRTH_YEAR, 'validation.date.unSupported')
+    .max(new Date().getFullYear(), 'validation.date.unSupported'),
   relationship: yup.object().shape({
-    type: yup.string().required('validation.general.required').nullable(),
+    type: yup.string().required('validation.general.required'),
   }),
 });
 
-export interface Birthdate {
-  day: number | string;
-  month: number | string;
-  year: number | string;
-}
-
-interface ChildFormValues extends Omit<Child, 'birthdate'> {
-  birthdate: Birthdate;
-  childBirthdate?: string;
-}
-
 interface ChildFormProps {
-  initialValues: ChildFormValues;
+  initialValues: Child;
   onSubmit: (payload: Child) => void;
   onDelete?: () => void;
   onCancel: () => void;
@@ -49,7 +41,7 @@ interface ChildFormProps {
   formType?: CHILD_FORM_TYPES;
 }
 
-const immutableFields = ['birthdate'];
+const immutableFields = ['birthyear'];
 
 export enum CHILD_FORM_TYPES {
   ADD = 'ADD',
@@ -67,43 +59,9 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   const { t } = useTranslation();
   const isEditForm = formType === CHILD_FORM_TYPES.EDIT;
 
-  const onFormSubmit = (values: ChildFormValues) => {
+  const onFormSubmit = (values: Child) => {
     setFormIsFilling(false);
-    const child: Child = Object.assign({}, values, {
-      birthdate: formatTime(
-        newMoment(
-          `${values.birthdate.year}-${values.birthdate.month}-${values.birthdate.day}`,
-          BACKEND_DATE_FORMAT
-        )
-      ),
-    });
-    onSubmit(child);
-  };
-
-  /**
-   * Validate form
-   *
-   * Using both this validation function and yup schema is torta-på-torta,
-   * TODO: Refactor birthdate field to work with a yup schema.
-   * @param values
-   */
-  const validateForm = (values: ChildFormValues) => {
-    setFormIsFilling(true);
-    const {
-      birthdate: { day, month, year },
-    } = values;
-
-    const errors: FormikErrors<ChildFormValues> = {};
-
-    if (day && month && year) {
-      errors.childBirthdate = validateDate(`${day}.${month}.${year}`);
-
-      if (!errors.childBirthdate) {
-        // Delete the property manually so form will be valid when this is undefined.
-        delete errors.childBirthdate;
-      }
-    }
-    return errors;
+    onSubmit(values);
   };
 
   const isFieldImmutable = (fieldName: string) => {
@@ -111,29 +69,38 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   };
 
   const relationshipOptions = getTranslatedRelationshipOptions(t);
+  const isImmutable = isFieldImmutable('birthyear');
 
   return (
     <Formik
-      validate={validateForm}
       initialValues={initialValues}
       validationSchema={schema}
       onSubmit={onFormSubmit}
     >
-      {({ isSubmitting, values }: FormikProps<ChildFormValues>) => (
+      {({ isSubmitting, values }: FormikProps<Child>) => (
         <Form id="childForm" noValidate>
-          <FieldArray
-            name="birthdate"
-            render={(props) => {
-              const isImmutable = isFieldImmutable('birthdate');
-              return (
-                <BirthdateFormField
-                  values={values['birthdate']}
-                  isImmutable={isImmutable}
-                  {...props}
-                />
-              );
-            }}
-          />
+          {isImmutable ? (
+            <div className={styles.birthyearField}>
+              <label>{`${t(
+                'homePage.preliminaryForm.childBirthyear.input.label'
+              )}*`}</label>
+              <p className={styles.immutableField}>{values.birthyear}</p>
+            </div>
+          ) : (
+            <FormikTextInput
+              type="number"
+              name="birthyear"
+              id="birthyear"
+              label={t(
+                'homePage.preliminaryForm.childBirthyear.input.year.placeholder'
+              )}
+              required={true}
+              placeholder={t(
+                'homePage.preliminaryForm.childBirthyear.input.year.placeholder'
+              )}
+            />
+          )}
+
           <div className={styles.childInfo}>
             {!isEditForm && (
               <FormikTextInput
@@ -160,23 +127,12 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
           <div className={styles.childName}>
             <FormikTextInput
               className={styles.formField}
-              id="firstName"
-              name="firstName"
-              label={t('registration.form.child.firstName.input.label')}
+              id="name"
+              name="name"
+              required={true}
+              label={t('registration.form.child.name.input.label')}
               autoComplete="new-password"
-              placeholder={t(
-                'registration.form.child.firstName.input.placeholder'
-              )}
-            />
-            <FormikTextInput
-              className={styles.formField}
-              id="lastName"
-              name="lastName"
-              autoComplete="new-password"
-              label={t('registration.form.child.lastName.input.label')}
-              placeholder={t(
-                'registration.form.child.lastName.input.placeholder'
-              )}
+              placeholder={t('registration.form.child.name.input.placeholder')}
             />
           </div>
           <FormikDropdown

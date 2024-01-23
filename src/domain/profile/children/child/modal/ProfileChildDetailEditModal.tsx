@@ -66,7 +66,7 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     // children. updateChild_updateChild_child has a different set of fields compared to
     // childByIdQuery_child
     const supportedChildPayload: ChildDetailEditModalPayload =
-      getSupportedChildData(payload);
+      getSupportedChildData(payload, true);
     editChild(supportedChildPayload);
     setIsOpen(false);
   };

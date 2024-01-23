@@ -1,5 +1,5 @@
 // Only support kids which was born starting in 2020 or later
-export const SUPPORTED_START_BIRTHDATE = '2020-01-01';
+export const SUPPORTED_START_BIRTH_YEAR = 2020;
 
 // Finnish display time format
 export const DEFAULT_DATE_FORMAT = 'D.M.YYYY';

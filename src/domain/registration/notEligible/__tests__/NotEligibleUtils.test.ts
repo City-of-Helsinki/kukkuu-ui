@@ -5,9 +5,8 @@ import { Language } from '../../../api/generatedTypes/graphql';
 const values: RegistrationFormValues = {
   children: [
     {
-      birthdate: '2020-01-02',
-      firstName: 'cfn',
-      lastName: 'cln',
+      birthyear: 2020,
+      name: 'cfn cln',
       homeCity: 'Helsinki',
       postalCode: '00100',
     },
@@ -65,19 +64,15 @@ describe('notEligibleUtils.test.ts', () => {
     });
   });
   test('Verify that a date too far into the past is not eligible', () => {
-    values.children[0].birthdate = '2019-10-31';
+    values.children[0].birthyear = 2019;
     expect(isChildEligible(values.children[0])).toEqual(false);
   });
   test('Verify that a date after supported start date is eligible', () => {
-    values.children[0].birthdate = '2020-01-01';
+    values.children[0].birthyear = 2020;
     expect(isChildEligible(values.children[0])).toEqual(true);
   });
-  test('Verify that an empty date is not eligible', () => {
-    values.children[0].birthdate = '';
-    expect(isChildEligible(values.children[0])).toEqual(false);
-  });
   test('Verify that an invalid date is not eligible', () => {
-    values.children[0].birthdate = 'Not so fast';
+    values.children[0].birthyear = 0;
     expect(isChildEligible(values.children[0])).toEqual(false);
   });
 });

@@ -37,8 +37,9 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
 
   const upcomingEventsAndEventGroups =
     child.upcomingEventsAndEventGroups?.edges[0]?.node?.name;
-  const isNamed = Boolean(child.firstName);
-  const childName = `${child.firstName} ${child.lastName}`;
+  const name = child.name.split(' ');
+  const isNamed = !!name;
+  const childName = child.name;
   const enrolments = child.enrolments?.edges
     ?.map((edge) => edge?.node)
     ?.filter((node): node is MyProfileEnrolment => {

@@ -16,9 +16,8 @@ vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => (<div />) as any);
 
 const childData: ChildByIdResponse = {
   id: '',
-  firstName: '',
-  lastName: '',
-  birthdate: '',
+  name: '',
+  birthyear: 0,
   postalCode: '',
   project: {
     id: '',

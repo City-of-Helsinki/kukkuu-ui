@@ -6,17 +6,8 @@ import { Child } from '../types/ChildInputTypes';
 import ChildForm from '../form/ChildForm';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 
-export interface ChildFormModalValues extends Omit<Child, 'birthdate'> {
-  birthdate: {
-    day: number | string;
-    month: number | string;
-    year: number | string;
-  };
-  childBirthdate?: string;
-}
-
 interface ChildFormModalProps {
-  initialValues: ChildFormModalValues;
+  initialValues: Child;
   label: string;
   onSubmit: (payload: Child) => void;
   onCancel: () => void;
