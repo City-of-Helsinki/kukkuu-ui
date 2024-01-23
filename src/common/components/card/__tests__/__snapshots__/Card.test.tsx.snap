@@ -34,23 +34,19 @@ exports[`renders snapshot correctly 1`] = `
           class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
         >
           <svg
+            aria-hidden="true"
+            aria-label="angle-right"
             class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
             role="img"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g
-              fill="none"
+            <path
+              clip-rule="evenodd"
+              d="M13.5 12L8.5 7L10 5.5L16.5 12L10 18.5L8.5 17L13.5 12Z"
+              fill="currentColor"
               fill-rule="evenodd"
-            >
-              <polygon
-                points="0 24 0 0 24 0 24 24"
-              />
-              <polygon
-                fill="currentColor"
-                points="13.5 12 8.5 7 10 5.5 16.5 12 10 18.5 8.5 17"
-              />
-            </g>
+            />
           </svg>
         </span>
       </button>

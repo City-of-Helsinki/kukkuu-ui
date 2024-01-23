@@ -57,8 +57,7 @@ describe('<EventCard />', () => {
     const { queryAllByRole } = getWrapper({
       event: {},
     });
-
-    expect(queryAllByRole('img').length).toEqual(2);
+    expect(queryAllByRole('img', { hidden: true }).length).toEqual(2);
   });
 
   it('should gives highest priority to custom imageElement', () => {
