@@ -1,7 +1,10 @@
 import isEmail from 'validator/lib/isEmail';
 
 import { newMoment } from '../../time/utils';
-import { DEFAULT_DATE_FORMAT } from '../../time/TimeConstants';
+import {
+  DEFAULT_DATE_FORMAT,
+  SUPPORTED_START_BIRTH_YEAR,
+} from '../../time/TimeConstants';
 
 /**
  * validateRequire()
@@ -28,26 +31,8 @@ const validatePostalCode = (value: string) => {
   if (!value || !valid) return 'validation.postalCode.invalidFormat';
 };
 
-/** validateDate()
- * Validate input date. Dates in the future are not valid.
- * @param {string|number} value Input value.
- * @returns {string} translation key
- */
-const validateDate = (value: string | number) => {
-  const inputMoment = newMoment(value, DEFAULT_DATE_FORMAT);
-  const nowMoment = newMoment();
-
-  if (!inputMoment.isValid()) {
-    return 'validation.date.invalidFormat';
-  }
-
-  if (inputMoment > nowMoment) {
-    return 'validation.date.unSupported';
-  }
-};
-
 const validateEmail = (value: string) => {
   if (!isEmail(value)) return 'registration.form.guardian.email.input.error';
 };
 
-export { validateDate, validatePostalCode, validateRequire, validateEmail };
+export { validatePostalCode, validateRequire, validateEmail };

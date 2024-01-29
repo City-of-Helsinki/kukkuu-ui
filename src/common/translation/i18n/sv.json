@@ -177,7 +177,7 @@
         "availableEventGroup": {
           "readMoreButton": "Bläddra i händelser"
         },
-        "birthdate": "Barnets födelsedatum",
+        "birthyear": "Barnets födelseår",
         "delete": {
           "prompt": {
             "heading": "Är du säker på att du vill radera barnets uppgifter?",
@@ -204,6 +204,11 @@
     "children": {
       "noChild": {
         "text": "Inga fadderbarn"
+      },
+      "edit": {
+        "button": {
+          "text": "Redigera barnets information"
+        }
       }
     },
     "edit": {
@@ -482,15 +487,9 @@
       }
     },
     "preliminaryForm": {
-      "childBirthdate": {
+      "childBirthyear": {
         "input": {
-          "day": {
-            "placeholder": "datum"
-          },
-          "label": "Barnets födelsedatum (dd.mm.åååå)",
-          "month": {
-            "placeholder": "mån"
-          },
+          "label": "Barnets födelseår",
           "year": {
             "placeholder": "år"
           }
@@ -559,16 +558,16 @@
         }
       },
       "child": {
-        "birthdate": {
+        "birthyear": {
           "input": {
-            "label": "Barnets födelsedatum (dd.mm.åååå)",
-            "placeholder": "Ange barnets födelsedatum"
+            "label": "Barnets födelseår",
+            "placeholder": "Ange barnets födelseår"
           }
         },
-        "firstName": {
+        "name": {
           "input": {
-            "label": "Barnets förnamn",
-            "placeholder": "Ange barnets förnamn"
+            "label": "Barnets namn",
+            "placeholder": "Ange barnets namn"
           }
         },
         "homeCity": {
@@ -584,12 +583,6 @@
           "input": {
             "helper": "Vilket språk eller vilka språk talar ni hemma? Välj “Annat språk” om ditt språk inte finns med.",
             "label": "Språk som talas hemma"
-          }
-        },
-        "lastName": {
-          "input": {
-            "label": "Barnets efternamn",
-            "placeholder": "Ange barnets efternamn"
           }
         },
         "postalCode": {
@@ -689,8 +682,8 @@
   },
   "validation": {
     "date": {
-      "invalidFormat": "Fel datumformat",
-      "unSupported": "Födelsedatumet kan inte vara i framtiden"
+      "invalidFormat": "Fel format",
+      "unSupported": "Födelseåret är inte giltigt och kan inte vara det i framtiden"
     },
     "general": {
       "required": "Obligatoriskt fält"

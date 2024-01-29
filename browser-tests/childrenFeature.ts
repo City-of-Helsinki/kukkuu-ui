@@ -15,22 +15,17 @@ import {
 
 function buildAddChild() {
   return {
-    birthDate: {
-      day: '02',
-      month: '02',
-      year: '2020',
-    },
+    birthYear: 2020,
     city: 'Helsinki',
     postalCode: '00000',
-    firstName: 'Gilly',
-    lastName: 'Girod',
+    name: 'Gilly Girod',
     relationship: 'Vanhempi',
   };
 }
 
 function buildEditChild() {
   return {
-    lastName: `Citron ${new Date().toLocaleDateString()}`,
+    name: `Citron ${new Date().toLocaleDateString()}`,
   };
 }
 
@@ -89,9 +84,8 @@ test('As a guardian I want to edit the details of my child', async (t) => {
 });
 
 test('As a guardian I want to add and delete a child', async (t) => {
-  const { birthDate, city, postalCode, firstName, lastName, relationship } =
-    t.ctx.addChild;
-  const newChildName = `${firstName} ${lastName}`;
+  const { birthyear, city, postalCode, name, relationship } = t.ctx.addChild;
+  const newChildName = name;
   const newChildNameRegExp = new RegExp(newChildName);
 
   // Open child add modal
@@ -103,13 +97,10 @@ test('As a guardian I want to add and delete a child', async (t) => {
 
   // Fill form fields
   await t
-    .typeText(addChildModal.birthDayDayInput, birthDate.day)
-    .typeText(addChildModal.birthDayMonthInput, birthDate.month)
-    .typeText(addChildModal.birthDayYearInput, birthDate.year)
+    .typeText(addChildModal.birthYearInput, birthyear)
     .typeText(addChildModal.cityInput, city)
     .typeText(addChildModal.postalCodeInput, postalCode)
-    .typeText(addChildModal.firstNameInput, firstName)
-    .typeText(addChildModal.lastNameInput, lastName)
+    .typeText(addChildModal.nameInput, name)
     .click(addChildModal.relationshipInput)
     .click(getDropdownOption(relationship))
     .click(addChildModal.submitButton);

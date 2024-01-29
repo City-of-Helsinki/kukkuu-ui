@@ -4,8 +4,16 @@ import pick from 'lodash/pick';
 
 import { RelationshipTypeEnum } from '../api/generatedTypes/graphql';
 import { Child, UpdateChild, AddChild } from './types/ChildInputTypes';
-import { newMoment } from '../../common/time/utils';
-import { defaultChildFormBirthdate } from './ChildConstants';
+
+const RESTRICTED_COMMON_CHILD_FIELDS = [
+  'project',
+  'homeCity',
+  'occurrences',
+  'availableEvents',
+  'enrolments',
+  'pastEvents',
+  '__typename',
+];
 
 interface ChildRelationshipOptions {
   label: string;
@@ -40,52 +48,22 @@ export const getTranslatedRelationshipOptions = (
  * TODO: Fix reducer default data to match backend typing
  */
 export const getSupportedChildData = (
-  child: Child | AddChild | UpdateChild
+  child: Child | AddChild | UpdateChild,
+  isEdit?: boolean
 ) => {
-  return omit(child, [
-    'project',
-    'homeCity',
-    'occurrences',
-    'availableEvents',
-    'enrolments',
-    'pastEvents',
-    '__typename',
-  ]);
-};
-
-/**
- * Convert from birthdate in Date string format
- * to object of day month year, mostly to fulfill form data structure
- */
-export const getChildFormModalBirthdate = (birthdate?: string) => {
-  if (!birthdate) {
-    return defaultChildFormBirthdate;
+  const fields = [...RESTRICTED_COMMON_CHILD_FIELDS];
+  if (isEdit) {
+    fields.push('birthyear');
   }
-
-  const birthdateMoment = newMoment(birthdate);
-
-  if (!birthdateMoment.isValid()) {
-    return defaultChildFormBirthdate;
-  }
-
-  return {
-    day: birthdateMoment.date(),
-    month: birthdateMoment.month() + 1,
-    year: birthdateMoment.year(),
-  };
+  return omit(child, fields);
 };
 
 export const getChildFormModalValues = (child: Child) => {
-  const pickedChildFields = pick(child, [
-    'firstName',
-    'lastName',
+  return pick(child, [
+    'name',
+    'birthyear',
     'homeCity',
     'postalCode',
     'relationship',
   ]);
-
-  return {
-    ...pickedChildFields,
-    birthdate: getChildFormModalBirthdate(child.birthdate),
-  };
 };

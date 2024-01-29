@@ -20,7 +20,6 @@ import useGetPathname from '../../../common/route/utils/useGetPathname';
 import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import PageWrapper from '../../app/layout/PageWrapper';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
-import { getSupportedChildData } from '../../child/ChildUtils';
 import {
   SubmitChildrenAndGuardianMutation,
   ProfileQuery,
@@ -64,6 +63,10 @@ const schema = yup.object().shape({
   }),
   children: yup.array().of(
     yup.object().shape({
+      name: yup
+        .string()
+        .required('validation.general.required')
+        .max(255, 'validation.maxLength'),
       postalCode: yup
         .string()
         .required('validation.general.required')
@@ -137,10 +140,15 @@ const RegistrationForm = () => {
             onSubmit={(values) => {
               setFormIsFilling(false);
               dispatch(setFormValues(values));
-
-              const backendSupportChildren = values.children.map((child) =>
-                getSupportedChildData(child)
-              );
+              const backendSupportChildren = values.children.map((child) => {
+                return {
+                  name: child.name,
+                  languagesSpokenAtHome: child.languagesSpokenAtHome,
+                  birthyear: child.birthyear,
+                  postalCode: child.postalCode,
+                  relationship: child.relationship,
+                };
+              });
 
               // Convert from language as a string ('fi', 'en') to the corresponding enum
               const language: Language = values.preferLanguage;

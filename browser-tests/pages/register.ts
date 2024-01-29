@@ -3,9 +3,7 @@ import { Selector } from 'testcafe';
 
 export const registerForm = {
   section: Selector('#register'),
-  birthDayDayInput: Selector('#child\\.birthdate\\.day'),
-  birthDayMonthInput: Selector('#child\\.birthdate\\.month'),
-  birthDayYearInput: Selector('#child\\.birthdate\\.year'),
+  birthYearInput: Selector('#child\\.birthyear'),
   cityInput: screen.getByLabelText(/Lapsen kotipaikkakunta/i),
   verifyInformationCheckbox: screen.getByLabelText(
     /Vakuutan antamani tiedot oikeaksi/i
@@ -16,8 +14,7 @@ export const registerForm = {
 export const registrationForm = {
   formName: Selector('#registrationForm'),
   // Lapsen tiedot
-  firstNameInput: screen.getByLabelText('Lapsen etunimi'),
-  lastNameInput: screen.getByLabelText('Lapsen sukunimi'),
+  nameInput: screen.getByLabelText('Lapsen nimi'),
   postalCodeInput: screen.getByLabelText(/Postinumero/i),
   relationshipInput: screen.getByRole('button', {
     name: /Ilmoittajan suhde lapseen/i,

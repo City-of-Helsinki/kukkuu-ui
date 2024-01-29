@@ -26,15 +26,12 @@ export const editProfileModal = {
 
 export const addChildModal = {
   container: screen.getByRole('dialog', { name: 'Lisää lapsi' }),
-  birthDayDayInput: screen.getByLabelText('pv'),
-  birthDayMonthInput: screen.getByLabelText('kk'),
-  birthDayYearInput: screen.getByLabelText('vuosi'),
+  birthYearInput: screen.getByLabelText('vuosi'),
   cityInput: screen.getByRole('textbox', {
     name: /lapsen kotipaikkakunta/i,
   }),
   postalCodeInput: screen.getByLabelText(/postinumero/i),
-  firstNameInput: screen.getByLabelText('Lapsen etunimi'),
-  lastNameInput: screen.getByLabelText('Lapsen sukunimi'),
+  nameInput: screen.getByLabelText('Lapsen nimi'),
   relationshipInput: screen.getByRole('button', {
     name: /ilmoittajan suhde lapseen/i,
   }),

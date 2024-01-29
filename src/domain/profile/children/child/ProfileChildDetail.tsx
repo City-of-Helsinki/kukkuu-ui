@@ -90,11 +90,7 @@ const ProfileChildDetail = () => {
       {child ? (
         <>
           <ListPageLayout.Header
-            title={
-              child.firstName
-                ? `${child.firstName} ${child.lastName}`
-                : t('profile.child.default.name.text')
-            }
+            title={child.name || t('profile.child.default.name.text')}
             content={
               <Text variant="body-l">
                 {t('profile.common.message.serviceDescription')}
@@ -108,7 +104,7 @@ const ProfileChildDetail = () => {
                   onClick={() => setIsOpen(true)}
                   iconLeft={<IconPen />}
                 >
-                  {t('profile.edit.button.text')}
+                  {t('profile.children.edit.button.text')}
                 </Button>
               </>
             }

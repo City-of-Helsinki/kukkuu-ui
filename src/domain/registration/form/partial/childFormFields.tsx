@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { IconCrossCircle } from 'hds-react';
 
 import styles from './childFormFields.module.scss';
-import { formatTime, newMoment } from '../../../../common/time/utils';
-import { DEFAULT_DATE_FORMAT } from '../../../../common/time/TimeConstants';
 import { Child } from '../../../child/types/ChildInputTypes';
 import { getTranslatedRelationshipOptions } from '../../../child/ChildUtils';
 import Icon from '../../../../common/components/icon/Icon';
@@ -50,9 +48,9 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           )}
         </div>
         <div className={styles.childFixedInfo}>
-          <div className={styles.childBirthdate}>
-            <label>{t('registration.form.child.birthdate.input.label')}</label>
-            <p>{formatTime(newMoment(child.birthdate), DEFAULT_DATE_FORMAT)}</p>
+          <div className={styles.childBirthyear}>
+            <label>{t('registration.form.child.birthyear.input.label')}</label>
+            <p>{child.birthyear}</p>
           </div>
 
           <div className={styles.childHomeCity}>
@@ -63,22 +61,11 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
 
         <div className={styles.childName}>
           <FormikTextInput
-            id={`children[${childIndex}].firstName`}
-            name={`children[${childIndex}].firstName`}
-            label={t('registration.form.child.firstName.input.label')}
+            id={`children[${childIndex}].name`}
+            name={`children[${childIndex}].name`}
+            label={t('registration.form.child.name.input.label')}
             autoComplete="new-password"
-            placeholder={t(
-              'registration.form.child.firstName.input.placeholder'
-            )}
-          />
-          <FormikTextInput
-            id={`children[${childIndex}].lastName`}
-            name={`children[${childIndex}].lastName`}
-            autoComplete="new-password"
-            label={t('registration.form.child.lastName.input.label')}
-            placeholder={t(
-              'registration.form.child.lastName.input.placeholder'
-            )}
+            placeholder={t('registration.form.child.name.input.placeholder')}
           />
         </div>
 

@@ -1,24 +1,20 @@
-import { newMoment } from '../../../common/time/utils';
-import { SUPPORTED_START_BIRTHDATE } from '../../../common/time/TimeConstants';
+import { SUPPORTED_START_BIRTH_YEAR } from '../../../common/time/TimeConstants';
 import { Child } from '../../child/types/ChildInputTypes';
 
-/** isBirthdateEligible()
- * Check if child's birthdate is eligible for participation.
+type Validator = {
+  validator: (value: any) => boolean;
+  item: any;
+};
+
+/** isBirthyearEligible()
+ * Check if child's birthyear is eligible for participation.
  *
  * Only children born in 2020 or later are eligible for this service.
- * @param {string} birthdate in YYYY-MM-DD format.
+ * @param {number} birthyear in yyyy format.
  * @returns {boolean}
  */
-const isBirthdateEligible = (value: string): boolean => {
-  const inputMoment = newMoment(value, 'YYYY-MM-DD');
-  const supportedStart = newMoment(SUPPORTED_START_BIRTHDATE);
-
-  if (!inputMoment.isValid()) return false;
-
-  if (inputMoment.isBefore(supportedStart)) {
-    return false;
-  }
-  return true;
+const isBirthyearEligible = (value: number): boolean => {
+  return value >= SUPPORTED_START_BIRTH_YEAR;
 };
 
 /** getEligibleCities()
@@ -42,11 +38,11 @@ const isCityEligible = (city: string) => {
  * @returns {boolean} if the child is eligible
  */
 const isChildEligible = (
-  child: Pick<Child, 'birthdate' | 'homeCity'>,
+  child: Pick<Child, 'birthyear' | 'homeCity'>,
   isEditing = false
 ): boolean => {
-  const validators = [
-    { validator: isBirthdateEligible, item: child.birthdate },
+  const validators: Validator[] = [
+    { validator: isBirthyearEligible, item: child.birthyear },
   ];
 
   if (!isEditing)

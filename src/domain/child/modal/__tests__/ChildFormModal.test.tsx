@@ -6,7 +6,7 @@ it('renders snapshot correctly', () => {
   const initialValues = Object.assign(
     {},
     defaultRegistrationData.formValues.children[0],
-    { birthdate: '01-11-2019' }
+    { birthyear: 2019 }
   );
 
   const { container } = render(

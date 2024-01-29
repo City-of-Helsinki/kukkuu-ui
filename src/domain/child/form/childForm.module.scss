@@ -1,12 +1,29 @@
 @import '~styles/variables';
 @import '~styles/layout';
+@import '~styles/fonts';
 
 .childName,
 .childInfo {
   @include respond-above(l) {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: $baseMargin;
+  }
+}
+
+.birthyearField {
+  display: flex;
+  flex-direction: column;
+
+  label {
+    font-size: $font-size-sm;
+    margin-bottom: $baseMargin * 0.25;
+    font-weight: $font-weight-bold;
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
   }
 }
 

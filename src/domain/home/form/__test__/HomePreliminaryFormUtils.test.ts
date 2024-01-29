@@ -6,16 +6,15 @@ import { Language } from '../../../api/generatedTypes/graphql';
 const convertFrom: RegistrationFormValues = {
   children: [
     {
-      birthdate: '2019-01-02',
-      firstName: 'cfn',
-      lastName: 'cln',
+      birthyear: 2019,
+      name: 'cfn cln',
       homeCity: 'Helsinki',
       postalCode: '00100',
     },
   ],
   guardian: {
     phoneNumber: '040444444',
-    firstName: 'gfn',
+    firstName: 'gfn gln',
     lastName: 'gln',
     email: 'yomama@example.com',
     languagesSpokenAtHome: ['fi'],
@@ -27,11 +26,7 @@ const convertFrom: RegistrationFormValues = {
 
 const converted: HomeFormValues = {
   child: {
-    birthdate: {
-      day: 2,
-      month: 1,
-      year: 2019,
-    },
+    birthyear: 2019,
     homeCity: 'Helsinki',
   },
   verifyInformation: false,

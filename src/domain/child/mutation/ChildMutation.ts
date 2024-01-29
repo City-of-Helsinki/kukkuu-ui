@@ -5,9 +5,8 @@ export const addChildMutation = gql`
     addChild(input: $input) {
       child {
         id
-        firstName
-        lastName
-        birthdate
+        name
+        birthyear
         postalCode
         project {
           id
@@ -35,9 +34,8 @@ export const editChildMutation = gql`
   fragment UpdateChildMutationPayloadFields on UpdateChildMutationPayload {
     child {
       id
-      firstName
-      lastName
-      birthdate
+      name
+      birthyear
       postalCode
       project {
         id

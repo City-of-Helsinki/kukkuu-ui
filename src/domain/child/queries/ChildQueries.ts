@@ -157,9 +157,8 @@ export const childByIdQuery = gql`
 
   fragment ChildByIdQueryFields on ChildNode {
     id
-    firstName
-    lastName
-    birthdate
+    name
+    birthyear
     postalCode
     project {
       ...ChildByIdQueryProjectFields
