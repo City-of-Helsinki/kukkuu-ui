@@ -9797,10 +9797,10 @@ react-helmet-async@^1.3.0:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
-react-helsinki-headless-cms@1.0.0-alpha250:
-  version "1.0.0-alpha250"
-  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha250.tgz#acb8a54a0117a495c0faddb37f14a1622b9e6ce1"
-  integrity sha512-XKt07WqFxZvkH43shxf1Dx3BokiqoVu1MVVb3dtPeXSxa89ymJoxvdFQ4THQyQ7XG9BNiqhehdAozhUAiC8qow==
+react-helsinki-headless-cms@1.0.0-alpha253:
+  version "1.0.0-alpha253"
+  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha253.tgz#9c82562095efc09566ad213edce127487bce7cf5"
+  integrity sha512-6VrfY8O5Sv2/D9PvePs3a2hYCpB50D5MMF8eqhgukaU6Yldblaj85bzm6kyMQJQ5bRxR3++9bTAkn05c+9/FMQ==
   dependencies:
     hds-core "^3.4.0"
     hds-design-tokens "^3.4.0"
