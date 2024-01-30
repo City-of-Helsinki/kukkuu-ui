@@ -35,6 +35,15 @@ import teatterimuseoIcon from '../../../../assets/icons/partners/teatterimuseo.p
 import valokuvataiteenmuseoIcon from '../../../../assets/icons/partners/valokuvataiteenmuseo.png';
 import { Partner } from '../types/partner';
 
+const helsinkiFiUrl =
+  'https://www.hel.fi/fi/paatoksenteko-ja-hallinto/kaupungin-organisaatio/toimialat/kulttuurin-ja-vapaa-ajan-toimiala';
+
+const helsinkiSvUrl =
+  'https://www.hel.fi/sv/beslutsfattande-och-forvaltning/stadens-organisation/sektorer/kultur-och-fritidssektorn';
+
+const helsinkiEnUrl =
+  'https://www.hel.fi/en/decision-making/city-organization/divisions/culture-and-leisure-division';
+
 // Name, icon file name and translation key is created from partner's domain
 // name without .fi and dash.
 // Examples:
@@ -46,9 +55,9 @@ export const mainPartnerList: Partner[] = [
     icon: helIcon,
     altLangIcons: { sv: helIconSv },
     url: {
-      fi: 'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/fi/palvelut/yleiset-kulttuuripalvelut/',
-      sv: 'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/sv/tjanster/allmanna-kulturtjanster/',
-      en: 'https://www.hel.fi/kulttuurin-ja-vapaa-ajan-toimiala/en/services/cultural-centres-and-support/',
+      fi: helsinkiFiUrl,
+      sv: helsinkiSvUrl,
+      en: helsinkiEnUrl,
     },
   },
   {

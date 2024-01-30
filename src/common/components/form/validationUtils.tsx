@@ -1,11 +1,5 @@
 import isEmail from 'validator/lib/isEmail';
 
-import { newMoment } from '../../time/utils';
-import {
-  DEFAULT_DATE_FORMAT,
-  SUPPORTED_START_BIRTH_YEAR,
-} from '../../time/TimeConstants';
-
 /**
  * validateRequire()
  * Check if field is required.
