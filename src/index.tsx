@@ -8,6 +8,7 @@ import React from 'react';
 import BrowserApp from './domain/app/BrowserApp';
 import * as serviceWorker from './serviceWorker';
 import { initI18next } from './common/translation/i18n/i18nInit';
+import AppConfig from './domain/app/AppConfig';
 
 initI18next();
 Modal.setAppElement('#root');
@@ -27,7 +28,7 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
-    <BrowserApp />
+    <BrowserApp cookieDomain={AppConfig.hostname} />
   </React.StrictMode>
 );
 

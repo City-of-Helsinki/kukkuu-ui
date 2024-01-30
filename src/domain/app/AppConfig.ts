@@ -4,6 +4,13 @@ class AppConfig {
     return getEnvOrError(import.meta.env.VITE_ORIGIN, 'VITE_ORIGIN');
   }
 
+  /**
+   * Hostname of the app.
+   */
+  static get hostname() {
+    return new URL(this.origin).hostname;
+  }
+
   static get ApiUrl() {
     return getEnvOrError(import.meta.env.VITE_API_URI, 'VITE_API_URI');
   }

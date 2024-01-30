@@ -6,6 +6,7 @@ import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { MAIN_CONTENT_ID } from '../constants';
+import { useCookieConfig } from '../../common/components/cookieConfigProvider';
 
 type Props = {
   appName: string;
@@ -20,6 +21,7 @@ const CookieConsent: React.FC<Props> = ({
 }) => {
   const { t, i18n } = useTranslation();
   const locale = getCurrentLanguage(i18n);
+  const { cookieDomain } = useCookieConfig();
   const { getAllConsents } = useCookies();
   const { pushInstruction } = useMatomo();
 
@@ -148,9 +150,14 @@ const CookieConsent: React.FC<Props> = ({
   return (
     <>
       {isModal && showCookieConsentModal && (
-        <CookieModal contentSource={contentSource} />
+        <CookieModal
+          contentSource={contentSource}
+          cookieDomain={cookieDomain}
+        />
       )}
-      {!isModal && <CookiePage contentSource={contentSource} />}
+      {!isModal && (
+        <CookiePage contentSource={contentSource} cookieDomain={cookieDomain} />
+      )}
     </>
   );
 };
