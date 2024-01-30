@@ -19,6 +19,7 @@ import userManager from '../auth/userManager';
 import { persistor, store } from './state/AppStore';
 import useRHHCConfig from '../../hooks/useRHHCConfig';
 import browserRouter from './routes/browserRouter';
+import { CookieConfigProvider } from '../../common/components/cookieConfigProvider';
 
 if (import.meta.env.NODE_ENV === 'development') {
   enableOidcLogging();
@@ -37,30 +38,36 @@ if (import.meta.env.VITE_ENVIRONMENT !== 'production') {
   window._paq.push(['requireConsent']);
 }
 
-const BrowserApp: FunctionComponent = () => {
+type BrowserAppProps = {
+  cookieDomain: string;
+};
+
+const BrowserApp: FunctionComponent<BrowserAppProps> = ({ cookieDomain }) => {
   const config = useRHHCConfig();
   return (
-    <AriaLiveProvider>
-      <Provider store={store}>
-        <PersistGate
-          loading={<LoadingSpinner isLoading={true} />}
-          persistor={persistor}
-        >
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/* @ts-ignore Property 'children' does not exist on type */}
-          <OidcProvider store={store} userManager={userManager}>
-            <ApolloProvider client={graphqlClient}>
-              <ConfigProvider config={config}>
-                <MatomoProvider value={matomoInstance}>
-                  <RouterProvider router={browserRouter} />
-                </MatomoProvider>
-              </ConfigProvider>
-            </ApolloProvider>
-          </OidcProvider>
-        </PersistGate>
-        <ToastContainer />
-      </Provider>
-    </AriaLiveProvider>
+    <CookieConfigProvider cookieDomain={cookieDomain}>
+      <AriaLiveProvider>
+        <Provider store={store}>
+          <PersistGate
+            loading={<LoadingSpinner isLoading={true} />}
+            persistor={persistor}
+          >
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore Property 'children' does not exist on type */}
+            <OidcProvider store={store} userManager={userManager}>
+              <ApolloProvider client={graphqlClient}>
+                <ConfigProvider config={config}>
+                  <MatomoProvider value={matomoInstance}>
+                    <RouterProvider router={browserRouter} />
+                  </MatomoProvider>
+                </ConfigProvider>
+              </ApolloProvider>
+            </OidcProvider>
+          </PersistGate>
+          <ToastContainer />
+        </Provider>
+      </AriaLiveProvider>
+    </CookieConfigProvider>
   );
 };
 
