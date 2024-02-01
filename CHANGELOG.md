@@ -399,6 +399,38 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.0.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.1.1...kukkuu-ui-v3.0.0) (2024-02-01)
+
+
+### Features
+
+* Children has only 1 name field and birthyear instead of date ([ac5c9ae](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ac5c9ae97a9d3da19dd0bacc29ca2e82bc294403))
+* Convert to HDS v3 breakpoints & container widths, not all ([101ca43](https://github.com/City-of-Helsinki/kukkuu-ui/commit/101ca43438413cf7c41e1f6fc2af0219621e2bb7))
+* Make UserNavigation use HDS v3 ([fe16447](https://github.com/City-of-Helsinki/kukkuu-ui/commit/fe16447c504ba7d08ad778fb9a9676447ca8e251))
+* Use HDS v3 Footer component for footer ([dee4964](https://github.com/City-of-Helsinki/kukkuu-ui/commit/dee4964440155af5932525a1b81a14599ad03bbd))
+* Use HDS v3.3.0 release's HDS Favicon kit, remove old favicons ([9c21a58](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9c21a58a45cc013b05c00c15341f232f10f5e847))
+
+
+### Bug Fixes
+
+* **cookies:** Set cookie domain to hostname (e.g. kummilapset.hel.fi) ([e432eee](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e432eee3d8a657b3a623d223671e9569706f0315))
+* Fix delete child button's underline style ([5e93cb0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5e93cb08b330bc04764a0173a59b0a77092b6b17))
+* **header:** Make user dropdown items look more like before HDS v3 ([fa3950c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/fa3950c28b37a51a4c7a42141906dccfe4777a9b))
+* Hide header action bar items' labels on mobile (i.e. below small) ([d8377d1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d8377d15f862a8a2d963372f29be5f75eb401fb2))
+* Remove "as unknown as" type unsafe cast, fix useRHHCConfig ([63edab8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/63edab87940c454b5a329955b4ec13361e2417c2))
+* Remove unused icons, replace similar icons with HDS v3 icons ([21337d5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/21337d531fbeaee26ab33ede5120e8be74760dfa))
+* Running generate:graphql, replace REACT_APP_API_URI -&gt; VITE_API_URI ([4448a65](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4448a65ad9d507f3f33af30ed1a203d648e2de68))
+* Update Helsinki partner logo URLs ([5dc58be](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5dc58bedb12dddcf573f312daee4c029207eb89a))
+* Update snapshots & fix tests ([5bd0c3e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5bd0c3ecb8edff1f2061be47385651a4879727fb))
+* Update UI to match API child name & birthyear changes (KK-1023) ([#523](https://github.com/City-of-Helsinki/kukkuu-ui/issues/523)) ([22182fe](https://github.com/City-of-Helsinki/kukkuu-ui/commit/22182fe3991057eb6ced9ca8e21521cd1152498d))
+* Upgrade to HDS v3.4 & RHHC using it, fix clicking header's buttons ([d1502f1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d1502f1ec2619d96aa7a1d22a66e4ba9df10e6b4))
+* Use official SVG JAES logos from jaes.fi ([591b949](https://github.com/City-of-Helsinki/kukkuu-ui/commit/591b949437adfae801a8828ad75ee25157476686))
+
+
+### Miscellaneous Chores
+
+* Release 3.0.0 ([91f932f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/91f932fabbea5869e758d9832736e17301622116))
+
 ## [2.1.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.1.0...kukkuu-ui-v2.1.1) (2024-01-05)
 
 
