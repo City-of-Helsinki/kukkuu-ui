@@ -3,13 +3,12 @@ import { useMemo } from 'react';
 import Combobox, {
   ComboboxProps,
 } from '../../common/components/formikWrappers/Combobox';
-import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import useLanguages from './hooks/useLanguages';
 
 type Props = Omit<ComboboxProps, 'options'>;
 
 const LanguagesCombobox = (props: Props) => {
-  const { languages, loading: isLoadingLanguages } = useLanguages();
+  const { languages } = useLanguages();
 
   const languageOptions = useMemo(
     () =>
@@ -19,10 +18,6 @@ const LanguagesCombobox = (props: Props) => {
       })),
     [languages.items]
   );
-
-  if (isLoadingLanguages) {
-    return <LoadingSpinner isLoading={true} />;
-  }
 
   return <Combobox {...props} clearable={false} options={languageOptions} />;
 };
