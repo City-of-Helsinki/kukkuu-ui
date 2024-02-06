@@ -31,8 +31,6 @@ export default function ChildEventInvitationLabel({ childId }: Props) {
     },
   });
 
-  console.log(data?.child);
-
   const upcomingEventsWhereChildCanEnrol =
     data?.child?.upcomingEventsAndEventGroups?.edges?.map(
       (edge) => edge?.node?.canChildEnroll
