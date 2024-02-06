@@ -11,7 +11,6 @@ const HeadlessCmsPage = () => {
     <Page
       uri={location.pathname}
       navigation={undefined}
-      notification={<Notification />}
       content={
         <PageContent
           notFoundPageContent={<NotFound />}
