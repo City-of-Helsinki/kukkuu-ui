@@ -24,12 +24,14 @@ export default function ChildEventInvitationLabel({ childId }: Props) {
     },
   });
   const {
-    convenience: { areAllEnrolmentsUsed },
+    convenience: { areAllCurrentEnrolmentsUsed },
   } = useChildEnrolmentCount({
     variables: {
       childId,
     },
   });
+
+  console.log(data?.child);
 
   const upcomingEventsWhereChildCanEnrol =
     data?.child?.upcomingEventsAndEventGroups?.edges?.map(
@@ -38,7 +40,7 @@ export default function ChildEventInvitationLabel({ childId }: Props) {
   const hasUpcomingEventsWhereChildCanEnrol =
     (upcomingEventsWhereChildCanEnrol?.length ?? 0) > 0;
 
-  if (!hasUpcomingEventsWhereChildCanEnrol || areAllEnrolmentsUsed) {
+  if (!hasUpcomingEventsWhereChildCanEnrol || areAllCurrentEnrolmentsUsed) {
     return null;
   }
 
