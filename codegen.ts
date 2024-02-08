@@ -5,8 +5,15 @@ const config: CodegenConfig = {
   documents: ['src/**/*.ts'],
   generates: {
     'src/domain/api/generatedTypes/graphql.tsx': {
-      plugins: ['typescript', 'typescript-operations'],
+      plugins: [
+        'typescript',
+        'typescript-operations',
+        'typescript-react-apollo',
+      ],
       config: {
+        withHooks: false,
+        withComponent: false,
+        flattenSelectionSet: true,
         avoidOptionals: {
           field: true,
           object: true,
