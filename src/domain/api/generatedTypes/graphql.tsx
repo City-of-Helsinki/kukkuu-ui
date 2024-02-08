@@ -1,3 +1,5 @@
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -948,6 +950,7 @@ export type Mutation = {
   importTicketSystemPasswords: Maybe<ImportTicketSystemPasswordsMutationPayload>;
   publishEvent: Maybe<PublishEventMutationPayload>;
   publishEventGroup: Maybe<PublishEventGroupMutationPayload>;
+  requestEmailUpdateToken: Maybe<RequestEmailUpdateTokenMutation>;
   sendMessage: Maybe<SendMessageMutationPayload>;
   setEnrolmentAttendance: Maybe<SetEnrolmentAttendanceMutationPayload>;
   /** This is the first mutation one needs to execute to start using the service. After that this mutation cannot be used anymore. */
@@ -959,6 +962,7 @@ export type Mutation = {
   updateEvent: Maybe<UpdateEventMutationPayload>;
   updateEventGroup: Maybe<UpdateEventGroupMutationPayload>;
   updateMessage: Maybe<UpdateMessageMutationPayload>;
+  updateMyEmail: Maybe<UpdateMyEmailMutationPayload>;
   updateMyProfile: Maybe<UpdateMyProfileMutationPayload>;
   updateOccurrence: Maybe<UpdateOccurrenceMutationPayload>;
   updateVenue: Maybe<UpdateVenueMutationPayload>;
@@ -1070,6 +1074,10 @@ export type MutationUpdateEventGroupArgs = {
 
 export type MutationUpdateMessageArgs = {
   input: UpdateMessageMutationInput;
+};
+
+export type MutationUpdateMyEmailArgs = {
+  input: UpdateMyEmailMutationInput;
 };
 
 export type MutationUpdateMyProfileArgs = {
@@ -1451,6 +1459,12 @@ export enum RelationshipTypeEnum {
   Parent = 'PARENT',
 }
 
+export type RequestEmailUpdateTokenMutation = {
+  __typename?: 'RequestEmailUpdateTokenMutation';
+  email: Maybe<Scalars['String']['output']>;
+  emailUpdateTokenRequested: Maybe<Scalars['Boolean']['output']>;
+};
+
 export type SendMessageMutationInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
@@ -1646,9 +1660,20 @@ export type UpdateMessageMutationPayload = {
   message: Maybe<MessageNode>;
 };
 
+export type UpdateMyEmailMutationInput = {
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  email: Scalars['String']['input'];
+  verificationToken: Scalars['String']['input'];
+};
+
+export type UpdateMyEmailMutationPayload = {
+  __typename?: 'UpdateMyEmailMutationPayload';
+  clientMutationId: Maybe<Scalars['String']['output']>;
+  myProfile: Maybe<GuardianNode>;
+};
+
 export type UpdateMyProfileMutationInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  email?: InputMaybe<Scalars['String']['input']>;
   firstName?: InputMaybe<Scalars['String']['input']>;
   language?: InputMaybe<Language>;
   languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
@@ -3518,6 +3543,25 @@ export type LanguageQuery = {
   } | null;
 };
 
+export type UpdateMyEmailMutationVariables = Exact<{
+  input: UpdateMyEmailMutationInput;
+}>;
+
+export type UpdateMyEmailMutation = {
+  __typename?: 'Mutation';
+  updateMyEmail: {
+    __typename?: 'UpdateMyEmailMutationPayload';
+    myProfile: {
+      __typename?: 'GuardianNode';
+      id: string;
+      firstName: string;
+      lastName: string;
+      language: Language;
+      email: string;
+    } | null;
+  } | null;
+};
+
 export type UpdateMyProfileMutationVariables = Exact<{
   input: UpdateMyProfileMutationInput;
 }>;
@@ -4138,3 +4182,1218 @@ export type SubmitChildrenAndGuardianMutation = {
     } | null;
   } | null;
 };
+
+export const DeleteChildMutationPayloadFieldsFragmentDoc = gql`
+  fragment DeleteChildMutationPayloadFields on DeleteChildMutationPayload {
+    clientMutationId
+  }
+`;
+export const UpdateChildMutationPayloadFieldsFragmentDoc = gql`
+  fragment UpdateChildMutationPayloadFields on UpdateChildMutationPayload {
+    child {
+      id
+      name
+      birthyear
+      postalCode
+      project {
+        id
+        name
+        year
+      }
+      relationships {
+        edges {
+          node {
+            id
+            type
+          }
+        }
+      }
+    }
+  }
+`;
+export const ChildByIdQueryProjectFieldsFragmentDoc = gql`
+  fragment ChildByIdQueryProjectFields on ProjectNode {
+    id
+    name
+    year
+  }
+`;
+export const EnrolmentVenueFieldsFragmentDoc = gql`
+  fragment EnrolmentVenueFields on VenueNode {
+    id
+    name
+    address
+  }
+`;
+export const EnrolmentEventFieldsFragmentDoc = gql`
+  fragment EnrolmentEventFields on EventNode {
+    id
+    name
+    shortDescription
+    duration
+    image
+    imageAltText
+    participantsPerInvite
+  }
+`;
+export const EnrolmentOccurrenceFieldsFragmentDoc = gql`
+  fragment EnrolmentOccurrenceFields on OccurrenceNode {
+    id
+    time
+    venue {
+      ...EnrolmentVenueFields
+    }
+    event {
+      ...EnrolmentEventFields
+    }
+  }
+  ${EnrolmentVenueFieldsFragmentDoc}
+  ${EnrolmentEventFieldsFragmentDoc}
+`;
+export const ActiveInternalEnrolmentFieldsFragmentDoc = gql`
+  fragment ActiveInternalEnrolmentFields on EnrolmentNode {
+    id
+    referenceId
+    occurrence {
+      ...EnrolmentOccurrenceFields
+    }
+    __typename
+  }
+  ${EnrolmentOccurrenceFieldsFragmentDoc}
+`;
+export const ActiveTicketmasterEnrolmentFieldsFragmentDoc = gql`
+  fragment ActiveTicketmasterEnrolmentFields on TicketmasterEnrolmentNode {
+    id
+    event {
+      ...EnrolmentEventFields
+    }
+    __typename
+  }
+  ${EnrolmentEventFieldsFragmentDoc}
+`;
+export const ActiveLippupisteEnrolmentFieldsFragmentDoc = gql`
+  fragment ActiveLippupisteEnrolmentFields on LippupisteEnrolmentNode {
+    id
+    event {
+      ...EnrolmentEventFields
+    }
+    __typename
+  }
+  ${EnrolmentEventFieldsFragmentDoc}
+`;
+export const ActiveInternalAndTicketSystemEnrolmentsFieldsFragmentDoc = gql`
+  fragment ActiveInternalAndTicketSystemEnrolmentsFields on InternalOrTicketSystemEnrolmentConnection {
+    edges {
+      node {
+        ... on EnrolmentNode {
+          ...ActiveInternalEnrolmentFields
+        }
+        ... on TicketmasterEnrolmentNode {
+          ...ActiveTicketmasterEnrolmentFields
+        }
+        ... on LippupisteEnrolmentNode {
+          ...ActiveLippupisteEnrolmentFields
+        }
+      }
+    }
+  }
+  ${ActiveInternalEnrolmentFieldsFragmentDoc}
+  ${ActiveTicketmasterEnrolmentFieldsFragmentDoc}
+  ${ActiveLippupisteEnrolmentFieldsFragmentDoc}
+`;
+export const UpcomingEventFieldsFragmentDoc = gql`
+  fragment UpcomingEventFields on EventNode {
+    id
+    name
+    shortDescription
+    image
+    imageAltText
+    participantsPerInvite
+    canChildEnroll(childId: $id)
+    __typename
+  }
+`;
+export const UpcomingEventGroupFieldsFragmentDoc = gql`
+  fragment UpcomingEventGroupFields on EventGroupNode {
+    id
+    name
+    shortDescription
+    image
+    imageAltText
+    canChildEnroll(childId: $id)
+    __typename
+  }
+`;
+export const UpcomingEventsAndEventGroupsFieldsFragmentDoc = gql`
+  fragment UpcomingEventsAndEventGroupsFields on EventOrEventGroupConnection {
+    edges {
+      node {
+        ... on EventNode {
+          ...UpcomingEventFields
+        }
+        ... on EventGroupNode {
+          ...UpcomingEventGroupFields
+        }
+      }
+    }
+  }
+  ${UpcomingEventFieldsFragmentDoc}
+  ${UpcomingEventGroupFieldsFragmentDoc}
+`;
+export const PastEventOccurrenceFieldsFragmentDoc = gql`
+  fragment PastEventOccurrenceFields on OccurrenceNode {
+    id
+    time
+  }
+`;
+export const PastEventOccurrencesFieldsFragmentDoc = gql`
+  fragment PastEventOccurrencesFields on OccurrenceNodeConnection {
+    edges {
+      node {
+        ...PastEventOccurrenceFields
+      }
+    }
+  }
+  ${PastEventOccurrenceFieldsFragmentDoc}
+`;
+export const PastEventFieldsFragmentDoc = gql`
+  fragment PastEventFields on EventNode {
+    id
+    name
+    shortDescription
+    image
+    imageAltText
+    participantsPerInvite
+    occurrences {
+      ...PastEventOccurrencesFields
+    }
+  }
+  ${PastEventOccurrencesFieldsFragmentDoc}
+`;
+export const PastEventsFieldsFragmentDoc = gql`
+  fragment PastEventsFields on EventConnection {
+    edges {
+      node {
+        ...PastEventFields
+      }
+    }
+  }
+  ${PastEventFieldsFragmentDoc}
+`;
+export const RelationshipFieldsFragmentDoc = gql`
+  fragment RelationshipFields on RelationshipNode {
+    id
+    type
+  }
+`;
+export const RelationshipsFieldsFragmentDoc = gql`
+  fragment RelationshipsFields on RelationshipNodeConnection {
+    edges {
+      node {
+        ...RelationshipFields
+      }
+    }
+  }
+  ${RelationshipFieldsFragmentDoc}
+`;
+export const ChildByIdQueryFieldsFragmentDoc = gql`
+  fragment ChildByIdQueryFields on ChildNode {
+    id
+    name
+    birthyear
+    postalCode
+    project {
+      ...ChildByIdQueryProjectFields
+    }
+    activeInternalAndTicketSystemEnrolments {
+      ...ActiveInternalAndTicketSystemEnrolmentsFields
+    }
+    upcomingEventsAndEventGroups {
+      ...UpcomingEventsAndEventGroupsFields
+    }
+    pastEvents {
+      ...PastEventsFields
+    }
+    relationships {
+      ...RelationshipsFields
+    }
+  }
+  ${ChildByIdQueryProjectFieldsFragmentDoc}
+  ${ActiveInternalAndTicketSystemEnrolmentsFieldsFragmentDoc}
+  ${UpcomingEventsAndEventGroupsFieldsFragmentDoc}
+  ${PastEventsFieldsFragmentDoc}
+  ${RelationshipsFieldsFragmentDoc}
+`;
+export const EnrolOccurrencesFieldsFragmentDoc = gql`
+  fragment EnrolOccurrencesFields on OccurrenceNodeConnection {
+    edges {
+      node {
+        id
+        time
+        event {
+          id
+          image
+          imageAltText
+          description
+          shortDescription
+          name
+          duration
+          participantsPerInvite
+        }
+        venue {
+          id
+          name
+          address
+          accessibilityInfo
+          arrivalInstructions
+          additionalInfo
+          wwwUrl
+          wcAndFacilities
+        }
+      }
+    }
+  }
+`;
+export const EnrolOccurrenceMutationPayloadFieldsFragmentDoc = gql`
+  fragment EnrolOccurrenceMutationPayloadFields on EnrolOccurrenceMutationPayload {
+    clientMutationId
+    enrolment {
+      id
+      occurrence {
+        id
+        event {
+          id
+        }
+        venue {
+          id
+        }
+      }
+      child {
+        id
+        occurrences(upcoming: true) {
+          ...EnrolOccurrencesFields
+        }
+        pastEvents {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+        availableEvents {
+          edges {
+            node {
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+  ${EnrolOccurrencesFieldsFragmentDoc}
+`;
+export const UnenrolOccurrencesFieldsFragmentDoc = gql`
+  fragment UnenrolOccurrencesFields on OccurrenceNodeConnection {
+    edges {
+      node {
+        id
+        time
+        event {
+          id
+          image
+          imageAltText
+          description
+          shortDescription
+          name
+          duration
+          participantsPerInvite
+        }
+        venue {
+          id
+          name
+          address
+          accessibilityInfo
+          arrivalInstructions
+          additionalInfo
+          wwwUrl
+          wcAndFacilities
+        }
+      }
+    }
+  }
+`;
+export const UnenrolOccurrenceMutationPayloadFieldsFragmentDoc = gql`
+  fragment UnenrolOccurrenceMutationPayloadFields on UnenrolOccurrenceMutationPayload {
+    clientMutationId
+    occurrence {
+      id
+      event {
+        id
+      }
+    }
+    child {
+      id
+      availableEvents {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+      occurrences(upcomingWithOngoing: true) {
+        ...UnenrolOccurrencesFields
+      }
+      pastEvents {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+  ${UnenrolOccurrencesFieldsFragmentDoc}
+`;
+export const EventOccurrenceFieldsFragmentDoc = gql`
+  fragment EventOccurrenceFields on OccurrenceNode {
+    id
+    time
+    remainingCapacity
+    event {
+      id
+      name
+      duration
+    }
+    venue {
+      id
+      name
+      address
+    }
+    childHasFreeSpotNotificationSubscription(childId: $childId)
+    ticketSystem {
+      type
+      ... on TicketmasterOccurrenceTicketSystem {
+        url
+      }
+      ... on LippupisteOccurrenceTicketSystem {
+        url
+      }
+    }
+  }
+`;
+export const EventOccurrencesFieldsFragmentDoc = gql`
+  fragment EventOccurrencesFields on OccurrenceNodeConnection {
+    edges {
+      node {
+        ...EventOccurrenceFields
+      }
+    }
+  }
+  ${EventOccurrenceFieldsFragmentDoc}
+`;
+export const TicketmasterEventFieldsFragmentDoc = gql`
+  fragment TicketmasterEventFields on TicketmasterEventTicketSystem {
+    childPassword(childId: $childId)
+    url
+  }
+`;
+export const LippupisteEventFieldsFragmentDoc = gql`
+  fragment LippupisteEventFields on LippupisteEventTicketSystem {
+    childPassword(childId: $childId)
+    url
+  }
+`;
+export const ExternalTicketSystemEventFieldsFragmentDoc = gql`
+  fragment ExternalTicketSystemEventFields on EventNode {
+    id
+    name
+    description
+    image
+    imageAltText
+    participantsPerInvite
+    occurrences: occurrences(upcoming: true, first: 1) {
+      edges {
+        node {
+          ticketSystem {
+            type
+            ... on TicketmasterOccurrenceTicketSystem {
+              url
+            }
+            ... on LippupisteOccurrenceTicketSystem {
+              url
+            }
+          }
+        }
+      }
+    }
+    ticketSystem {
+      type
+      ... on TicketmasterEventTicketSystem {
+        ...TicketmasterEventFields
+      }
+      ... on LippupisteEventTicketSystem {
+        ...LippupisteEventFields
+      }
+    }
+  }
+  ${TicketmasterEventFieldsFragmentDoc}
+  ${LippupisteEventFieldsFragmentDoc}
+`;
+export const OccurrenceEventFieldsFragmentDoc = gql`
+  fragment OccurrenceEventFields on EventNode {
+    id
+    image
+    imageAltText
+    description
+    shortDescription
+    name
+    duration
+    participantsPerInvite
+    eventGroup {
+      id
+    }
+  }
+`;
+export const OccurrenceVenueFieldsFragmentDoc = gql`
+  fragment OccurrenceVenueFields on VenueNode {
+    id
+    name
+    address
+    accessibilityInfo
+    arrivalInstructions
+    additionalInfo
+    wwwUrl
+    wcAndFacilities
+  }
+`;
+export const OccurrenceFieldsFragmentDoc = gql`
+  fragment OccurrenceFields on OccurrenceNode {
+    id
+    time
+    remainingCapacity
+    event {
+      ...OccurrenceEventFields
+    }
+    venue {
+      ...OccurrenceVenueFields
+    }
+    childHasFreeSpotNotificationSubscription(childId: $childId)
+  }
+  ${OccurrenceEventFieldsFragmentDoc}
+  ${OccurrenceVenueFieldsFragmentDoc}
+`;
+export const EventGroupEventFieldsFragmentDoc = gql`
+  fragment EventGroupEventFields on EventNode {
+    id
+    name
+    shortDescription
+    image
+    imageAltText
+    canChildEnroll(childId: $childId)
+  }
+`;
+export const EventGroupEventsFieldsFragmentDoc = gql`
+  fragment EventGroupEventsFields on EventNodeConnection {
+    edges {
+      node {
+        ...EventGroupEventFields
+      }
+    }
+  }
+  ${EventGroupEventFieldsFragmentDoc}
+`;
+export const EventGroupFieldsFragmentDoc = gql`
+  fragment EventGroupFields on EventGroupNode {
+    id
+    name
+    shortDescription
+    description
+    events(upcoming: true) {
+      ...EventGroupEventsFields
+    }
+  }
+  ${EventGroupEventsFieldsFragmentDoc}
+`;
+export const LanguageFieldsFragmentDoc = gql`
+  fragment LanguageFields on LanguageNode {
+    id
+    name
+  }
+`;
+export const LanguagesFieldsFragmentDoc = gql`
+  fragment LanguagesFields on LanguageNodeConnection {
+    edges {
+      node {
+        ...LanguageFields
+      }
+    }
+  }
+  ${LanguageFieldsFragmentDoc}
+`;
+export const MyProfileChildProjectFieldsFragmentDoc = gql`
+  fragment MyProfileChildProjectFields on ProjectNode {
+    id
+    name
+    year
+  }
+`;
+export const MyProfileEnrolmentFieldsFragmentDoc = gql`
+  fragment MyProfileEnrolmentFields on EnrolmentNode {
+    id
+    occurrence {
+      id
+      time
+      venue {
+        id
+        name
+      }
+      event {
+        id
+        name
+        duration
+      }
+    }
+  }
+`;
+export const MyProfileEnrolmentsFieldsFragmentDoc = gql`
+  fragment MyProfileEnrolmentsFields on EnrolmentNodeConnection {
+    edges {
+      node {
+        ...MyProfileEnrolmentFields
+      }
+    }
+  }
+  ${MyProfileEnrolmentFieldsFragmentDoc}
+`;
+export const MyProfileChildFieldsFragmentDoc = gql`
+  fragment MyProfileChildFields on ChildNode {
+    id
+    name
+    birthyear
+    postalCode
+    project {
+      ...MyProfileChildProjectFields
+    }
+    relationships {
+      edges {
+        node {
+          id
+          type
+        }
+      }
+    }
+    upcomingEventsAndEventGroups {
+      edges {
+        node {
+          ... on EventGroupNode {
+            id
+            name
+          }
+          ... on EventNode {
+            id
+            name
+            duration
+            participantsPerInvite
+          }
+        }
+      }
+    }
+    occurrences {
+      edges {
+        node {
+          id
+          event {
+            id
+            name
+            shortDescription
+          }
+        }
+      }
+    }
+    enrolments {
+      ...MyProfileEnrolmentsFields
+    }
+  }
+  ${MyProfileChildProjectFieldsFragmentDoc}
+  ${MyProfileEnrolmentsFieldsFragmentDoc}
+`;
+export const MyProfileChildrenFieldsFragmentDoc = gql`
+  fragment MyProfileChildrenFields on ChildNodeConnection {
+    edges {
+      node {
+        ...MyProfileChildFields
+      }
+    }
+  }
+  ${MyProfileChildFieldsFragmentDoc}
+`;
+export const LanguageSpokenAtHomeFieldsFragmentDoc = gql`
+  fragment LanguageSpokenAtHomeFields on LanguageNode {
+    id
+  }
+`;
+export const LanguagesSpokenAtHomeFieldsFragmentDoc = gql`
+  fragment LanguagesSpokenAtHomeFields on LanguageNodeConnection {
+    edges {
+      node {
+        ...LanguageSpokenAtHomeFields
+      }
+    }
+  }
+  ${LanguageSpokenAtHomeFieldsFragmentDoc}
+`;
+export const MyProfileFieldsFragmentDoc = gql`
+  fragment MyProfileFields on GuardianNode {
+    id
+    firstName
+    lastName
+    email
+    phoneNumber
+    language
+    children {
+      ...MyProfileChildrenFields
+    }
+    languagesSpokenAtHome {
+      ...LanguagesSpokenAtHomeFields
+    }
+  }
+  ${MyProfileChildrenFieldsFragmentDoc}
+  ${LanguagesSpokenAtHomeFieldsFragmentDoc}
+`;
+export const SubmitGuardianFieldsFragmentDoc = gql`
+  fragment SubmitGuardianFields on GuardianNode {
+    id
+    firstName
+    lastName
+    email
+    phoneNumber
+    language
+    children {
+      edges {
+        node {
+          id
+          name
+          birthyear
+          postalCode
+          project {
+            id
+            name
+            year
+          }
+          relationships {
+            edges {
+              node {
+                id
+                type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export const SubmitChildrenAndGuardianMutationPayloadFieldsFragmentDoc = gql`
+  fragment SubmitChildrenAndGuardianMutationPayloadFields on SubmitChildrenAndGuardianMutationPayload {
+    guardian {
+      ...SubmitGuardianFields
+    }
+  }
+  ${SubmitGuardianFieldsFragmentDoc}
+`;
+export const AddNewChildDocument = gql`
+  mutation addNewChild($input: AddChildMutationInput!) {
+    addChild(input: $input) {
+      child {
+        id
+        name
+        birthyear
+        postalCode
+        project {
+          id
+          name
+          year
+        }
+      }
+    }
+  }
+`;
+export type AddNewChildMutationFn = Apollo.MutationFunction<
+  AddNewChildMutation,
+  AddNewChildMutationVariables
+>;
+export type AddNewChildMutationResult =
+  Apollo.MutationResult<AddNewChildMutation>;
+export type AddNewChildMutationOptions = Apollo.BaseMutationOptions<
+  AddNewChildMutation,
+  AddNewChildMutationVariables
+>;
+export const DeleteChildDocument = gql`
+  mutation deleteChild($input: DeleteChildMutationInput!) {
+    deleteChild(input: $input) {
+      ...DeleteChildMutationPayloadFields
+    }
+  }
+  ${DeleteChildMutationPayloadFieldsFragmentDoc}
+`;
+export type DeleteChildMutationFn = Apollo.MutationFunction<
+  DeleteChildMutation,
+  DeleteChildMutationVariables
+>;
+export type DeleteChildMutationResult =
+  Apollo.MutationResult<DeleteChildMutation>;
+export type DeleteChildMutationOptions = Apollo.BaseMutationOptions<
+  DeleteChildMutation,
+  DeleteChildMutationVariables
+>;
+export const UpdateChildDocument = gql`
+  mutation updateChild($input: UpdateChildMutationInput!) {
+    updateChild(input: $input) {
+      ...UpdateChildMutationPayloadFields
+    }
+  }
+  ${UpdateChildMutationPayloadFieldsFragmentDoc}
+`;
+export type UpdateChildMutationFn = Apollo.MutationFunction<
+  UpdateChildMutation,
+  UpdateChildMutationVariables
+>;
+export type UpdateChildMutationResult =
+  Apollo.MutationResult<UpdateChildMutation>;
+export type UpdateChildMutationOptions = Apollo.BaseMutationOptions<
+  UpdateChildMutation,
+  UpdateChildMutationVariables
+>;
+export const ChildEnrolmentCountDocument = gql`
+  query ChildEnrolmentCount($childId: ID!) {
+    child(id: $childId) {
+      id
+      enrolmentCount
+      pastEnrolmentCount
+      project {
+        id
+        enrolmentLimit
+      }
+    }
+  }
+`;
+export type ChildEnrolmentCountQueryResult = Apollo.QueryResult<
+  ChildEnrolmentCountQuery,
+  ChildEnrolmentCountQueryVariables
+>;
+export const ChildEventInvitationLabelQueryDocument = gql`
+  query ChildEventInvitationLabelQuery($childId: ID!) {
+    child(id: $childId) {
+      id
+      upcomingEventsAndEventGroups {
+        edges {
+          node {
+            ... on EventGroupNode {
+              id
+              canChildEnroll(childId: $childId)
+            }
+            ... on EventNode {
+              id
+              canChildEnroll(childId: $childId)
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export type ChildEventInvitationLabelQueryQueryResult = Apollo.QueryResult<
+  ChildEventInvitationLabelQuery,
+  ChildEventInvitationLabelQueryVariables
+>;
+export const ChildByIdQueryDocument = gql`
+  query childByIdQuery($id: ID!) {
+    child(id: $id) {
+      ...ChildByIdQueryFields
+    }
+  }
+  ${ChildByIdQueryFieldsFragmentDoc}
+`;
+export type ChildByIdQueryQueryResult = Apollo.QueryResult<
+  ChildByIdQuery,
+  ChildByIdQueryVariables
+>;
+export const AssignTicketSystemPasswordMutationDocument = gql`
+  mutation assignTicketSystemPasswordMutation(
+    $input: AssignTicketSystemPasswordMutationInput!
+  ) {
+    assignTicketSystemPassword(input: $input) {
+      password
+    }
+  }
+`;
+export type AssignTicketSystemPasswordMutationMutationFn =
+  Apollo.MutationFunction<
+    AssignTicketSystemPasswordMutation,
+    AssignTicketSystemPasswordMutationVariables
+  >;
+export type AssignTicketSystemPasswordMutationMutationResult =
+  Apollo.MutationResult<AssignTicketSystemPasswordMutation>;
+export type AssignTicketSystemPasswordMutationMutationOptions =
+  Apollo.BaseMutationOptions<
+    AssignTicketSystemPasswordMutation,
+    AssignTicketSystemPasswordMutationVariables
+  >;
+export const EnrolOccurrenceMutationDocument = gql`
+  mutation enrolOccurrenceMutation($input: EnrolOccurrenceMutationInput!) {
+    enrolOccurrence(input: $input) {
+      ...EnrolOccurrenceMutationPayloadFields
+    }
+  }
+  ${EnrolOccurrenceMutationPayloadFieldsFragmentDoc}
+`;
+export type EnrolOccurrenceMutationMutationFn = Apollo.MutationFunction<
+  EnrolOccurrenceMutation,
+  EnrolOccurrenceMutationVariables
+>;
+export type EnrolOccurrenceMutationMutationResult =
+  Apollo.MutationResult<EnrolOccurrenceMutation>;
+export type EnrolOccurrenceMutationMutationOptions = Apollo.BaseMutationOptions<
+  EnrolOccurrenceMutation,
+  EnrolOccurrenceMutationVariables
+>;
+export const SubscribeToFreeSpotNotificationMutationDocument = gql`
+  mutation subscribeToFreeSpotNotificationMutation(
+    $input: SubscribeToFreeSpotNotificationMutationInput!
+  ) {
+    subscribeToFreeSpotNotification(input: $input) {
+      clientMutationId
+    }
+  }
+`;
+export type SubscribeToFreeSpotNotificationMutationMutationFn =
+  Apollo.MutationFunction<
+    SubscribeToFreeSpotNotificationMutation,
+    SubscribeToFreeSpotNotificationMutationVariables
+  >;
+export type SubscribeToFreeSpotNotificationMutationMutationResult =
+  Apollo.MutationResult<SubscribeToFreeSpotNotificationMutation>;
+export type SubscribeToFreeSpotNotificationMutationMutationOptions =
+  Apollo.BaseMutationOptions<
+    SubscribeToFreeSpotNotificationMutation,
+    SubscribeToFreeSpotNotificationMutationVariables
+  >;
+export const UnenrolOccurrenceMutationDocument = gql`
+  mutation unenrolOccurrenceMutation($input: UnenrolOccurrenceMutationInput!) {
+    unenrolOccurrence(input: $input) {
+      ...UnenrolOccurrenceMutationPayloadFields
+    }
+  }
+  ${UnenrolOccurrenceMutationPayloadFieldsFragmentDoc}
+`;
+export type UnenrolOccurrenceMutationMutationFn = Apollo.MutationFunction<
+  UnenrolOccurrenceMutation,
+  UnenrolOccurrenceMutationVariables
+>;
+export type UnenrolOccurrenceMutationMutationResult =
+  Apollo.MutationResult<UnenrolOccurrenceMutation>;
+export type UnenrolOccurrenceMutationMutationOptions =
+  Apollo.BaseMutationOptions<
+    UnenrolOccurrenceMutation,
+    UnenrolOccurrenceMutationVariables
+  >;
+export const UnsubscribeFromFreeSpotNotificationMutationDocument = gql`
+  mutation unsubscribeFromFreeSpotNotificationMutation(
+    $input: UnsubscribeFromFreeSpotNotificationMutationInput!
+  ) {
+    unsubscribeFromFreeSpotNotification(input: $input) {
+      clientMutationId
+    }
+  }
+`;
+export type UnsubscribeFromFreeSpotNotificationMutationMutationFn =
+  Apollo.MutationFunction<
+    UnsubscribeFromFreeSpotNotificationMutation,
+    UnsubscribeFromFreeSpotNotificationMutationVariables
+  >;
+export type UnsubscribeFromFreeSpotNotificationMutationMutationResult =
+  Apollo.MutationResult<UnsubscribeFromFreeSpotNotificationMutation>;
+export type UnsubscribeFromFreeSpotNotificationMutationMutationOptions =
+  Apollo.BaseMutationOptions<
+    UnsubscribeFromFreeSpotNotificationMutation,
+    UnsubscribeFromFreeSpotNotificationMutationVariables
+  >;
+export const EventExternalTicketSystemPasswordCountQueryDocument = gql`
+  query eventExternalTicketSystemPasswordCountQuery($id: ID!) {
+    event(id: $id) {
+      ticketSystem {
+        type
+        ... on TicketmasterEventTicketSystem {
+          freePasswordCount
+        }
+        ... on LippupisteEventTicketSystem {
+          freePasswordCount
+        }
+      }
+    }
+  }
+`;
+export type EventExternalTicketSystemPasswordCountQueryQueryResult =
+  Apollo.QueryResult<
+    EventExternalTicketSystemPasswordCountQuery,
+    EventExternalTicketSystemPasswordCountQueryVariables
+  >;
+export const EventQueryDocument = gql`
+  query eventQuery($id: ID!, $date: Date, $time: Time, $childId: ID!) {
+    event(id: $id) {
+      id
+      name
+      description
+      shortDescription
+      image
+      imageAltText
+      participantsPerInvite
+      duration
+      capacityPerOccurrence
+      canChildEnroll(childId: $childId)
+      eventGroup {
+        id
+      }
+      occurrences(upcoming: true, date: $date, time: $time) {
+        ...EventOccurrencesFields
+      }
+      allOccurrences: occurrences(upcoming: true) {
+        ...EventOccurrencesFields
+      }
+      ticketSystem {
+        type
+        ... on TicketmasterEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
+        ... on LippupisteEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
+      }
+    }
+  }
+  ${EventOccurrencesFieldsFragmentDoc}
+`;
+export type EventQueryQueryResult = Apollo.QueryResult<
+  EventQuery,
+  EventQueryVariables
+>;
+export const EventOccurrenceQueryDocument = gql`
+  query eventOccurrenceQuery($id: ID!, $childId: ID!) {
+    occurrence(id: $id) {
+      ...EventOccurrenceFields
+    }
+  }
+  ${EventOccurrenceFieldsFragmentDoc}
+`;
+export type EventOccurrenceQueryQueryResult = Apollo.QueryResult<
+  EventOccurrenceQuery,
+  EventOccurrenceQueryVariables
+>;
+export const EventExternalTicketSystemPasswordQueryDocument = gql`
+  query eventExternalTicketSystemPasswordQuery($id: ID!, $childId: ID!) {
+    event(id: $id) {
+      participantsPerInvite
+      ticketSystem {
+        ... on TicketmasterEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
+        ... on LippupisteEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
+      }
+    }
+  }
+`;
+export type EventExternalTicketSystemPasswordQueryQueryResult =
+  Apollo.QueryResult<
+    EventExternalTicketSystemPasswordQuery,
+    EventExternalTicketSystemPasswordQueryVariables
+  >;
+export const ExternalTicketSystemEventQueryDocument = gql`
+  query externalTicketSystemEventQuery($eventId: ID!, $childId: ID!) {
+    event(id: $eventId) {
+      ...ExternalTicketSystemEventFields
+    }
+  }
+  ${ExternalTicketSystemEventFieldsFragmentDoc}
+`;
+export type ExternalTicketSystemEventQueryQueryResult = Apollo.QueryResult<
+  ExternalTicketSystemEventQuery,
+  ExternalTicketSystemEventQueryVariables
+>;
+export const OccurrenceQueryDocument = gql`
+  query occurrenceQuery($id: ID!, $childId: ID) {
+    occurrence(id: $id) {
+      ...OccurrenceFields
+    }
+  }
+  ${OccurrenceFieldsFragmentDoc}
+`;
+export type OccurrenceQueryQueryResult = Apollo.QueryResult<
+  OccurrenceQuery,
+  OccurrenceQueryVariables
+>;
+export const EventGroupQueryDocument = gql`
+  query eventGroupQuery($id: ID!, $childId: ID!) {
+    eventGroup(id: $id) {
+      ...EventGroupFields
+    }
+  }
+  ${EventGroupFieldsFragmentDoc}
+`;
+export type EventGroupQueryQueryResult = Apollo.QueryResult<
+  EventGroupQuery,
+  EventGroupQueryVariables
+>;
+export const GuardiansQueryDocument = gql`
+  query GuardiansQuery {
+    guardians {
+      edges {
+        node {
+          id
+          createdAt
+          updatedAt
+          firstName
+          lastName
+          phoneNumber
+          language
+          children {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          relationships {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+          email
+        }
+      }
+    }
+  }
+`;
+export type GuardiansQueryQueryResult = Apollo.QueryResult<
+  GuardiansQuery,
+  GuardiansQueryVariables
+>;
+export const LanguageQueryDocument = gql`
+  query languageQuery {
+    languages {
+      ...LanguagesFields
+    }
+  }
+  ${LanguagesFieldsFragmentDoc}
+`;
+export type LanguageQueryQueryResult = Apollo.QueryResult<
+  LanguageQuery,
+  LanguageQueryVariables
+>;
+export const UpdateMyEmailMutationDocument = gql`
+  mutation UpdateMyEmailMutation($input: UpdateMyEmailMutationInput!) {
+    updateMyEmail(input: $input) {
+      myProfile {
+        id
+        firstName
+        lastName
+        language
+        email
+      }
+    }
+  }
+`;
+export type UpdateMyEmailMutationMutationFn = Apollo.MutationFunction<
+  UpdateMyEmailMutation,
+  UpdateMyEmailMutationVariables
+>;
+export type UpdateMyEmailMutationMutationResult =
+  Apollo.MutationResult<UpdateMyEmailMutation>;
+export type UpdateMyEmailMutationMutationOptions = Apollo.BaseMutationOptions<
+  UpdateMyEmailMutation,
+  UpdateMyEmailMutationVariables
+>;
+export const UpdateMyProfileDocument = gql`
+  mutation updateMyProfile($input: UpdateMyProfileMutationInput!) {
+    updateMyProfile(input: $input) {
+      myProfile {
+        id
+        firstName
+        lastName
+        language
+        email
+      }
+    }
+  }
+`;
+export type UpdateMyProfileMutationFn = Apollo.MutationFunction<
+  UpdateMyProfileMutation,
+  UpdateMyProfileMutationVariables
+>;
+export type UpdateMyProfileMutationResult =
+  Apollo.MutationResult<UpdateMyProfileMutation>;
+export type UpdateMyProfileMutationOptions = Apollo.BaseMutationOptions<
+  UpdateMyProfileMutation,
+  UpdateMyProfileMutationVariables
+>;
+export const ProfileChildrenQueryDocument = gql`
+  query profileChildrenQuery {
+    myProfile {
+      id
+      children {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+export type ProfileChildrenQueryQueryResult = Apollo.QueryResult<
+  ProfileChildrenQuery,
+  ProfileChildrenQueryVariables
+>;
+export const ProfileQueryDocument = gql`
+  query profileQuery {
+    myProfile {
+      ...MyProfileFields
+    }
+  }
+  ${MyProfileFieldsFragmentDoc}
+`;
+export type ProfileQueryQueryResult = Apollo.QueryResult<
+  ProfileQuery,
+  ProfileQueryVariables
+>;
+export const SubmitChildrenAndGuardianDocument = gql`
+  mutation submitChildrenAndGuardian(
+    $children: [ChildInput!]!
+    $guardian: GuardianInput!
+  ) {
+    submitChildrenAndGuardian(
+      input: { children: $children, guardian: $guardian }
+    ) {
+      ...SubmitChildrenAndGuardianMutationPayloadFields
+    }
+  }
+  ${SubmitChildrenAndGuardianMutationPayloadFieldsFragmentDoc}
+`;
+export type SubmitChildrenAndGuardianMutationFn = Apollo.MutationFunction<
+  SubmitChildrenAndGuardianMutation,
+  SubmitChildrenAndGuardianMutationVariables
+>;
+export type SubmitChildrenAndGuardianMutationResult =
+  Apollo.MutationResult<SubmitChildrenAndGuardianMutation>;
+export type SubmitChildrenAndGuardianMutationOptions =
+  Apollo.BaseMutationOptions<
+    SubmitChildrenAndGuardianMutation,
+    SubmitChildrenAndGuardianMutationVariables
+  >;

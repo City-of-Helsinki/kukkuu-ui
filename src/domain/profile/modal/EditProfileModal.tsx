@@ -97,7 +97,6 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
             lastName: payload.lastName,
             phoneNumber: payload.phoneNumber,
             language: payload.language,
-            email: payload.email,
             languagesSpokenAtHome: payload.languagesSpokenAtHome,
           },
         },
