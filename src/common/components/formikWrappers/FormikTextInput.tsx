@@ -35,7 +35,9 @@ function FormikTextInput({
         id={id}
         className={styles.formField}
         invalid={meta.touched && Boolean(meta.error)}
-        helperText={(Boolean(meta.touched) && t(meta.error || '')) || undefined}
+        helperText={
+          (Boolean(meta.touched) && t(meta.error || '')) || helperText
+        }
         required={required}
         {...rest}
       />
