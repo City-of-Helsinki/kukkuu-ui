@@ -36,7 +36,6 @@ const getWrapper = (props?: unknown) =>
   render(<EditProfileModal {...defaultProps} {...(props ?? {})} />);
 
 const formData = {
-  email: 'some@domain.fi',
   phoneNumber: '000000000',
   firstName: 'George',
   lastName: 'Lopez',
@@ -91,14 +90,6 @@ it('should allow all fields to be filled', async () => {
   const result = getWrapper();
   const { getByRole, getAllByRole, queryByDisplayValue } = result;
 
-  fireEvent.change(
-    getByRole('textbox', {
-      name: 'Sähköpostiosoite *',
-    }),
-    {
-      target: { value: formData.email },
-    }
-  );
   fireEvent.change(getByRole('textbox', { name: 'Puhelinnumero *' }), {
     target: { value: formData.phoneNumber },
   });

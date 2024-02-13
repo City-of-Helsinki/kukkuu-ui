@@ -127,10 +127,12 @@
         "text": "Peruuta"
       },
       "save": {
-        "text": "Tallenna"
+        "text": "Tallenna",
+        "textWithSubject": "Tallenna {{subject}}"
       },
       "submit": {
-        "text": "Tallenna"
+        "text": "Tallenna",
+        "textWithSubject": "Tallenna {{subject}}"
       }
     },
     "openInExternalDomainAriaLabel": "Avautuu toisella nettisivulla",
@@ -606,7 +608,30 @@
           "input": {
             "error": "Sähköpostiosoite on virheellinen",
             "label": "Sähköpostiosoite",
-            "placeholder": "Lisää sähköpostiosoite"
+            "placeholder": "Lisää sähköpostiosoite",
+            "notChanged": "Et ole vielä muuttanut sähköpostiosoitettasi, joten siinä ei ole päivitettävää"
+          },
+          "verificationToken": {
+            "input": {
+              "error": "Tarkistuskoodi on virheellinen",
+              "label": "Tarkistuskoodi",
+              "placeholder": "Lisää tarkistuskoodi",
+              "helper": "Klikkaa 'pyydä koodi' ja odota sähköpostilla toimitettavaa tarkistuskoodia ja lisää koodi tähän kenttään."
+            },
+            "request": {
+              "button": "Pyydä koodi",
+              "error": "Ongelma tarkistuskoodin lähettämisessä",
+              "successful": "Uusi tarkistuskoodi lähetetty sähköpostiisi"
+            },
+            "errors": {
+              "invalid": "Syöttämäsi tarkistuskoodi on virheellinen. Voit yrittää uudelleen uudella tuoreemmalla tarkistuskoodilla."
+            }
+          },
+          "change": {
+            "button": "Vaihda sähköposti"
+          },
+          "errors": {
+            "unsuccessful": "Sähköpostin päivittäminen epäonnistui"
           }
         },
         "firstName": {
@@ -658,7 +683,8 @@
       "title": "Voi harmi!"
     },
     "submitMutation": {
-      "errorMessage": "Lähettäminen palvelimelle epäonnistui"
+      "errorMessage": "Lähettäminen palvelimelle epäonnistui",
+      "successfulMessage": "Tiedot tallennettu"
     },
     "welcome": {
       "hero": {
