@@ -3543,6 +3543,19 @@ export type LanguageQuery = {
   } | null;
 };
 
+export type RequestEmailUpdateVerificationTokenMutationVariables = Exact<{
+  [key: string]: never;
+}>;
+
+export type RequestEmailUpdateVerificationTokenMutation = {
+  __typename?: 'Mutation';
+  requestEmailUpdateToken: {
+    __typename?: 'RequestEmailUpdateTokenMutation';
+    email: string | null;
+    emailUpdateTokenRequested: boolean | null;
+  } | null;
+};
+
 export type UpdateMyEmailMutationVariables = Exact<{
   input: UpdateMyEmailMutationInput;
 }>;
@@ -5297,6 +5310,26 @@ export type LanguageQueryQueryResult = Apollo.QueryResult<
   LanguageQuery,
   LanguageQueryVariables
 >;
+export const RequestEmailUpdateVerificationTokenMutationDocument = gql`
+  mutation RequestEmailUpdateVerificationTokenMutation {
+    requestEmailUpdateToken {
+      email
+      emailUpdateTokenRequested
+    }
+  }
+`;
+export type RequestEmailUpdateVerificationTokenMutationMutationFn =
+  Apollo.MutationFunction<
+    RequestEmailUpdateVerificationTokenMutation,
+    RequestEmailUpdateVerificationTokenMutationVariables
+  >;
+export type RequestEmailUpdateVerificationTokenMutationMutationResult =
+  Apollo.MutationResult<RequestEmailUpdateVerificationTokenMutation>;
+export type RequestEmailUpdateVerificationTokenMutationMutationOptions =
+  Apollo.BaseMutationOptions<
+    RequestEmailUpdateVerificationTokenMutation,
+    RequestEmailUpdateVerificationTokenMutationVariables
+  >;
 export const UpdateMyEmailMutationDocument = gql`
   mutation UpdateMyEmailMutation($input: UpdateMyEmailMutationInput!) {
     updateMyEmail(input: $input) {
