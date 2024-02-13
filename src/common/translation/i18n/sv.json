@@ -127,10 +127,12 @@
         "text": "Tillbaka"
       },
       "save": {
-        "text": "Spara"
+        "text": "Spara",
+        "textWithSubject": "Spara {{subject}}"
       },
       "submit": {
-        "text": "Spara"
+        "text": "Spara",
+        "textWithSubject": "Spara {{subject}}"
       }
     },
     "openInExternalDomainAriaLabel": "Öppnar en annan webbplats",
@@ -604,9 +606,32 @@
       "guardian": {
         "email": {
           "input": {
-            "error": "E-postadressen är inte giltig",
-            "label": "E-postadress",
-            "placeholder": "Ange e-postadress"
+            "error": "Verifierings kod är inte giltig",
+            "label": "Verifierings kod",
+            "placeholder": "Ange verifierings kod",
+            "notChanged": "Du har inte ändrat din e-postadress ännu, så det finns inget att uppdatera"
+          },
+          "verificationToken": {
+            "input": {
+              "error": "E-postadressen är inte giltig",
+              "label": "E-postadress",
+              "placeholder": "Ange e-postadress",
+              "helper": "Klicka på 'begär kod' och vänta på att verifieringskoden ska skickas via e-post och ange koden i det här fältet."
+            },
+            "request": {
+              "button": "Begär kod",
+              "error": "Problem med att skicka verifieringskod",
+              "successful": "Ny verifieringskod skickad till din e-post"
+            },
+            "errors": {
+              "invalid": "Verifieringskoden du angav är ogiltig. Du kan försöka igen med en ny, nyare verifieringskod."
+            }
+          },
+          "change": {
+            "button": "Byta e-postadress"
+          },
+          "errors": {
+            "unsuccessful": "Det gick inte att uppdatera e-postadress"
           }
         },
         "firstName": {
@@ -658,7 +683,8 @@
       "title": "Vad synd!"
     },
     "submitMutation": {
-      "errorMessage": "Det gick inte att skicka till servern"
+      "errorMessage": "Det gick inte att skicka till servern",
+      "successfulMessage": "Data sparad"
     },
     "welcome": {
       "hero": {

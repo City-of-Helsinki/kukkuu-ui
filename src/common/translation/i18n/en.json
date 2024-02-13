@@ -127,10 +127,12 @@
         "text": "Cancel"
       },
       "save": {
-        "text": "Save"
+        "text": "Save",
+        "textWithSubject": "Save {{subject}}"
       },
       "submit": {
-        "text": "Submit"
+        "text": "Submit",
+        "textWithSubject": "Submit {{subject}}"
       }
     },
     "openInExternalDomainAriaLabel": "Opens a different website",
@@ -606,7 +608,30 @@
           "input": {
             "error": "This email address is not valid",
             "label": "E-mail address",
-            "placeholder": "Enter e-mail address"
+            "placeholder": "Enter e-mail address",
+            "notChanged": "You haven't changed your email yet, so there's nothing to update"
+          },
+          "verificationToken": {
+            "input": {
+              "error": "This verification token is not valid",
+              "label": "Verification token",
+              "placeholder": "Enter verification token",
+              "helper": "Click 'request code' and wait for the verification code to be sent by email and enter the code in this field."
+            },
+            "request": {
+              "button": "Request code",
+              "error": "Problem sending verification code",
+              "successful": "New verification code sent to your email"
+            },
+            "errors": {
+              "invalid": "The verification code you entered is invalid. You can try again with a new, more recent verification code."
+            }
+          },
+          "change": {
+            "button": "Change the email"
+          },
+          "errors": {
+            "unsuccessful": "Failed to update email"
           }
         },
         "firstName": {
@@ -658,7 +683,8 @@
       "title": "We’re sorry."
     },
     "submitMutation": {
-      "errorMessage": "Failed to submit to server"
+      "errorMessage": "Failed to submit to server",
+      "successfulMessage": "Data saved"
     },
     "welcome": {
       "hero": {

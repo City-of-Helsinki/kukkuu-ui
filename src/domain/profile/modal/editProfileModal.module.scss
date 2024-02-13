@@ -14,6 +14,39 @@
   }
 }
 
+.emailChangeButton,
+.requestVerificationTokenButton {
+  height: auto;
+  min-height: unset !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  & span {
+    color: var(--color-bus);
+    padding: 0;
+  }
+}
+
+.requestVerificationTokenButton {
+  margin-top: 20px !important;
+  padding: var(--spacing-s) !important;
+  height: fit-content;
+  font-size: large;
+}
+
+.emailVerificationTokenFieldWrapper {
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+  grid-gap: $baseMargin;
+
+  button {
+    width: 100%;
+  }
+}
+
+.separator {
+  margin: var(--spacing-l) 0;
+}
+
 .buttonsWrapper {
   display: grid;
   @include respond-above(m) {

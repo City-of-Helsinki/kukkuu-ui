@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 const requestEmailUpdateTokenMutation = gql`
-  mutation RequestEmailUpdateTokenMutation() {
+  mutation RequestEmailUpdateTokenMutation {
     requestEmailUpdateToken {
       email
       emailUpdateTokenRequested
