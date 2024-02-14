@@ -14,8 +14,7 @@
   }
 }
 
-.emailChangeButton,
-.requestVerificationTokenButton {
+.emailChangeButton {
   height: auto;
   min-height: unset !important;
   margin-left: 0 !important;
@@ -27,20 +26,7 @@
 }
 
 .requestVerificationTokenButton {
-  margin-top: 20px !important;
-  padding: var(--spacing-s) !important;
-  height: fit-content;
-  font-size: large;
-}
-
-.emailVerificationTokenFieldWrapper {
-  display: grid;
-  grid-template-columns: 8fr 2fr;
-  grid-gap: $baseMargin;
-
-  button {
-    width: 100%;
-  }
+  margin-bottom: var(--spacing-s) !important;
 }
 
 .separator {

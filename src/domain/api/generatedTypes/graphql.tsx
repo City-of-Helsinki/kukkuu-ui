@@ -950,7 +950,7 @@ export type Mutation = {
   importTicketSystemPasswords: Maybe<ImportTicketSystemPasswordsMutationPayload>;
   publishEvent: Maybe<PublishEventMutationPayload>;
   publishEventGroup: Maybe<PublishEventGroupMutationPayload>;
-  requestEmailUpdateToken: Maybe<RequestEmailUpdateTokenMutation>;
+  requestEmailUpdateToken: Maybe<RequestEmailUpdateTokenMutationPayload>;
   sendMessage: Maybe<SendMessageMutationPayload>;
   setEnrolmentAttendance: Maybe<SetEnrolmentAttendanceMutationPayload>;
   /** This is the first mutation one needs to execute to start using the service. After that this mutation cannot be used anymore. */
@@ -1034,6 +1034,10 @@ export type MutationPublishEventArgs = {
 
 export type MutationPublishEventGroupArgs = {
   input: PublishEventGroupMutationInput;
+};
+
+export type MutationRequestEmailUpdateTokenArgs = {
+  input: RequestEmailUpdateTokenMutationInput;
 };
 
 export type MutationSendMessageArgs = {
@@ -1459,8 +1463,14 @@ export enum RelationshipTypeEnum {
   Parent = 'PARENT',
 }
 
-export type RequestEmailUpdateTokenMutation = {
-  __typename?: 'RequestEmailUpdateTokenMutation';
+export type RequestEmailUpdateTokenMutationInput = {
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  email: Scalars['String']['input'];
+};
+
+export type RequestEmailUpdateTokenMutationPayload = {
+  __typename?: 'RequestEmailUpdateTokenMutationPayload';
+  clientMutationId: Maybe<Scalars['String']['output']>;
   email: Maybe<Scalars['String']['output']>;
   emailUpdateTokenRequested: Maybe<Scalars['Boolean']['output']>;
 };
@@ -3543,14 +3553,14 @@ export type LanguageQuery = {
   } | null;
 };
 
-export type RequestEmailUpdateVerificationTokenMutationVariables = Exact<{
-  [key: string]: never;
+export type RequestEmailUpdateTokenMutationVariables = Exact<{
+  input: RequestEmailUpdateTokenMutationInput;
 }>;
 
-export type RequestEmailUpdateVerificationTokenMutation = {
+export type RequestEmailUpdateTokenMutation = {
   __typename?: 'Mutation';
   requestEmailUpdateToken: {
-    __typename?: 'RequestEmailUpdateTokenMutation';
+    __typename?: 'RequestEmailUpdateTokenMutationPayload';
     email: string | null;
     emailUpdateTokenRequested: boolean | null;
   } | null;
@@ -5310,26 +5320,26 @@ export type LanguageQueryQueryResult = Apollo.QueryResult<
   LanguageQuery,
   LanguageQueryVariables
 >;
-export const RequestEmailUpdateVerificationTokenMutationDocument = gql`
-  mutation RequestEmailUpdateVerificationTokenMutation {
-    requestEmailUpdateToken {
+export const RequestEmailUpdateTokenDocument = gql`
+  mutation RequestEmailUpdateToken(
+    $input: RequestEmailUpdateTokenMutationInput!
+  ) {
+    requestEmailUpdateToken(input: $input) {
       email
       emailUpdateTokenRequested
     }
   }
 `;
-export type RequestEmailUpdateVerificationTokenMutationMutationFn =
-  Apollo.MutationFunction<
-    RequestEmailUpdateVerificationTokenMutation,
-    RequestEmailUpdateVerificationTokenMutationVariables
-  >;
-export type RequestEmailUpdateVerificationTokenMutationMutationResult =
-  Apollo.MutationResult<RequestEmailUpdateVerificationTokenMutation>;
-export type RequestEmailUpdateVerificationTokenMutationMutationOptions =
-  Apollo.BaseMutationOptions<
-    RequestEmailUpdateVerificationTokenMutation,
-    RequestEmailUpdateVerificationTokenMutationVariables
-  >;
+export type RequestEmailUpdateTokenMutationFn = Apollo.MutationFunction<
+  RequestEmailUpdateTokenMutation,
+  RequestEmailUpdateTokenMutationVariables
+>;
+export type RequestEmailUpdateTokenMutationResult =
+  Apollo.MutationResult<RequestEmailUpdateTokenMutation>;
+export type RequestEmailUpdateTokenMutationOptions = Apollo.BaseMutationOptions<
+  RequestEmailUpdateTokenMutation,
+  RequestEmailUpdateTokenMutationVariables
+>;
 export const UpdateMyEmailMutationDocument = gql`
   mutation UpdateMyEmailMutation($input: UpdateMyEmailMutationInput!) {
     updateMyEmail(input: $input) {

@@ -101,29 +101,36 @@ export default function EditMyEmailForm({
       validate={validate}
       validationSchema={emailChangeSchema}
     >
-      {({ isSubmitting }: FormikProps<UpdateMyEmailMutationInput>) => (
-        <Form>
-          <FormikTextInput
-            className={styles.formField}
-            id="email"
-            name="email"
-            disabled={!isChangingEmail}
-            label={t('registration.form.guardian.email.input.label')}
-          />
-          {!isChangingEmail && (
-            <Button
-              className={styles.emailChangeButton}
-              variant="supplementary"
-              onClick={() => {
-                setIsChangingEmail(true);
-              }}
-            >
-              {t('registration.form.guardian.email.change.button')}
-            </Button>
-          )}
-          {isChangingEmail && (
-            <>
-              <div className={styles.emailVerificationTokenFieldWrapper}>
+      {({ isSubmitting, values }: FormikProps<UpdateMyEmailMutationInput>) => {
+        const hasEmailChanged = values.email !== originalEmail;
+        const shouldLockActions = isSubmitting || !hasEmailChanged;
+        return (
+          <Form>
+            <FormikTextInput
+              className={styles.formField}
+              id="email"
+              name="email"
+              disabled={!isChangingEmail}
+              label={t('registration.form.guardian.email.input.label')}
+            />
+            {!isChangingEmail && (
+              <Button
+                className={styles.emailChangeButton}
+                variant="supplementary"
+                onClick={() => {
+                  setIsChangingEmail(true);
+                }}
+              >
+                {t('registration.form.guardian.email.change.button')}
+              </Button>
+            )}
+
+            {isChangingEmail && (
+              <>
+                <RequestVerificationTokenButton
+                  email={values.email}
+                  disabled={shouldLockActions}
+                />
                 <FormikTextInput
                   className={styles.formField}
                   id="verificationToken"
@@ -138,34 +145,36 @@ export default function EditMyEmailForm({
                     'registration.form.guardian.email.verificationToken.input.helper'
                   )}
                   autoComplete="off"
+                  disabled={shouldLockActions}
                 />
-                <RequestVerificationTokenButton />
-              </div>
 
-              <div className={styles.buttonsWrapper}>
-                <Button
-                  onClick={() => setIsChangingEmail(false)}
-                  variant="secondary"
-                  type="button"
-                  className={styles.cancelButton}
-                >
-                  {t('common.modal.cancel.text')}
-                </Button>
+                <div className={styles.buttonsWrapper}>
+                  <Button
+                    onClick={() => setIsChangingEmail(false)}
+                    variant="secondary"
+                    type="button"
+                    className={styles.cancelButton}
+                  >
+                    {t('common.modal.cancel.text')}
+                  </Button>
 
-                <Button
-                  type="submit"
-                  className={styles.submitButton}
-                  disabled={isSubmitting}
-                >
-                  {t('common.modal.save.textWithSubject', {
-                    subject: t('registration.form.guardian.email.input.label'),
-                  })}
-                </Button>
-              </div>
-            </>
-          )}
-        </Form>
-      )}
+                  <Button
+                    type="submit"
+                    className={styles.submitButton}
+                    disabled={shouldLockActions}
+                  >
+                    {t('common.modal.save.textWithSubject', {
+                      subject: t(
+                        'registration.form.guardian.email.input.label'
+                      ),
+                    })}
+                  </Button>
+                </div>
+              </>
+            )}
+          </Form>
+        );
+      }}
     </Formik>
   );
 }
