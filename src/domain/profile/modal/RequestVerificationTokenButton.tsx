@@ -10,7 +10,15 @@ import requestEmailUpdateTokenMutation from '../mutations/requestEmailUpdateToke
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import useCoolDown from './useCoolDown';
 
-export default function RequestVerificationTokenButton() {
+type RequestVerificationTokenButtonProps = {
+  email: string;
+  disabled?: boolean;
+};
+
+export default function RequestVerificationTokenButton({
+  email,
+  disabled = false,
+}: RequestVerificationTokenButtonProps) {
   const { t } = useTranslation();
   const [requestUpdateEmailVerificationToken, { loading }] =
     useMutation<RequestEmailUpdateTokenMutation>(
@@ -22,11 +30,17 @@ export default function RequestVerificationTokenButton() {
     false
   );
 
-  const isDisabled = Boolean(loading || coolDownSeconds);
+  const isDisabled = Boolean(disabled || loading || coolDownSeconds);
 
   const handleOnClick = async () => {
     try {
-      await requestUpdateEmailVerificationToken();
+      await requestUpdateEmailVerificationToken({
+        variables: {
+          input: {
+            email,
+          },
+        },
+      });
       resetCoolDown();
       toast.success(
         t(
@@ -44,16 +58,13 @@ export default function RequestVerificationTokenButton() {
   return (
     <LoadingSpinner isLoading={loading}>
       <Button
-        variant="supplementary"
+        variant="primary"
         onClick={handleOnClick}
         className={styles.requestVerificationTokenButton}
         disabled={isDisabled}
       >
-        {coolDownSeconds
-          ? coolDownSeconds
-          : t(
-              'registration.form.guardian.email.verificationToken.request.button'
-            )}
+        {t('registration.form.guardian.email.verificationToken.request.button')}
+        {!!coolDownSeconds && ` (${coolDownSeconds})`}
       </Button>
     </LoadingSpinner>
   );
