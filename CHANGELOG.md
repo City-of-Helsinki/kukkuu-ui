@@ -399,6 +399,25 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.1.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.0.0...kukkuu-ui-v3.1.0) (2024-02-29)
+
+
+### Features
+
+* Send the email update verification token to the new email ([2aea1e2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2aea1e28f740838a795a939b120b6e9e83ab510a))
+* Update my email form ([2244c21](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2244c21ed3a9723ef08ef22caa3252c754c7ef06))
+* Verification tokens for an email update ([f9bcdd4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f9bcdd4cac845eeabf0b8b8a8fbb44191976088d))
+
+
+### Bug Fixes
+
+* Enrollements count ([#534](https://github.com/City-of-Helsinki/kukkuu-ui/issues/534)) ([8f51b96](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8f51b967e18549a80d32a09820b6fba121ae470f))
+* Graphql codegen generated 2 types with same name ([836d9a8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/836d9a8f9e2f0c0e0350359b06c5c700895452d0))
+* Helper text in the formik text input component ([9088549](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9088549363ccbcb8cb90d309c04c7ab9946a103b))
+* Invite link and notification ([#529](https://github.com/City-of-Helsinki/kukkuu-ui/issues/529)) ([1ca21b5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1ca21b578a7baf3783af55e6c318b590b300986b))
+* Languages focus on load removed ([#527](https://github.com/City-of-Helsinki/kukkuu-ui/issues/527)) ([ac4e5b5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ac4e5b540e10e4c6e46341de441aca02e6f877c0))
+* Removed console log ([#530](https://github.com/City-of-Helsinki/kukkuu-ui/issues/530)) ([d9ff08b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d9ff08b0fe82e58e277e50e1b6b71a6031a180a7))
+
 ## [3.0.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.1.1...kukkuu-ui-v3.0.0) (2024-02-01)
 
 
