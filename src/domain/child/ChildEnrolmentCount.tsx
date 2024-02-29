@@ -12,14 +12,14 @@ export default function ChildEnrolmentCount({ childId }: Props) {
   const { t } = useTranslation();
   const {
     data,
-    convenience: { areAllEnrolmentsUsed },
+    convenience: { areAllCurrentEnrolmentsUsed },
   } = useChildEnrolmentCount({
     variables: {
       childId,
     },
   });
 
-  const enrolmentsUsed = data?.child?.pastEnrolmentCount ?? ' ';
+  const enrolmentsUsed = data?.child?.enrolmentCount ?? ' ';
   const loadingSpinner = (
     <LoadingSpinner
       theme={{
@@ -31,8 +31,8 @@ export default function ChildEnrolmentCount({ childId }: Props) {
 
   return (
     <KukkuuPill
-      variant={areAllEnrolmentsUsed ? 'success' : 'default'}
-      iconLeft={areAllEnrolmentsUsed && <IconCheck />}
+      variant={areAllCurrentEnrolmentsUsed ? 'success' : 'default'}
+      iconLeft={areAllCurrentEnrolmentsUsed && <IconCheck />}
       name={
         <>
           {t('child.message.eventVisitsThisYear')}:{' '}
