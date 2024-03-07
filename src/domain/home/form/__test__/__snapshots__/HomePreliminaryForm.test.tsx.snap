@@ -16,7 +16,7 @@ exports[`renders snapshot correctly 1`] = `
           Tule mukaan
         </h2>
         <p>
-          Aloita syöttämällä toimintaan osallistuvan lapsen kotipaikkakunta ja syntymäpäivä. Tämän jälkeen pääset kirjautumaan palveluun ja täydentämään lapsesi kummilapsiprofiilin. Tähän menee muutama minuutti.
+          Aloita syöttämällä toimintaan osallistuvan lapsen kotipaikkakunta ja syntymävuosi. Tämän jälkeen pääset kirjautumaan palveluun ja täydentämään lapsesi kummilapsiprofiilin. Tähän menee muutama minuutti.
         </p>
       </div>
       <form
