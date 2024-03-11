@@ -1,11 +1,14 @@
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import useIsChildOfProfile from '../../profile/route/useIsChildOfProfile';
 import { useAuthorization } from '../../auth/useAuthorization';
+import { isLoggedInSelector } from '../../auth/state/AuthenticationSelectors';
 
-const pathOnError = '/wrong-login-method';
+const unauthorizedPath = '/unauthorized';
+const wrongCredentialsPath = '/wrong-login-method';
 
 /**
  * Check if the child belongs to the profile and redirects away
@@ -14,7 +17,6 @@ const pathOnError = '/wrong-login-method';
 export const useProfileChildRouteAuthorization = () => {
   const { childId } = useParams<{ childId?: string }>();
   const getPathname = useGetPathname();
-  const redirectTo = getPathname(pathOnError);
   const location = useLocation();
   const [queryIsChildOfProfile] = useIsChildOfProfile();
   // If the child id is not given,
@@ -23,6 +25,7 @@ export const useProfileChildRouteAuthorization = () => {
   const [loading, isAuthorized] = useAuthorization(
     childId ? () => queryIsChildOfProfile(childId) : true
   );
+  const isLoggedIn = useSelector(isLoggedInSelector);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,12 +37,38 @@ export const useProfileChildRouteAuthorization = () => {
         'Navigating away from child page, since the user was not authorized to view the content',
         { childId, isAuthorized, pathname: location.pathname }
       );
-      navigate(
-        {
-          pathname: redirectTo,
-        },
-        { state: { from: location } }
-      );
+      if (isLoggedIn) {
+        // eslint-disable-next-line no-console
+        console.info(
+          `The user is logged in, but unauthorized to view the page. Redirect to '${wrongCredentialsPath}'.`
+        );
+        navigate(
+          {
+            pathname: getPathname(wrongCredentialsPath),
+          },
+          { state: { from: location } }
+        );
+      } else {
+        // eslint-disable-next-line no-console
+        console.info(
+          `The user is not logged in. Redirect to '${unauthorizedPath}'.`
+        );
+        navigate(
+          {
+            pathname: getPathname(unauthorizedPath),
+            search: `?next=${location.pathname}`,
+          },
+          { state: { from: location } }
+        );
+      }
     }
-  }, [childId, isAuthorized, loading, location, navigate, redirectTo]);
+  }, [
+    childId,
+    getPathname,
+    isAuthorized,
+    isLoggedIn,
+    loading,
+    location,
+    navigate,
+  ]);
 };

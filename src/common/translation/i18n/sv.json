@@ -10,6 +10,10 @@
     "wrongLoginMethod": {
       "description": "Det verkar som om du har använt en annan autentiseringsmetod när du registrerar dig för tjänsten. Logga ut från tjänsten och försök sedan logga in igen med en annan autentiseringsmetod.",
       "title": "Hoppsan!"
+    },
+    "unauthorized": {
+      "description": "Du har inte behörighet att se innehållet på sidan! Din inloggningssession kan dock precis ha gått ut. Du kan försöka logga in igen och se om det hjälper.",
+      "title": "Hoppsan!"
     }
   },
   "authentication": {

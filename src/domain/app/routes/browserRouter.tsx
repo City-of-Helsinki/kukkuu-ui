@@ -24,6 +24,7 @@ import EventRedirect from '../../event/EventRedirect';
 import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EnrolPage from '../../event/enrol/EnrolPage';
 import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
+import Unauthorized from '../../auth/Unauthorized';
 
 const browserRouter = createBrowserRouter([
   { path: '/', Component: NavigateToLocalePath },
@@ -50,6 +51,15 @@ const browserRouter = createBrowserRouter([
           <AppRoute
             title={t('registration.notEligible.title')}
             element={<NotEligible />}
+          />
+        ),
+      },
+      {
+        path: 'unauthorized',
+        element: (
+          <AppRoute
+            title={t('auth.unauthorized.title')}
+            element={<Unauthorized />}
           />
         ),
       },
