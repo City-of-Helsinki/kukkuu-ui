@@ -679,7 +679,7 @@
     "notEligible": {
       "buttonText": "Löydä lapsille sopivia kulttuuritapahtumia täältä",
       "otherOptionsLink": "https://www.myhelsinki.fi/fi/search?tags=lapset&category=events",
-      "text": "Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä kulttuurin kummilapset toimintaan.",
+      "text": "Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä Kulttuurin kummilapset -toimintaan.",
       "title": "Voi harmi!"
     },
     "submitMutation": {
