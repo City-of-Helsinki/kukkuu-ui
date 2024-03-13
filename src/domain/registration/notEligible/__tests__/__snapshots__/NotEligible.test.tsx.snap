@@ -21,7 +21,7 @@ exports[`renders snapshot correctly 1`] = `
             />
           </div>
           <p>
-            Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä kulttuurin kummilapset toimintaan.
+            Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä Kulttuurin kummilapset -toimintaan.
           </p>
           <button
             class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _goBackButton_cca70d"
