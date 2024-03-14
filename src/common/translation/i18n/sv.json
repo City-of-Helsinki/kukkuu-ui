@@ -493,7 +493,7 @@
         "input": {
           "label": "Barnets födelseår",
           "year": {
-            "placeholder": "år"
+            "placeholder": "Ange barnets födelseår"
           }
         }
       },

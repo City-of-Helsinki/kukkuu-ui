@@ -22,7 +22,6 @@ import finnishNationalGalleryIconFI from '../../../../assets/icons/partners/Finn
 import finnishNationalGalleryIconSV from '../../../../assets/icons/partners/Finnish_National_Gallery_Logo_SV.svg';
 import kansallismuseoIcon from '../../../../assets/icons/partners/kansallismuseo.png';
 import kansallisteatteriIcon from '../../../../assets/icons/partners/kansallisteatteri.png';
-import kaviIcon from '../../../../assets/icons/partners/kavi.png';
 import kulttuuriperintokasvatusIcon from '../../../../assets/icons/partners/kulttuuriperintokasvatus.png';
 import mfaIcon from '../../../../assets/icons/partners/mfa.png';
 import nukketeatterisampoIcon from '../../../../assets/icons/partners/nukketeatterisampo.png';
@@ -33,6 +32,9 @@ import tanssintaloIcon from '../../../../assets/icons/partners/tanssintalo.png';
 import teatteriilmioIcon from '../../../../assets/icons/partners/teatteriilmio.png';
 import teatterimuseoIcon from '../../../../assets/icons/partners/teatterimuseo.png';
 import valokuvataiteenmuseoIcon from '../../../../assets/icons/partners/valokuvataiteenmuseo.png';
+import umoIcon from '../../../../assets/icons/partners/umo_logo.png';
+import fokusIcon from '../../../../assets/icons/partners/fokus_logo.png';
+import osirisIcon from '../../../../assets/icons/partners/osiris_logo.png';
 import { Partner } from '../types/partner';
 
 const helsinkiFiUrl =
@@ -198,15 +200,6 @@ export const partnerList: Partner[] = [
     },
   },
   {
-    name: 'kavi',
-    icon: kaviIcon,
-    url: {
-      fi: 'https://kavi.fi/kansallinen-audiovisuaalinen-instituutti-palvelee/',
-      sv: 'https://kavi.fi/sv/nationella-audiovisuella-institutet/',
-      en: 'https://kavi.fi/en/national-audiovisual-institute/',
-    },
-  },
-  {
     name: 'kulttuuriperintokasvatus',
     icon: kulttuuriperintokasvatusIcon,
     url: {
@@ -296,6 +289,33 @@ export const partnerList: Partner[] = [
       fi: 'https://www.valokuvataiteenmuseo.fi/fi',
       sv: 'https://www.valokuvataiteenmuseo.fi/sv',
       en: 'https://www.valokuvataiteenmuseo.fi/en',
+    },
+  },
+  {
+    name: 'umo',
+    icon: umoIcon,
+    url: {
+      fi: 'https://umohelsinki.fi/',
+      sv: 'https://umohelsinki.fi/',
+      en: 'https://umohelsinki.fi/en',
+    },
+  },
+  {
+    name: 'fokus',
+    icon: fokusIcon,
+    url: {
+      fi: 'https://dialogikasvatus.fi/fokus-ry/etusivu/',
+      sv: 'https://dialogikasvatus.fi/fokus-ry/etusivu/',
+      en: 'https://dialogikasvatus.fi/fokus-ry/etusivu/',
+    },
+  },
+  {
+    name: 'osiris',
+    icon: osirisIcon,
+    url: {
+      fi: 'https://osiristeatteri.fi/',
+      sv: 'https://osiristeatteri.fi/',
+      en: 'https://osiristeatteri.fi/en/etusivu/',
     },
   },
 ];
