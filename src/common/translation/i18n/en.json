@@ -10,10 +10,6 @@
     "wrongLoginMethod": {
       "description": "It seems like you have registered to the service using another login method. Please log out of the service and try a different login method.",
       "title": "Oops!"
-    },
-    "unauthorized": {
-      "description": "You don't have privileges to see the content of the page! However, your login session might just have expired. You can try logging in again and see if that helps.",
-      "title": "Oops!"
     }
   },
   "authentication": {
