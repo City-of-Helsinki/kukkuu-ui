@@ -231,19 +231,6 @@ exports[`renders snapshot correctly 1`] = `
           </a>
           <a
             class="_container_46f5db"
-            href="https://kavi.fi/kansallinen-audiovisuaalinen-instituutti-palvelee/"
-          >
-            <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
-            >
-              <img
-                alt="Kansallinen audiovisuaalinen instituutti"
-                src="/src/assets/icons/partners/kavi.png"
-              />
-            </div>
-          </a>
-          <a
-            class="_container_46f5db"
             href="https://www.kulttuuriperintokasvatus.fi/"
           >
             <div
@@ -382,6 +369,45 @@ exports[`renders snapshot correctly 1`] = `
               <img
                 alt="Suomen valokuvataiteen museo"
                 src="/src/assets/icons/partners/valokuvataiteenmuseo.png"
+              />
+            </div>
+          </a>
+          <a
+            class="_container_46f5db"
+            href="https://umohelsinki.fi/"
+          >
+            <div
+              class="_imgWrapper_73ff55 _icon_46f5db"
+            >
+              <img
+                alt="home.partners.partner.umo"
+                src="/src/assets/icons/partners/umo_logo.png"
+              />
+            </div>
+          </a>
+          <a
+            class="_container_46f5db"
+            href="https://dialogikasvatus.fi/fokus-ry/etusivu/"
+          >
+            <div
+              class="_imgWrapper_73ff55 _icon_46f5db"
+            >
+              <img
+                alt="home.partners.partner.fokus"
+                src="/src/assets/icons/partners/fokus_logo.png"
+              />
+            </div>
+          </a>
+          <a
+            class="_container_46f5db"
+            href="https://osiristeatteri.fi/"
+          >
+            <div
+              class="_imgWrapper_73ff55 _icon_46f5db"
+            >
+              <img
+                alt="home.partners.partner.osiris"
+                src="/src/assets/icons/partners/osiris_logo.png"
               />
             </div>
           </a>

@@ -493,7 +493,7 @@
         "input": {
           "label": "Child's year of birth",
           "year": {
-            "placeholder": "year"
+            "placeholder": "Enter child's year of birth"
           }
         }
       },
