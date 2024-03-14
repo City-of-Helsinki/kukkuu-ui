@@ -10,10 +10,6 @@
     "wrongLoginMethod": {
       "description": "Vaikuttaisi siltä, että olet käyttänyt eri tunnistautumistapaa rekisteröityessäsi palveluun. Kirjaudu ulos palvelusta ja koita sitten kirjautua uudestaan käyttäen jotain toista tunnistautumistapaa.",
       "title": "Hupsista!"
-    },
-    "unauthorized": {
-      "description": "Sinulla ei ole oikeuksia nähdä sivun sisältöä! Kirjautumistietosi saattavat kuitenkin vain olla vanhentuneet. Voit yrittää jospa uudelleen kirjautuminen auttaisi.",
-      "title": "Hupsista!"
     }
   },
   "authentication": {

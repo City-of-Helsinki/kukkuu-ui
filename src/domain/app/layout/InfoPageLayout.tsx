@@ -1,19 +1,11 @@
 import React from 'react';
 
 import PageWrapper from '../../app/layout/PageWrapper';
-import InfoTemplate from './utilityComponents/InfoTemplate';
+import InfoTemplate, {
+  type InfoTemplateProps,
+} from './utilityComponents/InfoTemplate';
 
-type Props = {
-  title: string | React.ReactElement;
-  description: string | React.ReactElement;
-  icon?: string;
-  callToAction?: {
-    label: string | React.ReactElement;
-    onClick: () => void;
-  };
-};
-
-const InfoPageLayout = (props: Props) => {
+const InfoPageLayout = (props: InfoTemplateProps) => {
   return (
     <PageWrapper>
       <InfoTemplate {...props} />
