@@ -678,7 +678,7 @@
     "heading": "Sign up",
     "notEligible": {
       "buttonText": "Click here to find cultural events for your child!",
-      "otherOptionsLink": "https://www.myhelsinki.fi/en/search?tags=children%20(age%20groups)&category=events",
+      "otherOptionsLink": "https://tapahtumat.hel.fi/en/search?onlyChildrenEvents=true",
       "text": "Your child is unfortunately not eligible for the Culture Kids programme due to their date of birth or hometown.",
       "title": "We’re sorry."
     },
