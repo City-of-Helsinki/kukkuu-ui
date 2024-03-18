@@ -5,6 +5,7 @@ import { IconSignin } from 'hds-react/icons';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
 import { loginTunnistamo } from './authenticate';
 import styles from './unauthorized.module.scss';
+import adultFaceHappyIcon from '../../assets/icons/svg/adultFaceHappyTransparent.svg';
 
 const LoginButton = () => {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ const Unauthorized = () => {
 
   return (
     <InfoPageLayout
+      icon={adultFaceHappyIcon}
       classes={styles.loginButtonTemplate}
       title={t('authentication.login.text')}
       callToAction={{
