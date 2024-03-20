@@ -678,7 +678,7 @@
     "heading": "Tule mukaan",
     "notEligible": {
       "buttonText": "Löydä lapsille sopivia kulttuuritapahtumia täältä",
-      "otherOptionsLink": "https://www.myhelsinki.fi/fi/search?tags=lapset&category=events",
+      "otherOptionsLink": "https://tapahtumat.hel.fi/fi/haku?onlyChildrenEvents=true",
       "text": "Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä Kulttuurin kummilapset -toimintaan.",
       "title": "Voi harmi!"
     },

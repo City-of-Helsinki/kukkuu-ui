@@ -678,7 +678,7 @@
     "heading": "Kom med",
     "notEligible": {
       "buttonText": "Hitta kulturevenemang som lämpar sig för barn här",
-      "otherOptionsLink": "https://www.myhelsinki.fi/sv/search?tags=barn%20(%C3%A5ldersgrupper)&category=events",
+      "otherOptionsLink": "https://tapahtumat.hel.fi/sv/sok?onlyChildrenEvents=true",
       "text": "Tyvärr berättigar barnets födelseår eller hemort inte till att delta i verksamheten Kulturens fadderbarn.",
       "title": "Vad synd!"
     },
