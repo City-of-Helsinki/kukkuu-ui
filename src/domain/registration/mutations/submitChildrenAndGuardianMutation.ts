@@ -8,6 +8,7 @@ const submitChildrenAndGuardianMutation = gql`
     email
     phoneNumber
     language
+    hasAcceptedMarketing
     children {
       edges {
         node {
