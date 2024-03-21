@@ -9,6 +9,7 @@ export interface RegistrationFormValues {
     lastName: string;
     email: string;
     languagesSpokenAtHome: string[];
+    hasAcceptedMarketing: boolean;
   };
   preferLanguage: Language;
   agree: boolean;

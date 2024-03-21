@@ -658,6 +658,7 @@ export type FreeSpotNotificationSubscriptionNodeEdge = {
 export type GuardianInput = {
   email?: InputMaybe<Scalars['String']['input']>;
   firstName: Scalars['String']['input'];
+  hasAcceptedMarketing?: InputMaybe<Scalars['Boolean']['input']>;
   language: Language;
   languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
   lastName: Scalars['String']['input'];
@@ -4172,6 +4173,7 @@ export type SubmitGuardianFieldsFragment = {
   email: string;
   phoneNumber: string;
   language: Language;
+  hasAcceptedMarketing: boolean;
   children: {
     __typename?: 'ChildNodeConnection';
     edges: Array<{
@@ -4214,6 +4216,7 @@ export type SubmitChildrenAndGuardianMutationPayloadFieldsFragment = {
     email: string;
     phoneNumber: string;
     language: Language;
+    hasAcceptedMarketing: boolean;
     children: {
       __typename?: 'ChildNodeConnection';
       edges: Array<{
@@ -4264,6 +4267,7 @@ export type SubmitChildrenAndGuardianMutation = {
       email: string;
       phoneNumber: string;
       language: Language;
+      hasAcceptedMarketing: boolean;
       children: {
         __typename?: 'ChildNodeConnection';
         edges: Array<{
@@ -4984,6 +4988,7 @@ export const SubmitGuardianFieldsFragmentDoc = gql`
     email
     phoneNumber
     language
+    hasAcceptedMarketing
     children {
       edges {
         node {
