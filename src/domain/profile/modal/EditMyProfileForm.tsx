@@ -87,7 +87,7 @@ export default function EditMyProfileForm({
           },
         },
       });
-
+      toast.success(t('registration.submitMutation.successfulMessage'));
       trackEvent({ category: 'action', action: 'Edit profile' });
       setIsOpen(false);
     } catch (error) {
