@@ -667,6 +667,11 @@
             "label": "Telefonnummer",
             "placeholder": "Ange telefonnummer"
           }
+        },
+        "hasAcceptedMarketing": {
+          "input": {
+            "label": "Accepterar marknadskommunikationen"
+          }
         }
       },
       "verifyInformation": {
