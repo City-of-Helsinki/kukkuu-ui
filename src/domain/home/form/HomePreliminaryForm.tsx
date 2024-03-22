@@ -16,7 +16,7 @@ import { HomeFormValues, HomeFormPayload } from './types/HomeFormTypes';
 import { convertFormValues } from './HomePreliminaryFormUtils';
 import { registrationFormDataSelector } from '../../registration/state/RegistrationSelectors';
 import Button from '../../../common/components/button/Button';
-import TermsField from '../../../common/components/form/fields/terms/TermsField';
+import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { SUPPORTED_START_BIRTH_YEAR } from '../../../common/time/TimeConstants';
@@ -116,7 +116,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                     )}
                   />
                 </div>
-                <TermsField
+                <CheckboxField
                   name="verifyInformation"
                   id="verifyInformation"
                   label={

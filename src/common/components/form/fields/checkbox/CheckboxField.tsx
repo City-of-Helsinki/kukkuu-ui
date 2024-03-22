@@ -3,7 +3,7 @@ import { Checkbox, CheckboxProps } from 'hds-react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 
-import styles from './termsField.module.scss';
+import styles from './checkboxField.module.scss';
 
 const kukkuuCheckboxStyles = {
   '--background-hover': 'var(--color-summer-dark)',
@@ -22,7 +22,7 @@ type Props = {
   name: string;
 } & CheckboxProps;
 
-function TermsField(props: Props) {
+function CheckboxField(props: Props) {
   const { name } = props;
   const { t } = useTranslation();
   const [field, meta] = useField(name);
@@ -44,4 +44,4 @@ function TermsField(props: Props) {
   );
 }
 
-export default TermsField;
+export default CheckboxField;
