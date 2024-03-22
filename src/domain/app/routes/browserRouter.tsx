@@ -25,6 +25,7 @@ import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EnrolPage from '../../event/enrol/EnrolPage';
 import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
 import Unauthorized from '../../auth/Unauthorized';
+import ManageMarketingSubscriptions from '../../profile/subscriptions/ManageSubscriptions';
 
 const browserRouter = createBrowserRouter([
   { path: '/', Component: NavigateToLocalePath },
@@ -44,15 +45,6 @@ const browserRouter = createBrowserRouter([
       {
         path: 'home',
         element: <AppRoute title={t('appName')} element={<Home />} />,
-      },
-      {
-        path: 'registration/not-eligible',
-        element: (
-          <AppRoute
-            title={t('registration.notEligible.title')}
-            element={<NotEligible />}
-          />
-        ),
       },
       {
         path: 'unauthorized',
@@ -100,6 +92,15 @@ const browserRouter = createBrowserRouter([
         ),
       },
       {
+        path: 'registration/not-eligible',
+        element: (
+          <AppRoute
+            title={t('registration.notEligible.title')}
+            element={<NotEligible />}
+          />
+        ),
+      },
+      {
         path: 'registration/form',
         element: (
           <AppRoute
@@ -126,6 +127,15 @@ const browserRouter = createBrowserRouter([
             index: true,
             element: (
               <AppRoute title={t('profile.heading')} element={<Profile />} />
+            ),
+          },
+          {
+            path: 'subscriptions',
+            element: (
+              <AppRoute
+                title={t('subscriptions.manage.title')}
+                element={<ManageMarketingSubscriptions />}
+              />
             ),
           },
           {

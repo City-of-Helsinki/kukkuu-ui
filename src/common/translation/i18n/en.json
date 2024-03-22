@@ -797,5 +797,31 @@
       "hours": "{{ hours }} hours",
       "days": "{{ days }} days"
     }
+  },
+  "subscriptions": {
+    "manage": {
+      "title": "Subscriptions Management",
+      "description": "Hello {{firstName}}! In the form below, you can see the status of your subscriptions regarding marketing communications.",
+      "form": {
+        "fields": {
+          "hasAcceptedMarketing": {
+            "label": "I accept marketing communications"
+          }
+        },
+        "submit": {
+          "submitMutation": {
+            "successfulMessage": "Data saved.",
+            "errorMessage": "An error occurred while saving the data. Please try again later."
+          },
+          "button": {
+            "label": "Save selections"
+          }
+        },
+        "query": {
+          "authTokenErrorMessage": "Problem loading your information. Login with your credentials or try again with a newer link to the subscriptions management page.",
+          "authenticatedErrorMessage": "There was a problem loading your data. Please try logging into the service again."
+        }
+      }
+    }
   }
 }
