@@ -797,5 +797,31 @@
       "hours": "{{ hours }} timmar",
       "days": "{{ days }} dagar"
     }
+  },
+  "subscriptions": {
+    "manage": {
+      "title": "Meddelandehantering",
+      "description": "Hej {{firstName}}! I formuläret nedan kan du se status för din beställning angående marknadsföringskommunikation.",
+      "form": {
+        "fields": {
+          "hasAcceptedMarketing": {
+            "label": "Jag accepterar marknadskommunikation"
+          }
+        },
+        "submit": {
+          "submitMutation": {
+            "successfulMessage": "Data sparad.",
+            "errorMessage": "Ett fel uppstod när data sparades. Försök igen senare."
+          },
+          "button": {
+            "label": "Spara val"
+          }
+        },
+        "query": {
+          "authTokenErrorMessage": "Problem med att ladda din information. Logga in med dina referenser eller försök igen med en nyare länk till administratörssidan.",
+          "authenticatedErrorMessage": "Det gick inte att ladda dina data. Försök att logga in på tjänsten igen."
+        }
+      }
+    }
   }
 }
