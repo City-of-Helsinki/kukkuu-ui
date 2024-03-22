@@ -1,0 +1,39 @@
+@import '~styles/layout';
+@import '~styles/variables';
+
+.simpleFormPageLayout {
+  @include respond-below(l) {
+    margin: 0 $baseMargin $largeMargin $baseMargin;
+  }
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: $color-black-90;
+
+  .simpleFormPageLayoutFace {
+    height: $spacing-5-xl;
+    width: $spacing-5-xl;
+    margin: 0 0 $spacing-m 0;
+  }
+
+  .simpleFormPageLayoutTitle {
+    font-size: $fontsize-heading-xl;
+  }
+
+  .simpleFormPageLayoutDescription {
+    max-width: $container-width-m;
+    margin-top: 0;
+    margin-bottom: $spacing-xl;
+
+    font-size: $fontsize-body-l;
+    text-align: center;
+  }
+  button[type='submit'] {
+    margin: 2 * $baseMargin;
+    width: min-content;
+    max-width: $container-width-s;
+  }
+}

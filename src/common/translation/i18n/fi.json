@@ -797,5 +797,31 @@
       "hours": "{{ hours }} tuntia",
       "days": "{{ days }} päivää"
     }
+  },
+  "subscriptions": {
+    "manage": {
+      "title": "Viestityksen hallinta",
+      "description": "Hei {{firstName}}! Alla olevassa lomakkeessa näet tehdyn tilauksesi tilan liittyen markkinointiviestintään.",
+      "form": {
+        "fields": {
+          "hasAcceptedMarketing": {
+            "label": "Hyväksyn markkinointiviestinnän"
+          }
+        },
+        "submit": {
+          "submitMutation": {
+            "successfulMessage": "Tiedot tallennettu.",
+            "errorMessage": "Tapahtui virhe tietojen tallennuksessa. Yritä myöhemmin uudestaan."
+          },
+          "button": {
+            "label": "Tallenna valinnat"
+          }
+        },
+        "query": {
+          "authTokenErrorMessage": "Ongelma tietojesi lataamisessa. Kirjaudu sisään tunnuksillasi tai yritä uudelleen uudemmalla hallintasivulle johtavalla linkillä.",
+          "authenticatedErrorMessage": "Ongelma tietojesi lataamisessa. Yritä kirjautua palveluun uudelleen."
+        }
+      }
+    }
   }
 }
