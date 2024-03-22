@@ -34,7 +34,7 @@ import FormikDropdown from '../../../common/components/formikWrappers/FormikDrop
 import { RegistrationFormValues } from '../types/RegistrationTypes';
 import Button from '../../../common/components/button/Button';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
-import TermsField from '../../../common/components/form/fields/terms/TermsField';
+import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
 import ChildFormFields from './partial/childFormFields';
 import LanguagesCombobox from '../../languages/LanguagesCombobox';
 import { userHasProfileSelector } from '../state/RegistrationSelectors';
@@ -345,7 +345,7 @@ const RegistrationForm = () => {
                     )}
                     name="guardian.languagesSpokenAtHome"
                   />
-                  <TermsField
+                  <CheckboxField
                     className={styles.agreeBtn}
                     type="checkbox"
                     id="agree"
