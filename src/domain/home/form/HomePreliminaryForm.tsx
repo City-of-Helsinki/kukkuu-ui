@@ -1,9 +1,10 @@
-import { FunctionComponent, Ref } from 'react';
+import React, { FunctionComponent, Ref } from 'react';
 import { Formik, Form } from 'formik';
 import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { CheckboxProps } from 'hds-react';
 
 import { loginTunnistamo } from '../../auth/authenticate';
 import styles from './homePreliminaryForm.module.scss';
@@ -39,7 +40,14 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const getPathname = useGetPathname();
+  const [
+    isRegistrationInformationVerified,
+    setIsRegistrationInformationVerified,
+  ] = React.useState(false);
 
+  const onChangeRegistrationInformationVerified: CheckboxProps['onChange'] = (
+    event
+  ) => setIsRegistrationInformationVerified(event.currentTarget.checked);
   const schema = yup.object().shape({
     verifyInformation: yup.boolean().required('validation.general.required'),
     child: yup.object().shape({
@@ -119,15 +127,16 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                 <CheckboxField
                   name="verifyInformation"
                   id="verifyInformation"
-                  label={
-                    <Trans i18nKey="homePage.preliminaryForm.verifyInformation.checkbox.label" />
-                  }
+                  label={t(
+                    'homePage.preliminaryForm.verifyInformation.checkbox.label'
+                  )}
+                  onChange={onChangeRegistrationInformationVerified}
                   required
                 />
                 <Button
                   type="submit"
                   className={styles.submitButton}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !isRegistrationInformationVerified}
                 >
                   {t('homePage.hero.buttonText')}
                 </Button>
