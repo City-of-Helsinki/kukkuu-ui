@@ -667,6 +667,11 @@
             "label": "Guardian’s telephone number",
             "placeholder": "Please enter guardian’s telephone number"
           }
+        },
+        "hasAcceptedMarketing": {
+          "input": {
+            "label": "Accepts the marketing communication"
+          }
         }
       },
       "verifyInformation": {
