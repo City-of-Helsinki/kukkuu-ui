@@ -25,6 +25,7 @@ import {
   MyProfile,
 } from '../types/ProfileQueryTypes';
 import RelayList from '../../api/relayList';
+import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
 
 const schema = yup.object().shape({
   firstName: yup
@@ -83,6 +84,7 @@ export default function EditMyProfileForm({
             lastName: payload.lastName,
             phoneNumber: payload.phoneNumber,
             language: payload.language,
+            hasAcceptedMarketing: payload.hasAcceptedMarketing,
             languagesSpokenAtHome: payload.languagesSpokenAtHome,
           },
         },
@@ -186,6 +188,13 @@ export default function EditMyProfileForm({
             name="languagesSpokenAtHome"
             // Block escape from closing the modal
             catchEscapeKey
+          />
+          <CheckboxField
+            id={'hasAcceptedMarketing'}
+            name={'hasAcceptedMarketing'}
+            label={t(
+              'registration.form.guardian.hasAcceptedMarketing.input.label'
+            )}
           />
           <div className={styles.buttonsWrapper}>
             <Button

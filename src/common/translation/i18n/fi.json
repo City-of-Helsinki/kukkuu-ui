@@ -667,6 +667,11 @@
             "label": "Puhelinnumero",
             "placeholder": "Lisää puhelinnumero"
           }
+        },
+        "hasAcceptedMarketing": {
+          "input": {
+            "label": "Hyväksyn markkinointiviestinnän"
+          }
         }
       },
       "verifyInformation": {
