@@ -23,9 +23,17 @@ type Props = {
 } & CheckboxProps;
 
 function CheckboxField(props: Props) {
-  const { name } = props;
+  const { name, onChange } = props;
   const { t } = useTranslation();
-  const [field, meta] = useField(name);
+  const [field, meta] = useField({ name });
+
+  // NOTE: It seems like the onChange handlers of the useInput
+  // and the custom implementation needs to be combined
+  // with a new yet another handler.
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    field.onChange(e);
+    onChange && onChange(e);
+  };
 
   return (
     <div>
@@ -35,7 +43,7 @@ function CheckboxField(props: Props) {
         type="checkbox"
         style={kukkuuCheckboxStyles}
         checked={Boolean(field.value)}
-        label={<span className={styles.listLabel}>{props.label}</span>}
+        onChange={onChangeHandler}
       />
       {meta.error && meta.touched && (
         <p className={styles.errorText}>{t(meta.error)}</p>
