@@ -18,6 +18,7 @@ const initialValues: MyProfile = {
   phoneNumber: '0904422233',
   email: 'email@example.com',
   language: Language.Sv,
+  hasAcceptedMarketing: false,
   children: {
     edges: [],
   },
