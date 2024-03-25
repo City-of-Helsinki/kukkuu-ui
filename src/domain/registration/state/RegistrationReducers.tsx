@@ -25,6 +25,7 @@ export const defaultRegistrationData: RegistrationData = {
       lastName: '',
       phoneNumber: '',
       languagesSpokenAtHome: [],
+      hasAcceptedMarketing: false,
     },
     preferLanguage: Language.Fi,
     agree: false,

@@ -11,6 +11,7 @@ export const defaultProfileData: MyProfile = {
   phoneNumber: '',
   email: '',
   language: Language.Fi,
+  hasAcceptedMarketing: false,
   children: {
     edges: [],
   },
