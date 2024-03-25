@@ -25,8 +25,7 @@
     "test:browser": "testcafe \"chrome --window-size='1920,1080'\" browser-tests/ --live --dev --lang=fi-FI",
     "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080'\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/",
     "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev --lang=fi-FI",
-    "typecheck": "tsc --project ./tsconfig.json --noEmit",
-    "update-translations": "fetch-translations 1b5qAamjhmSNiME3matBINaeyz8TvoRWVB6wU5HvKy4g -l en,fi,sv -o src/common/translation/i18n"
+    "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
   "browserslist": {
     "production": [
@@ -91,7 +90,6 @@
     "formik": "^2.4.5",
     "hds-core": "^3.4.0",
     "hds-react": "^3.4.0",
-    "helsinki-utils": "City-of-Helsinki/helsinki-utils-js.git#0.1.0",
     "html-react-parser": "^4.2.2",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
@@ -134,11 +132,6 @@
   },
   "msw": {
     "workerDirectory": "public"
-  },
-  "yarn-upgrade-all": {
-    "ignore": [
-      "helsinki-utils"
-    ]
   },
   "devDependencies": {
     "@graphql-codegen/add": "^5.0.0",
