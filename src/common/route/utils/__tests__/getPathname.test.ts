@@ -17,7 +17,7 @@ const testCases = (language: string) => [
 ];
 
 test.each(languages.flatMap((language) => testCases(language)))(
-  'when pathname is %p and language is %p, yields %p',
+  'when pathname is "%s" and language is "%s", yields "%s"',
   (pathname, language, result) => {
     expect(getPathname(pathname, language)).toEqual(result);
   }
