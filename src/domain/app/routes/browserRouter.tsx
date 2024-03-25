@@ -26,6 +26,7 @@ import EnrolPage from '../../event/enrol/EnrolPage';
 import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
 import Unauthorized from '../../auth/Unauthorized';
 import ManageMarketingSubscriptions from '../../profile/subscriptions/ManageSubscriptions';
+import NotFound from '../notFound/NotFound';
 
 const browserRouter = createBrowserRouter([
   { path: '/', Component: NavigateToLocalePath },
@@ -194,6 +195,10 @@ const browserRouter = createBrowserRouter([
                 ),
               },
             ],
+          },
+          {
+            path: '*',
+            Component: NotFound,
           },
         ],
       },
