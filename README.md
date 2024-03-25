@@ -90,12 +90,6 @@ See more from [CLI guide](https://vitejs.dev/guide/cli.html#vite-preview).
 Launches the test runner in the interactive watch mode.<br>
 See the section about [Getting started](https://vitest.dev/guide/) for more information.
 
-### `yarn update-translations`
-
-Fetches translation data from our Google Spreadsheet and updates translation files. See `package.json` for configuration.
-
-You need to update jest snapshots and add the translation files to the git repository manually after updating translations.
-
 ### `yarn generate:graphql`
 
 Generate static types for GraphQL queries by using the schema from the backend server.
