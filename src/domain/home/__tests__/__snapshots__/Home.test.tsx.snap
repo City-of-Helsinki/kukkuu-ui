@@ -537,7 +537,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz"
+                  class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz _checkboxField_639ec5"
                   style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                 >
                   <input
