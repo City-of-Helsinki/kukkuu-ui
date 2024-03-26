@@ -22,6 +22,7 @@ $childIconHeight: 4rem;
     grid-template-columns: 1fr 1fr;
     grid-gap: $baseMargin;
   }
+  padding: $baseMargin 0;
 }
 
 .childBirthyear,
@@ -45,6 +46,7 @@ $childIconHeight: 4rem;
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: $baseMargin 0;
 
   h2 {
     flex-grow: 1;

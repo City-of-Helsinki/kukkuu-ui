@@ -40,6 +40,7 @@ function CheckboxField(props: Props) {
       <Checkbox
         {...props}
         {...field}
+        className={styles.checkboxField}
         type="checkbox"
         style={kukkuuCheckboxStyles}
         checked={Boolean(field.value)}
