@@ -399,6 +399,24 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.2.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.1.1...kukkuu-ui-v3.2.0) (2024-03-27)
+
+
+### Features
+
+* Add "has accepted marketing" -field to the edit my profile form ([613129b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/613129b5fc8c62aa13395b044f64ab08d09054a8))
+* Add a manage subscriptions route to manage marketing subscriptions ([d884053](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d8840536348111d2ea3bfd0952752456e6039164))
+* Add the "has accepted marketing checkbox to registration form ([5b1e99b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5b1e99b0370ba38c51d3b8473188502124229c94))
+
+
+### Bug Fixes
+
+* Add missing page not found handler for pages under profile-path ([950c669](https://github.com/City-of-Helsinki/kukkuu-ui/commit/950c669b485589e4b5a223896ac3afefb9911703))
+* **auth:** Add unauthorized-route for users without login information ([0a8d024](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0a8d024ec3a621f7338ed367e83fba8d03bd382f))
+* Kids events search links ([#543](https://github.com/City-of-Helsinki/kukkuu-ui/issues/543)) ([c31d251](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c31d251ed93868ef895f9e21f990c6c5b9a9bbab))
+* Show a toast of successfull edit of "my profile" form ([4661e76](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4661e763d49fe9d7f3538001cfee602fde64cd43))
+* Verification checkbox of the home preliminary form ([90f19fa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/90f19fa45b8009ab8764044e56997e54282e0cca))
+
 ## [3.1.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.1.0...kukkuu-ui-v3.1.1) (2024-03-14)
 
 
