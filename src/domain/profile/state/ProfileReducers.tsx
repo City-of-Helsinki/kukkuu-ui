@@ -26,4 +26,5 @@ const reducer = createReducer(defaultProfileData, (builder) => {
     .addCase(clearProfile, () => ({ ...defaultProfileData }));
 });
 
+/** @deprecated in favor of GuardianProvider */
 export default reducer;

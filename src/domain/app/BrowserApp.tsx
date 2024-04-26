@@ -3,7 +3,6 @@ import { ApolloProvider } from '@apollo/client';
 import { RouterProvider } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import { OidcProvider } from 'redux-oidc';
 import { ToastContainer } from 'react-toastify';
 import {
   MatomoProvider,
@@ -14,16 +13,12 @@ import { ConfigProvider } from 'react-helsinki-headless-cms';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import AriaLiveProvider from '../../common/AriaLive/AriaLiveProvider';
 import graphqlClient from '../api/client';
-import enableOidcLogging from '../auth/enableOidcLogging';
-import userManager from '../auth/userManager';
 import { persistor, store } from './state/AppStore';
 import useRHHCConfig from '../../hooks/useRHHCConfig';
 import browserRouter from './routes/browserRouter';
 import { CookieConfigProvider } from '../../common/components/cookieConfigProvider';
-
-if (import.meta.env.NODE_ENV === 'development') {
-  enableOidcLogging();
-}
+import KukkuuHDSLoginProvider from '../auth/KukkuuHDSLoginProvider';
+import ProfileProvider from '../profile/ProfileProvider';
 
 // TODO maybe: Variables for these:
 const matomoInstance = createMatomoInstance({
@@ -52,17 +47,17 @@ const BrowserApp: FunctionComponent<BrowserAppProps> = ({ cookieDomain }) => {
             loading={<LoadingSpinner isLoading={true} />}
             persistor={persistor}
           >
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore Property 'children' does not exist on type */}
-            <OidcProvider store={store} userManager={userManager}>
-              <ApolloProvider client={graphqlClient}>
-                <ConfigProvider config={config}>
-                  <MatomoProvider value={matomoInstance}>
-                    <RouterProvider router={browserRouter} />
-                  </MatomoProvider>
-                </ConfigProvider>
-              </ApolloProvider>
-            </OidcProvider>
+            <ApolloProvider client={graphqlClient}>
+              <KukkuuHDSLoginProvider>
+                <ProfileProvider>
+                  <ConfigProvider config={config}>
+                    <MatomoProvider value={matomoInstance}>
+                      <RouterProvider router={browserRouter} />
+                    </MatomoProvider>
+                  </ConfigProvider>
+                </ProfileProvider>
+              </KukkuuHDSLoginProvider>
+            </ApolloProvider>
           </PersistGate>
           <ToastContainer />
         </Provider>

@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router';
-import { IconAlertCircle } from 'hds-react';
+import { useNavigate } from 'react-router-dom';
+import { IconAlertCircle, useOidcClient } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
-import { loginTunnistamo } from '../../auth/authenticate';
 import Config from '../../config';
 import styles from './hero.module.scss';
 
@@ -22,7 +21,7 @@ const HomeHero = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const getPathname = useGetPathname();
-
+  const { login } = useOidcClient();
   return (
     <section className={styles.heroWrapper}>
       <div className={styles.heroContainer}>
@@ -58,7 +57,7 @@ const HomeHero = ({
               <Button
                 variant="secondary"
                 className={styles.authenticateButton}
-                onClick={() => loginTunnistamo()}
+                onClick={() => login()}
               >
                 {t('authentication.login.text')}
               </Button>

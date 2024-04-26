@@ -4,15 +4,13 @@ import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { CheckboxProps } from 'hds-react';
+import { CheckboxProps, useOidcClient } from 'hds-react';
 
-import { loginTunnistamo } from '../../auth/authenticate';
 import styles from './homePreliminaryForm.module.scss';
 import { isChildEligible } from '../../registration/notEligible/NotEligibleUtils';
 import { setHomeFormValues } from '../../registration/state/RegistrationActions';
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { StoreState } from '../../app/types/AppTypes';
-import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelectors';
 import { HomeFormValues, HomeFormPayload } from './types/HomeFormTypes';
 import { convertFormValues } from './HomePreliminaryFormUtils';
 import { registrationFormDataSelector } from '../../registration/state/RegistrationSelectors';
@@ -37,6 +35,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
   initialValues,
   forwardRef,
 }) => {
+  const { login } = useOidcClient();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const getPathname = useGetPathname();
@@ -78,7 +77,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
     } else if (isAuthenticated) {
       navigate(getPathname('/registration/form'));
     } else {
-      loginTunnistamo(`/registration/form`);
+      login({ redirect_uri: `/registration/form` });
     }
   };
 
@@ -156,7 +155,6 @@ const actions = {
 const mapStateToProps = (state: StoreState) => {
   const stateFormData = registrationFormDataSelector(state);
   return {
-    isAuthenticated: isAuthenticatedSelector(state),
     stateFormValues: stateFormData,
     initialValues: convertFormValues(stateFormData),
   };

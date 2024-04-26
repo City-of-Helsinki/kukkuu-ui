@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { defineConfig, mergeConfig } from 'vitest/config';
+import { config } from 'dotenv';
 
 import viteConfig from './vite.config';
 
@@ -15,6 +16,9 @@ export default defineConfig((configEnv) =>
         outputFile: {
           json: 'sonar-report.json',
           'vitest-sonar-reporter': 'sonar-report.xml',
+        },
+        env: {
+          ...config({ path: '.env.test' }).parsed,
         },
         coverage: {
           provider: 'v8',

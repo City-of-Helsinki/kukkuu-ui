@@ -7,14 +7,15 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import * as Sentry from '@sentry/browser';
+import {
+  removeApiTokensFromStorage,
+  removeUserReferenceFromStorage,
+} from 'hds-react';
 
 import i18n from '../../common/translation/i18n/i18nInit';
-import { apiTokenSelector } from '../auth/state/AuthenticationSelectors';
-import { store } from '../app/state/AppStore';
-import { showExpiredSessionPrompt } from '../app/state/ui/UIActions';
-import { fetchTokenError } from '../auth/state/BackendAuthenticationActions';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
-import { logoutTunnistamo } from '../auth/authenticate';
+import { getKukkuuApiTokenFromStorage } from '../auth/kukkuuApiUtils';
+import { flushAllState } from '../auth/reduxState/utils';
 
 const httpLink = createHttpLink({
   uri: import.meta.env.VITE_API_URI,
@@ -40,26 +41,13 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         console.error(errorMessage);
       }
 
-      // If JWT is expired it means that we want people to log in again.
-      if (
-        // TODO: This first check is just to maintain compatibility with old backend
-        //  versions, it can be removed later.
-        message === 'Invalid Authorization header. JWT has expired.' ||
-        errorCode === 'AUTHENTICATION_EXPIRED_ERROR'
-      ) {
-        store.dispatch(showExpiredSessionPrompt());
-
-        // Clear old token in favor of avoiding Apollo loop
-        store.dispatch(
-          fetchTokenError({ message: 'Token expired', name: 'fetchTokenError' })
-        );
-      }
-
       if (errorCode === 'AUTHENTICATION_ERROR') {
         // It is not possible to recover from AUTHENTICATION_ERROR at least with the
         // same API token, so to minimize further problems it is probably best to just
         // log the user out completely.
-        logoutTunnistamo();
+        removeApiTokensFromStorage();
+        removeUserReferenceFromStorage();
+        flushAllState({ keepUserFormData: true });
       }
     });
   }
@@ -70,11 +58,11 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = apiTokenSelector(store.getState());
+  const kukkuuApiToken = getKukkuuApiTokenFromStorage();
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : null,
+      authorization: kukkuuApiToken ? `Bearer ${kukkuuApiToken}` : null,
       'accept-language': getCurrentLanguage(i18n),
     },
   };

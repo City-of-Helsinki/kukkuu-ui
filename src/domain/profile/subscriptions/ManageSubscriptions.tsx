@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useOidcClient } from 'hds-react';
 
 import {
   MyMarketingSubscriptionsDocument,
@@ -11,7 +11,6 @@ import {
 import SimpleFormPageLayout from '../../app/layout/SimpleFormPageLayout';
 import ManageSubscriptionsForm from './ManageSubscriptionsForm';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
-import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelectors';
 
 const ManageSubscriptions = () => {
   const { t } = useTranslation();
@@ -19,7 +18,8 @@ const ManageSubscriptions = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const authToken = searchParams.get('authToken');
-  const isAuthenticated = useSelector(isAuthenticatedSelector);
+  const { isAuthenticated } = useOidcClient();
+  const isLoggedIn = isAuthenticated();
   const {
     data: subscriptionsData,
     loading,
@@ -32,12 +32,12 @@ const ManageSubscriptions = () => {
   if (error) {
     // Navigate to unauthorized ("the login") view
     // if not an auth token was used while the user was not logged in.
-    if (!isAuthenticated) {
+    if (!isLoggedIn) {
       toast.error(t('subscriptions.manage.form.query.authTokenErrorMessage'), {
         toastId: 'MyMarketingSubscriptionsQuery',
         delay: 0,
         // close automatically if an auth token has been used.
-        autoClose: isAuthenticated ? false : 5000,
+        autoClose: isLoggedIn ? false : 5000,
       });
       navigate(`/unauthorized?next=${location.pathname}`);
     } else {

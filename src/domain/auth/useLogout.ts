@@ -1,23 +1,28 @@
 import { useCallback } from 'react';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
+import {
+  removeApiTokensFromStorage,
+  removeUserReferenceFromStorage,
+  useOidcClient,
+} from 'hds-react';
 
-import { logoutTunnistamo } from './authenticate';
-import { flushAllState } from './state/AuthenticationUtils';
+import { flushAllState } from './reduxState/utils';
+import { useProfileContext } from '../profile/hooks/useProfileContext';
 
 function useLogout() {
   const { trackEvent } = useMatomo();
-
-  const logout = useCallback(() => {
+  const { logout } = useOidcClient();
+  const { clearProfile } = useProfileContext();
+  const logoutFromOidc = useCallback(() => {
     trackEvent({ category: 'action', action: 'Log out' });
+    removeApiTokensFromStorage();
+    removeUserReferenceFromStorage();
+    flushAllState({ keepUserFormData: false });
+    clearProfile();
+    logout();
+  }, [clearProfile, logout, trackEvent]);
 
-    // Flush all cached state
-    flushAllState({});
-
-    // Log out
-    logoutTunnistamo();
-  }, [trackEvent]);
-
-  return logout;
+  return logoutFromOidc;
 }
 
 export default useLogout;

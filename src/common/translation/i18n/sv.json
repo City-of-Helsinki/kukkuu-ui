@@ -44,6 +44,9 @@
         "label": "Din session har gått ut",
         "message": "Din session har gått ut. Försök att logga in igen."
       }
+    },
+    "loggingIn": {
+      "text": "Loggar in..."
     }
   },
   "CHILD_RELATIONSHIP_OPTIONS": {

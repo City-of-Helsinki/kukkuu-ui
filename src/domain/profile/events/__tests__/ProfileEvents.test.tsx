@@ -1,5 +1,3 @@
-import * as reactQrCodeLogo from 'react-qrcode-logo';
-
 import ProfileEvents from '../ProfileEvents';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/graphql';
 import { render } from '../../../../common/test/testingLibraryUtils';
@@ -10,7 +8,13 @@ import {
   InternalAndTicketSystemEnrolments,
 } from '../../../child/types/ChildByIdQueryTypes';
 
-vi.spyOn(reactQrCodeLogo, 'QRCode').mockImplementation(() => (<div />) as any);
+vi.mock('react-qrcode-logo', async (importOriginal: any) => {
+  const mod = await importOriginal();
+  return {
+    ...mod,
+    QRCode: () => <div />,
+  };
+});
 
 const childData: ChildByIdResponse = {
   id: '',
@@ -61,8 +65,6 @@ const enrolments: InternalAndTicketSystemEnrolments = {
   edges: [
     {
       node: {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         __typename: 'EnrolmentNode',
         id: 'foo',
         referenceId: 'bar',
@@ -132,8 +134,6 @@ const childOnlyEnrolments: ChildByIdResponse = {
     edges: [
       {
         node: {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           __typename: 'EnrolmentNode',
           id: 'foo',
           referenceId: 'bar',

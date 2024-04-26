@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './notEligible.module.scss';
 import adultFaceIcon from '../../../assets/icons/svg/adultFace.svg';
@@ -9,7 +10,7 @@ import Button from '../../../common/components/button/Button';
 
 const NotEligible: FunctionComponent = () => {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   return (
     <PageWrapper>
       <div>
@@ -19,9 +20,7 @@ const NotEligible: FunctionComponent = () => {
           <Button
             className={styles.goBackButton}
             onClick={() =>
-              (window.location.href = t(
-                'registration.notEligible.otherOptionsLink'
-              ))
+              navigate(t('registration.notEligible.otherOptionsLink'))
             }
           >
             {t('registration.notEligible.buttonText')}

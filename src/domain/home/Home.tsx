@@ -1,6 +1,6 @@
 import { useRef, RefObject } from 'react';
-import { useSelector } from 'react-redux';
 import classnames from 'classnames';
+import { useOidcClient } from 'hds-react';
 
 import styles from './home.module.scss';
 import HomePreliminaryForm from './form/HomePreliminaryForm';
@@ -10,14 +10,14 @@ import HomeInstructions from './instructions/HomeInstructions';
 import HomePartners from './partners/HomePartners';
 import HomeVideo from './video/HomeVideo';
 import HomeContact from './contact/HomeContact';
-import { isAuthenticatedSelector } from '../auth/state/AuthenticationSelectors';
 import HomeMoreInfo from './moreInfo/HomeMoreInfo';
-import { userHasProfileSelector } from '../registration/state/RegistrationSelectors';
+import { useProfileContext } from '../profile/hooks/useProfileContext';
 
 const Home = () => {
-  const userIsAuthenticated = useSelector(isAuthenticatedSelector);
-  const userHasProfile = useSelector(userHasProfileSelector);
-
+  const { isAuthenticated } = useOidcClient();
+  const isLoggedIn = isAuthenticated();
+  const { profile } = useProfileContext();
+  const userHasProfile = !!profile;
   const formRef = useRef<HTMLDivElement>(null);
 
   const scrollToForm = (formRef: RefObject<HTMLDivElement>) => {
@@ -36,12 +36,17 @@ const Home = () => {
       <div className={styles.home}>
         <HomeHero
           userHasProfile={userHasProfile}
-          userIsAuthenticated={userIsAuthenticated}
+          userIsAuthenticated={isLoggedIn}
           scrollToForm={() => scrollToForm(formRef)}
         />
         <HomeMoreInfo />
         <HomeInstructions />
-        {!userHasProfile && <HomePreliminaryForm forwardRef={formRef} />}
+        {!userHasProfile && (
+          <HomePreliminaryForm
+            forwardRef={formRef}
+            isAuthenticated={isLoggedIn}
+          />
+        )}
         <HomeVideo />
         <HomePartners />
         <HomeContact />

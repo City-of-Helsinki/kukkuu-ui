@@ -7,13 +7,12 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { IconPlusCircle } from 'hds-react';
+import { IconPlusCircle, User, useOidcClient } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './registrationForm.module.scss';
 import submitChildrenAndGuardianMutation from '../mutations/submitChildrenAndGuardianMutation';
 import { resetFormValues, setFormValues } from '../state/RegistrationActions';
-import { initialFormDataSelector } from './RegistrationFormSelectors';
 import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
@@ -37,7 +36,9 @@ import FormikTextInput from '../../../common/components/formikWrappers/FormikTex
 import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
 import ChildFormFields from './partial/childFormFields';
 import LanguagesCombobox from '../../languages/LanguagesCombobox';
-import { userHasProfileSelector } from '../state/RegistrationSelectors';
+import { registrationFormDataSelector } from '../state/RegistrationSelectors';
+import { useProfileContext } from '../../profile/hooks/useProfileContext';
+import { MyProfile } from '../../profile/types/ProfileQueryTypes';
 
 export const FORM_TESTID = 'registrationForm';
 
@@ -81,6 +82,19 @@ const schema = yup.object().shape({
   agree: yup.boolean().oneOf([true], 'validation.general.required'),
 });
 
+const getInitialFormData = (
+  user: User | null,
+  formData: RegistrationFormValues
+): RegistrationFormValues => ({
+  ...formData,
+  guardian: {
+    ...formData.guardian,
+    email: user?.profile.email || '',
+    firstName: (formData.guardian.firstName || user?.profile?.given_name) ?? '',
+    lastName: (formData.guardian.lastName || user?.profile?.family_name) ?? '',
+  },
+});
+
 const RegistrationForm = () => {
   const { i18n, t } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
@@ -88,7 +102,15 @@ const RegistrationForm = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const getPathname = useGetPathname();
-  const initialValues = useSelector(initialFormDataSelector);
+  const { getUser } = useOidcClient();
+  const user = getUser();
+  const formData = useSelector(registrationFormDataSelector);
+  const initialValues = getInitialFormData(user, formData);
+  const {
+    profile,
+    clearProfile: clearProfileFromContext,
+    updateProfile,
+  } = useProfileContext();
   const { loading, error, data } = useQuery<ProfileQuery>(profileQuery);
   const [submitChildrenAndGuardian] =
     useMutation<SubmitChildrenAndGuardianMutation>(
@@ -106,7 +128,7 @@ const RegistrationForm = () => {
 
   // TODO: userHasProfile selector might be totally needles here.
   // The selector was moved here while refactoring during KK-1017.
-  const userHasProfile = useSelector(userHasProfileSelector) || data?.myProfile;
+  const userHasProfile = !!profile || data?.myProfile;
 
   // isFilling is true when user has started filling out the form.
   // They will lose all their local form state if they change URL
@@ -115,6 +137,7 @@ const RegistrationForm = () => {
   if (loading) return <LoadingSpinner isLoading={true} />;
   if (!data || error) {
     dispatch(clearProfile());
+    clearProfileFromContext();
   }
   if (userHasProfile) {
     // No need to save profile here, that will be done after the Navigate
@@ -176,6 +199,20 @@ const RegistrationForm = () => {
                       saveProfile(
                         response.data?.submitChildrenAndGuardian?.guardian
                       )
+                    );
+                    updateProfile(
+                      (prevStatus) =>
+                        ({
+                          ...prevStatus,
+                          ...response.data?.submitChildrenAndGuardian?.guardian,
+                          languagesSpokenAtHome: {
+                            edges: values.guardian.languagesSpokenAtHome.map(
+                              (language) => ({
+                                node: { id: language, language },
+                              })
+                            ),
+                          },
+                        }) as MyProfile
                     );
                   }
                   dispatch(resetFormValues());

@@ -44,6 +44,9 @@
         "label": "Session expired",
         "message": "Your session has expired. Please log in again."
       }
+    },
+    "loggingIn": {
+      "text": "Logging in..."
     }
   },
   "CHILD_RELATIONSHIP_OPTIONS": {

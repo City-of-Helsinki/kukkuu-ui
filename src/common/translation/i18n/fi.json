@@ -44,6 +44,9 @@
         "label": "Istuntosi on vanhentunut",
         "message": "Istuntosi on vanhentunut. Ole hyvä ja kirjaudu sisään uudelleen"
       }
+    },
+    "loggingIn": {
+      "text": "Kirjaudutaan sisään..."
     }
   },
   "CHILD_RELATIONSHIP_OPTIONS": {

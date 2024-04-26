@@ -1,3 +1,126 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`renders snapshot correctly 1`] = `<div />`;
+exports[`Profile > renders profile correctly 1`] = `
+<div>
+  <div
+    class="_wrapper_70bd39"
+  >
+    <div
+      class="Container-module_container__18lps container_hds-container__ZG2BQ _container_70bd39"
+      role="main"
+    >
+      <div
+        class="_header_70bd39"
+      >
+        <h1
+          class="_text_e4e173 _h1_e4e173 _headerTitle_70bd39"
+        >
+          Hei 
+        </h1>
+        <div
+          class="_headerContent_70bd39"
+        >
+          <p
+            class="_text_e4e173 _body-l_e4e173 "
+          >
+            Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Kummilapsi voi osallistua vuosittain kahteen tapahtumaan, yhteen tapahtumaan keväällä ja yhteen tapahtumaan syksyllä. Joskus tapahtumia voi olla tarjolla enemmän, silloin ilmoitamme siitä erikseen. Nähdään kulttuurin parissa!
+          </p>
+        </div>
+        <div
+          class="_headerActions_70bd39"
+        >
+          <button
+            class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO"
+            style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+            type="button"
+          >
+            <div
+              aria-hidden="true"
+              class="Button-module_icon__O-h7R button_hds-icon__17j8Z"
+            >
+              <svg
+                aria-hidden="true"
+                aria-label="pen"
+                class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                role="img"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M16.75 3L4.5 15.25L4.5143 19.9857L9.25 20L21.5 7.75L16.75 3ZM6.5 16L16.75 5.75L18.75 7.75L8.5 18L6.50696 17.994L6.5 16Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <span
+              class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+            >
+              Muokkaa tietojasi
+            </span>
+          </button>
+        </div>
+      </div>
+      <section
+        class="_layout_d7f7d5"
+      >
+        <h2
+          class="_text_e4e173 _h2_e4e173 "
+        >
+          Kummilapset
+        </h2>
+        <div
+          class="_noChild_d7f7d5"
+        >
+          <p>
+            Ei kummilapsia
+          </p>
+        </div>
+        <button
+          aria-label="Lisää lapsi"
+          class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO"
+          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+          type="button"
+        >
+          <div
+            aria-hidden="true"
+            class="Button-module_icon__O-h7R button_hds-icon__17j8Z"
+          >
+            <svg
+              aria-hidden="true"
+              aria-label="plus"
+              class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M13 6V11H18V13H13V18H11V13H6V11H11V6H13Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+          <span
+            class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+          >
+            Lisää lapsi
+          </span>
+        </button>
+      </section>
+      <div
+        class="_container_256fb1"
+      >
+        <a
+          class="hds-button hds-button--secondary hds-button__label hds-button--theme-black _buttonLink_256fb1"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSdqw2Lq3qooEeRdgr0sV0-Wv-4XcV7IZVzq1HuWoLRa2M7tEg/viewform?usp=pp_url&entry.1982410290=Kulttuurin+kummilapset"
+        >
+          Anna palautetta Kulttuurin kummilapset -palvelusta
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -154,7 +154,7 @@ exports[`renders snapshot correctly 1`] = `
                       </button>
                       <div
                         aria-label="Perustoimintoihin liittyvät evästeet"
-                        class="Card-module_card__1WbKx custom-theme-1"
+                        class="Card-module_card__1WbKx card_hds-card__227qQ custom-theme-1"
                         role="region"
                         style="display: none;"
                       >
@@ -342,7 +342,7 @@ exports[`renders snapshot correctly 1`] = `
                       </button>
                       <div
                         aria-label="Yhteiset evästeet"
-                        class="Card-module_card__1WbKx custom-theme-3"
+                        class="Card-module_card__1WbKx card_hds-card__227qQ custom-theme-3"
                         role="region"
                         style="display: none;"
                       >
@@ -391,12 +391,12 @@ exports[`renders snapshot correctly 1`] = `
                                   <td
                                     data-testid="name-0"
                                   >
-                                    Evästesuostumukset
+                                    city-of-helsinki-cookie-consents
                                   </td>
                                   <td
                                     data-testid="hostName-0"
                                   >
-                                    *.hel.fi
+                                    localhost
                                   </td>
                                   <td
                                     data-testid="description-0"
@@ -405,6 +405,28 @@ exports[`renders snapshot correctly 1`] = `
                                   </td>
                                   <td
                                     data-testid="expiration-0"
+                                  >
+                                    1 vuosi
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td
+                                    data-testid="name-1"
+                                  >
+                                    city-of-helsinki-consent-version
+                                  </td>
+                                  <td
+                                    data-testid="hostName-1"
+                                  >
+                                    localhost
+                                  </td>
+                                  <td
+                                    data-testid="description-1"
+                                  >
+                                    Tähän evästeeseen tallennetaan käyttäjän hyväksymän evästeselosteen versio.
+                                  </td>
+                                  <td
+                                    data-testid="expiration-1"
                                   >
                                     1 vuosi
                                   </td>
@@ -527,7 +549,7 @@ exports[`renders snapshot correctly 1`] = `
                       </button>
                       <div
                         aria-label="Matomo"
-                        class="Card-module_card__1WbKx custom-theme-5"
+                        class="Card-module_card__1WbKx card_hds-card__227qQ custom-theme-5"
                         role="region"
                         style="display: none;"
                       >

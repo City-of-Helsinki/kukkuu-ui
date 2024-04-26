@@ -26,6 +26,7 @@ import {
 } from '../types/ProfileQueryTypes';
 import RelayList from '../../api/relayList';
 import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
+import { useProfileContext } from '../hooks/useProfileContext';
 
 const schema = yup.object().shape({
   firstName: yup
@@ -67,6 +68,7 @@ export default function EditMyProfileForm({
   const { t } = useTranslation();
   const { trackEvent } = useMatomo();
   const [isFilling, setFormIsFilling] = React.useState(false);
+  const { updateProfile } = useProfileContext();
   const [updateMyProfile] = useMutation<UpdateMyProfileMutation>(
     updateMyProfileMutation,
     {
@@ -77,18 +79,32 @@ export default function EditMyProfileForm({
   const onSubmit = async (payload: UpdateMyProfileMutationInput) => {
     setFormIsFilling(false);
     try {
+      const input = {
+        firstName: payload.firstName ?? initialValues.firstName,
+        lastName: payload.lastName ?? initialValues.lastName,
+        phoneNumber: payload.phoneNumber ?? initialValues.phoneNumber,
+        language: payload.language ?? initialValues.language,
+        hasAcceptedMarketing:
+          payload.hasAcceptedMarketing ?? initialValues.hasAcceptedMarketing,
+        languagesSpokenAtHome: payload.languagesSpokenAtHome,
+      };
+
       await updateMyProfile({
         variables: {
-          input: {
-            firstName: payload.firstName,
-            lastName: payload.lastName,
-            phoneNumber: payload.phoneNumber,
-            language: payload.language,
-            hasAcceptedMarketing: payload.hasAcceptedMarketing,
-            languagesSpokenAtHome: payload.languagesSpokenAtHome,
-          },
+          input,
         },
       });
+
+      updateProfile((prevValue) => ({
+        ...(prevValue ?? initialValues),
+        ...input,
+        languagesSpokenAtHome: {
+          __typename: 'LanguageNodeConnection',
+          edges:
+            input.languagesSpokenAtHome?.map((id) => ({ node: { id } })) ?? [],
+        },
+      }));
+
       toast.success(t('registration.submitMutation.successfulMessage'));
       trackEvent({ category: 'action', action: 'Edit profile' });
       setIsOpen(false);

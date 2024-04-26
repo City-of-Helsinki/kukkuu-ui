@@ -86,6 +86,7 @@ exports[`renders snapshot correctly 1`] = `
               class="FooterBase-module_links__3lfLo"
             >
               <span
+                aria-hidden="true"
                 class="FooterBase-module_separator__cwQTe"
               >
                 |
@@ -99,6 +100,7 @@ exports[`renders snapshot correctly 1`] = `
                 </span>
               </a>
               <span
+                aria-hidden="true"
                 class="FooterBase-module_separator__cwQTe"
               >
                 |
@@ -112,6 +114,7 @@ exports[`renders snapshot correctly 1`] = `
                 </span>
               </a>
               <span
+                aria-hidden="true"
                 class="FooterBase-module_separator__cwQTe"
               >
                 |
@@ -125,6 +128,7 @@ exports[`renders snapshot correctly 1`] = `
                 </span>
               </a>
               <span
+                aria-hidden="true"
                 class="FooterBase-module_separator__cwQTe"
               >
                 |
@@ -138,6 +142,7 @@ exports[`renders snapshot correctly 1`] = `
                 </span>
               </a>
               <span
+                aria-hidden="true"
                 class="FooterBase-module_separator__cwQTe"
               >
                 |

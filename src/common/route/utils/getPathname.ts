@@ -6,7 +6,7 @@ export default function getPathname(pathname: string, locale: string) {
 
   // NOTE: When using new React-Router v6,
   // having the locale in the pathname is highly recommended.
-  // Using the WithLocalRoute HOC this is also overridden
+  // Using the WithLocaleRoute HOC this is also overridden
   // in the browserRouter creation.
   if (locale === SUPPORT_LANGUAGES.FI) {
     return basePathname;

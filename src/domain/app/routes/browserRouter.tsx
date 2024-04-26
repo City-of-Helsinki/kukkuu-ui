@@ -1,8 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { t } from 'i18next';
 
 import { NavigateToLocalePath } from './NavigateToLocalePath';
-import OidcCallback from '../../auth/OidcCallback';
 import AppRoute from '../AppRoute';
 import Layout from '../Layout';
 import Home from '../../home/Home';
@@ -13,7 +11,7 @@ import TermsOfService from '../../termsOfService/TermsOfService';
 import RegistrationForm from '../../registration/form/RegistrationForm';
 import Welcome from '../../registration/welcome/Welcome';
 import Profile from '../../profile/Profile';
-import WithLocalRoute from './WithLocaleRoute';
+import WithLocaleRoute from './WithLocaleRoute';
 import HeadlessCmsPage from '../../headlessCms/HeadlessCmsPage';
 import WithProfileChildRouteAuthorization from './WithProfileChildRouteAuthorization';
 import ProfileChildDetail from '../../profile/children/child/ProfileChildDetail';
@@ -27,31 +25,39 @@ import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
 import Unauthorized from '../../auth/Unauthorized';
 import ManageMarketingSubscriptions from '../../profile/subscriptions/ManageSubscriptions';
 import NotFound from '../notFound/NotFound';
+import KukkuuHDSLoginCallbackHandler from '../../auth/KukkuuHDSLoginCallbackHandler';
+import SilentRenewRedirect from './SilentRenewRedirect';
 
 const browserRouter = createBrowserRouter([
-  { path: '/', Component: NavigateToLocalePath },
+  { path: '/', element: <NavigateToLocalePath /> },
   {
     path: '/callback',
-    Component: Layout,
-    children: [{ index: true, Component: OidcCallback }],
+    Component: KukkuuHDSLoginCallbackHandler,
+  },
+  {
+    path: '/silent_renew',
+    element: <SilentRenewRedirect />,
+  },
+  {
+    path: '/silent_renew.html',
   },
   {
     path: '/:locale/*',
-    Component: WithProfileChildRouteAuthorization(WithLocalRoute(Layout)),
+    Component: WithProfileChildRouteAuthorization(WithLocaleRoute(Layout)),
     children: [
       {
         index: true,
-        element: <AppRoute title={t('appName')} element={<Home />} />,
+        element: <AppRoute titleKey="appName" element={<Home />} />,
       },
       {
         path: 'home',
-        element: <AppRoute title={t('appName')} element={<Home />} />,
+        element: <AppRoute titleKey="appName" element={<Home />} />,
       },
       {
         path: 'unauthorized',
         element: (
           <AppRoute
-            title={t('auth.unauthorized.title')}
+            titleKey="auth.unauthorized.title"
             element={<Unauthorized />}
           />
         ),
@@ -60,7 +66,7 @@ const browserRouter = createBrowserRouter([
         path: 'wrong-login-method',
         element: (
           <AppRoute
-            title={t('auth.wrongLoginMethod.title')}
+            titleKey="auth.wrongLoginMethod.title"
             element={<WrongLoginMethod />}
           />
         ),
@@ -69,7 +75,7 @@ const browserRouter = createBrowserRouter([
         path: 'accessibility',
         element: (
           <AppRoute
-            title={t('accessibilityStatement.title')}
+            titleKey="accessibilityStatement.title"
             element={<AccessibilityStatement />}
           />
         ),
@@ -78,7 +84,7 @@ const browserRouter = createBrowserRouter([
         path: 'terms',
         element: (
           <AppRoute
-            title={t('termsOfService.title')}
+            titleKey="termsOfService.title"
             element={<TermsOfService />}
           />
         ),
@@ -87,7 +93,7 @@ const browserRouter = createBrowserRouter([
         path: 'cookie-consent',
         element: (
           <AppRoute
-            title={t('cookieConsent.title')}
+            titleKey="cookieConsent.title"
             element={<CookieConsentPage />}
           />
         ),
@@ -96,7 +102,7 @@ const browserRouter = createBrowserRouter([
         path: 'registration/not-eligible',
         element: (
           <AppRoute
-            title={t('registration.notEligible.title')}
+            titleKey="registration.notEligible.title"
             element={<NotEligible />}
           />
         ),
@@ -106,7 +112,7 @@ const browserRouter = createBrowserRouter([
         element: (
           <AppRoute
             isPrivate
-            title={t('registration.heading')}
+            titleKey="registration.heading"
             element={<RegistrationForm />}
           />
         ),
@@ -116,7 +122,7 @@ const browserRouter = createBrowserRouter([
         element: (
           <AppRoute
             isPrivate
-            title={t('registration.welcome.hero.header')}
+            titleKey="registration.welcome.hero.header"
             element={<Welcome />}
           />
         ),
@@ -127,14 +133,14 @@ const browserRouter = createBrowserRouter([
           {
             index: true,
             element: (
-              <AppRoute title={t('profile.heading')} element={<Profile />} />
+              <AppRoute titleKey="profile.heading" element={<Profile />} />
             ),
           },
           {
             path: 'subscriptions',
             element: (
               <AppRoute
-                title={t('subscriptions.manage.title')}
+                titleKey="subscriptions.manage.title"
                 element={<ManageMarketingSubscriptions />}
               />
             ),
@@ -146,7 +152,7 @@ const browserRouter = createBrowserRouter([
                 index: true,
                 element: (
                   <AppRoute
-                    title={t('profile.child.detail.page.title')}
+                    titleKey="profile.child.detail.page.title"
                     element={<ProfileChildDetail />}
                   />
                 ),
@@ -176,7 +182,7 @@ const browserRouter = createBrowserRouter([
                 path: 'event/:eventId/redirect',
                 element: (
                   <AppRoute
-                    title={t('eventRedirectPage.metaTitle')}
+                    titleKey="eventRedirectPage.metaTitle"
                     element={<EventRedirect />}
                   />
                 ),
@@ -189,7 +195,7 @@ const browserRouter = createBrowserRouter([
                 path: 'event/:eventId/occurrence/:occurrenceId/enrol',
                 element: (
                   <AppRoute
-                    title={t('enrolPage.enrol')}
+                    titleKey="enrolPage.enrol"
                     element={<EnrolPage />}
                   />
                 ),

@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 import eventGroupQuery from './queries/eventGroupQuery';
 import EventGroup from './EventGroup';
