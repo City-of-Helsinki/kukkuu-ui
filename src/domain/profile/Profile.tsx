@@ -1,57 +1,61 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navigate } from 'react-router-dom';
-import * as Sentry from '@sentry/browser';
-import { IconPen } from 'hds-react';
+import { IconPen, useOidcClient } from 'hds-react';
+import { useNavigate } from 'react-router-dom';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
 import GiveFeedbackButton from '../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import Text from '../../common/components/text/Text';
-import useGetPathname from '../../common/route/utils/useGetPathname';
 import ListPageLayout from '../app/layout/ListPageLayout';
-import { clearProfile } from './state/ProfileActions';
-import useProfile from './hooks/useProfile';
 import ProfileChildrenList from './children/ProfileChildrenList';
 import EditProfileModal from './modal/EditProfileModal';
-import { isAuthenticatedSelector } from '../auth/state/AuthenticationSelectors';
-import { loginTunnistamo } from '../auth/authenticate';
+import { useProfileContext } from './hooks/useProfileContext';
+import useGetPathname from '../../common/route/utils/useGetPathname';
 
 const Profile = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const { loading, error, data } = useProfile();
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const getPathname = useGetPathname();
+  const { isAuthenticated, login } = useOidcClient();
+  const isLoggedIn = isAuthenticated();
+  const [isOpen, setIsOpen] = useState(false);
+  const {
+    profile,
+    loading: isProfileLoading,
+    fetchCalled,
+  } = useProfileContext();
+  const { t } = useTranslation();
 
-  const isAuthenticated = useSelector(isAuthenticatedSelector);
+  React.useEffect(() => {
+    if (!isLoggedIn) {
+      // eslint-disable-next-line no-console
+      console.info('User is unauthenticated. Calling the login.');
+      // User has not logged in, so request authentication
+      login();
+    }
+  }, [isLoggedIn, login]);
 
-  if (!isAuthenticated) {
-    // User has not logged in, so request authentication
-    loginTunnistamo();
-  }
+  React.useEffect(() => {
+    // If the user has no profile it means that they have not yet
+    // registered to kukkuu. In this case we want to redirect them
+    // into the landing page where they can start the registration
+    // process.
+    if (fetchCalled && !isProfileLoading && !profile) {
+      // eslint-disable-next-line no-console
+      console.info(
+        'User has logged in, but not created a profile. Send them to front page for registration.'
+      );
+      navigate(getPathname('/home#register'), { replace: true });
+    }
+  }, [fetchCalled, getPathname, isProfileLoading, navigate, profile]);
 
-  if (loading) return <LoadingSpinner isLoading={true} />;
-  if (error) {
-    // eslint-disable-next-line no-console
-    console.error(error);
-    dispatch(clearProfile());
-    Sentry.captureException(error);
-    return <ErrorMessage message={t('api.errorMessage')} />;
-  }
-
-  if (!data) {
-    // User has logged in, but not created a profile, send them to front page for registration.
-    return <Navigate to={getPathname('/')} />;
-  }
+  if (!profile) return <LoadingSpinner isLoading={true} />;
 
   return (
     <ListPageLayout>
       <ListPageLayout.Header
         title={t('profile.message.greetings', {
-          firstName: data.firstName,
+          firstName: profile.firstName,
         })}
         content={
           <Text variant="body-l">
@@ -72,7 +76,7 @@ const Profile = () => {
         <EditProfileModal
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          initialValues={data}
+          initialValues={profile}
         />
       )}
       <ProfileChildrenList />

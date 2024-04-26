@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useNavigate } from 'react-router';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
@@ -30,6 +30,7 @@ import profileQuery from '../../queries/ProfileQuery';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
 import useAppRouteHref from '../../../app/useAppRouteHref';
+import { useIsFullyLoggedIn } from '../../../auth/useIsFullyLoggedIn';
 
 export type ChildDetailEditModalPayload = Omit<UpdateChildMutationInput, 'id'>;
 
@@ -48,11 +49,17 @@ const ProfileChildDetail = () => {
   const params = useParams<{ childId: string }>();
   const navigate = useNavigate();
   const goBackTo = useProfileRouteGoBackTo();
-  const { loading, error, data } = useQuery<ChildByIdQuery>(childByIdQuery, {
-    variables: {
-      id: params.childId,
-    },
-  });
+  const [isLoginReady] = useIsFullyLoggedIn();
+
+  const { loading, error, data, refetch } = useQuery<ChildByIdQuery>(
+    childByIdQuery,
+    {
+      skip: !isLoginReady,
+      variables: {
+        id: params.childId,
+      },
+    }
+  );
   const getPathname = useGetPathname();
 
   const [deleteChild] = useMutation<DeleteChildMutationPayloadFieldsFragment>(
@@ -71,7 +78,12 @@ const ProfileChildDetail = () => {
     }
   );
 
-  const [isOpen, setIsOpen] = useState(false);
+  React.useEffect(() => {
+    // Add some fail safeness to situation when the user logs in to this page.
+    if (isLoginReady && !data) refetch();
+  }, [data, isLoginReady, refetch]);
+
+  const [isOpen, setIsOpen] = React.useState(false);
   if (loading) {
     return <LoadingSpinner isLoading={true} />;
   }

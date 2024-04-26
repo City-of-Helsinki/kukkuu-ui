@@ -5,12 +5,15 @@ import PageMeta from './utilityComponents/PageMeta';
 import Container from './Container';
 import styles from './pageWrapper.module.scss';
 
-type Props = {
+export type PageWrapperProps = {
   className?: string;
   title?: string;
   containerClassName?: string;
   description?: string;
   children: ReactNode;
+  // In some navigations during the login process the Helmet component raised errors,
+  // so it should be possible to switch off the Helmet component.
+  usePageMeta?: boolean;
 };
 
 const PageWrapper = ({
@@ -19,10 +22,11 @@ const PageWrapper = ({
   containerClassName,
   title,
   description = 'homePage.hero.descriptionText',
-}: Props) => {
+  usePageMeta = true,
+}: PageWrapperProps) => {
   return (
     <div className={classnames(styles.pageWrapper, className)}>
-      <PageMeta title={title} description={description} />
+      {usePageMeta && <PageMeta title={title} description={description} />}
       <Container className={classnames(containerClassName)}>
         {children}
       </Container>

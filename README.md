@@ -129,6 +129,13 @@ Go to https://github.com/settings/developers/ and add a new app with the followi
 
 Save. You'll need the created **Client ID** and **Client Secret** for configuring tunnistamo in the next step.
 
+### Login provider configurations
+
+Set the environment variables so that the OIDC client gets configured properly:
+
+The configuration constants are [here](./src/domain/auth/constants.ts).
+An example of a full working configuration can be seen [here](./src/domain/auth/README.md).
+
 ### Install local tunnistamo
 
 Clone https://github.com/City-of-Helsinki/tunnistamo/.

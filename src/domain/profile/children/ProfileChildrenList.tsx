@@ -6,7 +6,6 @@ import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 import { IconPlus } from 'hds-react';
 
-import { MyProfileChildren } from '../types/ProfileQueryTypes';
 import { UpdateChildMutationInput } from '../../api/generatedTypes/graphql';
 import Button from '../../../common/components/button/Button';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
@@ -16,20 +15,15 @@ import AddNewChildFormModal from '../../registration/modal/AddNewChildFormModal'
 import { addChildMutation } from '../../child/mutation/ChildMutation';
 import { getSupportedChildData } from '../../child/ChildUtils';
 import profileQuery from '../queries/ProfileQuery';
-import useProfile, { ProfileQueryResult } from '../hooks/useProfile';
 import { getProjectsFromProfileQuery } from '../ProfileUtil';
 import ProfileChild from './child/ProfileChild';
 import styles from './profileChildrenList.module.scss';
-
-function getChildrenFromProfile({
-  data,
-}: ProfileQueryResult): MyProfileChildren | null | undefined {
-  return data?.children;
-}
+import { useProfileContext } from '../hooks/useProfileContext';
 
 const ProfileChildrenList = () => {
   const { t } = useTranslation();
-  const children = getChildrenFromProfile(useProfile());
+  const { profile, refetchProfile } = useProfileContext();
+  const children = profile?.children;
   const [isOpen, setIsOpen] = useState(false);
   const [addChild, { loading: mutationLoading }] = useMutation(
     addChildMutation,
@@ -53,6 +47,7 @@ const ProfileChildrenList = () => {
             addChild({ variables: { input: supportedChildData } })
               .then(() => {
                 trackEvent({ category: 'action', action: 'Add child' });
+                refetchProfile();
               })
               .catch((error) => {
                 toast.error(t('profile.addChildMutation.errorMessage'));

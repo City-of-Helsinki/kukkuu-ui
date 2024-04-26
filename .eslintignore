@@ -1,3 +1,2 @@
 src/domain/api/generatedTypes/graphql.tsx
 src/domain/headlessCms/graphql/__generated__.ts
-src/serviceWorker.ts

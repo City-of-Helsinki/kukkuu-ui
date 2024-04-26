@@ -15,6 +15,7 @@ import ChildConfirmDeleteModal from '../../../../child/modal/confirm/delete/Chil
 import { isChildEligible } from '../../../../registration/notEligible/NotEligibleUtils';
 import ChildAlertNonEligibleModal from '../../../../child/modal/alert/nonEligible/ChildAlertNonEligibleModal';
 import { ChildByIdResponse } from '../../../../child/types/ChildByIdQueryTypes';
+import { useProfileContext } from '../../../hooks/useProfileContext';
 
 const ProfileChildDetailEditModal: FunctionComponent<{
   setIsOpen: (value: boolean) => void;
@@ -25,7 +26,7 @@ const ProfileChildDetailEditModal: FunctionComponent<{
   const { t } = useTranslation();
   const normalizedChild = normalizeProfileChild(childBeingEdited);
   const initialFormData = getChildFormModalValues(normalizedChild);
-
+  const { refetchProfile } = useProfileContext();
   const [isFormOpen, setIsFormOpen] = useState(true);
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
   const [isNonEligibleAlertOpen, toggleNonEligiblePrompt] = useState(false);
@@ -37,9 +38,10 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     }
   };
 
-  const openDeleteConfirmModal = () => {
+  const openDeleteConfirmModal = async () => {
     setIsFormOpen(false);
     setIsDeleteConfirmOpen(true);
+    refetchProfile();
   };
 
   const onDeleteConfirmModalToggle = (isOpen: boolean) => {

@@ -28,7 +28,7 @@ export function useAuthorization(
     return () => {
       ignore = true;
     };
-  });
+  }, [authorization]);
 
   if (typeof authorization === 'boolean') {
     return [false, authorization];

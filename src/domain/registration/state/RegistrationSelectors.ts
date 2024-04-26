@@ -5,5 +5,3 @@ export const registrationFormDataSelector = (state: StoreState) =>
 
 export const primaryChildFormDataSelector = (state: StoreState) =>
   state.registration.formValues.children[0];
-
-export const userHasProfileSelector = (state: StoreState) => !!state.profile.id;

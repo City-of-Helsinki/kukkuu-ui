@@ -14,7 +14,7 @@ import AppConfig from '../domain/app/AppConfig';
 import { SUPPORT_LANGUAGES } from '../common/translation/TranslationConstants';
 
 const APP_DOMAIN = new URL(AppConfig.origin).origin;
-const API_URI = new URL(AppConfig.ApiUrl).origin;
+const API_URI = new URL(AppConfig.apiUrl).origin;
 const CMS_URI = new URL(AppConfig.cmsUri).origin;
 
 const ReactRouterLinkWrapper = ({

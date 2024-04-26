@@ -1,12 +1,12 @@
 import { useApolloClient } from '@apollo/client';
+import React from 'react';
 
-import { ProfileChildrenQuery } from '../../api/generatedTypes/graphql';
-import profileChildrenQuery from '../../profile/queries/ProfileChildrenQuery';
+import {
+  ProfileChildrenQuery,
+  ProfileChildrenQueryDocument,
+} from '../../api/generatedTypes/graphql';
 
-function getIsChildOfProfile(
-  childId: string,
-  data?: ProfileChildrenQuery
-): boolean | null {
+function getIsChildOfProfile(childId: string, data?: ProfileChildrenQuery) {
   if (!data) {
     return null;
   }
@@ -18,24 +18,22 @@ function getIsChildOfProfile(
   return Boolean(childrenIds?.includes(childId));
 }
 
-type Result = [(childId?: string) => Promise<boolean>];
-
-function useIsChildOfProfile(): Result {
+function useIsChildOfProfile() {
   const client = useApolloClient();
 
-  const queryIsChildOfProfile = async (childId?: string): Promise<boolean> => {
-    if (!childId) {
-      return false;
-    }
-
-    const { data } = await client.query<ProfileChildrenQuery>({
-      query: profileChildrenQuery,
-    });
-
-    return Boolean(getIsChildOfProfile(childId, data));
-  };
-
-  return [queryIsChildOfProfile];
+  const queryIsChildOfProfile = React.useCallback(
+    async (childId?: string) => {
+      if (!childId) {
+        return false;
+      }
+      const { data } = await client.query<ProfileChildrenQuery>({
+        query: ProfileChildrenQueryDocument,
+      });
+      return Boolean(getIsChildOfProfile(childId, data));
+    },
+    [client]
+  );
+  return queryIsChildOfProfile;
 }
 
 export default useIsChildOfProfile;

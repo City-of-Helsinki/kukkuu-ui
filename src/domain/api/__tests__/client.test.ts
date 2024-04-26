@@ -1,16 +1,13 @@
 import profileQuery from '../../profile/queries/ProfileQuery';
 import client from '../client';
 
-vi.mock(
-  '../../auth/state/AuthenticationSelectors',
-  async (importOriginal: any) => {
-    const mod = await importOriginal();
-    return {
-      ...mod,
-      apiTokenSelector: () => 'foo',
-    };
-  }
-);
+vi.mock('../../auth/kukkuuApiUtils', async (importOriginal: any) => {
+  const mod = await importOriginal();
+  return {
+    ...mod,
+    getKukkuuApiTokenFromStorage: () => 'foo',
+  };
+});
 
 const jsonData = {
   data: {

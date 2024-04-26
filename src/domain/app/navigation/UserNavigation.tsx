@@ -4,19 +4,17 @@ import {
   IconUser,
   IconSignout,
   IconCross,
+  useOidcClient,
 } from 'hds-react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import Button from '../../../common/components/button/Button';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
-import { isAuthenticatedSelector } from '../../auth/state/AuthenticationSelectors';
-import { loginTunnistamo } from '../../auth/authenticate';
-import useLogout from '../../auth/useLogout';
-import useProfile from '../../profile/hooks/useProfile';
 import styles from './userNavigation.module.scss';
+import useLogout from '../../auth/useLogout';
+import { useProfileContext } from '../../profile/hooks/useProfileContext';
 
 type UserNavigationItem = {
   id: string;
@@ -40,28 +38,16 @@ const hiddenBelowSmallSpan = (text: string) => (
 function UserNavigation() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const isAuthenticated = useSelector(isAuthenticatedSelector);
-  const doLogout = useLogout();
+  const { isAuthenticated, login } = useOidcClient();
+  const logout = useLogout();
+  const isLoggedIn = isAuthenticated();
   const getPathname = useGetPathname();
-
-  // Skip the redirect to the short registration form when using profile
-  // here. Because the menu is used on all pages, it's difficult to
-  // control redirects. Previously this hook call would redirect users
-  // away from the registration form, which is a page where we do not
-  // want to for this check to take place.
-  const { loading, data } = useProfile(true);
+  const { profile } = useProfileContext();
   const { trackEvent } = useMatomo();
-
-  if (loading) return <></>;
-
-  const handleSignIn = () => {
-    trackEvent({ category: 'action', action: 'Log in' });
-    loginTunnistamo();
-  };
 
   const userDropdownButton: UserNavigationItem = {
     id: 'userDropdownButton',
-    label: hiddenBelowSmallSpan(data?.firstName ?? ''),
+    label: hiddenBelowSmallSpan(profile?.firstName ?? ''),
     icon: <IconUser />,
     closeIcon: <IconCross />,
     dropdownItems: [
@@ -75,7 +61,7 @@ function UserNavigation() {
         label: t('authentication.logout.text'),
         id: 'logoutButton',
         icon: <IconSignout />,
-        onClick: doLogout,
+        onClick: () => logout(),
       },
     ],
   };
@@ -84,11 +70,14 @@ function UserNavigation() {
     id: 'signinButton',
     label: hiddenBelowSmallSpan(t('authentication.login.shortText')),
     icon: <IconSignin />,
-    onClick: handleSignIn,
+    onClick: () => {
+      trackEvent({ category: 'action', action: 'Log in' });
+      login();
+    },
     dropdownItems: [],
   };
 
-  const item: UserNavigationItem = isAuthenticated
+  const item: UserNavigationItem = isLoggedIn
     ? userDropdownButton
     : signInButton;
 

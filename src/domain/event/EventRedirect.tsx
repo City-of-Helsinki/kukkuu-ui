@@ -1,8 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { useParams } from 'react-router';
 import { useMutation, useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import PageWrapper from '../app/layout/PageWrapper';
 import Text from '../../common/components/text/Text';

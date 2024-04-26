@@ -1,6 +1,6 @@
 import { QueryResult } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import CultureKidsImage from '../../assets/images/Culture_kids_transparent@2x.png';
 import useGetPathname from '../../common/route/utils/useGetPathname';
