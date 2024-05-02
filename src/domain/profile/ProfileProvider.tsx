@@ -58,7 +58,7 @@ export default function ProfileProvider({
   }, [fetchProfile, isLoginReady]);
 
   React.useEffect(() => {
-    if (reduxStorageProfile?.id && !isAuthenticated) {
+    if (reduxStorageProfile?.id && !isAuthenticated()) {
       // eslint-disable-next-line no-console
       console.info('Clearing profile from redux');
       clearProfileFromRedux();
