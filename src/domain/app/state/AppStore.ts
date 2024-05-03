@@ -10,7 +10,7 @@ enableES5();
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['profile', 'registration', 'event'],
+  whitelist: ['registration', 'event'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

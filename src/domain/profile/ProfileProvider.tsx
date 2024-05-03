@@ -9,6 +9,7 @@ import { MyProfile } from './types/ProfileQueryTypes';
 import { useIsFullyLoggedIn } from '../auth/useIsFullyLoggedIn';
 import { profileSelector } from './state/ProfileSelectors';
 import { clearProfile as clearProfileFromRedux } from './state/ProfileActions';
+import { persistor } from '../app/state/AppStore';
 
 export default function ProfileProvider({
   children,
@@ -62,6 +63,16 @@ export default function ProfileProvider({
       // eslint-disable-next-line no-console
       console.info('Clearing profile from redux');
       clearProfileFromRedux();
+      persistor
+        .purge()
+        .then(() => {
+          // eslint-disable-next-line no-console
+          console.info('Redux-persistor purged');
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.error(error);
+        });
     }
   }, [isAuthenticated, reduxStorageProfile?.id]);
 
