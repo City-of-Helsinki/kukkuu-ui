@@ -22,22 +22,28 @@ export default function ProfileProvider({
   const [profile, setProfileToContext] = React.useState<MyProfile | null>(
     reduxStorageProfile?.id ? reduxStorageProfile : null
   );
+  const [loadingProfileToContext, setLoadingProfileToContext] =
+    React.useState(true);
+
   const { isAuthenticated } = useOidcClient();
   const [isLoginReady, loginInProgress] = useIsFullyLoggedIn();
 
   const [fetchProfile, { data, loading, refetch, called }] = useProfile({
     setProfileToContext: setProfileToContext,
+    setLoading: setLoadingProfileToContext,
   });
 
-  const isLoading = loginInProgress || (loading && !called);
+  const isLoading =
+    loginInProgress || loading || (loadingProfileToContext && called);
 
   const clearProfile = () => setProfileToContext(null);
 
-  const refetchProfile = () => {
-    refetch().then(() => {
-      setProfileToContext(data?.myProfile || null);
-    });
-  };
+  const refetchProfile = React.useCallback(() => {
+    if (refetch && data?.myProfile)
+      refetch().then(() => {
+        setProfileToContext(data?.myProfile || null);
+      });
+  }, [data?.myProfile, refetch]);
 
   const contextValue = React.useMemo(
     () => ({
@@ -48,8 +54,7 @@ export default function ProfileProvider({
       loading: isLoading,
       fetchCalled: called,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [profile]
+    [called, isLoading, profile, refetchProfile]
   );
 
   React.useEffect(() => {

@@ -40,7 +40,7 @@ const Profile = () => {
     // registered to kukkuu. In this case we want to redirect them
     // into the landing page where they can start the registration
     // process.
-    if (fetchCalled && !isProfileLoading && !profile) {
+    if (fetchCalled && !isProfileLoading && !profile?.id) {
       // eslint-disable-next-line no-console
       console.info(
         'User has logged in, but not created a profile. Send them to front page for registration.'
