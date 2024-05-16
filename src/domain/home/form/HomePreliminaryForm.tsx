@@ -77,7 +77,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
     } else if (isAuthenticated) {
       navigate(getPathname('/registration/form'));
     } else {
-      login({ redirect_uri: `/registration/form` });
+      login({ url_state: 'next=/registration/form' });
     }
   };
 
