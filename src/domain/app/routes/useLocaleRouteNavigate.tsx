@@ -35,7 +35,7 @@ export const useLocaleRouteNavigate = () => {
     const shouldPrefixPathnameWithLocale =
       !isSupportedLocale(locale) && isSupportedLocale(currentLocale);
     if (shouldPrefixPathnameWithLocale) {
-      const redirectUrl = `/${currentLocale}${location.pathname}${location.search}`;
+      const redirectUrl = `/${currentLocale}${location.pathname}${location.hash}${location.search}`;
       // eslint-disable-next-line no-console
       console.info('Navigate to', redirectUrl);
       navigate(redirectUrl, {
