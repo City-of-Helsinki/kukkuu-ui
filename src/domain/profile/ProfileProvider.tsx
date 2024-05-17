@@ -40,8 +40,8 @@ export default function ProfileProvider({
 
   const refetchProfile = React.useCallback(() => {
     if (refetch && data?.myProfile)
-      refetch().then(() => {
-        setProfileToContext(data?.myProfile || null);
+      refetch().then(({ data: refreshedData }) => {
+        setProfileToContext(refreshedData?.myProfile || null);
       });
   }, [data?.myProfile, refetch]);
 

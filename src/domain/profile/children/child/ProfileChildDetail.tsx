@@ -11,6 +11,7 @@ import {
   ChildByIdQuery,
   UpdateChildMutationPayloadFieldsFragment,
   DeleteChildMutationPayloadFieldsFragment,
+  ProfileQueryDocument,
 } from '../../../api/generatedTypes/graphql';
 import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import ErrorMessage from '../../../../common/components/error/Error';
@@ -26,11 +27,11 @@ import { childByIdQuery } from '../../../child/queries/ChildQueries';
 import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
 import ListPageLayout from '../../../app/layout/ListPageLayout';
 import ProfileEvents from '../../events/ProfileEvents';
-import profileQuery from '../../queries/ProfileQuery';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
 import useAppRouteHref from '../../../app/useAppRouteHref';
 import { useIsFullyLoggedIn } from '../../../auth/useIsFullyLoggedIn';
+import { useProfileContext } from '../../hooks/useProfileContext';
 
 export type ChildDetailEditModalPayload = Omit<UpdateChildMutationInput, 'id'>;
 
@@ -47,6 +48,7 @@ export const useChildRouteGoBackTo = () => {
 const ProfileChildDetail = () => {
   const { t } = useTranslation();
   const params = useParams<{ childId: string }>();
+  const { refetchProfile } = useProfileContext();
   const navigate = useNavigate();
   const goBackTo = useProfileRouteGoBackTo();
   const [isLoginReady] = useIsFullyLoggedIn();
@@ -65,7 +67,10 @@ const ProfileChildDetail = () => {
   const [deleteChild] = useMutation<DeleteChildMutationPayloadFieldsFragment>(
     deleteChildMutation,
     {
-      refetchQueries: [{ query: profileQuery }],
+      refetchQueries: [{ query: ProfileQueryDocument }],
+      onCompleted: () => {
+        refetchProfile();
+      },
     }
   );
 
@@ -75,6 +80,9 @@ const ProfileChildDetail = () => {
       refetchQueries: [
         { query: childByIdQuery, variables: { id: params.childId } },
       ],
+      onCompleted: () => {
+        refetchProfile();
+      },
     }
   );
 
