@@ -110,6 +110,7 @@ const RegistrationForm = () => {
     profile,
     clearProfile: clearProfileFromContext,
     updateProfile,
+    refetchProfile,
   } = useProfileContext();
   const { loading, error, data } = useQuery<ProfileQuery>(profileQuery);
   const [submitChildrenAndGuardian] =
@@ -118,6 +119,9 @@ const RegistrationForm = () => {
       {
         awaitRefetchQueries: true,
         refetchQueries: [{ query: profileQuery }],
+        onCompleted: () => {
+          refetchProfile();
+        },
       }
     );
   // For new users preferLanguage defaults to their chosen UI language.
