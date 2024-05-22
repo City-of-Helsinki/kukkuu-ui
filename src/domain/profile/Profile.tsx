@@ -21,8 +21,8 @@ const Profile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const {
     profile,
-    loading: isProfileLoading,
-    fetchCalled,
+    isLoading: isProfileLoading,
+    isFetchCalled,
   } = useProfileContext();
   const { t } = useTranslation();
 
@@ -40,16 +40,29 @@ const Profile = () => {
     // registered to kukkuu. In this case we want to redirect them
     // into the landing page where they can start the registration
     // process.
-    if (fetchCalled && !isProfileLoading && !profile?.id) {
+    if (isLoggedIn && !isProfileLoading && isFetchCalled && !profile?.id) {
       // eslint-disable-next-line no-console
       console.info(
         'User has logged in, but not created a profile. Send them to front page for registration.'
       );
       navigate(getPathname('/home#register'), { replace: true });
     }
-  }, [fetchCalled, getPathname, isProfileLoading, navigate, profile]);
+  }, [
+    getPathname,
+    isFetchCalled,
+    isLoggedIn,
+    isProfileLoading,
+    navigate,
+    profile?.id,
+  ]);
 
-  if (!profile) return <LoadingSpinner isLoading={true} />;
+  if (!profile) {
+    // eslint-disable-next-line no-console
+    console.info(
+      'Using a loading spinner to wait for profile to be added in the context.'
+    );
+    return <LoadingSpinner isLoading={true} />;
+  }
 
   return (
     <ListPageLayout>

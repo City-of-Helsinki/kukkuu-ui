@@ -30,7 +30,6 @@ import ProfileEvents from '../../events/ProfileEvents';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
 import useAppRouteHref from '../../../app/useAppRouteHref';
-import { useIsFullyLoggedIn } from '../../../auth/useIsFullyLoggedIn';
 import { useProfileContext } from '../../hooks/useProfileContext';
 
 export type ChildDetailEditModalPayload = Omit<UpdateChildMutationInput, 'id'>;
@@ -51,17 +50,14 @@ const ProfileChildDetail = () => {
   const { refetchProfile } = useProfileContext();
   const navigate = useNavigate();
   const goBackTo = useProfileRouteGoBackTo();
-  const [isLoginReady] = useIsFullyLoggedIn();
+  const { profile } = useProfileContext();
 
-  const { loading, error, data, refetch } = useQuery<ChildByIdQuery>(
-    childByIdQuery,
-    {
-      skip: !isLoginReady,
-      variables: {
-        id: params.childId,
-      },
-    }
-  );
+  const { loading, error, data } = useQuery<ChildByIdQuery>(childByIdQuery, {
+    skip: !profile,
+    variables: {
+      id: params.childId,
+    },
+  });
   const getPathname = useGetPathname();
 
   const [deleteChild] = useMutation<DeleteChildMutationPayloadFieldsFragment>(
@@ -85,11 +81,6 @@ const ProfileChildDetail = () => {
       },
     }
   );
-
-  React.useEffect(() => {
-    // Add some fail safeness to situation when the user logs in to this page.
-    if (isLoginReady && !data) refetch();
-  }, [data, isLoginReady, refetch]);
 
   const [isOpen, setIsOpen] = React.useState(false);
   if (loading) {

@@ -19,8 +19,8 @@ export const useProfileChildRouteAuthorization = () => {
   const location = useLocation();
   const {
     profile,
-    loading: isProfileLoading,
-    fetchCalled: isProfileFetchCalled,
+    isLoading: isProfileLoading,
+    isFetchCalled: isProfileFetchCalled,
   } = useProfileContext();
   const queryIsChildOfProfile = useIsChildOfProfile();
   // If the child id is not given,

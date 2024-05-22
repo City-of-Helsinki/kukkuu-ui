@@ -1,49 +1,30 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useOidcClient } from 'hds-react';
 
+import { ProfileContext, ProfileType } from './ProfileContext';
+import useProfileFetcher from './hooks/useProfileFetcher';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import { ProfileContext } from './ProfileContext';
-import useProfile from './hooks/useProfile';
-import { MyProfile } from './types/ProfileQueryTypes';
-import { useIsFullyLoggedIn } from '../auth/useIsFullyLoggedIn';
-import { profileSelector } from './state/ProfileSelectors';
-import { clearProfile as clearProfileFromRedux } from './state/ProfileActions';
-import { persistor } from '../app/state/AppStore';
 
 export default function ProfileProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // TODO: Get rid of profile redux storage
-  // Must be used here now in order to get the profile for component's first render.
-  const reduxStorageProfile = useSelector(profileSelector);
-  const [profile, setProfileToContext] = React.useState<MyProfile | null>(
-    reduxStorageProfile?.id ? reduxStorageProfile : null
-  );
-  const [loadingProfileToContext, setLoadingProfileToContext] =
-    React.useState(true);
-
-  const { isAuthenticated } = useOidcClient();
-  const [isLoginReady, loginInProgress] = useIsFullyLoggedIn();
-
-  const [fetchProfile, { data, loading, refetch, called }] = useProfile({
-    setProfileToContext: setProfileToContext,
-    setLoading: setLoadingProfileToContext,
+  const [profile, setProfileToContext] = React.useState<ProfileType>(null);
+  const {
+    refetch,
+    loading: isProfileFetcherLoading,
+    called: isFetchCalled,
+  } = useProfileFetcher({
+    setProfileToContext,
   });
 
-  const isLoading =
-    loginInProgress || loading || (loadingProfileToContext && called);
-
-  const clearProfile = () => setProfileToContext(null);
-
   const refetchProfile = React.useCallback(() => {
-    if (refetch && data?.myProfile)
-      refetch().then(({ data: refreshedData }) => {
-        setProfileToContext(refreshedData?.myProfile || null);
-      });
-  }, [data?.myProfile, refetch]);
+    refetch().then(({ data: refreshedData }) => {
+      setProfileToContext(refreshedData?.myProfile || null);
+    });
+  }, [refetch]);
+
+  const clearProfile = React.useCallback(() => setProfileToContext(null), []);
 
   const contextValue = React.useMemo(
     () => ({
@@ -51,39 +32,35 @@ export default function ProfileProvider({
       clearProfile,
       updateProfile: setProfileToContext,
       refetchProfile,
-      loading: isLoading,
-      fetchCalled: called,
+      isLoading: isProfileFetcherLoading,
+      isFetchCalled,
     }),
-    [called, isLoading, profile, refetchProfile]
+    // The profile object is always changing when the useIsAuthorizationReady runs
+    [
+      clearProfile,
+      isFetchCalled,
+      isProfileFetcherLoading,
+      profile,
+      refetchProfile,
+    ]
   );
 
-  React.useEffect(() => {
-    if (isLoginReady) {
-      fetchProfile();
-    }
-  }, [fetchProfile, isLoginReady]);
-
-  React.useEffect(() => {
-    if (reduxStorageProfile?.id && !isAuthenticated()) {
-      // eslint-disable-next-line no-console
-      console.info('Clearing profile from redux');
-      clearProfileFromRedux();
-      persistor
-        .purge()
-        .then(() => {
-          // eslint-disable-next-line no-console
-          console.info('Redux-persistor purged');
-        })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error);
-        });
-    }
-  }, [isAuthenticated, reduxStorageProfile?.id]);
+  // The profile provider might load the children
+  // while the profile fetching is still on going
+  // and won't refresh the children when it is;
+  // This situation needs to be waited.
+  // TODO: Get rid of this loading spinner and sync issue.
+  if (isProfileFetcherLoading && !profile) {
+    // eslint-disable-next-line no-console
+    console.info(
+      'Using a loading spinner to wait for profile to be fully fetched from the Kukkuu API.'
+    );
+    return <LoadingSpinner isLoading={true} />;
+  }
 
   return (
     <ProfileContext.Provider value={contextValue}>
-      <LoadingSpinner isLoading={isLoading}>{children}</LoadingSpinner>
+      {children}
     </ProfileContext.Provider>
   );
 }
