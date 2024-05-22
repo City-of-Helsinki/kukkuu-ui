@@ -9,6 +9,7 @@ const providerPropertiesBase: LoginProviderProps = {
     scope: AppConfig.oidcScope,
     response_type: AppConfig.oidcReturnType,
     redirect_uri: `${AppConfig.origin}/callback`,
+    automaticSilentRenew: true,
     silent_redirect_uri: `${AppConfig.origin}/silent_renew.html`,
     post_logout_redirect_uri: `${AppConfig.origin}/`,
   },

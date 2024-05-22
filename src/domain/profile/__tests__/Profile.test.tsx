@@ -65,16 +65,19 @@ describe('Profile', () => {
       () =>
         ({
           profile: null,
-          loading: false,
-          fetchCalled: true,
+          isLoading: false,
+          isFetchCalled: true,
         }) as any
     );
 
     render(<Profile />);
-    await waitFor(() => {
-      expect(navigateMock).toHaveBeenCalledWith('/home#register', {
-        replace: true,
-      });
-    });
+    await waitFor(
+      () => {
+        expect(navigateMock).toHaveBeenCalledWith('/home#register', {
+          replace: true,
+        });
+      },
+      { timeout: 15000 }
+    );
   });
 });

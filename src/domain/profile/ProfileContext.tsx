@@ -2,19 +2,24 @@ import { createContext } from 'react';
 
 import { MyProfile } from './types/ProfileQueryTypes';
 
-type ProfileContextType = {
-  profile: MyProfile | null;
+export type ProfileType = MyProfile | null;
+export type UpdateProfileType = React.Dispatch<
+  React.SetStateAction<ProfileType>
+>;
+
+export type ProfileContextType = {
+  profile: ProfileType;
   clearProfile: () => void;
-  updateProfile: React.Dispatch<React.SetStateAction<MyProfile | null>>;
+  updateProfile: UpdateProfileType;
   refetchProfile: () => void;
-  loading: boolean;
-  fetchCalled: boolean;
+  isLoading: boolean;
+  isFetchCalled: boolean;
 };
 
 const defaultContext: ProfileContextType = {
   profile: null,
-  loading: false,
-  fetchCalled: false,
+  isLoading: false,
+  isFetchCalled: false,
   clearProfile: () => {
     throw new Error('Not implemented');
   },

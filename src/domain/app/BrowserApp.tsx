@@ -1,4 +1,3 @@
-import { FunctionComponent } from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { RouterProvider } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -9,6 +8,7 @@ import {
   createInstance as createMatomoInstance,
 } from '@jonkoops/matomo-tracker-react';
 import { ConfigProvider } from 'react-helsinki-headless-cms';
+import React from 'react';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import AriaLiveProvider from '../../common/AriaLive/AriaLiveProvider';
@@ -37,7 +37,9 @@ type BrowserAppProps = {
   cookieDomain: string;
 };
 
-const BrowserApp: FunctionComponent<BrowserAppProps> = ({ cookieDomain }) => {
+const BrowserApp: React.FunctionComponent<BrowserAppProps> = ({
+  cookieDomain,
+}) => {
   const config = useRHHCConfig();
   return (
     <CookieConfigProvider cookieDomain={cookieDomain}>
