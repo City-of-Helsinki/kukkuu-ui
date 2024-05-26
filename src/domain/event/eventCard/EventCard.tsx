@@ -1,17 +1,8 @@
 import { ReactElement } from 'react';
 
-import homeTheaterIcon from '../../../assets/icons/svg/homeTheater.svg';
 import Card from '../../../common/components/card/Card';
+import PlaceholderImage from '../../../common/components/placeholderImage/PlaceholderImage';
 import Text from '../../../common/components/text/Text';
-import styles from './eventCard.module.scss';
-
-const PlaceholderImage = () => {
-  return (
-    <div className={styles.placeholderImage}>
-      <img src={homeTheaterIcon} alt="" />
-    </div>
-  );
-};
 
 type Event = {
   id: string;

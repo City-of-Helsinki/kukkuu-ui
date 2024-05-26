@@ -25,6 +25,7 @@ import {
   UpcomingEvent,
   UpcomingEventGroup,
 } from '../../child/types/ChildByIdQueryTypes';
+import AdditionalNotesCard from './AdditionalNotesCard';
 
 const upcomingEventsAndEventGroupsList = RelayList<UpcomingEventOrEventGroup>();
 const pastEventsList = RelayList<PastEvent>();
@@ -250,6 +251,10 @@ const ProfileEventsList = ({
     </React.Fragment>
   ) : null;
 
+  const additionalNotesCard: JSX.Element = (
+    <AdditionalNotesCard key={1} title={t('profile.additionalInfo.heading')} />
+  );
+
   return (
     <List
       variant="spacing-xl"
@@ -257,6 +262,7 @@ const ProfileEventsList = ({
         enrolmentsListItems,
         upcomingEventsAndEventGroupsListItems,
         pastEventsListItems,
+        additionalNotesCard,
       ]}
     />
   );

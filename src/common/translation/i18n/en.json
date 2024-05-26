@@ -235,6 +235,11 @@
         "heading": "Past events"
       }
     },
+    "additionalInfo": {
+      "heading": "Additional information",
+      "edit": "Edit",
+      "save": "Save"
+    },
     "heading": "Culture Kids",
     "message": {
       "allSignupsSpent": "Congratulations! You have already attended two events this year. See you next year!",

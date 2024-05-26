@@ -235,6 +235,11 @@
         "heading": "Menneet tapahtumat"
       }
     },
+    "additionalInfo": {
+      "heading": "Additional information",
+      "edit": "Edit",
+      "save": "Save"
+    },
     "heading": "Kummilapset",
     "message": {
       "allSignupsSpent": "Onnittelut, olet osallistunut jo kahteen tapahtumaan tänä vuonna. Ensi vuonna nähdään!",

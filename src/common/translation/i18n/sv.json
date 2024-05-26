@@ -235,6 +235,11 @@
         "heading": "Gångna evenemang"
       }
     },
+    "additionalInfo": {
+      "heading": "Additional information",
+      "edit": "Edit",
+      "save": "Save"
+    },
     "heading": "Fadderbarn",
     "message": {
       "allSignupsSpent": "Gratulerar, du har redan deltagit i två evenemang i år. Vi ses igen nästa år!",

@@ -6,8 +6,10 @@ import Text from '../text/Text';
 import styles from './card.module.scss';
 
 interface CardProps {
-  action: () => void;
+  action?: () => void;
   actionText: string;
+  withCardClickAction?: boolean;
+  withAction?: boolean;
   alt?: string;
   children?: ReactNode;
   imageElement?: ReactElement;
@@ -21,6 +23,8 @@ interface CardProps {
 const Card = ({
   action,
   actionText,
+  withCardClickAction = true,
+  withAction = true,
   alt = '',
   children,
   imageElement,
@@ -33,7 +37,7 @@ const Card = ({
   return (
     <div
       className={styles.wrapper}
-      onClick={primaryAction ? primaryAction : action}
+      onClick={primaryAction && withCardClickAction ? primaryAction : action}
     >
       <div className={styles.image}>
         {imageSrc ? (
@@ -49,7 +53,10 @@ const Card = ({
         {children}
         <div className={styles.focalPoint}>
           {primaryAction && (
-            <Button className={styles.primaryActionButton}>
+            <Button
+              className={styles.primaryActionButton}
+              onClick={!withCardClickAction ? primaryAction : undefined}
+            >
               {primaryActionText}
             </Button>
           )}
@@ -57,13 +64,15 @@ const Card = ({
         </div>
       </div>
       <div className={styles.cta}>
-        <Button
-          variant="supplementary"
-          aria-label={actionText}
-          className={styles.actionWrapper}
-        >
-          <IconAngleRight />
-        </Button>
+        {withAction && (
+          <Button
+            variant="supplementary"
+            aria-label={actionText}
+            className={styles.actionWrapper}
+          >
+            <IconAngleRight />
+          </Button>
+        )}
       </div>
     </div>
   );
