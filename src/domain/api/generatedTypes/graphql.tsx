@@ -166,6 +166,7 @@ export type AssignTicketSystemPasswordMutationPayload = {
   password: Maybe<Scalars['String']['output']>;
 };
 
+/** A new Child input */
 export type ChildInput = {
   birthyear: Scalars['Int']['input'];
   languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
@@ -319,6 +320,15 @@ export type ChildNodeEdge = {
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge */
   node: Maybe<ChildNode>;
+};
+
+/** Node for handling child's notes separately from their other data. */
+export type ChildNotesNode = Node & {
+  __typename?: 'ChildNotesNode';
+  childId: Maybe<Scalars['ID']['output']>;
+  /** The ID of the object. */
+  id: Scalars['ID']['output'];
+  notes: Scalars['String']['output'];
 };
 
 export type DeleteChildMutationInput = {
@@ -972,9 +982,20 @@ export type Mutation = {
   submitChildrenAndGuardian: Maybe<SubmitChildrenAndGuardianMutationPayload>;
   subscribeToFreeSpotNotification: Maybe<SubscribeToFreeSpotNotificationMutationPayload>;
   unenrolOccurrence: Maybe<UnenrolOccurrenceMutationPayload>;
+  /**
+   * Unsubscribe user from all the notifications.
+   *
+   * NOTE: This mutation deletes the user's FreeSpotNotifications,
+   * which are linked to a Child and Occurrence instances.
+   * **It should be noted that the current model architecture allows
+   * that a child can have multiple guardians, so unsubscribe can delete
+   * some notifications from other users as well. However, the UI apps
+   * has never allowed more than 1 guardian for a child.**
+   */
   unsubscribeFromAllNotifications: Maybe<UnsubscribeFromAllNotificationsMutationPayload>;
   unsubscribeFromFreeSpotNotification: Maybe<UnsubscribeFromFreeSpotNotificationMutationPayload>;
   updateChild: Maybe<UpdateChildMutationPayload>;
+  updateChildNotes: Maybe<UpdateChildNotesMutationPayload>;
   updateEvent: Maybe<UpdateEventMutationPayload>;
   updateEventGroup: Maybe<UpdateEventGroupMutationPayload>;
   updateMessage: Maybe<UpdateMessageMutationPayload>;
@@ -1087,6 +1108,10 @@ export type MutationUnsubscribeFromFreeSpotNotificationArgs = {
 
 export type MutationUpdateChildArgs = {
   input: UpdateChildMutationInput;
+};
+
+export type MutationUpdateChildNotesArgs = {
+  input: UpdateChildNotesMutationInput;
 };
 
 export type MutationUpdateEventArgs = {
@@ -1295,6 +1320,7 @@ export type PublishEventMutationPayload = {
 export type Query = {
   __typename?: 'Query';
   child: Maybe<ChildNode>;
+  childNotes: Maybe<ChildNotesNode>;
   children: Maybe<ChildNodeConnection>;
   event: Maybe<EventNode>;
   eventGroup: Maybe<EventGroupNode>;
@@ -1318,6 +1344,10 @@ export type Query = {
 };
 
 export type QueryChildArgs = {
+  id: Scalars['ID']['input'];
+};
+
+export type QueryChildNotesArgs = {
   id: Scalars['ID']['input'];
 };
 
@@ -1617,11 +1647,21 @@ export type UnenrolOccurrenceMutationPayload = {
 };
 
 export type UnsubscribeFromAllNotificationsMutationInput = {
-  /** Auth token can be used to authorize the action without logging in as an user. */
+  /** Auth token can be used to authorize the action without logging in as a user. */
   authToken?: InputMaybe<Scalars['String']['input']>;
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
 };
 
+/**
+ * Unsubscribe user from all the notifications.
+ *
+ * NOTE: This mutation deletes the user's FreeSpotNotifications,
+ * which are linked to a Child and Occurrence instances.
+ * **It should be noted that the current model architecture allows
+ * that a child can have multiple guardians, so unsubscribe can delete
+ * some notifications from other users as well. However, the UI apps
+ * has never allowed more than 1 guardian for a child.**
+ */
 export type UnsubscribeFromAllNotificationsMutationPayload = {
   __typename?: 'UnsubscribeFromAllNotificationsMutationPayload';
   clientMutationId: Maybe<Scalars['String']['output']>;
@@ -1654,6 +1694,18 @@ export type UpdateChildMutationInput = {
 export type UpdateChildMutationPayload = {
   __typename?: 'UpdateChildMutationPayload';
   child: Maybe<ChildNode>;
+  clientMutationId: Maybe<Scalars['String']['output']>;
+};
+
+export type UpdateChildNotesMutationInput = {
+  childId: Scalars['ID']['input'];
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  notes: Scalars['String']['input'];
+};
+
+export type UpdateChildNotesMutationPayload = {
+  __typename?: 'UpdateChildNotesMutationPayload';
+  childNotes: Maybe<ChildNotesNode>;
   clientMutationId: Maybe<Scalars['String']['output']>;
 };
 
@@ -1726,7 +1778,7 @@ export type UpdateMyEmailMutationPayload = {
 };
 
 export type UpdateMyMarketingSubscriptionsMutationInput = {
-  /** Auth token can be used to authorize the action without logging in as an user. */
+  /** Auth token can be used to authorize the action without logging in as a user. */
   authToken?: InputMaybe<Scalars['String']['input']>;
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   hasAcceptedMarketing: Scalars['Boolean']['input'];

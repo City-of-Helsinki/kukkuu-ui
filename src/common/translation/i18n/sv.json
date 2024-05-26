@@ -235,10 +235,13 @@
         "heading": "Gångna evenemang"
       }
     },
-    "additionalInfo": {
-      "heading": "Additional information",
+    "childNotes": {
+      "heading": "Additional notes",
       "edit": "Edit",
-      "save": "Save"
+      "save": "Save",
+      "noNotes": "You don't have any notes.",
+      "titlegroup": "Title",
+      "titleAction": "Insert title"
     },
     "heading": "Fadderbarn",
     "message": {

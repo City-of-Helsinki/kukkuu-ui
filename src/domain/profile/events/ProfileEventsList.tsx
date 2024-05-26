@@ -252,7 +252,7 @@ const ProfileEventsList = ({
   ) : null;
 
   const additionalNotesCard: JSX.Element = (
-    <AdditionalNotesCard key={1} title={t('profile.additionalInfo.heading')} />
+    <AdditionalNotesCard key={1} title={t('profile.childNotes.heading')} />
   );
 
   return (
