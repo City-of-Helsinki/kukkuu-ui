@@ -241,7 +241,8 @@
       "save": "Save",
       "noNotes": "You don't have any notes.",
       "titlegroup": "Title",
-      "titleAction": "Insert title"
+      "titleAction": "Insert title",
+      "errorMessage": "Ett fel uppstod när data sparades. Försök igen senare."
     },
     "heading": "Fadderbarn",
     "message": {

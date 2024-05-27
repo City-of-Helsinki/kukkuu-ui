@@ -241,7 +241,8 @@
       "save": "Save",
       "noNotes": "You don't have any notes.",
       "titlegroup": "Title",
-      "titleAction": "Insert title"
+      "titleAction": "Insert title",
+      "errorMessage": "An error occurred while saving the data. Please try again later."
     },
     "heading": "Culture Kids",
     "message": {

@@ -1,15 +1,10 @@
 @import '~styles/layout';
 
 .wrapper {
-  --padding: var(--spacing-m);
-
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-s);
   column-gap: var(--spacing-xl);
-
-  padding: var(--padding);
-
   background: var(--color-white);
 
   @include respond-above(m) {
@@ -23,7 +18,6 @@
 }
 
 .image {
-  margin: calc(#{var(--padding)} * -1);
   margin-bottom: unset;
 
   @include respond-above(m) {
@@ -51,6 +45,8 @@
 }
 
 .content {
+  --padding: var(--spacing-m);
+  padding: 0 var(--padding);
   display: flex;
   flex-direction: column;
   flex-grow: 1;

@@ -2018,6 +2018,31 @@ export type UpdateChildMutation = {
   } | null;
 };
 
+export type UpdateChildNotesMutationPayloadFieldsFragment = {
+  __typename?: 'UpdateChildNotesMutationPayload';
+  childNotes: {
+    __typename?: 'ChildNotesNode';
+    childId: string | null;
+    notes: string;
+  } | null;
+};
+
+export type UpdateChildNotesMutationVariables = Exact<{
+  input: UpdateChildNotesMutationInput;
+}>;
+
+export type UpdateChildNotesMutation = {
+  __typename?: 'Mutation';
+  updateChildNotes: {
+    __typename?: 'UpdateChildNotesMutationPayload';
+    childNotes: {
+      __typename?: 'ChildNotesNode';
+      childId: string | null;
+      notes: string;
+    } | null;
+  } | null;
+};
+
 export type ChildEnrolmentCountQueryVariables = Exact<{
   childId: Scalars['ID']['input'];
 }>;
@@ -2635,6 +2660,27 @@ export type ChildByIdQuery = {
         } | null;
       } | null>;
     };
+  } | null;
+};
+
+export type ChildNotesByIdQueryFieldsFragment = {
+  __typename?: 'ChildNotesNode';
+  id: string;
+  childId: string | null;
+  notes: string;
+};
+
+export type ChildNotesByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+export type ChildNotesByIdQuery = {
+  __typename?: 'Query';
+  childNotes: {
+    __typename?: 'ChildNotesNode';
+    id: string;
+    childId: string | null;
+    notes: string;
   } | null;
 };
 
@@ -4382,6 +4428,14 @@ export const UpdateChildMutationPayloadFieldsFragmentDoc = gql`
     }
   }
 `;
+export const UpdateChildNotesMutationPayloadFieldsFragmentDoc = gql`
+  fragment UpdateChildNotesMutationPayloadFields on UpdateChildNotesMutationPayload {
+    childNotes {
+      childId
+      notes
+    }
+  }
+`;
 export const ChildByIdQueryProjectFieldsFragmentDoc = gql`
   fragment ChildByIdQueryProjectFields on ProjectNode {
     id
@@ -4594,6 +4648,13 @@ export const ChildByIdQueryFieldsFragmentDoc = gql`
   ${UpcomingEventsAndEventGroupsFieldsFragmentDoc}
   ${PastEventsFieldsFragmentDoc}
   ${RelationshipsFieldsFragmentDoc}
+`;
+export const ChildNotesByIdQueryFieldsFragmentDoc = gql`
+  fragment ChildNotesByIdQueryFields on ChildNotesNode {
+    id
+    childId
+    notes
+  }
 `;
 export const EnrolOccurrencesFieldsFragmentDoc = gql`
   fragment EnrolOccurrencesFields on OccurrenceNodeConnection {
@@ -5137,6 +5198,24 @@ export type UpdateChildMutationOptions = Apollo.BaseMutationOptions<
   UpdateChildMutation,
   UpdateChildMutationVariables
 >;
+export const UpdateChildNotesDocument = gql`
+  mutation updateChildNotes($input: UpdateChildNotesMutationInput!) {
+    updateChildNotes(input: $input) {
+      ...UpdateChildNotesMutationPayloadFields
+    }
+  }
+  ${UpdateChildNotesMutationPayloadFieldsFragmentDoc}
+`;
+export type UpdateChildNotesMutationFn = Apollo.MutationFunction<
+  UpdateChildNotesMutation,
+  UpdateChildNotesMutationVariables
+>;
+export type UpdateChildNotesMutationResult =
+  Apollo.MutationResult<UpdateChildNotesMutation>;
+export type UpdateChildNotesMutationOptions = Apollo.BaseMutationOptions<
+  UpdateChildNotesMutation,
+  UpdateChildNotesMutationVariables
+>;
 export const ChildEnrolmentCountDocument = gql`
   query ChildEnrolmentCount($childId: ID!) {
     child(id: $childId) {
@@ -5190,6 +5269,18 @@ export const ChildByIdQueryDocument = gql`
 export type ChildByIdQueryQueryResult = Apollo.QueryResult<
   ChildByIdQuery,
   ChildByIdQueryVariables
+>;
+export const ChildNotesByIdQueryDocument = gql`
+  query childNotesByIdQuery($id: ID!) {
+    childNotes(id: $id) {
+      ...ChildNotesByIdQueryFields
+    }
+  }
+  ${ChildNotesByIdQueryFieldsFragmentDoc}
+`;
+export type ChildNotesByIdQueryQueryResult = Apollo.QueryResult<
+  ChildNotesByIdQuery,
+  ChildNotesByIdQueryVariables
 >;
 export const AssignTicketSystemPasswordMutationDocument = gql`
   mutation assignTicketSystemPasswordMutation(

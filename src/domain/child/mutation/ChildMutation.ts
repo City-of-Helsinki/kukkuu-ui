@@ -59,3 +59,18 @@ export const editChildMutation = gql`
     }
   }
 `;
+
+export const editChildNotesMutation = gql`
+  fragment UpdateChildNotesMutationPayloadFields on UpdateChildNotesMutationPayload {
+    childNotes {
+      childId
+      notes
+    }
+  }
+
+  mutation updateChildNotes($input: UpdateChildNotesMutationInput!) {
+    updateChildNotes(input: $input) {
+      ...UpdateChildNotesMutationPayloadFields
+    }
+  }
+`;

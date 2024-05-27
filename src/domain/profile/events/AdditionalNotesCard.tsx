@@ -1,40 +1,81 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
 import MarkdownEditor, { commands } from '@uiw/react-md-editor';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import rehypeSanitize from 'rehype-sanitize';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import * as Sentry from '@sentry/browser';
 
+import styles from './additionalNotesCard.module.scss';
 import Card from '../../../common/components/card/Card';
 import PlaceholderImage from '../../../common/components/placeholderImage/PlaceholderImage';
+import {
+  ChildNotesByIdQuery,
+  UpdateChildNotesMutationPayloadFieldsFragment,
+} from '../../api/generatedTypes/graphql';
+import { childNotesByIdQuery } from '../../child/queries/ChildQueries';
+import { editChildNotesMutation } from '../../child/mutation/ChildMutation';
 
 interface AdditionalNotesCardProps {
+  childId: string;
   title?: string;
 }
 
 const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
   title,
+  childId,
 }) => {
   const { t } = useTranslation();
   const [isViewMode, setIsViewMode] = useState<boolean>(true);
   const [markDown, setMarkDown] = useState<string | undefined>('');
 
-  // todo: read query and update mutation
+  const { data } = useQuery<ChildNotesByIdQuery>(childNotesByIdQuery, {
+    variables: {
+      id: childId,
+    },
+  });
 
-  const handleNotesAction = () => {
+  const [editChildChildNotes] =
+    useMutation<UpdateChildNotesMutationPayloadFieldsFragment>(
+      editChildNotesMutation,
+      {
+        refetchQueries: [
+          { query: childNotesByIdQuery, variables: { id: childId } },
+        ],
+      }
+    );
+
+  useEffect(() => {
+    if (data?.childNotes) {
+      setMarkDown(data.childNotes.notes);
+    }
+  }, [data]);
+
+  const handleNotesAction = async () => {
     if (isViewMode) {
       setIsViewMode(false);
     } else {
-      // todo: save changes
-
-      // todo: if success
+      try {
+        await editChildChildNotes({
+          variables: {
+            input: {
+              childId,
+              notes: markDown,
+            },
+          },
+        });
+      } catch (error) {
+        toast.error(t('profile.childNotes.errorMessage'));
+        Sentry.captureException(error);
+      }
       setIsViewMode(true);
-      // todo: show toast if fail or success
     }
   };
 
   return (
     <Card
-      alt={''}
+      alt={title || ''}
       imageElement={<PlaceholderImage />}
       title={title || ''}
       actionText={''}
@@ -47,9 +88,11 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
       imageFullHeight
     >
       {isViewMode ? (
-        <MarkdownPreview
-          source={markDown ? markDown : t('profile.childNotes.noNotes')}
-        />
+        <div className={styles.previewContainer}>
+          <MarkdownPreview
+            source={markDown ? markDown : t('profile.childNotes.noNotes')}
+          />
+        </div>
       ) : (
         <div>
           <MarkdownEditor
@@ -75,7 +118,11 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
                   },
                 }
               ),
+              commands.checkedListCommand,
+              commands.unorderedListCommand,
+              commands.orderedListCommand,
               commands.divider,
+              commands.hr,
             ]}
             extraCommands={[]}
             highlightEnable={false}
