@@ -108,8 +108,8 @@ Browser tests are ran with GitHub actions on new PRs and merges into master. The
 
 ## Docker
 
-`docker-compose up` to start the dockerized dev-environment. Not for production!!!  
-`docker-compose down` stops the container.
+`docker compose up` to start the dockerized dev-environment. Not for production!!!  
+`docker compose down` stops the container.
 
 ## Setting up development environment locally with docker
 
@@ -140,14 +140,14 @@ An example of a full working configuration can be seen [here](./src/domain/auth/
 
 Clone https://github.com/City-of-Helsinki/tunnistamo/.
 
-Follow the instructions for setting up tunnistamo locally. Before running `docker-compose up` set the following settings in tunnistamo roots `docker-compose.env.yaml`:
+Follow the instructions for setting up tunnistamo locally. Before running `docker compose up` set the following settings in tunnistamo roots `docker-compose.env.yaml`:
 
 - SOCIAL_AUTH_GITHUB_KEY: **Client ID** from the GitHub OAuth app
 - SOCIAL_AUTH_GITHUB_SECRET: **Client Secret** from the GitHub OAuth app
 
 After you've got tunnistamo running locally, ssh to the tunnistamo docker container:
 
-`docker-compose exec django bash`
+`docker compose exec django bash`
 
 and execute the following four commands inside your docker container:
 
@@ -161,15 +161,16 @@ and execute the following four commands inside your docker container:
 
 ### Install kukkuu locally
 
-Clone the repository (https://github.com/City-of-Helsinki/kukkuu). Follow the instructions for running kukkuu with docker. Before running `docker-compose up` set the following settings in kukkuu roots `docker-compose.env.yaml`:
+Clone the repository (https://github.com/City-of-Helsinki/kukkuu). Follow the instructions for running kukkuu with docker. Before running `docker compose up` set the following settings in kukkuu roots `docker-compose.env.yaml`:
 
 - DEBUG=1
 - CORS_ORIGIN_ALLOW_ALL=1
 - TOKEN_AUTH_AUTHSERVER_URL=http://tunnistamo-backend:8000/openid
 - APPLY_MIGRATIONS=1
-- CREATE_SUPERUSER=1
 - TOKEN_AUTH_AUTHSERVER_URL=http://tunnistamo-backend:8000/openid
 - MEDIA_ROOT=/app/var/
+
+If you do not have a super user / admin to administrate the API yet, you can create one with `docker compose run django python manage.py add_admin_user -u admin -p admin -e admin@example.com`.
 
 ### Headless CMS
 
@@ -183,8 +184,8 @@ VITE_CMS_URI="https://kukkuu.hkih.stage.geniem.io/graphql"
 
 ### kukkuu-ui
 
-Run `docker-compose up`, now the app should be running at `http://localhost:3000/`!
-`docker-compose down` stops the container.
+Run `docker compose up`, now the app should be running at `http://localhost:3000/`!
+`docker compose down` stops the container.
 
 OR
 
