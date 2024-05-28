@@ -2665,7 +2665,6 @@ export type ChildByIdQuery = {
 
 export type ChildNotesByIdQueryFieldsFragment = {
   __typename?: 'ChildNotesNode';
-  id: string;
   childId: string | null;
   notes: string;
 };
@@ -2678,7 +2677,6 @@ export type ChildNotesByIdQuery = {
   __typename?: 'Query';
   childNotes: {
     __typename?: 'ChildNotesNode';
-    id: string;
     childId: string | null;
     notes: string;
   } | null;
@@ -4651,7 +4649,6 @@ export const ChildByIdQueryFieldsFragmentDoc = gql`
 `;
 export const ChildNotesByIdQueryFieldsFragmentDoc = gql`
   fragment ChildNotesByIdQueryFields on ChildNotesNode {
-    id
     childId
     notes
   }

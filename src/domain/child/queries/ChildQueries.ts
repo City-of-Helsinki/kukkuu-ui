@@ -186,7 +186,6 @@ export const childByIdQuery = gql`
 
 export const childNotesByIdQuery = gql`
   fragment ChildNotesByIdQueryFields on ChildNotesNode {
-    id
     childId
     notes
   }
