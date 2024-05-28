@@ -164,7 +164,7 @@ const ProfileChildDetail = () => {
           <ProfileEvents child={child} />
           <AdditionalNotesCard
             title={t('profile.childNotes.heading')}
-            childId={child?.id}
+            childId={child.id}
           />
         </>
       ) : (
