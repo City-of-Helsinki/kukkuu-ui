@@ -23,7 +23,7 @@ exports[`Renders snapshot correctly 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <div
                 class="_qrWrapper_e3c7ac"
@@ -193,7 +193,7 @@ exports[`Renders snapshot correctly 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="huhuu"
@@ -283,7 +283,7 @@ exports[`Renders snapshot correctly 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="huhuu"

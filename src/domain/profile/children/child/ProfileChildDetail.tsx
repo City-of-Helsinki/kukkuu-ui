@@ -31,6 +31,7 @@ import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
 import useAppRouteHref from '../../../app/useAppRouteHref';
 import { useProfileContext } from '../../hooks/useProfileContext';
+import AdditionalNotesCard from '../../events/AdditionalNotesCard';
 
 export type ChildDetailEditModalPayload = Omit<UpdateChildMutationInput, 'id'>;
 
@@ -161,6 +162,10 @@ const ProfileChildDetail = () => {
             />
           )}
           <ProfileEvents child={child} />
+          <AdditionalNotesCard
+            title={t('profile.childNotes.heading')}
+            childId={child.id}
+          />
         </>
       ) : (
         <div className={styles.noChild}>

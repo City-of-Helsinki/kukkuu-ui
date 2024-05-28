@@ -183,3 +183,16 @@ export const childByIdQuery = gql`
     }
   }
 `;
+
+export const childNotesByIdQuery = gql`
+  fragment ChildNotesByIdQueryFields on ChildNotesNode {
+    childId
+    notes
+  }
+
+  query childNotesByIdQuery($id: ID!) {
+    childNotes(id: $id) {
+      ...ChildNotesByIdQueryFields
+    }
+  }
+`;

@@ -235,6 +235,15 @@
         "heading": "Menneet tapahtumat"
       }
     },
+    "childNotes": {
+      "heading": "Päiväkirjamerkintäni tapahtumista",
+      "edit": "Muokkaa",
+      "save": "Tallenna",
+      "noNotes": "Voit liittää tähän tiedot menneistä kummitapahtumista ja kirjoittaa muistiinpanoja myös tulevista.",
+      "titlegroup": "Otsikko",
+      "titleAction": "Lisää otsikko",
+      "errorMessage": "Tapahtui virhe tietojen tallennuksessa. Yritä myöhemmin uudestaan."
+    },
     "heading": "Kummilapset",
     "message": {
       "allSignupsSpent": "Onnittelut, olet osallistunut jo kahteen tapahtumaan tänä vuonna. Ensi vuonna nähdään!",

@@ -6,7 +6,7 @@ exports[`renders snapshot correctly 1`] = `
     class="_wrapper_f3c708"
   >
     <div
-      class="_image_f3c708"
+      class="_image_f3c708 _fullHeight_f3c708"
     />
     <div
       class="_content_f3c708"

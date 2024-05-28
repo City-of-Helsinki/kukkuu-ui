@@ -50,7 +50,7 @@ exports[`Renders events list when events of any type 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <div
                 class="_qrWrapper_e3c7ac"
@@ -213,7 +213,7 @@ exports[`Renders events list when events of any type 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="uooo"
@@ -303,7 +303,7 @@ exports[`Renders events list when events of any type 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="uooo"
@@ -391,7 +391,7 @@ exports[`Renders events list when only enrolments 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <div
                 class="_qrWrapper_e3c7ac"
@@ -563,7 +563,7 @@ exports[`Renders events list when only past events 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="uooo"
@@ -651,7 +651,7 @@ exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="uooo"
