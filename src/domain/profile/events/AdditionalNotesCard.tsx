@@ -2,9 +2,10 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
 import MarkdownEditor, { commands } from '@uiw/react-md-editor';
 import MarkdownPreview from '@uiw/react-markdown-preview';
-import rehypeSanitize from 'rehype-sanitize';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import DOMPurify from 'dompurify';
+import rehypeSanitize from 'rehype-sanitize';
 import * as Sentry from '@sentry/browser';
 
 import styles from './additionalNotesCard.module.scss';
@@ -61,7 +62,7 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
           variables: {
             input: {
               childId,
-              notes: markDown,
+              notes: DOMPurify.sanitize(markDown || ''),
             },
           },
         });
@@ -90,7 +91,11 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
       {isViewMode ? (
         <div className={styles.previewContainer}>
           <MarkdownPreview
-            source={markDown ? markDown : t('profile.childNotes.noNotes')}
+            source={
+              markDown
+                ? DOMPurify.sanitize(markDown || '')
+                : t('profile.childNotes.noNotes')
+            }
           />
         </div>
       ) : (
@@ -125,10 +130,10 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
               commands.hr,
             ]}
             extraCommands={[]}
-            highlightEnable={false}
             previewOptions={{
               rehypePlugins: [[rehypeSanitize]],
             }}
+            highlightEnable={false}
           />
         </div>
       )}

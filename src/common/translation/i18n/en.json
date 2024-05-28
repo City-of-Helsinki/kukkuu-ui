@@ -236,10 +236,10 @@
       }
     },
     "childNotes": {
-      "heading": "Additional notes",
+      "heading": "My diary of events",
       "edit": "Edit",
       "save": "Save",
-      "noNotes": "You don't have any notes.",
+      "noNotes": "Attach information about past Culture Kids events here and write notes about future ones as well.",
       "titlegroup": "Title",
       "titleAction": "Insert title",
       "errorMessage": "An error occurred while saving the data. Please try again later."

@@ -236,12 +236,12 @@
       }
     },
     "childNotes": {
-      "heading": "Additional notes",
-      "edit": "Edit",
-      "save": "Save",
-      "noNotes": "You don't have any notes.",
-      "titlegroup": "Title",
-      "titleAction": "Insert title",
+      "heading": "Päiväkirjamerkintäni tapahtumista",
+      "edit": "Muokkaa",
+      "save": "Tallenna",
+      "noNotes": "Voit liittää tähän tiedot menneistä kummitapahtumista ja kirjoittaa muistiinpanoja myös tulevista.",
+      "titlegroup": "Otsikko",
+      "titleAction": "Lisää otsikko",
       "errorMessage": "Tapahtui virhe tietojen tallennuksessa. Yritä myöhemmin uudestaan."
     },
     "heading": "Kummilapset",

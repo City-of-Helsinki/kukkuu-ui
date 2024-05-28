@@ -236,12 +236,12 @@
       }
     },
     "childNotes": {
-      "heading": "Additional notes",
-      "edit": "Edit",
-      "save": "Save",
-      "noNotes": "You don't have any notes.",
-      "titlegroup": "Title",
-      "titleAction": "Insert title",
+      "heading": "Min dagbok om evenemang",
+      "edit": "Redigera",
+      "save": "Spara",
+      "noNotes": "Bifoga information om tidigare fadderevenemang här och skriva anteckningar om framtida också.",
+      "titlegroup": "Titel",
+      "titleAction": "Infoga titel",
       "errorMessage": "Ett fel uppstod när data sparades. Försök igen senare."
     },
     "heading": "Fadderbarn",
