@@ -50,7 +50,7 @@ exports[`Renders events list when events of any type 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <div
                 class="_qrWrapper_e3c7ac"
@@ -213,7 +213,7 @@ exports[`Renders events list when events of any type 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="uooo"
@@ -303,7 +303,7 @@ exports[`Renders events list when events of any type 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="uooo"
@@ -364,6 +364,65 @@ exports[`Renders events list when events of any type 1`] = `
         </li>
       </ul>
     </li>
+    <li
+      class="_item_a90dcd"
+    >
+      <div
+        class="_wrapper_f3c708"
+      >
+        <div
+          class="_image_f3c708 _fullHeight_f3c708"
+        >
+          <div
+            class="_placeholderImage_0bb31f"
+          >
+            <img
+              alt=""
+              src="/src/assets/icons/svg/homeTheater.svg"
+            />
+          </div>
+        </div>
+        <div
+          class="_content_f3c708"
+        >
+          <h3
+            class="_text_e4e173 _h3_e4e173 _title_f3c708"
+          >
+            Päiväkirjamerkintäni tapahtumista
+          </h3>
+          <div
+            class="_previewContainer_62c7d2"
+          >
+            <div
+              class="wmde-markdown wmde-markdown-color "
+            >
+              <p>
+                Voit liittää tähän tiedot menneistä kummitapahtumista ja kirjoittaa muistiinpanoja myös tulevista.
+              </p>
+            </div>
+          </div>
+          <div
+            class="_focalPoint_f3c708"
+          >
+            <button
+              class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _primaryActionButton_f3c708"
+              style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+              type="button"
+            >
+              <span
+                class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+              >
+                Muokkaa
+              </span>
+            </button>
+            <span />
+          </div>
+        </div>
+        <div
+          class="_cta_f3c708"
+        />
+      </div>
+    </li>
   </ul>
 </div>
 `;
@@ -391,7 +450,7 @@ exports[`Renders events list when only enrolments 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <div
                 class="_qrWrapper_e3c7ac"
@@ -536,6 +595,65 @@ exports[`Renders events list when only enrolments 1`] = `
         </li>
       </ul>
     </li>
+    <li
+      class="_item_a90dcd"
+    >
+      <div
+        class="_wrapper_f3c708"
+      >
+        <div
+          class="_image_f3c708 _fullHeight_f3c708"
+        >
+          <div
+            class="_placeholderImage_0bb31f"
+          >
+            <img
+              alt=""
+              src="/src/assets/icons/svg/homeTheater.svg"
+            />
+          </div>
+        </div>
+        <div
+          class="_content_f3c708"
+        >
+          <h3
+            class="_text_e4e173 _h3_e4e173 _title_f3c708"
+          >
+            Päiväkirjamerkintäni tapahtumista
+          </h3>
+          <div
+            class="_previewContainer_62c7d2"
+          >
+            <div
+              class="wmde-markdown wmde-markdown-color "
+            >
+              <p>
+                Voit liittää tähän tiedot menneistä kummitapahtumista ja kirjoittaa muistiinpanoja myös tulevista.
+              </p>
+            </div>
+          </div>
+          <div
+            class="_focalPoint_f3c708"
+          >
+            <button
+              class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _primaryActionButton_f3c708"
+              style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+              type="button"
+            >
+              <span
+                class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+              >
+                Muokkaa
+              </span>
+            </button>
+            <span />
+          </div>
+        </div>
+        <div
+          class="_cta_f3c708"
+        />
+      </div>
+    </li>
   </ul>
 </div>
 `;
@@ -563,7 +681,7 @@ exports[`Renders events list when only past events 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="uooo"
@@ -624,6 +742,65 @@ exports[`Renders events list when only past events 1`] = `
         </li>
       </ul>
     </li>
+    <li
+      class="_item_a90dcd"
+    >
+      <div
+        class="_wrapper_f3c708"
+      >
+        <div
+          class="_image_f3c708 _fullHeight_f3c708"
+        >
+          <div
+            class="_placeholderImage_0bb31f"
+          >
+            <img
+              alt=""
+              src="/src/assets/icons/svg/homeTheater.svg"
+            />
+          </div>
+        </div>
+        <div
+          class="_content_f3c708"
+        >
+          <h3
+            class="_text_e4e173 _h3_e4e173 _title_f3c708"
+          >
+            Päiväkirjamerkintäni tapahtumista
+          </h3>
+          <div
+            class="_previewContainer_62c7d2"
+          >
+            <div
+              class="wmde-markdown wmde-markdown-color "
+            >
+              <p>
+                Voit liittää tähän tiedot menneistä kummitapahtumista ja kirjoittaa muistiinpanoja myös tulevista.
+              </p>
+            </div>
+          </div>
+          <div
+            class="_focalPoint_f3c708"
+          >
+            <button
+              class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _primaryActionButton_f3c708"
+              style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+              type="button"
+            >
+              <span
+                class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+              >
+                Muokkaa
+              </span>
+            </button>
+            <span />
+          </div>
+        </div>
+        <div
+          class="_cta_f3c708"
+        />
+      </div>
+    </li>
   </ul>
 </div>
 `;
@@ -651,7 +828,7 @@ exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
             class="_wrapper_f3c708"
           >
             <div
-              class="_image_f3c708"
+              class="_image_f3c708 _fullHeight_f3c708"
             >
               <img
                 alt="uooo"
@@ -722,6 +899,65 @@ exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
           </div>
         </li>
       </ul>
+    </li>
+    <li
+      class="_item_a90dcd"
+    >
+      <div
+        class="_wrapper_f3c708"
+      >
+        <div
+          class="_image_f3c708 _fullHeight_f3c708"
+        >
+          <div
+            class="_placeholderImage_0bb31f"
+          >
+            <img
+              alt=""
+              src="/src/assets/icons/svg/homeTheater.svg"
+            />
+          </div>
+        </div>
+        <div
+          class="_content_f3c708"
+        >
+          <h3
+            class="_text_e4e173 _h3_e4e173 _title_f3c708"
+          >
+            Päiväkirjamerkintäni tapahtumista
+          </h3>
+          <div
+            class="_previewContainer_62c7d2"
+          >
+            <div
+              class="wmde-markdown wmde-markdown-color "
+            >
+              <p>
+                Voit liittää tähän tiedot menneistä kummitapahtumista ja kirjoittaa muistiinpanoja myös tulevista.
+              </p>
+            </div>
+          </div>
+          <div
+            class="_focalPoint_f3c708"
+          >
+            <button
+              class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _primaryActionButton_f3c708"
+              style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+              type="button"
+            >
+              <span
+                class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+              >
+                Muokkaa
+              </span>
+            </button>
+            <span />
+          </div>
+        </div>
+        <div
+          class="_cta_f3c708"
+        />
+      </div>
     </li>
   </ul>
 </div>
