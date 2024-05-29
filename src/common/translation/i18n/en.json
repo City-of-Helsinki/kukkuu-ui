@@ -683,9 +683,9 @@
             "placeholder": "Please enter guardian’s telephone number"
           }
         },
-        "hasAcceptedMarketing": {
+        "hasAcceptedCommunication": {
           "input": {
-            "label": "Accepts the marketing communication"
+            "label": "I would like to receive messages about new Culture Kids events"
           }
         }
       },
@@ -816,11 +816,11 @@
   "subscriptions": {
     "manage": {
       "title": "Subscriptions Management",
-      "description": "Hello {{firstName}}! In the form below, you can see the status of your subscriptions regarding marketing communications.",
+      "description": "Hello {{firstName}}! In the form below, you can see the status of your subscriptions regarding communications.",
       "form": {
         "fields": {
-          "hasAcceptedMarketing": {
-            "label": "I accept marketing communications"
+          "hasAcceptedCommunication": {
+            "label": "I would like to receive messages about new Culture Kids events"
           }
         },
         "submit": {

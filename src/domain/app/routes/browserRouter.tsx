@@ -23,7 +23,7 @@ import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EnrolPage from '../../event/enrol/EnrolPage';
 import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
 import Unauthorized from '../../auth/Unauthorized';
-import ManageMarketingSubscriptions from '../../profile/subscriptions/ManageSubscriptions';
+import ManageCommunicationSubscriptions from '../../profile/subscriptions/ManageSubscriptions';
 import NotFound from '../notFound/NotFound';
 import KukkuuHDSLoginCallbackHandler from '../../auth/KukkuuHDSLoginCallbackHandler';
 import SilentRenewRedirect from './SilentRenewRedirect';
@@ -141,7 +141,7 @@ const browserRouter = createBrowserRouter([
             element: (
               <AppRoute
                 titleKey="subscriptions.manage.title"
-                element={<ManageMarketingSubscriptions />}
+                element={<ManageCommunicationSubscriptions />}
               />
             ),
           },

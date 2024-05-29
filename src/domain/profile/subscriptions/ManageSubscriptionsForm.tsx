@@ -6,19 +6,19 @@ import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 
 import {
-  UpdateMyMarketingSubscriptionsDocument,
-  UpdateMyMarketingSubscriptionsMutation,
-  UpdateMyMarketingSubscriptionsMutationInput,
+  UpdateMyCommunicationSubscriptionsDocument,
+  UpdateMyCommunicationSubscriptionsMutation,
+  UpdateMyCommunicationSubscriptionsMutationInput,
 } from '../../api/generatedTypes/graphql';
 import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
 import Button from '../../../common/components/button/Button';
 
 const schema = yup.object().shape({
-  hasAcceptedMarketing: yup.boolean(),
+  hasAcceptedCommunication: yup.boolean(),
 });
 
 type ManageSubscriptionsFormProps = {
-  initialValues: UpdateMyMarketingSubscriptionsMutationInput;
+  initialValues: UpdateMyCommunicationSubscriptionsMutationInput;
 };
 
 const ManageSubscriptionsForm = ({
@@ -27,17 +27,17 @@ const ManageSubscriptionsForm = ({
   const { t } = useTranslation();
 
   const [updateMySubscriptions] =
-    useMutation<UpdateMyMarketingSubscriptionsMutation>(
-      UpdateMyMarketingSubscriptionsDocument
+    useMutation<UpdateMyCommunicationSubscriptionsMutation>(
+      UpdateMyCommunicationSubscriptionsDocument
     );
 
   const onSubmit = async ({
-    hasAcceptedMarketing,
+    hasAcceptedCommunication,
     authToken,
-  }: UpdateMyMarketingSubscriptionsMutationInput) => {
+  }: UpdateMyCommunicationSubscriptionsMutationInput) => {
     try {
       await updateMySubscriptions({
-        variables: { input: { hasAcceptedMarketing, authToken } },
+        variables: { input: { hasAcceptedCommunication, authToken } },
       });
       toast.success(
         t('subscriptions.manage.form.submit.submitMutation.successfulMessage')
@@ -57,10 +57,10 @@ const ManageSubscriptionsForm = ({
     >
       <Form>
         <CheckboxField
-          id={'hasAcceptedMarketing'}
-          name={'hasAcceptedMarketing'}
+          id={'hasAcceptedCommunication'}
+          name={'hasAcceptedCommunication'}
           label={t(
-            'subscriptions.manage.form.fields.hasAcceptedMarketing.label'
+            'subscriptions.manage.form.fields.hasAcceptedCommunication.label'
           )}
         />
         <Button type="submit">

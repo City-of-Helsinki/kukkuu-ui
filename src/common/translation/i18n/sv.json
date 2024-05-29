@@ -683,9 +683,9 @@
             "placeholder": "Ange telefonnummer"
           }
         },
-        "hasAcceptedMarketing": {
+        "hasAcceptedCommunication": {
           "input": {
-            "label": "Accepterar marknadskommunikationen"
+            "label": "Jag vill gärna ha meddelanden om nya fadderevenemang"
           }
         }
       },
@@ -816,11 +816,11 @@
   "subscriptions": {
     "manage": {
       "title": "Meddelandehantering",
-      "description": "Hej {{firstName}}! I formuläret nedan kan du se status för din beställning angående marknadsföringskommunikation.",
+      "description": "Hej {{firstName}}! I formuläret nedan kan du se status för din beställning angående kommunikation.",
       "form": {
         "fields": {
-          "hasAcceptedMarketing": {
-            "label": "Jag accepterar marknadskommunikation"
+          "hasAcceptedCommunication": {
+            "label": "Jag vill gärna ha meddelanden om nya fadderevenemang"
           }
         },
         "submit": {

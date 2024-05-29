@@ -665,24 +665,24 @@ export type FreeSpotNotificationSubscriptionNodeEdge = {
   node: Maybe<FreeSpotNotificationSubscriptionNode>;
 };
 
-export type GuardianInput = {
-  email?: InputMaybe<Scalars['String']['input']>;
-  firstName: Scalars['String']['input'];
-  hasAcceptedMarketing?: InputMaybe<Scalars['Boolean']['input']>;
-  language: Language;
-  languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
-  lastName: Scalars['String']['input'];
-  phoneNumber?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type GuardianMarketingSubscriptionsNode = Node & {
-  __typename?: 'GuardianMarketingSubscriptionsNode';
+export type GuardianCommunicationSubscriptionsNode = Node & {
+  __typename?: 'GuardianCommunicationSubscriptionsNode';
   firstName: Scalars['String']['output'];
-  hasAcceptedMarketing: Scalars['Boolean']['output'];
+  hasAcceptedCommunication: Scalars['Boolean']['output'];
   /** The ID of the object. */
   id: Scalars['ID']['output'];
   language: Scalars['String']['output'];
   lastName: Scalars['String']['output'];
+};
+
+export type GuardianInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  firstName: Scalars['String']['input'];
+  hasAcceptedCommunication?: InputMaybe<Scalars['Boolean']['input']>;
+  language: Language;
+  languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
+  lastName: Scalars['String']['input'];
+  phoneNumber?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type GuardianNode = Node & {
@@ -692,7 +692,7 @@ export type GuardianNode = Node & {
   /** If left blank, will be populated with the user's email. */
   email: Scalars['String']['output'];
   firstName: Scalars['String']['output'];
-  hasAcceptedMarketing: Scalars['Boolean']['output'];
+  hasAcceptedCommunication: Scalars['Boolean']['output'];
   /** The ID of the object. */
   id: Scalars['ID']['output'];
   language: Language;
@@ -999,8 +999,8 @@ export type Mutation = {
   updateEvent: Maybe<UpdateEventMutationPayload>;
   updateEventGroup: Maybe<UpdateEventGroupMutationPayload>;
   updateMessage: Maybe<UpdateMessageMutationPayload>;
+  updateMyCommunicationSubscriptions: Maybe<UpdateMyCommunicationSubscriptionsMutationPayload>;
   updateMyEmail: Maybe<UpdateMyEmailMutationPayload>;
-  updateMyMarketingSubscriptions: Maybe<UpdateMyMarketingSubscriptionsMutationPayload>;
   updateMyProfile: Maybe<UpdateMyProfileMutationPayload>;
   updateOccurrence: Maybe<UpdateOccurrenceMutationPayload>;
   updateVenue: Maybe<UpdateVenueMutationPayload>;
@@ -1126,12 +1126,12 @@ export type MutationUpdateMessageArgs = {
   input: UpdateMessageMutationInput;
 };
 
-export type MutationUpdateMyEmailArgs = {
-  input: UpdateMyEmailMutationInput;
+export type MutationUpdateMyCommunicationSubscriptionsArgs = {
+  input: UpdateMyCommunicationSubscriptionsMutationInput;
 };
 
-export type MutationUpdateMyMarketingSubscriptionsArgs = {
-  input: UpdateMyMarketingSubscriptionsMutationInput;
+export type MutationUpdateMyEmailArgs = {
+  input: UpdateMyEmailMutationInput;
 };
 
 export type MutationUpdateMyProfileArgs = {
@@ -1332,7 +1332,7 @@ export type Query = {
   message: Maybe<MessageNode>;
   messages: Maybe<MessageNodeConnection>;
   myAdminProfile: Maybe<AdminNode>;
-  myMarketingSubscriptions: Maybe<GuardianMarketingSubscriptionsNode>;
+  myCommunicationSubscriptions: Maybe<GuardianCommunicationSubscriptionsNode>;
   myProfile: Maybe<GuardianNode>;
   occurrence: Maybe<OccurrenceNode>;
   occurrences: Maybe<OccurrenceNodeConnection>;
@@ -1424,7 +1424,7 @@ export type QueryMessagesArgs = {
   protocol: InputMaybe<Scalars['String']['input']>;
 };
 
-export type QueryMyMarketingSubscriptionsArgs = {
+export type QueryMyCommunicationSubscriptionsArgs = {
   authToken: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -1765,6 +1765,19 @@ export type UpdateMessageMutationPayload = {
   message: Maybe<MessageNode>;
 };
 
+export type UpdateMyCommunicationSubscriptionsMutationInput = {
+  /** Auth token can be used to authorize the action without logging in as a user. */
+  authToken?: InputMaybe<Scalars['String']['input']>;
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  hasAcceptedCommunication: Scalars['Boolean']['input'];
+};
+
+export type UpdateMyCommunicationSubscriptionsMutationPayload = {
+  __typename?: 'UpdateMyCommunicationSubscriptionsMutationPayload';
+  clientMutationId: Maybe<Scalars['String']['output']>;
+  guardian: Maybe<GuardianCommunicationSubscriptionsNode>;
+};
+
 export type UpdateMyEmailMutationInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   email: Scalars['String']['input'];
@@ -1777,23 +1790,10 @@ export type UpdateMyEmailMutationPayload = {
   myProfile: Maybe<GuardianNode>;
 };
 
-export type UpdateMyMarketingSubscriptionsMutationInput = {
-  /** Auth token can be used to authorize the action without logging in as a user. */
-  authToken?: InputMaybe<Scalars['String']['input']>;
-  clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  hasAcceptedMarketing: Scalars['Boolean']['input'];
-};
-
-export type UpdateMyMarketingSubscriptionsMutationPayload = {
-  __typename?: 'UpdateMyMarketingSubscriptionsMutationPayload';
-  clientMutationId: Maybe<Scalars['String']['output']>;
-  guardian: Maybe<GuardianMarketingSubscriptionsNode>;
-};
-
 export type UpdateMyProfileMutationInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   firstName?: InputMaybe<Scalars['String']['input']>;
-  hasAcceptedMarketing?: InputMaybe<Scalars['Boolean']['input']>;
+  hasAcceptedCommunication?: InputMaybe<Scalars['Boolean']['input']>;
   language?: InputMaybe<Language>;
   languagesSpokenAtHome?: InputMaybe<Array<Scalars['ID']['input']>>;
   lastName?: InputMaybe<Scalars['String']['input']>;
@@ -3719,6 +3719,24 @@ export type RequestEmailUpdateTokenMutation = {
   } | null;
 };
 
+export type UpdateMyCommunicationSubscriptionsMutationVariables = Exact<{
+  input: UpdateMyCommunicationSubscriptionsMutationInput;
+}>;
+
+export type UpdateMyCommunicationSubscriptionsMutation = {
+  __typename?: 'Mutation';
+  updateMyCommunicationSubscriptions: {
+    __typename?: 'UpdateMyCommunicationSubscriptionsMutationPayload';
+    guardian: {
+      __typename?: 'GuardianCommunicationSubscriptionsNode';
+      firstName: string;
+      lastName: string;
+      language: string;
+      hasAcceptedCommunication: boolean;
+    } | null;
+  } | null;
+};
+
 export type UpdateMyEmailMutationVariables = Exact<{
   input: UpdateMyEmailMutationInput;
 }>;
@@ -3738,24 +3756,6 @@ export type UpdateMyEmailMutation = {
   } | null;
 };
 
-export type UpdateMyMarketingSubscriptionsMutationVariables = Exact<{
-  input: UpdateMyMarketingSubscriptionsMutationInput;
-}>;
-
-export type UpdateMyMarketingSubscriptionsMutation = {
-  __typename?: 'Mutation';
-  updateMyMarketingSubscriptions: {
-    __typename?: 'UpdateMyMarketingSubscriptionsMutationPayload';
-    guardian: {
-      __typename?: 'GuardianMarketingSubscriptionsNode';
-      firstName: string;
-      lastName: string;
-      language: string;
-      hasAcceptedMarketing: boolean;
-    } | null;
-  } | null;
-};
-
 export type UpdateMyProfileMutationVariables = Exact<{
   input: UpdateMyProfileMutationInput;
 }>;
@@ -3771,23 +3771,23 @@ export type UpdateMyProfileMutation = {
       lastName: string;
       language: Language;
       email: string;
-      hasAcceptedMarketing: boolean;
+      hasAcceptedCommunication: boolean;
     } | null;
   } | null;
 };
 
-export type MyMarketingSubscriptionsQueryVariables = Exact<{
+export type MyCommunicationSubscriptionsQueryVariables = Exact<{
   authToken: InputMaybe<Scalars['String']['input']>;
 }>;
 
-export type MyMarketingSubscriptionsQuery = {
+export type MyCommunicationSubscriptionsQuery = {
   __typename?: 'Query';
-  myMarketingSubscriptions: {
-    __typename?: 'GuardianMarketingSubscriptionsNode';
+  myCommunicationSubscriptions: {
+    __typename?: 'GuardianCommunicationSubscriptionsNode';
     firstName: string;
     lastName: string;
     language: string;
-    hasAcceptedMarketing: boolean;
+    hasAcceptedCommunication: boolean;
   } | null;
 };
 
@@ -4044,7 +4044,7 @@ export type MyProfileFieldsFragment = {
   email: string;
   phoneNumber: string;
   language: Language;
-  hasAcceptedMarketing: boolean;
+  hasAcceptedCommunication: boolean;
   children: {
     __typename?: 'ChildNodeConnection';
     edges: Array<{
@@ -4158,7 +4158,7 @@ export type ProfileQuery = {
     email: string;
     phoneNumber: string;
     language: Language;
-    hasAcceptedMarketing: boolean;
+    hasAcceptedCommunication: boolean;
     children: {
       __typename?: 'ChildNodeConnection';
       edges: Array<{
@@ -4269,7 +4269,7 @@ export type SubmitGuardianFieldsFragment = {
   email: string;
   phoneNumber: string;
   language: Language;
-  hasAcceptedMarketing: boolean;
+  hasAcceptedCommunication: boolean;
   children: {
     __typename?: 'ChildNodeConnection';
     edges: Array<{
@@ -4312,7 +4312,7 @@ export type SubmitChildrenAndGuardianMutationPayloadFieldsFragment = {
     email: string;
     phoneNumber: string;
     language: Language;
-    hasAcceptedMarketing: boolean;
+    hasAcceptedCommunication: boolean;
     children: {
       __typename?: 'ChildNodeConnection';
       edges: Array<{
@@ -4363,7 +4363,7 @@ export type SubmitChildrenAndGuardianMutation = {
       email: string;
       phoneNumber: string;
       language: Language;
-      hasAcceptedMarketing: boolean;
+      hasAcceptedCommunication: boolean;
       children: {
         __typename?: 'ChildNodeConnection';
         edges: Array<{
@@ -5079,7 +5079,7 @@ export const MyProfileFieldsFragmentDoc = gql`
     email
     phoneNumber
     language
-    hasAcceptedMarketing
+    hasAcceptedCommunication
     children {
       ...MyProfileChildrenFields
     }
@@ -5098,7 +5098,7 @@ export const SubmitGuardianFieldsFragmentDoc = gql`
     email
     phoneNumber
     language
-    hasAcceptedMarketing
+    hasAcceptedCommunication
     children {
       edges {
         node {
@@ -5578,6 +5578,32 @@ export type RequestEmailUpdateTokenMutationOptions = Apollo.BaseMutationOptions<
   RequestEmailUpdateTokenMutation,
   RequestEmailUpdateTokenMutationVariables
 >;
+export const UpdateMyCommunicationSubscriptionsDocument = gql`
+  mutation UpdateMyCommunicationSubscriptions(
+    $input: UpdateMyCommunicationSubscriptionsMutationInput!
+  ) {
+    updateMyCommunicationSubscriptions(input: $input) {
+      guardian {
+        firstName
+        lastName
+        language
+        hasAcceptedCommunication
+      }
+    }
+  }
+`;
+export type UpdateMyCommunicationSubscriptionsMutationFn =
+  Apollo.MutationFunction<
+    UpdateMyCommunicationSubscriptionsMutation,
+    UpdateMyCommunicationSubscriptionsMutationVariables
+  >;
+export type UpdateMyCommunicationSubscriptionsMutationResult =
+  Apollo.MutationResult<UpdateMyCommunicationSubscriptionsMutation>;
+export type UpdateMyCommunicationSubscriptionsMutationOptions =
+  Apollo.BaseMutationOptions<
+    UpdateMyCommunicationSubscriptionsMutation,
+    UpdateMyCommunicationSubscriptionsMutationVariables
+  >;
 export const UpdateMyEmailMutationDocument = gql`
   mutation UpdateMyEmailMutation($input: UpdateMyEmailMutationInput!) {
     updateMyEmail(input: $input) {
@@ -5601,31 +5627,6 @@ export type UpdateMyEmailMutationMutationOptions = Apollo.BaseMutationOptions<
   UpdateMyEmailMutation,
   UpdateMyEmailMutationVariables
 >;
-export const UpdateMyMarketingSubscriptionsDocument = gql`
-  mutation UpdateMyMarketingSubscriptions(
-    $input: UpdateMyMarketingSubscriptionsMutationInput!
-  ) {
-    updateMyMarketingSubscriptions(input: $input) {
-      guardian {
-        firstName
-        lastName
-        language
-        hasAcceptedMarketing
-      }
-    }
-  }
-`;
-export type UpdateMyMarketingSubscriptionsMutationFn = Apollo.MutationFunction<
-  UpdateMyMarketingSubscriptionsMutation,
-  UpdateMyMarketingSubscriptionsMutationVariables
->;
-export type UpdateMyMarketingSubscriptionsMutationResult =
-  Apollo.MutationResult<UpdateMyMarketingSubscriptionsMutation>;
-export type UpdateMyMarketingSubscriptionsMutationOptions =
-  Apollo.BaseMutationOptions<
-    UpdateMyMarketingSubscriptionsMutation,
-    UpdateMyMarketingSubscriptionsMutationVariables
-  >;
 export const UpdateMyProfileDocument = gql`
   mutation updateMyProfile($input: UpdateMyProfileMutationInput!) {
     updateMyProfile(input: $input) {
@@ -5635,7 +5636,7 @@ export const UpdateMyProfileDocument = gql`
         lastName
         language
         email
-        hasAcceptedMarketing
+        hasAcceptedCommunication
       }
     }
   }
@@ -5650,19 +5651,19 @@ export type UpdateMyProfileMutationOptions = Apollo.BaseMutationOptions<
   UpdateMyProfileMutation,
   UpdateMyProfileMutationVariables
 >;
-export const MyMarketingSubscriptionsDocument = gql`
-  query MyMarketingSubscriptions($authToken: String) {
-    myMarketingSubscriptions(authToken: $authToken) {
+export const MyCommunicationSubscriptionsDocument = gql`
+  query MyCommunicationSubscriptions($authToken: String) {
+    myCommunicationSubscriptions(authToken: $authToken) {
       firstName
       lastName
       language
-      hasAcceptedMarketing
+      hasAcceptedCommunication
     }
   }
 `;
-export type MyMarketingSubscriptionsQueryResult = Apollo.QueryResult<
-  MyMarketingSubscriptionsQuery,
-  MyMarketingSubscriptionsQueryVariables
+export type MyCommunicationSubscriptionsQueryResult = Apollo.QueryResult<
+  MyCommunicationSubscriptionsQuery,
+  MyCommunicationSubscriptionsQueryVariables
 >;
 export const ProfileChildrenQueryDocument = gql`
   query profileChildrenQuery {
