@@ -683,9 +683,9 @@
             "placeholder": "Lisää puhelinnumero"
           }
         },
-        "hasAcceptedMarketing": {
+        "hasAcceptedCommunication": {
           "input": {
-            "label": "Hyväksyn markkinointiviestinnän"
+            "label": "Haluan viestejä uusista kummitapahtumista"
           }
         }
       },
@@ -816,11 +816,11 @@
   "subscriptions": {
     "manage": {
       "title": "Viestityksen hallinta",
-      "description": "Hei {{firstName}}! Alla olevassa lomakkeessa näet tehdyn tilauksesi tilan liittyen markkinointiviestintään.",
+      "description": "Hei {{firstName}}! Alla olevassa lomakkeessa näet tehdyn tilauksesi tilan liittyen viestintään.",
       "form": {
         "fields": {
-          "hasAcceptedMarketing": {
-            "label": "Hyväksyn markkinointiviestinnän"
+          "hasAcceptedCommunication": {
+            "label": "Haluan viestejä uusista kummitapahtumista"
           }
         },
         "submit": {

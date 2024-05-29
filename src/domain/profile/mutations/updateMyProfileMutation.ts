@@ -9,7 +9,7 @@ const updateMyProfileMutation = gql`
         lastName
         language
         email
-        hasAcceptedMarketing
+        hasAcceptedCommunication
       }
     }
   }

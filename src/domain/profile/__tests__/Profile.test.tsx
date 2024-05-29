@@ -14,7 +14,7 @@ const profileMock: MyProfile = {
   email: 'test@kukkuu.fi',
   phoneNumber: '',
   language: Language.Fi,
-  hasAcceptedMarketing: false,
+  hasAcceptedCommunication: false,
   children: {
     __typename: undefined,
     edges: [],

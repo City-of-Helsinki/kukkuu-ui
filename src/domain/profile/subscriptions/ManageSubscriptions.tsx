@@ -5,8 +5,8 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { useOidcClient } from 'hds-react';
 
 import {
-  MyMarketingSubscriptionsDocument,
-  MyMarketingSubscriptionsQuery,
+  MyCommunicationSubscriptionsDocument,
+  MyCommunicationSubscriptionsQuery,
 } from '../../api/generatedTypes/graphql';
 import SimpleFormPageLayout from '../../app/layout/SimpleFormPageLayout';
 import ManageSubscriptionsForm from './ManageSubscriptionsForm';
@@ -24,8 +24,8 @@ const ManageSubscriptions = () => {
     data: subscriptionsData,
     loading,
     error,
-  } = useQuery<MyMarketingSubscriptionsQuery>(
-    MyMarketingSubscriptionsDocument,
+  } = useQuery<MyCommunicationSubscriptionsQuery>(
+    MyCommunicationSubscriptionsDocument,
     { variables: { authToken } }
   );
 
@@ -34,7 +34,7 @@ const ManageSubscriptions = () => {
     // if not an auth token was used while the user was not logged in.
     if (!isLoggedIn) {
       toast.error(t('subscriptions.manage.form.query.authTokenErrorMessage'), {
-        toastId: 'MyMarketingSubscriptionsQuery',
+        toastId: 'MyCommunicationSubscriptionsQuery',
         delay: 0,
         // close automatically if an auth token has been used.
         autoClose: isLoggedIn ? false : 5000,
@@ -44,7 +44,7 @@ const ManageSubscriptions = () => {
       toast.error(
         t('subscriptions.manage.form.query.authenticatedErrorMessage'),
         {
-          toastId: 'MyMarketingSubscriptionsQuery',
+          toastId: 'MyCommunicationSubscriptionsQuery',
           delay: 3000,
           // don't close if the user is authenticated.
           autoClose: false,
@@ -53,14 +53,14 @@ const ManageSubscriptions = () => {
     }
   }
 
-  const { firstName, hasAcceptedMarketing } =
-    subscriptionsData?.myMarketingSubscriptions ?? {
+  const { firstName, hasAcceptedCommunication } =
+    subscriptionsData?.myCommunicationSubscriptions ?? {
       firstName: undefined,
-      hasAcceptedMarketing: true,
+      hasAcceptedCommunication: true,
     };
 
   const initialValues = {
-    hasAcceptedMarketing,
+    hasAcceptedCommunication,
     authToken,
   };
 

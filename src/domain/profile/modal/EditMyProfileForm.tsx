@@ -84,8 +84,9 @@ export default function EditMyProfileForm({
         lastName: payload.lastName ?? initialValues.lastName,
         phoneNumber: payload.phoneNumber ?? initialValues.phoneNumber,
         language: payload.language ?? initialValues.language,
-        hasAcceptedMarketing:
-          payload.hasAcceptedMarketing ?? initialValues.hasAcceptedMarketing,
+        hasAcceptedCommunication:
+          payload.hasAcceptedCommunication ??
+          initialValues.hasAcceptedCommunication,
         languagesSpokenAtHome: payload.languagesSpokenAtHome,
       };
 
@@ -206,10 +207,10 @@ export default function EditMyProfileForm({
             catchEscapeKey
           />
           <CheckboxField
-            id={'hasAcceptedMarketing'}
-            name={'hasAcceptedMarketing'}
+            id={'hasAcceptedCommunication'}
+            name={'hasAcceptedCommunication'}
             label={t(
-              'registration.form.guardian.hasAcceptedMarketing.input.label'
+              'registration.form.guardian.hasAcceptedCommunication.input.label'
             )}
           />
           <div className={styles.buttonsWrapper}>

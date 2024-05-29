@@ -18,7 +18,7 @@ const values: RegistrationFormValues = {
     lastName: 'gln',
     email: 'yomama@example.com',
     languagesSpokenAtHome: ['en'],
-    hasAcceptedMarketing: false,
+    hasAcceptedCommunication: false,
   },
   agree: false,
   verifyInformation: false,

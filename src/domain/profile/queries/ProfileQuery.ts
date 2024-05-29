@@ -108,7 +108,7 @@ const profileQuery = gql`
     email
     phoneNumber
     language
-    hasAcceptedMarketing
+    hasAcceptedCommunication
     children {
       ...MyProfileChildrenFields
     }

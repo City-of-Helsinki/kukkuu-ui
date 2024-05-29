@@ -60,7 +60,7 @@ const schema = yup.object().shape({
       .string()
       .required('validation.general.required')
       .max(255, 'validation.maxLength'),
-    hasAcceptedMarketing: yup.boolean(),
+    hasAcceptedCommunication: yup.boolean(),
     language: yup.string().max(255, 'validation.maxLength'),
   }),
   children: yup.array().of(
@@ -188,7 +188,8 @@ const RegistrationForm = () => {
                 phoneNumber: values.guardian.phoneNumber,
                 language: language,
                 languagesSpokenAtHome: values.guardian.languagesSpokenAtHome,
-                hasAcceptedMarketing: values.guardian.hasAcceptedMarketing,
+                hasAcceptedCommunication:
+                  values.guardian.hasAcceptedCommunication,
               };
 
               submitChildrenAndGuardian({
@@ -389,10 +390,10 @@ const RegistrationForm = () => {
                     name="guardian.languagesSpokenAtHome"
                   />
                   <CheckboxField
-                    id="guardian.hasAcceptedMarketing"
-                    name="guardian.hasAcceptedMarketing"
+                    id="guardian.hasAcceptedCommunication"
+                    name="guardian.hasAcceptedCommunication"
                     label={t(
-                      'registration.form.guardian.hasAcceptedMarketing.input.label'
+                      'registration.form.guardian.hasAcceptedCommunication.input.label'
                     )}
                   />
                   <CheckboxField
