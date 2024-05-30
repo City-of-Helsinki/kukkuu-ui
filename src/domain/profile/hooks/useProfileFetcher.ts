@@ -35,7 +35,7 @@ function useProfileFetcher({
         // eslint-disable-next-line no-console
         console.error(error);
         setProfileToContext(null);
-        setIsFullyCalled(false);
+        setIsFullyCalled(true);
         onErrorForRedux(error);
         Sentry.captureException(error);
       },
