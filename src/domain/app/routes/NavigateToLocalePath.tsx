@@ -14,4 +14,5 @@ export const NavigateToLocalePath = () => {
         replace
       />
     );
+  return null;
 };
