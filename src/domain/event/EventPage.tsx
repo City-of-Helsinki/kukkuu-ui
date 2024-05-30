@@ -29,7 +29,9 @@ const EventPage = ({ event, children, success, backTo }: EventProps) => {
     ? {
         backgroundImage: `url("${event.image}")`,
       }
-    : {};
+    : {
+        backgroundColor: 'var(--color-summer)',
+      };
 
   return (
     <>
