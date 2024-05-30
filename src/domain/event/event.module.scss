@@ -38,10 +38,6 @@
     border: none;
     border-radius: 50%;
   }
-
-  @include respond-below(l) {
-    display: none;
-  }
 }
 
 .wrapper {
