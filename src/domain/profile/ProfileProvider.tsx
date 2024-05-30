@@ -21,10 +21,16 @@ export default function ProfileProvider({
   const refetchProfile = React.useCallback(() => {
     refetch().then(({ data: refreshedData }) => {
       setProfileToContext(refreshedData?.myProfile || null);
+      // eslint-disable-next-line no-console
+      console.info('ProfileContext', 'profile refetched');
     });
   }, [refetch]);
 
-  const clearProfile = React.useCallback(() => setProfileToContext(null), []);
+  const clearProfile = React.useCallback(() => {
+    // eslint-disable-next-line no-console
+    console.info('ProfileContext', 'profile cleared');
+    setProfileToContext(null);
+  }, []);
 
   const contextValue = React.useMemo(
     () => ({
