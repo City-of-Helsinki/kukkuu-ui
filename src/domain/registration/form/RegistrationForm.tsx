@@ -41,6 +41,7 @@ import { useProfileContext } from '../../profile/hooks/useProfileContext';
 import { MyProfile } from '../../profile/types/ProfileQueryTypes';
 
 export const FORM_TESTID = 'registrationForm';
+export const EMAIL_FIELD_TESTID = 'guardian.email';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({
@@ -312,8 +313,10 @@ const RegistrationForm = () => {
                   </div>
                   <FormikTextInput
                     id="guardian.email"
+                    data-testid={EMAIL_FIELD_TESTID}
                     name="guardian.email"
                     required={true}
+                    disabled
                     label={t('registration.form.guardian.email.input.label')}
                     placeholder={t(
                       'registration.form.guardian.email.input.placeholder'
