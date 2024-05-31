@@ -89,7 +89,7 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
       imageFullHeight
     >
       {isViewMode ? (
-        <div className={styles.previewContainer}>
+        <div className={styles.previewContainer} data-color-mode="light">
           <MarkdownPreview
             source={
               markDown
@@ -99,7 +99,7 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
           />
         </div>
       ) : (
-        <div>
+        <div data-color-mode="light">
           <MarkdownEditor
             value={markDown}
             onChange={setMarkDown}
