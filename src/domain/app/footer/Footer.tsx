@@ -2,19 +2,14 @@ import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, Logo, Footer as HDSFooter, logoSv, logoFi } from 'hds-react';
 
+import useStaticLinks from '../useStaticLinks';
 import styles from './footer.module.scss';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
-import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { resetFocusId } from '../../../common/components/resetFocus/ResetFocus';
 
-type Props = {
-  className?: string;
-};
-
-const Footer: FunctionComponent<Props> = ({ className }) => {
+const Footer: FunctionComponent = () => {
   const { t, i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
-  const getPathname = useGetPathname();
 
   // override Footer component default behaviour which focuses skip-link
   const handleBackToTop = () => {
@@ -22,33 +17,7 @@ const Footer: FunctionComponent<Props> = ({ className }) => {
     document.querySelector<HTMLDivElement>(`#${resetFocusId}`)?.focus();
   };
 
-  const navigationItems = [
-    {
-      id: 'accessibilityStatement',
-      label: t('accessibilityStatement.title'),
-      path: getPathname('/accessibility#start'),
-    },
-    {
-      id: 'termsOfService',
-      label: t('termsOfService.title'),
-      path: getPathname('/terms#'),
-    },
-    {
-      id: 'cookieConsent',
-      label: t('cookieConsent.title'),
-      path: getPathname('/cookie-consent#'),
-    },
-    {
-      id: 'descriptionOfTheFile',
-      label: t('descriptionOfTheFile.title'),
-      path: t('descriptionOfTheFile.url'),
-    },
-    {
-      id: 'dataProtection',
-      label: t('dataProtection.title'),
-      path: t('dataProtection.url'),
-    },
-  ];
+  const navigationItems = useStaticLinks();
 
   return (
     <HDSFooter title={t('appName')} className={styles.footer}>
