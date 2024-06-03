@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import useGetPathname from '../../common/route/utils/useGetPathname';
 
 // todo: this hook is used for static links in the footer navigation
-// links should be reusable so the header language switch knows how to switch the language accordinly
-// if possible, replace with header menu items from headless cms
+// links should be reusable so the header language switch knows how to switch the language accordingly
+// if possible, replace with footer menu items from headless cms
 
 export default function useStaticLinks() {
   const { t } = useTranslation();

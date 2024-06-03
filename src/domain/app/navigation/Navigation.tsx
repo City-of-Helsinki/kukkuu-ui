@@ -38,12 +38,12 @@ function Navigation() {
       });
       const strippedPathname = stripLocaleFromUri(location.pathname);
       // special logic for static urls
-      if (Boolean(strippedPathname)) {
+      if (strippedPathname) {
         const staticUrl = staticMenuItems.find((menuItem) => {
           return menuItem.slug?.startsWith(strippedPathname);
         });
         if (staticUrl) {
-          return `/${language.toLowerCase()}${staticUrl.slug || ''}`;
+          return `/${language.toLowerCase()}${staticUrl.slug ?? ''}`;
         }
       }
 
