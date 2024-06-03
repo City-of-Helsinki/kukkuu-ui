@@ -7,5 +7,5 @@ export const removeSurroundingSlashes = (path: string) => {
 };
 
 export const normalizeCmsUri = (uri: string) => {
-  return removeSurroundingSlashes(stripLocaleFromUri(uri));
+  return decodeURIComponent(removeSurroundingSlashes(stripLocaleFromUri(uri)));
 };

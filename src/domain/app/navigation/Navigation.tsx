@@ -26,7 +26,6 @@ function Navigation() {
   const location = useLocation();
 
   const cmsLanguageOptions = useCmsLanguageOptions();
-
   const staticMenuItems = useStaticLinks();
 
   const getHref = useCallback(
