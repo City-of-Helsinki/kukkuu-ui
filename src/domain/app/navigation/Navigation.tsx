@@ -60,8 +60,10 @@ function Navigation() {
 
   const getIsItemActive = (menuItem: MenuItem): boolean => {
     const pathWithoutTrailingSlash = (menuItem.path ?? '').replace(/\/$/, '');
-    return window.location.pathname.includes(
-      `/${i18n.language}${stripLocaleFromUri(pathWithoutTrailingSlash)}`
+    decodeURIComponent(window.location.pathname).includes(
+      decodeURIComponent(
+        `/${i18n.language}${stripLocaleFromUri(pathWithoutTrailingSlash)}`
+      )
     );
   };
 
