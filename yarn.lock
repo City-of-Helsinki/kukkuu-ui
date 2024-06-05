@@ -8071,17 +8071,17 @@ hastscript@^8.0.0:
     property-information "^6.0.0"
     space-separated-tokens "^2.0.0"
 
-hds-core@3.8.0, hds-core@^3.8.0:
+hds-core@3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-3.8.0.tgz#39003a0c129de767239fc1f904d89b6424edc9a1"
   integrity sha512-T0+/tkyT5WCbGYHnSFXZeBE4wRu4PjD29njb2ANfiYFwlQfdkLGx4hCod0bjFb9kde/RktRwhXadwOwpmVg3dA==
 
-hds-design-tokens@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/hds-design-tokens/-/hds-design-tokens-3.7.0.tgz#233636beeff5df39d47cfb4e4861e760a085c3c3"
-  integrity sha512-JBfVmsDQbLAPwX1Xh0uX5o3q4xfqQSQSWx4vewXmOBTjNkGcf2au+XCo9S5QvETai9OR85m5GbTh33DXquFLXw==
+hds-design-tokens@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/hds-design-tokens/-/hds-design-tokens-3.8.0.tgz#ae015e1147c17667ca7efd941e1367ed19dee80c"
+  integrity sha512-WMC7yavB9acCYkUmr8z2kqjEc+P0h27C1rQ6P4jYmV9XrJpctS8FBzyCb1/CNVP1D6klBrj3KwF5b1zWJGl+yA==
 
-hds-react@^3.8.0:
+hds-react@3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/hds-react/-/hds-react-3.8.0.tgz#03f65f744f0192af7097846f447621b62fd52681"
   integrity sha512-nb8c2eUcLdFRvGg+pnyaUZbBm8V5cfDp20emHQQWxbMmo+R3aj6Azc8tM02fjkSkqr/+oqL6xvz2AIxbIDqkqA==
@@ -11079,12 +11079,12 @@ react-helmet-async@^2.0.4:
     react-fast-compare "^3.2.2"
     shallowequal "^1.1.0"
 
-react-helsinki-headless-cms@^1.0.0-alpha273:
-  version "1.0.0-alpha273"
-  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha273.tgz#f06048fe5cc1937b318e7c6f82018203e04d54cf"
-  integrity sha512-4n2ym3gLRf+B6d15EbNCVX+QbIKyftVKLcL/xMHAUpplublFLaskPUHkU/HeH+ANB7LOauQ9Tb4JNRjbDbXVzA==
+react-helsinki-headless-cms@^1.0.0-alpha279:
+  version "1.0.0-alpha279"
+  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha279.tgz#daff44eedb232691f373734afe2330dca1522b97"
+  integrity sha512-5ocxtVVgWRw+Q4Qh5JsNhnsWJt4y0YkYha1JHYsZTLeGr/pImq82/yP3JlVEQokvFN76KYt4edfDWCMqnwHHQg==
   dependencies:
-    hds-design-tokens "^3.7.0"
+    hds-design-tokens "^3.8.0"
     html-entities "^2.4.0"
     html-react-parser "^4.2.9"
     isomorphic-dompurify "^1.8.0"

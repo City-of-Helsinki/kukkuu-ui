@@ -48,9 +48,7 @@
     "graphql": "^16.0.0",
     "immer": "^9.0.0",
     "nth-check": ">=2.0.1",
-    "set-value": ">=4.0.1",
-    "hds-core": "3.8.0",
-    "hds-react": "3.8.0"
+    "set-value": ">=4.0.1"
   },
   "dependencies": {
     "@apollo/client": "^3.7.16",
@@ -93,6 +91,8 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-testcafe": "^0.2.1",
     "formik": "^2.4.5",
+    "hds-core": "3.8.0",
+    "hds-react": "3.8.0",
     "html-react-parser": "^4.2.2",
     "i18next": "^23.5.1",
     "i18next-browser-languagedetector": "^7.1.0",
@@ -106,7 +106,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.4",
-    "react-helsinki-headless-cms": "^1.0.0-alpha273",
+    "react-helsinki-headless-cms": "^1.0.0-alpha279",
     "react-i18next": "^13.2.2",
     "react-modal": "^3.16.1",
     "react-qrcode-logo": "^2.9.0",
