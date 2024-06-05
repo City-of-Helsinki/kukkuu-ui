@@ -51,11 +51,6 @@ function useProfileFetcher({
       console.info('Fetching profile from Kukkuu API...');
       fetchProfile();
     }
-    return () => {
-      setIsFullyCalled(false);
-      // eslint-disable-next-line no-console
-      console.info('Cleaned the fetchProfile effect.');
-    };
   }, [called, fetchProfile, isLoginReady]);
 
   return {

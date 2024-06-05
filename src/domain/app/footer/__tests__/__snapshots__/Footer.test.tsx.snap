@@ -6,7 +6,8 @@ exports[`renders snapshot correctly 1`] = `
     class="Footer-module_footer__1aD3T _footer_ca2122"
   >
     <div
-      class="Koros-module_koros__1r3rg Footer-module_koros__Orx_W Footer-module_basic__2VejY"
+      class="Koros-module_koros__1r3rg Footer-module_koros__Orx_W"
+      style="height: 15px;"
     >
       <svg
         aria-hidden="true"
