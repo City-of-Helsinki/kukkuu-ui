@@ -12,7 +12,6 @@ import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConsta
 import UserNavigation from './UserNavigation';
 import { useCmsLanguageOptions } from '../../../hooks/useCmsLanguageOptions';
 import { stripLocaleFromUri } from '../../../utils/cmsUtils';
-import useStaticLinks from '../useStaticLinks';
 
 const languageToMenuNameMap = {
   [SUPPORT_LANGUAGES.FI]: 'Main Navigation FI',
@@ -26,8 +25,6 @@ function Navigation() {
   const location = useLocation();
 
   const cmsLanguageOptions = useCmsLanguageOptions();
-
-  const staticMenuItems = useStaticLinks();
 
   const getHref = useCallback(
     (language: LanguageCodeEnum) => {
@@ -48,7 +45,7 @@ function Navigation() {
         strippedPathname ? stripLocaleFromUri(nav?.uri ?? '') : ''
       }`;
     },
-    [cmsLanguageOptions, location.pathname, staticMenuItems]
+    [cmsLanguageOptions, location.pathname]
   );
 
   const getPathnameForLanguage = (language: Language): string => {
