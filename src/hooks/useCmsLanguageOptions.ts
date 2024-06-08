@@ -9,17 +9,22 @@ export const useCmsLanguageOptions = ({
   skip = false,
 }: { skip?: boolean } = {}) => {
   const location = useLocation();
-  const { data: pageData } = usePageQuery(location.pathname, { skip });
+  const { data: pageData } = usePageQuery(
+    location.pathname.replace(/\/$/, ''),
+    { skip }
+  );
 
   return !skip
     ? [
         {
           uri: pageData?.page?.uri,
           locale: pageData?.page?.language?.code?.toLowerCase(),
+          isCurrentPage: true,
         },
         ...(pageData?.page?.translations?.map((translation) => ({
           uri: translation?.uri,
           locale: translation?.language?.code?.toLowerCase(),
+          isCurrentPage: false,
         })) ?? []),
       ]
     : [];

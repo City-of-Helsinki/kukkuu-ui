@@ -6,8 +6,6 @@ import Layout from '../Layout';
 import Home from '../../home/Home';
 import NotEligible from '../../registration/notEligible/NotEligible';
 import WrongLoginMethod from '../../auth/WrongLoginMethod';
-import AccessibilityStatement from '../../accessibilityStatement/AccessibilityStatement';
-import TermsOfService from '../../termsOfService/TermsOfService';
 import RegistrationForm from '../../registration/form/RegistrationForm';
 import Welcome from '../../registration/welcome/Welcome';
 import Profile from '../../profile/Profile';
@@ -68,24 +66,6 @@ const browserRouter = createBrowserRouter([
           <AppRoute
             titleKey="auth.wrongLoginMethod.title"
             element={<WrongLoginMethod />}
-          />
-        ),
-      },
-      {
-        path: 'accessibility',
-        element: (
-          <AppRoute
-            titleKey="accessibilityStatement.title"
-            element={<AccessibilityStatement />}
-          />
-        ),
-      },
-      {
-        path: 'terms',
-        element: (
-          <AppRoute
-            titleKey="termsOfService.title"
-            element={<TermsOfService />}
           />
         ),
       },

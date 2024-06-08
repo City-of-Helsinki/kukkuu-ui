@@ -1,13 +1,30 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, Logo, Footer as HDSFooter, logoSv, logoFi } from 'hds-react';
+import { MenuItem } from 'react-helsinki-headless-cms';
+import { useMenuQuery } from 'react-helsinki-headless-cms/apollo';
+import { Logo, Footer as HDSFooter, logoSv, logoFi } from 'hds-react';
 
-import useStaticLinks from '../useStaticLinks';
 import styles from './footer.module.scss';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import { resetFocusId } from '../../../common/components/resetFocus/ResetFocus';
+import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
+
+type ValidMenuItem = {
+  id: MenuItem['id'];
+  label: NonNullable<MenuItem['label']>;
+  path: NonNullable<MenuItem['path']>;
+};
+
+const isValidMenuItem = (menuItem: MenuItem): menuItem is ValidMenuItem =>
+  !!menuItem.label && !!menuItem.path;
 
 const Footer: FunctionComponent = () => {
+  const languageToMenuNameMap = {
+    [SUPPORT_LANGUAGES.FI]: 'Footer Navigation FI',
+    [SUPPORT_LANGUAGES.SV]: 'Footer Navigation SV',
+    [SUPPORT_LANGUAGES.EN]: 'Footer Navigation EN',
+  } as const;
+
   const { t, i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
 
@@ -17,7 +34,14 @@ const Footer: FunctionComponent = () => {
     document.querySelector<HTMLDivElement>(`#${resetFocusId}`)?.focus();
   };
 
-  const navigationItems = useStaticLinks();
+  const footerMenuQuery = useMenuQuery({
+    variables: {
+      id: languageToMenuNameMap[currentLocale],
+      menuIdentifiersOnly: true,
+    },
+  });
+  const footerLinks =
+    footerMenuQuery.data?.menu?.menuItems?.nodes?.filter(isValidMenuItem) ?? [];
 
   return (
     <HDSFooter title={t('appName')} className={styles.footer}>
@@ -33,12 +57,11 @@ const Footer: FunctionComponent = () => {
         backToTopLabel={t('footer.backToTop')}
         onBackToTopClick={handleBackToTop}
       >
-        {navigationItems.map((navigationItem) => (
+        {footerLinks.map((footerLink) => (
           <HDSFooter.Link
-            key={navigationItem?.id}
-            as={Link}
-            href={navigationItem?.path || ''}
-            label={navigationItem?.label ?? undefined}
+            key={footerLink.id}
+            href={footerLink.path}
+            label={footerLink.label}
           />
         ))}
       </HDSFooter.Base>
