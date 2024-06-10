@@ -20,7 +20,7 @@ export const footerMenuQueryResponse = {
             order: 1,
             target: null,
             title: null,
-            path: 'https://kukku.fi/fi',
+            path: 'https://kukkuu.fi/fi',
             label: 'Kulttuurin kummilapset',
             connectedNode: null,
             __typename: 'MenuItem',
