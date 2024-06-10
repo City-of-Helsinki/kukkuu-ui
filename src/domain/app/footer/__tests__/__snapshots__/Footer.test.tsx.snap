@@ -1,187 +1,143 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`renders snapshot correctly 1`] = `
-<div>
-  <footer
-    class="Footer-module_footer__1aD3T _footer_ca2122"
+exports[`Footer matches snapshot 1`] = `
+<footer
+  class="Footer-module_footer__1aD3T _footer_ca2122"
+>
+  <div
+    class="Koros-module_koros__1r3rg Footer-module_koros__Orx_W Footer-module_basic__2VejY"
+  >
+    <svg
+      aria-hidden="true"
+      height="85"
+      width="100%"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <pattern
+          height="85"
+          id="koros_basic-1"
+          patternUnits="userSpaceOnUse"
+          width="96"
+          x="0"
+          y="0"
+        >
+          <path
+            d="m0 5v80h32v-80c-8 0-8-5-16-5s-8 5-16 5z"
+            transform="scale(3)"
+          />
+        </pattern>
+      </defs>
+      <rect
+        fill="url(#koros_basic-1)"
+        height="85"
+        style="shape-rendering: crispEdges;"
+        width="100%"
+      />
+    </svg>
+  </div>
+  <div
+    class="Footer-module_footerContent__3MC14"
   >
     <div
-      class="Koros-module_koros__1r3rg Footer-module_koros__Orx_W Footer-module_basic__2VejY"
+      class="Footer-module_footerSections__2nrr8"
     >
-      <svg
-        aria-hidden="true"
-        height="85"
-        width="100%"
-        xmlns="http://www.w3.org/2000/svg"
+      <h2
+        class="Footer-module_title__269y7"
       >
-        <defs>
-          <pattern
-            height="85"
-            id="koros_basic-1"
-            patternUnits="userSpaceOnUse"
-            width="96"
-            x="0"
-            y="0"
-          >
-            <path
-              d="m0 5v80h32v-80c-8 0-8-5-16-5s-8 5-16 5z"
-              transform="scale(3)"
-            />
-          </pattern>
-        </defs>
-        <rect
-          fill="url(#koros_basic-1)"
-          height="85"
-          style="shape-rendering: crispEdges;"
-          width="100%"
-        />
-      </svg>
-    </div>
-    <div
-      class="Footer-module_footerContent__3MC14"
-    >
+        Kulttuurin kummilapset
+      </h2>
       <div
-        class="Footer-module_footerSections__2nrr8"
+        class="FooterBase-module_base__2f0eu"
       >
-        <h2
-          class="Footer-module_title__269y7"
-        >
-          Kulttuurin kummilapset
-        </h2>
+        <hr
+          aria-hidden="true"
+          class="FooterBase-module_divider__3sz3q"
+        />
         <div
-          class="FooterBase-module_base__2f0eu"
+          class="FooterBase-module_logoWrapper__3BI7d"
         >
-          <hr
-            aria-hidden="true"
-            class="FooterBase-module_divider__3sz3q"
-          />
-          <div
-            class="FooterBase-module_logoWrapper__3BI7d"
+          <a
+            class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B"
+            tabindex="0"
           >
-            <a
-              class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B"
-              tabindex="0"
+            <img
+              alt="Helsingin kaupunki"
+              class="Logo-module_logo__Y2mwP Logo-module_medium__1zyWm"
+              src="mocked hds-react logoFi"
+            />
+          </a>
+        </div>
+        <div
+          class="FooterBase-module_copyright__2iiev"
+        >
+          <span>
+            © 
+            Helsingin kaupunki
+             
+            2024
+          </span>
+        </div>
+        <div
+          class="FooterBase-module_baseActions__1hCiR"
+        >
+          <div
+            class="FooterBase-module_links__3lfLo"
+          >
+            <span
+              aria-hidden="true"
+              class="FooterBase-module_separator__cwQTe"
             >
-              <img
-                alt="Helsingin kaupunki"
-                class="Logo-module_logo__Y2mwP Logo-module_medium__1zyWm"
-                src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNzggMzYiIHRpdGxlPSJIZWxzaW5naW4ga2F1cHVua2kiIHJvbGU9ImltZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoCiAgICAgICAgZD0iTTc1Ljc1MyAyLjI1MXYyMC43YzAgMy45NS0zLjI3NSA3LjE3OC03LjMxIDcuMTc4aC0yMi4yNmMtMi42NzQgMC01LjIwNS45Ni03LjE4MyAyLjczOWExMC43NDkgMTAuNzQ5IDAgMDAtNy4xODMtMi43NEg5LjUwOWMtNC4wMDMgMC03LjI0Ny0zLjIxLTcuMjQ3LTcuMTc3VjIuMjVoNzMuNDkxek00MC4xODcgMzQuODM1YTguNDcgOC40NyAwIDAxNi4wMTItMi40NzFoMjIuMjQ1YzUuMjY4IDAgOS41NTYtNC4yMTkgOS41NTYtOS40MTNWMEgwdjIyLjkzNWMwIDUuMTk0IDQuMjU2IDkuNDEzIDkuNTA5IDkuNDEzaDIyLjMwOGMyLjI2MyAwIDQuMzk4Ljg4MiA2LjAxMiAyLjQ3MUwzOS4wMTYgMzZsMS4xNy0xLjE2NXoiCiAgICAgICAgZmlsbD0iY3VycmVudENvbG9yIiAvPgogICAgPHBhdGgKICAgICAgICBkPSJNNjcuNTIyIDExLjY3NmMwIC42ODEtLjU1NiAxLjE3Ny0xLjI1NSAxLjE3Ny0uNyAwLTEuMjU1LS40OTYtMS4yNTUtMS4xNzcgMC0uNjgyLjU1Ni0xLjE3OCAxLjI1NS0xLjE3OC43LS4wMyAxLjI1NS40NjUgMS4yNTUgMS4xNzh6bS0yLjM1MiA5LjYyMmgyLjE3OHYtNy41NDZINjUuMTd2Ny41NDZ6bS0zLjkwOS00LjU1NmwyLjg0NSA0LjU1NmgtMi4zNjhsLTEuOTA3LTMuMDIyLTEuMDMzIDEuMjcxdjEuNzVoLTIuMTYxVjEwLjQ1M2gyLjE2djUuMDA0YzAgLjkzLS4xMSAxLjg2LS4xMSAxLjg2aC4wNDdzLjUwOS0uODIxLjkzOC0xLjQxbDEuNjUzLTIuMTU0aDIuNTQybC0yLjYwNiAyLjk5em0tNi44MTctLjI3OGMwLTEuODc1LS45MzgtMi44OTgtMi40MzItMi44OTgtMS4yNzEgMC0xLjkzOS43MjgtMi4zMiAxLjQyNmgtLjA0OGwuMTEyLTEuMjRoLTIuMTYydjcuNTQ2aDIuMTYyVjE2LjgyYzAtLjg2OC41MjQtMS40NzIgMS4zMzUtMS40NzIuODEgMCAxLjE2LjUyNyAxLjE2IDEuNTM0djQuNDE2aDIuMTc3bC4wMTYtNC44MzR6bS04LjkzMS00Ljc4OGMwIC42ODEtLjU1NyAxLjE3Ny0xLjI1NiAxLjE3Ny0uNyAwLTEuMjU1LS40OTYtMS4yNTUtMS4xNzcgMC0uNjgyLjU1Ni0xLjE3OCAxLjI1NS0xLjE3OC43MTUtLjAzIDEuMjU2LjQ2NSAxLjI1NiAxLjE3OHptLTIuMzUyIDkuNjIyaDIuMTc3di03LjU0Nkg0My4xNnY3LjU0NnptLTMuNzUtMi4xMDdjMC0uNjA1LS44NTktLjcyOS0xLjg2LTEuMDA4LTEuMTYtLjI5NC0yLjYyMi0uODY3LTIuNjIyLTIuMzA4IDAtMS40MjYgMS4zOTgtMi4zMjQgMy4wNTEtMi4zMjQgMS41NDEgMCAyLjk1Ni43MTIgMy41NDQgMS43MmwtMS44NiAxLjAyMmMtLjE5LS42NjYtLjc2Mi0xLjE5My0xLjYyLTEuMTkzLS41NTcgMC0xLjAxOC4yMzItMS4wMTguNjgyIDAgLjU3MyAxLjAxOC42MzUgMi4xNjIuOTkxIDEuMjA4LjM3MiAyLjMyLjkxNSAyLjMyIDIuMjk0IDAgMS41MTgtMS40NDYgMi40MTctMy4xMTUgMi40MTctMS44MTEgMC0zLjI0Mi0uNzQ0LTMuODc3LTEuOTUybDEuODktMS4wMzljLjI0LjgyMi45MjIgMS40NDEgMS45NTUgMS40NDEuNjIgMCAxLjA1LS4yNDggMS4wNS0uNzQzem0tNi44ODItOC42NzdoLTIuMTc3djguNjkyYzAgLjc3NS4xNzUgMS4zNDguNTA5IDEuNzA1LjM1LjM1Ni44OS41MjYgMS42MzYuNTI2LjI1NSAwIC41MjUtLjAzLjc4LS4wNzcuMjctLjA2Mi40NzYtLjE0LjY1LS4yMzNsLjE5MS0xLjQyNWEyLjA3IDIuMDcgMCAwMS0uNDYuMTI0Yy0uMTI4LjAzLS4yODcuMDMtLjQ2MS4wMy0uMjg2IDAtLjQxNC0uMDc3LS41MDktLjIxNi0uMTExLS4xNC0uMTU5LS4zODctLjE1OS0uNzQ0di04LjM4MnptLTcuMjQ2IDQuNTdjLS43OTUgMC0xLjQ0Ni41NTgtMS42MjEgMS41ODFoMy4wNWMuMDE3LS44OTktLjU4Ny0xLjU4LTEuNDMtMS41OHptMy4zNTMgMy4wMDdIMjMuNjNjLjA5NSAxLjIyNC43OTQgMS44MjggMS43IDEuODI4LjgxIDAgMS4zNjctLjUyNyAxLjQ5NC0xLjI0bDEuODI4IDEuMDA3Yy0uNTQuOTYxLTEuNyAxLjc5OC0zLjMyMiAxLjc5OC0yLjE2IDAtMy43NS0xLjQ3Mi0zLjc1LTMuOTUxIDAtMi40NjQgMS42Mi0zLjk1MSAzLjcwMy0zLjk1MSAyLjA4MSAwIDMuNDY0IDEuNDQgMy40NjQgMy40ODYtLjAxNi42MDQtLjExMSAxLjAyMy0uMTExIDEuMDIzem0tMTEuMDc3IDMuMjA3aDIuMjU3VjEwLjkxNmgtMi4yNTd2NC4xMDdoLTQuMjQzdi00LjA5MUgxMS4wNnYxMC4zNjZoMi4yNTZ2LTQuMjkyaDQuMjQzdjQuMjkyeiIKICAgICAgICBmaWxsPSJjdXJyZW50Q29sb3IiIC8+Cjwvc3ZnPg=="
-              />
+              |
+            </span>
+            <a
+              class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
+              href="https://kukku.fi/fi"
+            >
+              <span>
+                Kulttuurin kummilapset
+              </span>
+            </a>
+            <span
+              aria-hidden="true"
+              class="FooterBase-module_separator__cwQTe"
+            >
+              |
+            </span>
+            <a
+              class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
+              href="https://hkih.production.geniem.io/saavutettavuusseloste"
+            >
+              <span>
+                Saavutettavuusseloste
+              </span>
             </a>
           </div>
-          <div
-            class="FooterBase-module_copyright__2iiev"
+          <button
+            class="FooterBase-module_backToTopButton__hXTHm"
+            role="link"
+            type="button"
           >
-            <span>
-              © 
-              Helsingin kaupunki
-               
-              2024
-            </span>
-          </div>
-          <div
-            class="FooterBase-module_baseActions__1hCiR"
-          >
-            <div
-              class="FooterBase-module_links__3lfLo"
+            Takaisin alkuun
+            <svg
+              aria-hidden="true"
+              aria-label="arrow-up"
+              class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <span
-                aria-hidden="true"
-                class="FooterBase-module_separator__cwQTe"
-              >
-                |
-              </span>
-              <a
-                class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                href="/accessibility#start"
-              >
-                <span>
-                  Saavutettavuusseloste
-                </span>
-              </a>
-              <span
-                aria-hidden="true"
-                class="FooterBase-module_separator__cwQTe"
-              >
-                |
-              </span>
-              <a
-                class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                href="/terms#"
-              >
-                <span>
-                  Käyttöehdot
-                </span>
-              </a>
-              <span
-                aria-hidden="true"
-                class="FooterBase-module_separator__cwQTe"
-              >
-                |
-              </span>
-              <a
-                class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                href="/cookie-consent#"
-              >
-                <span>
-                  Evästeasetukset
-                </span>
-              </a>
-              <span
-                aria-hidden="true"
-                class="FooterBase-module_separator__cwQTe"
-              >
-                |
-              </span>
-              <a
-                class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kuva/Kulttuurin%20kummilapset%20-kummiperherekisteri.pdf"
-              >
-                <span>
-                  Rekisteriseloste
-                </span>
-              </a>
-              <span
-                aria-hidden="true"
-                class="FooterBase-module_separator__cwQTe"
-              >
-                |
-              </span>
-              <a
-                class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                href="https://www.hel.fi/fi/paatoksenteko-ja-hallinto/tietoa-helsingista/tietosuoja-ja-tiedonhallinta/tietosuoja"
-              >
-                <span>
-                  Tietosuoja
-                </span>
-              </a>
-            </div>
-            <button
-              class="FooterBase-module_backToTopButton__hXTHm"
-              role="link"
-              type="button"
-            >
-              Takaisin alkuun
-              <svg
-                aria-hidden="true"
-                aria-label="arrow-up"
-                class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
-                role="img"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M12 3.5L18.5 10L17 11.5L13 7.5V20H11V7.5L7 11.5L5.5 10L12 3.5Z"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                clip-rule="evenodd"
+                d="M12 3.5L18.5 10L17 11.5L13 7.5V20H11V7.5L7 11.5L5.5 10L12 3.5Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
-  </footer>
-</div>
+  </div>
+</footer>
 `;

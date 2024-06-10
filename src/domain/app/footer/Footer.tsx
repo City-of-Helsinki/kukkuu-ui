@@ -7,7 +7,7 @@ import { Logo, Footer as HDSFooter, logoSv, logoFi } from 'hds-react';
 import styles from './footer.module.scss';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import { resetFocusId } from '../../../common/components/resetFocus/ResetFocus';
-import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
+import { languageToMenuNameMap } from './constants';
 
 type ValidMenuItem = {
   id: MenuItem['id'];
@@ -19,12 +19,6 @@ const isValidMenuItem = (menuItem: MenuItem): menuItem is ValidMenuItem =>
   !!menuItem.label && !!menuItem.path;
 
 const Footer: FunctionComponent = () => {
-  const languageToMenuNameMap = {
-    [SUPPORT_LANGUAGES.FI]: 'Footer Navigation FI',
-    [SUPPORT_LANGUAGES.SV]: 'Footer Navigation SV',
-    [SUPPORT_LANGUAGES.EN]: 'Footer Navigation EN',
-  } as const;
-
   const { t, i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
 

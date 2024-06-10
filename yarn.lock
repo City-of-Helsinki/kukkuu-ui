@@ -8076,10 +8076,10 @@ hds-core@3.7.0, hds-core@^3.7.0:
   resolved "https://registry.yarnpkg.com/hds-core/-/hds-core-3.7.0.tgz#4a4d65786afac4a8c4d10d1739b10cc8e2fc611f"
   integrity sha512-rgr7r2b6nGqLiYR7StG2dY/31zXT988hsSLu8ipkDM4hTdFRLGGtqNpPP+6B8WlksAmszVmMwF6BbDxdAxtWfA==
 
-hds-design-tokens@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/hds-design-tokens/-/hds-design-tokens-3.7.0.tgz#233636beeff5df39d47cfb4e4861e760a085c3c3"
-  integrity sha512-JBfVmsDQbLAPwX1Xh0uX5o3q4xfqQSQSWx4vewXmOBTjNkGcf2au+XCo9S5QvETai9OR85m5GbTh33DXquFLXw==
+hds-design-tokens@^3.8.0:
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/hds-design-tokens/-/hds-design-tokens-3.8.0.tgz#ae015e1147c17667ca7efd941e1367ed19dee80c"
+  integrity sha512-WMC7yavB9acCYkUmr8z2kqjEc+P0h27C1rQ6P4jYmV9XrJpctS8FBzyCb1/CNVP1D6klBrj3KwF5b1zWJGl+yA==
 
 hds-react@^3.7.0:
   version "3.7.0"
@@ -11079,12 +11079,12 @@ react-helmet-async@^2.0.4:
     react-fast-compare "^3.2.2"
     shallowequal "^1.1.0"
 
-react-helsinki-headless-cms@^1.0.0-alpha273:
-  version "1.0.0-alpha273"
-  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha273.tgz#f06048fe5cc1937b318e7c6f82018203e04d54cf"
-  integrity sha512-4n2ym3gLRf+B6d15EbNCVX+QbIKyftVKLcL/xMHAUpplublFLaskPUHkU/HeH+ANB7LOauQ9Tb4JNRjbDbXVzA==
+react-helsinki-headless-cms@^1.0.0-alpha280:
+  version "1.0.0-alpha280"
+  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha280.tgz#9c36b443705f6c73db9e1aec3324a6dd4ab03578"
+  integrity sha512-kbABUVZXDZpjYTiKDKWduAXtPZd5cubafkVYg7L/1MWmgf/P+tLGDUGOcNTvNhIQzfzZbVemcYVY0AY3weZ9Xw==
   dependencies:
-    hds-design-tokens "^3.7.0"
+    hds-design-tokens "^3.8.0"
     html-entities "^2.4.0"
     html-react-parser "^4.2.9"
     isomorphic-dompurify "^1.8.0"
