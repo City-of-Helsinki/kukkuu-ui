@@ -1,12 +1,10 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   Config,
-  defaultConfig,
+  defaultConfig as rhhcDefaultConfig,
   LanguageCodeEnum,
   ModuleItemTypeEnum,
-  Link as RHHCLink,
 } from 'react-helsinki-headless-cms';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import headlessCmsClient from '../domain/headlessCms/client';
@@ -16,37 +14,6 @@ import { SUPPORT_LANGUAGES } from '../common/translation/TranslationConstants';
 const APP_DOMAIN = new URL(AppConfig.origin).origin;
 const API_URI = new URL(AppConfig.apiUrl).origin;
 const CMS_URI = new URL(AppConfig.cmsUri).origin;
-
-const ReactRouterLinkWrapper = ({
-  href,
-  ...delegatedProps
-}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-  <Link {...delegatedProps} to={href as string} />
-);
-
-const ReactRouterStyledLinkWrapper = ({
-  href,
-  target,
-  ...delegatedProps
-}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-  const internalLink = !href?.startsWith('http');
-
-  if (internalLink) {
-    return (
-      <Link {...delegatedProps} to={href as string}>
-        <RHHCLink />
-      </Link>
-    );
-  }
-
-  return (
-    <RHHCLink
-      {...delegatedProps}
-      openInNewTab={target === '_blank'}
-      href={href}
-    />
-  );
-};
 
 const appLanguageToRHHCLanguageMap = {
   [SUPPORT_LANGUAGES.FI]: LanguageCodeEnum.Fi,
@@ -63,16 +30,15 @@ export default function useRHHCConfig(): Config {
   const internalHrefOrigins = useMemo(() => [APP_DOMAIN, API_URI, CMS_URI], []);
   return useMemo(
     () => ({
-      ...defaultConfig,
+      ...rhhcDefaultConfig,
       siteName: t('appName'),
       internalHrefOrigins,
       apolloClient: headlessCmsClient,
       currentLanguageCode:
         appLanguageToRHHCLanguageMap[language] ?? LanguageCodeEnum.Fi,
       components: {
-        Img: defaultConfig.components.Img,
-        A: ReactRouterLinkWrapper,
-        Link: ReactRouterStyledLinkWrapper,
+        ...rhhcDefaultConfig.components,
+        Img: rhhcDefaultConfig.components.Img,
       },
       copy: {
         breadcrumbNavigationLabel: '', // t('common.breadcrumbNavigationLabel'),
@@ -101,7 +67,7 @@ export default function useRHHCConfig(): Config {
         previous: t('common:button.previous'),
       },
       utils: {
-        ...defaultConfig.utils,
+        ...rhhcDefaultConfig.utils,
         getRoutedInternalHref: (
           link?: string | null,
           type?: ModuleItemTypeEnum

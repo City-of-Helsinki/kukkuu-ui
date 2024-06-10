@@ -93,78 +93,7 @@ exports[`renders without crashing 1`] = `
             >
               <div
                 class="FooterBase-module_links__3lfLo"
-              >
-                <span
-                  aria-hidden="true"
-                  class="FooterBase-module_separator__cwQTe"
-                >
-                  |
-                </span>
-                <a
-                  class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                  href="/accessibility#start"
-                >
-                  <span>
-                    Saavutettavuusseloste
-                  </span>
-                </a>
-                <span
-                  aria-hidden="true"
-                  class="FooterBase-module_separator__cwQTe"
-                >
-                  |
-                </span>
-                <a
-                  class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                  href="/terms#"
-                >
-                  <span>
-                    Käyttöehdot
-                  </span>
-                </a>
-                <span
-                  aria-hidden="true"
-                  class="FooterBase-module_separator__cwQTe"
-                >
-                  |
-                </span>
-                <a
-                  class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                  href="/cookie-consent#"
-                >
-                  <span>
-                    Evästeasetukset
-                  </span>
-                </a>
-                <span
-                  aria-hidden="true"
-                  class="FooterBase-module_separator__cwQTe"
-                >
-                  |
-                </span>
-                <a
-                  class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                  href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kuva/Kulttuurin%20kummilapset%20-kummiperherekisteri.pdf"
-                >
-                  <span>
-                    Rekisteriseloste
-                  </span>
-                </a>
-                <span
-                  aria-hidden="true"
-                  class="FooterBase-module_separator__cwQTe"
-                >
-                  |
-                </span>
-                <a
-                  class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_linkM__30gsY link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-                  href="https://www.hel.fi/fi/paatoksenteko-ja-hallinto/tietoa-helsingista/tietosuoja-ja-tiedonhallinta/tietosuoja"
-                >
-                  <span>
-                    Tietosuoja
-                  </span>
-                </a>
-              </div>
+              />
               <button
                 class="FooterBase-module_backToTopButton__hXTHm"
                 role="link"
