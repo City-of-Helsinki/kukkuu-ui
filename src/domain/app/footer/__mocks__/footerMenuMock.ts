@@ -6,7 +6,6 @@ import { languageToMenuNameMap } from '../constants';
 
 /**
  * This is a mock of the response from the footer menu query.
- * Data taken from production CMS query response.
  */
 export const footerMenuQueryResponse = {
   data: {
