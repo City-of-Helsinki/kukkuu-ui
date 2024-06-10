@@ -399,6 +399,35 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.3.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.2.0...kukkuu-ui-v3.3.0) (2024-06-05)
+
+
+### Features
+
+* Renamed "has accepted marketing" to "has accepted communication" ([87d873d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/87d873d8a620d18e7befdbb0fbfe7bf1ef7f492c))
+* Use authorization flow and HDS login handler ([e055eac](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e055eac5d38838225a0de02ac2d50cbd25a96319))
+
+
+### Bug Fixes
+
+* Add color to hero background when image not given ([d41afb8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d41afb806aafd6771be11a9f942618d5224c177f))
+* Add unauthorized translations ([2d7041f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2d7041f917a2d1b5a44207dd70e2849414a548a7))
+* Body margin removed ([#561](https://github.com/City-of-Helsinki/kukkuu-ui/issues/561)) ([4954c82](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4954c82d31f8eea262826d0a6c6b1d24e9e68778))
+* Child enrolment count should update when enrolled or unenrolled ([75e9e5e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/75e9e5e83722f2d34668c450ec605ec8cdc586f1))
+* Children list should update from CRUD-operations ([c4a2a36](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c4a2a36b20477916af115f4e98298536c7e4bb18))
+* Clear profile from redux when not authenticated ([882604f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/882604f5a5912936ae29cf93aa7474d30dcb88bc))
+* Disable editing email field in registration form ([b5df22f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b5df22fdf451724ddec26f7975aa857cf5f803d8))
+* Header and footer (partial) menu localized routing ([#564](https://github.com/City-of-Helsinki/kukkuu-ui/issues/564)) ([e111749](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e111749a83f87b51cf069be55c9efd42c91bea2c))
+* Locale route navigate should use the location hash ([1dd7c92](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1dd7c92f5eab6e62dd27a8ec2c7fdcf5cbb4d4a8))
+* Md editor and preview force light theme ([#568](https://github.com/City-of-Helsinki/kukkuu-ui/issues/568)) ([c6f94d6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c6f94d6930a8444a5548e3f761eb8338ac49000b))
+* Mobile view should show the back button ([8ec445e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8ec445e0da056bbee2bfaf98c1bd245e75a54d84))
+* Profile fetcher is fully called even in error situations ([7ae9c02](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7ae9c02e175cd26e80dd1b4f63c12c4bb4176fe7))
+* Profile page redirects to home when no registrated user ([2951df6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2951df671902776255d904acf1c2eb58045539a8))
+* Profile provider should not reload when tokens are renewed ([012ee06](https://github.com/City-of-Helsinki/kukkuu-ui/commit/012ee069f2845fcaff0a5f87c5d8c5fa85738f76))
+* Registration before authentication flow ([5ed3149](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5ed314999edbe865ea4f8e23bfedef57f8a89cda))
+* Remove profile from redux persistor ([ea20d8e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ea20d8e0a5f9766caf0d759d027231e6626e2567))
+* Token renewal reloaded page when user had no profile ([6e88a0c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6e88a0cf4e36b66f4688067b51a5d24d869c1b92))
+
 ## [3.2.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.1.1...kukkuu-ui-v3.2.0) (2024-03-27)
 
 

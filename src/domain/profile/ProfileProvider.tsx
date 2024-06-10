@@ -55,8 +55,8 @@ export default function ProfileProvider({
   // while the profile fetching is still on going
   // and won't refresh the children when it is;
   // This situation needs to be waited.
-  // TODO: Get rid of this loading spinner and sync issue.
-  if (isProfileFetcherLoading && !profile) {
+  // FIXME: Get rid of this loading spinner and sync issue.
+  if (!isFetchCalled && isProfileFetcherLoading) {
     // eslint-disable-next-line no-console
     console.info(
       'Using a loading spinner to wait for profile to be fully fetched from the Kukkuu API.'
