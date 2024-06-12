@@ -16,3 +16,11 @@ it('email field is disabled', async () => {
   const emailField = await screen.findByTestId(EMAIL_FIELD_TESTID);
   expect(emailField.hasAttribute('disabled'));
 });
+
+it('hasAcceptedCommunication is checked by default', async () => {
+  render(<RegistrationForm />);
+  const hasAcceptedCommunicationCheckbox = await screen.findByRole('checkbox', {
+    name: 'Haluan viestejä uusista kummitapahtumista',
+  });
+  expect(hasAcceptedCommunicationCheckbox).toBeChecked();
+});
