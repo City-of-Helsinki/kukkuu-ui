@@ -93,6 +93,7 @@ const getInitialFormData = (
     email: user?.profile.email || '',
     firstName: (formData.guardian.firstName || user?.profile?.given_name) ?? '',
     lastName: (formData.guardian.lastName || user?.profile?.family_name) ?? '',
+    hasAcceptedCommunication: true, // opt-out by default
   },
 });
 
