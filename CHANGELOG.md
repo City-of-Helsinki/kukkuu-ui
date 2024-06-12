@@ -399,6 +399,18 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.4.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.3.0...kukkuu-ui-v3.4.0) (2024-06-12)
+
+
+### Features
+
+* Make RegistrationForm's hasAcceptedCommunication checkbox opt-out ([463d33e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/463d33eb0ced35a6ae997c80b7b25e0abd2b8b3f))
+
+
+### Bug Fixes
+
+* Static routes and footer links ([#571](https://github.com/City-of-Helsinki/kukkuu-ui/issues/571)) ([45994a1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45994a109058e120e1109e22449fbeddd75bc69e))
+
 ## [3.3.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.2.0...kukkuu-ui-v3.3.0) (2024-06-05)
 
 
