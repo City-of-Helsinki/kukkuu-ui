@@ -40,6 +40,7 @@ const ConfirmModal: FunctionComponent<ConfirmModalProps> = ({
       isOpen={isOpen}
       label={heading}
       showLabelIcon={false}
+      showMandatoryFieldLegend={false}
       toggleModal={(value: boolean) => {
         setIsOpen(value);
       }}
