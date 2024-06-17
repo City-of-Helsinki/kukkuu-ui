@@ -1,4 +1,5 @@
 {
+  "requiredLabelSuffix": "tarkoittaa pakollista kenttää",
   "accessibilityStatement": {
     "title": "Saavutettavuusseloste"
   },

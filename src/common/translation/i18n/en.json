@@ -1,4 +1,5 @@
 {
+  "requiredLabelSuffix": "indicates a mandatory field",
   "accessibilityStatement": {
     "title": "Accessibility Statement"
   },

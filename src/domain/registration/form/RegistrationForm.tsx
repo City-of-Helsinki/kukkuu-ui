@@ -39,6 +39,7 @@ import LanguagesCombobox from '../../languages/LanguagesCombobox';
 import { registrationFormDataSelector } from '../state/RegistrationSelectors';
 import { useProfileContext } from '../../profile/hooks/useProfileContext';
 import { MyProfile } from '../../profile/types/ProfileQueryTypes';
+import MandatoryFieldLegend from '../../../common/components/mandatoryFieldLegend/MandatoryFieldLegend';
 
 export const FORM_TESTID = 'registrationForm';
 export const EMAIL_FIELD_TESTID = 'guardian.email';
@@ -311,6 +312,7 @@ const RegistrationForm = () => {
                   <div className={styles.heading}>
                     <Icon src={happyAdultIcon} className={styles.childImage} />
                     <h2>{t('registration.form.guardian.info.heading')}</h2>
+                    <MandatoryFieldLegend position="right" />
                   </div>
                   <FormikTextInput
                     id="guardian.email"
@@ -407,25 +409,28 @@ const RegistrationForm = () => {
                     name="agree"
                     required={true}
                     label={
-                      <Trans
-                        i18nKey="registration.form.agree.input.label"
-                        components={[
-                          // These components receive content in the
-                          // translation definition.
-                          // eslint-disable-next-line jsx-a11y/anchor-has-content
-                          <a
-                            href={t('descriptionOfTheFile.url')}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          />,
-                          // eslint-disable-next-line jsx-a11y/anchor-has-content
-                          <a
-                            href={t('dataProtection.url')}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          />,
-                        ]}
-                      />
+                      <>
+                        <Trans
+                          i18nKey="registration.form.agree.input.label"
+                          components={[
+                            // These components receive content in the
+                            // translation definition.
+                            // eslint-disable-next-line jsx-a11y/anchor-has-content
+                            <a
+                              href={t('descriptionOfTheFile.url')}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            />,
+                            // eslint-disable-next-line jsx-a11y/anchor-has-content
+                            <a
+                              href={t('dataProtection.url')}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            />,
+                          ]}
+                        />
+                        <span className={styles.required}>&nbsp;*</span>
+                      </>
                     }
                   />
 

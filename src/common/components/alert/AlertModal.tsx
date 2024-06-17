@@ -29,6 +29,7 @@ const AlertModal: FunctionComponent<AlertModalProps> = ({
       isOpen={isOpen}
       label={heading}
       showLabelIcon={false}
+      showMandatoryFieldLegend={false}
       toggleModal={(value: boolean) => {
         onToggle(value);
       }}

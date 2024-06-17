@@ -8,6 +8,7 @@ import styles from './modal.module.scss';
 import Icon from '../icon/Icon';
 import happyChildIcon from '../../../assets/icons/svg/childFaceHappy.svg';
 import Button from '../button/Button';
+import MandatoryFieldLegend from '../mandatoryFieldLegend/MandatoryFieldLegend';
 
 interface ModalProps {
   isOpen: boolean;
@@ -18,6 +19,7 @@ interface ModalProps {
   showHeading?: boolean;
   className?: string;
   icon?: string;
+  showMandatoryFieldLegend?: boolean;
   children?: React.ReactNode;
 }
 
@@ -31,6 +33,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   className,
   showHeading = true,
   icon = happyChildIcon,
+  showMandatoryFieldLegend = true,
 }) => {
   const { t } = useTranslation();
   const onClose = () => {
@@ -66,6 +69,9 @@ const Modal: React.FunctionComponent<ModalProps> = ({
               <div className={styles.heading}>
                 {showLabelIcon && <Icon className={styles.icon} src={icon} />}
                 {label && <h2>{label}</h2>}
+                {showMandatoryFieldLegend && (
+                  <MandatoryFieldLegend position="right" />
+                )}
               </div>
             )}
             <div className={styles.modalChildren}>{children}</div>

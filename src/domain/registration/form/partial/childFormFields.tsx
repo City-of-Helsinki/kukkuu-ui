@@ -12,6 +12,7 @@ import FormikDropdown from '../../../../common/components/formikWrappers/FormikD
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
 import Button from '../../../../common/components/button/Button';
 import FormikTextInput from '../../../../common/components/formikWrappers/FormikTextInput';
+import MandatoryFieldLegend from '../../../../common/components/mandatoryFieldLegend/MandatoryFieldLegend';
 
 type ChildFormFieldProps = {
   child: Child;
@@ -36,6 +37,11 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
         <div className={styles.heading}>
           <Icon src={happyChildIcon} className={styles.childImage} />
           <h2>{t('registration.form.child.info.heading')}</h2>
+
+          {/* Show mandatory field legend only in first child form */}
+          {childIndex === 0 && <MandatoryFieldLegend position="right" />}
+
+          {/* Allow to remove only non-first children */}
           {childIndex !== 0 && (
             <Button
               variant="supplementary"
