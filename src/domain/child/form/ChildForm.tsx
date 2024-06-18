@@ -129,7 +129,6 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               className={styles.formField}
               id="name"
               name="name"
-              required={true}
               label={t('registration.form.child.name.input.label')}
               autoComplete="new-password"
               placeholder={t('registration.form.child.name.input.placeholder')}
