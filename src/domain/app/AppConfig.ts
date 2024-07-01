@@ -13,10 +13,18 @@ class AppConfig {
     return new URL(this.origin).hostname;
   }
 
+  /**
+   * Kukkuu API URL.
+   * Read env variable `VITE_API_URI`.
+   */
   static get apiUrl() {
     return getEnvOrError(import.meta.env.VITE_API_URI, 'VITE_API_URI');
   }
 
+  /**
+   * OIDC client authority.
+   * Read env variable `VITE_OIDC_AUTHORITY`.
+   */
   static get oidcAuthority() {
     const origin = getEnvOrError(
       import.meta.env.VITE_OIDC_AUTHORITY,
@@ -41,6 +49,10 @@ class AppConfig {
     return getEnvAsList(import.meta.env.VITE_OIDC_AUDIENCES);
   }
 
+  /**
+   * OIDC client id for (this) kukkuu-ui client.
+   * Read env variable `VITE_OIDC_CLIENT_ID`.
+   */
   static get oidcClientId() {
     return getEnvOrError(
       import.meta.env.VITE_OIDC_CLIENT_ID,
@@ -48,10 +60,20 @@ class AppConfig {
     );
   }
 
+  /**
+   * OIDC auth scope.
+   * Read env variable `VITE_OIDC_SCOPE`.
+   */
   static get oidcScope() {
     return getEnvOrError(import.meta.env.VITE_OIDC_SCOPE, 'VITE_OIDC_SCOPE,');
   }
 
+  /**
+   * OIDC authorization code grant type.
+   * Read env variable `VITE_OIDC_RETURN_TYPE`.
+   * Defaults to 'code' which is for "authorization code flow".
+   * @see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.
+   */
   static get oidcReturnType() {
     // "code" for authorization code flow.
     return import.meta.env.VITE_OIDC_RETURN_TYPE ?? 'code';
@@ -75,6 +97,24 @@ class AppConfig {
       throw new Error(`Invalid OIDC server type: ${oidcServerType}`);
     }
     return oidcServerType;
+  }
+
+  /**
+   * Read env variable `VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED`.
+   * Defaults to true.
+   * */
+  static get oidcAutomaticSilentRenew(): boolean {
+    return Boolean(
+      import.meta.env.VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED ?? false
+    );
+  }
+
+  /**
+   * Read env variable `VITE_OIDC_SESSION_POLLING_INTERVAL_MS`.
+   * Defaults to 60000.
+   * */
+  static get oidcSessionPollerIntervalInMs(): number {
+    return import.meta.env.VITE_OIDC_SESSION_POLLING_INTERVAL_MS ?? 60000;
   }
 
   static get cmsUri() {

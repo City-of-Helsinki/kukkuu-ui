@@ -20,10 +20,11 @@ export const register = async (t: TestController) => {
   };
 
   if (await registerForm.section.exists) {
+    // eslint-disable-next-line no-console
     console.log('Register user');
 
     await t
-      .typeText(registerForm.birthDayYearInput, registerChild.birthYear)
+      .typeText(registerForm.birthYearInput, registerChild.birthYear)
       .typeText(registerForm.cityInput, registerChild.city)
       .click(registerForm.verifyInformationCheckbox)
       .click(registerForm.submitButton);

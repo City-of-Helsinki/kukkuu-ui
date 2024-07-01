@@ -1,4 +1,3 @@
-import { login } from './utils/login';
 import { register } from './utils/register';
 import getDropdownOption from './utils/getDropdownOption';
 import {
@@ -34,7 +33,6 @@ const childName = /Hertta Citron/;
 fixture`Children feature`
   .page(route())
   .beforeEach(async (t) => {
-    await login(t);
     await register(t); // this is required first time login only for user
 
     t.ctx.addChild = buildAddChild();
