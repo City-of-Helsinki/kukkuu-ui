@@ -24,12 +24,13 @@ export const register = async (t: TestController) => {
     console.log('Register user');
 
     await t
+      .selectText(registerForm.birthYearInput)
       .typeText(registerForm.birthYearInput, registerChild.birthYear)
       .typeText(registerForm.cityInput, registerChild.city)
       .click(registerForm.verifyInformationCheckbox)
       .click(registerForm.submitButton);
 
-    await t.wait(3500); // 3.5s
+    await t.wait(2500); // 2.5s
 
     if (await registrationForm.formName.exists) {
       await t
@@ -39,7 +40,8 @@ export const register = async (t: TestController) => {
         .click(getDropdownOption(registerChild.relationship))
         .click(registrationForm.agreeCheckbox)
         .click(registrationForm.languagesSpokenAtHomeCombobox)
-        .click(getDropdownOption(guardian.language))
+        .click(getDropdownOption('ruotsi'))
+        // .click(getDropdownOption(guardian.language))
         .typeText(
           registrationForm.guardianPhoneNumberInput,
           guardian.phoneNumber

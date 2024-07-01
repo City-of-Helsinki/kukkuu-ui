@@ -30,7 +30,7 @@ fixture`Guardian profile feature`
     delete t.ctx.profile;
   });
 
-test.only('As a guardian I want to edit my profile', async (t) => {
+test('As a guardian I want to edit my profile', async (t) => {
   await t.useRole(authorizedGuardian).navigateTo(route());
   // Open profile edit modal
   await t.click(godchildrenProfilePage.editProfileButton);

@@ -15,6 +15,10 @@ import { authorize } from './utils/jwt/clientUtils/login';
  *   // Use KukkuuApiTestJwtBearerAuthorization to add auth header to every API request.
  *   new KukkuuApiTestJwtBearerAuthorization(browserTestUser),
  * ])
+ * .beforeEach(async (t) => {
+ *   // Use authorizedGuardian guardian role to populate session storage
+ *   await t.useRole(authorizedGuardian).navigateTo(route());
+ * });
  */
 export const authorizedGuardian = Role(route(), async (t) => {
   // eslint-disable-next-line no-console
