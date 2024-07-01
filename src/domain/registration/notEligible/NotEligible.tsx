@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './notEligible.module.scss';
 import adultFaceIcon from '../../../assets/icons/svg/adultFace.svg';
@@ -10,21 +10,20 @@ import Button from '../../../common/components/button/Button';
 
 const NotEligible: FunctionComponent = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   return (
     <PageWrapper>
       <div>
         <div className={styles.notEligible}>
           <Icon className={styles.notEligibleFace} src={adultFaceIcon} />
           <p>{t('registration.notEligible.text')}</p>
-          <Button
-            className={styles.goBackButton}
-            onClick={() =>
-              navigate(t('registration.notEligible.otherOptionsLink'))
-            }
+          <Link
+            to={t('registration.notEligible.otherOptionsLink')}
+            target="_blank"
           >
-            {t('registration.notEligible.buttonText')}
-          </Button>
+            <Button className={styles.goBackButton}>
+              {t('registration.notEligible.buttonText')}
+            </Button>
+          </Link>
         </div>
       </div>
     </PageWrapper>

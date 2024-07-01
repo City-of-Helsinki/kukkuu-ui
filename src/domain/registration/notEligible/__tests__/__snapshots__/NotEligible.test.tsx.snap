@@ -23,17 +23,22 @@ exports[`renders snapshot correctly 1`] = `
           <p>
             Valitettavasti lapsen syntymävuosi tai kotipaikkakunta eivät oikeuta häntä Kulttuurin kummilapset -toimintaan.
           </p>
-          <button
-            class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _goBackButton_cca70d"
-            style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
-            type="button"
+          <a
+            href="https://tapahtumat.hel.fi/fi/haku?onlyChildrenEvents=true"
+            target="_blank"
           >
-            <span
-              class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+            <button
+              class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _goBackButton_cca70d"
+              style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+              type="button"
             >
-              Löydä lapsille sopivia kulttuuritapahtumia täältä
-            </span>
-          </button>
+              <span
+                class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+              >
+                Löydä lapsille sopivia kulttuuritapahtumia täältä
+              </span>
+            </button>
+          </a>
         </div>
       </div>
     </div>
