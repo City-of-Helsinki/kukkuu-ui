@@ -9,12 +9,14 @@ const providerPropertiesBase: LoginProviderProps = {
     scope: AppConfig.oidcScope,
     response_type: AppConfig.oidcReturnType,
     redirect_uri: `${AppConfig.origin}/callback`,
-    automaticSilentRenew: true,
+    automaticSilentRenew: AppConfig.oidcAutomaticSilentRenew,
     silent_redirect_uri: `${AppConfig.origin}/silent_renew.html`,
     post_logout_redirect_uri: `${AppConfig.origin}/`,
   },
   debug: false,
-  sessionPollerSettings: { pollIntervalInMs: 10000 },
+  sessionPollerSettings: {
+    pollIntervalInMs: AppConfig.oidcSessionPollerIntervalInMs,
+  },
 };
 
 /**

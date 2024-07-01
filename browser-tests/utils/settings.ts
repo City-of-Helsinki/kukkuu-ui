@@ -20,12 +20,6 @@ const getApiBaseUrl = () => {
   return url.replace(re, '');
 };
 
-export const testUsername = (): string =>
-  getEnvOrError('BROWSER_TESTS_USER_NAME');
-
-export const testUserPassword = (): string =>
-  getEnvOrError('BROWSER_TESTS_USER_PASSWORD');
-
 export const envUrl = (): string => getEnvOrError('BROWSER_TESTS_ENV_URL');
 
 // optional variable for API to ensure tunnistamo user accesses

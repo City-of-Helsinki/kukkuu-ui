@@ -3,7 +3,7 @@ import { Selector } from 'testcafe';
 
 export const childrenProfilePage = {
   editChildProfileButton: screen.getByRole('button', {
-    name: 'Muokkaa tietojasi',
+    name: /muokkaa lapsen tietoja/i,
   }),
   childName: Selector('h1'),
   selectEventGroupButtons: screen.getAllByRole('button', {
@@ -13,7 +13,7 @@ export const childrenProfilePage = {
 
 export const editChildModal = {
   container: screen.getByRole('dialog', { name: 'Muokkaa lapsen tietoja' }),
-  lastNameInput: screen.getByLabelText('Lapsen sukunimi'),
+  nameInput: screen.getByLabelText('Lapsen nimi'),
   submitButton: screen.getByRole('button', { name: 'Tallenna' }),
   deleteButton: screen.getByRole('button', { name: 'Poista lapsen tiedot' }),
   confirmDeleteButton: screen.getByRole('button', {
