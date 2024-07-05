@@ -18,6 +18,8 @@ http {
     uwsgi_temp_path       /tmp/uwsgi_temp;
     scgi_temp_path        /tmp/scgi_temp;
     
+    include /etc/nginx/mime.types;
+
     server {
         listen       8080;
         server_name  localhost;
@@ -35,16 +37,23 @@ http {
 
         location /static {
             expires max;
-            try_files $uri /index.html;
+            try_files $uri $uri/ /index.html;
         }
+        
 
         location / {
-            try_files $uri /index.html;
+            try_files $uri $uri/ /index.html;
         }
 
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
             root   /usr/share/nginx/html;
         }
+
+        location ~ \.js$ {
+            add_header Content-Type application/javascript;
+        }
+
     }
+
 }

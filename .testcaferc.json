@@ -5,6 +5,9 @@
   "clientScripts": [
     {
       "module": "@testing-library/dom/dist/@testing-library/dom.umd.js"
+    },
+    {
+      "content": "document.cookie='city-of-helsinki-cookie-consents=%7B%22wordpress%22%3Atrue%2C%22linkedevents%22%3Atrue%2C%22i18next%22%3Atrue%2C%22city-of-helsinki-cookie-consents%22%3Atrue%2C%22city-of-helsinki-consent-version%22%3Atrue%2C%22matomo%22%3Atrue%7D; path=/;'"
     }
   ]
 }
