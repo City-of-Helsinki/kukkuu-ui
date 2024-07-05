@@ -399,6 +399,19 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.5.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.4.0...kukkuu-ui-v3.5.0) (2024-07-05)
+
+
+### Features
+
+* Add required * and explanation text to Modal & RegistrationForm ([eb985a0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/eb985a0da33f34e5f9f2061ccde4c075486b27f3))
+
+
+### Bug Fixes
+
+* Make child name optional in child form ([d782481](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d782481a58320348b63037bcdf3ae591ea6d756c))
+* Not eligible component external link ([ecbeff9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ecbeff91a760627f50d6187169a67ee897ddaf96))
+
 ## [3.4.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.3.0...kukkuu-ui-v3.4.0) (2024-06-12)
 
 
