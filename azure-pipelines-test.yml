@@ -38,5 +38,15 @@ extends:
   # Django example: azure-pipelines-PROJECTNAME-api-release.yml
   # Drupal example: azure-pipelines-drupal-release.yml
   template: azure-pipelines-kukkuu-ui-test.yml@kukkuu-pipelines
-  #parameters:
+  parameters:
+    buildArgs:
+      VITE_CMS_URI: 'https://kukkuu.app-staging.hkih.hion.dev/graphql'
+      # TODO: Instead of using the Kukkuu API from the test environment, use a review specific API.
+      # VITE_API_URI: 'https://kukkuu-local.api.dev.hel.ninja/graphql'
+      VITE_API_URI: https://kukkuu.api.test.hel.ninja/graphql
+      VITE_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.test.hel.ninja/check-ticket-validity'
+      VITE_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
+      BROWSER_TESTS_PROJECT_YEAR: 1234
+    configMap: # pod environment variables
+      BROWSER_TESTS_PROJECT_YEAR: 1234
   #imagetag: ${{ parameters.imagetag }}

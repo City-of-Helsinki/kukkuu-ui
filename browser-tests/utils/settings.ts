@@ -1,6 +1,23 @@
+import * as fs from 'fs';
+
 import * as dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.local' });
+const browserTestEnvFilePath = '.env.test.local';
+
+if (fs.existsSync(browserTestEnvFilePath)) {
+  // eslint-disable-next-line no-console
+  console.info(
+    `Using "${browserTestEnvFilePath}" to populate environment variables for browser tests.`
+  );
+  dotenv.config({ path: browserTestEnvFilePath });
+} else {
+  // eslint-disable-next-line no-console
+  console.info(
+    'HINT: If you are running the Testcafe tests locally, ' +
+      `you could take advantage of "${browserTestEnvFilePath}" file ` +
+      'to populate environment variables for browser tests.'
+  );
+}
 
 const getEnvOrError = (key: string) => {
   const variable = process.env[key];
@@ -19,12 +36,6 @@ const getApiBaseUrl = () => {
   var re = /\/graphql$/;
   return url.replace(re, '');
 };
-
-export const testUsername = (): string =>
-  getEnvOrError('BROWSER_TESTS_USER_NAME');
-
-export const testUserPassword = (): string =>
-  getEnvOrError('BROWSER_TESTS_USER_PASSWORD');
 
 export const envUrl = (): string => getEnvOrError('BROWSER_TESTS_ENV_URL');
 

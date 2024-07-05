@@ -1,21 +1,25 @@
-import { login } from './utils/login';
 import { register } from './utils/register';
-import getDropdownOption from './utils/getDropdownOption';
 import {
   route,
   godchildrenProfilePage,
-  addChildModal,
   selectChild,
   deleteChild,
+  addChild,
 } from './pages/godchildrenProfilePage';
 import {
   childrenProfilePage,
   editChildModal,
 } from './pages/childrenProfilePage';
+import {
+  AuthServiceRequestInterceptor,
+  KukkuuApiTestJwtBearerAuthorization,
+} from './utils/jwt/mocks/testJWTAuthRequests';
+import { browserTestUser } from './utils/jwt/users';
+import { authorizedGuardian } from './userRoles';
 
 function buildAddChild() {
   return {
-    birthYear: 2020,
+    birthYear: '2020',
     city: 'Helsinki',
     postalCode: '00000',
     name: 'Gilly Girod',
@@ -25,16 +29,23 @@ function buildAddChild() {
 
 function buildEditChild() {
   return {
-    name: `Citron ${new Date().toLocaleDateString()}`,
+    name: `Hertta Citron ${new Date().toISOString()}`,
   };
 }
 
 const childName = /Hertta Citron/;
 
 fixture`Children feature`
-  .page(route())
+  .requestHooks([
+    // Use AuthServiceRequestInterceptor to mock Keycloak out.
+    new AuthServiceRequestInterceptor(browserTestUser),
+    // Use KukkuuApiTestJwtBearerAuthorization to add auth header to every API request.
+    new KukkuuApiTestJwtBearerAuthorization(browserTestUser),
+  ])
   .beforeEach(async (t) => {
-    await login(t);
+    // Use authorizedGuardian guardian role to populate session storage
+    await t.useRole(authorizedGuardian).navigateTo(route());
+
     await register(t); // this is required first time login only for user
 
     t.ctx.addChild = buildAddChild();
@@ -57,10 +68,18 @@ fixture`Children feature`
 
 // test assume children 'Hertta Citron' exists
 test('As a guardian I want to edit the details of my child', async (t) => {
-  const nextLastName = t.ctx.editChild.lastName;
+  const nextName = t.ctx.editChild.name;
 
   // Select child to go to their details
-  await selectChild(t, childName);
+  try {
+    await selectChild(t, childName);
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('The child did not exist yet');
+
+    // Add a child
+    await addChild(t, { ...t.ctx.addChild, ...t.ctx.editChild });
+  }
 
   // Open child edit modal
   await t.click(childrenProfilePage.editChildProfileButton);
@@ -71,39 +90,24 @@ test('As a guardian I want to edit the details of my child', async (t) => {
   await t
     // Select the content of the input so it will be cleared when text
     // is typed
-    .selectText(editChildModal.lastNameInput)
+    .selectText(editChildModal.nameInput)
+    .wait(1000) // 1s
     // Input new last name
-    .typeText(editChildModal.lastNameInput, nextLastName)
+    .typeText(editChildModal.nameInput, nextName)
     // save changes
     .click(editChildModal.submitButton);
 
   // Assert that name has changed
-  await t
-    .expect(childrenProfilePage.childName.textContent)
-    .eql(`Hertta ${nextLastName}`);
+  await t.expect(childrenProfilePage.childName.textContent).eql(nextName);
 });
 
 test('As a guardian I want to add and delete a child', async (t) => {
-  const { birthyear, city, postalCode, name, relationship } = t.ctx.addChild;
+  const { name } = t.ctx.addChild;
   const newChildName = name;
   const newChildNameRegExp = new RegExp(newChildName);
 
-  // Open child add modal
-  await t.click(godchildrenProfilePage.addChildButton);
-
-  // Assert that the modal has opened and that it adheres to semantic
-  // rules
-  await t.expect(addChildModal.container.exists).ok();
-
-  // Fill form fields
-  await t
-    .typeText(addChildModal.birthYearInput, birthyear)
-    .typeText(addChildModal.cityInput, city)
-    .typeText(addChildModal.postalCodeInput, postalCode)
-    .typeText(addChildModal.nameInput, name)
-    .click(addChildModal.relationshipInput)
-    .click(getDropdownOption(relationship))
-    .click(addChildModal.submitButton);
+  // Add a child
+  await addChild(t, t.ctx.addChild);
 
   // Wait a bit extra so the UI has time to complete its refresh
   await t.wait(1500); // 1.5s

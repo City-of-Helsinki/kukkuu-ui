@@ -1,22 +1,45 @@
 import i18n from '../../common/translation/i18n/i18nInit';
 
+/**
+ * Centralized configuration for the application.
+ * Fetches configuration values from environment variables.
+ */
 class AppConfig {
+  /**
+   * The origin URL (protocol + hostname + port) of the application.
+   *
+   * @throws {Error} If the `VITE_ORIGIN` environment variable is not defined.
+   * @example
+   * // In your environment:
+   * VITE_ORIGIN='https://kummilapset.hel.fi'
+   */
   static get origin() {
-    const originUrl = getEnvOrError(import.meta.env.VITE_ORIGIN, 'VITE_ORIGIN');
-    return new URL(originUrl).origin;
+    return getEnvAsUrl('VITE_ORIGIN').origin;
   }
 
   /**
-   * Hostname of the app.
+   * The hostname (e.g., 'kummilapset.hel.fi') of the application.
+   *
+   * @throws {Error} If the `VITE_ORIGIN` environment variable is not defined.
    */
   static get hostname() {
-    return new URL(this.origin).hostname;
+    return getEnvAsUrl('VITE_ORIGIN').hostname;
   }
 
+  /**
+   * The Graphql API URL (e.g., 'https://kukkuu.api.hel.fi/graphql').
+   *
+   * @throws {Error} If the `VITE_API_URI` environment variable is not defined.
+   */
   static get apiUrl() {
     return getEnvOrError(import.meta.env.VITE_API_URI, 'VITE_API_URI');
   }
 
+  /**
+   * The OIDC (OpenID Connect) authority URL.
+   *
+   * @throws {Error} If the `VITE_OIDC_AUTHORITY` environment variable is not defined.
+   */
   static get oidcAuthority() {
     const origin = getEnvOrError(
       import.meta.env.VITE_OIDC_AUTHORITY,
@@ -26,21 +49,21 @@ class AppConfig {
   }
 
   /**
-   * The audiences used in the OIDC.
-   * 
+   * The audiences for OIDC tokens.
+   * Can be a string or a comma-separated list of strings.
+   *
    * @example
-   * // In Tunnistamo it can be left undefined.
-   * ["https://api.hel.fi/auth/kukkuu"]
-   * // In Keycloak:
-   * [
-        'kukkuu-api-test',
-        'profile-api-test',
-      ]
+   * - Tunnistamo: undefined (leave the env var empty)
+   * - Keycloak: 'kukkuu-api-test,profile-api-test'
    */
   static get oidcAudiences() {
     return getEnvAsList(import.meta.env.VITE_OIDC_AUDIENCES);
   }
 
+  /**
+   * OIDC client id for (this) kukkuu-ui client.
+   * Read env variable `VITE_OIDC_CLIENT_ID`.
+   */
   static get oidcClientId() {
     return getEnvOrError(
       import.meta.env.VITE_OIDC_CLIENT_ID,
@@ -48,10 +71,20 @@ class AppConfig {
     );
   }
 
+  /**
+   * OIDC auth scope.
+   * Read env variable `VITE_OIDC_SCOPE`.
+   */
   static get oidcScope() {
     return getEnvOrError(import.meta.env.VITE_OIDC_SCOPE, 'VITE_OIDC_SCOPE,');
   }
 
+  /**
+   * OIDC authorization code grant type.
+   * Read env variable `VITE_OIDC_RETURN_TYPE`.
+   * Defaults to 'code' which is for "authorization code flow".
+   * @see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.
+   */
   static get oidcReturnType() {
     // "code" for authorization code flow.
     return import.meta.env.VITE_OIDC_RETURN_TYPE ?? 'code';
@@ -65,9 +98,14 @@ class AppConfig {
   }
 
   /**
-   * NOTE: The oidcServerType is not an OIDC client attribute.
-   * It's purely used to help to select a configuration for the LoginProvider.
-   * */
+   * Indicates the type of OIDC server being used.
+   *
+   * This is not a standard OIDC client attribute; it's used internally to determine
+   * the appropriate configuration for the login provider.
+   *
+   * @throws {Error} If the `VITE_OIDC_SERVER_TYPE` environment variable is not defined
+   *                or has an invalid value (not 'KEYCLOAK' or 'TUNNISTAMO').
+   */
   static get oidcServerType(): 'KEYCLOAK' | 'TUNNISTAMO' {
     const oidcServerType =
       import.meta.env.VITE_OIDC_SERVER_TYPE ?? 'TUNNISTAMO';
@@ -77,11 +115,37 @@ class AppConfig {
     return oidcServerType;
   }
 
+  /**
+   * Read env variable `VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED`.
+   * Defaults to true.
+   * */
+  static get oidcAutomaticSilentRenew(): boolean {
+    return Boolean(
+      import.meta.env.VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED ?? false
+    );
+  }
+
+  /**
+   * Read env variable `VITE_OIDC_SESSION_POLLING_INTERVAL_MS`.
+   * Defaults to 60000.
+   * */
+  static get oidcSessionPollerIntervalInMs(): number {
+    return import.meta.env.VITE_OIDC_SESSION_POLLING_INTERVAL_MS ?? 60000;
+  }
+
+  /**
+   * The URL of the Content Management System (CMS).
+   *
+   * @throws {Error} If the `VITE_CMS_URI` environment variable is not defined.
+   */
   static get cmsUri() {
     return getEnvOrError(import.meta.env.VITE_CMS_URI, 'VITE_CMS_URI');
   }
 
-  static get locales() {
+  /**
+   * An array of supported locale codes (e.g., ['fi', 'en']).
+   */
+  static get locales(): readonly string[] {
     return i18n.languages;
   }
 
@@ -108,6 +172,23 @@ function getEnvOrError(variable?: string, name?: string) {
     throw Error(`Environment variable with name ${name} was not found`);
   }
   return variable;
+}
+
+/**
+ * Fetches an environment variable value as a URL.
+ *
+ * @param varName The name of the environment variable.
+ * @throws {Error} If the variable is not defined or is not a valid URL.
+ */
+function getEnvAsUrl(varName: string): URL {
+  const value = getEnvOrError(import.meta.env[varName], varName);
+  try {
+    return new URL(value);
+  } catch {
+    throw new Error(
+      `Environment variable ${varName} is not a valid URL: ${value}`
+    );
+  }
 }
 
 function getEnvAsList(variable?: string) {
