@@ -51,7 +51,7 @@ extends:
     # Does not contain all buildArguments, the rest located in harrastukset-pipelines/harrastukset-variables-development.yml and harrastukset-variables-common.yml
     # The values here will override the values defined in the harrastukset-pipelines repository
     buildArgs:
-      VITE_CMS_URI: 'https://kukkuu.hkih.stage.geniem.io/graphql'
+      VITE_CMS_URI: 'https://kukkuu.app-staging.hkih.hion.dev/graphql'
       VITE_API_URI: 'https://kukkuu-local.api.dev.hel.ninja/graphql'
       VITE_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.test.hel.ninja/check-ticket-validity'
       VITE_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false

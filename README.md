@@ -179,7 +179,7 @@ A headless CMS system is used to produce some dynamic pages. The Headless CMS se
 The default server that is used is the test / staging server:
 
 ```
-VITE_CMS_URI="https://kukkuu.hkih.stage.geniem.io/graphql"
+VITE_CMS_URI="https://kukkuu.app-staging.hkih.hion.dev/graphql"
 ```
 
 ### kukkuu-ui
