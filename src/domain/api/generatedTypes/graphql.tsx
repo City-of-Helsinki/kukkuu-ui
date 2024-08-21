@@ -136,7 +136,7 @@ export type AddVenueMutationPayload = {
 export type AdminNode = Node & {
   __typename?: 'AdminNode';
   email: Scalars['String']['output'];
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   projects: Maybe<ProjectNodeConnection>;
   /** Vaaditaan. Enintään 150 merkkiä. Vain kirjaimet, numerot ja @/./+/-/_ ovat sallittuja. */
@@ -190,7 +190,7 @@ export type ChildNode = Node & {
   enrolments: EnrolmentNodeConnection;
   freeSpotNotificationSubscriptions: FreeSpotNotificationSubscriptionNodeConnection;
   guardians: GuardianNodeConnection;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   languagesSpokenAtHome: Maybe<LanguageNodeConnection>;
   name: Scalars['String']['output'];
@@ -326,7 +326,7 @@ export type ChildNodeEdge = {
 export type ChildNotesNode = Node & {
   __typename?: 'ChildNotesNode';
   childId: Maybe<Scalars['ID']['output']>;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   notes: Scalars['String']['output'];
 };
@@ -410,7 +410,7 @@ export type EnrolmentNode = Node & {
   attended: Maybe<Scalars['Boolean']['output']>;
   child: Maybe<ChildNode>;
   createdAt: Scalars['DateTime']['output'];
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   occurrence: OccurrenceNode;
   /** An unique encoded reference id */
@@ -474,7 +474,7 @@ export type EventGroupNode = Node & {
   createdAt: Scalars['DateTime']['output'];
   description: Maybe<Scalars['String']['output']>;
   events: EventNodeConnection;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   image: Scalars['String']['output'];
   imageAltText: Maybe<Scalars['String']['output']>;
@@ -527,7 +527,7 @@ export type EventNode = Node & {
   /** In minutes */
   duration: Maybe<Scalars['Int']['output']>;
   eventGroup: Maybe<EventGroupNode>;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   image: Scalars['String']['output'];
   imageAltText: Maybe<Scalars['String']['output']>;
@@ -556,7 +556,7 @@ export type EventNodeMessagesArgs = {
   occurrences: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
-  protocol: InputMaybe<Scalars['String']['input']>;
+  protocol: InputMaybe<MessagingMessageProtocolChoices>;
 };
 
 export type EventNodeOccurrencesArgs = {
@@ -643,9 +643,9 @@ export type FreeSpotNotificationSubscriptionNode = Node & {
   __typename?: 'FreeSpotNotificationSubscriptionNode';
   child: ChildNode;
   createdAt: Scalars['DateTime']['output'];
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
-  occurrence: OccurrenceNode;
+  occurrence: Maybe<OccurrenceNode>;
 };
 
 export type FreeSpotNotificationSubscriptionNodeConnection = {
@@ -669,7 +669,7 @@ export type GuardianCommunicationSubscriptionsNode = Node & {
   __typename?: 'GuardianCommunicationSubscriptionsNode';
   firstName: Scalars['String']['output'];
   hasAcceptedCommunication: Scalars['Boolean']['output'];
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   language: Scalars['String']['output'];
   lastName: Scalars['String']['output'];
@@ -693,7 +693,7 @@ export type GuardianNode = Node & {
   email: Scalars['String']['output'];
   firstName: Scalars['String']['output'];
   hasAcceptedCommunication: Scalars['Boolean']['output'];
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   language: Language;
   languagesSpokenAtHome: LanguageNodeConnection;
@@ -805,7 +805,7 @@ export type LanguageNode = Node & {
   __typename?: 'LanguageNode';
   /** ISO 639-3 (language) or ISO 639-5 (language family) alpha-3 code */
   alpha3Code: Maybe<Scalars['String']['output']>;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   name: Maybe<Scalars['String']['output']>;
   translations: Array<LanguageTranslationType>;
@@ -828,8 +828,14 @@ export type LanguageNodeEdge = {
   node: Maybe<LanguageNode>;
 };
 
+export type LanguageTranslationType = {
+  __typename?: 'LanguageTranslationType';
+  languageCode: LanguagesLanguageTranslationLanguageCodeChoices;
+  name: Scalars['String']['output'];
+};
+
 /** An enumeration. */
-export enum LanguageTranslationLanguageCode {
+export enum LanguagesLanguageTranslationLanguageCodeChoices {
   /** englanti */
   En = 'EN',
   /** suomi */
@@ -838,17 +844,11 @@ export enum LanguageTranslationLanguageCode {
   Sv = 'SV',
 }
 
-export type LanguageTranslationType = {
-  __typename?: 'LanguageTranslationType';
-  languageCode: LanguageTranslationLanguageCode;
-  name: Scalars['String']['output'];
-};
-
 export type LippupisteEnrolmentNode = Node & {
   __typename?: 'LippupisteEnrolmentNode';
   createdAt: Scalars['DateTime']['output'];
   event: EventNode;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
 };
 
@@ -877,11 +877,11 @@ export type MessageNode = Node & {
   bodyText: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   event: Maybe<EventNode>;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   occurrences: OccurrenceNodeConnection;
   project: ProjectNode;
-  protocol: MessageProtocol;
+  protocol: MessagingMessageProtocolChoices;
   recipientCount: Maybe<Scalars['Int']['output']>;
   recipientSelection: Maybe<RecipientSelectionEnum>;
   sentAt: Maybe<Scalars['DateTime']['output']>;
@@ -924,28 +924,10 @@ export type MessageNodeEdge = {
   node: Maybe<MessageNode>;
 };
 
-/** An enumeration. */
-export enum MessageProtocol {
-  /** Sähköposti */
-  Email = 'EMAIL',
-  /** SMS */
-  Sms = 'SMS',
-}
-
-/** An enumeration. */
-export enum MessageTranslationLanguageCode {
-  /** englanti */
-  En = 'EN',
-  /** suomi */
-  Fi = 'FI',
-  /** ruotsi */
-  Sv = 'SV',
-}
-
 export type MessageTranslationType = {
   __typename?: 'MessageTranslationType';
   bodyText: Scalars['String']['output'];
-  languageCode: MessageTranslationLanguageCode;
+  languageCode: MessagingMessageTranslationLanguageCodeChoices;
   subject: Scalars['String']['output'];
 };
 
@@ -954,6 +936,24 @@ export type MessageTranslationsInput = {
   languageCode: Language;
   subject?: InputMaybe<Scalars['String']['input']>;
 };
+
+/** An enumeration. */
+export enum MessagingMessageProtocolChoices {
+  /** Sähköposti */
+  Email = 'EMAIL',
+  /** SMS */
+  Sms = 'SMS',
+}
+
+/** An enumeration. */
+export enum MessagingMessageTranslationLanguageCodeChoices {
+  /** englanti */
+  En = 'EN',
+  /** suomi */
+  Fi = 'FI',
+  /** ruotsi */
+  Sv = 'SV',
+}
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -1148,7 +1148,7 @@ export type MutationUpdateVenueArgs = {
 
 /** An object with an ID */
 export type Node = {
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
 };
 
@@ -1166,7 +1166,7 @@ export type OccurrenceNode = Node & {
   event: EventNode;
   freeSpotNotificationSubscriptionCount: Scalars['Int']['output'];
   freeSpotNotificationSubscriptions: FreeSpotNotificationSubscriptionNodeConnection;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   occurrenceLanguage: Language;
   remainingCapacity: Maybe<Scalars['Int']['output']>;
@@ -1250,7 +1250,7 @@ export type ProjectNode = Node & {
   __typename?: 'ProjectNode';
   /** How many times a single user can participate events per year. Changing this will not affect any existing enrolments. */
   enrolmentLimit: Scalars['Int']['output'];
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   myPermissions: Maybe<ProjectPermissionsType>;
   name: Maybe<Scalars['String']['output']>;
@@ -1421,7 +1421,7 @@ export type QueryMessagesArgs = {
   occurrences: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
-  protocol: InputMaybe<Scalars['String']['input']>;
+  protocol: InputMaybe<MessagingMessageProtocolChoices>;
 };
 
 export type QueryMyCommunicationSubscriptionsArgs = {
@@ -1494,7 +1494,7 @@ export type RelationshipNode = Node & {
   __typename?: 'RelationshipNode';
   child: ChildNode;
   guardian: GuardianNode;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   type: Maybe<RelationshipTypeEnum>;
 };
@@ -1607,7 +1607,7 @@ export type TicketmasterEnrolmentNode = Node & {
   __typename?: 'TicketmasterEnrolmentNode';
   createdAt: Scalars['DateTime']['output'];
   event: EventNode;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
 };
 
@@ -1844,7 +1844,7 @@ export type VenueNode = Node & {
   arrivalInstructions: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   description: Maybe<Scalars['String']['output']>;
-  /** The ID of the object. */
+  /** The ID of the object */
   id: Scalars['ID']['output'];
   name: Maybe<Scalars['String']['output']>;
   occurrences: OccurrenceNodeConnection;
