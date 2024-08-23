@@ -82,10 +82,24 @@ COPY . /app
 RUN yarn build
 
 # =============================
-FROM nginx:1.22 AS production
-# FROM registry.access.redhat.com/ubi9/nginx-122 AS production
+FROM registry.access.redhat.com/ubi9/nginx-122 AS production
 # =============================
-# Nginx runs with user "nginx" by default
-COPY --from=staticbuilder --chown=nginx:nginx /app/build /usr/share/nginx/html
-COPY --from=staticbuilder --chown=nginx:nginx /tmp/.prod/nginx.conf /etc/nginx/conf.d/default.conf
+# Add application sources to a directory that the assemble script expects them
+# and set permissions so that the container runs without root access
+USER root
+
+RUN chgrp -R 0 /usr/share/nginx/html && \
+  chmod -R g=u /usr/share/nginx/html
+
+# Copy static build
+COPY --from=staticbuilder /app/build /usr/share/nginx/html
+# Copy nginx config
+COPY --from=staticbuilder /tmp/.prod/nginx.conf  /etc/nginx/nginx.conf
+
+USER 1001
+
+# Run script uses standard ways to run the application
+CMD ["/bin/bash", "-c", "nginx -g \"daemon off;\""]
+
 EXPOSE 8080
+

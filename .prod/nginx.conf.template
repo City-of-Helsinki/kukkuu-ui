@@ -4,32 +4,47 @@
 # - VITE_RELEASE
 # - VITE_COMMITHASH
 ###
-server {
-    listen       8080;
-    server_name  localhost;
+pid        /tmp/nginx.pid; #for running as non-root
 
-    root /usr/share/nginx/html;
+events {
+    worker_connections  4096;  ## Default: 1024
+}
+http {
 
-    location /healthz {
-        return 200 'OK';
-    }
+    #for running as non-root
+    client_body_temp_path /tmp/client_temp;
+    proxy_temp_path       /tmp/proxy_temp_path;
+    fastcgi_temp_path     /tmp/fastcgi_temp;
+    uwsgi_temp_path       /tmp/uwsgi_temp;
+    scgi_temp_path        /tmp/scgi_temp;
+    
+    server {
+        listen       8080;
+        server_name  localhost;
 
-    location /readiness {
-        default_type application/json;
-        return 200 '{ "status": "ok", "release": "${VITE_RELEASE}", "packageVersion": "${APP_VERSION}", "commitHash": "${VITE_COMMITHASH}", "buildTime": "${VITE_BUILDTIME}" }';
-    }
+        root /usr/share/nginx/html;
 
-    location /static {
-        expires max;
-        try_files $uri /index.html;
-    }
+        location /healthz {
+            return 200 'OK';
+        }
 
-    location / {
-        try_files $uri /index.html;
-    }
+        location /readiness {
+            default_type application/json;
+            return 200 '{ "status": "ok", "release": "${VITE_RELEASE}", "packageVersion": "${APP_VERSION}", "commitHash": "${VITE_COMMITHASH}", "buildTime": "${VITE_BUILDTIME}" }';
+        }
 
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
+        location /static {
+            expires max;
+            try_files $uri /index.html;
+        }
+
+        location / {
+            try_files $uri /index.html;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   /usr/share/nginx/html;
+        }
     }
 }
