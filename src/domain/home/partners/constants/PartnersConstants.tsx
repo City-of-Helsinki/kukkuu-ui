@@ -27,6 +27,7 @@ import mfaIcon from '../../../../assets/icons/partners/mfa.png';
 import nukketeatterisampoIcon from '../../../../assets/icons/partners/nukketeatterisampo.png';
 import oopperabalettiIcon from '../../../../assets/icons/partners/oopperabaletti.png';
 import qteatteriIcon from '../../../../assets/icons/partners/qteatteri.png';
+import sointiJazzOrchestraIcon from '../../../../assets/icons/partners/sointi_jazz_orchestra.png';
 import svenskateaternIcon from '../../../../assets/icons/partners/svenskateatern.png';
 import tanssintaloIcon from '../../../../assets/icons/partners/tanssintalo.png';
 import teatteriilmioIcon from '../../../../assets/icons/partners/teatteriilmio.png';
@@ -258,6 +259,15 @@ export const partnerList: Partner[] = [
       fi: 'https://svenskateatern.fi/fi/alku/',
       sv: 'https://svenskateatern.fi/sv/start/',
       en: 'https://svenskateatern.fi/en/start/',
+    },
+  },
+  {
+    name: 'sointijazzorchestra',
+    icon: sointiJazzOrchestraIcon,
+    url: {
+      fi: 'https://www.sointijazzorchestra.com/',
+      sv: 'https://www.sointijazzorchestra.com/se',
+      en: 'https://www.sointijazzorchestra.com/en',
     },
   },
   {
