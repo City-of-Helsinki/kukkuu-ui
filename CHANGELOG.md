@@ -399,6 +399,18 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.7.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.6.0...kukkuu-ui-v3.7.0) (2024-09-19)
+
+
+### Features
+
+* Add Sointi Jazz Orchestra logo to the partners' logos ([e0cb139](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e0cb1395d3efaa00ee63f1e13a83caa8fea25afc))
+
+
+### Bug Fixes
+
+* "Kultuurin" typo with "Kulttuurin" ([4523b98](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4523b980c04977b2991b06a954110c34c1ed179e))
+
 ## [3.6.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.5.0...kukkuu-ui-v3.6.0) (2024-09-03)
 
 
