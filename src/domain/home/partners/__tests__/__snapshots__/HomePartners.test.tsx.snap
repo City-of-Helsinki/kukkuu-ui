@@ -322,6 +322,19 @@ exports[`renders snapshot correctly 1`] = `
           </a>
           <a
             class="_container_46f5db"
+            href="https://www.sointijazzorchestra.com/"
+          >
+            <div
+              class="_imgWrapper_73ff55 _icon_46f5db"
+            >
+              <img
+                alt="home.partners.partner.sointijazzorchestra"
+                src="/src/assets/icons/partners/sointi_jazz_orchestra.png"
+              />
+            </div>
+          </a>
+          <a
+            class="_container_46f5db"
             href="https://www.tanssintalo.fi/"
           >
             <div
