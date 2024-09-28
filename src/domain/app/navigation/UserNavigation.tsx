@@ -5,6 +5,7 @@ import {
   IconSignout,
   IconCross,
   useOidcClient,
+  IconLinkExternal,
 } from 'hds-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +16,7 @@ import useGetPathname from '../../../common/route/utils/useGetPathname';
 import styles from './userNavigation.module.scss';
 import useLogout from '../../auth/useLogout';
 import { useProfileContext } from '../../profile/hooks/useProfileContext';
+import AppConfig from '../AppConfig';
 
 type UserNavigationItem = {
   id: string;
@@ -58,6 +60,20 @@ function UserNavigation() {
         onClick: () => navigate(getPathname('/profile')),
       },
       {
+        id: 'helsinkiProfileButton',
+        label: t('navbar.profileDropdown.helsinkiProfile.text'),
+        icon: <IconLinkExternal />,
+        onClick: () => {
+          if (typeof window !== 'undefined') {
+            window.open(
+              AppConfig.helsinkiProfileUrl,
+              '_blank',
+              'noopener,noreferrer'
+            );
+          }
+        },
+      },
+      {
         label: t('authentication.logout.text'),
         id: 'logoutButton',
         icon: <IconSignout />,
@@ -92,9 +108,11 @@ function UserNavigation() {
       onClick={item.onClick ?? undefined}
       fixedRightPosition
       preventButtonResize
+      className={styles.list}
     >
       {item.dropdownItems.map((dropdownItem) => (
         <Button
+          className={styles.userLink}
           id={dropdownItem.id}
           key={dropdownItem.id}
           iconLeft={dropdownItem.icon}
