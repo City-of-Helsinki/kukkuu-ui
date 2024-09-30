@@ -18,11 +18,14 @@ function useTitle(title?: string) {
 type Props = {
   title?: string;
   description?: string;
+  // children props makes this extendable by RHHC Config's Head
+  children?: React.ReactNode;
 };
 
 const PageMeta = ({
   title,
   description = 'homePage.hero.descriptionText',
+  children,
 }: Props) => {
   const locales = ['fi', 'sv', 'en'];
   const { i18n, t } = useTranslation();
@@ -71,6 +74,7 @@ const PageMeta = ({
       <meta property="og:locale" content={lang} />
       <meta property="og:url" content={canonical} />
       <meta property="twitter:url" content={canonical} />
+      {children}
     </Helmet>
   );
 };

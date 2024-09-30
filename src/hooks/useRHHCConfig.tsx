@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import headlessCmsClient from '../domain/headlessCms/client';
 import AppConfig from '../domain/app/AppConfig';
 import { SUPPORT_LANGUAGES } from '../common/translation/TranslationConstants';
+import PageMeta from '../domain/app/layout/utilityComponents/PageMeta';
 
 const APP_DOMAIN = new URL(AppConfig.origin).origin;
 const API_URI = new URL(AppConfig.apiUrl).origin;
@@ -39,6 +40,9 @@ export default function useRHHCConfig(): Config {
       components: {
         ...rhhcDefaultConfig.components,
         Img: rhhcDefaultConfig.components.Img,
+        // Extend the Kukkuu PageMeta with the RHHC PageMeta
+        // to get the CMS Page SEO Meta to work properly.
+        Head: ({ children }) => <PageMeta>{children}</PageMeta>,
       },
       copy: {
         breadcrumbNavigationLabel: '', // t('common.breadcrumbNavigationLabel'),
