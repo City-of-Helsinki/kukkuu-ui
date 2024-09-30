@@ -36,7 +36,7 @@ const PageMeta = ({
       : t('homePage.hero.descriptionText');
 
   const origin = window.location.origin.toString();
-  const path = window.location.pathname.replace(new RegExp(`^/${lang}`), '');
+  const path = window.location.pathname.replace(new RegExp(`^/${lang}/`), '/');
 
   const canonical = `${origin}/${lang}${path}`;
 
