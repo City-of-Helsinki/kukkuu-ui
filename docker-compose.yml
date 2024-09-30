@@ -6,8 +6,21 @@ services:
     build:
       context: .
       target: ${DOCKER_TARGET:-development} # select the docker container from dockerFile
+      args:
+        VITE_ORIGIN: http://localhost:3000
+        VITE_API_URI: https://kukkuu.api.test.hel.ninja/graphql
+        VITE_OIDC_SERVER_TYPE: KEYCLOAK
+        VITE_OIDC_RETURN_TYPE: 'code'
+        VITE_OIDC_AUTHORITY: https://tunnistus.test.hel.ninja/auth/realms/helsinki-tunnistus/
+        VITE_OIDC_CLIENT_ID: 'kukkuu-ui-dev'
+        VITE_OIDC_KUKKUU_API_CLIENT_ID: 'kukkuu-api-dev'
+        VITE_OIDC_SCOPE: 'openid profile email'
+        VITE_OIDC_AUDIENCES: kukkuu-api-dev,profile-api-test
+        VITE_ADMIN_TICKET_VALIDATION_URL: https://kukkuu-admin-ui.test.hel.ninja/check-ticket-validity
+        VITE_CMS_URI: https://kukkuu.app-staging.hkih.hion.dev//graphql
     environment:
-      NODE_ENV: development # which node env the build uses. NOTE: Usually same as the ${DOCKER_TARGET}.
+      NODE_ENV: ${DOCKER_TARGET:-development} # which node env the build uses. NOTE: Usually same as the ${DOCKER_TARGET}.
+    # env_file: '.env.development.local'
     volumes:
       - '.:/app'
       - '/app/node_modules'
