@@ -41,8 +41,9 @@ function Navigation() {
         return `/${language.toLowerCase()}${strippedPathname}`;
       }
 
-      return `/${language.toLowerCase()}${strippedPathname ? stripLocaleFromUri(nav?.uri ?? '') : ''
-        }`;
+      return `/${language.toLowerCase()}${
+        strippedPathname ? stripLocaleFromUri(nav?.uri ?? '') : ''
+      }`;
     },
     [cmsLanguageOptions, location.pathname]
   );
