@@ -24,6 +24,7 @@ const PageMeta = ({
   title,
   description = 'homePage.hero.descriptionText',
 }: Props) => {
+  const locales = ['fi', 'sv', 'en'];
   const { i18n, t } = useTranslation();
   const lang = getCurrentLanguage(i18n);
   const { trackPageView } = useMatomo();
@@ -34,7 +35,10 @@ const PageMeta = ({
       ? t(description)
       : t('homePage.hero.descriptionText');
 
-  const path = window.location.pathname.replace(new RegExp(`^/${lang}/`), '');
+  const origin = window.location.origin.toString();
+  const path = window.location.pathname.replace(new RegExp(`^/${lang}`), '');
+
+  const canonical = `${origin}/${lang}${path}`;
 
   useEffect(() => {
     if (translatedTitle) {
@@ -50,9 +54,23 @@ const PageMeta = ({
       <html lang={lang} />
       {translatedTitle && <title>{translatedTitle}</title>}
       <meta name="description" content={translatedDescription} />
-      <link rel="alternate" hrefLang="fi" href={'/fi/' + path} />
-      <link rel="alternate" hrefLang="sv" href={'/sv/' + path} />
-      <link rel="alternate" hrefLang="en" href={'/en/' + path} />
+      <link rel="canonical" href={canonical} />
+      {locales.map((l) => (
+        <link
+          key={l}
+          rel="alternate"
+          hrefLang={l}
+          href={`${origin}/${l}${path}`}
+        />
+      ))}
+      <link
+        rel="alternate"
+        hrefLang="x-default"
+        href={`${origin}/${locales[0]}${path ? path : ''}`}
+      />
+      <meta property="og:locale" content={lang} />
+      <meta property="og:url" content={canonical} />
+      <meta property="twitter:url" content={canonical} />
     </Helmet>
   );
 };
