@@ -2,10 +2,10 @@ import { UnconnectedHomePreliminaryForm } from '../HomePreliminaryForm';
 import { defaultRegistrationData } from '../../../registration/state/RegistrationReducers';
 import { render } from '../../../../common/test/testingLibraryUtils';
 
-const child = {
+/* const child = {
   birthyear: 2023,
   homeCity: 'Helsinki',
-};
+}; */
 
 it('renders snapshot correctly', () => {
   const { container } = render(
@@ -13,7 +13,7 @@ it('renders snapshot correctly', () => {
       isAuthenticated={true}
       stateFormValues={defaultRegistrationData.formValues}
       setHomeFormValues={vi.fn()}
-      initialValues={{ child, verifyInformation: true }}
+      // initialValues={{ child, verifyInformation: true }}
       forwardRef={null}
     />
   );

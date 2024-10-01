@@ -1,5 +1,5 @@
 export interface HomeFormValues {
-  child: {
+  child?: {
     birthyear: number;
     homeCity: string;
   };

@@ -52,7 +52,7 @@ exports[`renders snapshot correctly 1`] = `
                   placeholder="Lisää lapsen syntymävuosi"
                   required=""
                   type="number"
-                  value="2023"
+                  value=""
                 />
               </div>
             </div>
@@ -82,7 +82,7 @@ exports[`renders snapshot correctly 1`] = `
                   placeholder="Lisää lapsen kotipaikkakunta"
                   required=""
                   type="text"
-                  value="Helsinki"
+                  value=""
                 />
               </div>
             </div>
@@ -94,13 +94,12 @@ exports[`renders snapshot correctly 1`] = `
             style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
           >
             <input
-              checked=""
               class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
               id="verifyInformation"
               name="verifyInformation"
               required=""
               type="checkbox"
-              value="true"
+              value="false"
             />
             <label
               class="Checkbox-module_label__L5AN1 checkbox_hds-checkbox__label__3HoD3"

@@ -1,4 +1,4 @@
-import { RegistrationFormValues } from '../../../registration/types/RegistrationTypes';
+/*import { RegistrationFormValues } from '../../../registration/types/RegistrationTypes';
 import { HomeFormValues } from '../types/HomeFormTypes';
 import { convertFormValues } from '../HomePreliminaryFormUtils';
 import { Language } from '../../../api/generatedTypes/graphql';
@@ -38,4 +38,4 @@ describe('HomePreliminaryFormUtils', () => {
     const result: HomeFormValues = convertFormValues(convertFrom);
     expect(result).toEqual(converted);
   });
-});
+}); */

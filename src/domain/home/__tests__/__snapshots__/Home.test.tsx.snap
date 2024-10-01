@@ -499,7 +499,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                         placeholder="Lisää lapsen syntymävuosi"
                         required=""
                         type="number"
-                        value="2024"
+                        value=""
                       />
                     </div>
                   </div>
