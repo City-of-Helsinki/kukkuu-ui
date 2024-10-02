@@ -12,7 +12,6 @@ import { setHomeFormValues } from '../../registration/state/RegistrationActions'
 import { RegistrationFormValues } from '../../registration/types/RegistrationTypes';
 import { StoreState } from '../../app/types/AppTypes';
 import { HomeFormValues, HomeFormPayload } from './types/HomeFormTypes';
-// import { convertFormValues } from './HomePreliminaryFormUtils';
 import { registrationFormDataSelector } from '../../registration/state/RegistrationSelectors';
 import Button from '../../../common/components/button/Button';
 import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
@@ -25,14 +24,12 @@ interface Props {
   setHomeFormValues: (values: HomeFormPayload) => void;
   // eslint-disable-next-line react/no-unused-prop-types
   stateFormValues: RegistrationFormValues;
-  // initialValues: HomeFormValues;
   forwardRef: Ref<HTMLDivElement>;
 }
 
 const HomePreliminaryForm: FunctionComponent<Props> = ({
   setHomeFormValues,
   isAuthenticated,
-  // initialValues,
   forwardRef,
 }) => {
   const { login } = useOidcClient();
@@ -158,7 +155,6 @@ const mapStateToProps = (state: StoreState) => {
   const stateFormData = registrationFormDataSelector(state);
   return {
     stateFormValues: stateFormData,
-    // initialValues: convertFormValues(stateFormData),
   };
 };
 
