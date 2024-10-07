@@ -542,6 +542,9 @@
       },
       "profile": {
         "text": "Culture Kids Profile"
+      },
+      "helsinkiProfile": {
+        "text": "Helsinki Profile"
       }
     },
     "smallScreenMenu": {

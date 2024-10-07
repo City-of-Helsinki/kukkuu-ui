@@ -27,6 +27,18 @@ class AppConfig {
   }
 
   /**
+   * The Helsinki-profiile url for single sign on
+   *
+   * @throws {Error} If the `VITE_APP_HELSINKI_PROFILE_URL` environment variable is not defined.
+   */
+  static get helsinkiProfileUrl() {
+    return getEnvOrError(
+      import.meta.env.VITE_APP_HELSINKI_PROFILE_URL,
+      'VITE_HELSINKI_PROFILE_URL'
+    );
+  }
+
+  /**
    * The Graphql API URL (e.g., 'https://kukkuu.api.hel.fi/graphql').
    *
    * @throws {Error} If the `VITE_API_URI` environment variable is not defined.

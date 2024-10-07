@@ -5,3 +5,10 @@
     display: none;
   }
 }
+
+.userLink {
+  display: flex !important;
+  justify-content: start !important;
+  --outline-gutter: 0 !important;
+  width: 100%;
+}
