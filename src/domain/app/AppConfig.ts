@@ -155,6 +155,51 @@ class AppConfig {
   }
 
   /**
+   * The Matomo Base Url parameter.
+   *
+   * @throws {Error} If the `VITE_MATOMO_URL_BASE` environment variable is not defined.
+   */
+  static get matomoBaseUrl() {
+    return getEnvOrError(import.meta.env.VITE_MATOMO_URL_BASE, 'VITE_MATOMO_URL_BASE');
+  }
+
+  /**
+   * The Matomo SiteId parameter.
+   *
+   * @throws {Error} If the `VITE_MATOMO_SITE_ID` environment variable is not defined.
+   */
+  static get matomoSiteId() {
+    return getEnvOrError(import.meta.env.VITE_MATOMO_SITE_ID, 'VITE_MATOMO_SITE_ID');
+  }
+
+  /**
+   * The Matomo Source Url parameter.
+   *
+   * @throws {Error} If the `VITE_MATOMO_SRC_URL` environment variable is not defined.
+   */
+  static get matomoSrcUrl() {
+    return getEnvOrError(import.meta.env.VITE_MATOMO_SRC_URL, 'VITE_MATOMO_SRC_URL');
+  }
+
+  /**
+   * The Matomo Tracker Url parameter.
+   *
+   * @throws {Error} If the `VITE_MATOMO_TRACKER_URL` environment variable is not defined.
+   */
+  static get matomoTrackerUrl() {
+    return getEnvOrError(import.meta.env.VITE_MATOMO_TRACKER_URL, 'VITE_MATOMO_TRACKER_URL');
+  }
+
+  /**
+   * The Matomo enabled flag.
+   *
+   * @throws {Error} If the `VITE_MATOMO_ENABLED` environment variable is not defined.
+   */
+  static get matomoEnabled() {
+    return getEnvOrError(import.meta.env.VITE_MATOMO_ENABLED, 'VITE_MATOMO_ENABLED');
+  }
+
+  /**
    * An array of supported locale codes (e.g., ['fi', 'en']).
    */
   static get locales(): readonly string[] {

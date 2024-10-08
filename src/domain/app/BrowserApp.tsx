@@ -19,11 +19,14 @@ import browserRouter from './routes/browserRouter';
 import { CookieConfigProvider } from '../../common/components/cookieConfigProvider';
 import KukkuuHDSLoginProvider from '../auth/KukkuuHDSLoginProvider';
 import ProfileProvider from '../profile/ProfileProvider';
+import AppConfig from './AppConfig';
 
-// TODO maybe: Variables for these:
 const matomoInstance = createMatomoInstance({
-  urlBase: 'https://analytics.hel.ninja/',
-  siteId: 56,
+  urlBase: AppConfig.matomoBaseUrl,
+  siteId: +AppConfig.matomoSiteId,
+  trackerUrl: AppConfig.matomoTrackerUrl,
+  srcUrl: AppConfig.matomoSrcUrl,
+  disabled: !Boolean(AppConfig.matomoEnabled)
 });
 
 // Prevent non-production data from being submitted to Matomo
