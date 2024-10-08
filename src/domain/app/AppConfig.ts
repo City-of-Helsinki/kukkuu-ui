@@ -160,7 +160,10 @@ class AppConfig {
    * @throws {Error} If the `VITE_MATOMO_URL_BASE` environment variable is not defined.
    */
   static get matomoBaseUrl() {
-    return getEnvOrError(import.meta.env.VITE_MATOMO_URL_BASE, 'VITE_MATOMO_URL_BASE');
+    return getEnvOrError(
+      import.meta.env.VITE_MATOMO_URL_BASE,
+      'VITE_MATOMO_URL_BASE'
+    );
   }
 
   /**
@@ -169,7 +172,10 @@ class AppConfig {
    * @throws {Error} If the `VITE_MATOMO_SITE_ID` environment variable is not defined.
    */
   static get matomoSiteId() {
-    return getEnvOrError(import.meta.env.VITE_MATOMO_SITE_ID, 'VITE_MATOMO_SITE_ID');
+    return getEnvOrError(
+      import.meta.env.VITE_MATOMO_SITE_ID,
+      'VITE_MATOMO_SITE_ID'
+    );
   }
 
   /**
@@ -178,7 +184,10 @@ class AppConfig {
    * @throws {Error} If the `VITE_MATOMO_SRC_URL` environment variable is not defined.
    */
   static get matomoSrcUrl() {
-    return getEnvOrError(import.meta.env.VITE_MATOMO_SRC_URL, 'VITE_MATOMO_SRC_URL');
+    return getEnvOrError(
+      import.meta.env.VITE_MATOMO_SRC_URL,
+      'VITE_MATOMO_SRC_URL'
+    );
   }
 
   /**
@@ -187,7 +196,10 @@ class AppConfig {
    * @throws {Error} If the `VITE_MATOMO_TRACKER_URL` environment variable is not defined.
    */
   static get matomoTrackerUrl() {
-    return getEnvOrError(import.meta.env.VITE_MATOMO_TRACKER_URL, 'VITE_MATOMO_TRACKER_URL');
+    return getEnvOrError(
+      import.meta.env.VITE_MATOMO_TRACKER_URL,
+      'VITE_MATOMO_TRACKER_URL'
+    );
   }
 
   /**
@@ -196,7 +208,10 @@ class AppConfig {
    * @throws {Error} If the `VITE_MATOMO_ENABLED` environment variable is not defined.
    */
   static get matomoEnabled() {
-    return getEnvOrError(import.meta.env.VITE_MATOMO_ENABLED, 'VITE_MATOMO_ENABLED');
+    return getEnvOrError(
+      import.meta.env.VITE_MATOMO_ENABLED,
+      'VITE_MATOMO_ENABLED'
+    );
   }
 
   /**

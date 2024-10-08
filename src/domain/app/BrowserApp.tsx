@@ -26,7 +26,7 @@ const matomoInstance = createMatomoInstance({
   siteId: +AppConfig.matomoSiteId,
   trackerUrl: AppConfig.matomoTrackerUrl,
   srcUrl: AppConfig.matomoSrcUrl,
-  disabled: !Boolean(AppConfig.matomoEnabled)
+  disabled: !Boolean(AppConfig.matomoEnabled),
 });
 
 // Prevent non-production data from being submitted to Matomo
