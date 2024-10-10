@@ -5,7 +5,163 @@ exports[`renders without crashing 1`] = `
   <div
     class="_pageWrapper_87a801"
   >
-    <div />
+    <div>
+      <header
+        class="hds-header Header-module_header__291GF"
+        style="--header-max-width: var(--breakpoint-xl);"
+      >
+        <div
+          class="Header-module_headerBackgroundWrapper__KsFy2"
+        >
+          <a
+            class="SkipLink-module_skipLink__1knzF"
+            href="#main-content"
+          >
+            <span
+              class="SkipLink-module_skipLinkLabel__21n5B"
+            >
+              skip to content
+            </span>
+          </a>
+          <div
+            class="HeaderActionBar-module_headerActionBarContainer__5tfj-"
+          >
+            <div
+              class="HeaderActionBar-module_headerActionBar__lPeGE"
+            >
+              <a
+                aria-label="Helsingin kaupunki"
+                class="HeaderActionBar-module_titleAndLogoContainer__2LEAb HeaderActionBar-module_logo__2r2T0"
+                href="#"
+                role="link"
+              >
+                <span
+                  class="HeaderActionBarLogo-module_logoWrapper__8NgfS"
+                >
+                  <img
+                    alt="Helsinki"
+                    class="Logo-module_logo__Y2mwP Logo-module_large__3Tjj3"
+                    src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNzggMzYiIHRpdGxlPSJIZWxzaW5naW4ga2F1cHVua2kiIHJvbGU9ImltZyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoCiAgICAgICAgZD0iTTc1Ljc1MyAyLjI1MXYyMC43YzAgMy45NS0zLjI3NSA3LjE3OC03LjMxIDcuMTc4aC0yMi4yNmMtMi42NzQgMC01LjIwNS45Ni03LjE4MyAyLjczOWExMC43NDkgMTAuNzQ5IDAgMDAtNy4xODMtMi43NEg5LjUwOWMtNC4wMDMgMC03LjI0Ny0zLjIxLTcuMjQ3LTcuMTc3VjIuMjVoNzMuNDkxek00MC4xODcgMzQuODM1YTguNDcgOC40NyAwIDAxNi4wMTItMi40NzFoMjIuMjQ1YzUuMjY4IDAgOS41NTYtNC4yMTkgOS41NTYtOS40MTNWMEgwdjIyLjkzNWMwIDUuMTk0IDQuMjU2IDkuNDEzIDkuNTA5IDkuNDEzaDIyLjMwOGMyLjI2MyAwIDQuMzk4Ljg4MiA2LjAxMiAyLjQ3MUwzOS4wMTYgMzZsMS4xNy0xLjE2NXoiCiAgICAgICAgZmlsbD0iY3VycmVudENvbG9yIiAvPgogICAgPHBhdGgKICAgICAgICBkPSJNNjcuNTIyIDExLjY3NmMwIC42ODEtLjU1NiAxLjE3Ny0xLjI1NSAxLjE3Ny0uNyAwLTEuMjU1LS40OTYtMS4yNTUtMS4xNzcgMC0uNjgyLjU1Ni0xLjE3OCAxLjI1NS0xLjE3OC43LS4wMyAxLjI1NS40NjUgMS4yNTUgMS4xNzh6bS0yLjM1MiA5LjYyMmgyLjE3OHYtNy41NDZINjUuMTd2Ny41NDZ6bS0zLjkwOS00LjU1NmwyLjg0NSA0LjU1NmgtMi4zNjhsLTEuOTA3LTMuMDIyLTEuMDMzIDEuMjcxdjEuNzVoLTIuMTYxVjEwLjQ1M2gyLjE2djUuMDA0YzAgLjkzLS4xMSAxLjg2LS4xMSAxLjg2aC4wNDdzLjUwOS0uODIxLjkzOC0xLjQxbDEuNjUzLTIuMTU0aDIuNTQybC0yLjYwNiAyLjk5em0tNi44MTctLjI3OGMwLTEuODc1LS45MzgtMi44OTgtMi40MzItMi44OTgtMS4yNzEgMC0xLjkzOS43MjgtMi4zMiAxLjQyNmgtLjA0OGwuMTEyLTEuMjRoLTIuMTYydjcuNTQ2aDIuMTYyVjE2LjgyYzAtLjg2OC41MjQtMS40NzIgMS4zMzUtMS40NzIuODEgMCAxLjE2LjUyNyAxLjE2IDEuNTM0djQuNDE2aDIuMTc3bC4wMTYtNC44MzR6bS04LjkzMS00Ljc4OGMwIC42ODEtLjU1NyAxLjE3Ny0xLjI1NiAxLjE3Ny0uNyAwLTEuMjU1LS40OTYtMS4yNTUtMS4xNzcgMC0uNjgyLjU1Ni0xLjE3OCAxLjI1NS0xLjE3OC43MTUtLjAzIDEuMjU2LjQ2NSAxLjI1NiAxLjE3OHptLTIuMzUyIDkuNjIyaDIuMTc3di03LjU0Nkg0My4xNnY3LjU0NnptLTMuNzUtMi4xMDdjMC0uNjA1LS44NTktLjcyOS0xLjg2LTEuMDA4LTEuMTYtLjI5NC0yLjYyMi0uODY3LTIuNjIyLTIuMzA4IDAtMS40MjYgMS4zOTgtMi4zMjQgMy4wNTEtMi4zMjQgMS41NDEgMCAyLjk1Ni43MTIgMy41NDQgMS43MmwtMS44NiAxLjAyMmMtLjE5LS42NjYtLjc2Mi0xLjE5My0xLjYyLTEuMTkzLS41NTcgMC0xLjAxOC4yMzItMS4wMTguNjgyIDAgLjU3MyAxLjAxOC42MzUgMi4xNjIuOTkxIDEuMjA4LjM3MiAyLjMyLjkxNSAyLjMyIDIuMjk0IDAgMS41MTgtMS40NDYgMi40MTctMy4xMTUgMi40MTctMS44MTEgMC0zLjI0Mi0uNzQ0LTMuODc3LTEuOTUybDEuODktMS4wMzljLjI0LjgyMi45MjIgMS40NDEgMS45NTUgMS40NDEuNjIgMCAxLjA1LS4yNDggMS4wNS0uNzQzem0tNi44ODItOC42NzdoLTIuMTc3djguNjkyYzAgLjc3NS4xNzUgMS4zNDguNTA5IDEuNzA1LjM1LjM1Ni44OS41MjYgMS42MzYuNTI2LjI1NSAwIC41MjUtLjAzLjc4LS4wNzcuMjctLjA2Mi40NzYtLjE0LjY1LS4yMzNsLjE5MS0xLjQyNWEyLjA3IDIuMDcgMCAwMS0uNDYuMTI0Yy0uMTI4LjAzLS4yODcuMDMtLjQ2MS4wMy0uMjg2IDAtLjQxNC0uMDc3LS41MDktLjIxNi0uMTExLS4xNC0uMTU5LS4zODctLjE1OS0uNzQ0di04LjM4MnptLTcuMjQ2IDQuNTdjLS43OTUgMC0xLjQ0Ni41NTgtMS42MjEgMS41ODFoMy4wNWMuMDE3LS44OTktLjU4Ny0xLjU4LTEuNDMtMS41OHptMy4zNTMgMy4wMDdIMjMuNjNjLjA5NSAxLjIyNC43OTQgMS44MjggMS43IDEuODI4LjgxIDAgMS4zNjctLjUyNyAxLjQ5NC0xLjI0bDEuODI4IDEuMDA3Yy0uNTQuOTYxLTEuNyAxLjc5OC0zLjMyMiAxLjc5OC0yLjE2IDAtMy43NS0xLjQ3Mi0zLjc1LTMuOTUxIDAtMi40NjQgMS42Mi0zLjk1MSAzLjcwMy0zLjk1MSAyLjA4MSAwIDMuNDY0IDEuNDQgMy40NjQgMy40ODYtLjAxNi42MDQtLjExMSAxLjAyMy0uMTExIDEuMDIzem0tMTEuMDc3IDMuMjA3aDIuMjU3VjEwLjkxNmgtMi4yNTd2NC4xMDdoLTQuMjQzdi00LjA5MUgxMS4wNnYxMC4zNjZoMi4yNTZ2LTQuMjkyaDQuMjQzdjQuMjkyeiIKICAgICAgICBmaWxsPSJjdXJyZW50Q29sb3IiIC8+Cjwvc3ZnPg=="
+                  />
+                </span>
+              </a>
+              <a
+                class="HeaderActionBar-module_titleAndLogoContainer__2LEAb HeaderActionBar-module_title__opzt9 HeaderActionBar-module_normal__3B4qi"
+                href="#"
+              >
+                <span
+                  class="HeaderActionBar-module_title__opzt9"
+                >
+                  Test site
+                </span>
+              </a>
+              <div
+                class="HeaderActionBar-module_headerActions__3lNnM"
+              >
+                <div
+                  class="HeaderLanguageSelector-module_languageSelector__3d38B"
+                >
+                  <div
+                    class="HeaderLanguageSelector-module_languageNodes__lTe8p"
+                  />
+                </div>
+                <div
+                  class="HeaderActionBarItem-module_container__1uq2m _list_0e6fe3 HeaderActionBarItem-module_hasContent__YJfOU"
+                  id="signinButton"
+                >
+                  <button
+                    aria-controls="signinButton-dropdown"
+                    aria-expanded="false"
+                    aria-label="[object Object]"
+                    class="HeaderActionBarItemButton-module_actionBarItemButton__2ALyH HeaderActionBarItem-module_icon__1Ug_k HeaderActionBarItemButton-module_fixedRightPosition__kBVLv"
+                    type="button"
+                  >
+                    <div
+                      class="HeaderActionBarItemButton-module_buttonContent__3JeY0"
+                    >
+                      <span>
+                        <span
+                          class="HeaderActionBarItemButton-module_actionBarItemButtonIcon__1_1Cg"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            aria-label="signin"
+                            class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                            role="img"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M21 2V22H8V17H10V20H19V4H10V7H8V2H21ZM12.5 7L17.5 12L12.5 17L11 15.5L13.5 12.999L2 13V11L13.499 10.999L11 8.5L12.5 7Z"
+                              fill="currentColor"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                        <span
+                          class="HeaderActionBarItemButton-module_actionBarItemButtonLabel__12Iec"
+                        >
+                          <span
+                            class="_hideBelowSmall_0e6fe3"
+                          >
+                            Kirjaudu
+                          </span>
+                        </span>
+                      </span>
+                      <div
+                        class="HeaderActionBarItemButton-module_activeStateContent__mgTLp"
+                      >
+                        <span
+                          class="HeaderActionBarItemButton-module_actionBarItemButtonIcon__1_1Cg"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            aria-label="signin"
+                            class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                            role="img"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              clip-rule="evenodd"
+                              d="M21 2V22H8V17H10V20H19V4H10V7H8V2H21ZM12.5 7L17.5 12L12.5 17L11 15.5L13.5 12.999L2 13V11L13.499 10.999L11 8.5L12.5 7Z"
+                              fill="currentColor"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          class="HeaderActionBarItemButton-module_actionBarItemButtonLabel__12Iec"
+                        >
+                          <span
+                            class="_hideBelowSmall_0e6fe3"
+                          >
+                            Kirjaudu
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="HeaderNavigationMenu-module_headerNavigationMenuContainer__2nK9z"
+          >
+            <nav
+              class="HeaderNavigationMenu-module_headerNavigationMenu__3G6-N"
+            >
+              <ul
+                class="HeaderNavigationMenu-module_headerNavigationMenuList__3HIzx"
+              />
+            </nav>
+          </div>
+        </div>
+      </header>
+    </div>
     <div
       class="_pageBody_87a801"
       id="main_content"
