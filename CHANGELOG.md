@@ -399,6 +399,23 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.8.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.7.0...kukkuu-ui-v3.8.0) (2024-10-11)
+
+
+### Features
+
+* Add canonical URL as meta property to the Head ([4483f28](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4483f284cc9016ce33454b6940d04f147612551e))
+
+
+### Bug Fixes
+
+* Emove prefilled birthyear ([#587](https://github.com/City-of-Helsinki/kukkuu-ui/issues/587)) ([4110a64](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4110a644abe59f31f9308aa9b36ad8f3c7e98c7f))
+* Improve PageMeta's Helmet-rendering to include canonical and alternative urls ([0cff0ec](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0cff0ec94c62a67a947729d882a1741c6e6db276))
+* Login improvements with hki profile link ([#585](https://github.com/City-of-Helsinki/kukkuu-ui/issues/585)) ([5a5d5b9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5a5d5b9fa08bb8195afca66dbe3fa16365b80a6d))
+* Navigation render without data fetched ([#590](https://github.com/City-of-Helsinki/kukkuu-ui/issues/590)) ([2aeb7c9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2aeb7c92e667db6b241114ee32341cfc3d042d28))
+* Page meta of the CMS pages ([13e85b8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/13e85b85d32fcac65198ee7019848b709aecb973))
+* Remove needless ngingx rules ([1246de6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1246de6261aca1711322a906d179fe40123e00e1))
+
 ## [3.7.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.6.0...kukkuu-ui-v3.7.0) (2024-09-19)
 
 
