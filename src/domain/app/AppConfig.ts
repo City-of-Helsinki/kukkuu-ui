@@ -146,6 +146,14 @@ class AppConfig {
   }
 
   /**
+   * Read env variable `VITE_IDLE_TIMEOUT_IN_MS`.
+   * Defaults to 60 minutes.
+   * */
+  static get userIdleTimeoutInMs(): number {
+    return import.meta.env.VITE_IDLE_TIMEOUT_IN_MS ?? 3600000;
+  }
+
+  /**
    * The URL of the Content Management System (CMS).
    *
    * @throws {Error} If the `VITE_CMS_URI` environment variable is not defined.
