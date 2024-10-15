@@ -22,6 +22,7 @@ services:
         VITE_MATOMO_URL_BASE: https://webanalytics.digiaiiris.com/js/
         VITE_MATOMO_SITE_ID: 813
         VITE_MATOMO_ENABLED: 0
+        VITE_IDLE_TIMEOUT_IN_MS: 3600000
     environment:
       NODE_ENV: ${DOCKER_TARGET:-development} # which node env the build uses. NOTE: Usually same as the ${DOCKER_TARGET}.
     # env_file: '.env.development.local'

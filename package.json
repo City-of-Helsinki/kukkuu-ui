@@ -108,6 +108,7 @@
     "react-helmet-async": "^2.0.4",
     "react-helsinki-headless-cms": "1.0.0-alpha305",
     "react-i18next": "^13.2.2",
+    "react-idle-timer": "^5.7.2",
     "react-modal": "^3.16.1",
     "react-qrcode-logo": "^2.9.0",
     "react-redux": "^8.1.2",
