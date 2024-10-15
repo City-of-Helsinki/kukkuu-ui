@@ -19,6 +19,7 @@ import browserRouter from './routes/browserRouter';
 import { CookieConfigProvider } from '../../common/components/cookieConfigProvider';
 import KukkuuHDSLoginProvider from '../auth/KukkuuHDSLoginProvider';
 import ProfileProvider from '../profile/ProfileProvider';
+import IdleTimer from '../auth/IdleTimerProvider';
 
 // TODO maybe: Variables for these:
 const matomoInstance = createMatomoInstance({
@@ -51,13 +52,15 @@ const BrowserApp: React.FunctionComponent<BrowserAppProps> = ({
           >
             <ApolloProvider client={graphqlClient}>
               <KukkuuHDSLoginProvider>
-                <ProfileProvider>
-                  <ConfigProvider config={config}>
-                    <MatomoProvider value={matomoInstance}>
-                      <RouterProvider router={browserRouter} />
-                    </MatomoProvider>
-                  </ConfigProvider>
-                </ProfileProvider>
+                <IdleTimer>
+                  <ProfileProvider>
+                    <ConfigProvider config={config}>
+                      <MatomoProvider value={matomoInstance}>
+                        <RouterProvider router={browserRouter} />
+                      </MatomoProvider>
+                    </ConfigProvider>
+                  </ProfileProvider>
+                </IdleTimer>
               </KukkuuHDSLoginProvider>
             </ApolloProvider>
           </PersistGate>
