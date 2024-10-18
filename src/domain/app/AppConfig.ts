@@ -180,26 +180,19 @@ class AppConfig {
 
   /**
    * The Matomo Source Url parameter.
-   *
-   * @throws {Error} If the `VITE_MATOMO_SRC_URL` environment variable is not defined.
    */
   static get matomoSrcUrl() {
-    return getEnvOrError(
-      import.meta.env.VITE_MATOMO_SRC_URL,
-      'VITE_MATOMO_SRC_URL'
-    );
+    const srcUrl: string | undefined = import.meta.env.VITE_MATOMO_SRC_URL;
+    return srcUrl;
   }
 
   /**
    * The Matomo Tracker Url parameter.
-   *
-   * @throws {Error} If the `VITE_MATOMO_TRACKER_URL` environment variable is not defined.
    */
   static get matomoTrackerUrl() {
-    return getEnvOrError(
-      import.meta.env.VITE_MATOMO_TRACKER_URL,
-      'VITE_MATOMO_TRACKER_URL'
-    );
+    const trackerUrl: string | undefined = import.meta.env
+      .VITE_MATOMO_TRACKER_URL;
+    return trackerUrl;
   }
 
   /**
@@ -208,9 +201,8 @@ class AppConfig {
    * @throws {Error} If the `VITE_MATOMO_ENABLED` environment variable is not defined.
    */
   static get matomoEnabled() {
-    return getEnvOrError(
-      import.meta.env.VITE_MATOMO_ENABLED,
-      'VITE_MATOMO_ENABLED'
+    return Boolean(
+      getEnvOrError(import.meta.env.VITE_MATOMO_ENABLED, 'VITE_MATOMO_ENABLED')
     );
   }
 
