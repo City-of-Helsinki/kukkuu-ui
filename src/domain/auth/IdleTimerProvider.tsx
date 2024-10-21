@@ -16,7 +16,7 @@ function IdleTimer({ children }: IdleTimerProps) {
 
   return (
     <IdleTimerProvider
-      timeout={60 * AppConfig.userIdleTimeoutInMs || 3600000}
+      timeout={AppConfig.userIdleTimeoutInMs || 3_600_000}
       onIdle={onIdle}
       name="att-kukku-ui-idle-timer"
       startOnMount
