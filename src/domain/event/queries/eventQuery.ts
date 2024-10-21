@@ -24,6 +24,9 @@ const eventQueryFragments = gql`
       ... on LippupisteOccurrenceTicketSystem {
         url
       }
+      ... on TixlyOccurrenceTicketSystem {
+        url
+      }
     }
   }
 
@@ -68,6 +71,10 @@ const eventQuery = gql`
           childPassword(childId: $childId)
           url
         }
+        ... on TixlyEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
       }
     }
   }
@@ -95,6 +102,10 @@ export const eventExternalTicketSystemPasswordQuery = gql`
           url
         }
         ... on LippupisteEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
+        ... on TixlyEventTicketSystem {
           childPassword(childId: $childId)
           url
         }

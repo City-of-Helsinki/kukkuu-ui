@@ -165,6 +165,23 @@ const childWithLippupisteEnrolment: ChildByIdResponse = {
   pastEvents: null,
 };
 
+const childWithTixlyEnrolment: ChildByIdResponse = {
+  ...childData,
+  upcomingEventsAndEventGroups: null,
+  activeInternalAndTicketSystemEnrolments: {
+    edges: [
+      {
+        node: {
+          __typename: 'TixlyEnrolmentNode',
+          id: 'tixly-123',
+          event: eventData,
+        },
+      },
+    ],
+  },
+  pastEvents: null,
+};
+
 test('Renders snapshot correctly', () => {
   const { container } = render(
     <MockedProvider>
@@ -241,6 +258,7 @@ test.each([
     'Lippupiste',
     childWithLippupisteEnrolment.activeInternalAndTicketSystemEnrolments,
   ],
+  ['Tixly', childWithTixlyEnrolment.activeInternalAndTicketSystemEnrolments],
 ])('Renders %s enrolment', (_, enrolments) => {
   render(
     <MockedProvider>
