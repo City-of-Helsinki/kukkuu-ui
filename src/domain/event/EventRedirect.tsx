@@ -93,7 +93,7 @@ const EventRedirect = () => {
     },
   });
 
-  // Get the Ticketmaster password from either the query or the mutation's response.
+  // Get the external ticket system password from either the query or the mutation's response.
   // Normally the user will land on this page without a password, so the query's
   // password will be null, but in some special occasions, like when reloading the page,
   // the query might already return the password.

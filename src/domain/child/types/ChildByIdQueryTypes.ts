@@ -10,6 +10,7 @@ import {
   UpcomingEventsAndEventGroupsFieldsFragment,
   UpcomingEventFieldsFragment,
   UpcomingEventGroupFieldsFragment,
+  ActiveTixlyEnrolmentFieldsFragment,
 } from '../../api/generatedTypes/graphql';
 
 export type ChildByIdResponse = ChildByIdQueryFieldsFragment;
@@ -27,10 +28,13 @@ export type TicketmasterEnrolment = ActiveTicketmasterEnrolmentFieldsFragment;
 
 export type LippupisteEnrolment = ActiveLippupisteEnrolmentFieldsFragment;
 
+export type TixlyEnrolment = ActiveTixlyEnrolmentFieldsFragment;
+
 export type InternalOrTicketSystemEnrolment =
   | ActiveInternalEnrolmentFieldsFragment
   | ActiveTicketmasterEnrolmentFieldsFragment
-  | ActiveLippupisteEnrolmentFieldsFragment;
+  | ActiveLippupisteEnrolmentFieldsFragment
+  | ActiveTixlyEnrolmentFieldsFragment;
 
 export type InternalEnrolmentOccurrence = EnrolmentOccurrenceFieldsFragment;
 
