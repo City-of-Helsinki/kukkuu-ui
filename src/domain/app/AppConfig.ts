@@ -139,10 +139,10 @@ class AppConfig {
 
   /**
    * Read env variable `VITE_OIDC_SESSION_POLLING_INTERVAL_MS`.
-   * Defaults to 60000.
+   * Defaults to 1 minute.
    * */
   static get oidcSessionPollerIntervalInMs(): number {
-    return import.meta.env.VITE_OIDC_SESSION_POLLING_INTERVAL_MS ?? 60000;
+    return import.meta.env.VITE_OIDC_SESSION_POLLING_INTERVAL_MS ?? 60_000;
   }
 
   /**
@@ -150,7 +150,7 @@ class AppConfig {
    * Defaults to 60 minutes.
    * */
   static get userIdleTimeoutInMs(): number {
-    return import.meta.env.VITE_IDLE_TIMEOUT_IN_MS ?? 3600000;
+    return import.meta.env.VITE_IDLE_TIMEOUT_IN_MS ?? 3_600_000;
   }
 
   /**
