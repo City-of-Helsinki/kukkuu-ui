@@ -33,6 +33,7 @@ import useGetPathname from '../../common/route/utils/useGetPathname';
 import eventExternalTicketSystemPasswordCountQuery from './queries/eventExternalTicketSystemPasswordCountQuery';
 import Text from '../../common/components/text/Text';
 import { Occurrences, OccurrenceNode } from './types/EventQueryTypes';
+import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
@@ -167,10 +168,9 @@ const Event = () => {
   }
 
   const event = data.event;
-  const isExternalTicketSystem = [
-    TicketSystem.Ticketmaster,
-    TicketSystem.Lippupiste,
-  ].includes(event?.ticketSystem?.type as TicketSystem);
+  const isExternalTicketSystem = externalTicketSystems.includes(
+    event?.ticketSystem?.type as TicketSystem
+  );
 
   return (
     <EventPage event={event} backTo={goBackTo}>

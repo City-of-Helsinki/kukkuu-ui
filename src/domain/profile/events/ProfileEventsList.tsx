@@ -24,6 +24,7 @@ import {
   UpcomingEventOrEventGroup,
   UpcomingEvent,
   UpcomingEventGroup,
+  TixlyEnrolment,
 } from '../../child/types/ChildByIdQueryTypes';
 
 const upcomingEventsAndEventGroupsList = RelayList<UpcomingEventOrEventGroup>();
@@ -47,7 +48,8 @@ function switchInternalOrTicketSystemEnrolment<R>(
   enrolmentNode: InternalOrTicketSystemEnrolment,
   isInternal: (internalEnrolment: InternalEnrolment) => R,
   isTicketmaster: (ticketmasterEnrolment: TicketmasterEnrolment) => R,
-  isLippupiste: (lippupisteEnrolment: LippupisteEnrolment) => R
+  isLippupiste: (lippupisteEnrolment: LippupisteEnrolment) => R,
+  isTixly: (tixlyEnrolment: TixlyEnrolment) => R
 ) {
   const typeHandlers: Record<
     InternalOrTicketSystemEnrolment['__typename'],
@@ -58,6 +60,7 @@ function switchInternalOrTicketSystemEnrolment<R>(
       isTicketmaster(enrolmentNode as TicketmasterEnrolment),
     LippupisteEnrolmentNode: () =>
       isLippupiste(enrolmentNode as LippupisteEnrolment),
+    TixlyEnrolmentNode: () => isTixly(enrolmentNode as TixlyEnrolment),
   };
   return typeHandlers[enrolmentNode['__typename']]();
 }
@@ -152,7 +155,10 @@ const ProfileEventsList = ({
   );
 
   const getExternalEnrolmentEventCard = (
-    externalTicketSystemEnrolment: TicketmasterEnrolment | LippupisteEnrolment
+    externalTicketSystemEnrolment:
+      | TicketmasterEnrolment
+      | LippupisteEnrolment
+      | TixlyEnrolment
   ) => (
     <EventCard
       key={externalTicketSystemEnrolment.id}
@@ -174,6 +180,7 @@ const ProfileEventsList = ({
           switchInternalOrTicketSystemEnrolment(
             internalOrTicketSystemEnrolment,
             getInternalEnrolmentEventCard,
+            getExternalEnrolmentEventCard,
             getExternalEnrolmentEventCard,
             getExternalEnrolmentEventCard
           )

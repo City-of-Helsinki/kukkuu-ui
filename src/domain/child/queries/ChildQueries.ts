@@ -86,6 +86,14 @@ export const childByIdQuery = gql`
     __typename
   }
 
+  fragment ActiveTixlyEnrolmentFields on TixlyEnrolmentNode {
+    id
+    event {
+      ...EnrolmentEventFields
+    }
+    __typename
+  }
+
   fragment ActiveInternalAndTicketSystemEnrolmentsFields on InternalOrTicketSystemEnrolmentConnection {
     edges {
       node {
@@ -97,6 +105,9 @@ export const childByIdQuery = gql`
         }
         ... on LippupisteEnrolmentNode {
           ...ActiveLippupisteEnrolmentFields
+        }
+        ... on TixlyEnrolmentNode {
+          ...ActiveTixlyEnrolmentFields
         }
       }
     }

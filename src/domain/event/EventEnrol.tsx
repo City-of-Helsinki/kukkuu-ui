@@ -7,6 +7,7 @@ import { EventQuery, TicketSystem } from '../api/generatedTypes/graphql';
 import EventOccurrenceList from './EventOccurrenceList';
 import { FilterValues, FilterOptions } from './Event';
 import styles from './event.module.scss';
+import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
 
 export type EventEnrolProps = {
   data: EventQuery;
@@ -32,10 +33,9 @@ const EventEnrol = ({
 
   if (!data?.event) return <div></div>;
 
-  const isExternalTicketSystem = [
-    TicketSystem.Ticketmaster,
-    TicketSystem.Lippupiste,
-  ].includes(data?.event?.ticketSystem?.type as TicketSystem);
+  const isExternalTicketSystem = externalTicketSystems.includes(
+    data?.event?.ticketSystem?.type as TicketSystem
+  );
 
   return (
     <>

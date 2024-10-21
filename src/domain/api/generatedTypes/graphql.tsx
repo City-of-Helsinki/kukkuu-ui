@@ -93,6 +93,7 @@ export type AddMessageMutationInput = {
   occurrenceIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   projectId: Scalars['ID']['input'];
   protocol: ProtocolType;
+  /** Set the scope for message recipients. The 'ALL' is valid only when a user has a specific permission. */
   recipientSelection: RecipientSelectionEnum;
   /** Sends the message directly after the save */
   sendDirectly?: InputMaybe<Scalars['Boolean']['input']>;
@@ -555,6 +556,7 @@ export type EventNodeMessagesArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   occurrences: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   offset: InputMaybe<Scalars['Int']['input']>;
+  orderBy: InputMaybe<Scalars['String']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
   protocol: InputMaybe<MessagingMessageProtocolChoices>;
 };
@@ -792,7 +794,8 @@ export type InternalOrTicketSystemEnrolmentEdge = {
 export type InternalOrTicketSystemEnrolmentUnion =
   | EnrolmentNode
   | LippupisteEnrolmentNode
-  | TicketmasterEnrolmentNode;
+  | TicketmasterEnrolmentNode
+  | TixlyEnrolmentNode;
 
 /** An enumeration. */
 export enum Language {
@@ -909,6 +912,7 @@ export type MessageNodeOccurrencesArgs = {
 
 export type MessageNodeConnection = {
   __typename?: 'MessageNodeConnection';
+  count: Scalars['Int']['output'];
   /** Contains the nodes in this connection. */
   edges: Array<Maybe<MessageNodeEdge>>;
   /** Pagination data for this connection. */
@@ -1003,6 +1007,7 @@ export type Mutation = {
   updateMyEmail: Maybe<UpdateMyEmailMutationPayload>;
   updateMyProfile: Maybe<UpdateMyProfileMutationPayload>;
   updateOccurrence: Maybe<UpdateOccurrenceMutationPayload>;
+  updateTicketAttended: Maybe<UpdateTicketAttendedMutationPayload>;
   updateVenue: Maybe<UpdateVenueMutationPayload>;
 };
 
@@ -1142,6 +1147,10 @@ export type MutationUpdateOccurrenceArgs = {
   input: UpdateOccurrenceMutationInput;
 };
 
+export type MutationUpdateTicketAttendedArgs = {
+  input: UpdateTicketAttendedMutationInput;
+};
+
 export type MutationUpdateVenueArgs = {
   input: UpdateVenueMutationInput;
 };
@@ -1150,6 +1159,20 @@ export type MutationUpdateVenueArgs = {
 export type Node = {
   /** The ID of the object */
   id: Scalars['ID']['output'];
+};
+
+export type OccurrenceArrivalStatusNode = {
+  __typename?: 'OccurrenceArrivalStatusNode';
+  /**
+   * **DEPRECATED:**  Number of enrolments marked as attended for this occurrence.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
+   */
+  attendedEnrolmentCount: Scalars['Int']['output'];
+  /**
+   * **DEPRECATED:** Total number of enrolments for this occurrence.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
+   */
+  enrolmentCount: Scalars['Int']['output'];
 };
 
 export type OccurrenceNode = Node & {
@@ -1279,6 +1302,7 @@ export type ProjectNodeEdge = {
 
 export type ProjectPermissionsType = {
   __typename?: 'ProjectPermissionsType';
+  canSendToAllInProject: Maybe<Scalars['Boolean']['output']>;
   manageEventGroups: Maybe<Scalars['Boolean']['output']>;
   publish: Maybe<Scalars['Boolean']['output']>;
 };
@@ -1418,8 +1442,10 @@ export type QueryMessagesArgs = {
   before: InputMaybe<Scalars['String']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
   last: InputMaybe<Scalars['Int']['input']>;
+  limit: InputMaybe<Scalars['Int']['input']>;
   occurrences: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   offset: InputMaybe<Scalars['Int']['input']>;
+  orderBy: InputMaybe<Scalars['String']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
   protocol: InputMaybe<MessagingMessageProtocolChoices>;
 };
@@ -1590,12 +1616,20 @@ export enum TicketSystem {
   Internal = 'INTERNAL',
   Lippupiste = 'LIPPUPISTE',
   Ticketmaster = 'TICKETMASTER',
+  Tixly = 'TIXLY',
 }
 
 export type TicketVerificationNode = {
   __typename?: 'TicketVerificationNode';
+  /** Indicates whether the ticket holder has arrived. If null, the status is unset. */
+  attended: Maybe<Scalars['Boolean']['output']>;
   /** The name of the event */
   eventName: Scalars['String']['output'];
+  /**
+   * **DEPRECATED:** Use `OccurrenceNode` instead (requires authorization). Provides a summary of arrivals for this occurrence. This field will be removed in a future release to protect sensitive attendance data.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. The attendance information should not be publicly available.
+   */
+  occurrenceArrivalStatus: Maybe<OccurrenceArrivalStatusNode>;
   /** The time of the event occurrence */
   occurrenceTime: Scalars['DateTime']['output'];
   validity: Scalars['Boolean']['output'];
@@ -1627,6 +1661,34 @@ export type TicketmasterEventTicketSystemChildPasswordArgs = {
 
 export type TicketmasterOccurrenceTicketSystem = OccurrenceTicketSystem & {
   __typename?: 'TicketmasterOccurrenceTicketSystem';
+  type: TicketSystem;
+  url: Scalars['String']['output'];
+};
+
+export type TixlyEnrolmentNode = Node & {
+  __typename?: 'TixlyEnrolmentNode';
+  createdAt: Scalars['DateTime']['output'];
+  event: EventNode;
+  /** The ID of the object */
+  id: Scalars['ID']['output'];
+};
+
+export type TixlyEventTicketSystem = EventTicketSystem & {
+  __typename?: 'TixlyEventTicketSystem';
+  childPassword: Maybe<Scalars['String']['output']>;
+  endTime: Maybe<Scalars['DateTime']['output']>;
+  freePasswordCount: Scalars['Int']['output'];
+  type: TicketSystem;
+  url: Scalars['String']['output'];
+  usedPasswordCount: Scalars['Int']['output'];
+};
+
+export type TixlyEventTicketSystemChildPasswordArgs = {
+  childId: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type TixlyOccurrenceTicketSystem = OccurrenceTicketSystem & {
+  __typename?: 'TixlyOccurrenceTicketSystem';
   type: TicketSystem;
   url: Scalars['String']['output'];
 };
@@ -1755,6 +1817,7 @@ export type UpdateMessageMutationInput = {
   occurrenceIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   projectId?: InputMaybe<Scalars['ID']['input']>;
   protocol?: InputMaybe<ProtocolType>;
+  /** Set the scope for message recipients. The 'ALL' is valid only when a user has a specific permission. */
   recipientSelection?: InputMaybe<RecipientSelectionEnum>;
   translations?: InputMaybe<Array<InputMaybe<MessageTranslationsInput>>>;
 };
@@ -1821,6 +1884,18 @@ export type UpdateOccurrenceMutationPayload = {
   __typename?: 'UpdateOccurrenceMutationPayload';
   clientMutationId: Maybe<Scalars['String']['output']>;
   occurrence: Maybe<OccurrenceNode>;
+};
+
+export type UpdateTicketAttendedMutationInput = {
+  attended: Scalars['Boolean']['input'];
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  referenceId: Scalars['String']['input'];
+};
+
+export type UpdateTicketAttendedMutationPayload = {
+  __typename?: 'UpdateTicketAttendedMutationPayload';
+  clientMutationId: Maybe<Scalars['String']['output']>;
+  ticket: Maybe<TicketVerificationNode>;
 };
 
 export type UpdateVenueMutationInput = {
@@ -2239,6 +2314,21 @@ export type ActiveLippupisteEnrolmentFieldsFragment = {
   };
 };
 
+export type ActiveTixlyEnrolmentFieldsFragment = {
+  __typename: 'TixlyEnrolmentNode';
+  id: string;
+  event: {
+    __typename?: 'EventNode';
+    id: string;
+    name: string | null;
+    shortDescription: string | null;
+    duration: number | null;
+    image: string;
+    imageAltText: string | null;
+    participantsPerInvite: EventParticipantsPerInvite;
+  };
+};
+
 export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
   __typename?: 'InternalOrTicketSystemEnrolmentConnection';
   edges: Array<{
@@ -2286,6 +2376,20 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
         }
       | {
           __typename: 'TicketmasterEnrolmentNode';
+          id: string;
+          event: {
+            __typename?: 'EventNode';
+            id: string;
+            name: string | null;
+            shortDescription: string | null;
+            duration: number | null;
+            image: string;
+            imageAltText: string | null;
+            participantsPerInvite: EventParticipantsPerInvite;
+          };
+        }
+      | {
+          __typename: 'TixlyEnrolmentNode';
           id: string;
           event: {
             __typename?: 'EventNode';
@@ -2447,6 +2551,20 @@ export type ChildByIdQueryFieldsFragment = {
               participantsPerInvite: EventParticipantsPerInvite;
             };
           }
+        | {
+            __typename: 'TixlyEnrolmentNode';
+            id: string;
+            event: {
+              __typename?: 'EventNode';
+              id: string;
+              name: string | null;
+              shortDescription: string | null;
+              duration: number | null;
+              image: string;
+              imageAltText: string | null;
+              participantsPerInvite: EventParticipantsPerInvite;
+            };
+          }
         | null;
     } | null>;
   } | null;
@@ -2581,6 +2699,20 @@ export type ChildByIdQuery = {
             }
           | {
               __typename: 'TicketmasterEnrolmentNode';
+              id: string;
+              event: {
+                __typename?: 'EventNode';
+                id: string;
+                name: string | null;
+                shortDescription: string | null;
+                duration: number | null;
+                image: string;
+                imageAltText: string | null;
+                participantsPerInvite: EventParticipantsPerInvite;
+              };
+            }
+          | {
+              __typename: 'TixlyEnrolmentNode';
               id: string;
               event: {
                 __typename?: 'EventNode';
@@ -3074,6 +3206,11 @@ export type EventExternalTicketSystemPasswordCountQuery = {
           freePasswordCount: number;
           type: TicketSystem;
         }
+      | {
+          __typename?: 'TixlyEventTicketSystem';
+          freePasswordCount: number;
+          type: TicketSystem;
+        }
       | null;
   } | null;
 };
@@ -3105,6 +3242,11 @@ export type EventOccurrenceFieldsFragment = {
       }
     | {
         __typename?: 'TicketmasterOccurrenceTicketSystem';
+        url: string;
+        type: TicketSystem;
+      }
+    | {
+        __typename?: 'TixlyOccurrenceTicketSystem';
         url: string;
         type: TicketSystem;
       }
@@ -3142,6 +3284,11 @@ export type EventOccurrencesFieldsFragment = {
           }
         | {
             __typename?: 'TicketmasterOccurrenceTicketSystem';
+            url: string;
+            type: TicketSystem;
+          }
+        | {
+            __typename?: 'TixlyOccurrenceTicketSystem';
             url: string;
             type: TicketSystem;
           }
@@ -3209,6 +3356,11 @@ export type EventQuery = {
                 url: string;
                 type: TicketSystem;
               }
+            | {
+                __typename?: 'TixlyOccurrenceTicketSystem';
+                url: string;
+                type: TicketSystem;
+              }
             | null;
         } | null;
       } | null>;
@@ -3250,6 +3402,11 @@ export type EventQuery = {
                 url: string;
                 type: TicketSystem;
               }
+            | {
+                __typename?: 'TixlyOccurrenceTicketSystem';
+                url: string;
+                type: TicketSystem;
+              }
             | null;
         } | null;
       } | null>;
@@ -3264,6 +3421,12 @@ export type EventQuery = {
         }
       | {
           __typename?: 'TicketmasterEventTicketSystem';
+          childPassword: string | null;
+          url: string;
+          type: TicketSystem;
+        }
+      | {
+          __typename?: 'TixlyEventTicketSystem';
           childPassword: string | null;
           url: string;
           type: TicketSystem;
@@ -3309,6 +3472,11 @@ export type EventOccurrenceQuery = {
           url: string;
           type: TicketSystem;
         }
+      | {
+          __typename?: 'TixlyOccurrenceTicketSystem';
+          url: string;
+          type: TicketSystem;
+        }
       | null;
   } | null;
 };
@@ -3335,6 +3503,11 @@ export type EventExternalTicketSystemPasswordQuery = {
           childPassword: string | null;
           url: string;
         }
+      | {
+          __typename?: 'TixlyEventTicketSystem';
+          childPassword: string | null;
+          url: string;
+        }
       | null;
   } | null;
 };
@@ -3347,6 +3520,12 @@ export type TicketmasterEventFieldsFragment = {
 
 export type LippupisteEventFieldsFragment = {
   __typename?: 'LippupisteEventTicketSystem';
+  childPassword: string | null;
+  url: string;
+};
+
+export type TixlyEventFieldsFragment = {
+  __typename?: 'TixlyEventTicketSystem';
   childPassword: string | null;
   url: string;
 };
@@ -3380,6 +3559,11 @@ export type ExternalTicketSystemEventFieldsFragment = {
               url: string;
               type: TicketSystem;
             }
+          | {
+              __typename?: 'TixlyOccurrenceTicketSystem';
+              url: string;
+              type: TicketSystem;
+            }
           | null;
       } | null;
     } | null>;
@@ -3394,6 +3578,12 @@ export type ExternalTicketSystemEventFieldsFragment = {
       }
     | {
         __typename?: 'TicketmasterEventTicketSystem';
+        type: TicketSystem;
+        childPassword: string | null;
+        url: string;
+      }
+    | {
+        __typename?: 'TixlyEventTicketSystem';
         type: TicketSystem;
         childPassword: string | null;
         url: string;
@@ -3437,6 +3627,11 @@ export type ExternalTicketSystemEventQuery = {
                 url: string;
                 type: TicketSystem;
               }
+            | {
+                __typename?: 'TixlyOccurrenceTicketSystem';
+                url: string;
+                type: TicketSystem;
+              }
             | null;
         } | null;
       } | null>;
@@ -3451,6 +3646,12 @@ export type ExternalTicketSystemEventQuery = {
         }
       | {
           __typename?: 'TicketmasterEventTicketSystem';
+          type: TicketSystem;
+          childPassword: string | null;
+          url: string;
+        }
+      | {
+          __typename?: 'TixlyEventTicketSystem';
           type: TicketSystem;
           childPassword: string | null;
           url: string;
@@ -4504,6 +4705,16 @@ export const ActiveLippupisteEnrolmentFieldsFragmentDoc = gql`
   }
   ${EnrolmentEventFieldsFragmentDoc}
 `;
+export const ActiveTixlyEnrolmentFieldsFragmentDoc = gql`
+  fragment ActiveTixlyEnrolmentFields on TixlyEnrolmentNode {
+    id
+    event {
+      ...EnrolmentEventFields
+    }
+    __typename
+  }
+  ${EnrolmentEventFieldsFragmentDoc}
+`;
 export const ActiveInternalAndTicketSystemEnrolmentsFieldsFragmentDoc = gql`
   fragment ActiveInternalAndTicketSystemEnrolmentsFields on InternalOrTicketSystemEnrolmentConnection {
     edges {
@@ -4517,12 +4728,16 @@ export const ActiveInternalAndTicketSystemEnrolmentsFieldsFragmentDoc = gql`
         ... on LippupisteEnrolmentNode {
           ...ActiveLippupisteEnrolmentFields
         }
+        ... on TixlyEnrolmentNode {
+          ...ActiveTixlyEnrolmentFields
+        }
       }
     }
   }
   ${ActiveInternalEnrolmentFieldsFragmentDoc}
   ${ActiveTicketmasterEnrolmentFieldsFragmentDoc}
   ${ActiveLippupisteEnrolmentFieldsFragmentDoc}
+  ${ActiveTixlyEnrolmentFieldsFragmentDoc}
 `;
 export const UpcomingEventFieldsFragmentDoc = gql`
   fragment UpcomingEventFields on EventNode {
@@ -4807,6 +5022,9 @@ export const EventOccurrenceFieldsFragmentDoc = gql`
       ... on LippupisteOccurrenceTicketSystem {
         url
       }
+      ... on TixlyOccurrenceTicketSystem {
+        url
+      }
     }
   }
 `;
@@ -4832,6 +5050,12 @@ export const LippupisteEventFieldsFragmentDoc = gql`
     url
   }
 `;
+export const TixlyEventFieldsFragmentDoc = gql`
+  fragment TixlyEventFields on TixlyEventTicketSystem {
+    childPassword(childId: $childId)
+    url
+  }
+`;
 export const ExternalTicketSystemEventFieldsFragmentDoc = gql`
   fragment ExternalTicketSystemEventFields on EventNode {
     id
@@ -4851,6 +5075,9 @@ export const ExternalTicketSystemEventFieldsFragmentDoc = gql`
             ... on LippupisteOccurrenceTicketSystem {
               url
             }
+            ... on TixlyOccurrenceTicketSystem {
+              url
+            }
           }
         }
       }
@@ -4863,10 +5090,14 @@ export const ExternalTicketSystemEventFieldsFragmentDoc = gql`
       ... on LippupisteEventTicketSystem {
         ...LippupisteEventFields
       }
+      ... on TixlyEventTicketSystem {
+        ...TixlyEventFields
+      }
     }
   }
   ${TicketmasterEventFieldsFragmentDoc}
   ${LippupisteEventFieldsFragmentDoc}
+  ${TixlyEventFieldsFragmentDoc}
 `;
 export const OccurrenceEventFieldsFragmentDoc = gql`
   fragment OccurrenceEventFields on EventNode {
@@ -5390,6 +5621,9 @@ export const EventExternalTicketSystemPasswordCountQueryDocument = gql`
         ... on LippupisteEventTicketSystem {
           freePasswordCount
         }
+        ... on TixlyEventTicketSystem {
+          freePasswordCount
+        }
       }
     }
   }
@@ -5431,6 +5665,10 @@ export const EventQueryDocument = gql`
           childPassword(childId: $childId)
           url
         }
+        ... on TixlyEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
       }
     }
   }
@@ -5462,6 +5700,10 @@ export const EventExternalTicketSystemPasswordQueryDocument = gql`
           url
         }
         ... on LippupisteEventTicketSystem {
+          childPassword(childId: $childId)
+          url
+        }
+        ... on TixlyEventTicketSystem {
           childPassword(childId: $childId)
           url
         }

@@ -11,6 +11,7 @@ import {
 import EventOccurrenceNotificationControlButton from './EventOccurrenceNotificationControlButton';
 import styles from './eventOccurrence.module.scss';
 import { OccurrenceNode } from './types/EventQueryTypes';
+import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
 
 const SubmitTypes = {
   enrol: 'ENROL',
@@ -77,10 +78,9 @@ const EventOccurrence = ({
     : t('event.register.occurrenceTableBody.full');
   const eventUrl = `${occurrence.event.id}/redirect`;
   const occurrenceUrl = `occurrence/${occurrence.id}/enrol`;
-  const isExternalTicketSystem = [
-    TicketSystem.Ticketmaster,
-    TicketSystem.Lippupiste,
-  ].includes(occurrence?.ticketSystem?.type as TicketSystem);
+  const isExternalTicketSystem = externalTicketSystems.includes(
+    occurrence?.ticketSystem?.type as TicketSystem
+  );
   const submitType = getSubmitType(isExternalTicketSystem, hasCapacity);
   const submitCell = (
     <>

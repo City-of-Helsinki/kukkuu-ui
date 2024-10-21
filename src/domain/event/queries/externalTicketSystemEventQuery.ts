@@ -11,6 +11,11 @@ export const externalTicketSystemEventQuery = gql`
     url
   }
 
+  fragment TixlyEventFields on TixlyEventTicketSystem {
+    childPassword(childId: $childId)
+    url
+  }
+
   fragment ExternalTicketSystemEventFields on EventNode {
     id
     name
@@ -29,6 +34,9 @@ export const externalTicketSystemEventQuery = gql`
             ... on LippupisteOccurrenceTicketSystem {
               url
             }
+            ... on TixlyOccurrenceTicketSystem {
+              url
+            }
           }
         }
       }
@@ -40,6 +48,9 @@ export const externalTicketSystemEventQuery = gql`
       }
       ... on LippupisteEventTicketSystem {
         ...LippupisteEventFields
+      }
+      ... on TixlyEventTicketSystem {
+        ...TixlyEventFields
       }
     }
   }

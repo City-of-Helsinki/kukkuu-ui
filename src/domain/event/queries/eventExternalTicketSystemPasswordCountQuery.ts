@@ -11,6 +11,9 @@ export const eventExternalTicketSystemPasswordCountQuery = gql`
         ... on LippupisteEventTicketSystem {
           freePasswordCount
         }
+        ... on TixlyEventTicketSystem {
+          freePasswordCount
+        }
       }
     }
   }
