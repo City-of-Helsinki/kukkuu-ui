@@ -1,7 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { useMutation, useQuery } from '@apollo/client';
+import { ApolloError, useMutation, useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
 import { useParams, useNavigate } from 'react-router-dom';
+import React from 'react';
 
 import PageWrapper from '../app/layout/PageWrapper';
 import Text from '../../common/components/text/Text';
@@ -22,25 +23,21 @@ import InfoPageLayout from '../app/layout/InfoPageLayout';
 import useGetPathname from '../../common/route/utils/useGetPathname';
 import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Button from '../../common/components/button/Button';
+import client from '../api/client';
 
 type Params = {
   eventId: string;
   childId: string;
 };
 
-const EventRedirect = () => {
-  const { t } = useTranslation();
-  const { eventId, childId } = useParams<Params>();
-  const navigate = useNavigate();
-  const getPathname = useGetPathname();
-
-  const {
-    loading: queryLoading,
-    error: queryError,
-    data: queryData,
-  } = useQuery<ExternalTicketSystemEventQuery>(
+const useEventExternalTicketSystemPasswordQuery = ({
+  eventId,
+  childId,
+}: Params) => {
+  return useQuery<ExternalTicketSystemEventQuery>(
     eventExternalTicketSystemPasswordQuery,
     {
+      skip: !eventId || !childId,
       variables: {
         id: eventId,
         childId,
@@ -48,35 +45,33 @@ const EventRedirect = () => {
       fetchPolicy: 'network-only',
     }
   );
+};
 
-  const {
-    loading: passwordCountQueryLoading,
-    error: passwordCountQueryError,
-    data: passwordCountQueryData,
-  } = useQuery<EventExternalTicketSystemPasswordCountQuery>(
+const useEventExternalTicketSystemPasswordCountQuery = ({
+  eventId,
+}: Pick<Params, 'eventId'>) => {
+  return useQuery<EventExternalTicketSystemPasswordCountQuery>(
     eventExternalTicketSystemPasswordCountQuery,
     {
+      skip: !eventId,
       variables: { id: eventId },
       fetchPolicy: 'network-only',
     }
   );
+};
 
-  const [
-    assignTicketSystemPassword,
-    {
-      data: mutationData,
-      loading: mutationLoading,
-      error: mutationError,
-      client,
-    },
-  ] = useMutation<
+const useAssignTicketSystemPasswordMutation = ({
+  eventId,
+  childId,
+}: Params) => {
+  return useMutation<
     AssignTicketSystemPasswordMutation,
     AssignTicketSystemPasswordMutationVariables
   >(assignTicketSystemPasswordMutation, {
     variables: {
       input: {
-        eventId: eventId ?? '',
-        childId: childId ?? '',
+        eventId,
+        childId,
         clientMutationId: null,
       },
     },
@@ -84,14 +79,137 @@ const EventRedirect = () => {
       // eslint-disable-next-line no-console
       console.error(error);
     },
-    onCompleted: async (data) => {
+    onCompleted: (data) => {
       // Because it is not trivial to figure out how to invalidate exactly all the
       // needed parts of the cache, and invalidating the whole thing doesn't cause any
       // actual harm in practice as this is such a rare action and the user is probably
       // going away anyway, better to be safe than sorry and wipe the whole thing.
-      await client.clearStore();
+      client.clearStore();
     },
   });
+};
+
+const ConfirmRequestingExternalTicketSystemPassword = ({
+  backUrl,
+  hasFreePasswords,
+  assignTicketSystemPassword,
+}: {
+  backUrl: string;
+  hasFreePasswords: boolean;
+  assignTicketSystemPassword: () => void;
+}) => {
+  const { t } = useTranslation();
+  return (
+    <div className={styles.acquireButtonRow}>
+      <LinkButton variant="secondary" to={backUrl}>
+        {t('eventRedirectPage.back')}
+      </LinkButton>
+      {hasFreePasswords ? (
+        <Button onClick={() => assignTicketSystemPassword()}>
+          {t('eventRedirectPage.continue')}
+        </Button>
+      ) : (
+        <Text
+          variant="body-l"
+          className={styles.noFreeTicketSystemPasswordsLeftLabel}
+        >
+          {t('eventRedirectPage.noFreeTicketSystemPasswordsLeftLabel')}
+        </Text>
+      )}
+    </div>
+  );
+};
+
+const ExternalTicketSystemPasswordDetails = ({
+  externalTicketSystemPassword,
+  ticketSystemUrl,
+}: {
+  externalTicketSystemPassword: string;
+  ticketSystemUrl: string;
+}) => {
+  const { t } = useTranslation();
+  return (
+    <div className={styles.passwordWrapper}>
+      <hr />
+      <Text variant="body-l">{t('eventRedirectPage.passwordLabel')}</Text>
+      <ExternalTicketSystemPassword password={externalTicketSystemPassword} />
+      <Text variant="body-l">
+        {t('eventRedirectPage.passwordCopyDescription')}
+      </Text>
+      <AnchorButton
+        className={styles.continueButton}
+        href={ticketSystemUrl}
+        openInNewTab
+      >
+        {t('externalTicketSystemEvent.continueButton')}
+      </AnchorButton>
+      <Text variant="body-l">{t('externalTicketSystemEvent.extraInfo')}</Text>
+    </div>
+  );
+};
+
+const TicketSystemError = ({
+  error,
+  backUrl,
+}: {
+  error: ApolloError;
+  backUrl: string;
+}) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const isNoFreeTicketSystemPasswordsError =
+    error.graphQLErrors.length > 0 &&
+    error.graphQLErrors[0].extensions.code ===
+      'NO_FREE_TICKET_SYSTEM_PASSWORDS_ERROR';
+
+  React.useEffect(() => {
+    Sentry.captureException(error);
+  }, [error]);
+
+  if (isNoFreeTicketSystemPasswordsError) {
+    return (
+      <InfoPageLayout
+        title={t('eventRedirectPage.noFreeTicketSystemPasswordsErrorTitle')}
+        description={
+          <Trans i18nKey="eventRedirectPage.noFreeTicketSystemPasswordsErrorDescription" />
+        }
+        callToAction={{
+          label: t('eventRedirectPage.back'),
+          onClick: () => navigate(backUrl),
+        }}
+      />
+    );
+  }
+  return (
+    <InfoPageLayout
+      title={t('eventRedirectPage.unexpectedError')}
+      description={error.message}
+    />
+  );
+};
+
+const EventRedirect = () => {
+  const { t } = useTranslation();
+  const { eventId = '', childId = '' } = useParams<Params>();
+
+  const getPathname = useGetPathname();
+
+  const {
+    error: queryError,
+    data: queryData,
+    loading: queryLoading,
+  } = useEventExternalTicketSystemPasswordQuery({ eventId, childId });
+
+  const {
+    loading: passwordCountQueryLoading,
+    error: passwordCountQueryError,
+    data: passwordCountQueryData,
+  } = useEventExternalTicketSystemPasswordCountQuery({ eventId });
+
+  const [
+    assignTicketSystemPassword,
+    { data: mutationData, loading: mutationLoading, error: mutationError },
+  ] = useAssignTicketSystemPasswordMutation({ eventId, childId });
 
   // Get the external ticket system password from either the query or the mutation's response.
   // Normally the user will land on this page without a password, so the query's
@@ -101,7 +219,7 @@ const EventRedirect = () => {
   const externalTicketSystemPassword =
     (ticketSystem && 'childPassword' in ticketSystem
       ? ticketSystem.childPassword
-      : null) || mutationData?.assignTicketSystemPassword?.password;
+      : null) ?? mutationData?.assignTicketSystemPassword?.password;
 
   const passwordCountTicketSystem = passwordCountQueryData?.event?.ticketSystem;
   const hasFreePasswords = !!(passwordCountTicketSystem &&
@@ -109,41 +227,17 @@ const EventRedirect = () => {
     ? passwordCountTicketSystem?.freePasswordCount
     : null);
 
-  const ticketSystemUrl =
-    ticketSystem && 'url' in ticketSystem ? ticketSystem.url : undefined;
-  const backUrl = getPathname(`/profile/child/${childId}/event/${eventId}`);
-
-  if (queryLoading || passwordCountQueryLoading) {
+  if (queryLoading || passwordCountQueryLoading || !eventId || !childId) {
     return <LoadingSpinner isLoading={true} />;
   }
 
+  const ticketSystemUrl =
+    ticketSystem && 'url' in ticketSystem ? ticketSystem.url : '#';
+  const backUrl = getPathname(`/profile/child/${childId}/event/${eventId}`);
+
   const error = queryError ?? mutationError ?? passwordCountQueryError;
   if (error) {
-    const isNoFreeTicketSystemPasswordsError =
-      error.graphQLErrors.length > 0 &&
-      error.graphQLErrors[0].extensions.code ===
-        'NO_FREE_TICKET_SYSTEM_PASSWORDS_ERROR';
-    Sentry.captureException(error);
-    if (isNoFreeTicketSystemPasswordsError) {
-      return (
-        <InfoPageLayout
-          title={t('eventRedirectPage.noFreeTicketSystemPasswordsErrorTitle')}
-          description={
-            <Trans i18nKey="eventRedirectPage.noFreeTicketSystemPasswordsErrorDescription" />
-          }
-          callToAction={{
-            label: t('eventRedirectPage.back'),
-            onClick: () => navigate(backUrl),
-          }}
-        />
-      );
-    }
-    return (
-      <InfoPageLayout
-        title={t('eventRedirectPage.unexpectedError')}
-        description={error.toString()}
-      />
-    );
+    return <TicketSystemError error={error} backUrl={backUrl} />;
   }
 
   const event = queryData?.event;
@@ -172,48 +266,20 @@ const EventRedirect = () => {
             ),
           })}
         </Text>
-        {mutationLoading ? (
-          <LoadingSpinner isLoading={true} />
-        ) : !externalTicketSystemPassword ? (
-          <div className={styles.acquireButtonRow}>
-            <LinkButton variant="secondary" to={backUrl}>
-              {t('eventRedirectPage.back')}
-            </LinkButton>
-            {hasFreePasswords ? (
-              <Button onClick={() => assignTicketSystemPassword()}>
-                {t('eventRedirectPage.continue')}
-              </Button>
-            ) : (
-              <Text
-                variant="body-l"
-                className={styles.noFreeTicketSystemPasswordsLeftLabel}
-              >
-                {t('eventRedirectPage.noFreeTicketSystemPasswordsLeftLabel')}
-              </Text>
-            )}
-          </div>
-        ) : (
-          <div className={styles.passwordWrapper}>
-            <hr />
-            <Text variant="body-l">{t('eventRedirectPage.passwordLabel')}</Text>
-            <ExternalTicketSystemPassword
-              password={externalTicketSystemPassword}
+        <LoadingSpinner isLoading={mutationLoading}>
+          {!externalTicketSystemPassword ? (
+            <ConfirmRequestingExternalTicketSystemPassword
+              backUrl={backUrl}
+              hasFreePasswords={hasFreePasswords}
+              assignTicketSystemPassword={assignTicketSystemPassword}
             />
-            <Text variant="body-l">
-              {t('eventRedirectPage.passwordCopyDescription')}
-            </Text>
-            <AnchorButton
-              className={styles.continueButton}
-              href={ticketSystemUrl}
-              openInNewTab
-            >
-              {t('externalTicketSystemEvent.continueButton')}
-            </AnchorButton>
-            <Text variant="body-l">
-              {t('externalTicketSystemEvent.extraInfo')}
-            </Text>
-          </div>
-        )}
+          ) : (
+            <ExternalTicketSystemPasswordDetails
+              externalTicketSystemPassword={externalTicketSystemPassword}
+              ticketSystemUrl={ticketSystemUrl}
+            />
+          )}
+        </LoadingSpinner>
       </div>
     </PageWrapper>
   );

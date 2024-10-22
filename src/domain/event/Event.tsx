@@ -97,9 +97,9 @@ const Event = () => {
   }>();
   const getPathname = useGetPathname();
 
-  const past = location.pathname.includes('/past') ? true : false;
+  const past = !!location.pathname.includes('/past');
 
-  const [selectedFilterValues, setFilterValues] =
+  const [selectedFilterValues, setSelectedFilterValues] =
     useState<FilterValues>(initialFilterValues);
 
   const variables = {
@@ -112,7 +112,10 @@ const Event = () => {
     error: queryError,
     data,
     refetch,
-  } = useQuery<EventQuery>(eventQuery, { skip: !eventId, variables });
+  } = useQuery<EventQuery>(eventQuery, {
+    skip: !eventId || !childId,
+    variables,
+  });
 
   const {
     loading: passwordCountQueryLoading,
@@ -140,7 +143,7 @@ const Event = () => {
     // filter to seeing all occurrences again.
     filterValues.date = filterValues.date ? filterValues.date : undefined;
     filterValues.time = filterValues.time ? filterValues.time : undefined;
-    setFilterValues(filterValues);
+    setSelectedFilterValues(filterValues);
     refetch({ ...filterValues, ...variables });
   };
 
@@ -172,13 +175,17 @@ const Event = () => {
     event?.ticketSystem?.type as TicketSystem
   );
 
+  const continueUrl = getPathname(
+    `/profile/child/${childId}/event/${eventId}/redirect`
+  );
+
   return (
     <EventPage event={event} backTo={goBackTo}>
       <EventParticipantsPerInvite
         participantsPerInvite={event.participantsPerInvite}
       />
       <div className={styles.description}>
-        <Paragraph text={event.description || ''} />
+        <Paragraph text={event.description ?? ''} />
       </div>
       {!past &&
         (!isExternalTicketSystem ? (
@@ -199,12 +206,7 @@ const Event = () => {
                 {t('event.externalTicketSystemButtons.back')}
               </LinkButton>
               {hasFreePasswords ? (
-                <LinkButton
-                  variant="primary"
-                  to={getPathname(
-                    `/profile/child/${childId}/event/${eventId}/redirect`
-                  )}
-                >
+                <LinkButton variant="primary" to={continueUrl}>
                   {t('event.externalTicketSystemButtons.continue')}
                 </LinkButton>
               ) : (
