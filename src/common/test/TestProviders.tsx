@@ -14,6 +14,7 @@ import { useApolloClient } from '@apollo/client/react/hooks/useApolloClient';
 import { store } from '../../domain/app/state/AppStore';
 import ProfileProvider from '../../domain/profile/ProfileProvider';
 import KukkuuHDSLoginProvider from '../../domain/auth/KukkuuHDSLoginProvider';
+import IdleTimer from '../../domain/auth/IdleTimerProvider';
 
 type Props = {
   children: ReactElement | ReactNode;
@@ -27,13 +28,15 @@ const TestProviders = (props: Props) => {
     <Provider store={store}>
       <MockedProvider mocks={mocks}>
         <KukkuuHDSLoginProvider>
-          <ProfileProvider>
-            <RHHCConfigProviderWithMockedApolloClient {...props}>
-              <HelmetProvider>
-                <BrowserRouter>{children}</BrowserRouter>
-              </HelmetProvider>
-            </RHHCConfigProviderWithMockedApolloClient>
-          </ProfileProvider>
+          <IdleTimer>
+            <ProfileProvider>
+              <RHHCConfigProviderWithMockedApolloClient {...props}>
+                <HelmetProvider>
+                  <BrowserRouter>{children}</BrowserRouter>
+                </HelmetProvider>
+              </RHHCConfigProviderWithMockedApolloClient>
+            </ProfileProvider>
+          </IdleTimer>
         </KukkuuHDSLoginProvider>
       </MockedProvider>
     </Provider>
