@@ -18,7 +18,7 @@ function IdleTimer({ children }: IdleTimerProps) {
     <IdleTimerProvider
       timeout={AppConfig.userIdleTimeoutInMs || 3_600_000}
       onIdle={onIdle}
-      name="att-kukku-ui-idle-timer"
+      name="kukkuu-ui-idle-timer"
       startOnMount
       crossTab
     >
