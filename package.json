@@ -22,8 +22,8 @@
     "test": "cross-env TZ=Europe/Helsinki vitest run",
     "test:coverage": "cross-env TZ=Europe/Helsinki vitest run --coverage",
     "test:watch": "cross-env TZ=Europe/Helsinki vitest",
-    "test:browser": "testcafe \"chrome --window-size='1920,1080' --disable-search-engine-choice-screen\" browser-tests/ --live --dev --lang=fi-FI",
-    "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080' --disable-search-engine-choice-screen\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/",
+    "test:browser": "cross-env-shell TESTCAFE_BROWSER=${TESTCAFE_BROWSER:-\"chrome --disable-search-engine-choice-screen --window-size='1920,1080'\"} eval 'testcafe $TESTCAFE_BROWSER browser-tests/ --live --dev --lang=fi-FI'",
+    "test:browser:ci": "cross-env-shell TESTCAFE_BROWSER=${TESTCAFE_BROWSER:-\"chrome:headless --disable-search-engine-choice-screen --disable-gpu --window-size='1920,1080'\"} eval 'testcafe $TESTCAFE_BROWSER --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/'",
     "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev --lang=fi-FI",
     "typecheck": "tsc --project ./tsconfig.json --noEmit"
   },
