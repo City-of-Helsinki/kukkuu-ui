@@ -80,4 +80,14 @@ export const moreInfoLinks: MoreInfoLink[] = [
     langCode: 'fi',
     url: '/brochures/fi.pdf',
   },
+  {
+    langName: 'Davvisámi',
+    langCode: 'sme',
+    url: '/brochures/sme.pdf',
+  },
+  {
+    langName: 'Українська',
+    langCode: 'ukr',
+    url: '/brochures/ukr.pdf',
+  },
 ];
