@@ -305,6 +305,46 @@ exports[`renders snapshot correctly 1`] = `
         )
       </span>
     </a>
+    <a
+      href="/brochures/sme.pdf"
+    >
+      <span
+        lang="sme"
+      >
+        Davvisámi
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="_localizedLanguage_0c660e"
+        lang="fi"
+      >
+        (
+        pohjoissaame
+        )
+      </span>
+    </a>
+    <a
+      href="/brochures/ukr.pdf"
+    >
+      <span
+        lang="ukr"
+      >
+        Українська
+      </span>
+      <span>
+         
+      </span>
+      <span
+        class="_localizedLanguage_0c660e"
+        lang="fi"
+      >
+        (
+        ukraina
+        )
+      </span>
+    </a>
   </div>
 </div>
 `;
