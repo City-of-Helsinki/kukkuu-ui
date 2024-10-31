@@ -399,6 +399,34 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.8.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.7.0...kukkuu-ui-v3.8.0) (2024-10-31)
+
+
+### Features
+
+* Add canonical URL as meta property to the Head ([4483f28](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4483f284cc9016ce33454b6940d04f147612551e))
+* Add North Sámi & Ukrainian language PDFs to front page ([dca9c68](https://github.com/City-of-Helsinki/kukkuu-ui/commit/dca9c68319670eca3f326aa0c10ade284dcffd13))
+* Add Tixly external ticket system ([7a1de36](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7a1de36ee26beed0cdff6100f7844f3b238048ed))
+* Docker compose ([f4f3bb7](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f4f3bb7c22a593b180f529fa04c02410568be755))
+* Logout idle user after timeout ([#591](https://github.com/City-of-Helsinki/kukkuu-ui/issues/591)) ([759c997](https://github.com/City-of-Helsinki/kukkuu-ui/commit/759c99723d856efdadf4c408e6f7c564069bd143))
+
+
+### Bug Fixes
+
+* Emove prefilled birthyear ([#587](https://github.com/City-of-Helsinki/kukkuu-ui/issues/587)) ([4110a64](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4110a644abe59f31f9308aa9b36ad8f3c7e98c7f))
+* GenerateTestJwt should use configurated audience by default ([6faa4d8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6faa4d857bfc42f5c3ba5546dee11bdd87e92441))
+* Helsinki profile url env var name ([381c7a3](https://github.com/City-of-Helsinki/kukkuu-ui/commit/381c7a31716d98eea68bdd1a7bc4c87e232dc271))
+* Improve PageMeta's Helmet-rendering to include canonical and alternative urls ([0cff0ec](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0cff0ec94c62a67a947729d882a1741c6e6db276))
+* Linter ([4c4dda4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4c4dda4764b210b0759f2e981a059519403b2635))
+* Login improvements with hki profile link ([#585](https://github.com/City-of-Helsinki/kukkuu-ui/issues/585)) ([5a5d5b9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5a5d5b9fa08bb8195afca66dbe3fa16365b80a6d))
+* Matomo configuration ([b56cb3e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b56cb3e8a1ba8e80a534677c25025ee2b40590df))
+* Matomo vards to dockerfile ([2c68bc4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2c68bc4aa2e098d5eb610a1f73a42a1a8566b3cd))
+* Navigation render without data fetched ([#590](https://github.com/City-of-Helsinki/kukkuu-ui/issues/590)) ([2aeb7c9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2aeb7c92e667db6b241114ee32341cfc3d042d28))
+* New matomo configuration ([abd41c9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/abd41c9804c057d80b03e90db23023a1507ceb99))
+* Page meta of the CMS pages ([13e85b8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/13e85b85d32fcac65198ee7019848b709aecb973))
+* Remove needless ngingx rules ([1246de6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1246de6261aca1711322a906d179fe40123e00e1))
+* Upgrade apollo client to fix navigation issues ([2623e5a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2623e5ae7b11272a7314c76b585cbafc63804728))
+
 ## [3.7.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.6.0...kukkuu-ui-v3.7.0) (2024-09-19)
 
 
