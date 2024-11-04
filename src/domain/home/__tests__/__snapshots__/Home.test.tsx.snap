@@ -385,7 +385,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 <span
                   lang="sme"
                 >
-                  Davvisámi
+                  Davvisámegiella
                 </span>
                 <span>
                    
@@ -405,7 +405,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 <span
                   lang="ukr"
                 >
-                  Українська
+                  Українська мова
                 </span>
                 <span>
                    
