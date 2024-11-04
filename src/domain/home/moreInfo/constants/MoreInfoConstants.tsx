@@ -81,12 +81,12 @@ export const moreInfoLinks: MoreInfoLink[] = [
     url: '/brochures/fi.pdf',
   },
   {
-    langName: 'Davvisámi',
+    langName: 'Davvisámegiella',
     langCode: 'sme',
     url: '/brochures/sme.pdf',
   },
   {
-    langName: 'Українська',
+    langName: 'Українська мова',
     langCode: 'ukr',
     url: '/brochures/ukr.pdf',
   },

@@ -323,7 +323,7 @@ exports[`renders snapshot correctly 1`] = `
           <span
             lang="sme"
           >
-            Davvisámi
+            Davvisámegiella
           </span>
           <span>
              
@@ -343,7 +343,7 @@ exports[`renders snapshot correctly 1`] = `
           <span
             lang="ukr"
           >
-            Українська
+            Українська мова
           </span>
           <span>
              
