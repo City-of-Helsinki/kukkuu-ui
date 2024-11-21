@@ -12,10 +12,10 @@ import AppConfig from './domain/app/AppConfig';
 initI18next();
 Modal.setAppElement('#root');
 
-if (import.meta.env.VITE_ENVIRONMENT === 'production') {
+if (AppConfig.isAppInProductionMode) {
   Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_DSN,
-    environment: import.meta.env.VITE_ENVIRONMENT,
+    environment: AppConfig.environment,
     release: `${import.meta.env.VITE_APPLICATION_NAME}@${
       import.meta.env.VITE_VERSION
     }`,

@@ -7,6 +7,8 @@ import {
 import { onError } from '@apollo/client/link/error';
 import * as Sentry from '@sentry/browser';
 
+import AppConfig from '../app/AppConfig';
+
 const httpLink = createHttpLink({
   uri: import.meta.env.VITE_CMS_URI,
 });
@@ -21,7 +23,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
       Sentry.captureMessage(errorMessage);
 
-      if (import.meta.env.NODE_ENV === 'development') {
+      if (!AppConfig.isAppInProductionMode) {
         // eslint-disable-next-line no-console
         console.error(errorMessage);
       }

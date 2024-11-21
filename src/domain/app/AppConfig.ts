@@ -1,10 +1,67 @@
 import i18n from '../../common/translation/i18n/i18nInit';
 
 /**
+ * Allowed environments for the application.
+ */
+const ALLOWED_ENVIRONMENTS = [
+  'development',
+  'review',
+  'testing',
+  'staging',
+  'production',
+] as const;
+
+/**
+ * Type alias for allowed environments.
+ */
+type Environment = (typeof ALLOWED_ENVIRONMENTS)[number];
+
+/**
+ * Typeguard to check if a string is a valid `Environment`.
+ *
+ * @param env - The string to check.
+ * @returns `true` if the string is a valid `Environment`, `false` otherwise.
+ */
+function isEnvironment(env: string): env is Environment {
+  return ALLOWED_ENVIRONMENTS.includes(env as Environment);
+}
+
+/**
  * Centralized configuration for the application.
  * Fetches configuration values from environment variables.
  */
 class AppConfig {
+  /**
+   * Checks if the application is running in production mode.
+   *
+   * Whether the app is running in production (running the dev server with NODE_ENV='production' or running an app built with NODE_ENV='production').
+   *
+   * @returns `true` if the app is in production mode, `false` otherwise.
+   */
+  static get isAppInProductionMode(): boolean {
+    return import.meta.env.PROD;
+  }
+
+  /**
+   * Gets the current environment of the application.
+   *
+   * The possible values are defined by `ALLOWED_ENVIRONMENTS`.
+   * Defaults to 'development' if the environment variable `VITE_ENVIRONMENT` is not set.
+   *
+   * @returns The current environment as a string.
+   * @throws {Error} If the environment variable `VITE_ENVIRONMENT` has an invalid value.
+   */
+  static get environment(): Environment {
+    const env =
+      (import.meta.env.VITE_ENVIRONMENT as Environment) || 'development';
+
+    if (!isEnvironment(env)) {
+      throw new Error(`Invalid environment: ${env}`);
+    }
+
+    return env;
+  }
+
   /**
    * The origin URL (protocol + hostname + port) of the application.
    *
