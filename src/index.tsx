@@ -12,7 +12,7 @@ import AppConfig from './domain/app/AppConfig';
 initI18next();
 Modal.setAppElement('#root');
 
-if (import.meta.env.NODE_ENV === 'production') {
+if (import.meta.env.VITE_ENVIRONMENT === 'production') {
   Sentry.init({
     dsn: import.meta.env.VITE_SENTRY_DSN,
     environment: import.meta.env.VITE_ENVIRONMENT,
