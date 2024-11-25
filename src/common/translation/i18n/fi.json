@@ -128,6 +128,7 @@
       "closeMenuText": "Sulje valikko",
       "openMenuText": "Avaa valikko"
     },
+    "menuButtonLabel": "Valikko",
     "menuToggleAriaLabel": "Valikko",
     "modal": {
       "cancel": {

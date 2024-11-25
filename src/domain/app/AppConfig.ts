@@ -34,7 +34,8 @@ class AppConfig {
   /**
    * Checks if the application is running in production mode.
    *
-   * Whether the app is running in production (running the dev server with NODE_ENV='production' or running an app built with NODE_ENV='production').
+   * Whether the app is running in production (running the dev server with
+   * NODE_ENV='production' or running an app built with NODE_ENV='production').
    *
    * @returns `true` if the app is in production mode, `false` otherwise.
    */
