@@ -10,13 +10,15 @@ import LinkButton from '../../common/components/button/LinkButton';
 import AnchorButton from '../../common/components/button/AnchorButton';
 import {
   ExternalTicketSystemEventQuery,
-  EventExternalTicketSystemPasswordCountQuery,
+  EventExternalTicketSystemHasAnyFreePasswordsQuery,
   AssignTicketSystemPasswordMutation,
   AssignTicketSystemPasswordMutationVariables,
 } from '../api/generatedTypes/graphql';
-import { eventExternalTicketSystemPasswordQuery } from './queries/eventQuery';
+import {
+  eventExternalTicketSystemPasswordQuery,
+  eventExternalTicketSystemHasAnyFreePasswordsQuery,
+} from './queries/eventQuery';
 import assignTicketSystemPasswordMutation from './mutations/assignTicketSystemPasswordMutation';
-import eventExternalTicketSystemPasswordCountQuery from './queries/eventExternalTicketSystemPasswordCountQuery';
 import styles from './eventRedirect.module.scss';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
@@ -47,11 +49,11 @@ const useEventExternalTicketSystemPasswordQuery = ({
   );
 };
 
-const useEventExternalTicketSystemPasswordCountQuery = ({
+const useEventExternalTicketSystemHasAnyFreePasswordsQuery = ({
   eventId,
 }: Pick<Params, 'eventId'>) => {
-  return useQuery<EventExternalTicketSystemPasswordCountQuery>(
-    eventExternalTicketSystemPasswordCountQuery,
+  return useQuery<EventExternalTicketSystemHasAnyFreePasswordsQuery>(
+    eventExternalTicketSystemHasAnyFreePasswordsQuery,
     {
       skip: !eventId,
       variables: { id: eventId },
@@ -201,10 +203,10 @@ const EventRedirect = () => {
   } = useEventExternalTicketSystemPasswordQuery({ eventId, childId });
 
   const {
-    loading: passwordCountQueryLoading,
-    error: passwordCountQueryError,
-    data: passwordCountQueryData,
-  } = useEventExternalTicketSystemPasswordCountQuery({ eventId });
+    loading: hasAnyFreePasswordsQueryLoading,
+    error: hasAnyFreePasswordsQueryError,
+    data: hasAnyFreePasswordsQueryData,
+  } = useEventExternalTicketSystemHasAnyFreePasswordsQuery({ eventId });
 
   const [
     assignTicketSystemPassword,
@@ -221,13 +223,14 @@ const EventRedirect = () => {
       ? ticketSystem.childPassword
       : null) ?? mutationData?.assignTicketSystemPassword?.password;
 
-  const passwordCountTicketSystem = passwordCountQueryData?.event?.ticketSystem;
-  const hasFreePasswords = !!(passwordCountTicketSystem &&
-  'freePasswordCount' in passwordCountTicketSystem
-    ? passwordCountTicketSystem?.freePasswordCount
+  const hasAnyFreePasswordsTicketSystem =
+    hasAnyFreePasswordsQueryData?.event?.ticketSystem;
+  const hasFreePasswords = !!(hasAnyFreePasswordsTicketSystem &&
+  'hasAnyFreePasswords' in hasAnyFreePasswordsTicketSystem
+    ? hasAnyFreePasswordsTicketSystem?.hasAnyFreePasswords
     : null);
 
-  if (queryLoading || passwordCountQueryLoading || !eventId || !childId) {
+  if (queryLoading || hasAnyFreePasswordsQueryLoading || !eventId || !childId) {
     return <LoadingSpinner isLoading={true} />;
   }
 
@@ -235,7 +238,7 @@ const EventRedirect = () => {
     ticketSystem && 'url' in ticketSystem ? ticketSystem.url : '#';
   const backUrl = getPathname(`/profile/child/${childId}/event/${eventId}`);
 
-  const error = queryError ?? mutationError ?? passwordCountQueryError;
+  const error = queryError ?? mutationError ?? hasAnyFreePasswordsQueryError;
   if (error) {
     return <TicketSystemError error={error} backUrl={backUrl} />;
   }

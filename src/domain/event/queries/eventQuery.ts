@@ -114,4 +114,23 @@ export const eventExternalTicketSystemPasswordQuery = gql`
   }
 `;
 
+export const eventExternalTicketSystemHasAnyFreePasswordsQuery = gql`
+  query eventExternalTicketSystemHasAnyFreePasswordsQuery($id: ID!) {
+    event(id: $id) {
+      ticketSystem {
+        type
+        ... on TicketmasterEventTicketSystem {
+          hasAnyFreePasswords
+        }
+        ... on LippupisteEventTicketSystem {
+          hasAnyFreePasswords
+        }
+        ... on TixlyEventTicketSystem {
+          hasAnyFreePasswords
+        }
+      }
+    }
+  }
+`;
+
 export default eventQuery;

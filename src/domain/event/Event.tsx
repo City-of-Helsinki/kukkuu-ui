@@ -16,11 +16,13 @@ import Paragraph from '../../common/components/paragraph/Paragraph';
 import {
   EventQuery,
   TicketSystem,
-  EventExternalTicketSystemPasswordCountQuery,
+  EventExternalTicketSystemHasAnyFreePasswordsQuery,
 } from '../api/generatedTypes/graphql';
 import RelayList from '../api/relayList';
 import PageWrapper from '../app/layout/PageWrapper';
-import eventQuery from './queries/eventQuery';
+import eventQuery, {
+  eventExternalTicketSystemHasAnyFreePasswordsQuery,
+} from './queries/eventQuery';
 import { formatOccurrenceTime } from './EventUtils';
 import EventEnrol from './EventEnrol';
 import EventPage from './EventPage';
@@ -30,7 +32,6 @@ import eventRedirectStyles from './eventRedirect.module.scss';
 import { useEventRouteGoBackTo } from './route/EventRoute';
 import LinkButton from '../../common/components/button/LinkButton';
 import useGetPathname from '../../common/route/utils/useGetPathname';
-import eventExternalTicketSystemPasswordCountQuery from './queries/eventExternalTicketSystemPasswordCountQuery';
 import Text from '../../common/components/text/Text';
 import { Occurrences, OccurrenceNode } from './types/EventQueryTypes';
 import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
@@ -118,21 +119,22 @@ const Event = () => {
   });
 
   const {
-    loading: passwordCountQueryLoading,
-    error: passwordCountQueryError,
-    data: passwordCountQueryData,
-  } = useQuery<EventExternalTicketSystemPasswordCountQuery>(
-    eventExternalTicketSystemPasswordCountQuery,
+    loading: hasAnyFreePasswordsQueryLoading,
+    error: hasAnyFreePasswordsQueryError,
+    data: hasAnyFreePasswordsQueryData,
+  } = useQuery<EventExternalTicketSystemHasAnyFreePasswordsQuery>(
+    eventExternalTicketSystemHasAnyFreePasswordsQuery,
     {
       variables: { id: eventId },
       fetchPolicy: 'network-only',
     }
   );
 
-  const passwordCountTicketSystem = passwordCountQueryData?.event?.ticketSystem;
-  const hasFreePasswords = !!(passwordCountTicketSystem &&
-  'freePasswordCount' in passwordCountTicketSystem
-    ? passwordCountTicketSystem?.freePasswordCount
+  const hasAnyFreePasswordsTicketSystem =
+    hasAnyFreePasswordsQueryData?.event?.ticketSystem;
+  const hasFreePasswords = !!(hasAnyFreePasswordsTicketSystem &&
+  'hasAnyFreePasswords' in hasAnyFreePasswordsTicketSystem
+    ? hasAnyFreePasswordsTicketSystem?.hasAnyFreePasswords
     : null);
 
   const updateFilterValues = (filterValues: FilterValues) => {
@@ -151,10 +153,10 @@ const Event = () => {
   const optionsDates = getDateOptions(data?.event?.allOccurrences);
   const optionsTimes = getTimeOptions(data?.event?.allOccurrences);
 
-  if (loading || passwordCountQueryLoading)
+  if (loading || hasAnyFreePasswordsQueryLoading)
     return <LoadingSpinner isLoading={true} />;
 
-  const error = queryError ?? passwordCountQueryError;
+  const error = queryError ?? hasAnyFreePasswordsQueryError;
   if (error) {
     // eslint-disable-next-line no-console
     console.error(error);
