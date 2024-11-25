@@ -860,6 +860,7 @@ export type LippupisteEventTicketSystem = EventTicketSystem & {
   childPassword: Maybe<Scalars['String']['output']>;
   endTime: Maybe<Scalars['DateTime']['output']>;
   freePasswordCount: Scalars['Int']['output'];
+  hasAnyFreePasswords: Scalars['Boolean']['output'];
   type: TicketSystem;
   url: Scalars['String']['output'];
   usedPasswordCount: Scalars['Int']['output'];
@@ -1650,6 +1651,7 @@ export type TicketmasterEventTicketSystem = EventTicketSystem & {
   childPassword: Maybe<Scalars['String']['output']>;
   endTime: Maybe<Scalars['DateTime']['output']>;
   freePasswordCount: Scalars['Int']['output'];
+  hasAnyFreePasswords: Scalars['Boolean']['output'];
   type: TicketSystem;
   url: Scalars['String']['output'];
   usedPasswordCount: Scalars['Int']['output'];
@@ -1678,6 +1680,7 @@ export type TixlyEventTicketSystem = EventTicketSystem & {
   childPassword: Maybe<Scalars['String']['output']>;
   endTime: Maybe<Scalars['DateTime']['output']>;
   freePasswordCount: Scalars['Int']['output'];
+  hasAnyFreePasswords: Scalars['Boolean']['output'];
   type: TicketSystem;
   url: Scalars['String']['output'];
   usedPasswordCount: Scalars['Int']['output'];
@@ -3186,35 +3189,6 @@ export type UnsubscribeFromFreeSpotNotificationMutation = {
   } | null;
 };
 
-export type EventExternalTicketSystemPasswordCountQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
-}>;
-
-export type EventExternalTicketSystemPasswordCountQuery = {
-  __typename?: 'Query';
-  event: {
-    __typename?: 'EventNode';
-    ticketSystem:
-      | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
-      | {
-          __typename?: 'LippupisteEventTicketSystem';
-          freePasswordCount: number;
-          type: TicketSystem;
-        }
-      | {
-          __typename?: 'TicketmasterEventTicketSystem';
-          freePasswordCount: number;
-          type: TicketSystem;
-        }
-      | {
-          __typename?: 'TixlyEventTicketSystem';
-          freePasswordCount: number;
-          type: TicketSystem;
-        }
-      | null;
-  } | null;
-};
-
 export type EventOccurrenceFieldsFragment = {
   __typename?: 'OccurrenceNode';
   id: string;
@@ -3507,6 +3481,35 @@ export type EventExternalTicketSystemPasswordQuery = {
           __typename?: 'TixlyEventTicketSystem';
           childPassword: string | null;
           url: string;
+        }
+      | null;
+  } | null;
+};
+
+export type EventExternalTicketSystemHasAnyFreePasswordsQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+export type EventExternalTicketSystemHasAnyFreePasswordsQuery = {
+  __typename?: 'Query';
+  event: {
+    __typename?: 'EventNode';
+    ticketSystem:
+      | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
+      | {
+          __typename?: 'LippupisteEventTicketSystem';
+          hasAnyFreePasswords: boolean;
+          type: TicketSystem;
+        }
+      | {
+          __typename?: 'TicketmasterEventTicketSystem';
+          hasAnyFreePasswords: boolean;
+          type: TicketSystem;
+        }
+      | {
+          __typename?: 'TixlyEventTicketSystem';
+          hasAnyFreePasswords: boolean;
+          type: TicketSystem;
         }
       | null;
   } | null;
@@ -5610,29 +5613,6 @@ export type UnsubscribeFromFreeSpotNotificationMutationMutationOptions =
     UnsubscribeFromFreeSpotNotificationMutation,
     UnsubscribeFromFreeSpotNotificationMutationVariables
   >;
-export const EventExternalTicketSystemPasswordCountQueryDocument = gql`
-  query eventExternalTicketSystemPasswordCountQuery($id: ID!) {
-    event(id: $id) {
-      ticketSystem {
-        type
-        ... on TicketmasterEventTicketSystem {
-          freePasswordCount
-        }
-        ... on LippupisteEventTicketSystem {
-          freePasswordCount
-        }
-        ... on TixlyEventTicketSystem {
-          freePasswordCount
-        }
-      }
-    }
-  }
-`;
-export type EventExternalTicketSystemPasswordCountQueryQueryResult =
-  Apollo.QueryResult<
-    EventExternalTicketSystemPasswordCountQuery,
-    EventExternalTicketSystemPasswordCountQueryVariables
-  >;
 export const EventQueryDocument = gql`
   query eventQuery($id: ID!, $date: Date, $time: Time, $childId: ID!) {
     event(id: $id) {
@@ -5715,6 +5695,29 @@ export type EventExternalTicketSystemPasswordQueryQueryResult =
   Apollo.QueryResult<
     EventExternalTicketSystemPasswordQuery,
     EventExternalTicketSystemPasswordQueryVariables
+  >;
+export const EventExternalTicketSystemHasAnyFreePasswordsQueryDocument = gql`
+  query eventExternalTicketSystemHasAnyFreePasswordsQuery($id: ID!) {
+    event(id: $id) {
+      ticketSystem {
+        type
+        ... on TicketmasterEventTicketSystem {
+          hasAnyFreePasswords
+        }
+        ... on LippupisteEventTicketSystem {
+          hasAnyFreePasswords
+        }
+        ... on TixlyEventTicketSystem {
+          hasAnyFreePasswords
+        }
+      }
+    }
+  }
+`;
+export type EventExternalTicketSystemHasAnyFreePasswordsQueryQueryResult =
+  Apollo.QueryResult<
+    EventExternalTicketSystemHasAnyFreePasswordsQuery,
+    EventExternalTicketSystemHasAnyFreePasswordsQueryVariables
   >;
 export const ExternalTicketSystemEventQueryDocument = gql`
   query externalTicketSystemEventQuery($eventId: ID!, $childId: ID!) {
