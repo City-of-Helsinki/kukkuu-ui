@@ -47,6 +47,7 @@ export default function useRHHCConfig(): Config {
       copy: {
         breadcrumbNavigationLabel: '', // t('common.breadcrumbNavigationLabel'),
         breadcrumbListLabel: t('common.breadcrumbListLabel'),
+        menuButtonLabel: t('common.menuButtonLabel'),
         menuToggleAriaLabel: t('common.menuToggleAriaLabel'),
         skipToContentLabel: t('common.skipToContentLabel'),
         openInExternalDomainAriaLabel: t(

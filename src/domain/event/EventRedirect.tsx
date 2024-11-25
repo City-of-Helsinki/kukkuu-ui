@@ -161,7 +161,7 @@ const TicketSystemError = ({
   const navigate = useNavigate();
   const isNoFreeTicketSystemPasswordsError =
     error.graphQLErrors.length > 0 &&
-    error.graphQLErrors[0].extensions.code ===
+    error.graphQLErrors[0]?.extensions?.code ===
       'NO_FREE_TICKET_SYSTEM_PASSWORDS_ERROR';
 
   React.useEffect(() => {

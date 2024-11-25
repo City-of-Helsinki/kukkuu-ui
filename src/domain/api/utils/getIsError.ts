@@ -1,6 +1,9 @@
-import { GraphQLError } from 'graphql';
+import type { GraphQLFormattedError } from 'graphql';
 
-function getIsError(graphQLError: GraphQLError, errorType: string): boolean {
+function getIsError(
+  graphQLError: GraphQLFormattedError,
+  errorType: string
+): boolean {
   return graphQLError.extensions?.code === errorType;
 }
 

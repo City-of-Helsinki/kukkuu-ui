@@ -5,7 +5,7 @@ import * as Sentry from '@sentry/browser';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import joinClassNames from 'classnames';
-import { GraphQLError } from 'graphql';
+import type { GraphQLFormattedError } from 'graphql';
 
 import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
@@ -25,19 +25,19 @@ import Enrol from './Enrol';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 
 function containsAlreadyJoinedError(
-  errors: ReadonlyArray<GraphQLError>
+  errors: ReadonlyArray<GraphQLFormattedError>
 ): boolean {
   return errors.some(
-    (error: GraphQLError) =>
+    (error: GraphQLFormattedError) =>
       error.extensions?.code === GQLErrors.CHILD_ALREADY_JOINED_EVENT_ERROR
   );
 }
 
 function containsOccurrenceFullError(
-  errors: ReadonlyArray<GraphQLError>
+  errors: ReadonlyArray<GraphQLFormattedError>
 ): boolean {
   return errors.some(
-    (error: GraphQLError) =>
+    (error: GraphQLFormattedError) =>
       error.extensions?.code === GQLErrors.OCCURRENCE_IS_FULL_ERROR
   );
 }
