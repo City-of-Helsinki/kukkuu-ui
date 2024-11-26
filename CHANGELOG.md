@@ -399,6 +399,22 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.9.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.8.1...kukkuu-ui-v3.9.0) (2024-11-26)
+
+
+### Features
+
+* Fix checking if event has any free passwords ([5c42e47](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5c42e47d5d883a15351a44f5ee015fcc218c2a0f))
+
+
+### Bug Fixes
+
+* "yarn lint" & "yarn typecheck" errors and warnings ([5a8ff91](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5a8ff91217366f9fe894d817482ee4a2d7aa7a9b))
+* Env mode improvements ([b17fb64](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b17fb64d810c68fd1c294c8c23b06ced0e07e053))
+* Env mode improvements ([45250c5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45250c5d7a03d0b29578dfed02a495fea9a6d2a5))
+* Hds 3.11 upgrade ([9f21c7a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9f21c7af3babc0d7f748c5043fba6d332f8f4e94))
+* Remove console log ([45250c5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45250c5d7a03d0b29578dfed02a495fea9a6d2a5))
+
 ## [3.8.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.8.0...kukkuu-ui-v3.8.1) (2024-11-11)
 
 
