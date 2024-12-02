@@ -16,7 +16,6 @@ import { resetFormValues, setFormValues } from '../state/RegistrationActions';
 import AddNewChildFormModal from '../modal/AddNewChildFormModal';
 import Icon from '../../../common/components/icon/Icon';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
-import happyAdultIcon from '../../../assets/icons/svg/adultFaceHappy.svg';
 import PageWrapper from '../../app/layout/PageWrapper';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import {
@@ -310,7 +309,10 @@ const RegistrationForm = () => {
                   )}
                 >
                   <div className={styles.heading}>
-                    <Icon src={happyAdultIcon} className={styles.childImage} />
+                    <Icon
+                      src={'/icons/svg/adultFaceHappy.svg'}
+                      className={styles.childImage}
+                    />
                     <h2>{t('registration.form.guardian.info.heading')}</h2>
                     <MandatoryFieldLegend position="right" />
                   </div>

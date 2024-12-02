@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './successToast.module.scss';
-import tada from '../../../assets/icons/svg/tada.svg';
 import Icon from '../../../common/components/icon/Icon';
 import { justEnrolled } from '../state/EventActions';
 import { justEnrolledSelector } from '../state/EventSelectors';
@@ -55,7 +54,7 @@ const SuccessToast: FunctionComponent = () => {
           setShowJustEnrolled(false);
         }}
       >
-        <Icon src={tada} className={styles.tadaIcon} />
+        <Icon src={'/icons/svg/tada.svg'} className={styles.tadaIcon} />
         <div>
           <h1>{t('enrollment.successToast.heading')}</h1>
           <p>{t('enrollment.successToast.paragraph')}</p>

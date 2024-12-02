@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import styles from './notFound.module.scss';
 import Container from '../layout/Container';
 import Icon from '../../../common/components/icon/Icon';
-import adultFace from '../../../assets/icons/svg/adultFace.svg';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 
 const NotFound: FunctionComponent = () => {
@@ -16,7 +15,7 @@ const NotFound: FunctionComponent = () => {
     <Container>
       <div className={styles.notFound}>
         <h2>404</h2>
-        <Icon src={adultFace} className={styles.icon} />
+        <Icon src={'/icons/svg/adultFace.svg'} className={styles.icon} />
         <p>{t('notFound.text')}</p>
 
         <Link className={styles.returnLink} to={getPathname('/')}>

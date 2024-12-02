@@ -17,7 +17,7 @@ exports[`renders snapshot correctly 1`] = `
           >
             <img
               alt=""
-              src="/src/assets/icons/svg/adultFace.svg"
+              src="/icons/svg/adultFace.svg"
             />
           </div>
           <p>
