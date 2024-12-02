@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { IconAngleRight } from 'hds-react';
 
-import childIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import Text from '../../../../common/components/text/Text';
 import { newMoment } from '../../../../common/time/utils';
@@ -79,7 +78,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
       className={styles.container}
     >
       <Icon
-        src={childIcon}
+        src={'/icons/svg/childFaceHappy.svg'}
         alt={t('profile.child.default.name.text')}
         className={styles.icon}
       />

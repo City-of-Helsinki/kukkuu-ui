@@ -7,7 +7,6 @@ import styles from './childFormFields.module.scss';
 import { Child } from '../../../child/types/ChildInputTypes';
 import { getTranslatedRelationshipOptions } from '../../../child/ChildUtils';
 import Icon from '../../../../common/components/icon/Icon';
-import happyChildIcon from '../../../../assets/icons/svg/childFaceHappy.svg';
 import FormikDropdown from '../../../../common/components/formikWrappers/FormikDropdown';
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
 import Button from '../../../../common/components/button/Button';
@@ -35,7 +34,10 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
     <div className={styles.childFields} key={childIndex}>
       <div className={styles.childInfo}>
         <div className={styles.heading}>
-          <Icon src={happyChildIcon} className={styles.childImage} />
+          <Icon
+            src={'/icons/svg/childFaceHappy.svg'}
+            className={styles.childImage}
+          />
           <h2>{t('registration.form.child.info.heading')}</h2>
 
           {/* Show mandatory field legend only in first child form */}

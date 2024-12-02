@@ -6,7 +6,6 @@ import { IconCross } from 'hds-react';
 
 import styles from './modal.module.scss';
 import Icon from '../icon/Icon';
-import happyChildIcon from '../../../assets/icons/svg/childFaceHappy.svg';
 import Button from '../button/Button';
 import MandatoryFieldLegend from '../mandatoryFieldLegend/MandatoryFieldLegend';
 
@@ -32,7 +31,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   showLabelIcon = true,
   className,
   showHeading = true,
-  icon = happyChildIcon,
+  icon = '/icons/svg/childFaceHappy.svg',
   showMandatoryFieldLegend = true,
 }) => {
   const { t } = useTranslation();

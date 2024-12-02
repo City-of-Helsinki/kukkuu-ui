@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './childAlertNonEligibleModal.module.scss';
 import Icon from '../../../../../common/components/icon/Icon';
-import personIcon from '../../../../../assets/icons/svg/adultFace.svg';
 import AlertModal from '../../../../../common/components/alert/AlertModal';
 
 interface ChildFormModalNonEligibleProps {
@@ -23,7 +22,7 @@ const ChildAlertNonEligibleModal: FunctionComponent<
       onClose={() => setIsOpen(false)}
     >
       <p>{t('registration.notEligible.text')}</p> {/* TODO: wrong text */}
-      <Icon className={styles.icon} src={personIcon} />
+      <Icon className={styles.icon} src={'/icons/svg/adultFace.svg'} />
     </AlertModal>
   );
 };

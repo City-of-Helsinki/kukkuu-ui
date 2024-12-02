@@ -442,7 +442,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 >
                   <img
                     alt=""
-                    src="/src/assets/icons/svg/homeKid.svg"
+                    src="/icons/svg/homeKid.svg"
                   />
                 </div>
                 <p>
@@ -479,7 +479,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 >
                   <img
                     alt=""
-                    src="/src/assets/icons/svg/homeTheater.svg"
+                    src="/icons/svg/homeTheater.svg"
                   />
                 </div>
                 <p>
@@ -668,7 +668,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Jane ja Aatos Erkon säätiö"
-                      src="/src/assets/icons/partners/jaes-logo-fi.svg"
+                      src="/icons/partners/jaes-logo-fi.svg"
                     />
                   </div>
                 </a>
@@ -685,7 +685,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Amos Rex"
-                      src="/src/assets/icons/partners/amosrex.png"
+                      src="/icons/partners/amosrex.png"
                     />
                   </div>
                 </a>
@@ -698,7 +698,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Cirko – Uuden sirkuksen keskus"
-                      src="/src/assets/icons/partners/cirko.png"
+                      src="/icons/partners/cirko.png"
                     />
                   </div>
                 </a>
@@ -711,7 +711,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="DOT ry"
-                      src="/src/assets/icons/partners/dotdot.png"
+                      src="/icons/partners/dotdot.png"
                     />
                   </div>
                 </a>
@@ -724,7 +724,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Designmuseo"
-                      src="/src/assets/icons/partners/designmuseum.png"
+                      src="/icons/partners/designmuseum.png"
                     />
                   </div>
                 </a>
@@ -737,7 +737,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Helsingin taidemuseo HAM"
-                      src="/src/assets/icons/partners/hamhelsinki.png"
+                      src="/icons/partners/hamhelsinki.png"
                     />
                   </div>
                 </a>
@@ -750,7 +750,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Helsingin kaupunginmuseo"
-                      src="/src/assets/icons/partners/helsinginkaupunginmuseo.png"
+                      src="/icons/partners/helsinginkaupunginmuseo.png"
                     />
                   </div>
                 </a>
@@ -763,7 +763,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Helsingin kaupunginorkesteri"
-                      src="/src/assets/icons/partners/helsinginkaupunginorkesteri.png"
+                      src="/icons/partners/helsinginkaupunginorkesteri.png"
                     />
                   </div>
                 </a>
@@ -776,7 +776,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Helsingin Kaupunginteatteri"
-                      src="/src/assets/icons/partners/hkt.png"
+                      src="/icons/partners/hkt.png"
                     />
                   </div>
                 </a>
@@ -789,7 +789,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Hotelli- ja ravintolamuseo"
-                      src="/src/assets/icons/partners/hotellijaravintolamuseo.png"
+                      src="/icons/partners/hotellijaravintolamuseo.png"
                     />
                   </div>
                 </a>
@@ -802,7 +802,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Tanssiteatteri Hurjaruuth"
-                      src="/src/assets/icons/partners/hurjaruuth.png"
+                      src="/icons/partners/hurjaruuth.png"
                     />
                   </div>
                 </a>
@@ -815,7 +815,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="home.partners.partner.kaapeli"
-                      src="/src/assets/icons/partners/Kaapeli.png"
+                      src="/icons/partners/Kaapeli.png"
                     />
                   </div>
                 </a>
@@ -828,7 +828,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="home.partners.partner.kansallisgalleria"
-                      src="/src/assets/icons/partners/Finnish_National_Gallery_Logo_FI.svg"
+                      src="/icons/partners/Finnish_National_Gallery_Logo_FI.svg"
                     />
                   </div>
                 </a>
@@ -841,7 +841,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Kansallismuseo"
-                      src="/src/assets/icons/partners/kansallismuseo.png"
+                      src="/icons/partners/kansallismuseo.png"
                     />
                   </div>
                 </a>
@@ -854,7 +854,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Kansallisteatteri"
-                      src="/src/assets/icons/partners/kansallisteatteri.png"
+                      src="/icons/partners/kansallisteatteri.png"
                     />
                   </div>
                 </a>
@@ -867,7 +867,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Suomen Kulttuuriperintökasvatuksen seura"
-                      src="/src/assets/icons/partners/kulttuuriperintokasvatus.png"
+                      src="/icons/partners/kulttuuriperintokasvatus.png"
                     />
                   </div>
                 </a>
@@ -880,7 +880,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Tiedemuseo Liekki"
-                      src="/src/assets/icons/partners/Museum_Flame_FI.svg"
+                      src="/icons/partners/Museum_Flame_FI.svg"
                     />
                   </div>
                 </a>
@@ -893,7 +893,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Arkkitehtuurimuseo"
-                      src="/src/assets/icons/partners/mfa.png"
+                      src="/icons/partners/mfa.png"
                     />
                   </div>
                 </a>
@@ -906,7 +906,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Nukketeatteri Sampo"
-                      src="/src/assets/icons/partners/nukketeatterisampo.png"
+                      src="/icons/partners/nukketeatterisampo.png"
                     />
                   </div>
                 </a>
@@ -919,7 +919,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Suomen kansallisooppera ja -baletti"
-                      src="/src/assets/icons/partners/oopperabaletti.png"
+                      src="/icons/partners/oopperabaletti.png"
                     />
                   </div>
                 </a>
@@ -932,7 +932,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Q-teatteri"
-                      src="/src/assets/icons/partners/qteatteri.png"
+                      src="/icons/partners/qteatteri.png"
                     />
                   </div>
                 </a>
@@ -945,7 +945,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Svenska Teatern"
-                      src="/src/assets/icons/partners/svenskateatern.png"
+                      src="/icons/partners/svenskateatern.png"
                     />
                   </div>
                 </a>
@@ -958,7 +958,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="home.partners.partner.sointijazzorchestra"
-                      src="/src/assets/icons/partners/sointi_jazz_orchestra.png"
+                      src="/icons/partners/sointi_jazz_orchestra.png"
                     />
                   </div>
                 </a>
@@ -971,7 +971,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Tanssin talo"
-                      src="/src/assets/icons/partners/tanssintalo.png"
+                      src="/icons/partners/tanssintalo.png"
                     />
                   </div>
                 </a>
@@ -984,7 +984,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Teatteri ILMI Ö"
-                      src="/src/assets/icons/partners/teatteriilmio.png"
+                      src="/icons/partners/teatteriilmio.png"
                     />
                   </div>
                 </a>
@@ -997,7 +997,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Teatterimuseo"
-                      src="/src/assets/icons/partners/teatterimuseo.png"
+                      src="/icons/partners/teatterimuseo.png"
                     />
                   </div>
                 </a>
@@ -1010,7 +1010,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="Suomen valokuvataiteen museo"
-                      src="/src/assets/icons/partners/valokuvataiteenmuseo.png"
+                      src="/icons/partners/valokuvataiteenmuseo.png"
                     />
                   </div>
                 </a>
@@ -1023,7 +1023,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="home.partners.partner.umo"
-                      src="/src/assets/icons/partners/umo_logo.png"
+                      src="/icons/partners/umo_logo.png"
                     />
                   </div>
                 </a>
@@ -1036,7 +1036,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="home.partners.partner.fokus"
-                      src="/src/assets/icons/partners/fokus_logo.png"
+                      src="/icons/partners/fokus_logo.png"
                     />
                   </div>
                 </a>
@@ -1049,7 +1049,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   >
                     <img
                       alt="home.partners.partner.osiris"
-                      src="/src/assets/icons/partners/osiris_logo.png"
+                      src="/icons/partners/osiris_logo.png"
                     />
                   </div>
                 </a>

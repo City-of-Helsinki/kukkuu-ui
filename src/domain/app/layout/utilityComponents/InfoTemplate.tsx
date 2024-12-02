@@ -1,7 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import adultFaceIcon from '../../../../assets/icons/svg/adultFace.svg';
 import Icon from '../../../../common/components/icon/Icon';
 import Button from '../../../../common/components/button/Button';
 import styles from './infoTemplate.module.scss';
@@ -21,7 +20,7 @@ const InfoTemplate = ({
   title,
   description,
   callToAction,
-  icon = adultFaceIcon,
+  icon = '/icons/svg/adultFace.svg',
   classes,
 }: InfoTemplateProps) => {
   return (

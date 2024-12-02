@@ -2,7 +2,6 @@ import { QueryResult } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import CultureKidsImage from '../../assets/images/Culture_kids_transparent@2x.png';
 import useGetPathname from '../../common/route/utils/useGetPathname';
 import List from '../../common/components/list/List';
 import Page from '../app/layout/utilityComponents/Page';
@@ -39,7 +38,7 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
         <div className={styles.container}>
           <img
             className={styles.eventGroupDecoration}
-            src={CultureKidsImage}
+            src={'/images/Culture_kids_transparent@2x.png'}
             alt=""
           />
           <div className={styles.eventGroupDetails}>
