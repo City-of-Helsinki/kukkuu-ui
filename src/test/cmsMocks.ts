@@ -1,4 +1,4 @@
-import { graphql } from 'msw';
+import { graphql, HttpResponse } from 'msw';
 import { Menu } from 'react-helsinki-headless-cms';
 
 import { fakeLanguage } from '../utils/cmsMockDataUtils';
@@ -19,9 +19,9 @@ const mainMenu = [
 
 export const initCmsMenuItemsMocks = () => {
   server.use(
-    graphql.query('menu', (req, res, ctx) => {
-      return res(
-        ctx.data({
+    graphql.query('menu', () => {
+      return HttpResponse.json({
+        data: {
           menu: {
             id: 'menu',
             menuItems: {
@@ -33,15 +33,15 @@ export const initCmsMenuItemsMocks = () => {
             },
             __typename: 'Menu',
           } as Menu,
-        })
-      );
+        },
+      });
     }),
-    graphql.query('languages', (_, res, ctx) => {
-      return res(
-        ctx.data({
+    graphql.query('languages', () => {
+      return HttpResponse.json({
+        data: {
           languages: [fakeLanguage()],
-        })
-      );
+        },
+      });
     })
   );
 
