@@ -1,5 +1,5 @@
 # ===============================================
-FROM registry.access.redhat.com/ubi9/nodejs-18 AS appbase
+FROM registry.access.redhat.com/ubi9/nodejs-20 AS appbase
 # ===============================================
 # install yarn
 USER root
