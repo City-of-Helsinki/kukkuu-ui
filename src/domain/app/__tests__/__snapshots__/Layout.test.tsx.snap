@@ -73,7 +73,7 @@ exports[`renders without crashing 1`] = `
                     aria-controls="signinButton-dropdown"
                     aria-expanded="false"
                     aria-label="[object Object]"
-                    class="HeaderActionBarItemButton-module_actionBarItemButton__2ALyH HeaderActionBarItem-module_icon__1Ug_k HeaderActionBarItemButton-module_fixedRightPosition__kBVLv"
+                    class="HeaderActionBarItemButton-module_actionBarItemButton__2ALyH HeaderActionBarItem-module_icon__1Ug_k"
                     type="button"
                   >
                     <div

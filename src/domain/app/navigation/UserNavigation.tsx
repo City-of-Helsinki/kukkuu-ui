@@ -106,7 +106,6 @@ function UserNavigation() {
       closeIcon={item.closeIcon ?? item.icon}
       closeLabel={item.closeLabel ?? item.label}
       onClick={item.onClick ?? undefined}
-      fixedRightPosition
       preventButtonResize
       className={styles.list}
     >
