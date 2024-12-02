@@ -1,4 +1,4 @@
-import { graphql } from 'msw';
+import { graphql, HttpResponse } from 'msw';
 import { PageDocument } from 'react-helsinki-headless-cms/apollo';
 
 import { server } from '../../../test/msw/server';
@@ -13,19 +13,11 @@ beforeEach(() => {
     'https://kukkuu.app-staging.hkih.hion.dev/graphql';
   const headlessCms = graphql.link(link);
   server.use(
-    headlessCms.query('page', (req, res, ctx) => {
-      const response = res(
-        ctx.data({
-          page,
-        })
-      );
-      return response;
-    })
+    headlessCms.query('page', () => HttpResponse.json({ data: { page } }))
   );
 });
 
-// FIXME: This test fails only in the CI and only with Vite.
-describe.skip('Headless CMS Client', () => {
+describe('Headless CMS Client', () => {
   it('returns a page when a page query is requested', async () => {
     const { data } = await client.query({
       query: PageDocument,

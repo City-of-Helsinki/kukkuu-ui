@@ -16,6 +16,7 @@ exports[`renders snapshot correctly 1`] = `
         <a
           aria-label="Palaa"
           class="_backButton_4ef685"
+          data-discover="true"
           href="/back-to"
         >
           <svg

@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware, Store } from '@reduxjs/toolkit';
+import { configureStore, Store } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { enableES5 } from 'immer';
@@ -17,9 +17,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store: Store = configureStore({
   devTools: true,
-  middleware: getDefaultMiddleware({
-    serializableCheck: false,
-  }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
   reducer: persistedReducer,
 });
 
