@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
+import { screen } from '@testing-library/react';
+
 import {
   fireEvent,
   render,
@@ -8,7 +11,7 @@ import {
 import EventGroup from '../EventGroup';
 
 const defaultProps = {};
-const getWrapper = (props: Partial<Parameters<typeof EventGroup>[0]>) =>
+const renderEventGroup = (props: Partial<Parameters<typeof EventGroup>[0]>) =>
   render(<EventGroup {...defaultProps} {...props} />);
 
 const event = {
@@ -32,21 +35,21 @@ const eventGroup = {
 
 describe('<EventGroup />', () => {
   it('renders loading if loading', () => {
-    const { getByLabelText } = getWrapper({ query: { loading: true } });
+    renderEventGroup({ query: { loading: true } });
 
-    expect(getByLabelText('Lataa')).toBeTruthy();
+    expect(screen.getByLabelText('Lataa')).toBeTruthy();
   });
 
   it('renders error if error', () => {
-    const { getByText } = getWrapper({
+    renderEventGroup({
       query: { loading: false, error: true },
     });
 
-    expect(getByText('Tapahtui virhe')).toBeTruthy();
+    expect(screen.getByText('Tapahtui virhe')).toBeTruthy();
   });
 
   it('renders title and description', () => {
-    const { getByText } = getWrapper({
+    renderEventGroup({
       query: {
         loading: false,
         data: {
@@ -55,12 +58,12 @@ describe('<EventGroup />', () => {
       },
     });
 
-    expect(getByText(eventGroup.name)).toBeTruthy();
-    expect(getByText(eventGroup.description)).toBeTruthy();
+    expect(screen.getByText(eventGroup.name)).toBeTruthy();
+    expect(screen.getByText(eventGroup.description)).toBeTruthy();
   });
 
   it('renders events', () => {
-    const { getByText } = getWrapper({
+    renderEventGroup({
       query: {
         loading: false,
         data: {
@@ -69,12 +72,12 @@ describe('<EventGroup />', () => {
       },
     });
 
-    expect(getByText(event.name)).toBeTruthy();
-    expect(getByText(event.shortDescription)).toBeTruthy();
+    expect(screen.getByText(event.name)).toBeTruthy();
+    expect(screen.getByText(event.shortDescription)).toBeTruthy();
   });
 
   it('clicking on event should take user to event', () => {
-    const { getAllByRole } = getWrapper({
+    renderEventGroup({
       query: {
         loading: false,
         data: {
@@ -85,7 +88,7 @@ describe('<EventGroup />', () => {
     });
 
     fireEvent.click(
-      getAllByRole('button', {
+      screen.getAllByRole('button', {
         name: 'Lue lisää ja ilmoittaudu',
       })[0]
     );
@@ -96,7 +99,7 @@ describe('<EventGroup />', () => {
   });
 
   it('sets title to name of event group', async () => {
-    getWrapper({
+    renderEventGroup({
       query: {
         loading: false,
         data: {

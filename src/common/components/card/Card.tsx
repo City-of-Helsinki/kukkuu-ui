@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Button from '../button/Button';
 import Text from '../text/Text';
 import styles from './card.module.scss';
+import { a11nHandleKeyPress } from '../../accessibility/keyboard';
 
 interface CardProps {
   action?: () => void;
@@ -19,7 +20,6 @@ interface CardProps {
   primaryAction?: () => void;
   primaryActionText?: string;
   title: string;
-  imageFullHeight?: boolean;
 }
 
 const Card = ({
@@ -35,12 +35,25 @@ const Card = ({
   primaryAction,
   primaryActionText,
   title,
-  imageFullHeight = false,
 }: CardProps) => {
+  const handleWrapperOnClick =
+    primaryAction && withCardClickAction ? primaryAction : action;
+  const handleWrapperOnKeyPress = a11nHandleKeyPress(handleWrapperOnClick);
+
+  const handlePrimaryActionOnClick = !withCardClickAction
+    ? primaryAction
+    : undefined;
+  const handlePrimaryActionOnKeyPress = a11nHandleKeyPress(
+    handlePrimaryActionOnClick
+  );
+
   return (
     <div
       className={styles.wrapper}
-      onClick={primaryAction && withCardClickAction ? primaryAction : action}
+      onClick={handleWrapperOnClick}
+      onKeyPress={handleWrapperOnKeyPress}
+      role="button"
+      tabIndex={0}
     >
       <div className={classNames(styles.image, styles.fullHeight)}>
         {imageSrc ? (
@@ -58,7 +71,9 @@ const Card = ({
           {primaryAction && (
             <Button
               className={styles.primaryActionButton}
-              onClick={!withCardClickAction ? primaryAction : undefined}
+              onClick={handlePrimaryActionOnClick}
+              onKeyPress={handlePrimaryActionOnKeyPress}
+              tabIndex={0}
             >
               {primaryActionText}
             </Button>

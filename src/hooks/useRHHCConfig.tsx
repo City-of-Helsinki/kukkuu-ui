@@ -75,8 +75,9 @@ export default function useRHHCConfig(): Config {
         ...rhhcDefaultConfig.utils,
         getRoutedInternalHref: (
           link?: string | null,
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           type?: ModuleItemTypeEnum
-        ) => {
+        ): string => {
           if (!link) {
             return '#';
           }

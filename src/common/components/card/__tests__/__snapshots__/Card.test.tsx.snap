@@ -4,6 +4,8 @@ exports[`renders snapshot correctly 1`] = `
 <div>
   <div
     class="_wrapper_f3c708"
+    role="button"
+    tabindex="0"
   >
     <div
       class="_image_f3c708 _fullHeight_f3c708"

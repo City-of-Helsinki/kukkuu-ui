@@ -1,3 +1,5 @@
+import { screen } from '@testing-library/react';
+
 import {
   render,
   fireEvent,
@@ -34,7 +36,7 @@ const defaultProps = {
   setIsSubscriptionModalOpen: vi.fn(),
 };
 
-const getWrapper = (props?: unknown) =>
+const renderEnrol = (props?: unknown) =>
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   render(<Enrol {...defaultProps} {...props} />);
@@ -42,11 +44,8 @@ const getWrapper = (props?: unknown) =>
 describe('<Enrol />', () => {
   it('the user should be able to sign in to an event', async () => {
     const onEnrol = vi.fn();
-    const render = getWrapper({ onEnrol });
-    const signUpButton = selectHdsButtonByText(
-      render,
-      'Ilmoittaudu tapahtumaan'
-    );
+    renderEnrol({ onEnrol });
+    const signUpButton = selectHdsButtonByText('Ilmoittaudu tapahtumaan');
 
     fireEvent.click(signUpButton, {});
 
@@ -55,11 +54,8 @@ describe('<Enrol />', () => {
 
   it('the user should be able to cancel', () => {
     const onCancel = vi.fn();
-    const render = getWrapper({ onCancel });
-    const cancelButton = selectHdsButtonByText(
-      render,
-      'Takaisin tapahtuman valintaan'
-    );
+    renderEnrol({ onCancel });
+    const cancelButton = selectHdsButtonByText('Takaisin tapahtuman valintaan');
 
     fireEvent.click(cancelButton, {});
 
@@ -68,8 +64,8 @@ describe('<Enrol />', () => {
 
   describe('when the event is full', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const getFullOccurrenceWrapper = (props: any = {}) =>
-      getWrapper({
+    const renderEnrolWithOccurrence = (props: any = {}) =>
+      renderEnrol({
         occurrence: {
           ...occurrence,
           remainingCapacity: 0,
@@ -82,38 +78,35 @@ describe('<Enrol />', () => {
 
       const onSubscribe = vi.fn();
       const onSubscribed = vi.fn();
-      const render = getFullOccurrenceWrapper({
+      renderEnrolWithOccurrence({
         onSubscribe,
         onSubscribed,
       });
 
-      await waitFor(() => {
-        fireEvent.click(
-          selectHdsButtonByText(render, 'Täynnä - Tilaa ilmoitus'),
-          {}
-        );
-      });
-
-      expect(onSubscribe).toHaveBeenCalled();
+      fireEvent.click(selectHdsButtonByText('Täynnä - Tilaa ilmoitus'), {});
 
       await waitFor(() => {
-        // This button is hooked up to Apollo and mocks are not
-        // provided, but this test still works.
-        fireEvent.click(selectHdsButtonByText(render, 'Tilaa ilmoitus'));
+        expect(onSubscribe).toHaveBeenCalled();
       });
+
+      // This button is hooked up to Apollo and mocks are not
+      // provided, but this test still works.
+      fireEvent.click(selectHdsButtonByText('Tilaa ilmoitus'));
 
       // onSubscribed is called after a successful subscription
-      expect(onSubscribed).toHaveBeenCalled();
+      await waitFor(() => {
+        expect(onSubscribed).toHaveBeenCalled();
+      });
     });
 
     it('should have a special title and description', () => {
-      const { queryByText } = getFullOccurrenceWrapper();
+      renderEnrolWithOccurrence();
 
       expect(
-        queryByText('Ilmottautumien tapahtumaan event name epäonnistui')
+        screen.queryByText('Ilmottautumien tapahtumaan event name epäonnistui')
       ).not.toEqual(null);
       expect(
-        queryByText(
+        screen.queryByText(
           // eslint-disable-next-line max-len
           'Valitettavasti tämä tapahtuma on täynnä. Tilaa ilmoitus vapautuvista paikoista.'
         )
@@ -124,7 +117,7 @@ describe('<Enrol />', () => {
   describe('when the event is full and te user has subscribed', () => {
     it('the user should be able to unsubscribe', async () => {
       const onUnsubscribed = vi.fn();
-      const render = getWrapper({
+      renderEnrol({
         onUnsubscribed,
         occurrence: {
           ...occurrence,
@@ -132,16 +125,13 @@ describe('<Enrol />', () => {
           childHasFreeSpotNotificationSubscription: true,
         },
       });
-      const subscribeButton = selectHdsButtonByText(
-        render,
-        'Peru ilmoituksen tilaus'
-      );
+      const subscribeButton = selectHdsButtonByText('Peru ilmoituksen tilaus');
+
+      fireEvent.click(subscribeButton, {});
 
       await waitFor(() => {
-        fireEvent.click(subscribeButton, {});
+        expect(onUnsubscribed).toHaveBeenCalled();
       });
-
-      expect(onUnsubscribed).toHaveBeenCalled();
     });
   });
 });

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './homeContact.module.scss';
 
-const HomeContact: React.FunctionComponent = (props) => {
+const HomeContact: React.FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <section className={styles.wrapper}>

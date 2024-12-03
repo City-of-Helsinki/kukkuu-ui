@@ -4,6 +4,8 @@ exports[`renders snapshot correctly 1`] = `
 <div>
   <div
     class="_successToast_663062"
+    role="button"
+    tabindex="0"
   >
     <div
       class="_imgWrapper_73ff55 _tadaIcon_663062"

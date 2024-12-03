@@ -101,6 +101,8 @@ const Button = ({
     <HdsButton
       className={className}
       style={style}
+      // hds-react v3 Button has children as property, see its type
+      // eslint-disable-next-line react/no-children-prop
       children={children}
       {...rest}
     ></HdsButton>

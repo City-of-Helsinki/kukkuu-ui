@@ -2,7 +2,11 @@ import React from 'react';
 
 import { useLocaleRouteNavigate } from './useLocaleRouteNavigate';
 
-const WithLocaleRouteComponent = ({ Component, ...rest }: any) => {
+type Props = {
+  Component: React.FC;
+};
+
+const WithLocaleRouteComponent = ({ Component, ...rest }: Props) => {
   useLocaleRouteNavigate();
   return <Component {...rest} />;
 };
@@ -13,9 +17,13 @@ const WithLocaleRouteComponent = ({ Component, ...rest }: any) => {
  * the router will navigate to such a route and chagne the location pathname.
  */
 const WithLocaleRoute = (WrappedComponent: React.FC) => {
-  return ({ ...props }) => {
+  const result = ({ ...props }) => {
     return <WithLocaleRouteComponent Component={WrappedComponent} {...props} />;
   };
+  result.displayName = `WithLocaleRoute(${
+    WrappedComponent.displayName || WrappedComponent.name || 'Unnamed component'
+  })`;
+  return result;
 };
 
 export default WithLocaleRoute;

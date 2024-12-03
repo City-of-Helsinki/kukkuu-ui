@@ -1,10 +1,16 @@
+import React from 'react';
+
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import { useProfileChildRouteAuthorization } from './useProfileChildRouteAuthorization';
+
+type Props = {
+  Component: React.FC;
+};
 
 const ProfileChildRouteAuthorizationComponent = ({
   Component,
   ...rest
-}: any) => {
+}: Props) => {
   const { loading } = useProfileChildRouteAuthorization();
   if (loading) {
     // eslint-disable-next-line no-console
@@ -17,7 +23,7 @@ const ProfileChildRouteAuthorizationComponent = ({
 };
 
 const WithProfileChildRouteAuthorization = (WrappedComponent: React.FC) => {
-  return ({ ...props }) => {
+  const result = ({ ...props }) => {
     return (
       <ProfileChildRouteAuthorizationComponent
         Component={WrappedComponent}
@@ -25,6 +31,10 @@ const WithProfileChildRouteAuthorization = (WrappedComponent: React.FC) => {
       />
     );
   };
+  result.displayName = `WithProfileChildRouteAuthorization(${
+    WrappedComponent.displayName || WrappedComponent.name || 'Unnamed component'
+  })`;
+  return result;
 };
 
 export default WithProfileChildRouteAuthorization;

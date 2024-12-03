@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import { render, RenderOptions, screen } from '@testing-library/react';
 import { MockedResponse } from '@apollo/client/testing';
 
 import TestProviders from './TestProviders';
@@ -17,26 +17,15 @@ const customRender = (
   });
 
 export const selectHdsButton = (buttonLabel: HTMLElement): HTMLElement => {
+  // eslint-disable-next-line testing-library/no-node-access
   return buttonLabel.closest('button') as HTMLElement;
 };
 
-export const selectHdsButtonByText = (
-  render: RenderResult,
-  text: string
-): HTMLElement => {
-  const { getByText } = render;
+export const selectHdsButtonByText = (text: string): HTMLElement =>
+  selectHdsButton(screen.getByText(text));
 
-  return selectHdsButton(getByText(text));
-};
-
-export const selectAllHdsButtonByText = (
-  render: RenderResult,
-  text: string
-): HTMLElement => {
-  const { getAllByText } = render;
-
-  return selectHdsButton(getAllByText(text)[0]);
-};
+export const selectAllHdsButtonByText = (text: string): HTMLElement =>
+  selectHdsButton(screen.getAllByText(text)[0]);
 
 // re-export everything
 // eslint-disable-next-line import/export

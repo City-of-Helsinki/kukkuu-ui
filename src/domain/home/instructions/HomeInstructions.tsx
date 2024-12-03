@@ -6,7 +6,7 @@ import styles from './homeInstructions.module.scss';
 import Icon from '../../../common/components/icon/Icon';
 import { publicSvgIconPaths } from '../../../public_files';
 
-const HomeInstructions: React.FunctionComponent = (props) => {
+const HomeInstructions: React.FunctionComponent = () => {
   const { t } = useTranslation();
   return (
     <section className={styles.wrapper}>
