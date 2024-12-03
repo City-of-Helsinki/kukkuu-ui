@@ -1,6 +1,7 @@
 import { logoFi as helIcon, logoSv as helIconSv } from 'hds-react';
 
 import { Partner } from '../types/partner';
+import { publicPartnersIconDir } from '../../../../public_files';
 
 const helsinkiFiUrl =
   'https://www.hel.fi/fi/paatoksenteko-ja-hallinto/kaupungin-organisaatio/toimialat/kulttuurin-ja-vapaa-ajan-toimiala';
@@ -29,11 +30,11 @@ export const mainPartnerList: Partner[] = [
   },
   {
     name: 'jaes',
-    icon: '/icons/partners/jaes-logo-fi.svg',
+    icon: `${publicPartnersIconDir}/jaes-logo-fi.svg`,
     iconClassName: 'jaes-icon',
     altLangIcons: {
-      en: '/icons/partners/jaes-logo-en.svg',
-      sv: '/icons/partners/jaes-logo-sv.svg',
+      en: `${publicPartnersIconDir}/jaes-logo-en.svg`,
+      sv: `${publicPartnersIconDir}/jaes-logo-sv.svg`,
     },
     url: {
       fi: 'https://jaes.fi/',
@@ -46,7 +47,7 @@ export const mainPartnerList: Partner[] = [
 export const partnerList: Partner[] = [
   {
     name: 'amosrex',
-    icon: '/icons/partners/amosrex.png',
+    icon: `${publicPartnersIconDir}/amosrex.png`,
     url: {
       fi: 'https://amosrex.fi/',
       sv: 'https://amosrex.fi/sv/',
@@ -55,7 +56,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'cirko',
-    icon: '/icons/partners/cirko.png',
+    icon: `${publicPartnersIconDir}/cirko.png`,
     url: {
       fi: 'https://cirko.fi/',
       sv: 'https://cirko.fi/sv/',
@@ -64,7 +65,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'dot',
-    icon: '/icons/partners/dotdot.png',
+    icon: `${publicPartnersIconDir}/dotdot.png`,
     url: {
       fi: 'https://dotdot.fi/suomeksi/',
       sv: 'https://dotdot.fi/start/',
@@ -73,7 +74,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'designmuseum',
-    icon: '/icons/partners/designmuseum.png',
+    icon: `${publicPartnersIconDir}/designmuseum.png`,
     url: {
       fi: 'https://www.designmuseum.fi/fi/',
       sv: 'https://www.designmuseum.fi/sv/',
@@ -82,7 +83,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'hamhelsinki',
-    icon: '/icons/partners/hamhelsinki.png',
+    icon: `${publicPartnersIconDir}/hamhelsinki.png`,
     url: {
       fi: 'https://www.hamhelsinki.fi/',
       sv: 'https://www.hamhelsinki.fi/sv/',
@@ -91,7 +92,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'helsinginkaupunginmuseo',
-    icon: '/icons/partners/helsinginkaupunginmuseo.png',
+    icon: `${publicPartnersIconDir}/helsinginkaupunginmuseo.png`,
     url: {
       fi: 'https://www.helsinginkaupunginmuseo.fi/',
       sv: 'https://www.helsinginkaupunginmuseo.fi/sv/',
@@ -100,7 +101,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'helsinginkaupunginorkesteri',
-    icon: '/icons/partners/helsinginkaupunginorkesteri.png',
+    icon: `${publicPartnersIconDir}/helsinginkaupunginorkesteri.png`,
     url: {
       fi: 'https://helsinginkaupunginorkesteri.fi/',
       sv: 'https://helsinginkaupunginorkesteri.fi/sv',
@@ -109,12 +110,12 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'hkt',
-    icon: '/icons/partners/hkt.png',
+    icon: `${publicPartnersIconDir}/hkt.png`,
     url: { fi: 'https://hkt.fi/', en: 'https://hkt.fi/hktinenglish/' },
   },
   {
     name: 'hotellijaravintolamuseo',
-    icon: '/icons/partners/hotellijaravintolamuseo.png',
+    icon: `${publicPartnersIconDir}/hotellijaravintolamuseo.png`,
     url: {
       fi: 'https://www.hotellijaravintolamuseo.fi/',
       sv: 'https://www.hotellijaravintolamuseo.fi/svenska/',
@@ -123,7 +124,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'hurjaruuth',
-    icon: '/icons/partners/hurjaruuth.png',
+    icon: `${publicPartnersIconDir}/hurjaruuth.png`,
     url: {
       fi: 'https://www.hurjaruuth.fi/',
       en: 'https://www.hurjaruuth.fi/en/',
@@ -131,7 +132,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'kaapeli',
-    icon: '/icons/partners/Kaapeli.png',
+    icon: `${publicPartnersIconDir}/Kaapeli.png`,
     url: {
       fi: 'https://www.kaapelitehdas.fi/',
       sv: 'https://www.kaapelitehdas.fi/sv',
@@ -140,10 +141,10 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'kansallisgalleria',
-    icon: '/icons/partners/Finnish_National_Gallery_Logo_FI.svg',
+    icon: `${publicPartnersIconDir}/Finnish_National_Gallery_Logo_FI.svg`,
     altLangIcons: {
-      en: '/icons/partners/Finnish_National_Gallery_Logo_EN.svg',
-      sv: '/icons/partners/Finnish_National_Gallery_Logo_SV.svg',
+      en: `${publicPartnersIconDir}/Finnish_National_Gallery_Logo_EN.svg`,
+      sv: `${publicPartnersIconDir}/Finnish_National_Gallery_Logo_SV.svg`,
     },
     url: {
       fi: 'https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true',
@@ -153,12 +154,12 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'kansallismuseo',
-    icon: '/icons/partners/kansallismuseo.png',
+    icon: `${publicPartnersIconDir}/kansallismuseo.png`,
     url: { fi: 'https://www.kansallismuseo.fi/fi/kansallismuseo' },
   },
   {
     name: 'kansallisteatteri',
-    icon: '/icons/partners/kansallisteatteri.png',
+    icon: `${publicPartnersIconDir}/kansallisteatteri.png`,
     url: {
       fi: 'https://kansallisteatteri.fi/',
       en: 'https://kansallisteatteri.fi/briefly-in-english/',
@@ -166,7 +167,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'kulttuuriperintokasvatus',
-    icon: '/icons/partners/kulttuuriperintokasvatus.png',
+    icon: `${publicPartnersIconDir}/kulttuuriperintokasvatus.png`,
     url: {
       fi: 'https://www.kulttuuriperintokasvatus.fi/',
       sv: 'https://www.kulttuuriperintokasvatus.fi/pa-svenska/',
@@ -175,10 +176,10 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'tiedemuseoliekki',
-    icon: '/icons/partners/Museum_Flame_FI.svg',
+    icon: `${publicPartnersIconDir}/Museum_Flame_FI.svg`,
     altLangIcons: {
-      en: '/icons/partners/Museum_Flame_EN.svg',
-      sv: '/icons/partners/Museum_Flame_SV.svg',
+      en: `${publicPartnersIconDir}/Museum_Flame_EN.svg`,
+      sv: `${publicPartnersIconDir}/Museum_Flame_SV.svg`,
     },
     url: {
       fi: 'https://www.helsinki.fi/fi/tiedemuseo-liekki',
@@ -188,12 +189,12 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'mfa',
-    icon: '/icons/partners/mfa.png',
+    icon: `${publicPartnersIconDir}/mfa.png`,
     url: { fi: 'https://www.mfa.fi/', en: 'https://www.mfa.fi/en/frontpage/' },
   },
   {
     name: 'nukketeatterisampo',
-    icon: '/icons/partners/nukketeatterisampo.png',
+    icon: `${publicPartnersIconDir}/nukketeatterisampo.png`,
     url: {
       fi: 'https://nukketeatterisampo.fi/',
       en: 'https://nukketeatterisampo.fi/en/',
@@ -201,7 +202,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'oopperabaletti',
-    icon: '/icons/partners/oopperabaletti.png',
+    icon: `${publicPartnersIconDir}/oopperabaletti.png`,
     url: {
       fi: 'https://oopperabaletti.fi/',
       sv: 'https://oopperabaletti.fi/sv/',
@@ -210,7 +211,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'qteatteri',
-    icon: '/icons/partners/qteatteri.png',
+    icon: `${publicPartnersIconDir}/qteatteri.png`,
     url: {
       fi: 'https://www.q-teatteri.fi/',
       en: 'https://www.q-teatteri.fi/q-in-english/',
@@ -218,7 +219,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'svenskateatern',
-    icon: '/icons/partners/svenskateatern.png',
+    icon: `${publicPartnersIconDir}/svenskateatern.png`,
     url: {
       fi: 'https://svenskateatern.fi/fi/alku/',
       sv: 'https://svenskateatern.fi/sv/start/',
@@ -227,7 +228,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'sointijazzorchestra',
-    icon: '/icons/partners/sointi_jazz_orchestra.png',
+    icon: `${publicPartnersIconDir}/sointi_jazz_orchestra.png`,
     url: {
       fi: 'https://www.sointijazzorchestra.com/',
       sv: 'https://www.sointijazzorchestra.com/se',
@@ -236,7 +237,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'tanssintalo',
-    icon: '/icons/partners/tanssintalo.png',
+    icon: `${publicPartnersIconDir}/tanssintalo.png`,
     url: {
       fi: 'https://www.tanssintalo.fi/',
       en: 'https://www.tanssintalo.fi/en/',
@@ -244,12 +245,12 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'teatteriilmio',
-    icon: '/icons/partners/teatteriilmio.png',
+    icon: `${publicPartnersIconDir}/teatteriilmio.png`,
     url: { fi: 'https://www.teatteri-ilmio.fi/' },
   },
   {
     name: 'teatterimuseo',
-    icon: '/icons/partners/teatterimuseo.png',
+    icon: `${publicPartnersIconDir}/teatterimuseo.png`,
     url: {
       fi: 'https://www.teatterimuseo.fi/',
       sv: 'https://www.teatterimuseo.fi/sv',
@@ -258,7 +259,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'valokuvataiteenmuseo',
-    icon: '/icons/partners/valokuvataiteenmuseo.png',
+    icon: `${publicPartnersIconDir}/valokuvataiteenmuseo.png`,
     url: {
       fi: 'https://www.valokuvataiteenmuseo.fi/fi',
       sv: 'https://www.valokuvataiteenmuseo.fi/sv',
@@ -267,7 +268,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'umo',
-    icon: '/icons/partners/umo_logo.png',
+    icon: `${publicPartnersIconDir}/umo_logo.png`,
     url: {
       fi: 'https://umohelsinki.fi/',
       sv: 'https://umohelsinki.fi/',
@@ -276,7 +277,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'fokus',
-    icon: '/icons/partners/fokus_logo.png',
+    icon: `${publicPartnersIconDir}/fokus_logo.png`,
     url: {
       fi: 'https://dialogikasvatus.fi/fokus-ry/etusivu/',
       sv: 'https://dialogikasvatus.fi/fokus-ry/etusivu/',
@@ -285,7 +286,7 @@ export const partnerList: Partner[] = [
   },
   {
     name: 'osiris',
-    icon: '/icons/partners/osiris_logo.png',
+    icon: `${publicPartnersIconDir}/osiris_logo.png`,
     url: {
       fi: 'https://osiristeatteri.fi/',
       sv: 'https://osiristeatteri.fi/',

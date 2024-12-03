@@ -39,6 +39,7 @@ import { registrationFormDataSelector } from '../state/RegistrationSelectors';
 import { useProfileContext } from '../../profile/hooks/useProfileContext';
 import { MyProfile } from '../../profile/types/ProfileQueryTypes';
 import MandatoryFieldLegend from '../../../common/components/mandatoryFieldLegend/MandatoryFieldLegend';
+import { publicSvgIconPaths } from '../../../public_files';
 
 export const FORM_TESTID = 'registrationForm';
 export const EMAIL_FIELD_TESTID = 'guardian.email';
@@ -310,7 +311,7 @@ const RegistrationForm = () => {
                 >
                   <div className={styles.heading}>
                     <Icon
-                      src={'/icons/svg/adultFaceHappy.svg'}
+                      src={publicSvgIconPaths['adultFaceHappy']}
                       className={styles.childImage}
                     />
                     <h2>{t('registration.form.guardian.info.heading')}</h2>

@@ -7,6 +7,7 @@ import React from 'react';
 import InfoPageLayout from '../app/layout/InfoPageLayout';
 import styles from './unauthorized.module.scss';
 import useGetPathname from '../../common/route/utils/useGetPathname';
+import { publicSvgIconPaths } from '../../public_files';
 
 const LoginButton = () => {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ const Unauthorized = () => {
 
   return (
     <InfoPageLayout
-      icon={'/icons/svg/adultFaceHappyTransparent.svg'}
+      icon={publicSvgIconPaths['adultFaceHappyTransparent']}
       classes={styles.loginButtonTemplate}
       title={t('authentication.login.text')}
       callToAction={{

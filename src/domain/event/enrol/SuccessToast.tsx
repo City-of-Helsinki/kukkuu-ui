@@ -7,6 +7,7 @@ import styles from './successToast.module.scss';
 import Icon from '../../../common/components/icon/Icon';
 import { justEnrolled } from '../state/EventActions';
 import { justEnrolledSelector } from '../state/EventSelectors';
+import { publicSvgIconPaths } from '../../../public_files';
 
 const SuccessToast: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -54,7 +55,7 @@ const SuccessToast: FunctionComponent = () => {
           setShowJustEnrolled(false);
         }}
       >
-        <Icon src={'/icons/svg/tada.svg'} className={styles.tadaIcon} />
+        <Icon src={publicSvgIconPaths['tada']} className={styles.tadaIcon} />
         <div>
           <h1>{t('enrollment.successToast.heading')}</h1>
           <p>{t('enrollment.successToast.paragraph')}</p>

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './childAlertNonEligibleModal.module.scss';
 import Icon from '../../../../../common/components/icon/Icon';
 import AlertModal from '../../../../../common/components/alert/AlertModal';
+import { publicSvgIconPaths } from '../../../../../public_files';
 
 interface ChildFormModalNonEligibleProps {
   setIsOpen: (value: boolean) => void;
@@ -22,7 +23,7 @@ const ChildAlertNonEligibleModal: FunctionComponent<
       onClose={() => setIsOpen(false)}
     >
       <p>{t('registration.notEligible.text')}</p> {/* TODO: wrong text */}
-      <Icon className={styles.icon} src={'/icons/svg/adultFace.svg'} />
+      <Icon className={styles.icon} src={publicSvgIconPaths['adultFace']} />
     </AlertModal>
   );
 };

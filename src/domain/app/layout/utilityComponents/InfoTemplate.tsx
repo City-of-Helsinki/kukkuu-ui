@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import Icon from '../../../../common/components/icon/Icon';
 import Button from '../../../../common/components/button/Button';
 import styles from './infoTemplate.module.scss';
+import { publicSvgIconPaths } from '../../../../public_files';
 
 export type InfoTemplateProps = {
   title: string | React.ReactElement;
@@ -20,7 +21,7 @@ const InfoTemplate = ({
   title,
   description,
   callToAction,
-  icon = '/icons/svg/adultFace.svg',
+  icon = publicSvgIconPaths['adultFace'],
   classes,
 }: InfoTemplateProps) => {
   return (
