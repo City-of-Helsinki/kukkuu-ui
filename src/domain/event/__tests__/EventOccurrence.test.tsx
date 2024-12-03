@@ -76,11 +76,9 @@ describe('when event is full', () => {
     it('user should be able to subscribe', async () => {
       initModal();
 
-      const render = getFullEventWrapper(null);
+      getFullEventWrapper(null);
 
-      await waitFor(() => {
-        fireEvent.click(selectAllHdsButtonByText(render, 'Tilaa ilmoitus'), {});
-      });
+      fireEvent.click(selectAllHdsButtonByText('Tilaa ilmoitus'), {});
 
       await waitFor(() => {
         // This button is hooked up to Apollo and mocks are not

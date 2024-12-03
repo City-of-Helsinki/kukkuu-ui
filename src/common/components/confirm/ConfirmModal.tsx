@@ -6,10 +6,8 @@ import Button from '../button/Button';
 
 interface ConfirmModalProps {
   isOpen: boolean;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  setIsOpen: Function;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  answer: Function;
+  setIsOpen: (value: boolean) => void;
+  answer: (answer: boolean) => void;
   heading: string;
   cancel: string;
   ok: string;

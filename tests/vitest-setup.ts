@@ -2,7 +2,6 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 require('dotenv').config({ path: './.env.test' });
 import { beforeAll, afterEach, afterAll, vi } from 'vitest';
-import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 
 import setLocale from '../src/common/localization/setLocale';
@@ -15,10 +14,6 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
   disconnect: vi.fn(),
 }));
 
-afterEach(() => {
-  cleanup();
-});
-
 beforeAll(() => {
   setLocale('fi');
   server.listen();
@@ -26,8 +21,6 @@ beforeAll(() => {
 afterEach(() => {
   server.resetHandlers();
 });
-// runs a cleanup after each test case (e.g. clearing jsdom)
 afterAll(() => {
-  cleanup();
   server.close();
 });

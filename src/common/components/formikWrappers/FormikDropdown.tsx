@@ -14,7 +14,6 @@ type Props = DropdownProps & {
   name: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   label: any;
-  onChange?: (selected: Option) => void;
   value?: string;
   options: Option[];
 };
@@ -24,13 +23,7 @@ const emptyValue = {
   value: '',
 };
 
-function FormikDropdown({
-  name,
-  onChange = () => ({}),
-  value: userValue,
-  options,
-  ...rest
-}: Props) {
+function FormikDropdown({ name, value: userValue, options, ...rest }: Props) {
   const { t } = useTranslation();
   const [{ value, ...field }, meta, helpers] = useField(name);
 

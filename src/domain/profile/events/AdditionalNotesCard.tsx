@@ -86,7 +86,6 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
       )}
       withAction={false}
       withCardClickAction={false}
-      imageFullHeight
     >
       {isViewMode ? (
         <div className={styles.previewContainer} data-color-mode="light">
