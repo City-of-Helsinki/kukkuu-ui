@@ -7,14 +7,14 @@ import { render, screen } from '../../../../common/test/testingLibraryUtils';
 // TODO: Needs mocks for profile query and redux selector.
 it.skip('renders snapshot correctly', async () => {
   const { container } = render(<RegistrationForm />);
-  expect(await screen.findByTestId(FORM_TESTID));
+  await screen.findByTestId(FORM_TESTID);
   expect(container).toMatchSnapshot();
 });
 
 it('email field is disabled', async () => {
   render(<RegistrationForm />);
   const emailField = await screen.findByTestId(EMAIL_FIELD_TESTID);
-  expect(emailField.hasAttribute('disabled'));
+  expect(emailField).toBeDisabled();
 });
 
 it('hasAcceptedCommunication is checked by default', async () => {

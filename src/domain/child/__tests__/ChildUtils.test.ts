@@ -11,7 +11,7 @@ describe('ChildUtil', () => {
       });
 
       ['name', 'homeCity', 'postalCode', 'relationship'].forEach((field) => {
-        expect(Object.keys(formModalChild).includes(field));
+        expect(formModalChild).toHaveProperty(field);
       });
     });
   });

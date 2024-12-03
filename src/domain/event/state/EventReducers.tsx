@@ -11,7 +11,7 @@ export const defaultChildEventData: ChildEvents[] = [];
 
 const reducer = createReducer(defaultChildEventData, (builder) => {
   builder
-    .addCase(clearEvent, (state) => ({ ...defaultChildEventData }))
+    .addCase(clearEvent, () => ({ ...defaultChildEventData }))
     .addCase(saveChildrenEvents, (state, action) => {
       const childrenEvents: ChildEvents[] = [];
       action.payload?.edges?.forEach((childEdge) => {

@@ -48,6 +48,8 @@ export enum CHILD_FORM_TYPES {
   EDIT = 'EDIT',
 }
 
+export const CHILD_FORM_TEST_ID = 'childForm';
+
 const ChildForm: FunctionComponent<ChildFormProps> = ({
   initialValues,
   onSubmit,
@@ -78,7 +80,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
       onSubmit={onFormSubmit}
     >
       {({ isSubmitting, values }: FormikProps<Child>) => (
-        <Form id="childForm" noValidate>
+        <Form id="childForm" data-testid={CHILD_FORM_TEST_ID} noValidate>
           {isImmutable ? (
             <div className={styles.birthyearField}>
               <label>{`${t(

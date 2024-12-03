@@ -1,6 +1,6 @@
 import { validatePostalCode, validateRequire } from '../validationUtils';
 
-describe('Form validation utilities - ', () => {
+describe('Form validation utilities', () => {
   describe('validatePostalCode', () => {
     test('postal code has characters', () => {
       const error = validatePostalCode('a111b');

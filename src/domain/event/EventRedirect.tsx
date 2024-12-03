@@ -81,7 +81,8 @@ const useAssignTicketSystemPasswordMutation = ({
       // eslint-disable-next-line no-console
       console.error(error);
     },
-    onCompleted: (data) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    onCompleted: (_data, _clientOptions?) => {
       // Because it is not trivial to figure out how to invalidate exactly all the
       // needed parts of the cache, and invalidating the whole thing doesn't cause any
       // actual harm in practice as this is such a rare action and the user is probably

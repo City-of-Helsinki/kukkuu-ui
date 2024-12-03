@@ -8,6 +8,7 @@ import Icon from '../../../common/components/icon/Icon';
 import { justEnrolled } from '../state/EventActions';
 import { justEnrolledSelector } from '../state/EventSelectors';
 import { publicSvgIconPaths } from '../../../public_files';
+import { a11nHandleKeyPress } from '../../../common/accessibility/keyboard';
 
 const SuccessToast: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -28,14 +29,14 @@ const SuccessToast: FunctionComponent = () => {
     };
   });
 
+  const handleOnClick = () => setShowJustEnrolled(false);
+  const handleOnKeyPress = a11nHandleKeyPress(handleOnClick);
+
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     <CSSTransition
       className={styles.successToast}
-      onClick={() => {
-        setShowJustEnrolled(false);
-      }}
+      onClick={handleOnClick}
+      onKeyPress={handleOnKeyPress}
       in={showJustEnrolled}
       timeout={{ appear: 300, enter: 300, exit: 300 }}
       classNames={{ ...styles }}
@@ -51,9 +52,10 @@ const SuccessToast: FunctionComponent = () => {
       unmountOnExit
     >
       <div
-        onClick={() => {
-          setShowJustEnrolled(false);
-        }}
+        onClick={handleOnClick}
+        onKeyPress={handleOnKeyPress}
+        role="button"
+        tabIndex={0}
       >
         <Icon src={publicSvgIconPaths['tada']} className={styles.tadaIcon} />
         <div>
