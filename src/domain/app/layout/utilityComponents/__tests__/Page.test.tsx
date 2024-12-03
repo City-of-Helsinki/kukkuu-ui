@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
+import { screen } from '@testing-library/react';
+
 import {
   render,
   waitFor,
@@ -8,12 +11,12 @@ import Page from '../Page';
 
 const title = 'Page component';
 const defaultProps = { title };
-const getWrapper = (props: Partial<Parameters<typeof Page>[0]>) =>
+const renderPage = (props: Partial<Parameters<typeof Page>[0]>) =>
   render(<Page {...defaultProps} {...props} />);
 
 describe('<Page />', () => {
   it('should set title', async () => {
-    getWrapper({});
+    renderPage({});
 
     await waitFor(() => expect(document.title.length > 0).toEqual(true));
     expect(document.title).toMatchInlineSnapshot(
@@ -22,22 +25,22 @@ describe('<Page />', () => {
   });
 
   it('should show loading spinner when isLoading is true', () => {
-    const { getByLabelText } = getWrapper({ isLoading: true });
+    renderPage({ isLoading: true });
 
-    expect(getByLabelText('Lataa')).toBeTruthy();
+    expect(screen.getByLabelText('Lataa')).toBeTruthy();
   });
 
   it('should show generic error when error is true', () => {
-    const { getByText } = getWrapper({ isLoading: false, error: true });
+    renderPage({ isLoading: false, error: true });
 
-    expect(getByText('Tapahtui virhe')).toBeTruthy();
-    expect(getByText('Yritä myöhemmin uudestaan')).toBeTruthy();
+    expect(screen.getByText('Tapahtui virhe')).toBeTruthy();
+    expect(screen.getByText('Yritä myöhemmin uudestaan')).toBeTruthy();
   });
 
   it('should show custom error when error is an object', () => {
     const name = 'Error name';
     const description = 'Error description';
-    const { getByText } = getWrapper({
+    renderPage({
       isLoading: false,
       error: {
         name,
@@ -45,17 +48,17 @@ describe('<Page />', () => {
       },
     });
 
-    expect(getByText(name)).toBeTruthy();
-    expect(getByText(description)).toBeTruthy();
+    expect(screen.getByText(name)).toBeTruthy();
+    expect(screen.getByText(description)).toBeTruthy();
   });
 
   it('should render children when isReady is true', () => {
-    const { getByText } = getWrapper({
+    renderPage({
       isLoading: false,
       isReady: true,
       children: <div>content</div>,
     });
 
-    expect(getByText('content')).toBeTruthy();
+    expect(screen.getByText('content')).toBeTruthy();
   });
 });

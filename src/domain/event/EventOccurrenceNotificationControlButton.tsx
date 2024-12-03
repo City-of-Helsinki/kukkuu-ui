@@ -53,22 +53,19 @@ const EventNotificationControlButton = ({
   };
 
   const handleUnsubscribe = async () => {
-    try {
-      await unsubscribe({
-        variables: {
-          input: {
-            childId,
-            occurrenceId: occurrence.id,
-          },
+    // No try-catch block here because default error handling is enabled in
+    // useUnsubscribeFromFreeSpotNotificationMutation
+    await unsubscribe({
+      variables: {
+        input: {
+          childId,
+          occurrenceId: occurrence.id,
         },
-      });
+      },
+    });
 
-      if (onUnsubscribed) {
-        onUnsubscribed();
-      }
-    } catch (e) {
-      // Default error handling is toggled on in
-      // useUnsubscribeFromFreeSpotNotificationMutation
+    if (onUnsubscribed) {
+      onUnsubscribed();
     }
   };
 
