@@ -12,6 +12,7 @@ import { RegistrationFormValues } from '../../types/RegistrationTypes';
 import Button from '../../../../common/components/button/Button';
 import FormikTextInput from '../../../../common/components/formikWrappers/FormikTextInput';
 import MandatoryFieldLegend from '../../../../common/components/mandatoryFieldLegend/MandatoryFieldLegend';
+import { publicSvgIconPaths } from '../../../../public_files';
 
 type ChildFormFieldProps = {
   child: Child;
@@ -35,7 +36,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
       <div className={styles.childInfo}>
         <div className={styles.heading}>
           <Icon
-            src={'/icons/svg/childFaceHappy.svg'}
+            src={publicSvgIconPaths['childFaceHappy']}
             className={styles.childImage}
           />
           <h2>{t('registration.form.child.info.heading')}</h2>

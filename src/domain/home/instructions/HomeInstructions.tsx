@@ -4,6 +4,7 @@ import { IconTicket } from 'hds-react';
 
 import styles from './homeInstructions.module.scss';
 import Icon from '../../../common/components/icon/Icon';
+import { publicSvgIconPaths } from '../../../public_files';
 
 const HomeInstructions: React.FunctionComponent = (props) => {
   const { t } = useTranslation();
@@ -13,7 +14,7 @@ const HomeInstructions: React.FunctionComponent = (props) => {
         <h2>{t('home.instructions.heading.text')}</h2>
         <div className={styles.iconContainer}>
           <div className={styles.iconBox}>
-            <Icon src={'/icons/svg/homeKid.svg'} className={styles.icon} />
+            <Icon src={publicSvgIconPaths['homeKid']} className={styles.icon} />
             <p>{t('home.instructions.icon.kid.text')}</p>
           </div>
           <div className={styles.iconBox}>
@@ -21,7 +22,10 @@ const HomeInstructions: React.FunctionComponent = (props) => {
             <p>{t('home.instructions.icon.ticket.text')}</p>
           </div>
           <div className={styles.iconBox}>
-            <Icon src={'/icons/svg/homeTheater.svg'} className={styles.icon} />
+            <Icon
+              src={publicSvgIconPaths['homeTheater']}
+              className={styles.icon}
+            />
             <p>{t('home.instructions.icon.theater.text')}</p>
           </div>
         </div>

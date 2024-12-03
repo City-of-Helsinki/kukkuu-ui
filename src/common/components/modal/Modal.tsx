@@ -8,6 +8,7 @@ import styles from './modal.module.scss';
 import Icon from '../icon/Icon';
 import Button from '../button/Button';
 import MandatoryFieldLegend from '../mandatoryFieldLegend/MandatoryFieldLegend';
+import { publicSvgIconPaths } from '../../../public_files';
 
 interface ModalProps {
   isOpen: boolean;
@@ -31,7 +32,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   showLabelIcon = true,
   className,
   showHeading = true,
-  icon = '/icons/svg/childFaceHappy.svg',
+  icon = publicSvgIconPaths['childFaceHappy'],
   showMandatoryFieldLegend = true,
 }) => {
   const { t } = useTranslation();

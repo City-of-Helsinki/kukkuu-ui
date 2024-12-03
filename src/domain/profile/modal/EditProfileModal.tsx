@@ -7,6 +7,7 @@ import Modal from '../../../common/components/modal/Modal';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import EditMyProfileForm from './EditMyProfileForm';
 import EditMyEmailForm from './EditMyEmailForm';
+import { publicSvgIconPaths } from '../../../public_files';
 
 export interface EditProfileModalProps {
   initialValues: MyProfile;
@@ -35,7 +36,7 @@ const EditProfileModal: React.FunctionComponent<EditProfileModalProps> = ({
         setFormIsFilling={setFormIsFilling}
         label={t('registration.form.guardian.info.heading')}
         isOpen={isOpen}
-        icon={'/icons/svg/adultFaceHappy.svg'}
+        icon={publicSvgIconPaths['adultFaceHappy']}
         toggleModal={(value: boolean) => {
           setIsOpen(value);
         }}

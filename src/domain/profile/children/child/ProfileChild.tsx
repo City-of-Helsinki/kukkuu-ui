@@ -16,6 +16,7 @@ import {
   MyProfileChild,
   MyProfileEnrolment,
 } from '../../types/ProfileQueryTypes';
+import { publicSvgIconPaths } from '../../../../public_files';
 
 interface ProfileChildProps {
   child: MyProfileChild;
@@ -78,7 +79,7 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
       className={styles.container}
     >
       <Icon
-        src={'/icons/svg/childFaceHappy.svg'}
+        src={publicSvgIconPaths['childFaceHappy']}
         alt={t('profile.child.default.name.text')}
         className={styles.icon}
       />

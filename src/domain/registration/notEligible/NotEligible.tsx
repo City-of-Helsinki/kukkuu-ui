@@ -6,6 +6,7 @@ import styles from './notEligible.module.scss';
 import Icon from '../../../common/components/icon/Icon';
 import PageWrapper from '../../app/layout/PageWrapper';
 import Button from '../../../common/components/button/Button';
+import { publicSvgIconPaths } from '../../../public_files';
 
 const NotEligible: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -15,7 +16,7 @@ const NotEligible: FunctionComponent = () => {
         <div className={styles.notEligible}>
           <Icon
             className={styles.notEligibleFace}
-            src={'/icons/svg/adultFace.svg'}
+            src={publicSvgIconPaths['adultFace']}
           />
           <p>{t('registration.notEligible.text')}</p>
           <Link

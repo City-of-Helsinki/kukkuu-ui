@@ -3,6 +3,7 @@ import { useTranslation, Trans } from 'react-i18next';
 
 import Icon from '../../../common/components/icon/Icon';
 import styles from './profileNoEvent.module.scss';
+import { publicSvgIconPaths } from '../../../public_files';
 
 const ProfileNoEvent: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -11,7 +12,7 @@ const ProfileNoEvent: FunctionComponent = () => {
       <h2>{t('profile.noupcomingevents.hero.heading')}</h2>
       <div className={styles.noEvent}>
         <Icon
-          src={'/icons/svg/envelopeWithStars.svg'}
+          src={publicSvgIconPaths['envelopeWithStars']}
           className={styles.envelopIcon}
         />
         <p>
