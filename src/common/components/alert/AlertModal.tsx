@@ -6,8 +6,7 @@ import Button from '../button/Button';
 
 interface AlertModalProps {
   isOpen: boolean;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  onClose: Function;
+  onClose: () => void;
   heading: string;
   ok: string;
   children?: React.ReactNode;

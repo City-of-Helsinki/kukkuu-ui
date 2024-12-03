@@ -3,6 +3,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { MyProfile } from '../types/ProfileQueryTypes';
 import { Language } from '../../api/generatedTypes/graphql';
 import { clearProfile, saveProfile } from './ProfileActions';
+import { Guardian } from '../../registration/types/SubmitChildrenAndGuardianMutationTypes';
 
 export const defaultProfileData: MyProfile = {
   id: '',
@@ -20,11 +21,16 @@ export const defaultProfileData: MyProfile = {
   },
 };
 
-const reducer = createReducer(defaultProfileData, (builder) => {
-  builder
-    .addCase(saveProfile, (_state, action: any) => ({ ...action.payload }))
-    .addCase(clearProfile, () => ({ ...defaultProfileData }));
-});
+const reducer = createReducer<MyProfile | Guardian>(
+  defaultProfileData,
+  (builder) => {
+    builder
+      .addCase(saveProfile, (_state, action) => ({
+        ...action.payload,
+      }))
+      .addCase(clearProfile, () => ({ ...defaultProfileData }));
+  }
+);
 
 /** @deprecated in favor of GuardianProvider */
 export default reducer;

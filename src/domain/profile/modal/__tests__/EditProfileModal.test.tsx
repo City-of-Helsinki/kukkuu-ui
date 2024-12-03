@@ -1,5 +1,7 @@
+/* eslint-disable testing-library/no-node-access */
 import { MockedProvider } from '@apollo/client/testing';
 import React from 'react';
+import { screen } from '@testing-library/react';
 
 import EditProfileModal from '../EditProfileModal';
 import { MyProfile } from '../../types/ProfileQueryTypes';
@@ -30,11 +32,8 @@ const initialValues: MyProfile = {
 const defaultProps = {
   initialValues,
   isOpen: true,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setIsOpen: () => {},
 };
-const getWrapper = (props?: unknown) =>
-  render(<EditProfileModal {...defaultProps} {...(props ?? {})} />);
 
 const formData = {
   phoneNumber: '000000000',
@@ -88,22 +87,21 @@ it('renders snapshot correctly', () => {
 
 it('should allow all fields to be filled', async () => {
   initModal();
-  const result = getWrapper();
-  const { getByRole, getAllByRole, queryByDisplayValue } = result;
+  render(<EditProfileModal {...defaultProps} />);
 
-  fireEvent.change(getByRole('textbox', { name: 'Puhelinnumero *' }), {
+  fireEvent.change(screen.getByRole('textbox', { name: 'Puhelinnumero *' }), {
     target: { value: formData.phoneNumber },
   });
-  fireEvent.change(getByRole('textbox', { name: 'Etunimi *' }), {
+  fireEvent.change(screen.getByRole('textbox', { name: 'Etunimi *' }), {
     target: { value: formData.firstName },
   });
-  fireEvent.change(getByRole('textbox', { name: 'Sukunimi *' }), {
+  fireEvent.change(screen.getByRole('textbox', { name: 'Sukunimi *' }), {
     target: {
       value: formData.lastName,
     },
   });
   selectOption(
-    getHdsSelect(getAllByRole('button', { name: /asiointikieli \*/i })),
+    getHdsSelect(screen.getAllByRole('button', { name: /asiointikieli \*/i })),
     'Suomi'
   );
 
@@ -111,13 +109,13 @@ it('should allow all fields to be filled', async () => {
   // at the submit function, but instead just try and verify that we can
   // find all the values we set during this test.
   Object.values(formData).forEach((value) => {
-    expect(queryByDisplayValue(value)).not.toEqual(null);
+    expect(screen.queryByDisplayValue(value)).not.toEqual(null);
   });
   // Handle select as a special case because it has no input
   await waitFor(() => {
     expect(
       getHdsSelect(
-        getAllByRole('button', { name: /asiointikieli \*/i })
+        screen.getAllByRole('button', { name: /asiointikieli \*/i })
       )?.querySelector('button')?.textContent
     ).toEqual('Suomi');
   });

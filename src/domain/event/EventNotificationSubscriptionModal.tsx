@@ -41,22 +41,19 @@ const EventNotificationSubscriptionModal = ({
 
   const handleAnswer = async (consented: boolean) => {
     if (consented) {
-      try {
-        await subscribe({
-          variables: {
-            input: {
-              occurrenceId: eventOccurrence.id,
-              childId,
-            },
+      // No try-catch block here because default error handling is enabled in
+      // useSubscribeToFreeSpotNotificationMutation
+      await subscribe({
+        variables: {
+          input: {
+            occurrenceId: eventOccurrence.id,
+            childId,
           },
-        });
+        },
+      });
 
-        if (onSubscribed) {
-          onSubscribed();
-        }
-      } catch (e) {
-        // Default error handling is enabled in
-        // useSubscribeToFreeSpotNotificationMutation
+      if (onSubscribed) {
+        onSubscribed();
       }
     }
   };

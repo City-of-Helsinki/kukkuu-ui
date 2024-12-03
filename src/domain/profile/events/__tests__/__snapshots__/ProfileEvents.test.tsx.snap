@@ -48,6 +48,8 @@ exports[`Renders events list when events of any type 1`] = `
         >
           <div
             class="_wrapper_f3c708"
+            role="button"
+            tabindex="0"
           >
             <div
               class="_image_f3c708 _fullHeight_f3c708"
@@ -211,6 +213,8 @@ exports[`Renders events list when events of any type 1`] = `
         >
           <div
             class="_wrapper_f3c708"
+            role="button"
+            tabindex="0"
           >
             <div
               class="_image_f3c708 _fullHeight_f3c708"
@@ -240,6 +244,7 @@ exports[`Renders events list when events of any type 1`] = `
                 <button
                   class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _primaryActionButton_f3c708"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                  tabindex="0"
                   type="button"
                 >
                   <span
@@ -301,6 +306,8 @@ exports[`Renders events list when events of any type 1`] = `
         >
           <div
             class="_wrapper_f3c708"
+            role="button"
+            tabindex="0"
           >
             <div
               class="_image_f3c708 _fullHeight_f3c708"
@@ -389,6 +396,8 @@ exports[`Renders events list when only enrolments 1`] = `
         >
           <div
             class="_wrapper_f3c708"
+            role="button"
+            tabindex="0"
           >
             <div
               class="_image_f3c708 _fullHeight_f3c708"
@@ -561,6 +570,8 @@ exports[`Renders events list when only past events 1`] = `
         >
           <div
             class="_wrapper_f3c708"
+            role="button"
+            tabindex="0"
           >
             <div
               class="_image_f3c708 _fullHeight_f3c708"
@@ -649,6 +660,8 @@ exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
         >
           <div
             class="_wrapper_f3c708"
+            role="button"
+            tabindex="0"
           >
             <div
               class="_image_f3c708 _fullHeight_f3c708"
@@ -678,6 +691,7 @@ exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
                 <button
                   class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _primaryActionButton_f3c708"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                  tabindex="0"
                   type="button"
                 >
                   <span

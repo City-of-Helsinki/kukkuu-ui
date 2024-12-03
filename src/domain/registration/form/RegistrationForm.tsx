@@ -421,12 +421,14 @@ const RegistrationForm = () => {
                             // eslint-disable-next-line jsx-a11y/anchor-has-content
                             <a
                               href={t('descriptionOfTheFile.url')}
+                              key="agree.descriptionOfTheFile.url"
                               target="_blank"
                               rel="noopener noreferrer"
                             />,
                             // eslint-disable-next-line jsx-a11y/anchor-has-content
                             <a
                               href={t('dataProtection.url')}
+                              key="agree.dataProtection.url"
                               target="_blank"
                               rel="noopener noreferrer"
                             />,

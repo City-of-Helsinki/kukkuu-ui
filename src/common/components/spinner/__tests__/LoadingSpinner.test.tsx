@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import LoadingSpinner from '../LoadingSpinner';
 
@@ -12,11 +12,15 @@ it('render spinner if isLoading is true', () => {
   expect(container.innerHTML).toContain('spinner');
 });
 
-it('render child component if isLoading is false', () => {
-  const { container } = render(
+it('render child component if isLoading is false', async () => {
+  render(
     <LoadingSpinner isLoading={false}>
       <div className="component"></div>
     </LoadingSpinner>
   );
-  expect(container.children[0].className).toEqual('component');
+  expect(
+    await screen.findByText(
+      (content, element) => element?.className === 'component'
+    )
+  ).toBeInTheDocument();
 });
