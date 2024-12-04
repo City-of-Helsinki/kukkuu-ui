@@ -399,6 +399,18 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.10.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.9.0...kukkuu-ui-v3.10.0) (2024-12-04)
+
+
+### Features
+
+* Upgrade to Vite 6 & typescript 5.7, move icons & images to /public ([5ce9bec](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5ce9bec62b793b49fa8d2383e510225f4d5537dd))
+
+
+### Bug Fixes
+
+* Mobile navigation ([74c6a9c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/74c6a9c0efa0e3bf667628fc0a4e6de92d95b8d7))
+
 ## [3.9.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.8.1...kukkuu-ui-v3.9.0) (2024-11-26)
 
 
