@@ -54,8 +54,11 @@ export default function EditMyEmailForm({
       setIsChangingEmail(false);
       setFieldValue('verificationToken', '');
       toast.success(t('registration.submitMutation.successfulMessage'));
-    } catch (error: any) {
-      if (error.message.includes('token is invalid')) {
+    } catch (error) {
+      if (
+        error instanceof Error &&
+        error.message.includes('token is invalid')
+      ) {
         setFieldError(
           'verificationToken',
           t('registration.form.guardian.email.verificationToken.errors.invalid')

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ApolloError } from '@apollo/client';
 import React from 'react';
 import { useOidcClient } from 'hds-react';
+import * as Sentry from '@sentry/browser';
 
 import { ProfileQuery } from '../../api/generatedTypes/graphql';
 import { clearEvent, saveChildrenEvents } from '../../event/state/EventActions';
@@ -50,6 +51,7 @@ function useReduxProfileState() {
   };
 
   const onError = (error: ApolloError) => {
+    Sentry.captureException(error);
     dispatch(clearProfile());
   };
 
