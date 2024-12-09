@@ -32,7 +32,9 @@ function CheckboxField(props: Props) {
   // with a new yet another handler.
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     field.onChange(e);
-    onChange && onChange(e);
+    if (onChange) {
+      onChange(e);
+    }
   };
 
   return (

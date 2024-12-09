@@ -73,6 +73,8 @@ const ProfileChild: React.FunctionComponent<ProfileChildProps> = ({
   };
 
   return (
+    // FIXME: Make ProfileChild accessible with keyboard & re-enable linting:
+    // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
       onMouseDown={handleWrapperMouseDown}
       onMouseUp={handleWrapperMouseUp}
