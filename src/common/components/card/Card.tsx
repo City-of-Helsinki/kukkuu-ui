@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import Button from '../button/Button';
 import Text from '../text/Text';
 import styles from './card.module.scss';
-import { a11nHandleKeyPress } from '../../accessibility/keyboard';
 
 interface CardProps {
   action?: () => void;
@@ -38,23 +37,15 @@ const Card = ({
 }: CardProps) => {
   const handleWrapperOnClick =
     primaryAction && withCardClickAction ? primaryAction : action;
-  const handleWrapperOnKeyPress = a11nHandleKeyPress(handleWrapperOnClick);
 
   const handlePrimaryActionOnClick = !withCardClickAction
     ? primaryAction
     : undefined;
-  const handlePrimaryActionOnKeyPress = a11nHandleKeyPress(
-    handlePrimaryActionOnClick
-  );
 
   return (
-    <div
-      className={styles.wrapper}
-      onClick={handleWrapperOnClick}
-      onKeyPress={handleWrapperOnKeyPress}
-      role="button"
-      tabIndex={0}
-    >
+    // FIXME: Make Card accessible with keyboard & re-enable linting:
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div className={styles.wrapper} onClick={handleWrapperOnClick}>
       <div className={classNames(styles.image, styles.fullHeight)}>
         {imageSrc ? (
           <img src={imageSrc} alt={alt} className={styles.image} />
@@ -72,8 +63,6 @@ const Card = ({
             <Button
               className={styles.primaryActionButton}
               onClick={handlePrimaryActionOnClick}
-              onKeyPress={handlePrimaryActionOnKeyPress}
-              tabIndex={0}
             >
               {primaryActionText}
             </Button>

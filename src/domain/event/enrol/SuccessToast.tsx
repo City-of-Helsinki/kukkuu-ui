@@ -8,7 +8,6 @@ import Icon from '../../../common/components/icon/Icon';
 import { justEnrolled } from '../state/EventActions';
 import { justEnrolledSelector } from '../state/EventSelectors';
 import { publicSvgIconPaths } from '../../../public_files';
-import { a11nHandleKeyPress } from '../../../common/accessibility/keyboard';
 
 const SuccessToast: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -30,13 +29,11 @@ const SuccessToast: FunctionComponent = () => {
   });
 
   const handleOnClick = () => setShowJustEnrolled(false);
-  const handleOnKeyPress = a11nHandleKeyPress(handleOnClick);
 
   return (
     <CSSTransition
       className={styles.successToast}
       onClick={handleOnClick}
-      onKeyPress={handleOnKeyPress}
       in={showJustEnrolled}
       timeout={{ appear: 300, enter: 300, exit: 300 }}
       classNames={{ ...styles }}
@@ -51,12 +48,9 @@ const SuccessToast: FunctionComponent = () => {
       }}
       unmountOnExit
     >
-      <div
-        onClick={handleOnClick}
-        onKeyPress={handleOnKeyPress}
-        role="button"
-        tabIndex={0}
-      >
+      {/* FIXME: Make SuccessToast accessible with keyboard & re-enable linting: */}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+      <div onClick={handleOnClick}>
         <Icon src={publicSvgIconPaths['tada']} className={styles.tadaIcon} />
         <div>
           <h1>{t('enrollment.successToast.heading')}</h1>

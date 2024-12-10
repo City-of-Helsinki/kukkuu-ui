@@ -35,7 +35,7 @@ describe('<EventCard />', () => {
     });
     const buttons = screen.getAllByRole('button', { name: actionText });
 
-    expect(buttons.length).toEqual(3);
+    expect(buttons.length).toEqual(2);
 
     fireEvent.click(buttons[0]);
 
