@@ -28,14 +28,12 @@ const SuccessToast: FunctionComponent = () => {
     };
   });
 
+  const handleOnClick = () => setShowJustEnrolled(false);
+
   return (
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     <CSSTransition
       className={styles.successToast}
-      onClick={() => {
-        setShowJustEnrolled(false);
-      }}
+      onClick={handleOnClick}
       in={showJustEnrolled}
       timeout={{ appear: 300, enter: 300, exit: 300 }}
       classNames={{ ...styles }}
@@ -50,11 +48,9 @@ const SuccessToast: FunctionComponent = () => {
       }}
       unmountOnExit
     >
-      <div
-        onClick={() => {
-          setShowJustEnrolled(false);
-        }}
-      >
+      {/* FIXME: Make SuccessToast accessible with keyboard & re-enable linting: */}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
+      <div onClick={handleOnClick}>
         <Icon src={publicSvgIconPaths['tada']} className={styles.tadaIcon} />
         <div>
           <h1>{t('enrollment.successToast.heading')}</h1>

@@ -33,7 +33,7 @@ it('renders mandatory field legend by default', async () => {
     </Modal>
   );
   await screen.findByText('modalLabel');
-  const legend = await screen.getByTestId('mandatory-field-legend');
+  const legend = await screen.findByTestId('mandatory-field-legend');
   expect(legend.textContent).toBe('* tarkoittaa pakollista kenttää');
 });
 
@@ -49,7 +49,7 @@ it('renders mandatory field legend when asked to', async () => {
     </Modal>
   );
   await screen.findByText('modalLabel');
-  const legend = await screen.getByTestId('mandatory-field-legend');
+  const legend = await screen.findByTestId('mandatory-field-legend');
   expect(legend.textContent).toBe('* tarkoittaa pakollista kenttää');
 });
 

@@ -19,7 +19,6 @@ interface CardProps {
   primaryAction?: () => void;
   primaryActionText?: string;
   title: string;
-  imageFullHeight?: boolean;
 }
 
 const Card = ({
@@ -35,13 +34,18 @@ const Card = ({
   primaryAction,
   primaryActionText,
   title,
-  imageFullHeight = false,
 }: CardProps) => {
+  const handleWrapperOnClick =
+    primaryAction && withCardClickAction ? primaryAction : action;
+
+  const handlePrimaryActionOnClick = !withCardClickAction
+    ? primaryAction
+    : undefined;
+
   return (
-    <div
-      className={styles.wrapper}
-      onClick={primaryAction && withCardClickAction ? primaryAction : action}
-    >
+    // FIXME: Make Card accessible with keyboard & re-enable linting:
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+    <div className={styles.wrapper} onClick={handleWrapperOnClick}>
       <div className={classNames(styles.image, styles.fullHeight)}>
         {imageSrc ? (
           <img src={imageSrc} alt={alt} className={styles.image} />
@@ -58,7 +62,7 @@ const Card = ({
           {primaryAction && (
             <Button
               className={styles.primaryActionButton}
-              onClick={!withCardClickAction ? primaryAction : undefined}
+              onClick={handlePrimaryActionOnClick}
             >
               {primaryActionText}
             </Button>

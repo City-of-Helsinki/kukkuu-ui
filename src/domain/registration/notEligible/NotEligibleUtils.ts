@@ -1,11 +1,6 @@
 import { SUPPORTED_START_BIRTH_YEAR } from '../../../common/time/TimeConstants';
 import { Child } from '../../child/types/ChildInputTypes';
 
-type Validator = {
-  validator: (value: any) => boolean;
-  item: any;
-};
-
 /** isBirthyearEligible()
  * Check if child's birthyear is eligible for participation.
  *
@@ -40,15 +35,8 @@ const isCityEligible = (city: string) => {
 const isChildEligible = (
   child: Pick<Child, 'birthyear' | 'homeCity'>,
   isEditing = false
-): boolean => {
-  const validators: Validator[] = [
-    { validator: isBirthyearEligible, item: child.birthyear },
-  ];
-
-  if (!isEditing)
-    validators.push({ validator: isCityEligible, item: child.homeCity });
-
-  return validators.every((v) => v.validator(v.item));
-};
+): boolean =>
+  isBirthyearEligible(child.birthyear) &&
+  (isEditing || isCityEligible(child.homeCity));
 
 export { getEligibleCities, isChildEligible };

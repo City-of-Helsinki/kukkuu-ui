@@ -8,7 +8,6 @@ it('renders snapshot correctly', () => {
     id: 'fooSelect',
     name: 'fooSelect',
     label: 'select label',
-    onChange: () => vi.fn(),
     options: [
       {
         label: 'foo_label',

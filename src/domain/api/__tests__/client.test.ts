@@ -36,13 +36,9 @@ describe('graphql client', () => {
           text: () => Promise.resolve(JSON.stringify(jsonData)),
         }) as Promise<Response>
     );
-    try {
-      await client.query({
-        query: profileQuery,
-      });
-    } catch (e) {
-      throw e;
-    }
+    await client.query({
+      query: profileQuery,
+    });
     const fetchOptions = fetchMock.mock.calls[0][1];
     expect(fetchOptions?.headers).toHaveProperty('authorization', 'Bearer foo');
   });
