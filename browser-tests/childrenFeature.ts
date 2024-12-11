@@ -16,10 +16,11 @@ import {
 } from './utils/jwt/mocks/testJWTAuthRequests';
 import { browserTestUser } from './utils/jwt/users';
 import { authorizedGuardian } from './userRoles';
+import { EXISTING_PROJECT_YEAR } from './constants';
 
 function buildAddChild() {
   return {
-    birthYear: '2020',
+    birthYear: EXISTING_PROJECT_YEAR.toString(),
     city: 'Helsinki',
     postalCode: '00000',
     name: 'Gilly Girod',

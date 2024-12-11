@@ -105,7 +105,7 @@ Browser tests are ran against PR and staging environments when after they have b
 To run browser tests locally, you need to configure the browser testing environment:
 
 1. Run a local Kukkuu API instance with the browser testing JWT features set on. Like that the UI client can issue new JWT for authorization by itself.
-2. Run a local Kukkuu Admin UI.
+2. Run a local Kukkuu UI (i.e. this repository's app).
 3. Carefully double check that the UI instance is configured to use the local API. The browser test JWT token configurations also needs to match in order to successfully verify the newly issued tokens. You navigate through the UI manually to see that everything is working as expected.
 4. Run the browser test with `yarn test:browser` or `yarn test:browser:ci`.
 

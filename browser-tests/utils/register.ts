@@ -4,11 +4,12 @@ import {
   registrationDone,
 } from '../pages/register';
 import getDropdownOption from './getDropdownOption';
+import { EXISTING_PROJECT_YEAR } from '../constants';
 
 // Firstime sign up requires registration
 export const register = async (t: TestController) => {
   const registerChild = {
-    birthYear: '2023',
+    birthYear: EXISTING_PROJECT_YEAR.toString(),
     city: 'Helsinki',
     postalCode: '00000',
     name: 'Hertta Citron',
