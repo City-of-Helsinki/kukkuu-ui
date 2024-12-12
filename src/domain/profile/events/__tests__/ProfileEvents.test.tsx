@@ -1,5 +1,10 @@
+import { MockedResponse } from '@apollo/client/testing';
+
 import ProfileEvents from '../ProfileEvents';
-import { EventParticipantsPerInvite } from '../../../api/generatedTypes/graphql';
+import {
+  ChildEnrolmentCountDocument,
+  EventParticipantsPerInvite,
+} from '../../../api/generatedTypes/graphql';
 import { render } from '../../../../common/test/testingLibraryUtils';
 import {
   ChildByIdResponse,
@@ -173,29 +178,63 @@ const childOnlyPastEvents = {
   pastEvents: pastEvents,
 };
 
+const childEnrolmentCountMock: MockedResponse = {
+  request: {
+    query: ChildEnrolmentCountDocument,
+    variables: {
+      childId: childData.id,
+    },
+  },
+  result: {
+    data: {
+      child: {
+        id: childData.id,
+        enrolmentCount: 0,
+        pastEnrolmentCount: 0,
+        project: {
+          id: childData.project.id,
+          enrolmentLimit: 1,
+        },
+      },
+    },
+  },
+};
+
+const mocks: MockedResponse[] = [childEnrolmentCountMock];
+
 test('Renders "No events" when no events"', () => {
-  const { container } = render(<ProfileEvents child={childNoEvents} />);
+  const { container } = render(<ProfileEvents child={childNoEvents} />, mocks);
   expect(container).toMatchSnapshot();
 });
 
 test('Renders events list when events of any type', () => {
-  const { container } = render(<ProfileEvents child={childWithEvents} />);
+  const { container } = render(
+    <ProfileEvents child={childWithEvents} />,
+    mocks
+  );
   expect(container).toMatchSnapshot();
 });
 
 test('Renders events list when only upcomingEventsAndEventGroups', () => {
   const { container } = render(
-    <ProfileEvents child={childOnlyAvailableEvents} />
+    <ProfileEvents child={childOnlyAvailableEvents} />,
+    mocks
   );
   expect(container).toMatchSnapshot();
 });
 
 test('Renders events list when only enrolments', () => {
-  const { container } = render(<ProfileEvents child={childOnlyEnrolments} />);
+  const { container } = render(
+    <ProfileEvents child={childOnlyEnrolments} />,
+    mocks
+  );
   expect(container).toMatchSnapshot();
 });
 
 test('Renders events list when only past events', () => {
-  const { container } = render(<ProfileEvents child={childOnlyPastEvents} />);
+  const { container } = render(
+    <ProfileEvents child={childOnlyPastEvents} />,
+    mocks
+  );
   expect(container).toMatchSnapshot();
 });
