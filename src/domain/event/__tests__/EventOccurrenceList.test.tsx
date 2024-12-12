@@ -7,7 +7,7 @@ const mockedOccurrences: Occurrences = {
   edges: [
     {
       node: {
-        id: 'T2NjdXJyZW5jZU5vZGU6Mg==',
+        id: 'T2NjdXJyZW5jZU5vZGU6MQ==', // Base64 encoded 'OccurrenceNode:1'
         time: '2020-03-08T04:00:00+00:00',
         remainingCapacity: 99,
         event: {
@@ -26,7 +26,7 @@ const mockedOccurrences: Occurrences = {
     },
     {
       node: {
-        id: 'T2NjdXJyZW5jZU5vZGU6Mg==',
+        id: 'T2NjdXJyZW5jZU5vZGU6Mg==', // Base64 encoded 'OccurrenceNode:2'
         time: '2020-04-08T04:00:00+00:00',
         remainingCapacity: 88,
         event: {
