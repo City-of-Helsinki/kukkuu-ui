@@ -34,14 +34,17 @@ const getWrapper = (props: any = {}) =>
   render(
     <table>
       <tbody>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-        <EventOccurrence {...defaultProps} {...(props as any)} />
+        <EventOccurrence
+          key={mockedNode.id}
+          {...defaultProps}
+          {...(props as any)}
+        />
       </tbody>
     </table>
   );
 
 it('renders snapshot correctly', () => {
-  const { container } = getWrapper({ key: mockedNode.id });
+  const { container } = getWrapper();
 
   expect(container).toMatchSnapshot();
 });
