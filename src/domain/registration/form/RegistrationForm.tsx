@@ -405,40 +405,38 @@ const RegistrationForm = () => {
                       'registration.form.guardian.hasAcceptedCommunication.input.label'
                     )}
                   />
-                  <CheckboxField
-                    className={styles.agreeBtn}
-                    type="checkbox"
-                    id="agree"
-                    name="agree"
-                    required={true}
-                    label={
-                      <>
-                        <Trans
-                          i18nKey="registration.form.agree.input.label"
-                          components={[
-                            // These components receive content in the
-                            // translation definition.
-                            // eslint-disable-next-line jsx-a11y/anchor-has-content
-                            <a
-                              href={t('descriptionOfTheFile.url')}
-                              key="agree.descriptionOfTheFile.url"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            />,
-                            // eslint-disable-next-line jsx-a11y/anchor-has-content
-                            <a
-                              href={t('dataProtection.url')}
-                              key="agree.dataProtection.url"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            />,
-                          ]}
-                        />
-                        <span className={styles.required}>&nbsp;*</span>
-                      </>
-                    }
-                  />
-
+                  <div className={styles.agreeContainer}>
+                    <CheckboxField
+                      className={styles.agreeBtn}
+                      type="checkbox"
+                      id="agree"
+                      name="agree"
+                      required={true}
+                      aria-label={t('registration.form.agree.input.label')}
+                    />
+                    <div className={styles.agreeLabel}>
+                      <Trans
+                        i18nKey="registration.form.agree.input.label"
+                        components={[
+                          <a
+                            href={t('descriptionOfTheFile.url')}
+                            key="agree.descriptionOfTheFile.url"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={t('descriptionOfTheFile.title')}
+                          />,
+                          <a
+                            href={t('dataProtection.url')}
+                            key="agree.dataProtection.url"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={t('dataProtection.title')}
+                          />,
+                        ]}
+                      />
+                      <span className={styles.required}>&nbsp;*</span>
+                    </div>
+                  </div>
                   <Button
                     type="submit"
                     className={styles.submitButton}

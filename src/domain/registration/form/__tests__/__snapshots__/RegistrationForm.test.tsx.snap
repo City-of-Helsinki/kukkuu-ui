@@ -1,52 +1,622 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders snapshot correctly 1`] = `
-<Provider
-  store={
-    Object {
-      "dispatch": [Function],
-      "getState": [Function],
-      "replaceReducer": [Function],
-      "subscribe": [Function],
-      Symbol(observable): [Function],
-    }
-  }
->
-  <MockedProvider
-    addTypename={false}
+<div>
+  <div
+    class="_pageWrapper_e42bcd _grayBackground_72244b"
   >
-    <HelmetProvider
-      context={Object {}}
+    <div
+      class="_container_533ff0"
     >
-      <Router
-        history={
-          Object {
-            "action": "POP",
-            "block": [Function],
-            "createHref": [Function],
-            "go": [Function],
-            "goBack": [Function],
-            "goForward": [Function],
-            "length": 1,
-            "listen": [Function],
-            "location": Object {
-              "hash": "",
-              "pathname": "/",
-              "search": "",
-              "state": undefined,
-            },
-            "push": [Function],
-            "replace": [Function],
-          }
-        }
+      <div
+        class="_registrationFormContainer_72244b"
       >
-        <MockedProvider
-          addTypename={true}
+        <div
+          class="_registrationForm_72244b"
         >
-          <RegistrationForm />
-        </MockedProvider>
-      </Router>
-    </HelmetProvider>
-  </MockedProvider>
-</Provider>
+          <form
+            data-testid="registrationForm"
+            id="registrationForm"
+          >
+            <div
+              class="_registrationGrayContainer_72244b"
+            >
+              <h1>
+                Tule mukaan
+              </h1>
+            </div>
+            <div
+              class="_childrenInfo_72244b _registrationWhiteContainer_72244b"
+            >
+              <div
+                class="_childFields_284205"
+              >
+                <div
+                  class="_childInfo_284205"
+                >
+                  <div
+                    class="_heading_284205"
+                  >
+                    <div
+                      class="_imgWrapper_73ff55 _childImage_284205"
+                    >
+                      <img
+                        alt=""
+                        src="/icons/svg/childFaceHappy.svg"
+                      />
+                    </div>
+                    <h2>
+                      Lapsen tiedot
+                    </h2>
+                    <p
+                      class="_right_8fd5d0"
+                      data-testid="mandatory-field-legend"
+                    >
+                      <span
+                        class="_bold_8fd5d0"
+                      >
+                        *
+                      </span>
+                      <span>
+                         
+                        tarkoittaa pakollista kenttää
+                      </span>
+                    </p>
+                  </div>
+                  <div
+                    class="_childFixedInfo_284205"
+                  >
+                    <div
+                      class="_childBirthyear_284205"
+                    >
+                      <label>
+                        Lapsen syntymävuosi
+                      </label>
+                      <p>
+                        2024
+                      </p>
+                    </div>
+                    <div
+                      class="_childHomeCity_284205"
+                    >
+                      <label>
+                        Lapsen kotipaikkakunta
+                      </label>
+                      <p />
+                    </div>
+                  </div>
+                  <div
+                    class="_childName_284205"
+                  >
+                    <div>
+                      <div
+                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                      >
+                        <label
+                          class="FieldLabel-module_label__1zrXK "
+                          for="children[0].name"
+                        >
+                          Lapsen nimi
+                        </label>
+                        <div
+                          class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                        >
+                          <input
+                            autocomplete="new-password"
+                            class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                            id="children[0].name"
+                            name="children[0].name"
+                            placeholder="Lisää lapsen nimi"
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                    >
+                      <label
+                        class="FieldLabel-module_label__1zrXK "
+                        for="children[0].postalCode"
+                      >
+                        Postinumero
+                        <span
+                          class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                        >
+                          *
+                        </span>
+                      </label>
+                      <div
+                        class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                      >
+                        <input
+                          class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                          id="children[0].postalCode"
+                          name="children[0].postalCode"
+                          placeholder="Lisää postinumero"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="Select-module_root__Ka5uO _formField_b4a938"
+                  >
+                    <label
+                      class="FieldLabel-module_label__1zrXK "
+                      for="children[0].relationship.type-toggle-button"
+                      id="children[0].relationship.type-label"
+                    >
+                      Ilmoittajan suhde lapseen
+                      <span
+                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                      >
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="Select-module_wrapper__1WQXs"
+                    >
+                      <button
+                        aria-expanded="false"
+                        aria-haspopup="listbox"
+                        aria-labelledby="children[0].relationship.type-label children[0].relationship.type-toggle-button"
+                        aria-owns="children[0].relationship.type-menu"
+                        class="Select-module_button__1aIsm"
+                        id="children[0].relationship.type-toggle-button"
+                        type="button"
+                      >
+                        <span
+                          class="Select-module_buttonLabel__1fqu5"
+                        >
+                          Valitse
+                        </span>
+                        <svg
+                          aria-hidden="true"
+                          aria-label="angle-down"
+                          class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik Select-module_angleIcon__2-9AD"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                      <ul
+                        aria-labelledby="children[0].relationship.type-label"
+                        aria-required="true"
+                        class="Select-module_menu__1H2aU"
+                        id="children[0].relationship.type-menu"
+                        role="listbox"
+                        style="max-height: 260px;"
+                        tabindex="-1"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="_registrationGrayContainer_72244b"
+            >
+              <button
+                aria-label="Lisää lapsi"
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _addNewChildButton_72244b"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                type="button"
+              >
+                <div
+                  aria-hidden="true"
+                  class="Button-module_icon__O-h7R button_hds-icon__17j8Z"
+                >
+                  <svg
+                    aria-hidden="true"
+                    aria-label="plus-circle"
+                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 7V11H17V13H13V17H11V13H7V11H11V7H13Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                >
+                  Lisää lapsi
+                </span>
+              </button>
+            </div>
+            <div
+              class="_guardianInfo_72244b _registrationWhiteContainer_72244b"
+            >
+              <div
+                class="_heading_72244b"
+              >
+                <div
+                  class="_imgWrapper_73ff55 _childImage_72244b"
+                >
+                  <img
+                    alt=""
+                    src="/icons/svg/adultFaceHappy.svg"
+                  />
+                </div>
+                <h2>
+                  Lähiaikuisen tiedot
+                </h2>
+                <p
+                  class="_right_8fd5d0"
+                  data-testid="mandatory-field-legend"
+                >
+                  <span
+                    class="_bold_8fd5d0"
+                  >
+                    *
+                  </span>
+                  <span>
+                     
+                    tarkoittaa pakollista kenttää
+                  </span>
+                </p>
+              </div>
+              <div>
+                <div
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                >
+                  <label
+                    class="FieldLabel-module_label__1zrXK "
+                    for="guardian.email"
+                  >
+                    Sähköpostiosoite
+                    <span
+                      class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                    >
+                      *
+                    </span>
+                  </label>
+                  <div
+                    class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                  >
+                    <input
+                      class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                      data-testid="guardian.email"
+                      disabled=""
+                      id="guardian.email"
+                      name="guardian.email"
+                      placeholder="Lisää sähköpostiosoite"
+                      required=""
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                >
+                  <label
+                    class="FieldLabel-module_label__1zrXK "
+                    for="guardian.phoneNumber"
+                  >
+                    Puhelinnumero
+                    <span
+                      class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                    >
+                      *
+                    </span>
+                  </label>
+                  <div
+                    class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                  >
+                    <input
+                      class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                      id="guardian.phoneNumber"
+                      name="guardian.phoneNumber"
+                      placeholder="Lisää puhelinnumero"
+                      required=""
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="_guardianName_72244b"
+              >
+                <div>
+                  <div
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                  >
+                    <label
+                      class="FieldLabel-module_label__1zrXK "
+                      for="guardian.firstName"
+                    >
+                      Etunimi
+                      <span
+                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                      >
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                    >
+                      <input
+                        class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                        id="guardian.firstName"
+                        name="guardian.firstName"
+                        placeholder="Lisää etunimi"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                  >
+                    <label
+                      class="FieldLabel-module_label__1zrXK "
+                      for="guardian.lastName"
+                    >
+                      Sukunimi
+                      <span
+                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                      >
+                        *
+                      </span>
+                    </label>
+                    <div
+                      class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                    >
+                      <input
+                        class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                        id="guardian.lastName"
+                        name="guardian.lastName"
+                        placeholder="Lisää sukunimi"
+                        required=""
+                        type="text"
+                        value=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="Select-module_root__Ka5uO _formField_b4a938"
+              >
+                <label
+                  class="FieldLabel-module_label__1zrXK "
+                  for="preferLanguage-toggle-button"
+                  id="preferLanguage-label"
+                >
+                  Asiointikieli
+                  <span
+                    class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                  >
+                    *
+                  </span>
+                </label>
+                <div
+                  class="Select-module_wrapper__1WQXs"
+                >
+                  <button
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby="preferLanguage-label preferLanguage-toggle-button"
+                    aria-owns="preferLanguage-menu"
+                    class="Select-module_button__1aIsm"
+                    id="preferLanguage-toggle-button"
+                    type="button"
+                  >
+                    <span
+                      class="Select-module_buttonLabel__1fqu5"
+                    >
+                      Suomi
+                    </span>
+                    <svg
+                      aria-hidden="true"
+                      aria-label="angle-down"
+                      class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik Select-module_angleIcon__2-9AD"
+                      role="img"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <ul
+                    aria-labelledby="preferLanguage-label"
+                    aria-required="true"
+                    class="Select-module_menu__1H2aU"
+                    id="preferLanguage-menu"
+                    role="listbox"
+                    style="max-height: 260px;"
+                    tabindex="-1"
+                  />
+                </div>
+              </div>
+              <div
+                class="Combobox-module_root__Hs8Hg Combobox-module_multiselect__3vNbJ _formField_b4a938"
+              >
+                <label
+                  class="FieldLabel-module_label__1zrXK "
+                  for="languagesSpokenAtHome-input"
+                  id="languagesSpokenAtHome-label"
+                >
+                  Kotona puhutut kielet
+                </label>
+                <div
+                  class="Combobox-module_wrapper__3kVTg"
+                >
+                  <input
+                    aria-autocomplete="list"
+                    aria-controls="languagesSpokenAtHome-menu"
+                    aria-expanded="false"
+                    aria-haspopup="listbox"
+                    aria-labelledby="languagesSpokenAtHome-label languagesSpokenAtHome-helper languagesSpokenAtHome-input"
+                    aria-owns="languagesSpokenAtHome-menu"
+                    autocomplete="off"
+                    autocorrect="off"
+                    class="Combobox-module_input__Dcmdn"
+                    id="languagesSpokenAtHome-input"
+                    role="combobox"
+                    type="text"
+                    value=""
+                  />
+                  <button
+                    aria-expanded="false"
+                    aria-label="Kotona puhutut kielet: Avaa valikko"
+                    class="Combobox-module_button__1W9PN"
+                    id="languagesSpokenAtHome-toggle-button"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      aria-label="angle-down"
+                      class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik Combobox-module_angleIcon__10DvA"
+                      role="img"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <ul
+                    aria-labelledby="languagesSpokenAtHome-label"
+                    aria-multiselectable="true"
+                    class="Combobox-module_menu__3jA0e"
+                    id="languagesSpokenAtHome-menu"
+                    role="listbox"
+                    style="max-height: 260px;"
+                  />
+                </div>
+                <div
+                  aria-hidden="true"
+                  class="Combobox-module_helperText__1qPYf"
+                  id="languagesSpokenAtHome-helper"
+                >
+                  Mitä kieltä tai kieliä puhutte kotona? Jos kieli ei ole listassa, valitse “muu kieli”.
+                </div>
+              </div>
+              <div>
+                <div
+                  class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz _checkboxField_639ec5"
+                  style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
+                >
+                  <input
+                    checked=""
+                    class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
+                    id="guardian.hasAcceptedCommunication"
+                    name="guardian.hasAcceptedCommunication"
+                    type="checkbox"
+                    value="true"
+                  />
+                  <label
+                    class="Checkbox-module_label__L5AN1 checkbox_hds-checkbox__label__3HoD3"
+                    for="guardian.hasAcceptedCommunication"
+                  >
+                    Haluan viestejä uusista kummitapahtumista
+                  </label>
+                </div>
+              </div>
+              <div
+                class="_agreeContainer_72244b"
+              >
+                <div>
+                  <div
+                    class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz _checkboxField_639ec5"
+                    style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
+                  >
+                    <input
+                      aria-label="Olen tutustunut <0>tämän palvelun rekisteriselosteeseen</0> ja <1>kaupungin tietosuojakäytäntöön</1>. Minuun voidaan olla yhteydessä antamieni tietojen avulla."
+                      class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
+                      id="agree"
+                      name="agree"
+                      required=""
+                      type="checkbox"
+                      value="false"
+                    />
+                    <label
+                      class="Checkbox-module_label__L5AN1 checkbox_hds-checkbox__label__3HoD3 Checkbox-module_noLabel__2wGzf checkbox_hds-checkbox__label--hidden__3zwtj"
+                      for="agree"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="_agreeLabel_72244b"
+                >
+                  Olen tutustunut 
+                  <a
+                    href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kuva/Kulttuurin%20kummilapset%20-kummiperherekisteri.pdf"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    title="Rekisteriseloste"
+                  >
+                    tämän palvelun rekisteriselosteeseen
+                  </a>
+                   ja 
+                  <a
+                    href="https://www.hel.fi/fi/paatoksenteko-ja-hallinto/tietoa-helsingista/tietosuoja-ja-tiedonhallinta/tietosuoja"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    title="Tietosuoja"
+                  >
+                    kaupungin tietosuojakäytäntöön
+                  </a>
+                  . Minuun voidaan olla yhteydessä antamieni tietojen avulla.
+                  <span
+                    class="_required_72244b"
+                  >
+                     *
+                  </span>
+                </div>
+              </div>
+              <button
+                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _submitButton_72244b"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                type="submit"
+              >
+                <span
+                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
+                >
+                  Ilmoittaudu mukaan
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 `;
