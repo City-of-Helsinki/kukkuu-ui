@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+import { MockedResponse } from '@apollo/client/testing';
 
 import {
   render,
@@ -8,13 +9,23 @@ import {
 } from '../../../../common/test/testingLibraryUtils';
 import initModal from '../../../../common/test/initModal';
 import Enrol from '../Enrol';
+import {
+  EventParticipantsPerInvite,
+  SubscribeToFreeSpotNotificationMutationDocument,
+  UnsubscribeFromFreeSpotNotificationMutationDocument,
+} from '../../../api/generatedTypes/graphql';
+import eventQuery from '../../queries/eventQuery';
+
+const testChildId = '123';
+const testEventId = 'zzaaz';
+const testOccurrenceId = 'T2NjdXJyZW5jZU5vZGU6Mg==';
 
 const occurrence = {
-  id: 'T2NjdXJyZW5jZU5vZGU6Mg==',
+  id: testOccurrenceId,
   time: '2020-03-08T04:00:00+00:00',
   remainingCapacity: 99,
   event: {
-    id: 'zzaaz',
+    id: testEventId,
     name: 'event name',
   },
   venue: {
@@ -25,7 +36,7 @@ const occurrence = {
   childHasFreeSpotNotificationSubscription: false,
 };
 const defaultProps = {
-  childId: '123',
+  childId: testChildId,
   isSubscriptionModalOpen: false,
   occurrence,
   onCancel: vi.fn(),
@@ -36,10 +47,92 @@ const defaultProps = {
   setIsSubscriptionModalOpen: vi.fn(),
 };
 
+const eventMock: MockedResponse = {
+  request: {
+    query: eventQuery,
+    variables: {
+      id: testEventId,
+      childId: testChildId,
+    },
+  },
+  result: {
+    data: {
+      event: {
+        id: testEventId,
+        name: 'event name',
+        description: 'event description',
+        shortDescription: 'event short description',
+        image: 'event image',
+        imageAltText: 'event image alt text',
+        participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
+        duration: 60,
+        capacityPerOccurrence: 100,
+        canChildEnroll: true,
+        ticketSystem: null,
+        eventGroup: null,
+        occurrences: {
+          edges: [],
+          pageInfo: {
+            endCursor: null,
+            hasNextPage: false,
+            hasPreviousPage: false,
+            startCursor: null,
+          },
+        },
+        allOccurrences: { edges: [] },
+      },
+    },
+  },
+};
+
+const subscribeToFreeSpotNotificationMock: MockedResponse = {
+  request: {
+    query: SubscribeToFreeSpotNotificationMutationDocument,
+    variables: {
+      input: {
+        occurrenceId: testOccurrenceId,
+        childId: testChildId,
+      },
+    },
+  },
+  result: {
+    data: {
+      subscribeToFreeSpotNotification: {
+        clientMutationId: null,
+      },
+    },
+  },
+};
+
+const unsubscribeFromFreeSpotNotificationMock: MockedResponse = {
+  request: {
+    query: UnsubscribeFromFreeSpotNotificationMutationDocument,
+    variables: {
+      input: {
+        occurrenceId: testOccurrenceId,
+        childId: testChildId,
+      },
+    },
+  },
+  result: {
+    data: {
+      unsubscribeFromFreeSpotNotification: {
+        clientMutationId: null,
+      },
+    },
+  },
+};
+
+const mocks: MockedResponse[] = [
+  eventMock,
+  subscribeToFreeSpotNotificationMock,
+  unsubscribeFromFreeSpotNotificationMock,
+];
+
 const renderEnrol = (props?: unknown) =>
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  render(<Enrol {...defaultProps} {...props} />);
+  render(<Enrol {...defaultProps} {...props} />, mocks);
 
 describe('<Enrol />', () => {
   it('the user should be able to sign in to an event', async () => {
