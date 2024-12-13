@@ -81,3 +81,12 @@ $plusIconHeight: 2rem;
 .required {
   font-weight: bold;
 }
+
+.agreeContainer {
+  display: flex;
+  align-items: center;
+}
+
+.agreeLabel {
+  margin-left: -3px;
+}
