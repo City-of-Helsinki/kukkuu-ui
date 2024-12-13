@@ -1,5 +1,5 @@
 import React from 'react';
-import { MockedProvider } from '@apollo/client/testing';
+import { MockedResponse } from '@apollo/client/testing';
 
 import { render, screen } from '../../../../common/test/testingLibraryUtils';
 import ProfileEventsList from '../ProfileEventsList';
@@ -10,6 +10,7 @@ import {
   PastEvents,
   InternalAndTicketSystemEnrolments,
 } from '../../../child/types/ChildByIdQueryTypes';
+import { childEnrolmentCountQuery } from '../../../child/queries/ChildEnrolmentCountQuery';
 
 vi.mock('react-qrcode-logo', async (importOriginal: any) => {
   const mod = await importOriginal();
@@ -19,8 +20,10 @@ vi.mock('react-qrcode-logo', async (importOriginal: any) => {
   };
 });
 
+const testChildId = 'zzaf';
+
 const childData: ChildByIdResponse = {
-  id: '',
+  id: testChildId,
   name: '',
   birthyear: 0,
   postalCode: '',
@@ -182,36 +185,56 @@ const childWithTixlyEnrolment: ChildByIdResponse = {
   pastEvents: null,
 };
 
+const childEnrolmentCountMock: MockedResponse = {
+  request: {
+    query: childEnrolmentCountQuery,
+    variables: { childId: testChildId },
+  },
+  result: {
+    data: {
+      child: {
+        id: childData.id,
+        enrolmentCount: 0,
+        pastEnrolmentCount: 0,
+        project: {
+          id: childData.project.id,
+          enrolmentLimit: 1,
+        },
+      },
+    },
+  },
+};
+
+const mocks: MockedResponse[] = [childEnrolmentCountMock];
+
 test('Renders snapshot correctly', () => {
   const { container } = render(
-    <MockedProvider>
-      <ProfileEventsList
-        upcomingEventsAndEventGroups={
-          childWithEvents.upcomingEventsAndEventGroups
-        }
-        enrolments={childOnlyEnrolments.activeInternalAndTicketSystemEnrolments}
-        pastEvents={childWithEvents.pastEvents}
-        childId="zzaf"
-      />
-    </MockedProvider>
+    <ProfileEventsList
+      upcomingEventsAndEventGroups={
+        childWithEvents.upcomingEventsAndEventGroups
+      }
+      enrolments={childOnlyEnrolments.activeInternalAndTicketSystemEnrolments}
+      pastEvents={childWithEvents.pastEvents}
+      childId={testChildId}
+    />,
+    mocks
   );
   expect(container).toMatchSnapshot();
 });
 
 test('Renders only upcoming events and event groups when no other inputs', () => {
   render(
-    <MockedProvider>
-      <ProfileEventsList
-        upcomingEventsAndEventGroups={
-          childOnlyAvailableEvents.upcomingEventsAndEventGroups
-        }
-        enrolments={
-          childOnlyAvailableEvents.activeInternalAndTicketSystemEnrolments
-        }
-        pastEvents={childOnlyAvailableEvents.pastEvents}
-        childId="zzaf"
-      />
-    </MockedProvider>
+    <ProfileEventsList
+      upcomingEventsAndEventGroups={
+        childOnlyAvailableEvents.upcomingEventsAndEventGroups
+      }
+      enrolments={
+        childOnlyAvailableEvents.activeInternalAndTicketSystemEnrolments
+      }
+      pastEvents={childOnlyAvailableEvents.pastEvents}
+      childId={testChildId}
+    />,
+    mocks
   );
   expect(
     screen.getByRole('heading', { name: 'Tapahtumakutsut' })
@@ -226,16 +249,15 @@ test('Renders only upcoming events and event groups when no other inputs', () =>
 
 test('Renders only enrolments when no other inputs', () => {
   render(
-    <MockedProvider>
-      <ProfileEventsList
-        upcomingEventsAndEventGroups={
-          childOnlyEnrolments.upcomingEventsAndEventGroups
-        }
-        enrolments={childOnlyEnrolments.activeInternalAndTicketSystemEnrolments}
-        pastEvents={childOnlyEnrolments.pastEvents}
-        childId="zzaf"
-      />
-    </MockedProvider>
+    <ProfileEventsList
+      upcomingEventsAndEventGroups={
+        childOnlyEnrolments.upcomingEventsAndEventGroups
+      }
+      enrolments={childOnlyEnrolments.activeInternalAndTicketSystemEnrolments}
+      pastEvents={childOnlyEnrolments.pastEvents}
+      childId={testChildId}
+    />,
+    mocks
   );
 
   expect(
@@ -261,18 +283,17 @@ test.each([
   ['Tixly', childWithTixlyEnrolment.activeInternalAndTicketSystemEnrolments],
 ])('Renders %s enrolment', (_, enrolments) => {
   render(
-    <MockedProvider>
-      <ProfileEventsList
-        upcomingEventsAndEventGroups={{
-          edges: [],
-        }}
-        enrolments={enrolments}
-        pastEvents={{
-          edges: [],
-        }}
-        childId="zzaf"
-      />
-    </MockedProvider>
+    <ProfileEventsList
+      upcomingEventsAndEventGroups={{
+        edges: [],
+      }}
+      enrolments={enrolments}
+      pastEvents={{
+        edges: [],
+      }}
+      childId={testChildId}
+    />,
+    mocks
   );
 
   expect(screen.getByText('eventti')).toBeInTheDocument();
