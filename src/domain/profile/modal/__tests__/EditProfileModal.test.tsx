@@ -1,7 +1,7 @@
 /* eslint-disable testing-library/no-node-access */
-import { MockedProvider } from '@apollo/client/testing';
 import React from 'react';
 import { screen } from '@testing-library/react';
+import { MockedResponse } from '@apollo/client/testing';
 
 import EditProfileModal from '../EditProfileModal';
 import { MyProfile } from '../../types/ProfileQueryTypes';
@@ -12,6 +12,8 @@ import {
   waitFor,
 } from '../../../../common/test/testingLibraryUtils';
 import initModal from '../../../../common/test/initModal';
+import { languagesQueryResponse } from '../../../app/footer/__mocks__/languagesMock';
+import { languagesQuery } from '../../../languages/queries/LanguageQueries';
 
 const initialValues: MyProfile = {
   id: 'yuiop',
@@ -40,6 +42,16 @@ const formData = {
   firstName: 'George',
   lastName: 'Lopez',
 };
+
+const languagesMock: MockedResponse = {
+  request: {
+    query: languagesQuery,
+    variables: {},
+  },
+  result: { ...languagesQueryResponse },
+};
+
+const mocks: MockedResponse[] = [languagesMock];
 
 const getHdsSelect = (elements: HTMLElement[]) => {
   return elements[0].parentElement;
@@ -74,20 +86,19 @@ const selectOption = (
 it('renders snapshot correctly', () => {
   initModal();
   const { container } = render(
-    <MockedProvider>
-      <EditProfileModal
-        initialValues={initialValues}
-        isOpen={true}
-        setIsOpen={vi.fn()}
-      />
-    </MockedProvider>
+    <EditProfileModal
+      initialValues={initialValues}
+      isOpen={true}
+      setIsOpen={vi.fn()}
+    />,
+    mocks
   );
   expect(container).toMatchSnapshot();
 });
 
 it('should allow all fields to be filled', async () => {
   initModal();
-  render(<EditProfileModal {...defaultProps} />);
+  render(<EditProfileModal {...defaultProps} />, mocks);
 
   fireEvent.change(screen.getByRole('textbox', { name: 'Puhelinnumero *' }), {
     target: { value: formData.phoneNumber },
