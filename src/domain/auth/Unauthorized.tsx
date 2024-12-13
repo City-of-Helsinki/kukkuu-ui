@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { IconSignin } from 'hds-react/icons';
-import { useOidcClient } from 'hds-react';
+import { IconSignin, useOidcClient } from 'hds-react';
 import React from 'react';
 
 import InfoPageLayout from '../app/layout/InfoPageLayout';
