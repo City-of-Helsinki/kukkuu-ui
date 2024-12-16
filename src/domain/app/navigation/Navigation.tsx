@@ -13,7 +13,7 @@ import UserNavigation from './UserNavigation';
 import { useCmsLanguageOptions } from '../../../hooks/useCmsLanguageOptions';
 import { stripLocaleFromUri } from '../../../utils/cmsUtils';
 
-const languageToMenuNameMap = {
+export const languageToMenuNameMap = {
   [SUPPORT_LANGUAGES.FI]: 'Main Navigation FI',
   [SUPPORT_LANGUAGES.SV]: 'Main Navigation SV',
   [SUPPORT_LANGUAGES.EN]: 'Main Navigation EN',

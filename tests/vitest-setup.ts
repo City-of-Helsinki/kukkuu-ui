@@ -30,6 +30,11 @@ global.ResizeObserver = vi.fn().mockImplementation(() => ({
   disconnect: vi.fn(),
 }));
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const mockScrollTo = vi.fn((x?: number | ScrollToOptions, y?: number) => {});
+
+window.scrollTo = mockScrollTo;
+
 beforeAll(() => {
   setLocale('fi');
   server.listen();
