@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as HdsReact from 'hds-react';
 import * as ReactRouterDom from 'react-router-dom';
 
@@ -33,6 +34,16 @@ vi.mock('react-router-dom', async (importOriginal: any) => {
   };
 });
 
+// Mock the console.info calls to avoid them in the test output
+// but also check that they are called correctly in the tests
+beforeEach(() => {
+  vi.spyOn(console, 'info').mockImplementation(() => {});
+});
+
+afterEach(() => {
+  (console.info as ReturnType<typeof vi.fn>).mockRestore();
+});
+
 describe('Profile', () => {
   it('renders profile correctly', () => {
     vi.spyOn(HdsReact, 'useOidcClient').mockImplementation(
@@ -50,6 +61,7 @@ describe('Profile', () => {
     );
     const { container } = render(<Profile />);
     expect(container).toMatchSnapshot();
+    expect(console.info).not.toHaveBeenCalled();
   });
 
   it('redirects to the register section in home page if user is authenticated but has no profile', async () => {
@@ -78,6 +90,16 @@ describe('Profile', () => {
         });
       },
       { timeout: 15000 }
+    );
+
+    expect(console.info).toHaveBeenCalledTimes(2);
+    expect(console.info).toHaveBeenNthCalledWith(
+      1,
+      'Using a loading spinner to wait for profile to be added in the context.'
+    );
+    expect(console.info).toHaveBeenNthCalledWith(
+      2,
+      'User has logged in, but not created a profile. Send them to front page for registration.'
     );
   });
 });
