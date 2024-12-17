@@ -1,13 +1,13 @@
-@import '~styles/variables';
-@import '~styles/layout';
-@import '~styles/fonts';
+@use '~styles/variables';
+@use '~styles/layout';
+@use '~styles/fonts';
 
 .childName,
 .childInfo {
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: $baseMargin;
+    grid-gap: variables.$baseMargin;
   }
 }
 
@@ -16,9 +16,9 @@
   flex-direction: column;
 
   label {
-    font-size: $font-size-sm;
-    margin-bottom: $baseMargin * 0.25;
-    font-weight: $font-weight-bold;
+    font-size: fonts.$font-size-sm;
+    margin-bottom: variables.$baseMargin * 0.25;
+    font-weight: fonts.$font-weight-bold;
   }
 
   p {
@@ -28,7 +28,7 @@
 }
 
 .deleteChildButton {
-  margin-bottom: $largeMargin;
+  margin-bottom: variables.$largeMargin;
   // Ensure that text is correctly left aligned despite HDS
   // extra whitespace
   transform: translateX(calc(var(--spacing-m) * -1));
@@ -40,37 +40,37 @@
 }
 
 .formField {
-  padding-bottom: $basePadding;
+  padding-bottom: variables.$basePadding;
 }
 
 .buttonGroup {
-  margin: $largeMargin 0;
+  margin: variables.$largeMargin 0;
 }
 
 .editChildButtons {
   display: grid;
-  grid-gap: $baseMargin;
+  grid-gap: variables.$baseMargin;
 
   button {
     width: 100% !important;
   }
   .submitButton {
-    @include respond-below(m) {
+    @include layout.respond-below(m) {
       grid-row: 1;
     }
   }
 
   .cancelButton {
-    @include respond-below(m) {
+    @include layout.respond-below(m) {
       grid-row: 2;
     }
   }
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     grid-auto-flow: column;
   }
 
-  @include respond-below(m) {
+  @include layout.respond-below(m) {
     grid-auto-flow: row;
   }
 }
@@ -83,7 +83,7 @@
 
 .submitButton {
   width: 80%;
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     width: 60%;
   }
 }

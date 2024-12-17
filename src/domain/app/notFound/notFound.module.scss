@@ -1,5 +1,5 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .notFound {
   text-align: center;
@@ -7,23 +7,23 @@
 
   .returnLink {
     width: 50%;
-    @include respond-below(m) {
+    @include layout.respond-below(m) {
       width: 80%;
     }
 
     display: block;
-    margin: $largeMargin auto auto auto;
-    background: var(--color-summer);
+    margin: variables.$largeMargin auto auto auto;
+    background: variables.$color-summer;
     box-sizing: border-box;
     text-decoration: none;
-    padding: $basePadding;
-    color: var(--color-black);
+    padding: variables.$basePadding;
+    color: variables.$color-black;
   }
 }
 
 .icon {
   display: block;
   margin: 0 auto;
-  height: $largeMargin;
-  width: $largeMargin;
+  height: variables.$largeMargin;
+  width: variables.$largeMargin;
 }

@@ -1,9 +1,9 @@
-@import '~styles/variables';
+@use '~styles/variables';
 
 .modal {
   text-align: center;
 }
 
 .okButton {
-  margin: $largeMargin 0;
+  margin: variables.$largeMargin 0;
 }

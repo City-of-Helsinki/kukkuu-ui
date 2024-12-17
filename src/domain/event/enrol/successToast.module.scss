@@ -1,6 +1,6 @@
-@import '~styles/fonts';
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/fonts';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .successToast {
   background-color: var(--color-white);
@@ -14,7 +14,7 @@
   top: -25rem;
   text-align: center;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     position: inherit;
 
     justify-self: center;

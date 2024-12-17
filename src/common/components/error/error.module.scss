@@ -1,10 +1,10 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .error {
-  margin: $baseMargin;
-  @include respond-above(m) {
+  margin: variables.$baseMargin;
+  @include layout.respond-above(m) {
     grid-column: 2;
-    margin: $baseMargin 0;
+    margin: variables.$baseMargin 0;
   }
 }

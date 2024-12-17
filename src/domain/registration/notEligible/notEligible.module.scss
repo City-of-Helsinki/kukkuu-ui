@@ -1,9 +1,9 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .notEligible {
-  @include respond-below(l) {
-    margin: 0 $baseMargin $largeMargin $baseMargin;
+  @include layout.respond-below(l) {
+    margin: 0 variables.$baseMargin variables.$largeMargin variables.$baseMargin;
   }
 
   font-weight: bold;
@@ -15,10 +15,10 @@
   .notEligibleFace {
     height: 4rem;
     width: 4rem;
-    margin: $baseMargin 0;
+    margin: variables.$baseMargin 0;
   }
 }
 
 .goBackButton {
-  margin: 2 * $baseMargin;
+  margin: 2 * variables.$baseMargin;
 }

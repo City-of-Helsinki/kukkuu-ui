@@ -1,9 +1,9 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .infoPageLayout {
-  @include respond-below(l) {
-    margin: 0 $baseMargin $largeMargin $baseMargin;
+  @include layout.respond-below(l) {
+    margin: 0 variables.$baseMargin variables.$largeMargin variables.$baseMargin;
   }
 
   display: flex;
@@ -11,30 +11,30 @@
   align-items: center;
   justify-content: center;
 
-  color: $color-black-90;
+  color: variables.$color-black-90;
 
   .infoPageLayoutFace {
-    height: $spacing-5-xl;
-    width: $spacing-5-xl;
-    margin: 0 0 $spacing-m 0;
+    height: variables.$spacing-5-xl;
+    width: variables.$spacing-5-xl;
+    margin: 0 0 variables.$spacing-m 0;
   }
 
   .infoPageLayoutTitle {
-    font-size: $fontsize-heading-xl;
+    font-size: variables.$fontsize-heading-xl;
   }
 
   .infoPageLayoutDescription {
-    max-width: $container-width-m;
+    max-width: variables.$container-width-m;
     margin-top: 0;
-    margin-bottom: $spacing-xl;
+    margin-bottom: variables.$spacing-xl;
 
-    font-size: $fontsize-body-l;
+    font-size: variables.$fontsize-body-l;
     text-align: center;
   }
 }
 
 .callToActionButton {
-  margin: 2 * $baseMargin;
+  margin: 2 * variables.$baseMargin;
   width: min-content;
-  max-width: $container-width-s;
+  max-width: variables.$container-width-s;
 }

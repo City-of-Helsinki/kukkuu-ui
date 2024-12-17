@@ -1,8 +1,8 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .formField {
-  padding-bottom: $basePadding;
+  padding-bottom: variables.$basePadding;
 }
 
 .email {
@@ -10,7 +10,7 @@
     font-weight: bold;
   }
   p {
-    margin-top: $baseMargin * 0.25;
+    margin-top: variables.$baseMargin * 0.25;
   }
 }
 
@@ -35,18 +35,18 @@
 
 .buttonsWrapper {
   display: grid;
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     grid-template-columns: 1fr 1fr;
   }
-  grid-gap: $baseMargin;
-  margin: $largeMargin 0;
+  grid-gap: variables.$baseMargin;
+  margin: variables.$largeMargin 0;
   button: {
     width: 100%;
   }
 }
 
 .cancelButton {
-  @include respond-below(m) {
+  @include layout.respond-below(m) {
     grid-row: 2;
   }
 
@@ -54,7 +54,7 @@
 }
 
 .submitButton {
-  @include respond-below(m) {
+  @include layout.respond-below(m) {
     grid-row: 1;
   }
 
@@ -62,16 +62,16 @@
 }
 
 .profileName {
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: $baseMargin;
+    grid-gap: variables.$baseMargin;
   }
 }
 
 .icon {
   display: block;
-  margin: $largeMargin auto;
-  height: $largeMargin;
-  width: $largeMargin;
+  margin: variables.$largeMargin auto;
+  height: variables.$largeMargin;
+  width: variables.$largeMargin;
 }

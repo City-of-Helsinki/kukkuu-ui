@@ -1,35 +1,35 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .homeForm {
-  padding: 2 * $largeMargin 0;
+  padding: 2 * variables.$largeMargin 0;
 
   form {
     display: grid;
-    gap: $baseMargin 0;
+    gap: variables.$baseMargin 0;
   }
 
   .inputWrapper {
     display: grid;
     align-items: baseline;
-    @include respond-above(l) {
+    @include layout.respond-above(l) {
       grid-template-columns: 1fr 1fr;
-      gap: 0 $baseMargin;
+      gap: 0 variables.$baseMargin;
     }
   }
 }
 
 .wrapper {
-  @include formContainer();
+  @include layout.formContainer();
 
-  @include respond-below(l) {
-    padding: 0 $baseMargin;
+  @include layout.respond-below(l) {
+    padding: 0 variables.$baseMargin;
   }
 }
 
 .submitButton {
   width: 80%;
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     width: 60%;
   }
   justify-self: center;
@@ -41,6 +41,6 @@
     margin-top: 0;
   }
   p {
-    margin-bottom: $largeMargin;
+    margin-bottom: variables.$largeMargin;
   }
 }

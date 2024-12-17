@@ -1,21 +1,21 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .wrapper {
   align-self: flex-start;
-  padding: $spacing-layout-s $spacing-layout-xs;
-  margin: $spacing-layout-s auto;
+  padding: variables.$spacing-layout-s variables.$spacing-layout-xs;
+  margin: variables.$spacing-layout-s auto;
   max-width: 44.5rem;
 
-  background-color: $color-white;
+  background-color: variables.$color-white;
 
   h1,
   h2 {
-    margin-bottom: $spacing-l;
+    margin-bottom: variables.$spacing-l;
   }
 
-  @include respond-above(m) {
-    padding: $spacing-layout-m $spacing-layout-l;
+  @include layout.respond-above(m) {
+    padding: variables.$spacing-layout-m variables.$spacing-layout-l;
   }
 
   .acquireButtonRow {
@@ -24,7 +24,7 @@
     flex-direction: column;
 
     &:not(:last-child) {
-      margin-bottom: $spacing-3-xl;
+      margin-bottom: variables.$spacing-3-xl;
     }
 
     & > * {
@@ -32,10 +32,10 @@
     }
 
     & > *:not(:last-child) {
-      margin-bottom: $spacing-s;
+      margin-bottom: variables.$spacing-s;
     }
 
-    @include respond-above(m) {
+    @include layout.respond-above(m) {
       flex-direction: row;
 
       & > * {
@@ -44,30 +44,30 @@
 
       & > *:not(:last-child) {
         margin-bottom: 0;
-        margin-right: $spacing-s;
+        margin-right: variables.$spacing-s;
       }
     }
   }
 
   .passwordWrapper {
     & > * {
-      margin-bottom: $spacing-m;
+      margin-bottom: variables.$spacing-m;
     }
   }
 
   .continueButton {
     width: 100%;
-    margin-top: $spacing-s;
-    margin-bottom: $spacing-l;
+    margin-top: variables.$spacing-s;
+    margin-bottom: variables.$spacing-l;
 
-    @include respond-above(m) {
+    @include layout.respond-above(m) {
       width: initial;
     }
   }
 }
 
 .grey {
-  background-color: $color-black-5;
+  background-color: variables.$color-black-5;
 }
 
 hr {
@@ -75,5 +75,5 @@ hr {
 }
 
 .noFreeTicketSystemPasswordsLeftLabel {
-  color: $color-error;
+  color: variables.$color-error;
 }

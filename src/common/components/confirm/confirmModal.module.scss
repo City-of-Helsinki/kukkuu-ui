@@ -1,24 +1,24 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .modal {
   text-align: center;
 }
 
 .buttonGroup {
-  margin: $largeMargin 0;
+  margin: variables.$largeMargin 0;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     display: grid;
-    grid-gap: $baseMargin;
+    grid-gap: variables.$baseMargin;
     grid-auto-flow: column;
   }
 
-  @include respond-below(m) {
+  @include layout.respond-below(m) {
     display: flex;
     flex-direction: column-reverse;
     .okButton {
-      margin-bottom: $baseMargin;
+      margin-bottom: variables.$baseMargin;
     }
   }
 }

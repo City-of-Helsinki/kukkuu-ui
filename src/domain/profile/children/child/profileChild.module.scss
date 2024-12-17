@@ -1,4 +1,4 @@
-@import '~styles/layout';
+@use '~styles/layout';
 
 .container {
   --container-padding: var(--spacing-s);
@@ -16,7 +16,7 @@
   background: var(--color-white);
   cursor: pointer;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     --container-padding: var(--spacing-s);
     --icon-dimension: 4rem;
 
@@ -39,7 +39,7 @@
   height: var(--icon-dimension);
   width: var(--icon-dimension);
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     position: unset;
     top: unset;
     left: unset;
@@ -57,7 +57,7 @@
     margin: 0;
   }
 
-  @include respond-above(xl-minus) {
+  @include layout.respond-above(xl-minus) {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto;
@@ -84,7 +84,7 @@
   min-height: var(--icon-dimension);
   padding-left: calc(var(--icon-dimension) + var(--spacing-xs));
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     min-height: unset;
     padding-left: unset;
   }
@@ -99,7 +99,7 @@
     margin: 0;
   }
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     order: unset;
   }
 }
@@ -115,7 +115,7 @@
   column-gap: var(--spacing-l);
   row-gap: var(--spacing-xs);
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     flex-direction: row;
     align-items: center;
     flex-shrink: 0;
@@ -136,7 +136,7 @@
   display: flex;
   align-items: center;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     position: unset;
     top: unset;
     left: unset;

@@ -1,7 +1,7 @@
-@import '~styles/mixins';
-@import '~styles/variables';
-@import '~styles/fonts';
-@import '~styles/layout';
+@use '~styles/mixins';
+@use '~styles/variables';
+@use '~styles/fonts';
+@use '~styles/layout';
 
 .footer {
   overflow: hidden;

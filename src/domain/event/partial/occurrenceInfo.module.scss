@@ -1,33 +1,33 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 $labelIconMargin: 0.5rem;
-$labelColumnMargin: $spacing-2-xs;
-$labelRowMargin: $spacing-s;
+$labelColumnMargin: variables.$spacing-2-xs;
+$labelRowMargin: variables.$spacing-s;
 
 .row {
   display: flex;
   flex-direction: column;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
 
   & > div {
-    margin-bottom: $spacing-2-xs;
+    margin-bottom: variables.$spacing-2-xs;
   }
 
   .label {
     text-transform: capitalize;
     font-weight: 500;
-    @include respond-above(m) {
+    @include layout.respond-above(m) {
       > * {
         margin-right: $labelColumnMargin;
       }
     }
-    @include respond-below(m) {
+    @include layout.respond-below(m) {
       & + & {
         margin-top: $labelRowMargin;
       }
@@ -49,7 +49,7 @@ $labelRowMargin: $spacing-s;
   margin: 0;
   white-space: pre-wrap;
 
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     white-space: nowrap;
   }
 }

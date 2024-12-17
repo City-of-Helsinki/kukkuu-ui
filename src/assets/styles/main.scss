@@ -1,16 +1,16 @@
-@import '~styles/fonts';
-@import '~styles/variables';
+@use '~styles/fonts';
+@use '~styles/variables';
 
 // Override globally all text to use Helsinki font.
 
 * {
-  font-family: $font-family-base;
+  font-family: fonts.$font-family-base;
 }
 
 p,
 span,
 li {
-  line-height: $baseLineHeight;
+  line-height: variables.$baseLineHeight;
 }
 
 #cookie-consent-language-selector-button {

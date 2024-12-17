@@ -1,35 +1,35 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .wrapper {
   text-align: center;
-  padding-bottom: 2 * $largeMargin;
+  padding-bottom: 2 * variables.$largeMargin;
 
   display: grid;
-  grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+  grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
 
   .instructions {
     grid-column: 2;
 
     h2 {
       margin: 0;
-      padding: $largeMargin 0;
+      padding: variables.$largeMargin 0;
     }
 
     .icon {
-      height: $xlargeMargin;
-      width: $xlargeMargin;
+      height: variables.$xlargeMargin;
+      width: variables.$xlargeMargin;
       display: block;
       margin: 0 auto;
     }
 
     .iconContainer {
       display: grid;
-      padding: 0 $basePadding;
+      padding: 0 variables.$basePadding;
 
-      @include respond-above(m) {
+      @include layout.respond-above(m) {
         grid-template-columns: 1fr 1fr 1fr;
-        gap: $baseMargin;
+        gap: variables.$baseMargin;
       }
     }
   }

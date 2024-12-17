@@ -1,64 +1,64 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .text {
-  color: $color-black-90;
+  color: variables.$color-black-90;
 }
 .text:last-child {
   margin-bottom: 0;
 }
 
 .h1 {
-  margin: 0 0 $spacing-s 0;
+  margin: 0 0 variables.$spacing-s 0;
 
-  font-size: $fontsize-heading-l;
-  line-height: $lineheight-l;
+  font-size: variables.$fontsize-heading-l;
+  line-height: variables.$lineheight-l;
 
-  @include respond-above(s) {
-    font-size: $fontsize-heading-xl;
+  @include layout.respond-above(s) {
+    font-size: variables.$fontsize-heading-xl;
   }
 }
 
 .h2 {
-  margin: 0 0 $spacing-s 0;
+  margin: 0 0 variables.$spacing-s 0;
 
-  font-size: $fontsize-heading-l;
+  font-size: variables.$fontsize-heading-l;
 }
 
 .h3 {
-  margin: 0 0 $spacing-s 0;
+  margin: 0 0 variables.$spacing-s 0;
 
-  font-size: $fontsize-heading-m;
+  font-size: variables.$fontsize-heading-m;
   font-weight: 600;
 }
 
 .h4 {
-  margin: 0 0 $spacing-s 0;
+  margin: 0 0 variables.$spacing-s 0;
 
-  font-size: $fontsize-heading-s;
+  font-size: variables.$fontsize-heading-s;
 }
 
 .h5 {
-  margin: 0 0 $spacing-s 0;
+  margin: 0 0 variables.$spacing-s 0;
 
-  font-size: $fontsize-heading-xs;
+  font-size: variables.$fontsize-heading-xs;
 }
 
 .body-l {
-  margin: 0 0 $spacing-l 0;
+  margin: 0 0 variables.$spacing-l 0;
 
-  font-size: $fontsize-body-l;
-  line-height: $lineheight-l;
+  font-size: variables.$fontsize-body-l;
+  line-height: variables.$lineheight-l;
   white-space: pre-wrap;
 }
 
 .body {
-  font-size: $fontsize-body-m;
+  font-size: variables.$fontsize-body-m;
   white-space: pre-wrap;
 }
 
 .body-xl {
-  font-size: $fontsize-body-xl;
+  font-size: variables.$fontsize-body-xl;
   font-weight: 400;
   white-space: pre-wrap;
 }

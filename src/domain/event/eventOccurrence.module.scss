@@ -1,5 +1,5 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .linkButton {
   text-decoration: none;
@@ -16,7 +16,7 @@ tr {
   display: none;
 
   & {
-    @include respond-above(l) {
+    @include layout.respond-above(l) {
       display: table-row;
     }
   }
@@ -30,19 +30,19 @@ tr {
       grid-column: 1 / -1;
     }
 
-    @include respond-above(l) {
+    @include layout.respond-above(l) {
       display: none;
     }
   }
 }
 
-@include respond-above(l) {
+@include layout.respond-above(l) {
   table {
     border-collapse: collapse;
   }
   th,
   td {
-    padding: $basePadding 0;
+    padding: variables.$basePadding 0;
     &.occurrenceSubmit {
       // Needs to be wide enough to facilitate the widest possible,
       // button label in each language
@@ -55,7 +55,7 @@ tr {
     }
   }
 }
-@include respond-below(l) {
+@include layout.respond-below(l) {
   tr {
     padding: 1rem 0;
   }

@@ -1,8 +1,8 @@
-@import '~styles/variables';
-@import '~styles/fonts';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/fonts';
+@use '~styles/layout';
 
-$max-text-width: $container-width-s;
+$max-text-width: variables.$container-width-s;
 
 .wrapper {
   background: var(--color-black-5);
@@ -10,13 +10,13 @@ $max-text-width: $container-width-s;
   justify-items: center;
   grid-template-rows: min-content;
 
-  @include respond-above(m) {
-    padding: $largePadding;
+  @include layout.respond-above(m) {
+    padding: variables.$largePadding;
   }
 }
 
 .enrolContainer {
-  max-width: $container-width-m;
+  max-width: variables.$container-width-m;
   padding-bottom: 0;
 
   background: var(--color-white);
@@ -24,7 +24,7 @@ $max-text-width: $container-width-s;
 
 .enrolWrapper {
   background: var(--color-white);
-  padding: $spacing-3-xl $spacing-l;
+  padding: variables.$spacing-3-xl variables.$spacing-l;
   display: grid;
   justify-items: center;
 }
@@ -33,38 +33,38 @@ $max-text-width: $container-width-s;
   margin: 0;
   max-width: $max-text-width;
 
-  font-size: $fontsize-heading-l;
+  font-size: variables.$fontsize-heading-l;
   text-align: center;
 }
 
 .text {
   margin: 2rem 0;
   max-width: $max-text-width;
-  line-height: $lineheight-l;
+  line-height: variables.$lineheight-l;
 
-  font-size: $fontsize-body-l;
+  font-size: variables.$fontsize-body-l;
   text-align: center;
 }
 
 .occurrenceInfo {
   box-sizing: border-box;
-  background: $color-fog-medium-light;
-  padding: $spacing-xs;
+  background: variables.$color-fog-medium-light;
+  padding: variables.$spacing-xs;
   width: 100%;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     width: unset;
   }
 }
 
 .actions {
-  margin-top: $spacing-s;
+  margin-top: variables.$spacing-s;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     max-width: 55%;
   }
   button {
-    margin-top: $baseMargin;
+    margin-top: variables.$baseMargin;
     width: 100%;
   }
 }

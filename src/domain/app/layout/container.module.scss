@@ -1,11 +1,11 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .container {
   display: grid;
 }
 
-@include respond-between(m, xxl) {
+@include layout.respond-between(m, xxl) {
   .container {
     grid-template-columns: 1fr 10fr 1fr;
 
@@ -15,9 +15,9 @@
   }
 }
 
-@include respond-above(xxl) {
+@include layout.respond-above(xxl) {
   .container {
-    grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+    grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
 
     & > * {
       grid-column: 2;
