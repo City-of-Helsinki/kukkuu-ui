@@ -80,18 +80,18 @@
 }
 
 .eventWrapper {
+  display: grid;
   @include layout.respond-above(l) {
     z-index: 1;
   }
-  display: grid;
   .event {
+    background-color: var(--color-white);
     @include layout.respond-above(l) {
       padding: variables.$largePadding;
       h1 {
         margin-top: 0;
       }
     }
-    background-color: var(--color-white);
   }
   @include layout.respond-below(l) {
     padding: 0 variables.$basePadding;
@@ -111,12 +111,13 @@
   background: variables.$color-fog-medium-light;
   box-sizing: border-box;
   padding: variables.$spacing-2-xs;
+  display: block;
 
   width: 100%;
   @include layout.respond-above(l) {
     width: auto;
   }
-  display: block;
+
   .label {
     display: inline-flex;
     width: min-content;

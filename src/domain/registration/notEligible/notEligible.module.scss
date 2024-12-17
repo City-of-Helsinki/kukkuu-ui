@@ -2,15 +2,15 @@
 @use '~styles/variables';
 
 .notEligible {
-  @include layout.respond-below(l) {
-    margin: 0 variables.$baseMargin variables.$largeMargin variables.$baseMargin;
-  }
-
   font-weight: bold;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @include layout.respond-below(l) {
+    margin: 0 variables.$baseMargin variables.$largeMargin variables.$baseMargin;
+  }
 
   .notEligibleFace {
     height: 4rem;

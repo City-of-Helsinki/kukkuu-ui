@@ -2,15 +2,10 @@
 @use '~styles/variables';
 
 .infoPageLayout {
-  @include layout.respond-below(l) {
-    margin: 0 variables.$baseMargin variables.$largeMargin variables.$baseMargin;
-  }
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   color: variables.$color-black-90;
 
   .infoPageLayoutFace {
@@ -30,6 +25,10 @@
 
     font-size: variables.$fontsize-body-l;
     text-align: center;
+  }
+
+  @include layout.respond-below(l) {
+    margin: 0 variables.$baseMargin variables.$largeMargin variables.$baseMargin;
   }
 }
 

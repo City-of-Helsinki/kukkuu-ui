@@ -2,10 +2,6 @@
 @use '~styles/variables';
 
 .simpleFormPageLayout {
-  @include layout.respond-below(l) {
-    margin: 0 variables.$baseMargin variables.$largeMargin variables.$baseMargin;
-  }
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,5 +31,9 @@
     margin: 2 * variables.$baseMargin;
     width: min-content;
     max-width: variables.$container-width-s;
+  }
+
+  @include layout.respond-below(l) {
+    margin: 0 variables.$baseMargin variables.$largeMargin variables.$baseMargin;
   }
 }

@@ -35,30 +35,28 @@
 
 .buttonsWrapper {
   display: grid;
-  @include layout.respond-above(m) {
-    grid-template-columns: 1fr 1fr;
-  }
   grid-gap: variables.$baseMargin;
   margin: variables.$largeMargin 0;
   button: {
     width: 100%;
   }
+  @include layout.respond-above(m) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .cancelButton {
+  width: 100%;
   @include layout.respond-below(m) {
     grid-row: 2;
   }
-
-  width: 100%;
 }
 
 .submitButton {
+  width: 100%;
   @include layout.respond-below(m) {
     grid-row: 1;
   }
-
-  width: 100%;
 }
 
 .profileName {
