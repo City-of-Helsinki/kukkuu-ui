@@ -1,30 +1,29 @@
-@import '~styles/variables';
-@import '~styles/fonts';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .passwordRow {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: $spacing-l;
-  margin-bottom: $spacing-l;
+  margin-top: variables.$spacing-l;
+  margin-bottom: variables.$spacing-l;
 
   & > *:not(:last-child) {
-    margin-bottom: $spacing-s;
+    margin-bottom: variables.$spacing-s;
   }
 
   & > *:last-child {
-    margin-top: $spacing-m;
+    margin-top: variables.$spacing-m;
     width: 100%;
   }
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     flex-direction: row;
     flex-wrap: wrap;
-    row-gap: $spacing-m;
+    row-gap: variables.$spacing-m;
 
     & > *:not(:last-child) {
-      margin-right: $spacing-s;
+      margin-right: variables.$spacing-s;
       margin-bottom: 0;
     }
 

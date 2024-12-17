@@ -1,6 +1,6 @@
-@import '~styles/fonts';
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/fonts';
+@use '~styles/layout';
+@use '~styles/variables';
 
 $modalPadding: 2rem;
 $modalWidthLg: 800px;
@@ -8,7 +8,7 @@ $modalWidthLg: 800px;
 .modal {
   position: relative;
 
-  background-color: var(--color-white);
+  background-color: variables.$color-white;
   margin: auto;
 
   &:focus {
@@ -16,14 +16,14 @@ $modalWidthLg: 800px;
   }
 
   // Make tab-key jump between fields
-  @include respond-below(l) {
+  @include layout.respond-below(l) {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
   }
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     width: $modalWidthLg;
   }
 }
@@ -49,7 +49,7 @@ $modalWidthLg: 800px;
   display: flex;
   justify-content: flex-end;
 
-  @include respond-below(l) {
+  @include layout.respond-below(l) {
     z-index: 1;
     position: relative;
   }
@@ -57,23 +57,23 @@ $modalWidthLg: 800px;
   button {
     padding: 0;
     border: none;
-    height: $largeMargin;
-    width: $largeMargin;
+    height: variables.$largeMargin;
+    width: variables.$largeMargin;
   }
 }
 
 .modalContent {
-  background-color: var(--color-white);
-  padding: $basePadding $largePadding;
+  background-color: variables.$color-white;
+  padding: variables.$basePadding variables.$largePadding;
 
-  @include respond-below(l) {
+  @include layout.respond-below(l) {
     // Ensure that modal is vertically scrollable on mobile
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    padding: $largePadding 0;
+    padding: variables.$largePadding 0;
     overflow: auto;
   }
 }
@@ -81,7 +81,7 @@ $modalWidthLg: 800px;
 .modalChildren {
   padding: 0 $modalPadding;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     padding: 0 $modalPadding;
   }
 }
@@ -90,13 +90,13 @@ $modalWidthLg: 800px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 0 0 $largeMargin 0;
+  margin: 0 0 variables.$largeMargin 0;
   padding: 0 $modalPadding;
 
   .icon {
-    height: $largeMargin;
-    width: $largeMargin;
-    margin-right: $baseMargin;
+    height: variables.$largeMargin;
+    width: variables.$largeMargin;
+    margin-right: variables.$baseMargin;
   }
 
   h1 {

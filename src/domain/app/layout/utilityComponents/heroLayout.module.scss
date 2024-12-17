@@ -1,6 +1,5 @@
-@import '~styles/variables';
-@import '~styles/fonts';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .wrapper {
   width: 100%;
@@ -8,9 +7,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: $spacing-layout-2-xl;
+  padding-bottom: variables.$spacing-layout-2-xl;
 
-  background-color: $color-black-5;
+  background-color: variables.$color-black-5;
 }
 
 .heroBackground {
@@ -21,13 +20,13 @@
   height: 26rem;
   min-height: 20%;
 
-  background-color: $color-summer;
+  background-color: variables.$color-summer;
 }
 
 .backButtonInnerWrapper {
   grid-column: 1;
   padding-top: 2rem;
-  width: $logoWidth;
+  width: variables.$logoWidth;
   display: flex;
   justify-content: center;
 
@@ -46,11 +45,11 @@
 
 .main {
   width: 100%;
-  max-width: $containerMaxWidth;
+  max-width: variables.$containerMaxWidth;
   display: grid;
   position: relative;
 
-  @include respond-above(xl-minus) {
+  @include layout.respond-above(xl-minus) {
     grid-template-columns: 1fr 10fr 1fr;
 
     & > .content {

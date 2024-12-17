@@ -1,15 +1,15 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .link {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   width: 100vw;
-  max-width: $containerMaxWidth;
+  max-width: variables.$containerMaxWidth;
   a {
     color: var(--color-black-90);
-    margin: $baseMargin;
+    margin: variables.$baseMargin;
     text-decoration: none;
     font-weight: 500;
     &:hover {

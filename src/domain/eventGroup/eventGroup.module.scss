@@ -1,5 +1,5 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .container {
   display: flex;
@@ -8,50 +8,50 @@
 
 .eventGroupDecoration {
   max-width: 100%;
-  margin-top: $spacing-xs;
+  margin-top: variables.$spacing-xs;
   z-index: 10;
   align-self: center;
   margin-bottom: -8%;
 
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     max-height: 18rem;
     margin-bottom: -67px;
   }
 }
 
 .eventGroupDetails {
-  padding: $spacing-layout-s $spacing-layout-xs;
-  margin-bottom: $spacing-layout-s;
+  padding: variables.$spacing-layout-s variables.$spacing-layout-xs;
+  margin-bottom: variables.$spacing-layout-s;
 
-  background: $color-white;
+  background: variables.$color-white;
 
-  @include respond-above(l) {
-    padding: $spacing-layout-m $spacing-layout-xl;
+  @include layout.respond-above(l) {
+    padding: variables.$spacing-layout-m variables.$spacing-layout-xl;
   }
 
   .title {
     margin-top: 0;
 
-    font-size: $fontsize-heading-l;
+    font-size: variables.$fontsize-heading-l;
 
-    @include respond-above(l) {
-      font-size: $fontsize-heading-xl;
+    @include layout.respond-above(l) {
+      font-size: variables.$fontsize-heading-xl;
     }
   }
 
   & > p {
     margin-bottom: 0;
 
-    font-size: $fontsize-body-l;
+    font-size: variables.$fontsize-body-l;
     font-weight: 300;
-    line-height: $lineheight-l;
+    line-height: variables.$lineheight-l;
   }
 }
 
 .eventList {
-  margin: 0 $spacing-xs;
+  margin: 0 variables.$spacing-xs;
 
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     margin: 0;
   }
 }

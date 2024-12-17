@@ -1,8 +1,8 @@
-@import '~styles/variables';
+@use '~styles/variables';
 
 .icon {
   display: block;
-  margin: $largeMargin auto;
-  height: $largeMargin;
-  width: $largeMargin;
+  margin: variables.$largeMargin auto;
+  height: variables.$largeMargin;
+  width: variables.$largeMargin;
 }

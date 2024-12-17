@@ -1,16 +1,16 @@
-@import '~styles/variables';
-@import '~styles/fonts';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/fonts';
+@use '~styles/layout';
 
-@include respond-between(l, xxl) {
+@include layout.respond-between(l, xxl) {
   .heroWrapper {
     grid-template-columns: 1fr 10fr 1fr;
   }
 }
 
-@include respond-above(xxl) {
+@include layout.respond-above(xxl) {
   .heroWrapper {
-    grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+    grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
   }
 }
 
@@ -23,7 +23,7 @@
 .backButtonInnerWrapper {
   grid-column: 1;
   padding-top: 2rem;
-  width: $logoWidth;
+  width: variables.$logoWidth;
   display: flex;
   justify-content: center;
 
@@ -44,7 +44,7 @@
   background: var(--color-black-5);
 
   margin-top: 20rem;
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     margin-top: 12rem;
   }
 }
@@ -59,46 +59,46 @@
 }
 
 .signup {
-  margin: $baseMargin 0;
+  margin: variables.$baseMargin 0;
   form {
     display: grid;
-    grid-gap: $baseMargin;
+    grid-gap: variables.$baseMargin;
     grid-template-columns: auto;
-    @include respond-above(s) {
+    @include layout.respond-above(s) {
       grid-template-columns: auto auto;
     }
-    @include respond-above(l) {
+    @include layout.respond-above(l) {
       grid-template-columns: 3fr minmax(170px, 2fr) 40%;
     }
   }
 }
 
 .dateField {
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     min-width: 15rem;
   }
 }
 
 .eventWrapper {
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     z-index: 1;
   }
   display: grid;
   .event {
-    @include respond-above(l) {
-      padding: $largePadding;
+    @include layout.respond-above(l) {
+      padding: variables.$largePadding;
       h1 {
         margin-top: 0;
       }
     }
     background-color: var(--color-white);
   }
-  @include respond-below(l) {
-    padding: 0 $basePadding;
+  @include layout.respond-below(l) {
+    padding: 0 variables.$basePadding;
     background: var(--color-white);
     padding-bottom: 5rem;
   }
-  @include respond-above(xl-minus) {
+  @include layout.respond-above(xl-minus) {
     grid-template-columns: 1fr 10fr 1fr;
 
     .event {
@@ -108,19 +108,19 @@
 }
 
 .occurrenceInfo {
-  background: $color-fog-medium-light;
+  background: variables.$color-fog-medium-light;
   box-sizing: border-box;
-  padding: $spacing-2-xs;
+  padding: variables.$spacing-2-xs;
 
   width: 100%;
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     width: auto;
   }
   display: block;
   .label {
     display: inline-flex;
     width: min-content;
-    @include respond-above(m) {
+    @include layout.respond-above(m) {
       > * {
         margin-left: 0;
       }
@@ -128,13 +128,13 @@
   }
   & > * {
     margin-left: 0;
-    margin-right: $baseMargin;
+    margin-right: variables.$baseMargin;
   }
 }
 
 .participantsPerInvite {
-  font-weight: $font-weight-bold;
-  margin: $baseMargin 0;
+  font-weight: fonts.$font-weight-bold;
+  margin: variables.$baseMargin 0;
 }
 
 .cancelButtonWrapper {
@@ -146,14 +146,14 @@
     width: 100%;
   }
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     justify-content: normal;
   }
 }
 
 .divider {
-  margin-top: $spacing-m;
-  margin-bottom: $spacing-l;
+  margin-top: variables.$spacing-m;
+  margin-bottom: variables.$spacing-l;
 }
 
 .externalTicketSystemButtons {
@@ -166,10 +166,10 @@
   }
 
   & > *:not(:last-child) {
-    margin-bottom: $spacing-s;
+    margin-bottom: variables.$spacing-s;
   }
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     flex-direction: row;
 
     & > * {
@@ -178,7 +178,7 @@
 
     & > *:not(:last-child) {
       margin-bottom: 0;
-      margin-right: $spacing-s;
+      margin-right: variables.$spacing-s;
     }
   }
 }

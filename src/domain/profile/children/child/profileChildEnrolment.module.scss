@@ -1,4 +1,4 @@
-@import '~styles/layout';
+@use '~styles/layout';
 
 .container {
   display: flex;
@@ -24,7 +24,7 @@
 
   list-style-type: none;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     flex-direction: row;
   }
 }

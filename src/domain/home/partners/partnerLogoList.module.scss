@@ -1,20 +1,20 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .big {
   display: grid;
-  @include respond-below(l) {
+  @include layout.respond-below(l) {
     justify-content: center;
     gap: 2em;
   }
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     grid-template-columns: repeat(2, 1fr);
-    gap: $xlargeMargin;
+    gap: variables.$xlargeMargin;
   }
-  margin-bottom: $largeMargin;
+  margin-bottom: variables.$largeMargin;
 
   .container {
-    @include respond-above(m) {
+    @include layout.respond-above(m) {
       &:first-child {
         justify-self: end;
       }
@@ -26,8 +26,8 @@
   }
 
   .icon {
-    width: 2 * $xlargeMargin;
-    height: $xlargeMargin;
+    width: 2 * variables.$xlargeMargin;
+    height: variables.$xlargeMargin;
 
     img {
       width: 100%;
@@ -39,7 +39,7 @@
     // Enlarge JAES logo to give it prominence as one of the main partners
     img {
       width: 180%;
-      @include respond-below(m) {
+      @include layout.respond-below(m) {
         margin-left: -40%;  // To center the icon horizontally in width 180%
       }
     }
@@ -50,10 +50,10 @@
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(2, 1fr);
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     grid-template-columns: repeat(4, 1fr);
   }
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     grid-template-columns: repeat(5, 1fr);
   }
   .icon {
@@ -65,13 +65,13 @@
       width: 100%;
       height: auto;
     }
-    @include respond-above(m) {
-      width: $xlargeMargin;
-      height: 0.67 * $xlargeMargin;
+    @include layout.respond-above(m) {
+      width: variables.$xlargeMargin;
+      height: 0.67 * variables.$xlargeMargin;
     }
-    @include respond-above(l) {
-      width: 1.5 * $xlargeMargin;
-      height: $xlargeMargin;
+    @include layout.respond-above(l) {
+      width: 1.5 * variables.$xlargeMargin;
+      height: variables.$xlargeMargin;
     }
   }
 }

@@ -1,5 +1,6 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use "sass:map";
+@use '~styles/layout';
+@use '~styles/variables';
 
 .heroWrapper {
   background-color: var(--color-summer);
@@ -9,9 +10,9 @@
 }
 
 .kidsImageContainer {
-  grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+  grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
   display: grid;
-  @include respond-above(xl-minus) {
+  @include layout.respond-above(xl-minus) {
     background-image:
       linear-gradient(to bottom, var(--color-summer) 276px, var(--color-black-5) 0),
       url('/images/Culture_kids_background@2x.png');
@@ -24,8 +25,8 @@
 .kidsImage {
   grid-column: 2;
   min-height: calc(0.265 * 100vw);
-  @media (min-width: map-get($breakpoints, xl-minus)) {
-    min-height: calc(0.265 * #{$containerMaxWidth});
+  @media (min-width: map.get(layout.$breakpoints, xl-minus)) {
+    min-height: 0.265 * variables.$containerMaxWidth;
   }
   background-image: url('/images/Culture_kids@2x.jpg');
   background-repeat: no-repeat;
@@ -37,33 +38,33 @@
   display: grid;
   text-align: center;
 
-  @include heroContainer();
+  @include layout.heroContainer();
 }
 
 .hero {
   h1 {
-    margin: $spacing-layout-l 0 $spacing-l;
+    margin: variables.$spacing-layout-l 0 variables.$spacing-l;
 
-    font-size: $fontsize-heading-l;
+    font-size: variables.$fontsize-heading-l;
 
-    @include respond-above(m) {
-      font-size: $fontsize-heading-xl;
+    @include layout.respond-above(m) {
+      font-size: variables.$fontsize-heading-xl;
     }
   }
   p {
-    margin: 0 0 $spacing-s;
+    margin: 0 0 variables.$spacing-s;
   }
 
   .bodyXl {
-    font-size: $fontsize-body-xl;
-    line-height: $lineheight-l;
+    font-size: variables.$fontsize-body-xl;
+    line-height: variables.$lineheight-l;
   }
 
   .buttonGroup {
-    margin: $spacing-2-xl auto 0;
+    margin: variables.$spacing-2-xl auto 0;
     button {
       width: 80%;
-      @include respond-above(m) {
+      @include layout.respond-above(m) {
         width: 60%;
       }
     }
@@ -86,7 +87,7 @@
       }
 
       background-color: var(--color-white);
-      margin-bottom: $baseMargin;
+      margin-bottom: variables.$baseMargin;
     }
   }
 

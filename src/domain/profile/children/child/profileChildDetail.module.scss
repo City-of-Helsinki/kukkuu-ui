@@ -1,46 +1,46 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 $childHeadingMargin: 0.65rem;
 
 .childDetailWrapper {
   display: grid;
-  padding: 0 $basePadding;
-  @include respond-above(m) {
+  padding: 0 variables.$basePadding;
+  @include layout.respond-above(m) {
     padding: 0;
     grid-template-columns: 1fr 10fr 1fr;
   }
-  @include respond-below(m) {
+  @include layout.respond-below(m) {
     grid-auto-rows: min-content;
   }
 }
 
 .childIcon {
-  height: $largeMargin;
-  width: $largeMargin;
+  height: variables.$largeMargin;
+  width: variables.$largeMargin;
 }
 
 .childInfo {
   display: grid;
   grid-auto-flow: row;
-  margin-bottom: $baseMargin;
+  margin-bottom: variables.$baseMargin;
   .childInfoHeadingRow {
     display: inline-flex;
     justify-content: space-between;
-    margin: $baseMargin 0;
+    margin: variables.$baseMargin 0;
 
     .childName {
       display: grid;
 
-      @include respond-below(m) {
+      @include layout.respond-below(m) {
         > div {
           display: none;
         }
         flex-grow: 1;
       }
-      @include respond-above(m) {
-        grid-template-columns: $largeMargin 1fr;
-        gap: $baseMargin;
+      @include layout.respond-above(m) {
+        grid-template-columns: variables.$largeMargin 1fr;
+        gap: variables.$baseMargin;
         > div {
           align-self: baseline;
           margin-top: $childHeadingMargin;
@@ -56,14 +56,14 @@ $childHeadingMargin: 0.65rem;
       border: none;
       padding: 0;
       background: transparent;
-      height: $buttonHeight;
+      height: variables.$buttonHeight;
       // HDS adds unwanted margin to icon
       div {
         margin-right: 0;
       }
       span {
         display: none;
-        @include respond-above(l) {
+        @include layout.respond-above(l) {
           display: inline;
           white-space: nowrap;
         }
@@ -72,17 +72,17 @@ $childHeadingMargin: 0.65rem;
   }
 
   .childInfoRow {
-    padding-bottom: $baseMargin;
+    padding-bottom: variables.$baseMargin;
     display: grid;
-    grid-template-columns: $largeMargin 1fr;
-    gap: $baseMargin;
-    @include respond-above(m) {
+    grid-template-columns: variables.$largeMargin 1fr;
+    gap: variables.$baseMargin;
+    @include layout.respond-above(m) {
       > span {
         align-self: center;
       }
     }
 
-    @include respond-below(m) {
+    @include layout.respond-below(m) {
       > span {
         align-self: start;
       }

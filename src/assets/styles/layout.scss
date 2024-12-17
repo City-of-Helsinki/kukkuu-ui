@@ -1,20 +1,22 @@
-@import '~hds-design-tokens/lib/breakpoint/all.scss';
+@use "sass:map";
+@use '~hds-design-tokens/lib/breakpoint/all.scss' as hds;
+@use '~styles/variables';
 
 $breakpoints: (
-  xs: $breakpoint-xs,
-  s: $breakpoint-s,
-  m: $breakpoint-m,
-  l: $breakpoint-l,
-  xl-minus: $container-width-xl,
-  xl: $breakpoint-xl,
-  xxl: 1600px, // $container-width-xl * 4 / 3
+  xs: hds.$breakpoint-xs,
+  s: hds.$breakpoint-s,
+  m: hds.$breakpoint-m,
+  l: hds.$breakpoint-l,
+  xl-minus: hds.$container-width-xl,
+  xl: hds.$breakpoint-xl,
+  xxl: 1600px, // hds.$container-width-xl * 4 / 3
 );
 
 @mixin respond-above($breakpoint) {
   // If the breakpoint exists in the map.
-  @if map-has-key($breakpoints, $breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
     // Get the breakpoint value.
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
 
     // Write the media query.
     @media (min-width: $breakpoint-value) {
@@ -30,9 +32,9 @@ $breakpoints: (
 
 @mixin respond-below($breakpoint) {
   // If the breakpoint exists in the map.
-  @if map-has-key($breakpoints, $breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
     // Get the breakpoint value.
-    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    $breakpoint-value: map.get($breakpoints, $breakpoint);
 
     // Write the media query.
     @media (max-width: ($breakpoint-value - 1)) {
@@ -53,10 +55,10 @@ $breakpoints: (
 // @include respond-between(s, m) {}
 @mixin respond-between($lower, $upper) {
   // If both the lower and upper breakpoints exist in the map.
-  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+  @if map.has-key($breakpoints, $lower) and map.has-key($breakpoints, $upper) {
     // Get the lower and upper breakpoints.
-    $lower-breakpoint: map-get($breakpoints, $lower);
-    $upper-breakpoint: map-get($breakpoints, $upper);
+    $lower-breakpoint: map.get($breakpoints, $lower);
+    $upper-breakpoint: map.get($breakpoints, $upper);
 
     // Write the media query.
     @media (min-width: $lower-breakpoint) and (max-width: ($upper-breakpoint - 1)) {
@@ -66,13 +68,13 @@ $breakpoints: (
     // If one or both of the breakpoints don't exist.
   } @else {
     // If lower breakpoint is invalid.
-    @if (map-has-key($breakpoints, $lower) == false) {
+    @if (map.has-key($breakpoints, $lower) == false) {
       // Log a warning.
       @warn 'Your lower breakpoint was invalid: #{$lower}.';
     }
 
     // If upper breakpoint is invalid.
-    @if (map-has-key($breakpoints, $upper) == false) {
+    @if (map.has-key($breakpoints, $upper) == false) {
       // Log a warning.
       @warn 'Your upper breakpoint was invalid: #{$upper}.';
     }
@@ -82,7 +84,7 @@ $breakpoints: (
 @mixin formContainer() {
   @include respond-above(m) {
     display: grid;
-    grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
+    grid-template-columns: 1fr minmax(auto, variables.$containerFormMaxWidth) 1fr;
 
     > * {
       grid-column: 2;
@@ -97,6 +99,6 @@ $breakpoints: (
     grid-column: 2;
   }
   @include respond-above(l) {
-    grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
+    grid-template-columns: 1fr minmax(auto, variables.$containerFormMaxWidth) 1fr;
   }
 }

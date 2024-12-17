@@ -1,5 +1,5 @@
-@import '~styles/layout';
-@import '~hds-design-tokens/lib/all.scss';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .wrapper {
   display: flex;
@@ -13,25 +13,23 @@
 .container {
   display: flex;
   flex-direction: column;
-  row-gap: var(--spacing-layout-s);
+  row-gap: variables.$spacing-layout-s;
 
-  padding: 0 var(--spacing-2-xs) 0 var(--spacing-s);
+  padding: 0 variables.$spacing-2-xs 0 variables.$spacing-s;
   margin: 0 auto;
-  max-width: var(--breakpoint-xl);
+  max-width: variables.$breakpoint-xl;
 
-  @include respond-above(m) {
-    row-gap: var(--spacing-layout-m);
+  @include layout.respond-above(m) {
+    row-gap: variables.$spacing-layout-m;
 
-    padding: 0 var(--spacing-m);
+    padding: 0 variables.$spacing-m;
   }
 }
 
 $backButtonWidth: 5 * 16px;
-$backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
+$backButtonAsideBreakpoint: $backButtonWidth + variables.$breakpoint-xl;
 
 .header {
-  --back-button-width: #{$backButtonWidth};
-
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto auto auto;
@@ -40,10 +38,10 @@ $backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
     'title title'
     'content content'
     'actions actions';
-  row-gap: var(--spacing-layout-xs);
+  row-gap: variables.$spacing-layout-xs;
   align-items: center;
 
-  @include respond-above(m) {
+  @include layout.respond-above(m) {
     grid-template-rows: auto auto;
     grid-template-areas:
       'backButton backButton'
@@ -52,12 +50,12 @@ $backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
   }
 
   @media screen and (min-width: $backButtonAsideBreakpoint) {
-    grid-template-columns: var(--back-button-width) 1fr auto;
+    grid-template-columns: $backButtonWidth 1fr auto;
     grid-template-areas:
       'backButton title actions'
       'empty content content';
 
-    margin-left: calc(#{var(--back-button-width)} * -1);
+    margin-left: $backButtonWidth * -1;
   }
 
   & .headerBackButtonContainer {
@@ -73,7 +71,7 @@ $backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
     grid-area: actions;
   }
 
-  margin-top: var(--spacing-layout-s);
+  margin-top: variables.$spacing-layout-s;
 
   // Remove margin from text elements so that we can control them with
   // gaps.
@@ -85,7 +83,7 @@ $backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
 .headerActions {
   display: flex;
   align-items: center;
-  column-gap: var(--spacing-l);
+  column-gap: variables.$spacing-l;
 }
 
 .headerBackButton {
@@ -93,10 +91,10 @@ $backButtonAsideBreakpoint: calc($backButtonWidth + $breakpoint-xl);
   align-items: center;
   justify-content: center;
 
-  padding: var(--spacing-s);
+  padding: variables.$spacing-s;
 
-  color: var(--color-text);
+  color: variables.$color-black-90;
 
-  background: var(--color-white);
+  background: variables.$color-white;
   border-radius: 100%;
 }

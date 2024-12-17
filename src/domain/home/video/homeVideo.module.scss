@@ -1,18 +1,18 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr minmax(auto, $containerFormMaxWidth) 1fr;
+  grid-template-columns: 1fr minmax(auto, variables.$containerFormMaxWidth) 1fr;
 
-  @include respond-below(l) {
-    padding: 0 $baseMargin;
+  @include layout.respond-below(l) {
+    padding: 0 variables.$baseMargin;
   }
 }
 
 .innerwrapper {
   grid-column: 2;
-  padding: 2 * $largeMargin 0;
+  padding: 2 * variables.$largeMargin 0;
 }
 
 .embedContainer {

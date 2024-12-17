@@ -1,12 +1,11 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/variables';
 
 .wrapper {
-  background: var(--color-black-5);
-  padding: 2rem 0 2 * $largeMargin 0;
+  background: variables.$color-black-5;
+  padding: 2rem 0 2 * variables.$largeMargin 0;
 
   display: grid;
-  grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+  grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
 }
 
 .innerwrapper {
@@ -14,7 +13,7 @@
     margin-top: 0;
   }
   p {
-    margin-bottom: $largeMargin;
+    margin-bottom: variables.$largeMargin;
   }
 
   text-align: center;

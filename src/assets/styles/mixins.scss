@@ -1,5 +1,5 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 /*
  * Pure CSS spinner, taken from:
@@ -17,7 +17,7 @@
 * You should use it in pseudo element, see sample below
 */
 @mixin add_spinner(
-  $size: $spinnerHeight,
+  $size: variables.$spinnerHeight,
   $main-color: var(--color-black-30),
   $alt-color: var(--color-black-90),
   $thickness: 2px

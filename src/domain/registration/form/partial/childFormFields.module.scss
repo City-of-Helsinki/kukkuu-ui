@@ -1,28 +1,28 @@
-@import '~styles/variables';
-@import '~styles/layout';
-@import '~styles/fonts';
+@use '~styles/variables';
+@use '~styles/layout';
+@use '~styles/fonts';
 
 $childIconHeight: 4rem;
 
 .childImage {
   height: $childIconHeight;
   width: $childIconHeight;
-  margin-right: $baseMargin;
+  margin-right: variables.$baseMargin;
 }
 
 .childFields {
-  margin-top: $baseMargin;
-  margin-bottom: $largeMargin;
+  margin-top: variables.$baseMargin;
+  margin-bottom: variables.$largeMargin;
 }
 
 .childName,
 .childFixedInfo {
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: $baseMargin;
+    grid-gap: variables.$baseMargin;
   }
-  padding: $baseMargin 0;
+  padding: variables.$baseMargin 0;
 }
 
 .childBirthyear,
@@ -31,9 +31,9 @@ $childIconHeight: 4rem;
   flex-direction: column;
 
   label {
-    font-size: $font-size-sm;
-    margin-bottom: $baseMargin * 0.25;
-    font-weight: $font-weight-bold;
+    font-size: fonts.$font-size-sm;
+    margin-bottom: variables.$baseMargin * 0.25;
+    font-weight: fonts.$font-weight-bold;
   }
 
   p {
@@ -46,7 +46,7 @@ $childIconHeight: 4rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: $baseMargin 0;
+  padding: variables.$baseMargin 0;
 
   h2 {
     flex-grow: 1;
@@ -59,7 +59,7 @@ $childIconHeight: 4rem;
 
     transform: translateX(calc(var(--spacing-m) * 0.5));
     span {
-      font-weight: $font-weight-bold;
+      font-weight: fonts.$font-weight-bold;
       padding: 0;
     }
     > div {

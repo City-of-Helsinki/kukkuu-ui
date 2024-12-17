@@ -1,8 +1,8 @@
-@import '~styles/variables';
+@use '~styles/variables';
 
 .imgWrapper {
-  height: $imgHeight;
-  width: $imgHeight;
+  height: variables.$imgHeight;
+  width: variables.$imgHeight;
   display: flex;
   justify-items: center;
   align-items: center;

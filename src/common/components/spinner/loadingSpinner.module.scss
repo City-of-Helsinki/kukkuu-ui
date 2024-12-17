@@ -1,4 +1,5 @@
-@import '~styles/mixins';
+@use '~styles/variables';
+@use '~styles/mixins';
 
 .spinnerWrapper {
   display: flex;
@@ -11,10 +12,10 @@
 
 .spinner {
   position: relative;
-  height: $spinnerHeight;
-  width: $spinnerHeight;
+  height: variables.$spinnerHeight;
+  width: variables.$spinnerHeight;
 
   &::before {
-    @include add_spinner();
+    @include mixins.add_spinner();
   }
 }

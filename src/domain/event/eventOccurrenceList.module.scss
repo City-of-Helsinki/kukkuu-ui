@@ -1,5 +1,5 @@
-@import '~styles/layout';
-@import '~styles/variables';
+@use '~styles/layout';
+@use '~styles/variables';
 
 .eventOccurrenceList {
   width: 100%;
@@ -10,10 +10,10 @@
 
   tr.mobileHeader,
   tr.desktopHeader {
-    border-bottom: 4px solid $color-summer;
+    border-bottom: 4px solid variables.$color-summer;
   }
 
-  @include respond-above(l) {
+  @include layout.respond-above(l) {
     tr.mobileHeader {
       display: none;
     }
@@ -21,7 +21,7 @@
       text-align: center;
     }
   }
-  @include respond-below(l) {
+  @include layout.respond-below(l) {
     padding: 0 0.2rem;
     table,
     thead,

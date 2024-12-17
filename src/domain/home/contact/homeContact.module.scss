@@ -1,14 +1,14 @@
-@import '~styles/variables';
-@import '~styles/layout';
-@import '~styles/fonts';
+@use '~styles/variables';
+@use '~styles/layout';
+@use '~styles/fonts';
 
 $korosIncludedPadding: 7rem;
 
 .wrapper {
-  padding: 2 * $largeMargin 0;
+  padding: 2 * variables.$largeMargin 0;
   //
   display: grid;
-  grid-template-columns: 1fr minmax(auto, $containerMaxWidth) 1fr;
+  grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
 }
 
 .contact {
@@ -25,7 +25,7 @@ $korosIncludedPadding: 7rem;
 
     p {
       &:first-child {
-        font-size: $font-size-lg;
+        font-size: fonts.$font-size-lg;
       }
     }
   }

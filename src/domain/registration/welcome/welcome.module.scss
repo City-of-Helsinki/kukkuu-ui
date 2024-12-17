@@ -1,5 +1,5 @@
-@import '~styles/variables';
-@import '~styles/layout';
+@use '~styles/variables';
+@use '~styles/layout';
 
 .welcome {
   display: flex;
@@ -7,21 +7,21 @@
   align-items: center;
   align-self: center;
   text-align: center;
-  @include respond-below(l) {
-    padding: 0 $basePadding;
+  @include layout.respond-below(l) {
+    padding: 0 variables.$basePadding;
   }
 }
 
 .tada {
   display: block;
-  height: 4 * $imgHeight;
-  width: 4 * $imgHeight;
-  margin: $baseMargin auto;
+  height: 4 * variables.$imgHeight;
+  width: 4 * variables.$imgHeight;
+  margin: variables.$baseMargin auto;
 }
 
 .submitButton {
-  margin-top: $largeMargin;
-  @include respond-above(l) {
+  margin-top: variables.$largeMargin;
+  @include layout.respond-above(l) {
     width: 50%;
   }
 }
