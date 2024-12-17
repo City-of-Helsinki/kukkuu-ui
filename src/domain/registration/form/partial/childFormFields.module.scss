@@ -17,12 +17,12 @@ $childIconHeight: 4rem;
 
 .childName,
 .childFixedInfo {
+  padding: variables.$baseMargin 0;
   @include layout.respond-above(l) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: variables.$baseMargin;
   }
-  padding: variables.$baseMargin 0;
 }
 
 .childBirthyear,

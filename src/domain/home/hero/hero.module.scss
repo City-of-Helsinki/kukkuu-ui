@@ -24,14 +24,14 @@
 
 .kidsImage {
   grid-column: 2;
-  min-height: calc(0.265 * 100vw);
-  @media (min-width: map.get(layout.$breakpoints, xl-minus)) {
-    min-height: 0.265 * variables.$containerMaxWidth;
-  }
   background-image: url('/images/Culture_kids@2x.jpg');
   background-repeat: no-repeat;
   background-position: center bottom -2px;
   background-size: 100% auto;
+  min-height: calc(0.265 * 100vw);
+  @media (min-width: map.get(layout.$breakpoints, xl-minus)) {
+    min-height: 0.265 * variables.$containerMaxWidth;
+  }
 }
 
 .heroContainer {

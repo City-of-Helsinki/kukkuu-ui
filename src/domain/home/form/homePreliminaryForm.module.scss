@@ -28,11 +28,11 @@
 }
 
 .submitButton {
+  justify-self: center;
   width: 80%;
   @include layout.respond-above(m) {
     width: 60%;
   }
-  justify-self: center;
 }
 
 .heading {

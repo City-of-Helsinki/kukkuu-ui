@@ -59,10 +59,10 @@ $plusIconHeight: 2rem;
 }
 
 .registrationGrayContainer {
+  margin: variables.$baseMargin;
   > * {
     grid-column: 2;
   }
-  margin: variables.$baseMargin;
 }
 
 .guardianInfo {

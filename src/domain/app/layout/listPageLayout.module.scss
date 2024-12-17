@@ -39,6 +39,7 @@ $backButtonAsideBreakpoint: $backButtonWidth + variables.$breakpoint-xl;
     'content content'
     'actions actions';
   row-gap: variables.$spacing-layout-xs;
+  margin-top: variables.$spacing-layout-s;
   align-items: center;
 
   @include layout.respond-above(m) {
@@ -70,8 +71,6 @@ $backButtonAsideBreakpoint: $backButtonWidth + variables.$breakpoint-xl;
   & .headerActions {
     grid-area: actions;
   }
-
-  margin-top: variables.$spacing-layout-s;
 
   // Remove margin from text elements so that we can control them with
   // gaps.

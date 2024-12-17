@@ -3,6 +3,7 @@
 
 .big {
   display: grid;
+  margin-bottom: variables.$largeMargin;
   @include layout.respond-below(l) {
     justify-content: center;
     gap: 2em;
@@ -11,7 +12,6 @@
     grid-template-columns: repeat(2, 1fr);
     gap: variables.$xlargeMargin;
   }
-  margin-bottom: variables.$largeMargin;
 
   .container {
     @include layout.respond-above(m) {
