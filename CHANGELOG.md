@@ -399,6 +399,31 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.10.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.9.0...kukkuu-ui-v3.10.0) (2024-12-18)
+
+
+### Features
+
+* Upgrade to Vite 6 & typescript 5.7, move icons & images to /public ([5ce9bec](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5ce9bec62b793b49fa8d2383e510225f4d5537dd))
+
+
+### Bug Fixes
+
+* Browser tests, use existing project year 2020 as child's birthyear ([f7b6778](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f7b6778b66e479f17666b5ecdaff83dd16c32309))
+* Dart Sass @import/global built-in function deprecation warnings ([bef6e02](https://github.com/City-of-Helsinki/kukkuu-ui/commit/bef6e02520237982c534bbe4663f756c39f6d2a3))
+* Mobile navigation ([74c6a9c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/74c6a9c0efa0e3bf667628fc0a4e6de92d95b8d7))
+* Mock warning in EditProfileModal.test.tsx by adding mock ([9d3d168](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9d3d168768e413db4ecb37887ee565e532a56682))
+* Most warnings in Layout.test.tsx by matching apollo & MSW mocks ([c35da36](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c35da3636969346491c4536855a4af32ff80394d))
+* Sass nested rule deprecation warnings by moving CSS parts ([ac2529e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ac2529e50de1438184c94285aac7b589e5cf63e8))
+* Some warnings in RegistrationForm.test.tsx ([e04fb68](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e04fb6845c012a3fa8fc0b33cb2cfd521f40348b))
+* Warning in AddNewChildFormModal.test.tsx by using Modal appElement ([f3b0df6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f3b0df6c6fa38058150526af306b67498d753cbf))
+* Warning in EventOccurrence.test.tsx by not spreading `key` property ([47748b9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/47748b9ba6ac33d3d70794b72d6a95efabcd13f6))
+* Warnings in Enrol.test.tsx by fixing mocks ([a492e1f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a492e1fb1dd6b7247664bf88b085439a673b5a4b))
+* Warnings in EventIsEnrolled.test.tsx by matching mocks ([e50a856](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e50a85692f7e41d038769c90bfa9104f88f5f2a7))
+* Warnings in EventOccurrenceList.test.tsx by using unique IDs ([53757c2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/53757c28a0bb4b6594f2fce05cad4d4e1a7336d2))
+* Warnings in ProfileEvents.test.tsx by fixing mocks ([adc875a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/adc875a77af6c36bf5309f94a1fcea927896e0c9))
+* Warnings in ProfileEventsList.test.tsx by fixing mocks ([1c608bc](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1c608bcd54e2be314902f508709917912a24005d))
+
 ## [3.9.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.8.1...kukkuu-ui-v3.9.0) (2024-11-26)
 
 
