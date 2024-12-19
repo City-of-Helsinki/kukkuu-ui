@@ -69,7 +69,7 @@ const BrowserApp: React.FunctionComponent<BrowserAppProps> = ({
               </KukkuuHDSLoginProvider>
             </ApolloProvider>
           </PersistGate>
-          <ToastContainer />
+          <ToastContainer autoClose={false} />
         </Provider>
       </AriaLiveProvider>
     </CookieConfigProvider>
