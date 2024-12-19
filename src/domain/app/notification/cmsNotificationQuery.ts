@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const notificationQuery = gql`
+export const cmsNotificationQuery = gql`
   query notification($language: String! = "fi") {
     notification(language: $language) {
       content
@@ -14,4 +14,4 @@ export const notificationQuery = gql`
   }
 `;
 
-export default notificationQuery;
+export default cmsNotificationQuery;
