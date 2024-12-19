@@ -180,9 +180,9 @@ export type ChildNode = Node & {
   __typename?: 'ChildNode';
   /** All upcoming and ongoing (with leeway) internal and ticket system enrolments sorted by time. */
   activeInternalAndTicketSystemEnrolments: Maybe<InternalOrTicketSystemEnrolmentConnection>;
-  /** @deprecated Doesn't exclude events when yearly limit of enrolments have been exceeded. */
+  /** All available events for the child. NOTE: Does NOT take yearly enrolment limits into account. */
   availableEvents: Maybe<EventConnection>;
-  /** @deprecated Doesn't exclude events when yearly limit of enrolments have been exceeded. */
+  /** All available events and event groups for the child. NOTE: Does NOT take yearly enrolment limits into account. */
   availableEventsAndEventGroups: Maybe<EventOrEventGroupConnection>;
   birthyear: Scalars['Int']['output'];
   createdAt: Scalars['DateTime']['output'];
@@ -202,7 +202,7 @@ export type ChildNode = Node & {
   postalCode: Scalars['String']['output'];
   project: ProjectNode;
   relationships: RelationshipNodeConnection;
-  /** All upcoming events and event groups for the child's project. */
+  /** All upcoming events and event groups for the child's project. NOTE: Does NOT take yearly enrolment limits into account. */
   upcomingEventsAndEventGroups: Maybe<EventOrEventGroupConnection>;
   updatedAt: Scalars['DateTime']['output'];
 };
