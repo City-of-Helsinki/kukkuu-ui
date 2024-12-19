@@ -17,12 +17,14 @@ import {
 } from '../../api/generatedTypes/graphql';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import enrolOccurrenceMutation from '../mutations/enrolOccurrenceMutation';
-import { saveChildEvents, justEnrolled } from '../state/EventActions';
+import { saveChildEvents } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
 import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
 import { GQLErrors } from './EnrolConstants';
 import Enrol from './Enrol';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
+import { publicSvgIconPaths } from '../../../public_files';
+import Icon from '../../../common/components/icon/Icon';
 
 function containsAlreadyJoinedError(
   errors: ReadonlyArray<GraphQLFormattedError>
@@ -95,7 +97,16 @@ const EnrolPage = () => {
             occurrences: data.enrolOccurrence.enrolment.child.occurrences,
           })
         );
-        dispatch(justEnrolled());
+        toast.success(
+          <div>
+            <Icon
+              src={publicSvgIconPaths['tada']}
+              className={styles.tadaIcon}
+            />
+            <h1>{t('enrollment.successToast.heading')}</h1>
+            <p>{t('enrollment.successToast.paragraph')}</p>
+          </div>
+        );
       }
 
       goToOccurrence();
