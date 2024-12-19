@@ -17,11 +17,10 @@ type EventProps = {
     | OccurrenceEvent
     | ExternalTicketSystemEventQuery['event'];
   children?: ReactElement | Array<ReactElement | false>;
-  success?: ReactElement;
   backTo?: string;
 };
 
-const EventPage = ({ event, children, success, backTo }: EventProps) => {
+const EventPage = ({ event, children, backTo }: EventProps) => {
   const { t } = useTranslation();
   if (!event) return <></>;
 
@@ -40,7 +39,6 @@ const EventPage = ({ event, children, success, backTo }: EventProps) => {
         style={backgroundImageStyle}
         title={event.imageAltText || ''}
       >
-        {success}
         <div className={styles.backButtonWrapper}>
           <div className={styles.backButtonInnerWrapper}>
             {backTo && (

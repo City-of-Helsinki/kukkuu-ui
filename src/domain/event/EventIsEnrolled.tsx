@@ -13,7 +13,6 @@ import UnenrolModal from './modal/UnenrolModal';
 import VenueFeatures from './VenueFeatures';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
-import SuccessToast from './enrol/SuccessToast';
 import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
 import { useChildRouteGoBackTo } from '../profile/children/child/ProfileChildDetail';
@@ -41,11 +40,7 @@ const EventIsEnrolled = () => {
   if (!data?.occurrence) return errorMessage;
 
   return (
-    <EventPage
-      event={data.occurrence.event}
-      success={<SuccessToast />}
-      backTo={goBackTo}
-    >
+    <EventPage event={data.occurrence.event} backTo={goBackTo}>
       <OccurrenceInfo
         className={styles.occurrenceInfo}
         occurrence={data.occurrence}
