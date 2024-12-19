@@ -44,14 +44,6 @@
       "last 1 safari version"
     ]
   },
-  "resolutions": {
-    "ansi-regex": "^5.0.1",
-    "eslint": "^8.0.0",
-    "graphql": "^16.0.0",
-    "immer": "^9.0.0",
-    "nth-check": ">=2.0.1",
-    "set-value": ">=4.0.1"
-  },
   "dependencies": {
     "@apollo/client": "^3.11.10",
     "@faker-js/faker": "^9.2.0",
