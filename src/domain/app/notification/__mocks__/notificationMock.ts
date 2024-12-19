@@ -1,6 +1,6 @@
 import { MockedResponse } from '@apollo/client/testing';
 
-import notificationQuery from '../notificationQuery';
+import cmsNotificationQuery from '../cmsNotificationQuery';
 
 /**
  * This is a mock of the response from the notification query.
@@ -24,7 +24,7 @@ export const notificationQueryResponse = {
 
 export const notificationMock: MockedResponse = {
   request: {
-    query: notificationQuery,
+    query: cmsNotificationQuery,
     variables: { language: 'fi' },
   },
   result: notificationQueryResponse,

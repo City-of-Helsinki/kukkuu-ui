@@ -11,6 +11,5 @@ const saveChildEvents = createAction<ChildOccurrences>(
 const saveChildrenEvents = createAction<MyProfileChildren | undefined>(
   EVENT_ACTIONS.SAVE_CHILDREN_EVENTS
 );
-const justEnrolled = createAction(EVENT_ACTIONS.JUST_ENROLLED);
 
-export { clearEvent, saveChildEvents, saveChildrenEvents, justEnrolled };
+export { clearEvent, saveChildEvents, saveChildrenEvents };
