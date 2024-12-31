@@ -25,12 +25,14 @@
     "start": "vite",
     "test": "cross-env TZ=Europe/Helsinki vitest run",
     "test:coverage": "cross-env TZ=Europe/Helsinki vitest run --coverage",
+    "test:staged": "cross-env TZ=Europe/Helsinki vitest related --run",
     "test:watch": "cross-env TZ=Europe/Helsinki vitest",
     "test:browser": "testcafe \"chrome --window-size='1920,1080' --disable-search-engine-choice-screen\" browser-tests/ --live --dev --lang=fi-FI",
     "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1920,1080' --disable-search-engine-choice-screen\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/",
     "test:browser:ci:chromium": "testcafe \"chromium:headless --disable-gpu --window-size='1920,1080' --disable-search-engine-choice-screen\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/",
     "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev --lang=fi-FI",
-    "typecheck": "tsc --project ./tsconfig.json --noEmit"
+    "typecheck": "tsc --project ./tsconfig.json --noEmit",
+    "prepare": "husky"
   },
   "browserslist": {
     "production": [
@@ -133,11 +135,15 @@
     "workerDirectory": "public"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "@graphql-codegen/add": "^5.0.3",
     "@graphql-codegen/cli": "^5.0.3",
     "@graphql-codegen/typescript": "^4.1.2",
     "@graphql-codegen/typescript-operations": "^4.4.0",
     "@graphql-codegen/typescript-react-apollo": "^4.3.2",
-    "@types/jsonwebtoken": "^9.0.7"
+    "@types/jsonwebtoken": "^9.0.7",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.3.0"
   }
 }
