@@ -1,3 +1,5 @@
+<!-- DOCTOC SKIP -->
+
 # Change Log
 
 # 1.13.1
@@ -401,277 +403,247 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 
 ## [3.9.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.8.1...kukkuu-ui-v3.9.0) (2024-11-26)
 
-
 ### Features
 
-* Fix checking if event has any free passwords ([5c42e47](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5c42e47d5d883a15351a44f5ee015fcc218c2a0f))
-
+- Fix checking if event has any free passwords ([5c42e47](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5c42e47d5d883a15351a44f5ee015fcc218c2a0f))
 
 ### Bug Fixes
 
-* "yarn lint" & "yarn typecheck" errors and warnings ([5a8ff91](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5a8ff91217366f9fe894d817482ee4a2d7aa7a9b))
-* Env mode improvements ([b17fb64](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b17fb64d810c68fd1c294c8c23b06ced0e07e053))
-* Env mode improvements ([45250c5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45250c5d7a03d0b29578dfed02a495fea9a6d2a5))
-* Hds 3.11 upgrade ([9f21c7a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9f21c7af3babc0d7f748c5043fba6d332f8f4e94))
-* Remove console log ([45250c5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45250c5d7a03d0b29578dfed02a495fea9a6d2a5))
+- "yarn lint" & "yarn typecheck" errors and warnings ([5a8ff91](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5a8ff91217366f9fe894d817482ee4a2d7aa7a9b))
+- Env mode improvements ([b17fb64](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b17fb64d810c68fd1c294c8c23b06ced0e07e053))
+- Env mode improvements ([45250c5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45250c5d7a03d0b29578dfed02a495fea9a6d2a5))
+- Hds 3.11 upgrade ([9f21c7a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9f21c7af3babc0d7f748c5043fba6d332f8f4e94))
+- Remove console log ([45250c5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45250c5d7a03d0b29578dfed02a495fea9a6d2a5))
 
 ## [3.8.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.8.0...kukkuu-ui-v3.8.1) (2024-11-11)
 
-
 ### Bug Fixes
 
-* .env* files by removing trailing comments that don't work ([08ecc9d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/08ecc9dc72ecfcce21efe74344e83d40ab150af7))
-* Languages Українська → Українська мова, Davvisámi → Davvisámegiella ([4eb28fb](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4eb28fbe27e286a2af004cab5f48350f0e8e2598))
+- .env\* files by removing trailing comments that don't work ([08ecc9d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/08ecc9dc72ecfcce21efe74344e83d40ab150af7))
+- Languages Українська → Українська мова, Davvisámi → Davvisámegiella ([4eb28fb](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4eb28fbe27e286a2af004cab5f48350f0e8e2598))
 
 ## [3.8.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.7.0...kukkuu-ui-v3.8.0) (2024-10-31)
 
-
 ### Features
 
-* Add canonical URL as meta property to the Head ([4483f28](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4483f284cc9016ce33454b6940d04f147612551e))
-* Add North Sámi & Ukrainian language PDFs to front page ([dca9c68](https://github.com/City-of-Helsinki/kukkuu-ui/commit/dca9c68319670eca3f326aa0c10ade284dcffd13))
-* Add Tixly external ticket system ([7a1de36](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7a1de36ee26beed0cdff6100f7844f3b238048ed))
-* Docker compose ([f4f3bb7](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f4f3bb7c22a593b180f529fa04c02410568be755))
-* Logout idle user after timeout ([#591](https://github.com/City-of-Helsinki/kukkuu-ui/issues/591)) ([759c997](https://github.com/City-of-Helsinki/kukkuu-ui/commit/759c99723d856efdadf4c408e6f7c564069bd143))
-
+- Add canonical URL as meta property to the Head ([4483f28](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4483f284cc9016ce33454b6940d04f147612551e))
+- Add North Sámi & Ukrainian language PDFs to front page ([dca9c68](https://github.com/City-of-Helsinki/kukkuu-ui/commit/dca9c68319670eca3f326aa0c10ade284dcffd13))
+- Add Tixly external ticket system ([7a1de36](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7a1de36ee26beed0cdff6100f7844f3b238048ed))
+- Docker compose ([f4f3bb7](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f4f3bb7c22a593b180f529fa04c02410568be755))
+- Logout idle user after timeout ([#591](https://github.com/City-of-Helsinki/kukkuu-ui/issues/591)) ([759c997](https://github.com/City-of-Helsinki/kukkuu-ui/commit/759c99723d856efdadf4c408e6f7c564069bd143))
 
 ### Bug Fixes
 
-* Emove prefilled birthyear ([#587](https://github.com/City-of-Helsinki/kukkuu-ui/issues/587)) ([4110a64](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4110a644abe59f31f9308aa9b36ad8f3c7e98c7f))
-* GenerateTestJwt should use configurated audience by default ([6faa4d8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6faa4d857bfc42f5c3ba5546dee11bdd87e92441))
-* Helsinki profile url env var name ([381c7a3](https://github.com/City-of-Helsinki/kukkuu-ui/commit/381c7a31716d98eea68bdd1a7bc4c87e232dc271))
-* Improve PageMeta's Helmet-rendering to include canonical and alternative urls ([0cff0ec](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0cff0ec94c62a67a947729d882a1741c6e6db276))
-* Linter ([4c4dda4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4c4dda4764b210b0759f2e981a059519403b2635))
-* Login improvements with hki profile link ([#585](https://github.com/City-of-Helsinki/kukkuu-ui/issues/585)) ([5a5d5b9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5a5d5b9fa08bb8195afca66dbe3fa16365b80a6d))
-* Matomo configuration ([b56cb3e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b56cb3e8a1ba8e80a534677c25025ee2b40590df))
-* Matomo vards to dockerfile ([2c68bc4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2c68bc4aa2e098d5eb610a1f73a42a1a8566b3cd))
-* Navigation render without data fetched ([#590](https://github.com/City-of-Helsinki/kukkuu-ui/issues/590)) ([2aeb7c9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2aeb7c92e667db6b241114ee32341cfc3d042d28))
-* New matomo configuration ([abd41c9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/abd41c9804c057d80b03e90db23023a1507ceb99))
-* Page meta of the CMS pages ([13e85b8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/13e85b85d32fcac65198ee7019848b709aecb973))
-* Remove needless ngingx rules ([1246de6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1246de6261aca1711322a906d179fe40123e00e1))
-* Upgrade apollo client to fix navigation issues ([2623e5a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2623e5ae7b11272a7314c76b585cbafc63804728))
+- Emove prefilled birthyear ([#587](https://github.com/City-of-Helsinki/kukkuu-ui/issues/587)) ([4110a64](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4110a644abe59f31f9308aa9b36ad8f3c7e98c7f))
+- GenerateTestJwt should use configurated audience by default ([6faa4d8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6faa4d857bfc42f5c3ba5546dee11bdd87e92441))
+- Helsinki profile url env var name ([381c7a3](https://github.com/City-of-Helsinki/kukkuu-ui/commit/381c7a31716d98eea68bdd1a7bc4c87e232dc271))
+- Improve PageMeta's Helmet-rendering to include canonical and alternative urls ([0cff0ec](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0cff0ec94c62a67a947729d882a1741c6e6db276))
+- Linter ([4c4dda4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4c4dda4764b210b0759f2e981a059519403b2635))
+- Login improvements with hki profile link ([#585](https://github.com/City-of-Helsinki/kukkuu-ui/issues/585)) ([5a5d5b9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5a5d5b9fa08bb8195afca66dbe3fa16365b80a6d))
+- Matomo configuration ([b56cb3e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b56cb3e8a1ba8e80a534677c25025ee2b40590df))
+- Matomo vards to dockerfile ([2c68bc4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2c68bc4aa2e098d5eb610a1f73a42a1a8566b3cd))
+- Navigation render without data fetched ([#590](https://github.com/City-of-Helsinki/kukkuu-ui/issues/590)) ([2aeb7c9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2aeb7c92e667db6b241114ee32341cfc3d042d28))
+- New matomo configuration ([abd41c9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/abd41c9804c057d80b03e90db23023a1507ceb99))
+- Page meta of the CMS pages ([13e85b8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/13e85b85d32fcac65198ee7019848b709aecb973))
+- Remove needless ngingx rules ([1246de6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1246de6261aca1711322a906d179fe40123e00e1))
+- Upgrade apollo client to fix navigation issues ([2623e5a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2623e5ae7b11272a7314c76b585cbafc63804728))
 
 ## [3.7.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.6.0...kukkuu-ui-v3.7.0) (2024-09-19)
 
-
 ### Features
 
-* Add Sointi Jazz Orchestra logo to the partners' logos ([e0cb139](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e0cb1395d3efaa00ee63f1e13a83caa8fea25afc))
-
+- Add Sointi Jazz Orchestra logo to the partners' logos ([e0cb139](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e0cb1395d3efaa00ee63f1e13a83caa8fea25afc))
 
 ### Bug Fixes
 
-* "Kultuurin" typo with "Kulttuurin" ([4523b98](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4523b980c04977b2991b06a954110c34c1ed179e))
+- "Kultuurin" typo with "Kulttuurin" ([4523b98](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4523b980c04977b2991b06a954110c34c1ed179e))
 
 ## [3.6.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.5.0...kukkuu-ui-v3.6.0) (2024-09-03)
 
-
 ### Features
 
-* Use new staging CMS url https://kukkuu.app-staging.hkih.hion.dev/ ([23301cb](https://github.com/City-of-Helsinki/kukkuu-ui/commit/23301cb63bbec91c4634906ea0e0b035afb7defa))
-
+- Use new staging CMS url https://kukkuu.app-staging.hkih.hion.dev/ ([23301cb](https://github.com/City-of-Helsinki/kukkuu-ui/commit/23301cb63bbec91c4634906ea0e0b035afb7defa))
 
 ### Bug Fixes
 
-* Browser tests ([a1baa74](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a1baa74e436767045f48b0f9ec3db3ea5aad2229))
-* Update graphql schema ([7cd0428](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7cd0428693477a1f0bf9a125a510c50310ba0303))
+- Browser tests ([a1baa74](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a1baa74e436767045f48b0f9ec3db3ea5aad2229))
+- Update graphql schema ([7cd0428](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7cd0428693477a1f0bf9a125a510c50310ba0303))
 
 ## [3.5.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.4.0...kukkuu-ui-v3.5.0) (2024-07-05)
 
-
 ### Features
 
-* Add required * and explanation text to Modal & RegistrationForm ([eb985a0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/eb985a0da33f34e5f9f2061ccde4c075486b27f3))
-
+- Add required \* and explanation text to Modal & RegistrationForm ([eb985a0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/eb985a0da33f34e5f9f2061ccde4c075486b27f3))
 
 ### Bug Fixes
 
-* Make child name optional in child form ([d782481](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d782481a58320348b63037bcdf3ae591ea6d756c))
-* Not eligible component external link ([ecbeff9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ecbeff91a760627f50d6187169a67ee897ddaf96))
+- Make child name optional in child form ([d782481](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d782481a58320348b63037bcdf3ae591ea6d756c))
+- Not eligible component external link ([ecbeff9](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ecbeff91a760627f50d6187169a67ee897ddaf96))
 
 ## [3.4.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.3.0...kukkuu-ui-v3.4.0) (2024-06-12)
 
-
 ### Features
 
-* Make RegistrationForm's hasAcceptedCommunication checkbox opt-out ([463d33e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/463d33eb0ced35a6ae997c80b7b25e0abd2b8b3f))
-
+- Make RegistrationForm's hasAcceptedCommunication checkbox opt-out ([463d33e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/463d33eb0ced35a6ae997c80b7b25e0abd2b8b3f))
 
 ### Bug Fixes
 
-* Static routes and footer links ([#571](https://github.com/City-of-Helsinki/kukkuu-ui/issues/571)) ([45994a1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45994a109058e120e1109e22449fbeddd75bc69e))
+- Static routes and footer links ([#571](https://github.com/City-of-Helsinki/kukkuu-ui/issues/571)) ([45994a1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/45994a109058e120e1109e22449fbeddd75bc69e))
 
 ## [3.3.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.2.0...kukkuu-ui-v3.3.0) (2024-06-05)
 
-
 ### Features
 
-* Renamed "has accepted marketing" to "has accepted communication" ([87d873d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/87d873d8a620d18e7befdbb0fbfe7bf1ef7f492c))
-* Use authorization flow and HDS login handler ([e055eac](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e055eac5d38838225a0de02ac2d50cbd25a96319))
-
+- Renamed "has accepted marketing" to "has accepted communication" ([87d873d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/87d873d8a620d18e7befdbb0fbfe7bf1ef7f492c))
+- Use authorization flow and HDS login handler ([e055eac](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e055eac5d38838225a0de02ac2d50cbd25a96319))
 
 ### Bug Fixes
 
-* Add color to hero background when image not given ([d41afb8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d41afb806aafd6771be11a9f942618d5224c177f))
-* Add unauthorized translations ([2d7041f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2d7041f917a2d1b5a44207dd70e2849414a548a7))
-* Body margin removed ([#561](https://github.com/City-of-Helsinki/kukkuu-ui/issues/561)) ([4954c82](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4954c82d31f8eea262826d0a6c6b1d24e9e68778))
-* Child enrolment count should update when enrolled or unenrolled ([75e9e5e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/75e9e5e83722f2d34668c450ec605ec8cdc586f1))
-* Children list should update from CRUD-operations ([c4a2a36](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c4a2a36b20477916af115f4e98298536c7e4bb18))
-* Clear profile from redux when not authenticated ([882604f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/882604f5a5912936ae29cf93aa7474d30dcb88bc))
-* Disable editing email field in registration form ([b5df22f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b5df22fdf451724ddec26f7975aa857cf5f803d8))
-* Header and footer (partial) menu localized routing ([#564](https://github.com/City-of-Helsinki/kukkuu-ui/issues/564)) ([e111749](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e111749a83f87b51cf069be55c9efd42c91bea2c))
-* Locale route navigate should use the location hash ([1dd7c92](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1dd7c92f5eab6e62dd27a8ec2c7fdcf5cbb4d4a8))
-* Md editor and preview force light theme ([#568](https://github.com/City-of-Helsinki/kukkuu-ui/issues/568)) ([c6f94d6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c6f94d6930a8444a5548e3f761eb8338ac49000b))
-* Mobile view should show the back button ([8ec445e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8ec445e0da056bbee2bfaf98c1bd245e75a54d84))
-* Profile fetcher is fully called even in error situations ([7ae9c02](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7ae9c02e175cd26e80dd1b4f63c12c4bb4176fe7))
-* Profile page redirects to home when no registrated user ([2951df6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2951df671902776255d904acf1c2eb58045539a8))
-* Profile provider should not reload when tokens are renewed ([012ee06](https://github.com/City-of-Helsinki/kukkuu-ui/commit/012ee069f2845fcaff0a5f87c5d8c5fa85738f76))
-* Registration before authentication flow ([5ed3149](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5ed314999edbe865ea4f8e23bfedef57f8a89cda))
-* Remove profile from redux persistor ([ea20d8e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ea20d8e0a5f9766caf0d759d027231e6626e2567))
-* Token renewal reloaded page when user had no profile ([6e88a0c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6e88a0cf4e36b66f4688067b51a5d24d869c1b92))
+- Add color to hero background when image not given ([d41afb8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d41afb806aafd6771be11a9f942618d5224c177f))
+- Add unauthorized translations ([2d7041f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2d7041f917a2d1b5a44207dd70e2849414a548a7))
+- Body margin removed ([#561](https://github.com/City-of-Helsinki/kukkuu-ui/issues/561)) ([4954c82](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4954c82d31f8eea262826d0a6c6b1d24e9e68778))
+- Child enrolment count should update when enrolled or unenrolled ([75e9e5e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/75e9e5e83722f2d34668c450ec605ec8cdc586f1))
+- Children list should update from CRUD-operations ([c4a2a36](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c4a2a36b20477916af115f4e98298536c7e4bb18))
+- Clear profile from redux when not authenticated ([882604f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/882604f5a5912936ae29cf93aa7474d30dcb88bc))
+- Disable editing email field in registration form ([b5df22f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b5df22fdf451724ddec26f7975aa857cf5f803d8))
+- Header and footer (partial) menu localized routing ([#564](https://github.com/City-of-Helsinki/kukkuu-ui/issues/564)) ([e111749](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e111749a83f87b51cf069be55c9efd42c91bea2c))
+- Locale route navigate should use the location hash ([1dd7c92](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1dd7c92f5eab6e62dd27a8ec2c7fdcf5cbb4d4a8))
+- Md editor and preview force light theme ([#568](https://github.com/City-of-Helsinki/kukkuu-ui/issues/568)) ([c6f94d6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c6f94d6930a8444a5548e3f761eb8338ac49000b))
+- Mobile view should show the back button ([8ec445e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8ec445e0da056bbee2bfaf98c1bd245e75a54d84))
+- Profile fetcher is fully called even in error situations ([7ae9c02](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7ae9c02e175cd26e80dd1b4f63c12c4bb4176fe7))
+- Profile page redirects to home when no registrated user ([2951df6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2951df671902776255d904acf1c2eb58045539a8))
+- Profile provider should not reload when tokens are renewed ([012ee06](https://github.com/City-of-Helsinki/kukkuu-ui/commit/012ee069f2845fcaff0a5f87c5d8c5fa85738f76))
+- Registration before authentication flow ([5ed3149](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5ed314999edbe865ea4f8e23bfedef57f8a89cda))
+- Remove profile from redux persistor ([ea20d8e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ea20d8e0a5f9766caf0d759d027231e6626e2567))
+- Token renewal reloaded page when user had no profile ([6e88a0c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6e88a0cf4e36b66f4688067b51a5d24d869c1b92))
 
 ## [3.2.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.1.1...kukkuu-ui-v3.2.0) (2024-03-27)
 
-
 ### Features
 
-* Add "has accepted marketing" -field to the edit my profile form ([613129b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/613129b5fc8c62aa13395b044f64ab08d09054a8))
-* Add a manage subscriptions route to manage marketing subscriptions ([d884053](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d8840536348111d2ea3bfd0952752456e6039164))
-* Add the "has accepted marketing checkbox to registration form ([5b1e99b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5b1e99b0370ba38c51d3b8473188502124229c94))
-
+- Add "has accepted marketing" -field to the edit my profile form ([613129b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/613129b5fc8c62aa13395b044f64ab08d09054a8))
+- Add a manage subscriptions route to manage marketing subscriptions ([d884053](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d8840536348111d2ea3bfd0952752456e6039164))
+- Add the "has accepted marketing checkbox to registration form ([5b1e99b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5b1e99b0370ba38c51d3b8473188502124229c94))
 
 ### Bug Fixes
 
-* Add missing page not found handler for pages under profile-path ([950c669](https://github.com/City-of-Helsinki/kukkuu-ui/commit/950c669b485589e4b5a223896ac3afefb9911703))
-* **auth:** Add unauthorized-route for users without login information ([0a8d024](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0a8d024ec3a621f7338ed367e83fba8d03bd382f))
-* Kids events search links ([#543](https://github.com/City-of-Helsinki/kukkuu-ui/issues/543)) ([c31d251](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c31d251ed93868ef895f9e21f990c6c5b9a9bbab))
-* Show a toast of successfull edit of "my profile" form ([4661e76](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4661e763d49fe9d7f3538001cfee602fde64cd43))
-* Verification checkbox of the home preliminary form ([90f19fa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/90f19fa45b8009ab8764044e56997e54282e0cca))
+- Add missing page not found handler for pages under profile-path ([950c669](https://github.com/City-of-Helsinki/kukkuu-ui/commit/950c669b485589e4b5a223896ac3afefb9911703))
+- **auth:** Add unauthorized-route for users without login information ([0a8d024](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0a8d024ec3a621f7338ed367e83fba8d03bd382f))
+- Kids events search links ([#543](https://github.com/City-of-Helsinki/kukkuu-ui/issues/543)) ([c31d251](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c31d251ed93868ef895f9e21f990c6c5b9a9bbab))
+- Show a toast of successfull edit of "my profile" form ([4661e76](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4661e763d49fe9d7f3538001cfee602fde64cd43))
+- Verification checkbox of the home preliminary form ([90f19fa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/90f19fa45b8009ab8764044e56997e54282e0cca))
 
 ## [3.1.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.1.0...kukkuu-ui-v3.1.1) (2024-03-14)
 
-
 ### Bug Fixes
 
-* Correct a compound word ([c3d17dd](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c3d17dd05c74606ce4b4d37781e6ebcce156e098))
-* Logos and translations ([#539](https://github.com/City-of-Helsinki/kukkuu-ui/issues/539)) ([7bbc71c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7bbc71c222f913f86fe3f309e516e87a48ebd99d))
-* Text correction on the frontpage ([56f87f5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/56f87f566b66e53457d408e656a4f9ccc6884b32))
+- Correct a compound word ([c3d17dd](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c3d17dd05c74606ce4b4d37781e6ebcce156e098))
+- Logos and translations ([#539](https://github.com/City-of-Helsinki/kukkuu-ui/issues/539)) ([7bbc71c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7bbc71c222f913f86fe3f309e516e87a48ebd99d))
+- Text correction on the frontpage ([56f87f5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/56f87f566b66e53457d408e656a4f9ccc6884b32))
 
 ## [3.1.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.0.0...kukkuu-ui-v3.1.0) (2024-02-29)
 
-
 ### Features
 
-* Send the email update verification token to the new email ([2aea1e2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2aea1e28f740838a795a939b120b6e9e83ab510a))
-* Update my email form ([2244c21](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2244c21ed3a9723ef08ef22caa3252c754c7ef06))
-* Verification tokens for an email update ([f9bcdd4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f9bcdd4cac845eeabf0b8b8a8fbb44191976088d))
-
+- Send the email update verification token to the new email ([2aea1e2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2aea1e28f740838a795a939b120b6e9e83ab510a))
+- Update my email form ([2244c21](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2244c21ed3a9723ef08ef22caa3252c754c7ef06))
+- Verification tokens for an email update ([f9bcdd4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f9bcdd4cac845eeabf0b8b8a8fbb44191976088d))
 
 ### Bug Fixes
 
-* Enrollements count ([#534](https://github.com/City-of-Helsinki/kukkuu-ui/issues/534)) ([8f51b96](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8f51b967e18549a80d32a09820b6fba121ae470f))
-* Graphql codegen generated 2 types with same name ([836d9a8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/836d9a8f9e2f0c0e0350359b06c5c700895452d0))
-* Helper text in the formik text input component ([9088549](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9088549363ccbcb8cb90d309c04c7ab9946a103b))
-* Invite link and notification ([#529](https://github.com/City-of-Helsinki/kukkuu-ui/issues/529)) ([1ca21b5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1ca21b578a7baf3783af55e6c318b590b300986b))
-* Languages focus on load removed ([#527](https://github.com/City-of-Helsinki/kukkuu-ui/issues/527)) ([ac4e5b5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ac4e5b540e10e4c6e46341de441aca02e6f877c0))
-* Removed console log ([#530](https://github.com/City-of-Helsinki/kukkuu-ui/issues/530)) ([d9ff08b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d9ff08b0fe82e58e277e50e1b6b71a6031a180a7))
+- Enrollements count ([#534](https://github.com/City-of-Helsinki/kukkuu-ui/issues/534)) ([8f51b96](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8f51b967e18549a80d32a09820b6fba121ae470f))
+- Graphql codegen generated 2 types with same name ([836d9a8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/836d9a8f9e2f0c0e0350359b06c5c700895452d0))
+- Helper text in the formik text input component ([9088549](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9088549363ccbcb8cb90d309c04c7ab9946a103b))
+- Invite link and notification ([#529](https://github.com/City-of-Helsinki/kukkuu-ui/issues/529)) ([1ca21b5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1ca21b578a7baf3783af55e6c318b590b300986b))
+- Languages focus on load removed ([#527](https://github.com/City-of-Helsinki/kukkuu-ui/issues/527)) ([ac4e5b5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ac4e5b540e10e4c6e46341de441aca02e6f877c0))
+- Removed console log ([#530](https://github.com/City-of-Helsinki/kukkuu-ui/issues/530)) ([d9ff08b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d9ff08b0fe82e58e277e50e1b6b71a6031a180a7))
 
 ## [3.0.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.1.1...kukkuu-ui-v3.0.0) (2024-02-01)
 
-
 ### Features
 
-* Children has only 1 name field and birthyear instead of date ([ac5c9ae](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ac5c9ae97a9d3da19dd0bacc29ca2e82bc294403))
-* Convert to HDS v3 breakpoints & container widths, not all ([101ca43](https://github.com/City-of-Helsinki/kukkuu-ui/commit/101ca43438413cf7c41e1f6fc2af0219621e2bb7))
-* Make UserNavigation use HDS v3 ([fe16447](https://github.com/City-of-Helsinki/kukkuu-ui/commit/fe16447c504ba7d08ad778fb9a9676447ca8e251))
-* Use HDS v3 Footer component for footer ([dee4964](https://github.com/City-of-Helsinki/kukkuu-ui/commit/dee4964440155af5932525a1b81a14599ad03bbd))
-* Use HDS v3.3.0 release's HDS Favicon kit, remove old favicons ([9c21a58](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9c21a58a45cc013b05c00c15341f232f10f5e847))
-
+- Children has only 1 name field and birthyear instead of date ([ac5c9ae](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ac5c9ae97a9d3da19dd0bacc29ca2e82bc294403))
+- Convert to HDS v3 breakpoints & container widths, not all ([101ca43](https://github.com/City-of-Helsinki/kukkuu-ui/commit/101ca43438413cf7c41e1f6fc2af0219621e2bb7))
+- Make UserNavigation use HDS v3 ([fe16447](https://github.com/City-of-Helsinki/kukkuu-ui/commit/fe16447c504ba7d08ad778fb9a9676447ca8e251))
+- Use HDS v3 Footer component for footer ([dee4964](https://github.com/City-of-Helsinki/kukkuu-ui/commit/dee4964440155af5932525a1b81a14599ad03bbd))
+- Use HDS v3.3.0 release's HDS Favicon kit, remove old favicons ([9c21a58](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9c21a58a45cc013b05c00c15341f232f10f5e847))
 
 ### Bug Fixes
 
-* **cookies:** Set cookie domain to hostname (e.g. kummilapset.hel.fi) ([e432eee](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e432eee3d8a657b3a623d223671e9569706f0315))
-* Fix delete child button's underline style ([5e93cb0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5e93cb08b330bc04764a0173a59b0a77092b6b17))
-* **header:** Make user dropdown items look more like before HDS v3 ([fa3950c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/fa3950c28b37a51a4c7a42141906dccfe4777a9b))
-* Hide header action bar items' labels on mobile (i.e. below small) ([d8377d1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d8377d15f862a8a2d963372f29be5f75eb401fb2))
-* Remove "as unknown as" type unsafe cast, fix useRHHCConfig ([63edab8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/63edab87940c454b5a329955b4ec13361e2417c2))
-* Remove unused icons, replace similar icons with HDS v3 icons ([21337d5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/21337d531fbeaee26ab33ede5120e8be74760dfa))
-* Running generate:graphql, replace REACT_APP_API_URI -&gt; VITE_API_URI ([4448a65](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4448a65ad9d507f3f33af30ed1a203d648e2de68))
-* Update Helsinki partner logo URLs ([5dc58be](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5dc58bedb12dddcf573f312daee4c029207eb89a))
-* Update snapshots & fix tests ([5bd0c3e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5bd0c3ecb8edff1f2061be47385651a4879727fb))
-* Update UI to match API child name & birthyear changes (KK-1023) ([#523](https://github.com/City-of-Helsinki/kukkuu-ui/issues/523)) ([22182fe](https://github.com/City-of-Helsinki/kukkuu-ui/commit/22182fe3991057eb6ced9ca8e21521cd1152498d))
-* Upgrade to HDS v3.4 & RHHC using it, fix clicking header's buttons ([d1502f1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d1502f1ec2619d96aa7a1d22a66e4ba9df10e6b4))
-* Use official SVG JAES logos from jaes.fi ([591b949](https://github.com/City-of-Helsinki/kukkuu-ui/commit/591b949437adfae801a8828ad75ee25157476686))
-
+- **cookies:** Set cookie domain to hostname (e.g. kummilapset.hel.fi) ([e432eee](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e432eee3d8a657b3a623d223671e9569706f0315))
+- Fix delete child button's underline style ([5e93cb0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5e93cb08b330bc04764a0173a59b0a77092b6b17))
+- **header:** Make user dropdown items look more like before HDS v3 ([fa3950c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/fa3950c28b37a51a4c7a42141906dccfe4777a9b))
+- Hide header action bar items' labels on mobile (i.e. below small) ([d8377d1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d8377d15f862a8a2d963372f29be5f75eb401fb2))
+- Remove "as unknown as" type unsafe cast, fix useRHHCConfig ([63edab8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/63edab87940c454b5a329955b4ec13361e2417c2))
+- Remove unused icons, replace similar icons with HDS v3 icons ([21337d5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/21337d531fbeaee26ab33ede5120e8be74760dfa))
+- Running generate:graphql, replace REACT_APP_API_URI -&gt; VITE_API_URI ([4448a65](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4448a65ad9d507f3f33af30ed1a203d648e2de68))
+- Update Helsinki partner logo URLs ([5dc58be](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5dc58bedb12dddcf573f312daee4c029207eb89a))
+- Update snapshots & fix tests ([5bd0c3e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5bd0c3ecb8edff1f2061be47385651a4879727fb))
+- Update UI to match API child name & birthyear changes (KK-1023) ([#523](https://github.com/City-of-Helsinki/kukkuu-ui/issues/523)) ([22182fe](https://github.com/City-of-Helsinki/kukkuu-ui/commit/22182fe3991057eb6ced9ca8e21521cd1152498d))
+- Upgrade to HDS v3.4 & RHHC using it, fix clicking header's buttons ([d1502f1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d1502f1ec2619d96aa7a1d22a66e4ba9df10e6b4))
+- Use official SVG JAES logos from jaes.fi ([591b949](https://github.com/City-of-Helsinki/kukkuu-ui/commit/591b949437adfae801a8828ad75ee25157476686))
 
 ### Miscellaneous Chores
 
-* Release 3.0.0 ([91f932f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/91f932fabbea5869e758d9832736e17301622116))
+- Release 3.0.0 ([91f932f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/91f932fabbea5869e758d9832736e17301622116))
 
 ## [2.1.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.1.0...kukkuu-ui-v2.1.1) (2024-01-05)
 
-
 ### Bug Fixes
 
-* Registration form preferred language type ([0323203](https://github.com/City-of-Helsinki/kukkuu-ui/commit/03232035ad0b978c132ff74b6103e58d07ab42ed))
+- Registration form preferred language type ([0323203](https://github.com/City-of-Helsinki/kukkuu-ui/commit/03232035ad0b978c132ff74b6103e58d07ab42ed))
 
 ## [2.1.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.0.1...kukkuu-ui-v2.1.0) (2023-12-22)
 
-
 ### Features
 
-* Show "No free ticket system passwords" error & labels ([145e369](https://github.com/City-of-Helsinki/kukkuu-ui/commit/145e3696159fdef2f8ddb27fd52785f70d3ffaaa))
-
+- Show "No free ticket system passwords" error & labels ([145e369](https://github.com/City-of-Helsinki/kukkuu-ui/commit/145e3696159fdef2f8ddb27fd52785f70d3ffaaa))
 
 ### Bug Fixes
 
-* Fix "yarn generate:graphql" by using graphql-codegen ([4ea1fea](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4ea1fea06e1b34b7825bcfa65036a60db78a27d6))
-* Set correct background color behind hero image's lower grey part ([7deecab](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7deecab2b1f16888cddd978aa11a4aeffded56a9))
-* Use https instead of http in partner links, fix security warning ([aedceab](https://github.com/City-of-Helsinki/kukkuu-ui/commit/aedceab504a3c79c892c652980a0c14eea4a0d5e))
+- Fix "yarn generate:graphql" by using graphql-codegen ([4ea1fea](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4ea1fea06e1b34b7825bcfa65036a60db78a27d6))
+- Set correct background color behind hero image's lower grey part ([7deecab](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7deecab2b1f16888cddd978aa11a4aeffded56a9))
+- Use https instead of http in partner links, fix security warning ([aedceab](https://github.com/City-of-Helsinki/kukkuu-ui/commit/aedceab504a3c79c892c652980a0c14eea4a0d5e))
 
 ## [2.0.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v2.0.0...kukkuu-ui-v2.0.1) (2023-12-11)
 
-
 ### Bug Fixes
 
-* Front page info links to brochure pdf's ([f429f17](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f429f1786b66f4921b3dfc93e7b6a5af310d66f7))
+- Front page info links to brochure pdf's ([f429f17](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f429f1786b66f4921b3dfc93e7b6a5af310d66f7))
 
 ## [2.0.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.14.1...kukkuu-ui-v2.0.0) (2023-10-30)
 
-
 ### ⚠ BREAKING CHANGES
 
-* **vite:** replace the CRA with the Vite
-* **router:** migrate to router provider
-* migrate to react-router v6
+- **vite:** replace the CRA with the Vite
+- **router:** migrate to router provider
+- migrate to react-router v6
 
 ### Features
 
-* Cookie consent ([#497](https://github.com/City-of-Helsinki/kukkuu-ui/issues/497)) ([b346a42](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b346a42af4caacf557ae4609722c2d7ae4d535b9))
-* Cookie consent page ([#503](https://github.com/City-of-Helsinki/kukkuu-ui/issues/503)) ([1f6f496](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1f6f496e4fde4fd353bf6e82675dfe0b99baad0a))
-* **vite:** Replace the CRA with the Vite ([8c130a1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8c130a12fc59069ffa7b5c6861b82fc9eb1ccf37))
-
+- Cookie consent ([#497](https://github.com/City-of-Helsinki/kukkuu-ui/issues/497)) ([b346a42](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b346a42af4caacf557ae4609722c2d7ae4d535b9))
+- Cookie consent page ([#503](https://github.com/City-of-Helsinki/kukkuu-ui/issues/503)) ([1f6f496](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1f6f496e4fde4fd353bf6e82675dfe0b99baad0a))
+- **vite:** Replace the CRA with the Vite ([8c130a1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8c130a12fc59069ffa7b5c6861b82fc9eb1ccf37))
 
 ### Bug Fixes
 
-* **cms:** Headless cms page route ([bf9d7b6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/bf9d7b6855f700ca1acc6773e6f1cfe7356c573f))
-* **dockerfile:** Development environment launching ([4c67fdd](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4c67fdd557b64563dafe94e70827c2c6458e232c))
-* Enrol page cancel url ([9354e58](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9354e5868cc4adcf277fb66181af46ff0e56b6b7))
-* Formik dropdown component in mobile view mode ([b5807ba](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b5807ba14a1ecd3216cf37237243eb6acdaeaada))
-* Language sync ([e8efc16](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e8efc1641044f51eeb9633d4355c5d67a3aac7bc))
-* Linter warnings ([f057331](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f0573313ccb4c5297fec9b9345ec55d1b3a3b2df))
-* Linter warnings and errors ([5993199](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5993199ca5f5a4baed33da6a40a8273dce629084))
-* Navigation confirm prompt ([be7857e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/be7857e3982b6e479194ebf187fb272d107660f0))
-* **navigation:** Language change ([e40d304](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e40d3046d031da5b110eef496288d5a6368e45d3))
-* **routes:** React-router can have only route-components as children ([c95f86a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c95f86a202b2ebcad78b3273219bc3678224b38d))
-* Sass-path needs to be absolute in the latest version of sass ([ccf4efa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ccf4efa5081787df0e5209a7730eb92aae01a6d1))
-* **vite:** Linter issues ([a38596a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a38596aba2977c4ac0a778f5257182d7379b6857))
-
+- **cms:** Headless cms page route ([bf9d7b6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/bf9d7b6855f700ca1acc6773e6f1cfe7356c573f))
+- **dockerfile:** Development environment launching ([4c67fdd](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4c67fdd557b64563dafe94e70827c2c6458e232c))
+- Enrol page cancel url ([9354e58](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9354e5868cc4adcf277fb66181af46ff0e56b6b7))
+- Formik dropdown component in mobile view mode ([b5807ba](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b5807ba14a1ecd3216cf37237243eb6acdaeaada))
+- Language sync ([e8efc16](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e8efc1641044f51eeb9633d4355c5d67a3aac7bc))
+- Linter warnings ([f057331](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f0573313ccb4c5297fec9b9345ec55d1b3a3b2df))
+- Linter warnings and errors ([5993199](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5993199ca5f5a4baed33da6a40a8273dce629084))
+- Navigation confirm prompt ([be7857e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/be7857e3982b6e479194ebf187fb272d107660f0))
+- **navigation:** Language change ([e40d304](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e40d3046d031da5b110eef496288d5a6368e45d3))
+- **routes:** React-router can have only route-components as children ([c95f86a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c95f86a202b2ebcad78b3273219bc3678224b38d))
+- Sass-path needs to be absolute in the latest version of sass ([ccf4efa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ccf4efa5081787df0e5209a7730eb92aae01a6d1))
+- **vite:** Linter issues ([a38596a](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a38596aba2977c4ac0a778f5257182d7379b6857))
 
 ### Code Refactoring
 
-* Migrate to react-router v6 ([0d08dd1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0d08dd18e45d06d6c2826ec3de0b5869a5d148c9))
-* **router:** Migrate to router provider ([42e8db0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/42e8db0e4f0d85412a8c307b55dc4f1ea578444b))
+- Migrate to react-router v6 ([0d08dd1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0d08dd18e45d06d6c2826ec3de0b5869a5d148c9))
+- **router:** Migrate to router provider ([42e8db0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/42e8db0e4f0d85412a8c307b55dc4f1ea578444b))
 
 ## [1.14.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v1.14.0...kukkuu-ui-v1.14.1) (2023-08-31)
 

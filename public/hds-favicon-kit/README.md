@@ -1,18 +1,20 @@
+<!-- DOCTOC SKIP -->
+
 # HDS Favicon kit
 
 Here are the favicons to be used on desktop and mobile web browsers. If you need the Helsinki-logo for general use instead it is available on [the Helsinki brand site](https://brand.hel.fi/tunnus/).
 
 The favicons are available in the following sizes and formats:
 
-* favicon-32x32.ico (32x32px)
+- favicon-32x32.ico (32x32px)
 
-* favicon.svg (512x512px, dark mode support)
+- favicon.svg (512x512px, dark mode support)
 
-* apple-touch-icon.png (180x180px)
+- apple-touch-icon.png (180x180px)
 
-* favicon-192x192.png (192x192px, webmanifest)
+- favicon-192x192.png (192x192px, webmanifest)
 
-* favicon-512x512.png (512x512px, webmanifest)
+- favicon-512x512.png (512x512px, webmanifest)
 
 Note that [SVG favicon support](https://caniuse.com/link-icon-svg) for dynamic dark mode is not supported by all browsers like Safari.
 

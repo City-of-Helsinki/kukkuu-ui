@@ -1,3 +1,5 @@
+<!-- DOCTOC SKIP -->
+
 # Contributing to Culture Kids front end aka kukkuu-ui
 
 Code contributions are accepted as pull requests. Please make your pull requests as small as possible and
