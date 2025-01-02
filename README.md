@@ -1,99 +1,189 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-- [UI for Kulttuurin kummilapset / Culture Kids](#ui-for-kulttuurin-kummilapset--culture-kids)
-  - [About](#about)
-    - [What?](#what)
-    - [How?](#how)
-    - [When?](#when)
-  - [Deployments](#deployments)
-  - [See also](#see-also)
-  - [Issues board](#issues-board)
-  - [Development](#development)
-    - [Getting started](#getting-started)
-    - [.env variables](#env-variables)
-  - [Available Scripts](#available-scripts)
-    - [`yarn start`](#yarn-start)
-    - [`yarn build`](#yarn-build)
-    - [`yarn serve`](#yarn-serve)
-    - [`yarn test`](#yarn-test)
-    - [`yarn generate:graphql`](#yarn-generategraphql)
-    - [`yarn test:browser`](#yarn-testbrowser)
-      - [Test JWT issuance for browser tests](#test-jwt-issuance-for-browser-tests)
-  - [Docker](#docker)
-  - [Setting up development environment locally with docker](#setting-up-development-environment-locally-with-docker)
-    - [Set tunnistamo hostname](#set-tunnistamo-hostname)
-    - [Create a new OAuth app on GitHub](#create-a-new-oauth-app-on-github)
-    - [Login provider configurations](#login-provider-configurations)
-    - [Install local tunnistamo](#install-local-tunnistamo)
-    - [Install kukkuu locally](#install-kukkuu-locally)
-    - [Headless CMS](#headless-cms)
-    - [kukkuu-ui](#kukkuu-ui)
-  - [Debugging](#debugging)
-    - [Debugging project in VS Code](#debugging-project-in-vs-code)
-    - [Debugging Tests in VS Code](#debugging-tests-in-vs-code)
-    - [Debugging Tests in Chrome](#debugging-tests-in-chrome)
-    - [Debug Redux state](#debug-redux-state)
-  - [Learn More](#learn-more)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 [![codecov](https://codecov.io/gh/City-of-Helsinki/kukkuu-ui/branch/develop/graph/badge.svg)](https://codecov.io/gh/City-of-Helsinki/kukkuu-ui)
 ![Build & Staging](https://github.com/City-of-Helsinki/kukkuu-ui/workflows/Build%20&%20Staging%20&%20Accept/badge.svg)
 
-# UI for Kulttuurin kummilapset / Culture Kids
+# Public UI for the Culture Kids (Kulttuurin kummilapset)
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [About](#about)
+- [Service architecture](#service-architecture)
+  - [Environments](#environments)
+  - [Frameworks and Libraries](#frameworks-and-libraries)
+- [Development](#development)
+  - [Getting started](#getting-started)
+  - [.env variables](#env-variables)
+  - [Authorizing login to Kukkuu-UI and integrating to Kukkuu API](#authorizing-login-to-kukkuu-ui-and-integrating-to-kukkuu-api)
+    - [Setup authorization service](#setup-authorization-service)
+    - [Setup Kukkuu API backend](#setup-kukkuu-api-backend)
+      - [Using local Kukkuu API backend](#using-local-kukkuu-api-backend)
+      - [Using remote Kukkuu API backend](#using-remote-kukkuu-api-backend)
+    - [JWT issuance for browser tests](#jwt-issuance-for-browser-tests)
+- [Available Scripts](#available-scripts)
+  - [`yarn start`](#yarn-start)
+  - [`yarn build`](#yarn-build)
+  - [`yarn serve`](#yarn-serve)
+  - [`yarn generate:graphql`](#yarn-generategraphql)
+  - [`yarn test`](#yarn-test)
+  - [`yarn test:browser`](#yarn-testbrowser)
+- [Headless CMS](#headless-cms)
+  - [Headless CMS React Components -lib](#headless-cms-react-components--lib)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## About
 
-### What?
+**What?**
 
 In the Culture Kids project the City promises that every child born in Helsinki from 2020 on will have an artistic or cultural institution as a “culture guardian”, through which the child and his family will get a personal connection to art. This collaboration is to be continued until the child goes to school.
 
 Participation in the cultural activities planned for the child's age contributes to the artistic development of the child and the well-being of the family, while providing the family with a connection to the society. This action implements the right of the child to art and culture (UNESCO).
 
-### How?
+**How?**
 
 The parents of the child will receive the invitation letter sent by the children´s counselor (Lasten neuvola). Those wishing to participate sign up for the project through this service. The art & culture institute will then send those families information about the events via e-mail. Families will book events suitable for them using this project. Events are free to attend for the families.
 
-### When?
+**When?**
 
 Children born in 2020 will become the children of the Helsinki Philharmonic Orchestra. From 2021 onwards, every year a new form of art will be added to the project.
 
 The cities´ Children´s Councilors (lasten neuvolat) and Early Childhood Education are involved in this project and will communicate as experts.
 
-## Deployments
+## Service architecture
 
-Production environment:
-https://kummilapset.hel.fi
+The Culture kids service consists of:
 
-Testing environment:
-https://kukkuu-ui.test.kuva.hel.ninja/
+- **[Kukkuu API](https://github.com/City-of-Helsinki/kukkuu):** The API backend service - The primary source of data.
+- **[Admin UI](https://github.com/City-of-Helsinki/kukkuu-admin):** A restricted UI where the events are maintained and published.
+- **[Public UI](https://github.com/City-of-Helsinki/kukkuu-ui):** (This service). The frontend service where the kids can view and enrol in culture events.
+- **[Headless CMS](https://github.com/City-of-Helsinki/headless-cms):** Content Management Service that provides dynamic pages and dynamic content for the public UI. It also provides content for the header and the footer. A React component library can be found from https://github.com/City-of-Helsinki/react-helsinki-headless-cms.
+- **[Notification Service API](https://github.com/City-of-Helsinki/notification-service-api):** A service used by the Kukkuu API to send SMS messages.
+- **Mailer:** A service used by the Kukkuu API to send emails.
 
-## See also
+### Environments
 
-The backend:
-https://github.com/City-of-Helsinki/kukkuu
+The public client environments (this service):
 
-The administration interface:
-https://github.com/City-of-Helsinki/kukkuu-admin
+- **Production environment:** https://kummilapset.hel.fi/
+- **Staging environment:** https://kukkuu-ui.stage.hel.ninja/
+- **Testing environment:** https://kukkuu-ui.test.hel.ninja/
 
-## Issues board
+The headless CMS environments:
 
-https://helsinkisolutionoffice.atlassian.net/projects/KK/issues/?filter=allissues
+- **Production environment:** https://kukkuu.content.api.hel.fi/graphql
+- **Testing environment:** https://kukkuu.app-staging.hkih.hion.dev/graphql
+
+The API environments:
+
+- **Production environment:** https://kukkuu.api.hel.fi/graphql
+- **Staging environment:** https://kukkuu.api.stage.hel.ninja/graphql
+- **Testing environment:** https://kukkuu.api.test.hel.ninja/graphql
+
+The admin client environments:
+
+- **Production environment:** https://kummilapset-admin.hel.fi/
+- **Staging environment:** https://kukkuu-admin.stage.hel.ninja/
+- **Testing environment:** https://kukkuu-admin.test.hel.ninja/
+
+### Frameworks and Libraries
+
+This project is built using the following key frameworks and libraries:
+
+- **[Vite](https://vite.dev/):** A modern frontend build tool that provides a fast and efficient development experience. It offers features like instant server start, hot module replacement, and optimized builds.
+- **[React](https://react.dev/):** A JavaScript library for building user interfaces. It allows for the creation of reusable UI components and efficient management of application state.
+- **[Apollo](https://www.apollographql.com/docs/react):** Apollo Client is a comprehensive state management library for JavaScript. It enables you to manage both local and remote data with GraphQL.
+- **[React Helsinki Headless CMS -library](https://github.com/City-of-Helsinki/react-helsinki-headless-cms/):** React Helsinki Headless CMS - is a highly customized component library based on HDS. It is designed for Helsinki City Web applications which are using preconfigured Wordpress Headless CMS environments (compatible with the library). This library is a set of unified visual components.
 
 ## Development
 
 ### Getting started
 
-- Clone the repo.
-- Create `.env.development.local` from `.env.development` if you need to modify some environment variable. For more, check [this](https://create-react-app.dev/docs/adding-custom-environment-variables#docsNav)
-- Run `yarn start`.
+1. Clone the repo.
+2. Use file `.env.development.local` to modify environment variables if needed. There is an example of that in `.env.development.local.example` For more info, check [this](https://vite.dev/guide/env-and-mode).
+3. Run either
+   - `yarn start` to run the app normally **or**
+   - `docker compose up` to run the app in a Docker container. In the future, when there are changes that need rebuilding the container, run `docker compose up --build` instead. See docker-compose.yml for build arguments (comapre to .env.development.local.example)
+4. Open [http://localhost:3001](http://localhost:3001) to view the app in the browser.
 
 For isolated developing environment, you can use our Docker instructions.
 
 ### .env variables
 
 Change VITE_ELIGIBLE_CITIES if you wish to use the project in another city or municipality.
+
+### Authorizing login to Kukkuu-UI and integrating to Kukkuu API
+
+You need to authorize the user you are trying to log in with to Kukkuu-UI. In order to log in an authorization service is needed.
+
+> **NOTE:** The Kukkuu API needs to be configured to use the same authorization service as the Kukkuu UI is using, because only then the authorization can be verified.
+
+#### Setup authorization service
+
+Setup authorization service:
+
+- **Use public test Keycloak**: The primary option. See [Using the Helsinki-Profile Keycloak](./docs/setup-keycloak.md).
+- **Use a local Tunnistamo**: For a full local environment, see [Setting up Tunnistamo and Kukkuu API locally with Docker](./docs/setup-tunnistamo.md).
+
+#### Setup Kukkuu API backend
+
+You can use the public Kukkuu API from the test environment or set up a local Kukkuu API. It should be noted that in the public test environment, the data is shared with other users. If you want to test with your own data and have an isolated system, you need to set up a local API.
+
+Choose the environment:
+
+- **Use a public test environment API**: Check that your environment variables are set correctly. The examples are given in [.env.development.local.example](./.env.development.local.example).
+- **Setup Kukkuu API locally**: See [Use Kukkuu API locally](./docs/setup-local-kukkuu-api.md).
+
+##### Using local Kukkuu API backend
+
+If you're using a local Kukkuu API backend (`VITE_API_URI=http://localhost:8081/graphql`), you can easily grant staff privileges to your user account. Here's how:
+
+1. **Start the backend:** Ensure your local Kukkuu API backend is running.
+
+2. **Access the Django admin interface:**
+
+   - Open the Django admin interface: `http://localhost:8081/admin/`
+   - Log in with the default credentials: username `admin`, password `admin`. If you don't have an admin user yet, you can create one with `python manage.py createsuperuser`.
+
+3. **Login to Kukkuu-UI:**
+   - Attempt to log in to Kukkuu-UI (`http://localhost:3000/`). This will create a user account in the backend if one doesn't exist.
+
+##### Using remote Kukkuu API backend
+
+If you're using a remote Kukkuu backend (e.g., the test environment; `VITE_API_URI=https://kukkuu.api.test.hel.ninja/graphql`), you'll need to grant staff privileges to your user account. Here's how:
+
+1. **Obtain Django admin credentials:**
+
+   - Contact the administrator of the remote backend to get the credentials.
+   - If you have access to the backend pod, you can create a superuser by running `python manage.py createsuperuser` in the pod's terminal.
+
+2. **Access the Django admin interface:**
+
+   - Open the Django admin interface for the remote backend (e.g., `https://kukkuu.api.test.hel.ninja/admin`).
+   - Log in using the credentials from step 1.
+
+3. **Login to Kukkuu-UI:**
+   - Attempt to log in to Kukkuu-UI (`http://localhost:3000/`). This will create a user account in the backend if one doesn't exist.
+
+#### JWT issuance for browser tests
+
+This section describes how JSON Web Tokens (JWT) are issued for browser tests.
+
+In browser tests, we want to bypass the regular authentication flow and directly issue JWTs for testing user roles and permissions. This is achieved by mocking the authentication service and providing pre-generated JWTs with specific claims.
+
+**How it works:**
+
+- **[`clientUtils`](./browser-tests/utils/jwt/clientUtils/):** Contains helper functions that run within the Testcafe browser environment. These functions utilize Testcafe's [`ClientFunction`](https://testcafe.io/documentation/402832/guides/basic-guides/client-functions) to interact with the browser and manage JWTs.
+- **[`mocks`](./browser-tests/utils/jwt/mocks/):** Provides functions to intercept network requests to the authentication service and replace them with mocked responses containing the test JWTs. This prevents actual authentication and allows us to control the user context during tests.
+- **[`config`](./browser-tests/utils/jwt/config/):** Holds configuration settings for the JWT library used in browser tests.
+- **[`jwt`](./browser-tests/utils/jwt/jwt.ts):** Contains utilities to create and sign JWTs symmetrically. The API needs to be configured with the same secret key to verify these tokens.
+- **[`oidc`](./browser-tests/utils/jwt/oidc.ts):** Adapts the generated JWTs to a format compatible with the OpenID Connect (OIDC) client used in the application.
+- **[`services`](./browser-tests/utils/jwt/services.ts):** Includes helper functions for managing test data, such as selecting an admin project for the test user. These functions make actual API calls (not mocked) to prepare the test environment.
+
+**Key points:**
+
+- The API and the client app (Kukkuu UI) must share the same secret key (`BROWSER_TESTS_JWT_SIGN_SECRET`) for JWT verification.
+- The `BROWSER_TESTS_JWT_AD_GROUP` environment variable defines the Active Directory group used for the test user, which should have admin privileges in the API.
+- Several environment variables are used to configure the JWT mocking and testing environment.
 
 ## Available Scripts
 
@@ -112,10 +202,10 @@ See more from [CLI guide](https://vitejs.dev/guide/cli.html#vite).
 
 ### `yarn build`
 
-Builds the app for production.<br>
+Builds the app for production to the `build` directory.
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
+The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 See the section about [building for production](https://vitejs.dev/guide/build.html) and [CLI guide](https://vitejs.dev/guide/cli.html#vite-build) for more information.
@@ -125,33 +215,33 @@ See the section about [building for production](https://vitejs.dev/guide/build.h
 Locally preview the production build. Do not use this as a production server as it's not designed for it.
 See more from [CLI guide](https://vitejs.dev/guide/cli.html#vite-preview).
 
+### `yarn generate:graphql`
+
+Fetches the GraphQL schema from the backend and updates typing information. The configuration is written in [codegen.ts](./codegen.ts). Check that the environment variables are set properly to match with your API.
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [Getting started](https://vitest.dev/guide/) for more information.
 
-### `yarn generate:graphql`
-
-Generate static types for GraphQL queries by using the schema from the backend server.
-
 ### `yarn test:browser`
 
 Runs browser tests against your local version of the application (assumes port `3001`).
 
-The `yarn test:browser:ci` variant of this command is meant to run in the CI, and it targets the staging server. It uses headless mode and may therefore behave differently compared to the local test runner.
-
-Browser tests are ran against PR and staging environments when after they have been built and deployed.
+- The `yarn test:browser:ci` variant of this command is meant to run in the CI, and it targets the staging server. It uses headless mode and may therefore behave differently compared to the local test runner.
+- The deployment pipelines are running the browser tests as automated actions. They are run against PR and staging environments when after they have been built and deployed.
+- See also [JWT issuance for browser tests](#jwt-issuance-for-browser-tests)
 
 To run browser tests locally, you need to configure the browser testing environment:
 
-1. Run a local Kukkuu API instance with the browser testing JWT features set on. Like that the UI client can issue new JWT for authorization by itself.
-2. Run a local Kukkuu UI (i.e. this repository's app).
-3. Carefully double check that the UI instance is configured to use the local API. The browser test JWT token configurations also needs to match in order to successfully verify the newly issued tokens. You navigate through the UI manually to see that everything is working as expected.
+1. Run a local Kukkuu API instance with the browser testing JWT features set on. This allows the UI client to issue new JWTs for authorization by itself.
+2. Run a local Kukkuu UI.
+3. Carefully double-check that the UI instance is configured to use the local API. The browser test JWT token configurations also need to match in order to successfully verify the newly issued tokens. You can navigate through the UI manually to see that everything is working as expected.
 4. Run the browser test with `yarn test:browser` or `yarn test:browser:ci`.
 
 For configuration, check the following environment variables:
 
-1. `BROWSER_TESTS_JWT_SIGN_SECRET` needs to be a valid 256 bits token and it needs to be configured the same in both, the API and in the Admin UI in order to verify the self issued JWT for browser testing.
+1. `BROWSER_TESTS_JWT_SIGN_SECRET` needs to be a valid 256 bits token and it needs to be configured the same in both, the API and in the Kukkuu UI in order to verify the self issued JWT for browser testing.
 2. `BROWSER_TESTS_PROJECT_YEAR` defines the (year) project that is used for new child. This matters muc, because the year should linked to the browser test user group in the API.
 3. `BROWSER_TESTS_ENV_URL` tells for Testcafe where the testable UI is
 4. `VITE_API_URI` defines the Kukkuu API GraphQL endpoint. It's important in browser testing configuration for JWT mocking reasons.
@@ -161,88 +251,9 @@ For configuration, check the following environment variables:
 
 There is an [.env.test.local.example](.env.test.local.example) that can be copied to a file named `.env.test.local`. If the `.env.test.local` is present, it will be used during the local Testcafe runs.
 
-#### Test JWT issuance for browser tests
+## Headless CMS
 
-There is a ['library'](./browser-tests/utils/jwt/) that helps issuing symmetrically signed JWT tokens, that can be used only for browser testing.
-
-How it should work:
-
-- [clientUtils](./browser-tests/utils/jwt/clientUtils/) contains the scripts that will be ran in the Testcafe (headless) browser. The scripts there are sugared with the [Testcafes ClientFunction](https://testcafe.io/documentation/402832/guides/basic-guides/client-functions).
-- [mocks](./browser-tests/utils/jwt/mocks/) contains the mocking functions that can be used to intercept the real OIDC client networking. The idea is that we never allow the Testcafe to succesfully connect to the configured authorization service. Instead of that, we mock the result with our browser testing JWT tools and populate that mocked data to the local storage or the session storage of the Testcafe browser.
-- [config](./browser-tests/utils/jwt/config/) contains a class that serves the browser testing JWT library's configurations.
-- [jwt](./browser-tests/utils/jwt/jwt.ts) has the utilities to create and sign a symmetrical JWT for browser testing purposes. Note that the API needs to have the same signature verification key configured.
-- [oidc](./browser-tests/utils/jwt/oidc.ts) uses the JWT generators and offers the information in a format that can be used by the OIDC client.
-- [services](./browser-tests/utils/jwt/services.ts) has some tools that are needed in order to select admin project, etc. _These functions makes real calls to the API (not mocked)_.
-
-## Docker
-
-`docker compose up` to start the dockerized dev-environment. Not for production!!!  
-`docker compose down` stops the container.
-
-## Setting up development environment locally with docker
-
-### Set tunnistamo hostname
-
-Add the following line to your hosts file (`/etc/hosts` on mac and linux):
-
-    127.0.0.1 tunnistamo-backend
-
-### Create a new OAuth app on GitHub
-
-Go to https://github.com/settings/developers/ and add a new app with the following settings:
-
-- Application name: can be anything, e.g. local tunnistamo
-- Homepage URL: http://tunnistamo-backend:8000
-- Authorization callback URL: http://tunnistamo-backend:8000/accounts/github/login/callback/
-
-Save. You'll need the created **Client ID** and **Client Secret** for configuring tunnistamo in the next step.
-
-### Login provider configurations
-
-Set the environment variables so that the OIDC client gets configured properly:
-
-The configuration constants are [here](./src/domain/auth/constants.ts).
-An example of a full working configuration can be seen [here](./src/domain/auth/README.md).
-
-### Install local tunnistamo
-
-Clone https://github.com/City-of-Helsinki/tunnistamo/.
-
-Follow the instructions for setting up tunnistamo locally. Before running `docker compose up` set the following settings in tunnistamo roots `docker-compose.env.yaml`:
-
-- SOCIAL_AUTH_GITHUB_KEY: **Client ID** from the GitHub OAuth app
-- SOCIAL_AUTH_GITHUB_SECRET: **Client Secret** from the GitHub OAuth app
-
-After you've got tunnistamo running locally, ssh to the tunnistamo docker container:
-
-`docker compose exec django bash`
-
-and execute the following four commands inside your docker container:
-
-```bash
-./manage.py add_oidc_client -n kukkuu-ui -t "id_token token" -u "http://localhost:3000/callback" "http://localhost:3000/silent_renew.html" -i https://api.hel.fi/auth/kukkuu-ui -m github -s dev
-./manage.py add_oidc_client -n kukkuu-api -t "code" -u http://localhost:8081/return -i https://api.hel.fi/auth/kukkuu -m github -s dev -c
-./manage.py add_oidc_api -n kukkuu -d https://api.hel.fi/auth -s email,profile -c https://api.hel.fi/auth/kukkuu
-./manage.py add_oidc_api_scope -an kukkuu -c https://api.hel.fi/auth/kukkuu -n "Kulttuurin kummilapset" -d"Lorem ipsum"
-./manage.py add_oidc_client_to_api_scope -asi https://api.hel.fi/auth/kukkuu -c https://api.hel.fi/auth/kukkuu-ui
-```
-
-### Install kukkuu locally
-
-Clone the repository (https://github.com/City-of-Helsinki/kukkuu). Follow the instructions for running kukkuu with docker. Before running `docker compose up` set the following settings in kukkuu roots `docker-compose.env.yaml`:
-
-- DEBUG=1
-- CORS_ORIGIN_ALLOW_ALL=1
-- TOKEN_AUTH_AUTHSERVER_URL=http://tunnistamo-backend:8000/openid
-- APPLY_MIGRATIONS=1
-- TOKEN_AUTH_AUTHSERVER_URL=http://tunnistamo-backend:8000/openid
-- MEDIA_ROOT=/app/var/
-
-If you do not have a super user / admin to administrate the API yet, you can create one with `docker compose run django python manage.py add_admin_user -u admin -p admin -e admin@example.com`.
-
-### Headless CMS
-
-A headless CMS system is used to produce some dynamic pages. The Headless CMS server endpoint is set with `VITE_CMS_URI` environment variable.
+A headless CMS system is used to produce some dynamic pages, but also the header and the footer contents for the UI (layout). The Headless CMS server endpoint is set with `VITE_CMS_URI` environment variable.
 
 The default server that is used is the test / staging server:
 
@@ -250,55 +261,21 @@ The default server that is used is the test / staging server:
 VITE_CMS_URI="https://kukkuu.app-staging.hkih.hion.dev/graphql"
 ```
 
-### kukkuu-ui
+See the available servers from [Environments](#environments).
 
-Run `docker compose up`, now the app should be running at `http://localhost:3000/`!
-`docker compose down` stops the container.
+To login to the Wordpress admin UI, use
 
-OR
+- `/wp/wp-admin/` -endpoint, if the credentials you are using are Entra ID -credentials
+- `/wp-login.php` -endpoint, if the credentials you are using are not Entra ID -credentials.
 
-Run `yarn && yarn start`
+### Headless CMS React Components -lib
 
-## Debugging
+> Git repository: https://github.com/City-of-Helsinki/react-helsinki-headless-cms/
 
-### Debugging project in VS Code
+The React Helsinki Headless CMS is a React component library developed by the City of Helsinki to facilitate the creation of web applications that interact with a headless WordPress CMS. This library provides a suite of pre-built components and utilities designed to streamline the development process and ensure consistency across various applications.
 
-To debug in VS Code:
+The architecture of the React Helsinki Headless CMS is modular and designed for flexibility:
 
-1. Install the "Debugger for Chrome" extension to VS Code
-2. Run `yarn start`
-3. Set a breakpoint
-4. Run "Chrome" debug configuration in VS Code
-5. Reload the project in your browser
-
-### Debugging Tests in VS Code
-
-No plugin is needed.
-
-1. Set a breakpoint
-2. Run the "Debug tests" debugger configuration
-
-### Debugging Tests in Chrome
-
-We recommend using VS Code's debugger.
-
-1. Place a `debugger;` statement in any test
-2. Run yarn `test:debug`
-3. Open `about:inspect` in Chrome
-4. Select `inspect` on you process, press Play and you're good to go.
-
-See more detailed instructions here:
-https://create-react-app.dev/docs/debugging-tests#debugging-tests-in-chrome
-
-### Debug Redux state
-
-Redux internal state can be visualized with [Redux-devtools](https://github.com/zalmoxisus/redux-devtools-extension)
-
-1. Follow instructions in [here](https://github.com/zalmoxisus/redux-devtools-extension)
-2. Explore.
-
-## Learn More
-
-You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Component-Based Structure: The library is organized into reusable React components, each responsible for a specific piece of functionality or UI element. This modularity allows developers to compose applications efficiently by assembling these components as needed.
+- Integration with Headless CMS: The library is tailored to work seamlessly with headless WordPress CMS environments. It relies on GraphQL schemas to fetch and present content, making it heavily dependent on the structure and features of the connected WordPress instance.
+- Apollo Client Integration: For data management, the library utilizes Apollo Client to handle GraphQL queries and mutations. Developers are expected to provide an Apollo client linked to a GraphQL endpoint with a supported schema (headless CMS) in the apolloClient field of the configuration object.
