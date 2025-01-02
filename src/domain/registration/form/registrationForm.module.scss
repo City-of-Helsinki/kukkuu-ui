@@ -15,7 +15,9 @@ $plusIconHeight: 2rem;
     margin-bottom: auto;
   }
   @include layout.respond-above(l) {
-    grid-template-columns: 1fr minmax(auto, variables.$containerFormMaxWidth) 1fr;
+    grid-template-columns:
+      1fr minmax(auto, variables.$containerFormMaxWidth)
+      1fr;
   }
 
   @include layout.respond-below(l) {

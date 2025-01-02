@@ -1,4 +1,4 @@
-@use "sass:map";
+@use 'sass:map';
 @use '~styles/layout';
 @use '~styles/variables';
 
@@ -13,8 +13,11 @@
   grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
   display: grid;
   @include layout.respond-above(xl-minus) {
-    background-image:
-      linear-gradient(to bottom, var(--color-summer) 276px, var(--color-black-5) 0),
+    background-image: linear-gradient(
+        to bottom,
+        var(--color-summer) 276px,
+        var(--color-black-5) 0
+      ),
       url('/images/Culture_kids_background@2x.png');
     background-repeat: repeat-x;
     background-position: center bottom -2px;

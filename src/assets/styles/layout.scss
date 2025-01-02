@@ -1,4 +1,4 @@
-@use "sass:map";
+@use 'sass:map';
 @use '~hds-design-tokens/lib/breakpoint/all.scss' as hds;
 @use '~styles/variables';
 
@@ -84,7 +84,9 @@ $breakpoints: (
 @mixin formContainer() {
   @include respond-above(m) {
     display: grid;
-    grid-template-columns: 1fr minmax(auto, variables.$containerFormMaxWidth) 1fr;
+    grid-template-columns:
+      1fr minmax(auto, variables.$containerFormMaxWidth)
+      1fr;
 
     > * {
       grid-column: 2;
@@ -99,6 +101,8 @@ $breakpoints: (
     grid-column: 2;
   }
   @include respond-above(l) {
-    grid-template-columns: 1fr minmax(auto, variables.$containerFormMaxWidth) 1fr;
+    grid-template-columns:
+      1fr minmax(auto, variables.$containerFormMaxWidth)
+      1fr;
   }
 }

@@ -8,7 +8,8 @@
   position: relative;
   margin-top: calc(var(--spacing-s) * -1);
   --footer-background: var(--color-black-10) !important;
-  a, a:visited {
+  a,
+  a:visited {
     color: var(--color-black-60);
   }
 }
