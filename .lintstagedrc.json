@@ -1,8 +1,8 @@
 {
   "**/*.{js,jsx,ts,tsx}": [
-    "eslint --max-warnings=0",
-    "prettier --write",
-    "vitest related --run"
+    "yarn lint --max-warnings=0",
+    "yarn format:code",
+    "yarn test:staged"
   ],
-  "**/*.{html,json,css,scss,md,mdx}": ["prettier -w"]
+  "**/*.{html,json,css,scss,md,mdx}": ["yarn format:scss"]
 }
