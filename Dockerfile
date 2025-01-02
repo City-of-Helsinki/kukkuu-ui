@@ -40,6 +40,13 @@ FROM appbase AS development
 ARG NODE_ENV=development
 ENV NODE_ENV $NODE_ENV
 
+# Enable hot reload by default by polling for file changes.
+#
+# NOTE: Can be disabled by setting CHOKIDAR_USEPOLLING=false in file `.env`
+#       if hot reload works on your system without polling to save CPU time.
+ARG CHOKIDAR_USEPOLLING=true
+ENV CHOKIDAR_USEPOLLING=${CHOKIDAR_USEPOLLING}
+
 # copy in our source code last, as it changes the most
 COPY --chown=root:root . .
 
