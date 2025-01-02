@@ -1,1 +1,2 @@
+yarn doctoc .
 yarn lint-staged

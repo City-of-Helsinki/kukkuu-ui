@@ -1,3 +1,43 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [UI for Kulttuurin kummilapset / Culture Kids](#ui-for-kulttuurin-kummilapset--culture-kids)
+  - [About](#about)
+    - [What?](#what)
+    - [How?](#how)
+    - [When?](#when)
+  - [Deployments](#deployments)
+  - [See also](#see-also)
+  - [Issues board](#issues-board)
+  - [Development](#development)
+    - [Getting started](#getting-started)
+    - [.env variables](#env-variables)
+  - [Available Scripts](#available-scripts)
+    - [`yarn start`](#yarn-start)
+    - [`yarn build`](#yarn-build)
+    - [`yarn serve`](#yarn-serve)
+    - [`yarn test`](#yarn-test)
+    - [`yarn generate:graphql`](#yarn-generategraphql)
+    - [`yarn test:browser`](#yarn-testbrowser)
+      - [Test JWT issuance for browser tests](#test-jwt-issuance-for-browser-tests)
+  - [Docker](#docker)
+  - [Setting up development environment locally with docker](#setting-up-development-environment-locally-with-docker)
+    - [Set tunnistamo hostname](#set-tunnistamo-hostname)
+    - [Create a new OAuth app on GitHub](#create-a-new-oauth-app-on-github)
+    - [Login provider configurations](#login-provider-configurations)
+    - [Install local tunnistamo](#install-local-tunnistamo)
+    - [Install kukkuu locally](#install-kukkuu-locally)
+    - [Headless CMS](#headless-cms)
+    - [kukkuu-ui](#kukkuu-ui)
+  - [Debugging](#debugging)
+    - [Debugging project in VS Code](#debugging-project-in-vs-code)
+    - [Debugging Tests in VS Code](#debugging-tests-in-vs-code)
+    - [Debugging Tests in Chrome](#debugging-tests-in-chrome)
+    - [Debug Redux state](#debug-redux-state)
+  - [Learn More](#learn-more)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 [![codecov](https://codecov.io/gh/City-of-Helsinki/kukkuu-ui/branch/develop/graph/badge.svg)](https://codecov.io/gh/City-of-Helsinki/kukkuu-ui)
 ![Build & Staging](https://github.com/City-of-Helsinki/kukkuu-ui/workflows/Build%20&%20Staging%20&%20Accept/badge.svg)
 
