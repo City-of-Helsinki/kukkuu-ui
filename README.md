@@ -31,6 +31,13 @@
   - [`yarn test:browser`](#yarn-testbrowser)
 - [Headless CMS](#headless-cms)
   - [Headless CMS React Components -lib](#headless-cms-react-components--lib)
+- [Releases, changelogs and deployments](#releases-changelogs-and-deployments)
+  - [Conventional Commits](#conventional-commits)
+  - [Releasable units](#releasable-units)
+  - [Configuration](#configuration)
+  - [Troubleshoting release-please](#troubleshoting-release-please)
+    - [Fix merge conflicts by running release-please -action manually](#fix-merge-conflicts-by-running-release-please--action-manually)
+  - [Deployments](#deployments)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -214,7 +221,7 @@ The commit-msg hook is configured to run the following command:
 npx --no-install commitlint --edit "$1"
 ```
 
-- `npx --no-install commitlint --edit "$1"`: This command uses [Commitlint](https://commitlint.js.org/#/) to lint commit messages based on the project's commit message conventions. This repo follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) -rules.
+- `npx --no-install commitlint --edit "$1"`: This command uses [Commitlint](https://commitlint.js.org/#/) to lint commit messages based on the project's commit message conventions. This repo follows the [Conventional Commits](#conventional-commits).
 
 ## Available Scripts
 
@@ -310,3 +317,71 @@ The architecture of the React Helsinki Headless CMS is modular and designed for 
 - Component-Based Structure: The library is organized into reusable React components, each responsible for a specific piece of functionality or UI element. This modularity allows developers to compose applications efficiently by assembling these components as needed.
 - Integration with Headless CMS: The library is tailored to work seamlessly with headless WordPress CMS environments. It relies on GraphQL schemas to fetch and present content, making it heavily dependent on the structure and features of the connected WordPress instance.
 - Apollo Client Integration: For data management, the library utilizes Apollo Client to handle GraphQL queries and mutations. Developers are expected to provide an Apollo client linked to a GraphQL endpoint with a supported schema (headless CMS) in the apolloClient field of the configuration object.
+
+## Releases, changelogs and deployments
+
+The used environments are listed in [Service environments](#service-environments).
+
+The application uses automatic semantic versions and is released using [Release Please](https://github.com/googleapis/release-please).
+
+> Release Please is a GitHub Action that automates releases for you. It will create a GitHub release and a GitHub Pull Request with a changelog based on conventional commits.
+
+Each time you merge a "normal" pull request, the release-please-action will create or update a "Release PR" with the changelog and the version bump related to the changes (they're named like `release-please--branches--master--components--kukkuu-ui`).
+
+To create a new release for an app, this release PR is merged, which creates a new release with release notes and a new tag. This tag will be picked by Azure pipeline and trigger a new deployment to staging. From there, the release needs to be manually released to production.
+
+When merging release PRs, make sure to use the "Rebase and merge" (or "Squash and merge") option, so that Github doesn't create a merge commit. All the commits must follow the conventional commits format. This is important, because the release-please-action does not work correctly with merge commits (there's an open issue you can track: [Chronological commit sorting means that merged PRs can be ignored ](https://github.com/googleapis/release-please/issues/1533)).
+
+See [Release Please Implementation Design](https://github.com/googleapis/release-please/blob/main/docs/design.md) for more details.
+
+And all docs are available here: [release-please docs](https://github.com/googleapis/release-please/tree/main/docs).
+
+### Conventional Commits
+
+Use [Conventional Commits](https://www.conventionalcommits.org/) to ensure that the changelogs are generated correctly.
+
+### Releasable units
+
+Release please goes through commits and tries to find "releasable units" using commit messages as guidance - it will then add these units to their respective release PR's and figures out the version number from the types: `fix` for patch, `feat` for minor, `feat!` for major. None of the other types will be included in the changelog. So, you can use for example `chore` or `refactor` to do work that does not need to be included in the changelog and won't bump the version.
+
+### Configuration
+
+The release-please workflow is located in the [release-please.yml](./.github/workflows/release-please.yml) file.
+
+The configuration for release-please is located in the [release-please-config.json](./release-please-config.json) file.
+See all the options here: [release-please docs](https://github.com/googleapis/release-please/blob/main/docs/manifest-releaser.md).
+
+The manifest file is located in the [release-please-manifest.json](./.release-please-manifest.json) file.
+
+When adding a new app, add it to both the [release-please-config.json](./release-please-config.json) and [release-please-manifest.json](./.release-please-manifest.json) file with the current version of the app. After this, release-please will keep track of versions with [release-please-manifest.json](./.release-please-manifest.json).
+
+### Troubleshoting release-please
+
+If you were expecting a new release PR to be created or old one to be updated, but nothing happened, there's probably one of the older release PR's in pending state or action didn't run.
+
+1. Check if the release action ran for the last merge to main. If it didn't, run the action manually with a label.
+2. Check if there's any open release PR. If there is, the work is now included on this one (this is the normal scenario).
+3. If you do not see any open release PR related to the work, check if any of the closed PR's are labeled with `autorelease: pending` - ie. someone might have closed a release PR manually. Change the closed PR's label to `autorelease: tagged`. Then go and re-run the last merge workflow to trigger the release action - a new release PR should now appear.
+4. Finally check the output of the release action. Sometimes the bot can't parse the commit message and there is a notification about this in the action log. If this happens, it won't include the work in the commit either. You can fix this by changing the commit message to follow the [Conventional Commits](https://www.conventionalcommits.org/) format and rerun the action.
+
+**Important!** If you have closed a release PR manually, you need to change the label of closed release PR to `autorelease: tagged`. Otherwise, the release action will not create a new release PR.
+
+**Important!** Extra label will force release-please to re-generate PR's. This is done when action is run manually with prlabel -option
+
+Sometimes there might be a merge conflict in release PR - this should resolve itself on the next push to main. It is possible run release-please action manually with label, it should recreate the PR's. You can also resolve it manually, by updating the [release-please-manifest.json](./.release-please-manifest.json) file.
+
+#### Fix merge conflicts by running release-please -action manually
+
+1. Open [release-please github action](https://github.com/City-of-Helsinki/kukkuu-ui/actions/workflows/release-please.yml)
+2. Click **Run workflow**
+3. Check Branch is **master**
+4. Leave label field empty. New label is not needed to fix merge issues
+5. Click **Run workflow** -button
+
+There's also a CLI for debugging and manually running releases available for release-please: [release-please-cli](https://github.com/googleapis/release-please/blob/main/docs/cli.md)
+
+### Deployments
+
+When a Release-Please pull request is merged and a version tag is created (or a proper tag name for a commit is manually created), this tag will be picked by Azure pipeline, which then triggers a new deployment to staging. From there, the deployment needs to be manually approved to allow it to proceed to the production environment.
+
+The tag name is defined in the [azure-pipelines-release.yml](./azure-pipelines-release.yml).
