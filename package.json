@@ -46,6 +46,24 @@
       "last 1 safari version"
     ]
   },
+  "//": {
+    "Why are packages in resolutions?": {
+      "hds-react/cookie": [
+        "To fix https://github.com/City-of-Helsinki/kukkuu-ui/security/dependabot/140",
+        "NOTE: This can be removed if hds-react starts to depend on >=v1 cookie"
+      ],
+      "@types/cookie": [
+        "To use the last known @types/cookie version, only for <v1 cookie",
+        "",
+        "NOTE: This can be removed if all dependencies start to depend on >=v1 cookie ",
+        "which provides the types itself"
+      ]
+    }
+  },
+  "resolutions": {
+    "hds-react/cookie": "^0.7.2",
+    "@types/cookie": "^0.6.0"
+  },
   "dependencies": {
     "@apollo/client": "^3.12.4",
     "@faker-js/faker": "^9.3.0",
