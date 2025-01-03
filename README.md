@@ -19,6 +19,9 @@
       - [Using local Kukkuu API backend](#using-local-kukkuu-api-backend)
       - [Using remote Kukkuu API backend](#using-remote-kukkuu-api-backend)
     - [JWT issuance for browser tests](#jwt-issuance-for-browser-tests)
+  - [Husky Git Hooks](#husky-git-hooks)
+    - [Pre-commit Hook](#pre-commit-hook)
+    - [Commit-msg Hook](#commit-msg-hook)
 - [Available Scripts](#available-scripts)
   - [`yarn start`](#yarn-start)
   - [`yarn build`](#yarn-build)
@@ -184,6 +187,34 @@ In browser tests, we want to bypass the regular authentication flow and directly
 - The API and the client app (Kukkuu UI) must share the same secret key (`BROWSER_TESTS_JWT_SIGN_SECRET`) for JWT verification.
 - The `BROWSER_TESTS_JWT_AD_GROUP` environment variable defines the Active Directory group used for the test user, which should have admin privileges in the API.
 - Several environment variables are used to configure the JWT mocking and testing environment.
+
+### Husky Git Hooks
+
+This project uses [Husky](https://typicode.github.io/husky/#/) to manage Git hooks. Husky is configured to run specific scripts before committing changes to ensure code quality and consistency.
+
+#### Pre-commit Hook
+
+The pre-commit hook is configured to run the following commands:
+
+```sh
+yarn doctoc .
+yarn lint-staged
+```
+
+- `yarn doctoc .`: This command updates the table of contents in your markdown files.
+- `yarn lint-staged`: This command runs linting on staged files to ensure they meet the project's coding standards. The lint-staged configuration can be found from [.lintstagedrc.json](./.lintstagedrc.json).
+
+> NOTE: `doctoc` and `husky` does not work seamlessly together, since the `doctoc` does update the TOCs of the markdown files, but does not reject the pre-commit hook execution, and only leaves the refactored files as unstaged in Git.
+
+#### Commit-msg Hook
+
+The commit-msg hook is configured to run the following command:
+
+```sh
+npx --no-install commitlint --edit "$1"
+```
+
+- `npx --no-install commitlint --edit "$1"`: This command uses [Commitlint](https://commitlint.js.org/#/) to lint commit messages based on the project's commit message conventions. This repo follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) -rules.
 
 ## Available Scripts
 
