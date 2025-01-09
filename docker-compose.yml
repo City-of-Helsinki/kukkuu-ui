@@ -17,7 +17,7 @@ services:
         VITE_OIDC_SCOPE: 'openid profile email'
         VITE_OIDC_AUDIENCES: kukkuu-api-dev,profile-api-test
         VITE_ADMIN_TICKET_VALIDATION_URL: https://kukkuu-admin.test.hel.ninja/check-ticket-validity
-        VITE_CMS_URI: https://kukkuu.app-staging.hkih.hion.dev//graphql
+        VITE_CMS_URI: https://kukkuu.app-staging.hkih.hion.dev/graphql
         VITE_HELSINKI_PROFILE_URL: https://profiili.test.hel.ninja/loginsso
         VITE_MATOMO_URL_BASE: https://webanalytics.digiaiiris.com/js/
         VITE_MATOMO_SITE_ID: 813
