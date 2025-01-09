@@ -10,7 +10,7 @@
 
 # Setting up Tunnistamo and Kukkuu API locally with Docker
 
-> NOTE: The Tunnistamo has been replaced with Keycloak during the autumn of 2024. The Tunnistamo is still a great choice as an auth service if a local authorization service is needed in a local development.
+> NOTE: Tunnistamo has been replaced with Keycloak during the autumn of 2024. Tunnistamo is still a great choice as an auth service if a local authorization service is needed in a local development.
 
 ## Set Tunnistamo hostname
 
