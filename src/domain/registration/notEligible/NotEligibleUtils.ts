@@ -17,7 +17,8 @@ const isBirthyearEligible = (value: number): boolean => {
  * @returns {Array} Supported cities
  */
 const getEligibleCities = (): Array<string> => {
-  const eligibleCities = import.meta.env.VITE_ELIGIBLE_CITIES || 'helsinki';
+  const eligibleCities =
+    import.meta.env.VITE_ELIGIBLE_CITIES || 'helsinki,helsingfors';
   return eligibleCities.toLowerCase().split(',');
 };
 

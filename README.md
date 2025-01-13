@@ -11,13 +11,15 @@
   - [Environments](#environments)
   - [Frameworks and Libraries](#frameworks-and-libraries)
 - [Development](#development)
+  - [Requirements](#requirements)
   - [Getting started](#getting-started)
+    - [Running using local Node.js](#running-using-local-nodejs)
+    - [Running using Docker](#running-using-docker)
+    - [Running the Kukkuu backend locally](#running-the-kukkuu-backend-locally)
+    - [Creating a user profile](#creating-a-user-profile)
   - [.env variables](#env-variables)
   - [Authorizing login to Kukkuu-UI and integrating to Kukkuu API](#authorizing-login-to-kukkuu-ui-and-integrating-to-kukkuu-api)
     - [Setup authorization service](#setup-authorization-service)
-    - [Setup Kukkuu API backend](#setup-kukkuu-api-backend)
-      - [Using local Kukkuu API backend](#using-local-kukkuu-api-backend)
-      - [Using remote Kukkuu API backend](#using-remote-kukkuu-api-backend)
     - [JWT issuance for browser tests](#jwt-issuance-for-browser-tests)
   - [Husky Git Hooks](#husky-git-hooks)
     - [Pre-commit Hook](#pre-commit-hook)
@@ -106,16 +108,77 @@ This project is built using the following key frameworks and libraries:
 
 ## Development
 
+### Requirements
+
+Compatibility defined by [Dockerfile](./Dockerfile):
+
+- Node.js 20.x
+- Yarn 1.x
+
 ### Getting started
 
-1. Clone the repo.
-2. Use file `.env.development.local` to modify environment variables if needed. There is an example of that in `.env.development.local.example` For more info, check [this](https://vite.dev/guide/env-and-mode).
-3. Run either
-   - `yarn start` to run the app normally **or**
-   - `docker compose up` to run the app in a Docker container. In the future, when there are changes that need rebuilding the container, run `docker compose up --build` instead. See docker-compose.yml for build arguments (comapre to .env.development.local.example)
-4. Open [http://localhost:3001](http://localhost:3001) to view the app in the browser.
+1. Clone this repository
+2. If you're new to multiple `.env*` files, read Vite's [Env Variables and Modes](https://vite.dev/guide/env-and-mode)
+3. If you're new to multiple Docker compose files, read Docker's [Merge Compose Files](https://docs.docker.com/compose/how-tos/multiple-compose-files/merge/)
+4. Follow the instructions below for your preferred way of running this app:
+   - [Running using local Node.js](#running-using-local-nodejs) **or**
+   - [Running using Docker & Docker compose](#running-using-docker)
 
-For isolated developing environment, you can use our Docker instructions.
+#### Running using local Node.js
+
+Using the following instructions you should be able to:
+
+- Run this UI using local Node.js
+- Run the Kukkuu backend locally in Docker or use the public test environment's backend
+- Use the public test environments of Helsinki Profile and Keycloak for authentication
+
+1. Install the [requirements](#requirements)
+2. If you want to use the [public test environment's backend](https://kukkuu.api.test.hel.ninja/graphql):
+   - Delete `.env.development.local` file, if you have it left over, so `.env.development` is used
+3. If you want to run the Kukkuu backend locally:
+   - Copy `.env.development.local.example` to `.env.development.local` (used as env_file for environment variables)
+   - Set up the backend by following the steps in [Running the Kukkuu backend locally](#running-the-kukkuu-backend-locally)
+4. Run `yarn` to install dependencies
+5. Run `yarn start` to run the app
+6. Open http://localhost:3000 to view the app in the browser.
+7. [Create a user profile](#creating-a-user-profile) if you want to test that authentication and backend connection work.
+
+#### Running using Docker
+
+Using the following instructions you should be able to:
+
+- Run this UI using Docker & Docker compose
+- Run the Kukkuu backend locally in Docker or use the public test environment's backend
+- Use the public test environments of Helsinki Profile and Keycloak for authentication
+
+1. If you want to run the Kukkuu backend locally:
+   - Copy `compose.override.yaml.example` to `compose.override.yaml` (used for build args and setting the env_file)
+   - Copy `.env.development.local.example` to `.env.development.local` (used as env_file for environment variables)
+   - Set up the backend by following the steps in [Running the Kukkuu backend locally](#running-the-kukkuu-backend-locally)
+2. If you want to use the [public test environment's backend](https://kukkuu.api.test.hel.ninja/graphql):
+   - Delete `compose.override.yaml`, if you have it left over, so `compose.yaml` is used
+3. Run `docker compose up` to run the app
+   - Later if there are changes that need rebuilding the container, run `docker compose up --build`
+4. Open http://localhost:3000 to view the app in the browser.
+5. [Create a user profile](#creating-a-user-profile) if you want to test that authentication and backend connection work.
+
+#### Running the Kukkuu backend locally
+
+If you want to run the Kukkuu backend locally:
+
+- Clone the [backend repo](https://github.com/City-of-Helsinki/kukkuu)
+- Follow its README to run it locally in Docker
+- After this the backend should be running at http://localhost:8081/graphql (i.e. the value of `VITE_API_URI`)
+  using public Keycloak test environment for authentication.
+
+#### Creating a user profile
+
+This can be done after you have set up the backend and the UI is running.
+
+Log in to the UI—follow the instructions to create a test environment Helsinki Profile profile
+if you don't already have one—and create a user profile to the used Kukkuu backend. By default
+using year 2020 as the child's birthyear, Helsinki as their home municipality and checking the
+"I assure that the information I have provided is correct" checkbox should work.
 
 ### .env variables
 
@@ -123,56 +186,18 @@ Change VITE_ELIGIBLE_CITIES if you wish to use the project in another city or mu
 
 ### Authorizing login to Kukkuu-UI and integrating to Kukkuu API
 
-You need to authorize the user you are trying to log in with to Kukkuu-UI. In order to log in an authorization service is needed.
+User needs to be authorized to be able to log in with Kukkuu UI to Kukkuu API. For this, an authorization service is needed.
 
-> **NOTE:** The Kukkuu API needs to be configured to use the same authorization service as the Kukkuu UI is using, because only then the authorization can be verified.
+> **NOTE:** The Kukkuu API and Kukkuu UI must be configured to use the same authorization service for authorization to work.
 
 #### Setup authorization service
 
-Setup authorization service:
+By default the public test Keycloak environment is used as the authentication service (More details in
+[Using the Helsinki-Profile Keycloak](./docs/setup-keycloak.md)). This is the recommended way for development.
 
-- **Use public test Keycloak**: The primary option. See [Using the Helsinki-Profile Keycloak](./docs/setup-keycloak.md).
-- **Use a local Tunnistamo**: For a full local environment, see [Setting up Tunnistamo and Kukkuu API locally with Docker](./docs/setup-tunnistamo.md).
-
-#### Setup Kukkuu API backend
-
-You can use the public Kukkuu API from the test environment or set up a local Kukkuu API. It should be noted that in the public test environment, the data is shared with other users. If you want to test with your own data and have an isolated system, you need to set up a local API.
-
-Choose the environment:
-
-- **Use a public test environment API**: Check that your environment variables are set correctly. The examples are given in [.env.development.local.example](./.env.development.local.example).
-- **Setup Kukkuu API locally**: See [Use Kukkuu API locally](./docs/setup-local-kukkuu-api.md).
-
-##### Using local Kukkuu API backend
-
-If you're using a local Kukkuu API backend (`VITE_API_URI=http://localhost:8081/graphql`), you can easily grant staff privileges to your user account. Here's how:
-
-1. **Start the backend:** Ensure your local Kukkuu API backend is running.
-
-2. **Access the Django admin interface:**
-
-   - Open the Django admin interface: `http://localhost:8081/admin/`
-   - Log in with the default credentials: username `admin`, password `admin`. If you don't have an admin user yet, you can create one with `python manage.py createsuperuser`.
-
-3. **Login to Kukkuu-UI:**
-   - Attempt to log in to Kukkuu-UI (`http://localhost:3000/`). This will create a user account in the backend if one doesn't exist.
-
-##### Using remote Kukkuu API backend
-
-If you're using a remote Kukkuu backend (e.g., the test environment; `VITE_API_URI=https://kukkuu.api.test.hel.ninja/graphql`), you'll need to grant staff privileges to your user account. Here's how:
-
-1. **Obtain Django admin credentials:**
-
-   - Contact the administrator of the remote backend to get the credentials.
-   - If you have access to the backend pod, you can create a superuser by running `python manage.py createsuperuser` in the pod's terminal.
-
-2. **Access the Django admin interface:**
-
-   - Open the Django admin interface for the remote backend (e.g., `https://kukkuu.api.test.hel.ninja/admin`).
-   - Log in using the credentials from step 1.
-
-3. **Login to Kukkuu-UI:**
-   - Attempt to log in to Kukkuu-UI (`http://localhost:3000/`). This will create a user account in the backend if one doesn't exist.
+Only if you need a fully local environment, including the authentication service, Tunnistamo is recommended
+to be set up locally instead as the authentication service (See [Setting up Tunnistamo and Kukkuu API locally with Docker](./docs/setup-tunnistamo.md)).
+You can try to set up Keycloak locally too, but unfortunately there are no instructions for this, as it has not been attempted.
 
 #### JWT issuance for browser tests
 
@@ -230,7 +255,6 @@ In the project directory, you can run:
 ### `yarn start`
 
 Runs the app in the development mode.<br>
-Aliases: `vite dev`, `vite serve`.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
@@ -250,17 +274,24 @@ See the section about [building for production](https://vitejs.dev/guide/build.h
 
 ### `yarn serve`
 
-Locally preview the production build. Do not use this as a production server as it's not designed for it.
+Locally preview the production build built with `yarn build`.
+
+**NOTE**: If you get a white screen on startup, try opening the devtools console
+in the browser, there could be e.g. errors related to missing
+environment variable values.
+
+Do not use this as a production server as it's not designed for it!
 See more from [CLI guide](https://vitejs.dev/guide/cli.html#vite-preview).
 
 ### `yarn generate:graphql`
 
-Fetches the GraphQL schema from the backend and updates typing information. The configuration is written in [codegen.ts](./codegen.ts). Check that the environment variables are set properly to match with your API.
+Fetches the GraphQL schema from the backend (at `VITE_API_URI` in `.env.development.local`) and updates typing information.
+The configuration is written in [codegen.ts](./codegen.ts).
 
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br>
-See the section about [Getting started](https://vitest.dev/guide/) for more information.
+See Vitest's [Getting started](https://vitest.dev/guide/) for more information.
 
 ### `yarn test:browser`
 

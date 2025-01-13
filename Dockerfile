@@ -21,7 +21,7 @@ ENV NPM_CONFIG_PREFIX=/app/.npm-global
 ENV PATH=$PATH:/app/.npm-global/bin
 
 # Yarn
-ENV YARN_VERSION 1.19.1
+ENV YARN_VERSION 1.22.22
 RUN yarn policies set-version ${YARN_VERSION}
 
 # Copy package.json and package-lock.json/yarn.lock files
