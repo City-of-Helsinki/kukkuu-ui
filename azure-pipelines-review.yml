@@ -29,6 +29,7 @@ pr:
       - 'azure-pipelines-release.yml'
       - 'azure-pipelines-test.yml'
       - 'docker-compose*'
+      - 'compose.*'
 
 # By default, use self-hosted agents
 pool: Default
