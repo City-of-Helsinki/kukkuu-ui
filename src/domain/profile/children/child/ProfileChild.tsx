@@ -2,10 +2,11 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { IconAngleRight } from 'hds-react';
+import { differenceInMilliseconds } from 'date-fns';
 
 import Icon from '../../../../common/components/icon/Icon';
 import Text from '../../../../common/components/text/Text';
-import { newMoment } from '../../../../common/time/utils';
+import { newDate } from '../../../../common/time/utils';
 import useGetPathname from '../../../../common/route/utils/useGetPathname';
 import ChildEnrolmentCount from '../../../child/ChildEnrolmentCount';
 import useChildEnrolmentCount from '../../../child/useChildEnrolmentCount';
@@ -178,9 +179,15 @@ function findNextEnrolment(enrolments: MyProfileEnrolment[]) {
         return enrolment;
       }
 
-      const now = newMoment(new Date());
-      const untilIncumbent = now.diff(newMoment(incumbent.occurrence.time));
-      const untilEnrolment = now.diff(newMoment(enrolment.occurrence.time));
+      const now = newDate();
+      const untilIncumbent = differenceInMilliseconds(
+        newDate(incumbent.occurrence.time),
+        now
+      );
+      const untilEnrolment = differenceInMilliseconds(
+        newDate(enrolment.occurrence.time),
+        now
+      );
 
       return untilIncumbent < untilEnrolment ? enrolment : incumbent;
     },

@@ -1,15 +1,16 @@
-import moment from 'moment';
-// FIXME: Moment with Vite not working properly.
-// See: https://github.com/moment/moment/issues/5926
-// "Hi, moment is working fine, with vite. Unfortunately moment.locale() is not working..."
-// "...Instead of import 'moment/locale/cs', use import 'moment/dist/locale/cs'..."
-import 'moment/dist/locale/fi';
-import 'moment/dist/locale/sv';
+import { setDefaultOptions } from 'date-fns';
+import { fi, sv, enUS } from 'date-fns/locale';
 
 export type Locale = 'fi' | 'sv' | 'en';
 
+const locales = {
+  fi,
+  sv,
+  en: enUS,
+};
+
 function setLocale(locale: Locale) {
-  moment.locale(locale);
+  setDefaultOptions({ locale: locales[locale] });
 }
 
 export default setLocale;
