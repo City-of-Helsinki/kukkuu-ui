@@ -14,7 +14,7 @@ export const formatOccurrenceTime = (
 
   if (durationMinutes) {
     const endTimeRaw = addMinutes(newDate(startTimeRaw), durationMinutes);
-    const endTime = formatTime(newDate(endTimeRaw), DEFAULT_TIME_FORMAT);
+    const endTime = formatTime(endTimeRaw, DEFAULT_TIME_FORMAT);
     occurrenceTime = `${startTime} - ${endTime}`;
   } else {
     occurrenceTime = startTime;
