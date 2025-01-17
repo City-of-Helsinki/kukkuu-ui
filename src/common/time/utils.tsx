@@ -1,30 +1,33 @@
-import moment from 'moment';
+import { format, parse } from 'date-fns';
 
 import { BACKEND_DATE_FORMAT } from './TimeConstants';
 
 /**
- * Return new instance of moment, same with moment()
- * Use this util function to keep all moment import in single place.
+ * Return new instance of Date, same with new Date()
+ * Use this util function to keep all date-fns import in single place.
  * @param inp
- * @param format
- * @param strict
+ * @param formatStr
  */
-export const newMoment = (
-  inp?: moment.MomentInput,
-  format?: moment.MomentFormatSpecification,
-  strict?: boolean
-) => moment(inp, format, strict);
+export const newDate = (
+  inp?: string | number | Date | null,
+  formatStr?: string
+) => {
+  if (formatStr) {
+    return parse(inp as string, formatStr, new Date());
+  }
+  return inp ? new Date(inp) : new Date();
+};
 
 /**
- * Format input moment to backend time format by default. Can use custom format as 2nd params
- * @param inputMoment
- * @param format
+ * Format input date to backend time format by default. Can use custom format as 2nd params
+ * @param inputDate
+ * @param formatStr
  */
-export const formatTime = (inputMoment: moment.Moment, format?: string) =>
-  inputMoment.format(format || BACKEND_DATE_FORMAT);
+export const formatTime = (inputDate: Date, formatStr?: string) =>
+  format(inputDate, formatStr || BACKEND_DATE_FORMAT);
 
 /**
- * Format month to zero indexed for Moment
+ * Format month to zero indexed for date-fns
  * @param input
  */
 export const toZeroBasedMonth = (input: number | string) => {

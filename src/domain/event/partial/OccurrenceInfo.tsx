@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import joinClassNames from 'classnames';
 import { IconCalendar, IconLocation, IconClock } from 'hds-react';
 
-import { formatTime, newMoment } from '../../../common/time/utils';
+import { formatTime, newDate } from '../../../common/time/utils';
 import { DEFAULT_DATE_FORMAT } from '../../../common/time/TimeConstants';
 import { formatOccurrenceTime, getParticipantsIcon } from '../EventUtils';
 import InfoItem, { InfoItemProps } from './InfoItem';
@@ -34,7 +34,7 @@ const OccurrenceInfo = ({
     {
       id: 'time',
       icon: <IconCalendar />,
-      label: formatTime(newMoment(occurrence.time), DEFAULT_DATE_FORMAT),
+      label: formatTime(newDate(occurrence.time), DEFAULT_DATE_FORMAT),
     },
     {
       id: 'duration',

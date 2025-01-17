@@ -1,6 +1,7 @@
 import { IconGroup } from 'hds-react';
+import { addMinutes } from 'date-fns/addMinutes';
 
-import { formatTime, newMoment } from '../../common/time/utils';
+import { formatTime, newDate } from '../../common/time/utils';
 import { DEFAULT_TIME_FORMAT } from '../../common/time/TimeConstants';
 import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../api/generatedTypes/graphql';
 
@@ -9,11 +10,11 @@ export const formatOccurrenceTime = (
   durationMinutes: number | null
 ) => {
   let occurrenceTime;
-  const startTime = formatTime(newMoment(startTimeRaw), DEFAULT_TIME_FORMAT);
+  const startTime = formatTime(newDate(startTimeRaw), DEFAULT_TIME_FORMAT);
 
   if (durationMinutes) {
-    const endTimeRaw = newMoment(startTimeRaw).add(durationMinutes, 'minutes');
-    const endTime = formatTime(newMoment(endTimeRaw), DEFAULT_TIME_FORMAT);
+    const endTimeRaw = addMinutes(newDate(startTimeRaw), durationMinutes);
+    const endTime = formatTime(newDate(endTimeRaw), DEFAULT_TIME_FORMAT);
     occurrenceTime = `${startTime} - ${endTime}`;
   } else {
     occurrenceTime = startTime;

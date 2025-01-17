@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
 import { TicketSystem } from '../api/generatedTypes/graphql';
-import { formatTime, newMoment } from '../../common/time/utils';
+import { formatTime, newDate } from '../../common/time/utils';
 import LinkButton from '../../common/components/button/LinkButton';
 import {
   DEFAULT_TIME_FORMAT,
@@ -56,13 +56,13 @@ const EventOccurrence = ({
   const { childId, eventId } = useParams<UrlParams>();
 
   const date = formatTime(
-    newMoment(occurrence.time),
-    `ddd ${DEFAULT_DATE_FORMAT}`
+    newDate(occurrence.time),
+    `iiiiii ${DEFAULT_DATE_FORMAT}`
   );
-  const time = formatTime(newMoment(occurrence.time), DEFAULT_TIME_FORMAT);
-  const machineReadableDate = formatTime(newMoment(occurrence.time));
+  const time = formatTime(newDate(occurrence.time), DEFAULT_TIME_FORMAT);
+  const machineReadableDate = formatTime(newDate(occurrence.time));
   const machineReadableTime = formatTime(
-    newMoment(occurrence.time),
+    newDate(occurrence.time),
     'HH:mm:ss.SSS'
   );
   const machineReadableDateTime = `${machineReadableDate} ${machineReadableTime}`;

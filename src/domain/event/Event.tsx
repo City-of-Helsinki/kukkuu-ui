@@ -6,7 +6,7 @@ import * as Sentry from '@sentry/browser';
 import uniqBy from 'lodash/uniqBy';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import { formatTime, newMoment } from '../../common/time/utils';
+import { formatTime, newDate } from '../../common/time/utils';
 import {
   BACKEND_DATE_FORMAT,
   DEFAULT_DATE_FORMAT,
@@ -40,8 +40,8 @@ const OccurrenceList = RelayList<OccurrenceNode>();
 
 export function getDateOptions(occurrences?: Occurrences) {
   const options = OccurrenceList(occurrences).items.map(({ id, time }) => ({
-    value: formatTime(newMoment(time), BACKEND_DATE_FORMAT),
-    label: formatTime(newMoment(time), DEFAULT_DATE_FORMAT),
+    value: formatTime(newDate(time), BACKEND_DATE_FORMAT),
+    label: formatTime(newDate(time), DEFAULT_DATE_FORMAT),
     key: id,
   }));
 
@@ -51,7 +51,7 @@ export function getDateOptions(occurrences?: Occurrences) {
 export function getTimeOptions(occurrences?: Occurrences) {
   const options = OccurrenceList(occurrences).items.map(
     ({ id, time, event }) => ({
-      value: formatTime(newMoment(time), DEFAULT_TIME_FORMAT),
+      value: formatTime(newDate(time), DEFAULT_TIME_FORMAT),
       label: formatOccurrenceTime(time, event.duration || null),
       key: id,
     })

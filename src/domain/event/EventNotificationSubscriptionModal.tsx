@@ -1,6 +1,6 @@
 import { useTranslation, Trans } from 'react-i18next';
 
-import { formatTime, newMoment } from '../../common/time/utils';
+import { formatTime, newDate } from '../../common/time/utils';
 import {
   DEFAULT_DATE_FORMAT,
   DEFAULT_TIME_FORMAT,
@@ -58,7 +58,7 @@ const EventNotificationSubscriptionModal = ({
     }
   };
 
-  const occurrenceTime = newMoment(eventOccurrence.time);
+  const occurrenceTime = newDate(eventOccurrence.time);
 
   return (
     <ConfirmModal

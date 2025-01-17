@@ -2,8 +2,9 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { IconCalendar, IconClock, IconLocation } from 'hds-react';
 import { useTranslation } from 'react-i18next';
+import { addMinutes } from 'date-fns/addMinutes';
 
-import { formatTime, newMoment } from '../../../../common/time/utils';
+import { formatTime, newDate } from '../../../../common/time/utils';
 import {
   DEFAULT_DATE_FORMAT,
   DEFAULT_TIME_FORMAT,
@@ -22,20 +23,22 @@ export default function Enrolment({ enrolment, childId }: EnrolmentProps) {
   } = useTranslation();
 
   const date = formatTime(
-    newMoment(enrolment.occurrence.time),
+    newDate(enrolment.occurrence.time),
     DEFAULT_DATE_FORMAT
   );
   const startTime = formatTime(
-    newMoment(enrolment.occurrence.time),
+    newDate(enrolment.occurrence.time),
     DEFAULT_TIME_FORMAT
   );
-  const endTime = formatTime(
-    newMoment(enrolment.occurrence.time).add(
-      enrolment.occurrence.event.duration,
-      'minutes'
-    ),
-    DEFAULT_TIME_FORMAT
-  );
+  const endTime = enrolment.occurrence.event.duration
+    ? formatTime(
+        addMinutes(
+          newDate(enrolment.occurrence.time),
+          enrolment.occurrence.event.duration
+        ),
+        DEFAULT_TIME_FORMAT
+      )
+    : '';
   const occurrencePath =
     '/:lang/profile/child/:childId/occurrence/:occurrenceId'
       .replace(':lang', language)
