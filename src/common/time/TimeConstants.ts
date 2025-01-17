@@ -9,3 +9,5 @@ export const BACKEND_DATE_FORMAT = 'yyyy-MM-dd';
 
 // HH.MM
 export const DEFAULT_TIME_FORMAT = 'HH:mm';
+
+export const DEFAULT_TIME_ZONE = 'Europe/Helsinki';
