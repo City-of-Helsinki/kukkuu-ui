@@ -37,4 +37,4 @@ services:
       - '/app/node_modules'
     ports:
       - '3000:3000' # for development mode
-      - '8080:8080' # for production mode
+      - '8082:8080' # for production mode
