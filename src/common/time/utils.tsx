@@ -1,4 +1,3 @@
-import { parse } from 'date-fns';
 import { format, toZonedTime } from 'date-fns-tz';
 
 import { BACKEND_DATE_FORMAT, DEFAULT_TIME_ZONE } from './TimeConstants';
@@ -7,17 +6,9 @@ import { BACKEND_DATE_FORMAT, DEFAULT_TIME_ZONE } from './TimeConstants';
  * Return new instance of Date, same with new Date()
  * Use this util function to keep all date-fns import in single place.
  * @param inp
- * @param formatStr
  */
-export const newDate = (
-  inp?: string | number | Date | null,
-  formatStr?: string
-) => {
-  if (formatStr) {
-    return parse(inp as string, formatStr, new Date());
-  }
-  return toZonedTime(inp ? new Date(inp) : new Date(), DEFAULT_TIME_ZONE);
-};
+export const newDate = (inp?: string | number | Date | null) =>
+  toZonedTime(inp ? new Date(inp) : new Date(), DEFAULT_TIME_ZONE);
 
 /**
  * Format input date to backend time format by default. Can use custom format as 2nd params
