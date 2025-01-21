@@ -38,7 +38,7 @@ export default function Enrolment({ enrolment, childId }: EnrolmentProps) {
         ),
         DEFAULT_TIME_FORMAT
       )
-    : '';
+    : startTime;
   const occurrencePath =
     '/:lang/profile/child/:childId/occurrence/:occurrenceId'
       .replace(':lang', language)
