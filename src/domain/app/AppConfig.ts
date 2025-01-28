@@ -191,7 +191,7 @@ class AppConfig {
    * */
   static get oidcAutomaticSilentRenew(): boolean {
     return Boolean(
-      import.meta.env.VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED ?? false
+      import.meta.env.VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED ?? true
     );
   }
 
