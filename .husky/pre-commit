@@ -1,2 +1,2 @@
 yarn doctoc .
-yarn lint-staged
+yarn lint-staged --relative

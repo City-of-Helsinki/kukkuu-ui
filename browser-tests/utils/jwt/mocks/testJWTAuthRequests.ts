@@ -110,6 +110,7 @@ export class AuthServiceRequestInterceptor extends RequestHook {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async onResponse(responseEvent: object): Promise<void> {
     // This method must also be overridden,
     // but you can leave it blank.
@@ -145,10 +146,11 @@ export class KukkuuApiTestJwtBearerAuthorization extends RequestHook {
     this.apiToken = apiToken;
   }
 
-  onRequest(requestEvent: any): void | Promise<void> {
+  onRequest(requestEvent): void | Promise<void> {
     requestEvent.requestOptions.headers['Authorization'] = this.apiToken;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onResponse(responseEvent: object): void | Promise<void> {
     // This method must also be overridden,
     // but you can leave it blank.

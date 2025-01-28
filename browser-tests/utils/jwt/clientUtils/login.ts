@@ -34,7 +34,7 @@ const storeOIDCUserResponse = ClientFunction(
   }
 );
 
-const storeApiTokenUserReferece = ClientFunction(
+const storeApiTokenUserReference = ClientFunction(
   (apiTokenUserReferenceToken: string) => {
     // eslint-disable-next-line no-console
     console.info('Storing the API token user reference.', {
@@ -107,7 +107,7 @@ export const authorize = async (
   oidcUser: OIDCUserProfileType = browserTestUser
 ) => {
   hasAuthExpired.with({ boundTestRun: t });
-  storeApiTokenUserReferece.with({ boundTestRun: t });
+  storeApiTokenUserReference.with({ boundTestRun: t });
   storeOIDCUserResponse.with({ boundTestRun: t });
   storeApiToken.with({ boundTestRun: t });
   // eslint-disable-next-line no-console
@@ -134,9 +134,12 @@ export const authorize = async (
       apiToken,
       apiTokenUserReferenceToken,
     });
+    // FIXME: Fix linter warning properly by unwrapping promise & ascertaining
+    //        browser tests don't get more flaky because of this.
+    // eslint-disable-next-line no-async-promise-executor
     await new Promise<void>(async (resolve) => {
       await storeOIDCUserResponse(oidcUserData);
-      await storeApiTokenUserReferece(apiTokenUserReferenceToken);
+      await storeApiTokenUserReference(apiTokenUserReferenceToken);
       await storeApiToken(apiToken);
       resolve();
     });
@@ -146,5 +149,5 @@ export const authorize = async (
     );
   }
   // eslint-disable-next-line no-console
-  console.info('Authorization finihed!');
+  console.info('Authorization finished!');
 };

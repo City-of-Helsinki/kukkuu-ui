@@ -58,14 +58,14 @@ fixture`Children feature`
   });
 
 // TODO temporarily disabled
-//test('As a guardian I want to see a list of my children and to be able to select one', async (t) => {
-//  // The list displays the expected fields
-//  await t.expect(godchildrenProfilePage.child(childName).exists).ok();
-//  await selectChild(t, childName);
-//  await t
-//    .expect(childrenProfilePage.childName.textContent)
-//    .match(/Hertta Citron .*/);
-//});
+test.skip('As a guardian I want to see a list of my children and to be able to select one', async (t) => {
+  // The list displays the expected fields
+  await t.expect(godchildrenProfilePage.child(childName).exists).ok();
+  await selectChild(t, childName);
+  await t
+    .expect(childrenProfilePage.childName.textContent)
+    .match(/Hertta Citron .*/);
+});
 
 // test assume children 'Hertta Citron' exists
 test('As a guardian I want to edit the details of my child', async (t) => {
@@ -74,7 +74,7 @@ test('As a guardian I want to edit the details of my child', async (t) => {
   // Select child to go to their details
   try {
     await selectChild(t, childName);
-  } catch (e) {
+  } catch {
     // eslint-disable-next-line no-console
     console.warn('The child did not exist yet');
 
