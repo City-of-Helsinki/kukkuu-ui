@@ -1,7 +1,0 @@
-{
-  "**/*.{js,jsx,ts,tsx}": [
-    "yarn format:code --max-warnings=0",
-    "yarn test:staged"
-  ],
-  "**/*.{html,json,css,scss,md,mdx}": ["yarn format:scss"]
-}

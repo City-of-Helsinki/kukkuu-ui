@@ -17,10 +17,10 @@
   "scripts": {
     "app:version": "echo \"$npm_package_version\"",
     "build": "tsc & vite build",
-    "format:code": "eslint --ext js,ts,tsx src --fix",
-    "format:scss": "prettier --config .prettierrc.json --write src/**/*.scss",
+    "lint": "eslint --ext js,jsx,ts,tsx,cjs,mjs .",
+    "format:code": "yarn lint --fix",
+    "format:markup": "prettier --config .prettierrc.json --write \"./**/*.{html,json,css,scss,md,mdx}\"",
     "generate:graphql": "cross-env DOTENV_CONFIG_PATH=./.env.development.local graphql-codegen -r dotenv/config --config ./codegen.ts",
-    "lint": "eslint --ext js,ts,tsx src",
     "serve": "vite preview",
     "start": "vite",
     "test": "cross-env TZ=Europe/Helsinki vitest run",

@@ -33,7 +33,7 @@ const getApiBaseUrl = () => {
   const url = process.env['BROWSER_TESTS_API_URL'] ?? '';
 
   // API url might ppoint to graphql, remvoe
-  var re = /\/graphql$/;
+  const re = /\/graphql$/;
   return url.replace(re, '');
 };
 

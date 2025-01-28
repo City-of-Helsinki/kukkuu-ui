@@ -230,11 +230,13 @@ The pre-commit hook is configured to run the following commands:
 
 ```sh
 yarn doctoc .
-yarn lint-staged
+yarn lint-staged --relative
 ```
 
 - `yarn doctoc .`: This command updates the table of contents in your markdown files.
-- `yarn lint-staged`: This command runs linting on staged files to ensure they meet the project's coding standards. The lint-staged configuration can be found from [.lintstagedrc.json](./.lintstagedrc.json).
+- `yarn lint-staged --relative`: This command runs linting on staged files to ensure they meet the project's coding standards. The lint-staged configuration can be found from [lint-staged.config.js](./lint-staged.config.js).
+  - Using `--relative` flag to reduce command line length,
+    as the combined length of all the absolute paths for a large commit can get quite long
 
 > NOTE: `doctoc` and `husky` does not work seamlessly together, since the `doctoc` does update the TOCs of the markdown files, but does not reject the pre-commit hook execution, and only leaves the refactored files as unstaged in Git.
 
