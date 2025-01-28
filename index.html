@@ -1,34 +1,61 @@
 <!doctype html>
 <html prefix="og: http://ogp.me/ns#" lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kulttuurin kummilapset</title>
+    <meta
+      name="description"
+      content="Kaikki vuodesta 2020 eteenpäin syntyvät helsinkiläiset lapset kutsutaan kulttuurin kummilapsiksi. Kummilapset saavat kutsun vuosittain kahteen tapahtumaan, kunnes lapsi aloittaa koulun. Tapahtumat ovat maksuttomia."
+      data-rh="true"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        block-all-mixed-content;
+        default-src 'self';
+        script-src 'self' https://m.youtube.com https://www.youtube.com https://webanalytics.digiaiiris.com;
+        style-src 'self' 'unsafe-inline';
+        object-src 'none';
+        frame-src 'self' *.hel.fi *.hel.ninja *.youtube.com www.youtube-nocookie.com *.vimeo.com;
+        img-src 'self' data: *.hel.fi *.hel.ninja *.ytimg.com *.youtube.com *.vimeo.com *.vimeocdn.com *.blob.core.windows.net;
+        font-src 'self' *.hel.fi *.hel.ninja;
+        connect-src 'self' *.hel.fi *.hel.ninja *.hkih.hion.dev;
+        manifest-src 'self';
+        base-uri 'self';
+        form-action 'self';
+        media-src 'self' *.hel.fi *.hel.ninja *.hkih.hion.dev;
+        worker-src 'self';
+      "
+    />
+    <meta property="og:title" content="Kulttuurin kummilapset" />
+    <meta
+      property="og:description"
+      content="Kaikki vuodesta 2020 eteenpäin syntyvät helsinkiläiset lapset kutsutaan kulttuurin kummilapsiksi. Kummilapset saavat kutsun vuosittain kahteen tapahtumaan, kunnes lapsi aloittaa koulun. Tapahtumat ovat maksuttomia."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://kummilapset.hel.fi/images/kummilapsi-og-image.jpg"
+    />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="1400" />
+    <meta property="og:image:alt" content="Lapsi" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:image"
+      content="https://kummilapset.hel.fi/images/kummilapsi-og-image.jpg"
+    />
+    <link rel="icon" href="/hds-favicon-kit/favicon-32x32.ico" sizes="any" />
+    <link rel="icon" href="/hds-favicon-kit/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/hds-favicon-kit/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kulttuurin kummilapset</title>
-  <meta name="description"
-    content="Kaikki vuodesta 2020 eteenpäin syntyvät helsinkiläiset lapset kutsutaan kulttuurin kummilapsiksi. Kummilapset saavat kutsun vuosittain kahteen tapahtumaan, kunnes lapsi aloittaa koulun. Tapahtumat ovat maksuttomia."
-    data-rh="true" />
-  <meta property="og:title" content="Kulttuurin kummilapset" />
-  <meta property="og:description"
-    content="Kaikki vuodesta 2020 eteenpäin syntyvät helsinkiläiset lapset kutsutaan kulttuurin kummilapsiksi. Kummilapset saavat kutsun vuosittain kahteen tapahtumaan, kunnes lapsi aloittaa koulun. Tapahtumat ovat maksuttomia." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://kummilapset.hel.fi/images/kummilapsi-og-image.jpg" />
-  <meta property="og:image:type" content="image/jpg" />
-  <meta property="og:image:width" content="1400" />
-  <meta property="og:image:height" content="1400" />
-  <meta property="og:image:alt" content="Lapsi" />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="https://kummilapset.hel.fi/images/kummilapsi-og-image.jpg" />
-  <link rel="icon" href="/hds-favicon-kit/favicon-32x32.ico" sizes="any">
-  <link rel="icon" href="/hds-favicon-kit/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/hds-favicon-kit/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest.json" />
-</head>
-
-<body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="root"></div>
-  <script type="module" src="/src/index.tsx"></script>
-</body>
-
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
 </html>
