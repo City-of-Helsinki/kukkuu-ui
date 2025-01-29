@@ -19,6 +19,7 @@ function useMutation<TData = any, TVariables = OperationVariables>(
 
   const { useDefaultErrorHandling, ...apolloOptions } = options;
 
+  // Testing
   return useApolloMutation<TData, TVariables>(mutation, {
     onError: useDefaultErrorHandling ? defaultErrorHandler : undefined,
     ...apolloOptions,
