@@ -1306,6 +1306,7 @@ export type ProjectPermissionsType = {
   canSendToAllInProject: Maybe<Scalars['Boolean']['output']>;
   manageEventGroups: Maybe<Scalars['Boolean']['output']>;
   publish: Maybe<Scalars['Boolean']['output']>;
+  viewFamilies: Maybe<Scalars['Boolean']['output']>;
 };
 
 export type ProjectTranslationType = {
