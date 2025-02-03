@@ -4,6 +4,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
 import uniqBy from 'lodash/uniqBy';
+import { Notification } from 'hds-react';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import { formatTime, newDate } from '../../common/time/utils';
@@ -86,6 +87,64 @@ export interface FilterOptions {
 const initialFilterValues = {
   date: '',
   time: '',
+};
+
+type ExternalTicketSystemEventEnrolProps = {
+  canChildEnroll: boolean;
+  hasFreePasswords: boolean;
+  continueUrl: string;
+};
+
+/**
+ * Deny external ticket system enrolment with notification/text,
+ * or allow continuing with link button.
+ */
+const ExternalTicketSystemEventEnrolDenyOrContinue: React.FC<
+  ExternalTicketSystemEventEnrolProps
+> = ({ canChildEnroll, hasFreePasswords, continueUrl }) => {
+  const { t } = useTranslation();
+
+  if (!canChildEnroll) {
+    return (
+      <Notification type="alert">
+        {t('enrollPage.message.cantEnrollNotice')}
+      </Notification>
+    );
+  } else if (hasFreePasswords) {
+    return (
+      <LinkButton variant="primary" to={continueUrl}>
+        {t('event.externalTicketSystemButtons.continue')}
+      </LinkButton>
+    );
+  } else {
+    return (
+      <Text
+        variant="body-l"
+        className={eventRedirectStyles.noFreeTicketSystemPasswordsLeftLabel}
+      >
+        {t('eventRedirectPage.noFreeTicketSystemPasswordsLeftLabel')}
+      </Text>
+    );
+  }
+};
+
+const ExternalTicketSystemEventEnrol: React.FC<
+  ExternalTicketSystemEventEnrolProps
+> = (props) => {
+  const { t } = useTranslation();
+  const goBackTo = useEventRouteGoBackTo();
+
+  return (
+    <>
+      <hr className={styles.divider} />
+      <div className={styles.externalTicketSystemButtons}>
+        <LinkButton variant="secondary" to={goBackTo}>
+          {t('event.externalTicketSystemButtons.back')}
+        </LinkButton>
+        <ExternalTicketSystemEventEnrolDenyOrContinue {...props} />
+      </div>
+    </>
+  );
 };
 
 const Event = () => {
@@ -201,28 +260,11 @@ const Event = () => {
             onFilterUpdate={updateFilterValues}
           />
         ) : (
-          <>
-            <hr className={styles.divider} />
-            <div className={styles.externalTicketSystemButtons}>
-              <LinkButton variant="secondary" to={goBackTo}>
-                {t('event.externalTicketSystemButtons.back')}
-              </LinkButton>
-              {hasFreePasswords ? (
-                <LinkButton variant="primary" to={continueUrl}>
-                  {t('event.externalTicketSystemButtons.continue')}
-                </LinkButton>
-              ) : (
-                <Text
-                  variant="body-l"
-                  className={
-                    eventRedirectStyles.noFreeTicketSystemPasswordsLeftLabel
-                  }
-                >
-                  {t('eventRedirectPage.noFreeTicketSystemPasswordsLeftLabel')}
-                </Text>
-              )}
-            </div>
-          </>
+          <ExternalTicketSystemEventEnrol
+            canChildEnroll={!!data?.event?.canChildEnroll}
+            hasFreePasswords={hasFreePasswords}
+            continueUrl={continueUrl}
+          />
         ))}
     </EventPage>
   );
