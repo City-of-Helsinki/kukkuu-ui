@@ -3,6 +3,7 @@ import { ApolloError, useMutation, useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
 import { useParams, useNavigate } from 'react-router-dom';
 import React from 'react';
+import { Notification } from 'hds-react';
 
 import PageWrapper from '../app/layout/PageWrapper';
 import Text from '../../common/components/text/Text';
@@ -13,8 +14,9 @@ import {
   EventExternalTicketSystemHasAnyFreePasswordsQuery,
   AssignTicketSystemPasswordMutation,
   AssignTicketSystemPasswordMutationVariables,
+  EventQuery,
 } from '../api/generatedTypes/graphql';
-import {
+import eventQuery, {
   eventExternalTicketSystemPasswordQuery,
   eventExternalTicketSystemHasAnyFreePasswordsQuery,
 } from './queries/eventQuery';
@@ -151,6 +153,55 @@ const ExternalTicketSystemPasswordDetails = ({
   );
 };
 
+const CanNotEnrollNotification = ({ backUrl }: { backUrl: string }) => {
+  const { t } = useTranslation();
+  return (
+    <div className={styles.acquireButtonRow}>
+      <LinkButton variant="secondary" to={backUrl}>
+        {t('eventRedirectPage.back')}
+      </LinkButton>
+      <Notification type="alert">
+        {t('enrollPage.message.cantEnrollNotice')}
+      </Notification>
+    </div>
+  );
+};
+
+const HandleExternalTicketSystemPassword = ({
+  assignTicketSystemPassword,
+  backUrl,
+  canChildEnroll,
+  externalTicketSystemPassword,
+  hasFreePasswords,
+  ticketSystemUrl,
+}: {
+  assignTicketSystemPassword: () => void;
+  backUrl: string;
+  canChildEnroll: boolean;
+  externalTicketSystemPassword: string | null | undefined;
+  hasFreePasswords: boolean;
+  ticketSystemUrl: string;
+}) => {
+  if (externalTicketSystemPassword) {
+    return (
+      <ExternalTicketSystemPasswordDetails
+        externalTicketSystemPassword={externalTicketSystemPassword}
+        ticketSystemUrl={ticketSystemUrl}
+      />
+    );
+  } else if (canChildEnroll) {
+    return (
+      <ConfirmRequestingExternalTicketSystemPassword
+        backUrl={backUrl}
+        hasFreePasswords={hasFreePasswords}
+        assignTicketSystemPassword={assignTicketSystemPassword}
+      />
+    );
+  } else {
+    return <CanNotEnrollNotification backUrl={backUrl} />;
+  }
+};
+
 const TicketSystemError = ({
   error,
   backUrl,
@@ -204,6 +255,15 @@ const EventRedirect = () => {
   } = useEventExternalTicketSystemPasswordQuery({ eventId, childId });
 
   const {
+    loading: eventQueryLoading,
+    error: eventQueryError,
+    data: eventQueryData,
+  } = useQuery<EventQuery>(eventQuery, {
+    skip: !eventId || !childId,
+    variables: { id: eventId, childId },
+  });
+
+  const {
     loading: hasAnyFreePasswordsQueryLoading,
     error: hasAnyFreePasswordsQueryError,
     data: hasAnyFreePasswordsQueryData,
@@ -231,7 +291,13 @@ const EventRedirect = () => {
     ? hasAnyFreePasswordsTicketSystem?.hasAnyFreePasswords
     : null);
 
-  if (queryLoading || hasAnyFreePasswordsQueryLoading || !eventId || !childId) {
+  if (
+    queryLoading ||
+    eventQueryLoading ||
+    hasAnyFreePasswordsQueryLoading ||
+    !eventId ||
+    !childId
+  ) {
     return <LoadingSpinner isLoading={true} />;
   }
 
@@ -239,12 +305,17 @@ const EventRedirect = () => {
     ticketSystem && 'url' in ticketSystem ? ticketSystem.url : '#';
   const backUrl = getPathname(`/profile/child/${childId}/event/${eventId}`);
 
-  const error = queryError ?? mutationError ?? hasAnyFreePasswordsQueryError;
+  const error =
+    queryError ??
+    mutationError ??
+    eventQueryError ??
+    hasAnyFreePasswordsQueryError;
   if (error) {
     return <TicketSystemError error={error} backUrl={backUrl} />;
   }
 
   const event = queryData?.event;
+  const canChildEnroll = !!eventQueryData?.event?.canChildEnroll;
 
   return (
     <PageWrapper className={styles.grey}>
@@ -271,18 +342,14 @@ const EventRedirect = () => {
           })}
         </Text>
         <LoadingSpinner isLoading={mutationLoading}>
-          {!externalTicketSystemPassword ? (
-            <ConfirmRequestingExternalTicketSystemPassword
-              backUrl={backUrl}
-              hasFreePasswords={hasFreePasswords}
-              assignTicketSystemPassword={assignTicketSystemPassword}
-            />
-          ) : (
-            <ExternalTicketSystemPasswordDetails
-              externalTicketSystemPassword={externalTicketSystemPassword}
-              ticketSystemUrl={ticketSystemUrl}
-            />
-          )}
+          <HandleExternalTicketSystemPassword
+            assignTicketSystemPassword={assignTicketSystemPassword}
+            backUrl={backUrl}
+            canChildEnroll={canChildEnroll}
+            externalTicketSystemPassword={externalTicketSystemPassword}
+            hasFreePasswords={hasFreePasswords}
+            ticketSystemUrl={ticketSystemUrl}
+          />
         </LoadingSpinner>
       </div>
     </PageWrapper>
