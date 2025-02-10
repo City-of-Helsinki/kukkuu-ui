@@ -1,12 +1,8 @@
-import { screen } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { MockedResponse } from '@apollo/client/testing';
 
-import {
-  render,
-  fireEvent,
-  waitFor,
-  selectHdsButtonByText,
-} from '../../../../common/test/testingLibraryUtils';
+import { selectHdsButtonByText } from '../../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../../common/test/customRender';
 import initModal from '../../../../common/test/initModal';
 import Enrol from '../Enrol';
 import {

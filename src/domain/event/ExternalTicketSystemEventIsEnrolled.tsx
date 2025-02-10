@@ -12,7 +12,7 @@ import ErrorMessage from '../../common/components/error/Error';
 import AnchorButton from '../../common/components/button/AnchorButton';
 import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Text from '../../common/components/text/Text';
-import { useChildRouteGoBackTo } from '../profile/children/child/ProfileChildDetail';
+import useChildRouteGoBackTo from '../profile/children/child/useChildRouteGoBackTo';
 import { EventTicketSystem } from './types/ExternalTicketSystemEventQueryTypes';
 
 const ExternalTicketSystemEventIsEnrolled = () => {

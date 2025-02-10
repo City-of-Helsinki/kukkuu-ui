@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const resetFocusId = 'reset-focus';
+import { RESET_FOCUS_ID } from './constants';
 
 /**
  * Ensure that browser focus is set to body when navigating using
@@ -17,7 +17,7 @@ const ResetFocus = (): React.ReactElement => {
     }
   }, [pathname]);
 
-  return <div ref={node} tabIndex={-1} id={resetFocusId} />;
+  return <div ref={node} tabIndex={-1} id={RESET_FOCUS_ID} />;
 };
 
 export default ResetFocus;

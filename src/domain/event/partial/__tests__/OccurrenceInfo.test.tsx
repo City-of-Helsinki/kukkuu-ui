@@ -3,7 +3,7 @@ import React from 'react';
 import OccurrenceInfo from '../OccurrenceInfo';
 import { mockedOccurrenceNode } from '../../__tests__/EventPage.test';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/graphql';
-import { render } from '../../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../../common/test/customRender';
 import { InternalEnrolmentOccurrence } from '../../../child/types/ChildByIdQueryTypes';
 
 const mockOccurrence: InternalEnrolmentOccurrence = {

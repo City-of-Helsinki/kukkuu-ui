@@ -1,10 +1,7 @@
-import {
-  render,
-  fireEvent,
-  waitFor,
-  selectAllHdsButtonByText,
-  screen,
-} from '../../../common/test/testingLibraryUtils';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+
+import { selectAllHdsButtonByText } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import initModal from '../../../common/test/initModal';
 import EventOccurrence from '../EventOccurrence';
 import { OccurrenceNode } from '../types/EventQueryTypes';

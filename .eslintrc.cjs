@@ -27,6 +27,7 @@ module.exports = {
     'prettier',
     '@stylistic/js',
     'testing-library',
+    'react-refresh',
   ],
   settings: {
     react: {
@@ -34,6 +35,7 @@ module.exports = {
     },
   },
   rules: {
+    'react-refresh/only-export-components': 'error',
     '@stylistic/js/brace-style': ['error', '1tbs', { allowSingleLine: true }],
     'no-use-before-define': 'off',
     'react/prop-types': 'off',

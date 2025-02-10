@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
-import { getDateOptions, getTimeOptions } from '../Event';
+import { getDateOptions, getTimeOptions } from '../EventUtils';
 
 describe('Event', () => {
   // Test these utils separately so we do not need to mock the API.

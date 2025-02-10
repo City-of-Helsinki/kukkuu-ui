@@ -5,7 +5,7 @@ import { Notification } from 'hds-react';
 import FormikDropdown from '../../common/components/formikWrappers/FormikDropdown';
 import { EventQuery, TicketSystem } from '../api/generatedTypes/graphql';
 import EventOccurrenceList from './EventOccurrenceList';
-import { FilterValues, FilterOptions } from './Event';
+import type { FilterValues, FilterOptions } from './types';
 import styles from './event.module.scss';
 import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
 

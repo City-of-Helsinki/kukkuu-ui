@@ -11,6 +11,8 @@ import { getTranslatedRelationshipOptions } from '../ChildUtils';
 import Button from '../../../common/components/button/Button';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 import { SUPPORTED_START_BIRTH_YEAR } from '../../../common/time/TimeConstants';
+import { CHILD_FORM_TEST_ID } from './constants';
+import { ChildFormType } from '../enums';
 
 const schema = yup.object().shape({
   homeCity: yup.string().required('validation.general.required'),
@@ -38,17 +40,10 @@ interface ChildFormProps {
   onDelete?: () => void;
   onCancel: () => void;
   setFormIsFilling: (value: boolean) => void;
-  formType?: CHILD_FORM_TYPES;
+  formType?: ChildFormType;
 }
 
 const immutableFields = ['birthyear'];
-
-export enum CHILD_FORM_TYPES {
-  ADD = 'ADD',
-  EDIT = 'EDIT',
-}
-
-export const CHILD_FORM_TEST_ID = 'childForm';
 
 const ChildForm: FunctionComponent<ChildFormProps> = ({
   initialValues,
@@ -56,10 +51,10 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   onDelete,
   onCancel,
   setFormIsFilling,
-  formType = CHILD_FORM_TYPES.ADD,
+  formType = ChildFormType.ADD,
 }) => {
   const { t } = useTranslation();
-  const isEditForm = formType === CHILD_FORM_TYPES.EDIT;
+  const isEditForm = formType === ChildFormType.EDIT;
 
   const onFormSubmit = (values: Child) => {
     setFormIsFilling(false);

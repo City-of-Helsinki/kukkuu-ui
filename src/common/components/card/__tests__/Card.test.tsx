@@ -1,4 +1,4 @@
-import { render } from '../../../test/testingLibraryUtils';
+import { customRender as render } from '../../../test/customRender';
 import Card from '../Card';
 
 it('renders snapshot correctly', () => {

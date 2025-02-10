@@ -1,4 +1,4 @@
-import { render } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import CookieConsentPage from '../CookieConsentPage';
 
 it('renders snapshot correctly', () => {

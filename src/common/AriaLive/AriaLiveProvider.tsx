@@ -33,10 +33,18 @@ function getOrCreateContainer(id: string) {
 type Props = {
   children: ReactNode;
   id?: string;
+  dataTestId?: string;
 };
 
-function AriaLiveProvider({ children, id = 'aria-live-root' }: Props) {
+function AriaLiveProvider({
+  children,
+  id = 'aria-live-root',
+  dataTestId,
+}: Readonly<Props>) {
   const rootElement = getOrCreateContainer(id);
+  if (dataTestId) {
+    rootElement.setAttribute('data-testid', dataTestId);
+  }
   const [message, sendMessage] = useState<string>('');
 
   return (

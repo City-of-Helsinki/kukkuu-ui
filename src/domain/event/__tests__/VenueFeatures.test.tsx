@@ -1,5 +1,5 @@
 import VenueFeatures from '../VenueFeatures';
-import { render } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import { OccurrenceVenue } from '../types/OccurrenceQueryTypes';
 
 const venue: OccurrenceVenue = {

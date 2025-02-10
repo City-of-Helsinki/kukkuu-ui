@@ -1,6 +1,6 @@
 import { EventParticipantsPerInvite } from '../../api/generatedTypes/graphql';
 import EventPage from '../EventPage';
-import { render } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import { OccurrenceFields } from '../types/OccurrenceQueryTypes';
 
 export const mockedOccurrenceNode: OccurrenceFields = {

@@ -1,7 +1,7 @@
 import { MockedResponse } from '@apollo/client/testing';
 import { graphql, HttpResponse } from 'msw';
 
-import { render } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import Layout from '../Layout';
 import { footerMenuMock } from '../footer/__mocks__/footerMenuMock';
 import { languagesMock } from '../footer/__mocks__/languagesMock';
