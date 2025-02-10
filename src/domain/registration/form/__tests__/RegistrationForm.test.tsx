@@ -6,8 +6,8 @@ import RegistrationForm, {
 } from '../RegistrationForm';
 import { render, screen } from '../../../../common/test/testingLibraryUtils';
 import { languagesQuery } from '../../../languages/queries/LanguageQueries';
-import { languagesQueryResponse } from '../../../app/footer/__mocks__/languagesMock';
 import profileQuery from '../../../profile/queries/ProfileQuery';
+import { HARDCODED_CMS_LANGUAGE_QUERY_RESPONSE } from '../../../languages/constants';
 
 const emptyProfileMock: MockedResponse = {
   request: {
@@ -24,7 +24,7 @@ const languagesMock: MockedResponse = {
     query: languagesQuery,
     variables: {},
   },
-  result: { ...languagesQueryResponse },
+  result: { ...HARDCODED_CMS_LANGUAGE_QUERY_RESPONSE },
 };
 
 const mocks: MockedResponse[] = [emptyProfileMock, languagesMock];
