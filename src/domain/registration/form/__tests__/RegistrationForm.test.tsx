@@ -1,10 +1,9 @@
 import { MockedResponse } from '@apollo/client/testing';
+import { screen } from '@testing-library/react';
 
-import RegistrationForm, {
-  EMAIL_FIELD_TESTID,
-  FORM_TESTID,
-} from '../RegistrationForm';
-import { render, screen } from '../../../../common/test/testingLibraryUtils';
+import RegistrationForm from '../RegistrationForm';
+import { EMAIL_FIELD_TESTID, FORM_TESTID } from '../constants';
+import { customRender as render } from '../../../../common/test/customRender';
 import { languagesQuery } from '../../../languages/queries/LanguageQueries';
 import profileQuery from '../../../profile/queries/ProfileQuery';
 import { HARDCODED_CMS_LANGUAGE_QUERY_RESPONSE } from '../../../languages/constants';

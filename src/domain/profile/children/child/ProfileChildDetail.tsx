@@ -7,7 +7,6 @@ import * as Sentry from '@sentry/browser';
 import { IconPen } from 'hds-react';
 
 import {
-  UpdateChildMutationInput,
   ChildByIdQuery,
   UpdateChildMutationPayloadFieldsFragment,
   DeleteChildMutationPayloadFieldsFragment,
@@ -29,21 +28,10 @@ import ListPageLayout from '../../../app/layout/ListPageLayout';
 import ProfileEvents from '../../events/ProfileEvents';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import styles from './profileChildDetail.module.scss';
-import useAppRouteHref from '../../../app/useAppRouteHref';
 import { useProfileContext } from '../../hooks/useProfileContext';
 import AdditionalNotesCard from '../../events/AdditionalNotesCard';
-
-export type ChildDetailEditModalPayload = Omit<UpdateChildMutationInput, 'id'>;
-
-export const useProfileRouteGoBackTo = () => {
-  return useAppRouteHref('/profile');
-};
-
-export const useChildRouteGoBackTo = () => {
-  const { childId } = useParams<{ childId: string }>();
-  const profileUrl = useProfileRouteGoBackTo();
-  return `${profileUrl}/child/${childId}`;
-};
+import type { ChildDetailEditModalPayload } from './types';
+import useProfileRouteGoBackTo from './useProfileRouteGoBackTo';
 
 const ProfileChildDetail = () => {
   const { t } = useTranslation();

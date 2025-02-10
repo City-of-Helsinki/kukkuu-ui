@@ -6,7 +6,7 @@ import { Logo, Footer as HDSFooter, logoSv, logoFi } from 'hds-react';
 
 import styles from './footer.module.scss';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
-import { resetFocusId } from '../../../common/components/resetFocus/ResetFocus';
+import { RESET_FOCUS_ID } from '../../../common/components/resetFocus/constants';
 import { languageToMenuNameMap } from './constants';
 
 type ValidMenuItem = {
@@ -25,7 +25,7 @@ const Footer: FunctionComponent = () => {
   // override Footer component default behaviour which focuses skip-link
   const handleBackToTop = () => {
     window?.scrollTo({ top: 0 });
-    document.querySelector<HTMLDivElement>(`#${resetFocusId}`)?.focus();
+    document.querySelector<HTMLDivElement>(`#${RESET_FOCUS_ID}`)?.focus();
   };
 
   const footerMenuQuery = useMenuQuery({

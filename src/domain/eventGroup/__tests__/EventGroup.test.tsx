@@ -1,13 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
-import { screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
-import {
-  fireEvent,
-  render,
-  waitFor,
-} from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import EventGroup from '../EventGroup';
 
 const defaultProps = {};

@@ -1,9 +1,10 @@
 import * as HdsReact from 'hds-react';
 import * as ReactRouterDom from 'react-router-dom';
+import { waitFor } from '@testing-library/react';
 
 import * as ProfileChildRouteAuthorization from '../../app/routes/useProfileChildRouteAuthorization';
 import Unauthorized from '../Unauthorized';
-import { render, waitFor } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 
 vi.mock('hds-react', async (importOriginal: any) => {
   const mod = await importOriginal();

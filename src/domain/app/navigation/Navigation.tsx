@@ -8,16 +8,10 @@ import {
   MenuItem,
 } from 'react-helsinki-headless-cms';
 
-import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
 import UserNavigation from './UserNavigation';
 import { useCmsLanguageOptions } from '../../../hooks/useCmsLanguageOptions';
 import { stripLocaleFromUri } from '../../../utils/cmsUtils';
-
-export const languageToMenuNameMap = {
-  [SUPPORT_LANGUAGES.FI]: 'Main Navigation FI',
-  [SUPPORT_LANGUAGES.SV]: 'Main Navigation SV',
-  [SUPPORT_LANGUAGES.EN]: 'Main Navigation EN',
-} as const;
+import { languageToMenuNameMap } from './constants';
 
 function Navigation() {
   const { i18n } = useTranslation();

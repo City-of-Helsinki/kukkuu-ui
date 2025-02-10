@@ -15,7 +15,7 @@ import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
 import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
-import { useChildRouteGoBackTo } from '../profile/children/child/ProfileChildDetail';
+import useChildRouteGoBackTo from '../profile/children/child/useChildRouteGoBackTo';
 
 const EventIsEnrolled = () => {
   const { t } = useTranslation();

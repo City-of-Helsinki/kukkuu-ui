@@ -5,6 +5,7 @@ import Modal from '../../../common/components/modal/Modal';
 import { Child } from '../types/ChildInputTypes';
 import ChildForm from '../form/ChildForm';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
+import { ChildFormType } from '../enums';
 
 interface ChildFormModalProps {
   initialValues: Child;
@@ -14,12 +15,7 @@ interface ChildFormModalProps {
   onDelete?: () => void;
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
-  formType?: CHILD_FORM_TYPES;
-}
-
-export enum CHILD_FORM_TYPES {
-  ADD = 'ADD',
-  EDIT = 'EDIT',
+  formType?: ChildFormType;
 }
 
 const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
@@ -30,7 +26,7 @@ const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
   onDelete,
   isOpen,
   setIsOpen,
-  formType = CHILD_FORM_TYPES.ADD,
+  formType = ChildFormType.ADD,
 }) => {
   const { t } = useTranslation();
   const [isFilling, setFormIsFilling] = useState(false);

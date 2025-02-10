@@ -1,8 +1,7 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ReactModal from 'react-modal';
 
 import Modal from '../Modal';
-import { screen } from '../../../test/testingLibraryUtils';
 
 /**
  * ReactModal.setAppElement is used to prevent the following warning when

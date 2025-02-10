@@ -1,6 +1,6 @@
 import ChildFormModal from '../ChildFormModal';
 import { defaultRegistrationData } from '../../../registration/state/RegistrationReducers';
-import { render } from '../../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../../common/test/customRender';
 
 it('renders snapshot correctly', () => {
   const initialValues = Object.assign(

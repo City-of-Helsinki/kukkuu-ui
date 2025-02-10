@@ -2,8 +2,9 @@
 // @ts-nocheck
 // FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import * as ReactRedux from 'react-redux';
+import { screen } from '@testing-library/react';
 
-import { render, screen } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import Home from '../Home';
 
 vi.mock('react-redux', async (importOriginal) => {

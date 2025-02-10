@@ -108,6 +108,7 @@
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
     "eslint-plugin-testing-library": "^7.1.1",
     "formik": "^2.4.6",
     "hds-core": "3.11.0",

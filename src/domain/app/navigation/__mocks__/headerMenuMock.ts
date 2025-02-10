@@ -1,7 +1,7 @@
 import { MenuDocument } from 'react-helsinki-headless-cms/apollo';
 import { MockedResponse } from '@apollo/client/testing';
 
-import { languageToMenuNameMap } from '../Navigation';
+import { languageToMenuNameMap } from '../constants';
 
 /**
  * This is a mock of the response from the header menu query.

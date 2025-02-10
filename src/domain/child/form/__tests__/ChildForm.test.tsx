@@ -3,8 +3,10 @@
 // FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import { screen } from '@testing-library/react';
 
-import { render } from '../../../../common/test/testingLibraryUtils';
-import ChildForm, { CHILD_FORM_TEST_ID, CHILD_FORM_TYPES } from '../ChildForm';
+import { customRender as render } from '../../../../common/test/customRender';
+import ChildForm from '../ChildForm';
+import { CHILD_FORM_TEST_ID } from '../constants';
+import { ChildFormType } from '../../enums';
 
 const defaultProps = {
   initialValues: {},
@@ -15,7 +17,7 @@ const renderChildForm = (props: Partial<Parameters<typeof ChildForm>[0]>) =>
 describe('<ChildForm />', () => {
   it('as a user I do not want to see the city control when editing', () => {
     renderChildForm({
-      formType: CHILD_FORM_TYPES.EDIT,
+      formType: ChildFormType.EDIT,
     });
 
     expect(screen.queryByLabelText('Lapsen kotipaikkakunta')).toBeFalsy();

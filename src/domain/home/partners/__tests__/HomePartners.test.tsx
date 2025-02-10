@@ -1,4 +1,4 @@
-import { render } from '../../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../../common/test/customRender';
 import HomePartners from '../HomePartners';
 
 it('renders snapshot correctly', () => {

@@ -1,9 +1,43 @@
 import { IconGroup } from 'hds-react';
 import { addMinutes } from 'date-fns/addMinutes';
+import uniqBy from 'lodash/uniqBy';
 
 import { formatTime, newDate } from '../../common/time/utils';
-import { DEFAULT_TIME_FORMAT } from '../../common/time/TimeConstants';
+import {
+  BACKEND_DATE_FORMAT,
+  DEFAULT_DATE_FORMAT,
+  DEFAULT_TIME_FORMAT,
+} from '../../common/time/TimeConstants';
 import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../api/generatedTypes/graphql';
+import RelayList from '../api/relayList';
+import { OccurrenceNode, Occurrences } from './types/EventQueryTypes';
+
+const OccurrenceList = RelayList<OccurrenceNode>();
+
+export function getDateOptions(occurrences?: Occurrences) {
+  const options = OccurrenceList(occurrences).items.map(({ id, time }) => ({
+    value: formatTime(newDate(time), BACKEND_DATE_FORMAT),
+    label: formatTime(newDate(time), DEFAULT_DATE_FORMAT),
+    key: id,
+  }));
+
+  return uniqBy(options, 'value');
+}
+
+export function getTimeOptions(occurrences?: Occurrences) {
+  const options = OccurrenceList(occurrences).items.map(
+    ({ id, time, event }) => ({
+      value: formatTime(newDate(time), DEFAULT_TIME_FORMAT),
+      label: formatOccurrenceTime(time, event.duration),
+      key: id,
+    })
+  );
+  const uniqueOptions = uniqBy(options, 'value');
+
+  return uniqueOptions.sort((a, b) =>
+    (a.label ?? '').localeCompare(b.label ?? '')
+  );
+}
 
 export const formatOccurrenceTime = (
   startTimeRaw: Date,

@@ -40,9 +40,7 @@ import { useProfileContext } from '../../profile/hooks/useProfileContext';
 import { MyProfile } from '../../profile/types/ProfileQueryTypes';
 import MandatoryFieldLegend from '../../../common/components/mandatoryFieldLegend/MandatoryFieldLegend';
 import { publicSvgIconPaths } from '../../../public_files';
-
-export const FORM_TESTID = 'registrationForm';
-export const EMAIL_FIELD_TESTID = 'guardian.email';
+import { FORM_TESTID, EMAIL_FIELD_TESTID } from './constants';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({

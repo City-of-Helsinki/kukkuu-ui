@@ -1,7 +1,8 @@
 import React from 'react';
 import { MockedResponse } from '@apollo/client/testing';
+import { screen } from '@testing-library/react';
 
-import { render, screen } from '../../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../../common/test/customRender';
 import ProfileEventsList from '../ProfileEventsList';
 import { EventParticipantsPerInvite } from '../../../api/generatedTypes/graphql';
 import {

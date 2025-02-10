@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import * as HdsReact from 'hds-react';
 import * as ReactRouterDom from 'react-router-dom';
+import { waitFor } from '@testing-library/react';
 
-import { render, waitFor } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import Profile from '../Profile';
 import * as ProfileContext from '../hooks/useProfileContext';
 import { MyProfile } from '../types/ProfileQueryTypes';

@@ -1,4 +1,6 @@
-import { render, screen, fireEvent } from '../../test/testingLibraryUtils';
+import { screen, fireEvent } from '@testing-library/react';
+
+import { customRender as render } from '../../test/customRender';
 import useAriaLive from '../useAriaLive';
 import AriaLiveProvider from '../AriaLiveProvider';
 
@@ -13,19 +15,22 @@ const TestUpdater = ({ message }: any) => {
 };
 
 describe('AriaLive', () => {
-  it('should update an aria-live region', () => {
+  it('should update an aria-live region', async () => {
     const message = 'message';
     const id = 'aria-live-region';
+    const dataTestId = 'aria-live-region-testid';
 
     render(
-      <AriaLiveProvider id={id}>
+      <AriaLiveProvider id={id} dataTestId={dataTestId}>
         <TestUpdater message={message} />
       </AriaLiveProvider>
     );
 
-    expect(document.getElementById(id)).toBeInTheDocument();
-    expect(document.getElementById(id)).toMatchInlineSnapshot(`
+    const ariaLiveRegion = await screen.findByTestId(dataTestId);
+
+    expect(ariaLiveRegion).toMatchInlineSnapshot(`
       <div
+        data-testid="aria-live-region-testid"
         id="aria-live-region"
       >
         <div
@@ -37,8 +42,9 @@ describe('AriaLive', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'SEND' }));
 
-    expect(document.getElementById(id)).toMatchInlineSnapshot(`
+    expect(ariaLiveRegion).toMatchInlineSnapshot(`
       <div
+        data-testid="aria-live-region-testid"
         id="aria-live-region"
       >
         <div

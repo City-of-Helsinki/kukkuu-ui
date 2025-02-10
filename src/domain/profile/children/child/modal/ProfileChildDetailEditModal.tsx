@@ -2,15 +2,14 @@ import { FunctionComponent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Child } from '../../../../child/types/ChildInputTypes';
-import ChildFormModal, {
-  CHILD_FORM_TYPES,
-} from '../../../../child/modal/ChildFormModal';
+import ChildFormModal from '../../../../child/modal/ChildFormModal';
+import { ChildFormType } from '../../../../child/enums';
 import {
   getChildFormModalValues,
   getSupportedChildData,
 } from '../../../../child/ChildUtils';
 import { normalizeProfileChild } from '../../../ProfileUtil';
-import { ChildDetailEditModalPayload } from '../ProfileChildDetail';
+import type { ChildDetailEditModalPayload } from '../types';
 import ChildConfirmDeleteModal from '../../../../child/modal/confirm/delete/ChildConfirmDeleteModal';
 import { isChildEligible } from '../../../../registration/notEligible/NotEligibleUtils';
 import ChildAlertNonEligibleModal from '../../../../child/modal/alert/nonEligible/ChildAlertNonEligibleModal';
@@ -91,7 +90,7 @@ const ProfileChildDetailEditModal: FunctionComponent<{
       label={t('child.form.modal.edit.label')}
       isOpen={isFormOpen}
       setIsOpen={onFormModalToggle}
-      formType={CHILD_FORM_TYPES.EDIT}
+      formType={ChildFormType.EDIT}
     />
   ) : isDeleteConfirmOpen ? (
     <ChildConfirmDeleteModal

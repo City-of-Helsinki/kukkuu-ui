@@ -1,16 +1,12 @@
 /* eslint-disable testing-library/no-node-access */
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { MockedResponse } from '@apollo/client/testing';
 
 import EditProfileModal from '../EditProfileModal';
 import { MyProfile } from '../../types/ProfileQueryTypes';
 import { Language } from '../../../api/generatedTypes/graphql';
-import {
-  render,
-  fireEvent,
-  waitFor,
-} from '../../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../../common/test/customRender';
 import initModal from '../../../../common/test/initModal';
 import { languagesQuery } from '../../../languages/queries/LanguageQueries';
 import { HARDCODED_CMS_LANGUAGE_QUERY_RESPONSE } from '../../../languages/constants';

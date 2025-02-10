@@ -1,4 +1,4 @@
-import { render } from '../../../common/test/testingLibraryUtils';
+import { customRender as render } from '../../../common/test/customRender';
 import { TicketSystem } from '../../api/generatedTypes/graphql';
 import EventOccurrenceList from '../EventOccurrenceList';
 import { Occurrences } from '../types/EventQueryTypes';
