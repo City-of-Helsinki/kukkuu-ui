@@ -12,8 +12,8 @@ import {
   waitFor,
 } from '../../../../common/test/testingLibraryUtils';
 import initModal from '../../../../common/test/initModal';
-import { languagesQueryResponse } from '../../../app/footer/__mocks__/languagesMock';
 import { languagesQuery } from '../../../languages/queries/LanguageQueries';
+import { HARDCODED_CMS_LANGUAGE_QUERY_RESPONSE } from '../../../languages/constants';
 
 const initialValues: MyProfile = {
   id: 'yuiop',
@@ -48,7 +48,7 @@ const languagesMock: MockedResponse = {
     query: languagesQuery,
     variables: {},
   },
-  result: { ...languagesQueryResponse },
+  result: { ...HARDCODED_CMS_LANGUAGE_QUERY_RESPONSE },
 };
 
 const mocks: MockedResponse[] = [languagesMock];
