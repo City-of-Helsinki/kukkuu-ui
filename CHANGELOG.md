@@ -401,6 +401,18 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.11.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.10.0...kukkuu-ui-v3.11.0) (2025-02-11)
+
+
+### Features
+
+* Hardcode CMS languages for faster language rendering in header ([1fc343d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1fc343df1fb06ac1c03a3083548973430cc09c3f))
+
+
+### Bug Fixes
+
+* **hotreload:** Use eslint-plugin-react-refresh, refactor code to comply ([8cd5d25](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8cd5d25b014b23b0d535bd4fb46b349dc61b6514))
+
 ## [3.10.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.9.0...kukkuu-ui-v3.10.0) (2025-02-06)
 
 ### Features
