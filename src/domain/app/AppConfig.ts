@@ -275,6 +275,18 @@ class AppConfig {
   }
 
   /**
+   * How long should the Apollo peristed cache be kept in local storage.
+   * Read env variable `VITE_APOLLO_PERSISTED_CACHE_TIME_TO_LIVE_MS`.
+   * Time in milliseconds. Defaults to 10 minutes.
+   */
+  static get apolloPersistedCacheTimeToLiveMs() {
+    return (
+      Number(import.meta.env.VITE_APOLLO_PERSISTED_CACHE_TIME_TO_LIVE_MS) ||
+      1000 * 60 * 10
+    ); // 10 minutes by default;
+  }
+
+  /**
    * An array of supported locale codes (e.g., ['fi', 'en']).
    */
   static get locales(): readonly string[] {
