@@ -10,6 +10,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
+import { toast } from 'react-toastify';
 
 import Button from '../../../common/components/button/Button';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
@@ -57,7 +58,10 @@ function UserNavigation() {
         id: 'profileButton',
         label: t('navbar.profileDropdown.profile.text'),
         icon: <IconUser />,
-        onClick: () => navigate(getPathname('/profile')),
+        onClick: () => {
+          const result = navigate(getPathname('/profile'));
+          if (result) result.catch(() => toast.error(t('navigation.error')));
+        },
       },
       {
         id: 'helsinkiProfileButton',

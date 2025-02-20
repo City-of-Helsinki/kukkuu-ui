@@ -164,6 +164,9 @@
       "previous": "Edellinen"
     }
   },
+  "navigation": {
+    "error": "Virhe vaihtaessa sivua. Yritä myöhemmin uudestaan"
+  },
   "profile": {
     "common": {
       "message": {

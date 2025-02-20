@@ -164,6 +164,9 @@
       "previous": "Previous"
     }
   },
+  "navigation": {
+    "error": "Failed to change page. Please try again later"
+  },
   "profile": {
     "common": {
       "message": {

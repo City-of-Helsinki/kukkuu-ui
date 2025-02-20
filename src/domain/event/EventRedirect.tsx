@@ -4,6 +4,7 @@ import * as Sentry from '@sentry/browser';
 import { useParams, useNavigate } from 'react-router-dom';
 import React from 'react';
 import { Notification } from 'hds-react';
+import { toast } from 'react-toastify';
 
 import PageWrapper from '../app/layout/PageWrapper';
 import Text from '../../common/components/text/Text';
@@ -229,7 +230,10 @@ const TicketSystemError = ({
         }
         callToAction={{
           label: t('eventRedirectPage.back'),
-          onClick: () => navigate(backUrl),
+          onClick: () => {
+            const result = navigate(backUrl);
+            if (result) result.catch(() => toast.error(t('navigation.error')));
+          },
         }}
       />
     );
