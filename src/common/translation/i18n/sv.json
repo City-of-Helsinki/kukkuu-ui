@@ -164,6 +164,9 @@
       "previous": "Föregående"
     }
   },
+  "navigation": {
+    "error": "Det gick inte att byta sida. Försök igen senare"
+  },
   "profile": {
     "common": {
       "message": {
