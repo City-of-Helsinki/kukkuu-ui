@@ -59,7 +59,7 @@ const Card = ({
         {imageSrc ? (
           <img src={imageSrc} alt={alt} className={styles.image} />
         ) : (
-          imageElement && imageElement
+          !!imageElement && imageElement
         )}
       </div>
       <div className={styles.content}>
@@ -78,7 +78,7 @@ const Card = ({
               {primaryActionText}
             </Button>
           )}
-          <span>{focalContent && focalContent}</span>
+          <span>{!!focalContent && focalContent}</span>
         </div>
       </div>
       <div className={styles.cta}>
