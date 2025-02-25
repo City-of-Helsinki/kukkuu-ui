@@ -401,6 +401,24 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.11.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.10.0...kukkuu-ui-v3.11.0) (2025-02-25)
+
+
+### Features
+
+* Hardcode CMS languages for faster language rendering in header ([1fc343d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1fc343df1fb06ac1c03a3083548973430cc09c3f))
+* Use apollo client local storage cache persister ([c1569f5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c1569f5e1749a0a29e0849e44785966cc01db6cb))
+* Use react-router Link in scope of RHHC ([4635583](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4635583038b38dcd80faac90b09e2559c2556ab0))
+
+
+### Bug Fixes
+
+* **csp:** Allow cms images ([2806516](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2806516d1e4278a51d8a92ef385a8d29b1565cec))
+* **hotreload:** Use eslint-plugin-react-refresh, refactor code to comply ([8cd5d25](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8cd5d25b014b23b0d535bd4fb46b349dc61b6514))
+* **sonarcloud:** Conditional render in JSX with {!!x && x}, not {x && x} ([36ce44f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/36ce44f77d68558ee42321bb19aaa44978115e26))
+* **sonarcloud:** Fix removeSurroundingSlashes regex & test it works ([143851c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/143851c7daff51ba7916d5e0c097590fdcb167f3))
+* **sonarcloud:** Show toast error when onClick navigation promise fails ([4a2ff2f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4a2ff2f533dc2caa719163b5114115a16e017586))
+
 ## [3.10.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.9.0...kukkuu-ui-v3.10.0) (2025-02-06)
 
 ### Features
