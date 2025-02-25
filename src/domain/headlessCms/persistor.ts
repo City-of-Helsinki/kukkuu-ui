@@ -72,6 +72,19 @@ export class TimedApolloCachePersistor {
    * with an expiration time. This class automatically clears expired caches
    * and provides methods for persisting and restoring the cache to/from localStorage.
    *
+   * NOTE: React-Router enables client-side routing. The React-router might be configured
+   * to be used e.g. with the header navigation, that is rendered by Headless CMS
+   * React Components -lib (configured through config provider). Instead of requesting a new page,
+   * React Router intercepts the navigation and updates the URL and the displayed
+   * components within the existing page. This avoids full page reloads, resulting
+   * in a faster and more seamless user experience, but it also means that the Apollo
+   * client is not re-initialized on each page load, which leads to Apollo cache not being
+   * reinitialized (but can also lead to stale data, e.g not refreshed navigation menu).
+   * Full page reload is needed to reinitialize the Apollo client and to get the latest data.
+   * Using the basic a-elements (anchors) in the header navigation will cause full page reloads
+   * and reinitialization of the Apollo client.
+   * See more: https://v5.reactrouter.com/web/api/Link.
+   *
    * @param cache The Apollo InMemoryCache instance to be managed.
    * @param options Options for configuring the persistor.
    *
