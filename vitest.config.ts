@@ -40,6 +40,7 @@ export default defineConfig((configEnv) =>
             'codegen.ts',
             'src/index.tsx',
             'src/domain/api/generatedTypes',
+            '**/__generated__.ts',
             'public/mockServiceWorker.js',
             'src/setupTests.ts',
             '**/__tests__/**',
