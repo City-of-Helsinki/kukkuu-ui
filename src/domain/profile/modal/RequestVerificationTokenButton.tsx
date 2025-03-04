@@ -7,7 +7,6 @@ import styles from './editProfileModal.module.scss';
 import { type RequestEmailUpdateTokenMutation } from '../../api/generatedTypes/graphql';
 import Button from '../../../common/components/button/Button';
 import requestEmailUpdateTokenMutation from '../mutations/requestEmailUpdateTokenMutation';
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import useCoolDown from './useCoolDown';
 
 type RequestVerificationTokenButtonProps = {
@@ -56,16 +55,14 @@ export default function RequestVerificationTokenButton({
   };
 
   return (
-    <LoadingSpinner isLoading={loading}>
-      <Button
-        variant="primary"
-        onClick={handleOnClick}
-        className={styles.requestVerificationTokenButton}
-        disabled={isDisabled}
-      >
-        {t('registration.form.guardian.email.verificationToken.request.button')}
-        {!!coolDownSeconds && ` (${coolDownSeconds})`}
-      </Button>
-    </LoadingSpinner>
+    <Button
+      variant="primary"
+      onClick={handleOnClick}
+      className={styles.requestVerificationTokenButton}
+      disabled={isDisabled}
+    >
+      {t('registration.form.guardian.email.verificationToken.request.button')}
+      {!!coolDownSeconds && ` (${coolDownSeconds})`}
+    </Button>
   );
 }
