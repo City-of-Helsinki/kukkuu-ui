@@ -15,7 +15,10 @@ export default function KukkuuPill({
   variant = 'default',
 }: Props) {
   return (
-    <div className={classNames(styles.pill, styles[variant])}>
+    <div
+      data-testid={`kukkuu-pill-${variant}`}
+      className={classNames(styles.pill, styles[variant])}
+    >
       {iconLeft}
       {name}
     </div>
