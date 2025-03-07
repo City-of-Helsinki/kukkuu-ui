@@ -176,6 +176,7 @@ describe('AdditionalNotesCard', () => {
   it('calls mutation with correct variables and displays success message on save', async () => {
     const baseMocks = createMock({ withNotes: true });
     const sanitizeSpy = vi.spyOn(DOMPurify, 'sanitize');
+    const newNotes = 'New Test Notes';
     const extraMocks = [
       {
         request: {
@@ -194,7 +195,7 @@ describe('AdditionalNotesCard', () => {
           variables: {
             input: {
               childId,
-              notes: 'New Test Notes',
+              notes: newNotes,
             },
           },
         },
@@ -203,7 +204,7 @@ describe('AdditionalNotesCard', () => {
             updateChildNotes: {
               childNotes: {
                 id: childId,
-                notes: 'New Test Notes',
+                notes: newNotes,
               },
             },
           },
@@ -218,7 +219,7 @@ describe('AdditionalNotesCard', () => {
     fireEvent.click(editButton);
 
     const editor = screen.getByRole('textbox');
-    const newNotes = 'New Test Notes';
+
     fireEvent.change(editor, { target: { value: newNotes } });
     const saveButton = screen.getByRole('button', {
       name: 'profile.childNotes.save',
