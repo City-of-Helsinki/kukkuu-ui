@@ -46,7 +46,8 @@ describe('ChildEnrolmentCount', () => {
           data: {
             child: {
               id: childId,
-              enrolmentCount: enrolmentCount,
+              enrolmentCount,
+              pastEnrolmentCount: 0,
               project: {
                 id: 'projectId',
                 enrolmentLimit: areAllCurrentEnrolmentsUsed
