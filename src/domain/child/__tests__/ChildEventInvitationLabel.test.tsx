@@ -3,6 +3,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'i18next';
+import * as React from 'react';
 
 import ChildEventInvitationLabel from '../ChildEventInvitationLabel';
 import { childEventInvitationLabelQuery } from '../queries/ChildEventInvitationLabelQuery';
@@ -24,15 +25,20 @@ vi.mock('react-i18next', async () => {
 describe('ChildEventInvitationLabel', () => {
   const childId = 'test-child-id';
 
-  const createMock = (
-    canChildEnroll: boolean,
-    areAllCurrentEnrolmentsUsed: boolean
-  ) => {
+  type MockProps = {
+    canChildEnroll: boolean;
+    areAllCurrentEnrolmentsUsed: boolean;
+  };
+
+  const createMock = ({
+    canChildEnroll,
+    areAllCurrentEnrolmentsUsed,
+  }: MockProps) => {
     return [
       {
         request: {
           query: childEventInvitationLabelQuery,
-          variables: { childId: childId },
+          variables: { childId },
         },
         result: {
           data: {
@@ -54,13 +60,18 @@ describe('ChildEventInvitationLabel', () => {
       {
         request: {
           query: childEnrolmentCountQuery,
-          variables: { childId: childId },
+          variables: { childId },
         },
         result: {
           data: {
             child: {
               id: childId,
               enrolmentCount: areAllCurrentEnrolmentsUsed ? 10 : 5,
+              pastEnrolmentCount: 0,
+              project: {
+                id: 'test-project-id',
+                enrolmentLimit: 10,
+              },
             },
           },
         },
@@ -80,7 +91,10 @@ describe('ChildEventInvitationLabel', () => {
     };
 
   it('should not render the invitation label if no upcoming events where child can enrol', async () => {
-    const mocks = createMock(false, false);
+    const mocks = createMock({
+      canChildEnroll: false,
+      areAllCurrentEnrolmentsUsed: false,
+    });
     render(<ChildEventInvitationLabel childId={childId} />, {
       wrapper: getMockedProviders(mocks),
     });
@@ -93,7 +107,10 @@ describe('ChildEventInvitationLabel', () => {
   });
 
   it('should not render the invitation label if all current enrolments are used', async () => {
-    const mocks = createMock(true, true);
+    const mocks = createMock({
+      canChildEnroll: true,
+      areAllCurrentEnrolmentsUsed: true,
+    });
     render(<ChildEventInvitationLabel childId={childId} />, {
       wrapper: getMockedProviders(mocks),
     });
@@ -106,8 +123,11 @@ describe('ChildEventInvitationLabel', () => {
   });
 
   // eslint-disable-next-line max-len
-  it('should render the invitation label if there are upcoming events and all current enrolments are not used', async () => {
-    const mocks = createMock(true, false);
+  it('should render the invitation label if there are upcoming events and not all current enrolments are used', async () => {
+    const mocks = createMock({
+      canChildEnroll: true,
+      areAllCurrentEnrolmentsUsed: false,
+    });
     render(<ChildEventInvitationLabel childId={childId} />, {
       wrapper: getMockedProviders(mocks),
     });

@@ -62,7 +62,7 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
           variables: {
             input: {
               childId,
-              notes: DOMPurify.sanitize(markDown || ''),
+              notes: DOMPurify.sanitize(markDown ?? ''),
             },
           },
         });
@@ -76,9 +76,9 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
 
   return (
     <Card
-      alt={title || ''}
+      alt={title ?? ''}
       imageElement={<PlaceholderImage />}
-      title={title || ''}
+      title={title ?? ''}
       actionText={''}
       primaryAction={handleNotesAction}
       primaryActionText={t(

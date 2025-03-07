@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { MockedProvider } from '@apollo/client/testing';
 import { I18nextProvider } from 'react-i18next';
@@ -78,12 +78,12 @@ describe('ManageSubscriptions', () => {
     ];
   };
 
-  const renderComponent = (mocks: any, initialEntries?: string[]) =>
+  const renderComponent = (mocks: any) =>
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <I18nextProvider i18n={i18n}>
           <HelmetProvider>
-            <MemoryRouter initialEntries={initialEntries}>
+            <MemoryRouter>
               <ManageSubscriptions />
             </MemoryRouter>
           </HelmetProvider>
@@ -97,7 +97,7 @@ describe('ManageSubscriptions', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText('subscriptions.manage.title')
+        screen.getByRole('heading', { name: 'subscriptions.manage.title' })
       ).toBeInTheDocument();
     });
     expect(
@@ -107,25 +107,26 @@ describe('ManageSubscriptions', () => {
 
   it('renders the ManageSubscriptionsForm', async () => {
     const mocks = createMock({});
-    const { container } = renderComponent(mocks);
+    renderComponent(mocks);
 
-    await waitFor(() => {
-      // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-      expect(container.querySelector('form')).toBeInTheDocument();
+    const form = await screen.findByRole('form', {
+      name: 'subscriptions.manage.title',
     });
 
-    expect(screen.getByText('subscriptions.manage.title')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'subscriptions.manage.title' })
+    ).toBeInTheDocument();
     expect(
       screen.getByText('subscriptions.manage.description')
     ).toBeInTheDocument();
 
     expect(
-      screen.getByRole('checkbox', {
+      within(form).getByRole('checkbox', {
         name: 'subscriptions.manage.form.fields.hasAcceptedCommunication.label',
       })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('button', {
+      within(form).getByRole('button', {
         name: 'subscriptions.manage.form.submit.button.label',
       })
     ).toBeInTheDocument();

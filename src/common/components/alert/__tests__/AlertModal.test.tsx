@@ -16,9 +16,11 @@ describe('AlertModal', () => {
       </AlertModal>
     );
 
-    expect(screen.getByText('Test Heading')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Test Heading' })
+    ).toBeInTheDocument();
     expect(screen.getByText('Test Content')).toBeInTheDocument();
-    expect(screen.getByText('OK')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'OK' })).toBeInTheDocument();
   });
 
   it('calls onClose when the OK button is clicked', () => {
@@ -52,9 +54,13 @@ describe('AlertModal', () => {
       </AlertModal>
     );
 
-    expect(screen.queryByText('Test Heading')).toBeNull();
-    expect(screen.queryByText('Test Content')).toBeNull();
-    expect(screen.queryByText('OK')).toBeNull();
+    expect(
+      screen.queryByRole('heading', { name: 'Test Heading' })
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText('Test Content')).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'OK' })
+    ).not.toBeInTheDocument();
   });
 
   it('calls onClose when the modal is closed via toggleModal', () => {

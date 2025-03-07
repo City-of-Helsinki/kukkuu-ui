@@ -49,29 +49,19 @@ describe('replaceLocaleInPathname', () => {
     }
   );
 
-  it('should work with different supported languages', () => {
-    languages.forEach((currentLanguage) => {
-      languages.forEach((nextLanguage) => {
-        let expected: string;
-        const basepath = `/${currentLanguage}/path`;
-        if (nextLanguage === SUPPORT_LANGUAGES.FI) {
-          expected = `/fi/path`;
-        } else {
-          expected = `/${nextLanguage}/path`;
-        }
-        expect(replaceLocaleInPathname(nextLanguage, basepath)).toBe(expected);
-      });
-      const rootBasePath = '/path';
-      languages.forEach((nextLanguage) => {
-        if (nextLanguage === SUPPORT_LANGUAGES.FI) {
-          expect(replaceLocaleInPathname(nextLanguage, rootBasePath)).toBe(
-            `/${nextLanguage}/path`
-          );
-        } else {
-          expect(replaceLocaleInPathname(nextLanguage, rootBasePath)).toBe(
-            `/${nextLanguage}/path`
-          );
-        }
+  it('should work with different supported languages using path without locale', () => {
+    languages.forEach((nextLanguage) => {
+      const expected = `/${nextLanguage}/path`;
+      expect(replaceLocaleInPathname(nextLanguage, '/path')).toBe(expected);
+    });
+  });
+
+  it('should work with different supported languages using paths with locale', () => {
+    languages.forEach((nextLanguage) => {
+      languages.forEach((currentLanguage) => {
+        const basePath = `/${currentLanguage}/path`;
+        const expected = `/${nextLanguage}/path`;
+        expect(replaceLocaleInPathname(nextLanguage, basePath)).toBe(expected);
       });
     });
   });

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { I18nextProvider } from 'react-i18next';
@@ -22,18 +22,26 @@ vi.mock('react-i18next', async () => {
 
 describe('ChildEnrolmentCount', () => {
   const childId = 'test-child-id';
+  const loadingText = 'Page is loading';
 
-  const createMock = (
-    enrolmentCount: number | null,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    areAllCurrentEnrolmentsUsed: boolean
-  ) => {
+  type MockProps = {
+    enrolmentCount: number | null;
+    areAllCurrentEnrolmentsUsed: boolean;
+    delayMs?: number;
+  };
+
+  const createMock = ({
+    enrolmentCount,
+    areAllCurrentEnrolmentsUsed,
+    delayMs,
+  }: MockProps) => {
     return [
       {
         request: {
           query: childEnrolmentCountQuery,
           variables: { childId: childId },
         },
+        delay: delayMs,
         result: {
           data: {
             child: {
@@ -43,32 +51,10 @@ describe('ChildEnrolmentCount', () => {
                 id: 'projectId',
                 enrolmentLimit: areAllCurrentEnrolmentsUsed
                   ? enrolmentCount
-                  : (enrolmentCount || 0) + 1,
+                  : (enrolmentCount ?? 0) + 1,
               },
             },
           },
-        },
-      },
-      {
-        request: {
-          query: childEnrolmentCountQuery,
-          variables: { childId: childId },
-        },
-        newData: () => {
-          return {
-            data: {
-              child: {
-                id: childId,
-                enrolmentCount: enrolmentCount,
-                project: {
-                  id: 'projectId',
-                  enrolmentLimit: areAllCurrentEnrolmentsUsed
-                    ? enrolmentCount
-                    : (enrolmentCount || 0) + 1,
-                },
-              },
-            },
-          };
         },
       },
     ];
@@ -86,34 +72,43 @@ describe('ChildEnrolmentCount', () => {
     };
 
   it('renders loading spinner when data is not available', async () => {
-    const mocks = createMock(null, false);
+    const mocks = createMock({
+      enrolmentCount: null,
+      areAllCurrentEnrolmentsUsed: false,
+      delayMs: 5_000, // add delay to ensure the query is loading
+    });
 
     render(<ChildEnrolmentCount childId={childId} />, {
       wrapper: getMockedProviders(mocks),
     });
 
-    expect(screen.getByText('Page is loading')).toBeInTheDocument();
-    await screen.findByText('child.message.eventVisitsThisYear:');
-    expect(
-      screen.getByText('child.message.eventVisitsThisYear:')
-    ).toBeInTheDocument();
+    expect(screen.getByText(loadingText)).toBeInTheDocument();
   });
 
   it('renders enrolment count when data is available', async () => {
-    const mocks = createMock(5, false);
+    const mocks = createMock({
+      enrolmentCount: 5,
+      areAllCurrentEnrolmentsUsed: false,
+    });
 
     render(<ChildEnrolmentCount childId={childId} />, {
       wrapper: getMockedProviders(mocks),
     });
 
-    await screen.findByText('child.message.eventVisitsThisYear: 5');
+    await waitFor(() =>
+      expect(screen.queryByText(loadingText)).not.toBeInTheDocument()
+    );
+
     expect(
       screen.getByText('child.message.eventVisitsThisYear: 5')
     ).toBeInTheDocument();
   });
 
   it('renders success pill when all current enrolments are used', async () => {
-    const mocks = createMock(5, true);
+    const mocks = createMock({
+      enrolmentCount: 5,
+      areAllCurrentEnrolmentsUsed: true,
+    });
 
     render(<ChildEnrolmentCount childId={childId} />, {
       wrapper: getMockedProviders(mocks),
@@ -125,7 +120,10 @@ describe('ChildEnrolmentCount', () => {
   });
 
   it('renders default pill when all current enrolments are not used', async () => {
-    const mocks = createMock(5, false);
+    const mocks = createMock({
+      enrolmentCount: 5,
+      areAllCurrentEnrolmentsUsed: false,
+    });
 
     render(<ChildEnrolmentCount childId={childId} />, {
       wrapper: getMockedProviders(mocks),

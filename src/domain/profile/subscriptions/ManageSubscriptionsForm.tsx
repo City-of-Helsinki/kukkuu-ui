@@ -55,7 +55,7 @@ const ManageSubscriptionsForm = ({
       onSubmit={onSubmit}
       validationSchema={schema}
     >
-      <Form>
+      <Form aria-label={t('subscriptions.manage.title')}>
         <CheckboxField
           id={'hasAcceptedCommunication'}
           name={'hasAcceptedCommunication'}

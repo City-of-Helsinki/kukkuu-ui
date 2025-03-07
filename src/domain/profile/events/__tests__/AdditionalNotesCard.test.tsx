@@ -47,6 +47,15 @@ const childId = 'test-child-id';
 const fakeNotes = fakeChildNotes(childId);
 
 describe('AdditionalNotesCard', () => {
+  const renderComponent = (mocks: any) =>
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <I18nextProvider i18n={i18n}>
+          <AdditionalNotesCard childId={childId} title="Test Title" />
+        </I18nextProvider>
+      </MockedProvider>
+    );
+
   const createMock = ({
     withNotes = true,
     withError = false,
@@ -80,9 +89,7 @@ describe('AdditionalNotesCard', () => {
           variables: {
             input: {
               childId,
-              // FIXME: for some reason this does not match with ""
-              // Some what related: https://github.com/vitest-dev/vitest/issues/7015.
-              notes: expect.any(String),
+              notes: fakeNotes.notes,
             },
           },
         },
@@ -108,27 +115,18 @@ describe('AdditionalNotesCard', () => {
 
   it('renders with a title', async () => {
     const mocks = createMock({});
-    render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <I18nextProvider i18n={i18n}>
-          <AdditionalNotesCard childId={childId} title="Test Title" />
-        </I18nextProvider>
-      </MockedProvider>
-    );
+    renderComponent(mocks);
+
     await waitFor(() => {
-      expect(screen.getByText('Test Title')).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { name: 'Test Title' })
+      ).toBeInTheDocument();
     });
   });
 
   it('renders with no notes message when no notes are found', async () => {
     const mocks = createMock({ withNotes: false });
-    render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <I18nextProvider i18n={i18n}>
-          <AdditionalNotesCard childId={childId} />
-        </I18nextProvider>
-      </MockedProvider>
-    );
+    renderComponent(mocks);
 
     await waitFor(() => {
       expect(
@@ -139,28 +137,16 @@ describe('AdditionalNotesCard', () => {
 
   it('renders notes when notes are found', async () => {
     const mocks = createMock({ withNotes: true });
-    render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <I18nextProvider i18n={i18n}>
-          <AdditionalNotesCard childId={childId} />
-        </I18nextProvider>
-      </MockedProvider>
-    );
+    renderComponent(mocks);
 
     await waitFor(() => {
       expect(screen.getByText(fakeNotes.notes)).toBeInTheDocument();
     });
   });
 
-  it('displays error message when there is an error fetching notes', async () => {
+  it('renders with no notes message when there is an error fetching notes', async () => {
     const mocks = createMock({ withError: true });
-    render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <I18nextProvider i18n={i18n}>
-          <AdditionalNotesCard childId={childId} />
-        </I18nextProvider>
-      </MockedProvider>
-    );
+    renderComponent(mocks);
 
     await waitFor(() => {
       expect(
@@ -169,72 +155,62 @@ describe('AdditionalNotesCard', () => {
     });
   });
 
-  it('allows editing of notes', async () => {
+  it('pressing edit button brings up textbox for editing notes', async () => {
     const mocks = createMock({ withNotes: true });
-    render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <I18nextProvider i18n={i18n}>
-          <AdditionalNotesCard childId={childId} />
-        </I18nextProvider>
-      </MockedProvider>
-    );
+    renderComponent(mocks);
 
     const editButton = await screen.findByRole('button', {
       name: 'profile.childNotes.edit',
     });
+
+    expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
+
     fireEvent.click(editButton);
 
     const editor = screen.getByRole('textbox');
     expect(editor).toBeInTheDocument();
+    expect(editor.textContent).toBe(fakeNotes.notes);
+    expect(editor).toHaveClass('w-md-editor-text-input'); // Markdown editor's text input
   });
 
   it('calls mutation with correct variables and displays success message on save', async () => {
-    const mocks = createMock({ withNotes: true });
+    const baseMocks = createMock({ withNotes: true });
     const sanitizeSpy = vi.spyOn(DOMPurify, 'sanitize');
-    render(
-      <MockedProvider
-        mocks={[
-          ...mocks,
-          {
-            request: {
-              query: childNotesByIdQuery,
-              variables: { id: childId },
+    const extraMocks = [
+      {
+        request: {
+          query: childNotesByIdQuery,
+          variables: { id: childId },
+        },
+        result: {
+          data: {
+            childNotes: null,
+          },
+        },
+      },
+      {
+        request: {
+          query: editChildNotesMutation,
+          variables: {
+            input: {
+              childId,
+              notes: 'New Test Notes',
             },
-            result: {
-              data: {
-                childNotes: null,
+          },
+        },
+        result: {
+          data: {
+            updateChildNotes: {
+              childNotes: {
+                id: childId,
+                notes: 'New Test Notes',
               },
             },
           },
-          {
-            request: {
-              query: editChildNotesMutation,
-              variables: {
-                input: {
-                  childId,
-                  notes: 'New Test Notes',
-                },
-              },
-            },
-            result: {
-              data: {
-                updateChildNotes: {
-                  childNotes: {
-                    id: childId,
-                    notes: 'New Test Notes',
-                  },
-                },
-              },
-            },
-          },
-        ]}
-        addTypename={false}
-      >
-        <I18nextProvider i18n={i18n}>
-          <AdditionalNotesCard childId={childId} />
-        </I18nextProvider>
-      </MockedProvider>
-    );
+        },
+      },
+    ];
+    renderComponent([...baseMocks, ...extraMocks]);
 
     const editButton = await screen.findByRole('button', {
       name: 'profile.childNotes.edit',
@@ -254,30 +230,7 @@ describe('AdditionalNotesCard', () => {
 
   it('displays error message on mutation error', async () => {
     const mocks = createMock({ withMutationError: true });
-    render(
-      <MockedProvider
-        mocks={[
-          ...mocks,
-          {
-            request: {
-              query: editChildNotesMutation,
-              variables: {
-                input: {
-                  childId,
-                  notes: fakeNotes.notes,
-                },
-              },
-            },
-            error: new Error('Mutation Error'),
-          },
-        ]}
-        addTypename={false}
-      >
-        <I18nextProvider i18n={i18n}>
-          <AdditionalNotesCard childId={childId} />
-        </I18nextProvider>
-      </MockedProvider>
-    );
+    renderComponent(mocks);
 
     const editButton = await screen.findByRole('button', {
       name: 'profile.childNotes.edit',

@@ -4,7 +4,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'i18next';
 import { toast } from 'react-toastify';
-import React from 'react';
+import React, { act } from 'react';
 
 import RequestVerificationTokenButton from '../RequestVerificationTokenButton';
 import requestEmailUpdateTokenMutation from '../../mutations/requestEmailUpdateTokenMutation';
@@ -47,7 +47,13 @@ describe('RequestVerificationTokenButton', () => {
   const buttonText =
     'registration.form.guardian.email.verificationToken.request.button';
 
-  const createMock = ({ success }: { success: boolean }) => {
+  type MockProps = {
+    success: boolean;
+    mutationCalledFunc?: ReturnType<typeof vi.fn>;
+    delayMs?: number;
+  };
+
+  const createMock = ({ success, mutationCalledFunc, delayMs }: MockProps) => {
     return [
       {
         request: {
@@ -58,17 +64,21 @@ describe('RequestVerificationTokenButton', () => {
             },
           },
         },
-        result: {
-          data: success
-            ? {
-                requestEmailUpdateToken: {
-                  success: true,
-                  email: 'testguy@kukkuu.hel.fi',
-                  emailUpdateTokenRequested: true,
-                },
-              }
-            : undefined,
-          errors: success ? undefined : [{ message: 'Error' }],
+        delay: delayMs,
+        result: () => {
+          if (mutationCalledFunc) mutationCalledFunc();
+          return {
+            data: success
+              ? {
+                  requestEmailUpdateToken: {
+                    success: true,
+                    email: 'testguy@kukkuu.hel.fi',
+                    emailUpdateTokenRequested: true,
+                  },
+                }
+              : undefined,
+            errors: success ? undefined : [{ message: 'Error' }],
+          };
         },
       },
     ];
@@ -98,33 +108,44 @@ describe('RequestVerificationTokenButton', () => {
   });
 
   it('calls mutation and displays success toast on button click', async () => {
-    const mocks = createMock({ success: true });
+    const mutationCalledFunc = vi.fn();
+    const mocks = createMock({ success: true, mutationCalledFunc });
     render(<RequestVerificationTokenButton email={email} />, {
       wrapper: getMockedProviders(mocks),
     });
 
+    expect(mutationCalledFunc).not.toHaveBeenCalled();
+
     const button = screen.getByRole('button', { name: buttonText });
     fireEvent.click(button);
 
+    await waitFor(() => expect(mutationCalledFunc).toHaveBeenCalled());
     await waitFor(() =>
       expect(toast.success).toHaveBeenCalledWith(successMessage)
     );
   });
 
   it('calls mutation and displays error toast on mutation error', async () => {
-    const mocks = createMock({ success: false });
+    const mutationCalledFunc = vi.fn();
+    const mocks = createMock({ success: false, mutationCalledFunc });
     render(<RequestVerificationTokenButton email={email} />, {
       wrapper: getMockedProviders(mocks),
     });
 
+    expect(mutationCalledFunc).not.toHaveBeenCalled();
+
     const button = screen.getByRole('button', { name: buttonText });
     fireEvent.click(button);
 
+    await waitFor(() => expect(mutationCalledFunc).toHaveBeenCalled());
     await waitFor(() => expect(toast.error).toHaveBeenCalledWith(errorMessage));
   });
 
-  it('button not available while loading', async () => {
-    const mocks = createMock({ success: true });
+  it('button is disabled while loading', async () => {
+    const mocks = createMock({
+      success: true,
+      delayMs: 5_000, // add delay to ensure the query is loading
+    });
     render(<RequestVerificationTokenButton email={email} />, {
       wrapper: getMockedProviders(mocks),
     });
@@ -132,7 +153,6 @@ describe('RequestVerificationTokenButton', () => {
     const button = screen.getByRole('button', { name: buttonText });
     fireEvent.click(button);
     await waitFor(() => expect(button).toBeDisabled());
-    // await waitFor(() => expect(button).not.toBeInTheDocument());
   });
 
   it('disables button when disabled prop is true', async () => {
@@ -157,22 +177,26 @@ describe('RequestVerificationTokenButton', () => {
     fireEvent.click(button);
 
     expect(button).toBeDisabled();
-    expect(button).toHaveTextContent(`${buttonText}`);
+    expect(button.textContent).toBe(buttonText);
 
-    await vi.advanceTimersToNextTimerAsync();
+    await act(async () => await vi.advanceTimersToNextTimerAsync());
 
-    expect(button).toHaveTextContent(`${buttonText} (60)`);
+    expect(button.textContent).toBe(`${buttonText} (60)`);
+    expect(button).toBeDisabled();
 
-    // eslint-disable-next-line no-plusplus
-    for (let i = 59; i > 1; i--) {
-      await vi.advanceTimersByTimeAsync(1000);
-      expect(button).toHaveTextContent(`${buttonText} (${i})`);
+    // Need to advance timer by 1s at a time because
+    // useCoolDown uses setInterval with 1s intervals to update the cool down seconds
+    // that affect the button text.
+    for (let i = 59; i >= 1; i = i - 1) {
+      await act(async () => await vi.advanceTimersByTimeAsync(1000));
+      expect(button.textContent).toBe(`${buttonText} (${i})`);
+      expect(button).toBeDisabled();
     }
+    expect(button.textContent).toBe(`${buttonText} (1)`);
+    expect(button).toBeDisabled();
 
-    await vi.advanceTimersByTimeAsync(1000);
-    expect(button).toHaveTextContent(buttonText);
-
-    await vi.advanceTimersByTimeAsync(1000);
+    await act(async () => await vi.advanceTimersByTimeAsync(1000));
+    expect(button.textContent).toBe(buttonText);
     expect(button).not.toBeDisabled();
 
     vi.useRealTimers();
