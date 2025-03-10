@@ -84,11 +84,11 @@ export default function useRHHCConfig(): Config {
           if (!link) {
             return '#';
           }
-          internalHrefOrigins.forEach((origin) => {
+          for (const origin of internalHrefOrigins) {
             if (link.includes(origin)) {
               return link.replace(origin, '');
             }
-          });
+          }
           return link;
         },
         getShowAllUrl: () => '',
