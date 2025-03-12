@@ -24,11 +24,12 @@ pr:
   paths:
     exclude:
     - '*release-please*'
-    - '*.md'
+    - '**/*.md'
     - '.github/'
     - 'pipelines/kukkuu-ui-release.yml'
     - 'pipelines/kukkuu-ui-dev.yml'
     - 'docker-compose*'
+    - 'compose.*'
 
 # By default, use self-hosted agents
 pool: Default
@@ -38,20 +39,25 @@ resources:
     # Azure DevOps repository
     - repository: kukkuu-pipelines
       type: git
+      ref: refs/heads/ansible_automation_update
       # Azure DevOps project/repository
       name: kukkuu/kukkuu-pipelines
 
 extends:
   # Filename in Azure DevOps Repository
   template: components/kukkuu-ui/pipelines/kukkuu-ui-review.yml@kukkuu-pipelines
-  # parameters:
+  parameters:
     # Application build arguments and config map values as key value pairs.
     # Does not contain all buildArguments or configMap values, the rest located in kukkuu-pipelines
     # The values here will override the values defined in the kukkuu-pipelines repository
-    # buildArgs:
-    #   DEBUG: 1
-    # configMap: # pod environment variables
-    #   DEBUG: 1
-    ## Default value to nodeVersion is set on template.
-    ## Used tool version
-    # nodeVersion: 18
+    buildArgs:
+      VITE_CMS_URI: 'https://kukkuu.app-staging.hkih.hion.dev/graphql'
+      # TODO: Instead of using the Kukkuu API from the test environment, use a review specific API.
+      # VITE_API_URI: 'https://kukkuu-local.api.dev.hel.ninja/graphql'
+      VITE_API_URI: https://kukkuu.api.test.hel.ninja/graphql
+      VITE_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.test.hel.ninja/check-ticket-validity' # NOTE: this can't be right
+      VITE_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
+      BROWSER_TESTS_PROJECT_YEAR: 1234
+    configMap: # pod environment variables
+      BROWSER_TESTS_PROJECT_YEAR: 1234
+
