@@ -1,11 +1,18 @@
-#
-# Review pipeline. Run build and deploy for Platta test environments.
-# Pipeline runs different tests e.g. unittest and browser tests.
-#
 # Continuous integration (CI) triggers cause a pipeline to run whenever you push
 # an update to the specified branches or you push specified tags.
-# only PR trigger pipeline
-trigger: none
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+    - '*release-please*'
+    - '**/*.md'
+    - '.github/'
+    - 'pipelines/kukkuu-ui-release.yml'
+    - 'pipelines/kukkuu-ui-review.yml'
+    - 'docker-compose*'
 
 # Pull request (PR) triggers cause a pipeline to run whenever a pull request is
 # opened with one of the specified target branches, or when updates are made to
@@ -16,20 +23,7 @@ trigger: none
 # of the pull request.
 #
 # Opt out of pull request validation
-pr:
-  # PR target branch
-  branches:
-    include:
-      - master
-  paths:
-    exclude:
-      - '*release-please*'
-      - '**/*.md'
-      - '.github/'
-      - 'azure-pipelines-release.yml'
-      - 'azure-pipelines-test.yml'
-      - 'docker-compose*'
-      - 'compose.*'
+pr: none
 
 # By default, use self-hosted agents
 pool: Default
@@ -43,21 +37,20 @@ resources:
       name: kukkuu/kukkuu-pipelines
 
 extends:
-  # Filename in Azure DevOps Repository (note possible -ui or -api)
-  # Django example: azure-pipelines-PROJECTNAME-api-release.yml
-  # Drupal example: azure-pipelines-drupal-release.yml
-  template: azure-pipelines-kukkuu-ui-review.yml@kukkuu-pipelines
+  # Filename in Azure DevOps Repository
+  template: components/kukkuu-ui/pipelines/kukkuu-ui-dev.yml@kukkuu-pipelines
   parameters:
     # Application build arguments and config map values as key value pairs.
-    # Does not contain all buildArguments, the rest located in harrastukset-pipelines/harrastukset-variables-development.yml and harrastukset-variables-common.yml
-    # The values here will override the values defined in the harrastukset-pipelines repository
+    # Does not contain all buildArguments or configMap values, the rest located in kukkuu-pipelines
+    # The values here will override the values defined in the kukkuu-pipelines repository
     buildArgs:
       VITE_CMS_URI: 'https://kukkuu.app-staging.hkih.hion.dev/graphql'
       # TODO: Instead of using the Kukkuu API from the test environment, use a review specific API.
       # VITE_API_URI: 'https://kukkuu-local.api.dev.hel.ninja/graphql'
-      VITE_API_URI: https://kukkuu.api.test.hel.ninja/graphql
-      VITE_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.test.hel.ninja/check-ticket-validity' # NOTE: this can't be right
+      VITE_API_URI: https://kukkuu.api.dev.hel.ninja/graphql
+      VITE_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.dev.hel.ninja/check-ticket-validity'
       VITE_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
       BROWSER_TESTS_PROJECT_YEAR: 1234
     configMap: # pod environment variables
       BROWSER_TESTS_PROJECT_YEAR: 1234
+
