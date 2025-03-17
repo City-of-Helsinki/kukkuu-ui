@@ -34,7 +34,7 @@ export function getEpochTimeframeForTestJWt(
 export function generateTestJwt({
   user,
   prefix,
-  issuer = 'https://kukkuu-ui.test.hel.ninja',
+  issuer = 'https://kukkuu-ui.dev.hel.ninja',
   audience = BrowserTestJWTConfig.oidcApiClientId,
   type = 'Bearer',
   authTime = new Date(),
