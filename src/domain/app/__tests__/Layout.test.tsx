@@ -26,6 +26,6 @@ beforeEach(() => {
 });
 
 it('renders without crashing', () => {
-  const { container } = render(<Layout />, mocks);
+  const { container } = render(<Layout />, mocks, undefined, 'MemoryRouter');
   expect(container).toMatchSnapshot();
 });
