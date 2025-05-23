@@ -11,14 +11,24 @@ import AppConfig from '../app/AppConfig';
 type KukkuuHDSLoginProviderProps = { children: React.ReactNode };
 
 function KukkuuHDSLoginProvider({ children }: KukkuuHDSLoginProviderProps) {
-  const { t } = useTranslation();
+  const {
+    t,
+    i18n: { language },
+  } = useTranslation();
   const providerProperties =
     AppConfig.oidcServerType === 'TUNNISTAMO'
       ? tunnistamoPoviderProperties
       : keycloakPoviderProperties;
 
   return (
-    <LoginProvider {...providerProperties}>
+    <LoginProvider
+      {...providerProperties}
+      userManagerSettings={{
+        ...providerProperties.userManagerSettings,
+        // Define what language to use in the (external) login page
+        ui_locales: language,
+      }}
+    >
       {children}
       <SessionEndedHandler
         content={{
