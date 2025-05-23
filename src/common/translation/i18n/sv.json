@@ -244,7 +244,7 @@
       "heading": "Min dagbok om evenemang",
       "edit": "Redigera",
       "save": "Spara",
-      "noNotes": "Bifoga information om tidigare fadderevenemang här och skriva anteckningar om framtida också.",
+      "noNotes": "Skriv inte personuppgifter såsom namn, hälsouppgifter eller andra känsliga uppgifter.",
       "titlegroup": "Titel",
       "titleAction": "Infoga titel",
       "errorMessage": "Ett fel uppstod när data sparades. Försök igen senare."
