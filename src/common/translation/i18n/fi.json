@@ -244,7 +244,7 @@
       "heading": "Päiväkirjamerkintäni tapahtumista",
       "edit": "Muokkaa",
       "save": "Tallenna",
-      "noNotes": "Voit liittää tähän tiedot menneistä kummitapahtumista ja kirjoittaa muistiinpanoja myös tulevista.",
+      "noNotes": "Älä kirjoita tähän henkilötietoja kuten nimiä, terveystietoja tai muita arkaluonteisia tietoja.",
       "titlegroup": "Otsikko",
       "titleAction": "Lisää otsikko",
       "errorMessage": "Tapahtui virhe tietojen tallennuksessa. Yritä myöhemmin uudestaan."
