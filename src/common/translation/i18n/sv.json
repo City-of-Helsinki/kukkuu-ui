@@ -563,6 +563,13 @@
     },
     "text": "Sidan du söker kunde inte hittas"
   },
+  "applicationError": {
+    "return": {
+      "text": "Tillbaka till framsidan"
+    },
+    "text": "Något gick fel. Försök igen senare.",
+    "title": "Ett fel uppstod"
+  },
   "partners": {
     "2020": "Födda 2020"
   },
