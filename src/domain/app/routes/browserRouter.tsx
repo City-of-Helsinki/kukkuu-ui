@@ -25,9 +25,13 @@ import ManageCommunicationSubscriptions from '../../profile/subscriptions/Manage
 import NotFound from '../notFound/NotFound';
 import KukkuuHDSLoginCallbackHandler from '../../auth/KukkuuHDSLoginCallbackHandler';
 import SilentRenewRedirect from './SilentRenewRedirect';
+import ApplicationError from '../errorElement/ApplicationError';
 
 const browserRouter = createBrowserRouter([
-  { path: '/', element: <NavigateToLocalePath /> },
+  {
+    path: '/',
+    element: <NavigateToLocalePath />,
+  },
   {
     path: '/callback',
     Component: KukkuuHDSLoginCallbackHandler,
@@ -42,6 +46,7 @@ const browserRouter = createBrowserRouter([
   {
     path: '/:locale/*',
     Component: WithProfileChildRouteAuthorization(WithLocaleRoute(Layout)),
+    errorElement: <ApplicationError />,
     children: [
       {
         index: true,
