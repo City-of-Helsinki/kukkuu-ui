@@ -401,6 +401,15 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.11.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.1...kukkuu-ui-v3.11.2) (2025-05-28)
+
+
+### Bug Fixes
+
+* Configure commitlint to ignore dependabot commits & set more rules ([ed32114](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ed32114e10b2e5cfdbb707ee679717a1c94c5332))
+* Layout test by using useLocation consistently from react-router-dom ([d3f2379](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d3f2379aad09d40d5be3e7686d038ba6b7b2d7e7))
+* Set dependabot reviewers for ratkaisutoimisto ([1767f44](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1767f44906afbc2acf22bb6dd28b440c8459b881))
+
 ## [3.11.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.0...kukkuu-ui-v3.11.1) (2025-03-11)
 
 
