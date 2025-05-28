@@ -15,6 +15,7 @@ import {
 import ConfirmModal from '../../../common/components/confirm/ConfirmModal';
 import { saveChildEvents } from '../state/EventActions';
 import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
+import AppConfig from '../../app/AppConfig';
 
 interface UnenrolModalProps {
   isOpen: boolean;
@@ -88,7 +89,14 @@ const UnenrolModal = ({
       cancel={t('event.cancellation.confirmationModal.cancel.buttonText')}
       ok={t('event.cancellation.confirmationModal.confirm.buttonText')}
       answer={confirmUnenrol}
-    />
+    >
+      <p>
+        {t('enrollment.cancellation.enabledDescription', {
+          unerolHoursBeforeOccurrence:
+            AppConfig.enrolmentCancellationTimeLimitHours,
+        })}
+      </p>
+    </ConfirmModal>
   );
 };
 

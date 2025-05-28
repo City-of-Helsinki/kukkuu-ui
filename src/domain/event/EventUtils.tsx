@@ -1,6 +1,7 @@
 import { IconGroup } from 'hds-react';
 import { addMinutes } from 'date-fns/addMinutes';
 import uniqBy from 'lodash/uniqBy';
+import { differenceInHours } from 'date-fns/differenceInHours';
 
 import { formatTime, newDate } from '../../common/time/utils';
 import {
@@ -11,6 +12,7 @@ import {
 import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../api/generatedTypes/graphql';
 import RelayList from '../api/relayList';
 import { OccurrenceNode, Occurrences } from './types/EventQueryTypes';
+import AppConfig from '../app/AppConfig';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
@@ -66,3 +68,18 @@ export function getParticipantsIcon(iconType: EventParticipantsPerInviteEnum) {
       return <IconGroup />;
   }
 }
+
+/**
+ * Should the user be allowed to unenrol from an event occurrence?
+ * This function checks if the current time is at least
+ * `AppConfig.enrolmentCancellationTimeLimitHours` (e.g. 48) hours
+ * before the occurrence time. If it is, the user can unenrol;
+ * otherwise, they cannot.
+ */
+export const shouldAllowUnenrolment = (
+  occurrenceTime: Date,
+  enrolmentCancellationTimeLimitHours = AppConfig.enrolmentCancellationTimeLimitHours
+) => {
+  const hoursDiff = differenceInHours(occurrenceTime, new Date());
+  return Boolean(hoursDiff >= enrolmentCancellationTimeLimitHours);
+};
