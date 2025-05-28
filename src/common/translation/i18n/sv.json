@@ -293,7 +293,7 @@
       },
       "description": {
         "full": "Tyvärr är det här evenemanget fullt. Prenumerera för att få ett meddelande om tillgängliga platser.",
-        "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i."
+        "text": "Kontrollera att informationen nedan motsvarar de evenemang du vill delta i.\n Om du inte kan delta i evenemanget, vänligen avboka din anmälan senast {{unerolHoursBeforeOccurrence}} timmar före evenemanget."
       },
       "heading": {
         "full": "Registreringen för händelsen {{eventName}} misslyckades",
@@ -324,6 +324,10 @@
     "successToast": {
       "heading": "Din anmälan till evenemanget lyckades!",
       "paragraph": "Vi skickade en bekräftelse till din epost, den innehåller mer information om evenemanget"
+    },
+    "cancellation": {
+      "enabledDescription": "Om du inte kan delta i evenemanget, vänligen avboka din anmälan senast {{unerolHoursBeforeOccurrence}} timmar före evenemanget.",
+      "disabledDescription": "Evenemanget börjar om mindre än {{unerolHoursBeforeOccurrence}} timmar, så tyvärr kan du inte längre avboka din anmälan."
     }
   },
   "enrollPage": {

@@ -293,7 +293,7 @@
       },
       "description": {
         "full": "Valitettavasti tämä tapahtuma on täynnä. Tilaa ilmoitus vapautuvista paikoista.",
-        "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua."
+        "text": "Tarkista, että alla olevat tiedot vastaavat tapahtumaa, johon haluat osallistua.\n Jos ette pääse osallistumaan tapahtumaan, peru ilmoittautumisenne viimeistään {{unerolHoursBeforeOccurrence}} tuntia ennen tapahtumaa."
       },
       "heading": {
         "full": "Ilmottautumien tapahtumaan {{eventName}} epäonnistui",
@@ -324,6 +324,10 @@
     "successToast": {
       "heading": "Tapahtumaan ilmoittautuminen onnistui!",
       "paragraph": "Lähetimme varmistusviestin sähköpostiisi, löydät sieltä tapahtuman lisätiedot"
+    },
+    "cancellation": {
+      "enabledDescription": "Jos ette pääse osallistumaan tapahtumaan, peru ilmoittautumisenne viimeistään {{unerolHoursBeforeOccurrence}} tuntia ennen tapahtumaa.",
+      "disabledDescription": "Tapahtuma alkaa alle {{unerolHoursBeforeOccurrence}} tunnin päästä, joten et valitettavasti voi enää perua ilmoittautumista."
     }
   },
   "enrollPage": {

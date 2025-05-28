@@ -304,6 +304,17 @@ class AppConfig {
   static get datetimeFormat() {
     return 'dd.MM.yyyy HH:mm:ss';
   }
+
+  /**
+   * Time limit in hours for cancelling an enrolment.
+   * This is the time before the event occurrence when a user can no longer cancel their enrolment.
+   * Read env variable `VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS`. Defaults to 48 hours if not set.
+   */
+  static get enrolmentCancellationTimeLimitHours() {
+    return (
+      Number(import.meta.env.VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS) || 48
+    ); // Default to 48 hours if not set
+  }
 }
 
 // Accept both variable and name so that variable can be correctly replaced
