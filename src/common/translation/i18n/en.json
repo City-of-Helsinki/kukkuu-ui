@@ -293,7 +293,7 @@
       },
       "description": {
         "full": "Unfortunately this event is full. Subscribe to receive a notification of available places.",
-        "text": "Check that the information below is correct for the event you wish to attend."
+        "text": "Check that the information below is correct for the event you wish to attend.\n Please note that registration is binding and in the event of an unfortunate cancellation, cancellation must be made no later than {{unerolHoursBeforeOccurrence}} hours before the event date."
       },
       "heading": {
         "full": "Registration for event {{eventName}} failed",
@@ -324,6 +324,10 @@
     "successToast": {
       "heading": "Registration for event successful",
       "paragraph": "We sent you a confirmation message by email where you can find more information about the event"
+    },
+    "cancellation": {
+      "enabledDescription": "You can cancel your registration for an event if you are unable to attend. Cancellations must be made no later than {{unerolHoursBeforeOccurrence}} hours before the event.",
+      "disabledDescription": "Unfortunately, you cannot cancel your registration for this event, as cancellations must be made no later than {{unerolHoursBeforeOccurrence}} hours before the event."
     }
   },
   "enrollPage": {

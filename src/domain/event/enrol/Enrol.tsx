@@ -6,6 +6,8 @@ import OccurrenceInfo from '../partial/OccurrenceInfo';
 import Button from '../../../common/components/button/Button';
 import EventOccurrenceNotificationControlButton from '../EventOccurrenceNotificationControlButton';
 import { OccurrenceFields } from '../types/OccurrenceQueryTypes';
+import AppConfig from '../../app/AppConfig';
+import Paragraph from '../../../common/components/paragraph/Paragraph';
 
 type Props = {
   childId: string;
@@ -46,8 +48,16 @@ const Enrol = ({
           </h1>
         </div>
         <div className={styles.text}>
-          {!isFull && t('enrollment.confirmationPage.description.text')}
-          {isFull && t('enrollment.confirmationPage.description.full')}
+          <Paragraph
+            text={
+              !isFull
+                ? t('enrollment.confirmationPage.description.text', {
+                    unerolHoursBeforeOccurrence:
+                      AppConfig.enrolmentCancellationTimeLimitHours,
+                  })
+                : t('enrollment.confirmationPage.description.full')
+            }
+          />
         </div>
         <OccurrenceInfo
           occurrence={occurrence}
