@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kulttuurin kummilapset - Culture Kids</title>
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+      block-all-mixed-content;
+      default-src 'self';
+      script-src 'self' https://m.youtube.com https://www.youtube.com https://webanalytics.digiaiiris.com;
+      style-src 'self' 'unsafe-inline';
+      object-src 'none';
+      frame-src 'self' *.hel.fi *.hel.ninja *.youtube.com www.youtube-nocookie.com *.vimeo.com;
+      img-src 'self' data: *.hel.fi *.hel.ninja *.ytimg.com *.youtube.com *.vimeo.com *.vimeocdn.com *.blob.core.windows.net *.hkih.hion.dev;
+      font-src 'self' *.hel.fi *.hel.ninja;
+      connect-src 'self' localhost:* 127.0.0.1:* *.hel.fi *.hel.ninja *.hkih.hion.dev *.digiaiiris.com;
+      manifest-src 'self';
+      base-uri 'self';
+      form-action 'self';
+      media-src 'self' *.hel.fi *.hel.ninja *.hkih.hion.dev;
+      worker-src 'self';
+    "
+    />
+    <link rel="icon" href="/hds-favicon-kit/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/hds-favicon-kit/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <style type="text/css">
+      .error {
+        text-align: center;
+        align-self: center;
+      }
+      .error .returnLink {
+        display: block;
+        margin: 3rem auto auto auto;
+        background: #ffc61e;
+        box-sizing: border-box;
+        text-decoration: none;
+        padding: 1rem;
+        color: #000000;
+        width: 50%;
+      }
+      @media (max-width: 767px) {
+        .error .returnLink {
+          width: 80%;
+        }
+      }
+      .icon {
+        display: block;
+        margin: 0 auto;
+        height: 8rem;
+        width: 8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main_content">
+      <div class="container">
+        <div class="error">
+          <h1>
+            <span lang="fi">Virhe</span> / <span lang="en">Error</span> /
+            <span lang="sv">Fel</span>
+          </h1>
+          <div class="icon">
+            <img src="/icons/svg/adultFace.svg" alt="Icon of sad face" />
+          </div>
+          <p lang="fi">Jokin meni pieleen. Yritä myöhemmin uudelleen.</p>
+          <p lang="en">Something went wrong. Try again later.</p>
+          <p lang="sv">Något gick fel. Försök igen senare.</p>
+          <a class="returnLink" href="/"
+            ><span lang="fi">Etusivulle</span> /
+            <span lang="en">To front page</span> /
+            <span lang="sv">Till framsidan</span></a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

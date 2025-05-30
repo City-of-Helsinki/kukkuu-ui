@@ -563,6 +563,13 @@
     },
     "text": "Etsimääsi sivua ei löytynyt"
   },
+  "applicationError": {
+    "return": {
+      "text": "Etusivulle"
+    },
+    "text": "Jokin meni pieleen. Yritä myöhemmin uudelleen.",
+    "title": "Virhe tapahtui"
+  },
   "partners": {
     "2020": "2020 syntyneet"
   },

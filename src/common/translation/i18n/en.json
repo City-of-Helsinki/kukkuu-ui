@@ -563,6 +563,13 @@
     },
     "text": "The page you are looking for couldn't be found"
   },
+  "applicationError": {
+    "return": {
+      "text": "To front page"
+    },
+    "text": "Something went wrong. Try again later.",
+    "title": "An error occurred"
+  },
   "partners": {
     "2020": "Children born in 2020"
   },
