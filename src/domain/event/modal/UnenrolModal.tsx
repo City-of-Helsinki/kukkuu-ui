@@ -88,7 +88,13 @@ const UnenrolModal = ({
       cancel={t('event.cancellation.confirmationModal.cancel.buttonText')}
       ok={t('event.cancellation.confirmationModal.confirm.buttonText')}
       answer={confirmUnenrol}
-    />
+    >
+      <p>
+        {t('enrollment.cancellation.enabledDescription', {
+          unerolHoursBeforeOccurrence: 48,
+        })}
+      </p>
+    </ConfirmModal>
   );
 };
 

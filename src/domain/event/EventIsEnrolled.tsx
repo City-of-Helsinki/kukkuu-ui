@@ -16,6 +16,7 @@ import EventPage from './EventPage';
 import ErrorMessage from '../../common/components/error/Error';
 import Button from '../../common/components/button/Button';
 import useChildRouteGoBackTo from '../profile/children/child/useChildRouteGoBackTo';
+import { shouldAllowUnenrolment } from './EventUtils';
 
 const EventIsEnrolled = () => {
   const { t } = useTranslation();
@@ -39,6 +40,8 @@ const EventIsEnrolled = () => {
 
   if (!data?.occurrence) return errorMessage;
 
+  const disableUnenrolling = !shouldAllowUnenrolment(data.occurrence.time);
+
   return (
     <EventPage event={data.occurrence.event} backTo={goBackTo}>
       <OccurrenceInfo
@@ -54,13 +57,28 @@ const EventIsEnrolled = () => {
         )}
       </div>
       <h2>{t('event.cancellation.heading')}</h2>
+      <p id="eventCancellationDescription">
+        {disableUnenrolling
+          ? t('enrollment.cancellation.disabledDescription', {
+              unerolHoursBeforeOccurrence: 48,
+            })
+          : t('enrollment.cancellation.enabledDescription', {
+              unerolHoursBeforeOccurrence: 48,
+            })}
+      </p>
       <div className={styles.cancelButtonWrapper}>
-        <Button variant="secondary" onClick={() => setIsOpen(true)}>
+        <Button
+          id="unenrolButton"
+          variant="secondary"
+          aria-describedby="eventCancellationDescription"
+          onClick={() => setIsOpen(true)}
+          disabled={disableUnenrolling}
+        >
           {t('event.cancellation.buttonText')}
         </Button>
       </div>
       <VenueFeatures venue={data.occurrence.venue} />
-      {isOpen && (
+      {isOpen && !disableUnenrolling && (
         <UnenrolModal
           isOpen={isOpen}
           setIsOpen={setIsOpen}
