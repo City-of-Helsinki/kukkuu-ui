@@ -401,6 +401,22 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.12.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.2...kukkuu-ui-v3.12.0) (2025-06-05)
+
+
+### Features
+
+* Unenrolment should be available only over 48h before occurrence ([d1f836c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d1f836c2535f94c8e661a69aa42503e5c6c6b05a))
+
+
+### Bug Fixes
+
+* Define default locale for external authentication process ([b9d0804](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b9d080448f321139b4afe8459966d0fa03f5aac2))
+* **docker:** Add VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS buildarg ([b2a24b1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b2a24b1471062c7d4ef5c091f6d2dcb0825d183f))
+* **error:** Add missing error element to router ([074e8f8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/074e8f8c53d975c6daefda79017f259351a4303c))
+* **error:** Add missing HTTP50X page for Nginx ([79d7d84](https://github.com/City-of-Helsinki/kukkuu-ui/commit/79d7d84de78c30491ad1f6a6f0193a39d6f44cca))
+* Improve child notes explanation text in means of privacy policy ([31b61bf](https://github.com/City-of-Helsinki/kukkuu-ui/commit/31b61bf438f090a035e26fcb9692356f8f604f08))
+
 ## [3.11.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.1...kukkuu-ui-v3.11.2) (2025-05-28)
 
 
