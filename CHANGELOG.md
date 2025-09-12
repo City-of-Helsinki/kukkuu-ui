@@ -401,6 +401,20 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.12.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.0...kukkuu-ui-v3.12.1) (2025-09-12)
+
+
+### Bug Fixes
+
+* React-router 7.5.2 fix imports ([b051f33](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b051f33d6aec5309a95cd5415258c9ec821b0499))
+
+
+### Dependencies
+
+* Bump form-data from 4.0.1 to 4.0.4 ([c759d10](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c759d10025b734ec7cd1fbc2fb1bb1f2bead991a))
+* Bump react-router from 7.1.3 to 7.5.2 ([af5fb12](https://github.com/City-of-Helsinki/kukkuu-ui/commit/af5fb12998e1aa1616965b2b415349ca03727c5b))
+* Jsdom to 26.1.0 ([0ff4460](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0ff44606080d4845dacd777cb59da0d64e6f1337))
+
 ## [3.12.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.2...kukkuu-ui-v3.12.0) (2025-06-05)
 
 ### Features
