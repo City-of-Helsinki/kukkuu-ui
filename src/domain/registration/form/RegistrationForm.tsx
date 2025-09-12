@@ -3,7 +3,7 @@ import { Formik, FormikProps, FieldArray } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMutation, useQuery } from '@apollo/client';
 import { useTranslation, Trans } from 'react-i18next';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';

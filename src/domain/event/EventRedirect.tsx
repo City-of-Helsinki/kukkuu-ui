@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
 import { ApolloError, useMutation, useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router';
 import React from 'react';
 import { Notification } from 'hds-react';
 import { toast } from 'react-toastify';

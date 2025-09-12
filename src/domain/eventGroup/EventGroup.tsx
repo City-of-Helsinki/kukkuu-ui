@@ -1,6 +1,6 @@
 import { QueryResult } from '@apollo/client';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import useGetPathname from '../../common/route/utils/useGetPathname';
 import List from '../../common/components/list/List';

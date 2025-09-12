@@ -4,7 +4,7 @@ import { RESET_FOCUS_ID } from './constants';
 
 /**
  * Ensure that browser focus is set to body when navigating using
- * <Link> from react-router-dom.
+ * <Link> from react-router.
  */
 const ResetFocus = (): React.ReactElement => {
   const pathname = window?.location?.pathname;

@@ -4,7 +4,7 @@ import { MockedProvider } from '@apollo/client/testing';
 import { I18nextProvider } from 'react-i18next';
 import i18n from 'i18next';
 import { toast } from 'react-toastify';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
 import { useOidcClient } from 'hds-react';
 import { HelmetProvider } from 'react-helmet-async';
 

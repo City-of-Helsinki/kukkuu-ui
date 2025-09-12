@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router';
 
 import { NavigateToLocalePath } from './NavigateToLocalePath';
 import AppRoute from '../AppRoute';

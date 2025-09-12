@@ -1,5 +1,5 @@
 import { Page, PageContent } from 'react-helsinki-headless-cms/apollo';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 import styles from './headlessCmsPage.module.scss';
 import NotFound from '../app/notFound/NotFound';

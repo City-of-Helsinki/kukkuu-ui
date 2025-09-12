@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { useQuery } from '@apollo/client';
 
 import styles from './externalTicketSystemEventIsEnrolled.module.scss';

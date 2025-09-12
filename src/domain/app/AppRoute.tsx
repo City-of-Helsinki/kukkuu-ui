@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { RouteProps, useNavigate } from 'react-router-dom';
+import { RouteProps, useNavigate } from 'react-router';
 import { useOidcClient } from 'hds-react';
 import React from 'react';
 

@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import styles from './ApplicationError.module.scss';
 import Container from '../layout/Container';

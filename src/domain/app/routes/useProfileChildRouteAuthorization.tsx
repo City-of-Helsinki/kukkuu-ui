@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
 
 import useGetPathname from '../../../common/route/utils/useGetPathname';

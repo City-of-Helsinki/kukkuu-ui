@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { QRCode } from 'react-qrcode-logo';
 
 import RelayList from '../../api/relayList';

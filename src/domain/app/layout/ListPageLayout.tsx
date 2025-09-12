@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Container, IconArrowLeft } from 'hds-react';
-import { Link, LinkProps } from 'react-router-dom';
+import { Link, LinkProps } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import Text from '../../../common/components/text/Text';

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import * as HdsReact from 'hds-react';
-import * as ReactRouterDom from 'react-router-dom';
+import * as ReactRouter from 'react-router';
 import { waitFor } from '@testing-library/react';
 
 import { customRender as render } from '../../../common/test/customRender';
@@ -28,7 +28,7 @@ const profileMock: MyProfile = {
 };
 
 const navigateMock = vi.fn();
-vi.mock('react-router-dom', async (importOriginal: any) => {
+vi.mock('react-router', async (importOriginal: any) => {
   const mod = await importOriginal();
   return {
     ...mod,
@@ -66,7 +66,7 @@ describe('Profile', () => {
   });
 
   it('redirects to the register section in home page if user is authenticated but has no profile', async () => {
-    vi.spyOn(ReactRouterDom, 'useNavigate').mockReturnValue(navigateMock);
+    vi.spyOn(ReactRouter, 'useNavigate').mockReturnValue(navigateMock);
     vi.spyOn(HdsReact, 'useOidcClient').mockImplementation(
       () =>
         ({
