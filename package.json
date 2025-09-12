@@ -116,7 +116,7 @@
     "html-react-parser": "^5.2.2",
     "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.2",
-    "jsdom": "^26.0.0",
+    "jsdom": "^26.1.0",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "msw": "^2.7.0",
