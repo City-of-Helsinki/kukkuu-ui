@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 // TODO: KK-300 Check how the cancel button should look
 // TODO: KK-300 If the same, find a better/reusable location for this css module
 import { toast } from 'react-toastify';

@@ -2,7 +2,7 @@ import { OidcClientError, User, LoginCallbackHandler } from 'hds-react';
 import * as Sentry from '@sentry/browser';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import useGetPathname from '../../common/route/utils/useGetPathname';
 

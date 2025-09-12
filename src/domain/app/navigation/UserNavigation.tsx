@@ -8,7 +8,7 @@ import {
   IconLinkExternal,
 } from 'hds-react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 import { toast } from 'react-toastify';
 

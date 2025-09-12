@@ -1,5 +1,5 @@
 import * as HdsReact from 'hds-react';
-import * as ReactRouterDom from 'react-router-dom';
+import * as ReactRouter from 'react-router';
 import { waitFor } from '@testing-library/react';
 
 import * as ProfileChildRouteAuthorization from '../../app/routes/useProfileChildRouteAuthorization';
@@ -13,7 +13,7 @@ vi.mock('hds-react', async (importOriginal: any) => {
   };
 });
 const navigateMock = vi.fn();
-vi.mock('react-router-dom', async (importOriginal: any) => {
+vi.mock('react-router', async (importOriginal: any) => {
   const mod = await importOriginal();
   return {
     ...mod,
@@ -54,8 +54,8 @@ describe('Unauthorized page', () => {
           isRenewing: () => false,
         }) as any
     );
-    vi.spyOn(ReactRouterDom, 'useNavigate').mockReturnValue(navigateMock);
-    vi.spyOn(ReactRouterDom, 'useSearchParams').mockReturnValue([
+    vi.spyOn(ReactRouter, 'useNavigate').mockReturnValue(navigateMock);
+    vi.spyOn(ReactRouter, 'useSearchParams').mockReturnValue([
       new URLSearchParams('next=' + nextPath),
       vi.fn(),
     ]);

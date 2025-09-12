@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router';
 import { useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
 import { Notification } from 'hds-react';

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 export const updateLocaleParam = (
   url: string,
@@ -11,7 +11,7 @@ export const updateLocaleParam = (
 
 /**
  * Ensure that browser scrolls to top when navigating using
- * <Link> from react-router-dom.
+ * <Link> from react-router.
  *
  * Implementation fetched from
  * https://reacttraining.com/react-router/web/guides/scroll-restoration

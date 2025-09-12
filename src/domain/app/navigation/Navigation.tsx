@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Navigation as RHHCNavigation } from 'react-helsinki-headless-cms/apollo';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 import {
   Language,
   LanguageCodeEnum,

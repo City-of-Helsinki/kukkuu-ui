@@ -2,7 +2,7 @@ import { ReactElement, ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import {
   ConfigProvider as RHHCConfigProvider,
   defaultConfig as rhhcDefaultConfig,

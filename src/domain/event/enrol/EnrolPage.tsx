@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import { useMutation, useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
 import { toast } from 'react-toastify';

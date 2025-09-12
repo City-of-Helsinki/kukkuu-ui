@@ -403,53 +403,47 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 
 ## [3.12.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.2...kukkuu-ui-v3.12.0) (2025-06-05)
 
-
 ### Features
 
-* Unenrolment should be available only over 48h before occurrence ([d1f836c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d1f836c2535f94c8e661a69aa42503e5c6c6b05a))
-
+- Unenrolment should be available only over 48h before occurrence ([d1f836c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d1f836c2535f94c8e661a69aa42503e5c6c6b05a))
 
 ### Bug Fixes
 
-* Define default locale for external authentication process ([b9d0804](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b9d080448f321139b4afe8459966d0fa03f5aac2))
-* **docker:** Add VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS buildarg ([b2a24b1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b2a24b1471062c7d4ef5c091f6d2dcb0825d183f))
-* **error:** Add missing error element to router ([074e8f8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/074e8f8c53d975c6daefda79017f259351a4303c))
-* **error:** Add missing HTTP50X page for Nginx ([79d7d84](https://github.com/City-of-Helsinki/kukkuu-ui/commit/79d7d84de78c30491ad1f6a6f0193a39d6f44cca))
-* Improve child notes explanation text in means of privacy policy ([31b61bf](https://github.com/City-of-Helsinki/kukkuu-ui/commit/31b61bf438f090a035e26fcb9692356f8f604f08))
+- Define default locale for external authentication process ([b9d0804](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b9d080448f321139b4afe8459966d0fa03f5aac2))
+- **docker:** Add VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS buildarg ([b2a24b1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b2a24b1471062c7d4ef5c091f6d2dcb0825d183f))
+- **error:** Add missing error element to router ([074e8f8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/074e8f8c53d975c6daefda79017f259351a4303c))
+- **error:** Add missing HTTP50X page for Nginx ([79d7d84](https://github.com/City-of-Helsinki/kukkuu-ui/commit/79d7d84de78c30491ad1f6a6f0193a39d6f44cca))
+- Improve child notes explanation text in means of privacy policy ([31b61bf](https://github.com/City-of-Helsinki/kukkuu-ui/commit/31b61bf438f090a035e26fcb9692356f8f604f08))
 
 ## [3.11.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.1...kukkuu-ui-v3.11.2) (2025-05-28)
 
-
 ### Bug Fixes
 
-* Configure commitlint to ignore dependabot commits & set more rules ([ed32114](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ed32114e10b2e5cfdbb707ee679717a1c94c5332))
-* Layout test by using useLocation consistently from react-router-dom ([d3f2379](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d3f2379aad09d40d5be3e7686d038ba6b7b2d7e7))
-* Set dependabot reviewers for ratkaisutoimisto ([1767f44](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1767f44906afbc2acf22bb6dd28b440c8459b881))
+- Configure commitlint to ignore dependabot commits & set more rules ([ed32114](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ed32114e10b2e5cfdbb707ee679717a1c94c5332))
+- Layout test by using useLocation consistently from react-router-dom ([d3f2379](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d3f2379aad09d40d5be3e7686d038ba6b7b2d7e7))
+- Set dependabot reviewers for ratkaisutoimisto ([1767f44](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1767f44906afbc2acf22bb6dd28b440c8459b881))
 
 ## [3.11.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.0...kukkuu-ui-v3.11.1) (2025-03-11)
 
-
 ### Bug Fixes
 
-* **notification:** Fix routing of internal hrefs in Notification ([#669](https://github.com/City-of-Helsinki/kukkuu-ui/issues/669)) ([5b33e4e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5b33e4e399d53de4ea2b984e16d46d1b45ac8b17))
+- **notification:** Fix routing of internal hrefs in Notification ([#669](https://github.com/City-of-Helsinki/kukkuu-ui/issues/669)) ([5b33e4e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5b33e4e399d53de4ea2b984e16d46d1b45ac8b17))
 
 ## [3.11.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.10.0...kukkuu-ui-v3.11.0) (2025-02-25)
 
-
 ### Features
 
-* Hardcode CMS languages for faster language rendering in header ([1fc343d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1fc343df1fb06ac1c03a3083548973430cc09c3f))
-* Use apollo client local storage cache persister ([c1569f5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c1569f5e1749a0a29e0849e44785966cc01db6cb))
-* Use react-router Link in scope of RHHC ([4635583](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4635583038b38dcd80faac90b09e2559c2556ab0))
-
+- Hardcode CMS languages for faster language rendering in header ([1fc343d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1fc343df1fb06ac1c03a3083548973430cc09c3f))
+- Use apollo client local storage cache persister ([c1569f5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c1569f5e1749a0a29e0849e44785966cc01db6cb))
+- Use react-router Link in scope of RHHC ([4635583](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4635583038b38dcd80faac90b09e2559c2556ab0))
 
 ### Bug Fixes
 
-* **csp:** Allow cms images ([2806516](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2806516d1e4278a51d8a92ef385a8d29b1565cec))
-* **hotreload:** Use eslint-plugin-react-refresh, refactor code to comply ([8cd5d25](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8cd5d25b014b23b0d535bd4fb46b349dc61b6514))
-* **sonarcloud:** Conditional render in JSX with {!!x && x}, not {x && x} ([36ce44f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/36ce44f77d68558ee42321bb19aaa44978115e26))
-* **sonarcloud:** Fix removeSurroundingSlashes regex & test it works ([143851c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/143851c7daff51ba7916d5e0c097590fdcb167f3))
-* **sonarcloud:** Show toast error when onClick navigation promise fails ([4a2ff2f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4a2ff2f533dc2caa719163b5114115a16e017586))
+- **csp:** Allow cms images ([2806516](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2806516d1e4278a51d8a92ef385a8d29b1565cec))
+- **hotreload:** Use eslint-plugin-react-refresh, refactor code to comply ([8cd5d25](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8cd5d25b014b23b0d535bd4fb46b349dc61b6514))
+- **sonarcloud:** Conditional render in JSX with {!!x && x}, not {x && x} ([36ce44f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/36ce44f77d68558ee42321bb19aaa44978115e26))
+- **sonarcloud:** Fix removeSurroundingSlashes regex & test it works ([143851c](https://github.com/City-of-Helsinki/kukkuu-ui/commit/143851c7daff51ba7916d5e0c097590fdcb167f3))
+- **sonarcloud:** Show toast error when onClick navigation promise fails ([4a2ff2f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4a2ff2f533dc2caa719163b5114115a16e017586))
 
 ## [3.10.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.9.0...kukkuu-ui-v3.10.0) (2025-02-06)
 
