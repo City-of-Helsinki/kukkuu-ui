@@ -401,6 +401,13 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.12.3](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.2...kukkuu-ui-v3.12.3) (2025-10-28)
+
+
+### Dependencies
+
+* Bump validator from 13.12.0 to 13.15.20 ([#703](https://github.com/City-of-Helsinki/kukkuu-ui/issues/703)) ([453d6e2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/453d6e28eb8ffa1173d4fdcb88a239636545b929))
+
 ## [3.12.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.1...kukkuu-ui-v3.12.2) (2025-10-06)
 
 
