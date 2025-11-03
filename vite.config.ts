@@ -1,27 +1,22 @@
 /* eslint-disable import/no-anonymous-default-export */
 import path from 'path';
 
-import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
-import viteTsconfigPaths from 'vite-tsconfig-paths';
-import svgr from 'vite-plugin-svgr';
+import { defineConfig } from 'vite';
 import eslint from 'vite-plugin-eslint';
+import svgr from 'vite-plugin-svgr';
+import viteTsconfigPaths from 'vite-tsconfig-paths';
 
-export default ({ mode }) => {
-  // Load app-level env vars to node-level env vars.
-  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
-
-  return defineConfig({
+export default defineConfig(() => {
+  return {
     css: {
       preprocessorOptions: {
         scss: {
-          api: 'modern',
+          api: 'modern' as const,
         },
       },
     },
-    define: {
-      'process.env': process.env,
-    },
+    envPrefix: 'VITE_',
     resolve: {
       alias: {
         '~styles': path.resolve(__dirname, './src/assets/styles'),
@@ -48,5 +43,5 @@ export default ({ mode }) => {
       // svgr options: https://react-svgr.com/docs/options/
       svgr({ svgrOptions: { icon: true } }),
     ],
-  });
-};
+  };
+});
