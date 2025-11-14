@@ -16,6 +16,9 @@ export default defineConfig(() => {
         },
       },
     },
+    define: {
+      'process.env': '{}',
+    },
     envPrefix: 'VITE_',
     resolve: {
       alias: {
