@@ -403,29 +403,25 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 
 ## [3.12.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.1...kukkuu-ui-v3.12.2) (2025-10-06)
 
-
 ### Bug Fixes
 
-* Stricter yarn configuration ([2f3a899](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2f3a8994a5b46c39a44c63ef14a43b84a5225f55))
-
+- Stricter yarn configuration ([2f3a899](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2f3a8994a5b46c39a44c63ef14a43b84a5225f55))
 
 ### Dependencies
 
-* Bump vite from 6.0.14 to 6.3.6 ([#697](https://github.com/City-of-Helsinki/kukkuu-ui/issues/697)) ([087a1b6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/087a1b68bac2926b92b103908686fd76f04bdf51))
+- Bump vite from 6.0.14 to 6.3.6 ([#697](https://github.com/City-of-Helsinki/kukkuu-ui/issues/697)) ([087a1b6](https://github.com/City-of-Helsinki/kukkuu-ui/commit/087a1b68bac2926b92b103908686fd76f04bdf51))
 
 ## [3.12.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.0...kukkuu-ui-v3.12.1) (2025-09-12)
 
-
 ### Bug Fixes
 
-* React-router 7.5.2 fix imports ([b051f33](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b051f33d6aec5309a95cd5415258c9ec821b0499))
-
+- React-router 7.5.2 fix imports ([b051f33](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b051f33d6aec5309a95cd5415258c9ec821b0499))
 
 ### Dependencies
 
-* Bump form-data from 4.0.1 to 4.0.4 ([c759d10](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c759d10025b734ec7cd1fbc2fb1bb1f2bead991a))
-* Bump react-router from 7.1.3 to 7.5.2 ([af5fb12](https://github.com/City-of-Helsinki/kukkuu-ui/commit/af5fb12998e1aa1616965b2b415349ca03727c5b))
-* Jsdom to 26.1.0 ([0ff4460](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0ff44606080d4845dacd777cb59da0d64e6f1337))
+- Bump form-data from 4.0.1 to 4.0.4 ([c759d10](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c759d10025b734ec7cd1fbc2fb1bb1f2bead991a))
+- Bump react-router from 7.1.3 to 7.5.2 ([af5fb12](https://github.com/City-of-Helsinki/kukkuu-ui/commit/af5fb12998e1aa1616965b2b415349ca03727c5b))
+- Jsdom to 26.1.0 ([0ff4460](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0ff44606080d4845dacd777cb59da0d64e6f1337))
 
 ## [3.12.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.11.2...kukkuu-ui-v3.12.0) (2025-06-05)
 
