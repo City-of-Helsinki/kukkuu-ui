@@ -577,7 +577,7 @@ exports[`renders snapshot correctly 1`] = `
                 >
                   Olen tutustunut 
                   <a
-                    href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kuva/Kulttuurin%20kummilapset%20-kummiperherekisteri.pdf"
+                    href="https://www.hel.fi/static/liitteet-2019/Kaupunginkanslia/Rekisteriselosteet/Kuva/Kulttuurin-kummilapset-kummiperherekisteri.pdf"
                     rel="noopener noreferrer"
                     target="_blank"
                     title="Rekisteriseloste"
