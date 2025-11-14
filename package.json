@@ -70,7 +70,7 @@
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@reduxjs/toolkit": "^2.5.1",
-    "@sentry/browser": "^8.51.0",
+    "@sentry/browser": "^10.25.0",
     "@stylistic/eslint-plugin-js": "^3.0.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
