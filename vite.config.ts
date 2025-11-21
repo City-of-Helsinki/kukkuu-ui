@@ -16,6 +16,9 @@ export default defineConfig(() => {
         },
       },
     },
+    define: {
+      'process.env': '{}',
+    },
     envPrefix: 'VITE_',
     resolve: {
       alias: {
@@ -28,6 +31,7 @@ export default defineConfig(() => {
     },
     build: {
       outDir: 'build',
+      sourcemap: true,
     },
     server: {
       port: parseInt(process.env.PORT) || 3000,
