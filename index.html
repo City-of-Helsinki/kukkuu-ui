@@ -10,6 +10,10 @@
       data-rh="true"
     />
     <meta
+      http-equiv="Reporting-Endpoints"
+      content="csp-endpoint=%VITE_CSP_REPORT_URI%"
+    />
+    <meta
       http-equiv="Content-Security-Policy"
       content="
         block-all-mixed-content;
@@ -26,6 +30,8 @@
         form-action 'self';
         media-src 'self' *.hel.fi *.hel.ninja *.hkih.hion.dev;
         worker-src 'self';
+        report-uri %VITE_CSP_REPORT_URI%;
+        report-to csp-endpoint
       "
     />
     <meta property="og:title" content="Kulttuurin kummilapset" />
