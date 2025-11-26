@@ -401,6 +401,28 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.13.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.2...kukkuu-ui-v3.13.0) (2025-11-26)
+
+
+### Features
+
+* Add csp report-uri Ref: KK-1474 ([4f89797](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4f89797b3774ae1ddfcd05406e98ace6a5440e5a))
+* Enable cloud Sentry Ref: KK-1474 ([03c22ed](https://github.com/City-of-Helsinki/kukkuu-ui/commit/03c22ed929cb21ffe165c1439db8058a6a3b2fe1))
+* Generate sourcemaps Ref: KK-1474 ([03c22ed](https://github.com/City-of-Helsinki/kukkuu-ui/commit/03c22ed929cb21ffe165c1439db8058a6a3b2fe1))
+
+
+### Bug Fixes
+
+* Don't expose entire process.env to define ([43b2a22](https://github.com/City-of-Helsinki/kukkuu-ui/commit/43b2a2261d5a067fa66be5148f4a073198ea1124))
+* Links to privacy policy ([0200bcd](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0200bcd09e8a91178086b5ea87cfec2b3f5876b1))
+* Use correct release variable Ref: KK-1474 ([e53bcaa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e53bcaa4c503c4dc210bf9d21e0f61cb639065f0))
+
+
+### Dependencies
+
+* Bump validator from 13.12.0 to 13.15.20 ([#703](https://github.com/City-of-Helsinki/kukkuu-ui/issues/703)) ([453d6e2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/453d6e28eb8ffa1173d4fdcb88a239636545b929))
+* Bump vite from 6.3.6 to 6.4.1 ([369eded](https://github.com/City-of-Helsinki/kukkuu-ui/commit/369ededf777c126ce4c653b66e3491808e8b7df2))
+
 ## [3.12.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.1...kukkuu-ui-v3.12.2) (2025-10-06)
 
 ### Bug Fixes
