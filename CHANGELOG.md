@@ -401,6 +401,17 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.13.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.13.0...kukkuu-ui-v3.13.1) (2025-12-09)
+
+
+### Dependencies
+
+* Bump jws from 3.2.2 to 3.2.3 ([6279706](https://github.com/City-of-Helsinki/kukkuu-ui/commit/627970601c859307943e666b1ff1a4087d22ebba))
+* Bump mdast-util-to-hast from 13.2.0 to 13.2.1 ([8b9d9c7](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8b9d9c7de8c29a563997c5eb85269d5bbdbcbccf))
+* Bump validator from 13.15.20 to 13.15.22 ([2dab79b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2dab79b5fc06e09716acee5ef7c61ed087901392))
+* Upgrade jsonwebtoken to 9.0.3 ([8a51c27](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8a51c274265b7e0b79964df2db6b066dce9f4c76))
+* Upgrade uiw md packages to latest ([f3ddd50](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f3ddd50ed45939fb547bf89e48d33890da7305ac))
+
 ## [3.13.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.2...kukkuu-ui-v3.13.0) (2025-11-26)
 
 
