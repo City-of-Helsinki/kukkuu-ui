@@ -12,7 +12,6 @@ import {
   DeleteChildMutationPayloadFieldsFragment,
   ProfileQueryDocument,
 } from '../../../api/generatedTypes/graphql';
-import GiveFeedbackButton from '../../../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import ErrorMessage from '../../../../common/components/error/Error';
 import Button from '../../../../common/components/button/Button';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
@@ -160,7 +159,6 @@ const ProfileChildDetail = () => {
           <p>{t('profile.children.noChild.text')}</p>
         </div>
       )}
-      <GiveFeedbackButton />
     </ListPageLayout>
   );
 };

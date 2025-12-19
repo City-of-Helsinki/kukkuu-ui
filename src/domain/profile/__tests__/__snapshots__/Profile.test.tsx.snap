@@ -110,16 +110,6 @@ exports[`Profile > renders profile correctly 1`] = `
           </span>
         </button>
       </section>
-      <div
-        class="_container_256fb1"
-      >
-        <a
-          class="hds-button hds-button--secondary hds-button__label hds-button--theme-black _buttonLink_256fb1"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSdqw2Lq3qooEeRdgr0sV0-Wv-4XcV7IZVzq1HuWoLRa2M7tEg/viewform?usp=pp_url&entry.1982410290=Kulttuurin+kummilapset"
-        >
-          Anna palautetta Kulttuurin kummilapset -palvelusta
-        </a>
-      </div>
     </div>
   </div>
 </div>

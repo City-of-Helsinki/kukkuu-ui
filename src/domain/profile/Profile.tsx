@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import Button from '../../common/components/button/Button';
-import GiveFeedbackButton from '../../common/components/giveFeedbackButton/GiveFeedbackButton';
 import Text from '../../common/components/text/Text';
 import ListPageLayout from '../app/layout/ListPageLayout';
 import ProfileChildrenList from './children/ProfileChildrenList';
@@ -93,7 +92,6 @@ const Profile = () => {
         />
       )}
       <ProfileChildrenList />
-      <GiveFeedbackButton />
     </ListPageLayout>
   );
 };
