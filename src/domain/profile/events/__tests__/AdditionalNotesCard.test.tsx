@@ -43,6 +43,10 @@ vi.mock('@sentry/browser', () => ({
   captureException: vi.fn(),
 }));
 
+vi.mock('../../../api/client', () => ({
+  default: undefined,
+}));
+
 const childId = 'test-child-id';
 const fakeNotes = fakeChildNotes(childId);
 
