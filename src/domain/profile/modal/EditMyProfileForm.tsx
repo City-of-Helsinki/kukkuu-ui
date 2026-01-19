@@ -27,6 +27,7 @@ import {
 import RelayList from '../../api/relayList';
 import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
 import { useProfileContext } from '../hooks/useProfileContext';
+import graphqlClient from '../../api/client';
 
 const schema = yup.object().shape({
   firstName: yup
@@ -72,6 +73,7 @@ export default function EditMyProfileForm({
   const [updateMyProfile] = useMutation<UpdateMyProfileMutation>(
     updateMyProfileMutation,
     {
+      client: graphqlClient,
       refetchQueries: [{ query: profileQuery }],
     }
   );

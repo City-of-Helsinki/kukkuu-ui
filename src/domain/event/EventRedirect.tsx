@@ -73,6 +73,7 @@ const useAssignTicketSystemPasswordMutation = ({
     AssignTicketSystemPasswordMutation,
     AssignTicketSystemPasswordMutationVariables
   >(assignTicketSystemPasswordMutation, {
+    client,
     variables: {
       input: {
         eventId,

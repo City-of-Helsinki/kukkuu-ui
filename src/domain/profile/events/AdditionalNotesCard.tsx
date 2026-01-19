@@ -17,6 +17,7 @@ import {
 } from '../../api/generatedTypes/graphql';
 import { childNotesByIdQuery } from '../../child/queries/ChildQueries';
 import { editChildNotesMutation } from '../../child/mutation/ChildMutation';
+import graphqlClient from '../../api/client';
 
 interface AdditionalNotesCardProps {
   childId: string;
@@ -41,6 +42,7 @@ const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
     useMutation<UpdateChildNotesMutationPayloadFieldsFragment>(
       editChildNotesMutation,
       {
+        client: graphqlClient,
         refetchQueries: [
           { query: childNotesByIdQuery, variables: { id: childId } },
         ],

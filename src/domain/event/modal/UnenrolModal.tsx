@@ -16,6 +16,7 @@ import ConfirmModal from '../../../common/components/confirm/ConfirmModal';
 import { saveChildEvents } from '../state/EventActions';
 import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
 import AppConfig from '../../app/AppConfig';
+import graphqlClient from '../../api/client';
 
 interface UnenrolModalProps {
   isOpen: boolean;
@@ -41,6 +42,7 @@ const UnenrolModal = ({
     UnenrolOccurrenceMutation,
     UnenrolOccurrenceMutationVariables
   >(unenrolOccurrenceMutation, {
+    client: graphqlClient,
     refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({
       childId,
       eventGroupId,

@@ -21,6 +21,7 @@ import { getProjectsFromProfileQuery } from '../ProfileUtil';
 import ProfileChild from './child/ProfileChild';
 import styles from './profileChildrenList.module.scss';
 import { useProfileContext } from '../hooks/useProfileContext';
+import graphqlClient from '../../api/client';
 
 const ProfileChildrenList = () => {
   const { t } = useTranslation();
@@ -30,6 +31,7 @@ const ProfileChildrenList = () => {
   const [addChild, { loading: mutationLoading }] = useMutation(
     addChildMutation,
     {
+      client: graphqlClient,
       refetchQueries: [{ query: ProfileQueryDocument }],
       onCompleted: () => {
         refetchProfile();

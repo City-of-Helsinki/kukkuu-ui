@@ -7,6 +7,7 @@ import {
 } from '@apollo/client';
 
 import useDefaultErrorHandler from './useDefaultErrorHandler';
+import graphqlClient from './client';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function useMutation<TData = any, TVariables = OperationVariables>(
@@ -20,6 +21,7 @@ function useMutation<TData = any, TVariables = OperationVariables>(
   const { useDefaultErrorHandling, ...apolloOptions } = options;
 
   return useApolloMutation<TData, TVariables>(mutation, {
+    client: graphqlClient,
     onError: useDefaultErrorHandling ? defaultErrorHandler : undefined,
     ...apolloOptions,
   });

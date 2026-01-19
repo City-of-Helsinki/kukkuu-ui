@@ -25,6 +25,7 @@ import Enrol from './Enrol';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { publicSvgIconPaths } from '../../../public_files';
 import Icon from '../../../common/components/icon/Icon';
+import graphqlClient from '../../api/client';
 
 function containsAlreadyJoinedError(
   errors: ReadonlyArray<GraphQLFormattedError>
@@ -85,6 +86,7 @@ const EnrolPage = () => {
     EnrolOccurrenceMutation,
     EnrolOccurrenceMutationVariables
   >(enrolOccurrenceMutation, {
+    client: graphqlClient,
     refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({
       childId,
       eventGroupId: data?.occurrence?.event?.eventGroup?.id,

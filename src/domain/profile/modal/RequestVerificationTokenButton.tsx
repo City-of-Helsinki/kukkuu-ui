@@ -8,6 +8,7 @@ import { type RequestEmailUpdateTokenMutation } from '../../api/generatedTypes/g
 import Button from '../../../common/components/button/Button';
 import requestEmailUpdateTokenMutation from '../mutations/requestEmailUpdateTokenMutation';
 import useCoolDown from './useCoolDown';
+import graphqlClient from '../../api/client';
 
 type RequestVerificationTokenButtonProps = {
   email: string;
@@ -21,7 +22,10 @@ export default function RequestVerificationTokenButton({
   const { t } = useTranslation();
   const [requestUpdateEmailVerificationToken, { loading }] =
     useMutation<RequestEmailUpdateTokenMutation>(
-      requestEmailUpdateTokenMutation
+      requestEmailUpdateTokenMutation,
+      {
+        client: graphqlClient,
+      }
     );
 
   const { seconds: coolDownSeconds, reset: resetCoolDown } = useCoolDown(
