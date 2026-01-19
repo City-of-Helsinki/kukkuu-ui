@@ -26,10 +26,15 @@ function useIsChildOfProfile() {
       if (!childId) {
         return false;
       }
-      const { data } = await client.query<ProfileChildrenQuery>({
-        query: ProfileChildrenQueryDocument,
-      });
-      return Boolean(getIsChildOfProfile(childId, data));
+      try {
+        const { data } = await client.query<ProfileChildrenQuery>({
+          query: ProfileChildrenQueryDocument,
+        });
+        return Boolean(getIsChildOfProfile(childId, data));
+      } catch {
+        // Handle GraphQL errors (e.g., PERMISSION_DENIED_ERROR) by treating them as authorization failures
+        return false;
+      }
     },
     [client]
   );
