@@ -197,7 +197,7 @@ export default function EditMyProfileForm({
             )}
           />
           <LanguagesCombobox
-            helper={t(
+            helperText={t(
               'registration.form.child.languagesSpokenAtHome.input.helper'
             )}
             id="languagesSpokenAtHome"

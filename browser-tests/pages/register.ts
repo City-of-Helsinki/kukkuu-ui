@@ -16,7 +16,7 @@ export const registrationForm = {
   // Lapsen tiedot
   nameInput: screen.getByLabelText('Lapsen nimi'),
   postalCodeInput: screen.getByLabelText(/Postinumero/i),
-  relationshipInput: screen.getByRole('button', {
+  relationshipInput: screen.getByRole('combobox', {
     name: /Ilmoittajan suhde lapseen/i,
   }),
 

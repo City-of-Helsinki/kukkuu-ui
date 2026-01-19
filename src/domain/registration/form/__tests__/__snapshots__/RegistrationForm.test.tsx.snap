@@ -145,63 +145,88 @@ exports[`renders snapshot correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    class="Select-module_root__Ka5uO _formField_b4a938"
+                    class="_formField_b4a938 Select-module_root__-GjU5"
+                    id="hds-select-1"
+                    name="children[0].relationship.type"
+                    tabindex="-1"
                   >
                     <label
                       class="FieldLabel-module_label__1zrXK "
-                      for="children[0].relationship.type-toggle-button"
-                      id="children[0].relationship.type-label"
+                      for="hds-select-1-main-button"
+                      id="hds-select-1-label"
                     >
                       Ilmoittajan suhde lapseen
-                      <span
-                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
-                      >
-                        *
-                      </span>
                     </label>
                     <div
-                      class="Select-module_wrapper__1WQXs"
+                      class="Select-module_selectAndListContainer__vSJEv"
                     >
-                      <button
-                        aria-expanded="false"
-                        aria-haspopup="listbox"
-                        aria-labelledby="children[0].relationship.type-label children[0].relationship.type-toggle-button"
-                        aria-owns="children[0].relationship.type-menu"
-                        class="Select-module_button__1aIsm"
-                        id="children[0].relationship.type-toggle-button"
-                        type="button"
+                      <div
+                        class="Select-module_selectedOptionsContainer__16tlC"
                       >
-                        <span
-                          class="Select-module_buttonLabel__1fqu5"
+                        <button
+                          aria-controls="hds-select-1-list"
+                          aria-disabled="false"
+                          aria-expanded="false"
+                          aria-haspopup="listbox"
+                          aria-label="Ilmoittajan suhde lapseen. 1 valittu vaihtoehto: ""."
+                          class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_singleSelect__3hwAT"
+                          id="hds-select-1-main-button"
+                          role="combobox"
+                          type="button"
                         >
-                          Valitse
-                        </span>
-                        <svg
-                          aria-hidden="true"
-                          aria-label="angle-down"
-                          class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik Select-module_angleIcon__2-9AD"
-                          role="img"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
+                          <div
+                            aria-hidden="true"
+                            class="Select-module_labels__2FlKK"
+                          >
+                            <span
+                              class="Select-module_dropdownButtonOption__3Tfsz"
+                            />
+                          </div>
+                          <div
+                            class="Select-module_arrowAndSpaceForClearButton__3Fufw Select-module_icon__3AwlD"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              aria-label="angle-down"
+                              class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik Select-module_angleIcon__3A9li"
+                              role="img"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                clip-rule="evenodd"
+                                d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+                                fill="currentColor"
+                                fill-rule="evenodd"
+                              />
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                      <div
+                        aria-hidden="true"
+                        class="Select-module_listAndInputContainer__2gZ6q"
+                        id="hds-select-1-sl-container"
+                      >
+                        <div
+                          class="Select-module_listContainer__2PfQA"
+                          style="max-height: 286px;"
                         >
-                          <path
-                            clip-rule="evenodd"
-                            d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
-                            fill="currentColor"
-                            fill-rule="evenodd"
+                          <ul
+                            aria-multiselectable="false"
+                            class="Select-module_list__2iKlZ"
+                            id="hds-select-1-list"
+                            role="listbox"
+                            tabindex="-1"
                           />
-                        </svg>
-                      </button>
-                      <ul
-                        aria-labelledby="children[0].relationship.type-label"
-                        aria-required="true"
-                        class="Select-module_menu__1H2aU"
-                        id="children[0].relationship.type-menu"
-                        role="listbox"
-                        style="max-height: 260px;"
-                        tabindex="-1"
-                      />
+                        </div>
+                      </div>
                     </div>
+                    <div
+                      aria-live="polite"
+                      class="Select-module_screenReaderNotifications__2wzzH"
+                      data-testid="hds-select-screen-reader-notifications"
+                    />
                   </div>
                 </div>
               </div>
@@ -211,18 +236,18 @@ exports[`renders snapshot correctly 1`] = `
             >
               <button
                 aria-label="Lisää lapsi"
-                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _addNewChildButton_72244b"
+                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _addNewChildButton_72244b"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
                 <div
                   aria-hidden="true"
-                  class="Button-module_icon__O-h7R button_hds-icon__17j8Z"
+                  class="Button-module_icon__O-h7R"
                 >
                   <svg
                     aria-hidden="true"
                     aria-label="plus-circle"
-                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik"
+                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik"
                     role="img"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
@@ -235,9 +260,7 @@ exports[`renders snapshot correctly 1`] = `
                     />
                   </svg>
                 </div>
-                <span
-                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-                >
+                <span>
                   Lisää lapsi
                 </span>
               </button>
@@ -401,148 +424,191 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <div
-                class="Select-module_root__Ka5uO _formField_b4a938"
+                class="_formField_b4a938 Select-module_root__-GjU5"
+                id="hds-select-2"
+                name="preferLanguage"
+                tabindex="-1"
               >
                 <label
                   class="FieldLabel-module_label__1zrXK "
-                  for="preferLanguage-toggle-button"
-                  id="preferLanguage-label"
+                  for="hds-select-2-main-button"
+                  id="hds-select-2-label"
                 >
                   Asiointikieli
-                  <span
-                    class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
-                  >
-                    *
-                  </span>
                 </label>
                 <div
-                  class="Select-module_wrapper__1WQXs"
+                  class="Select-module_selectAndListContainer__vSJEv"
                 >
-                  <button
-                    aria-expanded="false"
-                    aria-haspopup="listbox"
-                    aria-labelledby="preferLanguage-label preferLanguage-toggle-button"
-                    aria-owns="preferLanguage-menu"
-                    class="Select-module_button__1aIsm"
-                    id="preferLanguage-toggle-button"
-                    type="button"
+                  <div
+                    class="Select-module_selectedOptionsContainer__16tlC"
                   >
-                    <span
-                      class="Select-module_buttonLabel__1fqu5"
+                    <button
+                      aria-controls="hds-select-2-list"
+                      aria-disabled="false"
+                      aria-expanded="false"
+                      aria-haspopup="listbox"
+                      aria-label="Asiointikieli. 1 valittu vaihtoehto: "Suomi"."
+                      class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_singleSelect__3hwAT"
+                      id="hds-select-2-main-button"
+                      role="combobox"
+                      type="button"
                     >
-                      Suomi
-                    </span>
-                    <svg
-                      aria-hidden="true"
-                      aria-label="angle-down"
-                      class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik Select-module_angleIcon__2-9AD"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
+                      <div
+                        aria-hidden="true"
+                        class="Select-module_labels__2FlKK"
+                      >
+                        <span
+                          class="Select-module_dropdownButtonOption__3Tfsz"
+                        >
+                          Suomi
+                        </span>
+                      </div>
+                      <div
+                        class="Select-module_arrowAndSpaceForClearButton__3Fufw Select-module_icon__3AwlD"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          aria-label="angle-down"
+                          class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik Select-module_angleIcon__3A9li"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    class="Select-module_listAndInputContainer__2gZ6q"
+                    id="hds-select-2-sl-container"
+                  >
+                    <div
+                      class="Select-module_listContainer__2PfQA"
+                      style="max-height: 286px;"
                     >
-                      <path
-                        clip-rule="evenodd"
-                        d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
-                        fill="currentColor"
-                        fill-rule="evenodd"
+                      <ul
+                        aria-multiselectable="false"
+                        class="Select-module_list__2iKlZ"
+                        id="hds-select-2-list"
+                        role="listbox"
+                        tabindex="-1"
                       />
-                    </svg>
-                  </button>
-                  <ul
-                    aria-labelledby="preferLanguage-label"
-                    aria-required="true"
-                    class="Select-module_menu__1H2aU"
-                    id="preferLanguage-menu"
-                    role="listbox"
-                    style="max-height: 260px;"
-                    tabindex="-1"
-                  />
+                    </div>
+                  </div>
                 </div>
+                <div
+                  aria-live="polite"
+                  class="Select-module_screenReaderNotifications__2wzzH"
+                  data-testid="hds-select-screen-reader-notifications"
+                />
               </div>
               <div
-                class="Combobox-module_root__Hs8Hg Combobox-module_multiselect__3vNbJ _formField_b4a938"
+                class="_formField_b4a938 Select-module_root__-GjU5"
+                id="languagesSpokenAtHome"
+                name="guardian.languagesSpokenAtHome"
+                tabindex="-1"
               >
                 <label
                   class="FieldLabel-module_label__1zrXK "
-                  for="languagesSpokenAtHome-input"
+                  for="languagesSpokenAtHome-main-button"
                   id="languagesSpokenAtHome-label"
                 >
                   Kotona puhutut kielet
                 </label>
                 <div
-                  class="Combobox-module_wrapper__3kVTg"
+                  class="Select-module_selectAndListContainer__vSJEv"
                 >
-                  <input
-                    aria-autocomplete="list"
-                    aria-controls="languagesSpokenAtHome-menu"
-                    aria-expanded="false"
-                    aria-haspopup="listbox"
-                    aria-labelledby="languagesSpokenAtHome-label languagesSpokenAtHome-helper languagesSpokenAtHome-input"
-                    aria-owns="languagesSpokenAtHome-menu"
-                    autocomplete="off"
-                    autocorrect="off"
-                    class="Combobox-module_input__Dcmdn"
-                    id="languagesSpokenAtHome-input"
-                    role="combobox"
-                    type="text"
-                    value=""
-                  />
-                  <button
-                    aria-expanded="false"
-                    aria-label="Kotona puhutut kielet: Avaa valikko"
-                    class="Combobox-module_button__1W9PN"
-                    id="languagesSpokenAtHome-toggle-button"
-                    tabindex="-1"
-                    type="button"
+                  <div
+                    class="Select-module_selectedOptionsContainer__16tlC"
                   >
-                    <svg
-                      aria-hidden="true"
-                      aria-label="angle-down"
-                      class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik Combobox-module_angleIcon__10DvA"
-                      role="img"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <button
+                      aria-controls="languagesSpokenAtHome-list"
+                      aria-disabled="false"
+                      aria-expanded="false"
+                      aria-haspopup="listbox"
+                      aria-label="Kotona puhutut kielet. . 0 valittua vaihtoehtoa."
+                      class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_placeholder__nKgDE"
+                      id="languagesSpokenAtHome-main-button"
+                      role="combobox"
+                      type="button"
                     >
-                      <path
-                        clip-rule="evenodd"
-                        d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
-                        fill="currentColor"
-                        fill-rule="evenodd"
+                      <div
+                        aria-hidden="true"
+                        class="Select-module_labels__2FlKK"
+                      >
+                        <span
+                          class="Select-module_dropdownButtonOption__3Tfsz"
+                          data-testid="placeholder"
+                        />
+                      </div>
+                      <div
+                        class="Select-module_arrowAndSpaceForClearButton__3Fufw Select-module_icon__3AwlD"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          aria-label="angle-down"
+                          class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik Select-module_angleIcon__3A9li"
+                          role="img"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M12 13.5L17 8.5L18.5 10L12 16.5L5.5 10L7 8.5L12 13.5Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </div>
+                    </button>
+                  </div>
+                  <div
+                    aria-hidden="true"
+                    class="Select-module_listAndInputContainer__2gZ6q"
+                    id="languagesSpokenAtHome-sl-container"
+                  >
+                    <div
+                      class="Select-module_listContainer__2PfQA"
+                      style="max-height: 286px;"
+                    >
+                      <ul
+                        aria-multiselectable="true"
+                        class="Select-module_list__2iKlZ"
+                        id="languagesSpokenAtHome-list"
+                        role="listbox"
+                        tabindex="-1"
                       />
-                    </svg>
-                  </button>
-                  <ul
-                    aria-labelledby="languagesSpokenAtHome-label"
-                    aria-multiselectable="true"
-                    class="Combobox-module_menu__3jA0e"
-                    id="languagesSpokenAtHome-menu"
-                    role="listbox"
-                    style="max-height: 260px;"
-                  />
+                    </div>
+                  </div>
                 </div>
                 <div
-                  aria-hidden="true"
-                  class="Combobox-module_helperText__1qPYf"
-                  id="languagesSpokenAtHome-helper"
-                >
-                  Mitä kieltä tai kieliä puhutte kotona? Jos kieli ei ole listassa, valitse “muu kieli”.
-                </div>
+                  aria-live="polite"
+                  class="Select-module_screenReaderNotifications__2wzzH"
+                  data-testid="hds-select-screen-reader-notifications"
+                />
               </div>
               <div>
                 <div
-                  class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz _checkboxField_639ec5"
+                  class="Checkbox-module_checkbox__3r5uI _checkboxField_639ec5"
                   style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                 >
                   <input
                     checked=""
-                    class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
+                    class="Checkbox-module_input__2bdJk"
                     id="guardian.hasAcceptedCommunication"
                     name="guardian.hasAcceptedCommunication"
                     type="checkbox"
                     value="true"
                   />
                   <label
-                    class="Checkbox-module_label__L5AN1 checkbox_hds-checkbox__label__3HoD3"
+                    class="Checkbox-module_label__148Ac"
                     for="guardian.hasAcceptedCommunication"
                   >
                     Haluan viestejä uusista kummitapahtumista
@@ -554,12 +620,12 @@ exports[`renders snapshot correctly 1`] = `
               >
                 <div>
                   <div
-                    class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz _checkboxField_639ec5"
+                    class="Checkbox-module_checkbox__3r5uI _checkboxField_639ec5"
                     style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                   >
                     <input
                       aria-label="Olen tutustunut <0>tämän palvelun rekisteriselosteeseen</0> ja <1>kaupungin tietosuojakäytäntöön</1>. Minuun voidaan olla yhteydessä antamieni tietojen avulla."
-                      class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
+                      class="Checkbox-module_input__2bdJk"
                       id="agree"
                       name="agree"
                       required=""
@@ -567,7 +633,7 @@ exports[`renders snapshot correctly 1`] = `
                       value="false"
                     />
                     <label
-                      class="Checkbox-module_label__L5AN1 checkbox_hds-checkbox__label__3HoD3 Checkbox-module_noLabel__2wGzf checkbox_hds-checkbox__label--hidden__3zwtj"
+                      class="Checkbox-module_label__148Ac Checkbox-module_noLabel__1HSAV"
                       for="agree"
                     />
                   </div>
@@ -602,13 +668,11 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <button
-                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _submitButton_72244b"
+                class="Button-module_button__1msFE Button-module_primary__2LfKB _submitButton_72244b"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="submit"
               >
-                <span
-                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-                >
+                <span>
                   Ilmoittaudu mukaan
                 </span>
               </button>

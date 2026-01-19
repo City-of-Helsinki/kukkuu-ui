@@ -31,10 +31,13 @@ resources:
 extends:
   # Filename in Azure DevOps Repository
   template: components/kukkuu-ui/pipelines/kukkuu-ui-release.yml@kukkuu-pipelines
-  # parameters:
+  parameters:
     # Application build arguments and config map values as key value pairs.
     # Does not contain all buildArguments or configMap values, the rest located in kukkuu-pipelines
     # The values here will override the values defined in the kukkuu-pipelines repository
+    ## Default value to nodeVersion is set on template.
+    ## Used tool version - updated for HDS 4.9.0 compatibility
+    nodeVersion: 22
     ## Staging definitions
     # buildArgsStage:
     #   DEBUG: 1
@@ -45,6 +48,3 @@ extends:
     #   DEBUG: 1
     # configMap: # pod environment variables
     #   DEBUG: 1
-    ## Default value to nodeVersion is set on template.
-    ## Used tool version
-    # nodeVersion: 18

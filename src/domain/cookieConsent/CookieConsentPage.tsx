@@ -9,7 +9,7 @@ const CookieConsentPage: FunctionComponent = () => {
 
   return (
     <PageWrapper>
-      <CookieConsent isModal={false} appName={t('appName')} />
+      <CookieConsent appName={t('appName')} />
     </PageWrapper>
   );
 };

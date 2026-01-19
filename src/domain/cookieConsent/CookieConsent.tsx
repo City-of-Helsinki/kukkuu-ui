@@ -1,164 +1,294 @@
-import type { ContentSource } from 'hds-react';
-import { CookieModal, CookiePage, useCookies } from 'hds-react';
+import { CookieConsentContextProvider, CookieBanner } from 'hds-react';
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { MAIN_CONTENT_ID } from '../constants';
-import { useCookieConfig } from '../../common/components/cookieConfigProvider';
 
 type Props = {
   appName: string;
   allowLanguageSwitch?: boolean;
-  isModal?: boolean;
 };
 
-const CookieConsent: React.FC<Props> = ({
-  appName,
-  allowLanguageSwitch,
-  isModal = true,
-}) => {
+const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
   const { t, i18n } = useTranslation();
   const locale = getCurrentLanguage(i18n);
-  const { cookieDomain } = useCookieConfig();
-  const { getAllConsents } = useCookies();
   const { pushInstruction } = useMatomo();
 
-  const [language, setLanguage] =
-    React.useState<ContentSource['currentLanguage']>(locale);
-
-  const [showCookieConsentModal, setShowCookieConsentModal] =
-    React.useState(true);
+  const [language, setLanguage] = React.useState<'en' | 'fi' | 'sv'>(
+    locale as 'en' | 'fi' | 'sv'
+  );
 
   useEffect(() => {
-    setLanguage(i18n.language as ContentSource['currentLanguage']);
+    setLanguage(i18n.language as 'en' | 'fi' | 'sv');
   }, [i18n.language]);
 
-  const handleMatomoUpdate = useCallback(() => {
-    const getConsentStatus = (cookieId: string) => {
-      const consents = getAllConsents();
-      return consents[cookieId];
-    };
-    if (getConsentStatus('matomo')) {
-      pushInstruction('requireCookieConsent');
-    } else {
-      pushInstruction('setCookieConsentGiven');
-    }
-  }, [getAllConsents, pushInstruction]);
+  const handleMatomoUpdate = useCallback(
+    (changeEvent: { type: string; acceptedGroups: string[] }) => {
+      if (changeEvent.acceptedGroups.includes('matomo')) {
+        pushInstruction('setCookieConsentGiven');
+      } else {
+        pushInstruction('requireCookieConsent');
+      }
+    },
+    [pushInstruction]
+  );
 
   const onLanguageChange = React.useCallback(
     (newLang: string) => {
       if (allowLanguageSwitch) {
-        setLanguage(newLang as ContentSource['currentLanguage']);
+        setLanguage(newLang as 'en' | 'fi' | 'sv');
         i18n.changeLanguage(newLang);
       }
     },
-    [i18n, setLanguage, allowLanguageSwitch]
+    [i18n, allowLanguageSwitch]
   );
 
-  const contentSource: ContentSource = React.useMemo(
+  const siteSettings = React.useMemo(
     () => ({
       siteName: appName,
-      texts: {
-        sections: {
-          main: {
-            text: t('consent.texts.sections.main.text'),
-          },
-        },
-        ui: {
-          approveOnlyRequiredConsents: t(
-            'consent.texts.ui.approveOnlyRequiredConsents'
-          ),
-          hideSettings: t('consent.texts.ui.hideSettings'),
-        },
-      },
-      onAllConsentsGiven: () => {
-        if (isModal) {
-          setShowCookieConsentModal(false);
-        }
-        handleMatomoUpdate();
-      },
-      currentLanguage: language as string as ContentSource['currentLanguage'],
-      requiredCookies: {
-        title: t('consent.required.title'),
-        text: t('consent.required.text'),
-        groups: [
-          {
-            id: 'essential-custom',
-            title: t('consent.groups.essential.title'),
-            text: t('consent.groups.essential.text'),
-            cookies: [
-              {
-                id: 'wordpress',
-                name: 'wordpress_*, wp-settings-*',
-                hostName: 'api.hel.fi',
-                description: t('consent.cookies.wordpress'),
-                expiration: t('consent.expiration.session'),
-              },
-              {
-                id: 'linkedevents',
-                name: 'linkedevents-api-prod-csrftoken',
-                hostName: 'api.hel.fi',
-                description: t('consent.cookies.linkedevents'),
-                expiration: t('consent.expiration.year'),
-              },
-              {
-                id: 'i18next',
-                name: 'i18next',
-                hostName: 'api.hel.fi',
-                description: t('consent.cookies.i18next'),
-                expiration: t('consent.expiration.session'),
-              },
-            ],
-          },
-        ],
-      },
-      optionalCookies: {
-        title: t('consent.optional.title'),
-        groups: [
-          {
-            title: t('consent.groups.matomo.title'),
-            text: t('consent.groups.matomo.text'),
-            expandAriaLabel: t('consent.groups.matomo.expandAriaLabel'),
-            checkboxAriaDescription: t(
-              'consent.groups.matomo.checkboxAriaDescription'
-            ),
-            cookies: [
-              {
-                id: 'matomo',
-                name: '_pk*',
-                hostName: 'digia.fi',
-                description: t('consent.cookies.matomo'),
-                expiration: t('consent.expiration.days', { days: 393 }),
-              },
-            ],
-          },
-        ],
-      },
+      currentLanguage: language,
       language: {
-        current: language,
-        onLanguageChange,
+        onLanguageChange: allowLanguageSwitch ? onLanguageChange : undefined,
       },
+      languages: [
+        { code: 'fi', name: 'Suomi', direction: 'ltr' },
+        { code: 'sv', name: 'Svenska', direction: 'ltr' },
+        { code: 'en', name: 'English', direction: 'ltr' },
+      ],
       focusTargetSelector: MAIN_CONTENT_ID,
+      translations: {
+        heading: {
+          fi: `${appName} käyttää evästeitä`,
+          sv: `${appName} använder kakor`,
+          en: `${appName} uses cookies`,
+        },
+        description: {
+          fi: t('consent.texts.sections.main.text'),
+          sv: t('consent.texts.sections.main.text'),
+          en: t('consent.texts.sections.main.text'),
+        },
+        approveAllConsents: {
+          fi: 'Hyväksy kaikki evästeet',
+          sv: 'Godkänn alla kakor',
+          en: 'Accept all cookies',
+        },
+        approveOnlyRequiredConsents: {
+          fi: t('consent.texts.ui.approveOnlyRequiredConsents'),
+          sv: t('consent.texts.ui.approveOnlyRequiredConsents'),
+          en: t('consent.texts.ui.approveOnlyRequiredConsents'),
+        },
+        approveRequiredAndSelectedConsents: {
+          fi: 'Hyväksy valitut evästeet',
+          sv: 'Godkänn valda kakor',
+          en: 'Accept selected cookies',
+        },
+        bannerAriaLabel: {
+          fi: t('cookieConsent.title'),
+          sv: t('cookieConsent.title'),
+          en: t('cookieConsent.title'),
+        },
+        showDetails: {
+          fi: 'Näytä tiedot',
+          sv: 'Visa detaljer',
+          en: 'Show details',
+        },
+        hideDetails: {
+          fi: 'Piilota tiedot',
+          sv: 'Dölj detaljer',
+          en: 'Hide details',
+        },
+        formHeading: {
+          fi: 'Evästeasetukset',
+          sv: 'Kakinställningar',
+          en: 'Cookie settings',
+        },
+        formText: {
+          fi: t('consent.texts.sections.main.text'),
+          sv: t('consent.texts.sections.main.text'),
+          en: t('consent.texts.sections.main.text'),
+        },
+        showCookieSettings: {
+          fi: 'Näytä evästeasetukset',
+          sv: 'Visa kakinställningar',
+          en: 'Show cookie settings',
+        },
+        hideCookieSettings: {
+          fi: t('consent.texts.ui.hideSettings'),
+          sv: t('consent.texts.ui.hideSettings'),
+          en: t('consent.texts.ui.hideSettings'),
+        },
+        tableHeadingsName: {
+          fi: 'Nimi',
+          sv: 'Namn',
+          en: 'Name',
+        },
+        tableHeadingsHostName: {
+          fi: 'Palvelin',
+          sv: 'Server',
+          en: 'Host',
+        },
+        tableHeadingsDescription: {
+          fi: 'Kuvaus',
+          sv: 'Beskrivning',
+          en: 'Description',
+        },
+        tableHeadingsExpiration: {
+          fi: 'Vanheneminen',
+          sv: 'Utgångsdatum',
+          en: 'Expiration',
+        },
+        tableHeadingsType: {
+          fi: 'Tyyppi',
+          sv: 'Typ',
+          en: 'Type',
+        },
+        storageType1: {
+          fi: 'Eväste',
+          sv: 'Kaka',
+          en: 'Cookie',
+        },
+        storageType2: {
+          fi: 'Paikallinen tallennus',
+          sv: 'Lokal lagring',
+          en: 'Local storage',
+        },
+      },
+      requiredGroups: [
+        {
+          groupId: 'essential-custom',
+          title: {
+            fi: t('consent.groups.essential.title'),
+            sv: t('consent.groups.essential.title'),
+            en: t('consent.groups.essential.title'),
+          },
+          description: {
+            fi: t('consent.groups.essential.text'),
+            sv: t('consent.groups.essential.text'),
+            en: t('consent.groups.essential.text'),
+          },
+          cookies: [
+            {
+              name: 'city-of-helsinki-cookie-consents',
+              host: window.location.hostname,
+              storageType: 1,
+              description: {
+                fi: t('consent.cookies.i18next'),
+                sv: t('consent.cookies.i18next'),
+                en: t('consent.cookies.i18next'),
+              },
+              expiration: {
+                fi: t('consent.expiration.year'),
+                sv: t('consent.expiration.year'),
+                en: t('consent.expiration.year'),
+              },
+            },
+            {
+              name: 'wordpress_*, wp-settings-*',
+              host: 'api.hel.fi',
+              storageType: 1,
+              description: {
+                fi: t('consent.cookies.wordpress'),
+                sv: t('consent.cookies.wordpress'),
+                en: t('consent.cookies.wordpress'),
+              },
+              expiration: {
+                fi: t('consent.expiration.session'),
+                sv: t('consent.expiration.session'),
+                en: t('consent.expiration.session'),
+              },
+            },
+            {
+              name: 'linkedevents-api-prod-csrftoken',
+              host: 'api.hel.fi',
+              storageType: 1,
+              description: {
+                fi: t('consent.cookies.linkedevents'),
+                sv: t('consent.cookies.linkedevents'),
+                en: t('consent.cookies.linkedevents'),
+              },
+              expiration: {
+                fi: t('consent.expiration.year'),
+                sv: t('consent.expiration.year'),
+                en: t('consent.expiration.year'),
+              },
+            },
+            {
+              name: 'i18next',
+              host: 'api.hel.fi',
+              storageType: 1,
+              description: {
+                fi: t('consent.cookies.i18next'),
+                sv: t('consent.cookies.i18next'),
+                en: t('consent.cookies.i18next'),
+              },
+              expiration: {
+                fi: t('consent.expiration.session'),
+                sv: t('consent.expiration.session'),
+                en: t('consent.expiration.session'),
+              },
+            },
+          ],
+        },
+      ],
+      optionalGroups: [
+        {
+          groupId: 'matomo',
+          title: {
+            fi: t('consent.groups.matomo.title'),
+            sv: t('consent.groups.matomo.title'),
+            en: t('consent.groups.matomo.title'),
+          },
+          description: {
+            fi: t('consent.groups.matomo.text'),
+            sv: t('consent.groups.matomo.text'),
+            en: t('consent.groups.matomo.text'),
+          },
+          expandAriaLabel: {
+            fi: t('consent.groups.matomo.expandAriaLabel'),
+            sv: t('consent.groups.matomo.expandAriaLabel'),
+            en: t('consent.groups.matomo.expandAriaLabel'),
+          },
+          checkboxAriaDescription: {
+            fi: t('consent.groups.matomo.checkboxAriaDescription'),
+            sv: t('consent.groups.matomo.checkboxAriaDescription'),
+            en: t('consent.groups.matomo.checkboxAriaDescription'),
+          },
+          cookies: [
+            {
+              name: '_pk*',
+              host: 'digia.fi',
+              storageType: 1,
+              description: {
+                fi: t('consent.cookies.matomo'),
+                sv: t('consent.cookies.matomo'),
+                en: t('consent.cookies.matomo'),
+              },
+              expiration: {
+                fi: t('consent.expiration.days', { days: 393 }),
+                sv: t('consent.expiration.days', { days: 393 }),
+                en: t('consent.expiration.days', { days: 393 }),
+              },
+            },
+          ],
+        },
+      ],
     }),
-    [appName, t, language, onLanguageChange, isModal, handleMatomoUpdate]
+    [t, appName, language, allowLanguageSwitch, onLanguageChange]
   );
 
-  if (!showCookieConsentModal) return null;
-
   return (
-    <>
-      {isModal && showCookieConsentModal && (
-        <CookieModal
-          contentSource={contentSource}
-          cookieDomain={cookieDomain}
-        />
-      )}
-      {!isModal && (
-        <CookiePage contentSource={contentSource} cookieDomain={cookieDomain} />
-      )}
-    </>
+    <CookieConsentContextProvider
+      siteSettings={siteSettings}
+      options={{
+        cookieDomain: window.location.hostname,
+        language,
+      }}
+      onChange={handleMatomoUpdate}
+    >
+      <CookieBanner />
+    </CookieConsentContextProvider>
   );
 };
 
