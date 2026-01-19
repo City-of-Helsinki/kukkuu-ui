@@ -38,6 +38,10 @@ vi.mock('@sentry/browser', async () => ({
   captureException: vi.fn(),
 }));
 
+vi.mock('../../../api/client', () => ({
+  default: undefined,
+}));
+
 describe('RequestVerificationTokenButton', () => {
   const email = 'test@example.com';
   const successMessage =
