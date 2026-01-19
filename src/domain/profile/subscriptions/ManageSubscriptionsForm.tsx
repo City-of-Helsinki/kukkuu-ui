@@ -12,6 +12,7 @@ import {
 } from '../../api/generatedTypes/graphql';
 import CheckboxField from '../../../common/components/form/fields/checkbox/CheckboxField';
 import Button from '../../../common/components/button/Button';
+import graphqlClient from '../../api/client';
 
 const schema = yup.object().shape({
   hasAcceptedCommunication: yup.boolean(),
@@ -28,7 +29,10 @@ const ManageSubscriptionsForm = ({
 
   const [updateMySubscriptions] =
     useMutation<UpdateMyCommunicationSubscriptionsMutation>(
-      UpdateMyCommunicationSubscriptionsDocument
+      UpdateMyCommunicationSubscriptionsDocument,
+      {
+        client: graphqlClient,
+      }
     );
 
   const onSubmit = async ({

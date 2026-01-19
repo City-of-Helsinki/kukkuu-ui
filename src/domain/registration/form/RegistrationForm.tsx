@@ -41,6 +41,7 @@ import { MyProfile } from '../../profile/types/ProfileQueryTypes';
 import MandatoryFieldLegend from '../../../common/components/mandatoryFieldLegend/MandatoryFieldLegend';
 import { publicSvgIconPaths } from '../../../public_files';
 import { FORM_TESTID, EMAIL_FIELD_TESTID } from './constants';
+import graphqlClient from '../../api/client';
 
 const schema = yup.object().shape({
   guardian: yup.object().shape({
@@ -118,6 +119,7 @@ const RegistrationForm = () => {
     useMutation<SubmitChildrenAndGuardianMutation>(
       submitChildrenAndGuardianMutation,
       {
+        client: graphqlClient,
         awaitRefetchQueries: true,
         refetchQueries: [{ query: profileQuery }],
         onCompleted: () => {

@@ -16,6 +16,7 @@ import Button from '../../../common/components/button/Button';
 import FormikTextInput from '../../../common/components/formikWrappers/FormikTextInput';
 import RequestVerificationTokenButton from './RequestVerificationTokenButton';
 import { EditProfileModalProps } from './EditProfileModal';
+import graphqlClient from '../../api/client';
 
 const emailChangeSchema = yup.object().shape({
   email: yup
@@ -35,7 +36,10 @@ export default function EditMyEmailForm({
 
   const [isChangingEmail, setIsChangingEmail] = React.useState(false);
   const [updateMyEmail] = useMutation<UpdateMyEmailMutation>(
-    UpdateMyEmailMutationDocument
+    UpdateMyEmailMutationDocument,
+    {
+      client: graphqlClient,
+    }
   );
 
   const onSubmit = async (

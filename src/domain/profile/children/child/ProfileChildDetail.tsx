@@ -31,6 +31,7 @@ import { useProfileContext } from '../../hooks/useProfileContext';
 import AdditionalNotesCard from '../../events/AdditionalNotesCard';
 import type { ChildDetailEditModalPayload } from './types';
 import useProfileRouteGoBackTo from './useProfileRouteGoBackTo';
+import graphqlClient from '../../../api/client';
 
 const ProfileChildDetail = () => {
   const { t } = useTranslation();
@@ -51,6 +52,7 @@ const ProfileChildDetail = () => {
   const [deleteChild] = useMutation<DeleteChildMutationPayloadFieldsFragment>(
     deleteChildMutation,
     {
+      client: graphqlClient,
       refetchQueries: [{ query: ProfileQueryDocument }],
       onCompleted: () => {
         refetchProfile();
