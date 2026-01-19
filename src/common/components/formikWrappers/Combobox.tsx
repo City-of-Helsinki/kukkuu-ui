@@ -1,28 +1,26 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import {
-  Combobox as HDSCombobox,
-  ComboboxProps as HDSDropdownProps,
-} from 'hds-react';
+import { Select as HDSSelect, SelectProps as HDSSelectProps } from 'hds-react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 
 import { Option } from './types';
 import styles from './formikInputs.module.scss';
 
-type DropdownProps = Omit<
-  HDSDropdownProps<Option>,
-  'onChange' | 'value' | 'options' | 'defaultValue'
+type SelectProps = Omit<
+  HDSSelectProps,
+  'onChange' | 'value' | 'defaultValue' | 'texts'
 > & {
   onChange?: (values: string[]) => void;
   value?: string[];
   options: Option[];
+  label?: string;
+  placeholder?: string;
+  helperText?: string;
+  catchEscapeKey?: boolean;
 };
 
-export type ComboboxProps = Omit<DropdownProps, 'toggleButtonAriaLabel'> & {
+export type ComboboxProps = SelectProps & {
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  label: any;
-  toggleButtonAriaLabel?: string;
 };
 
 function Combobox({
@@ -30,13 +28,19 @@ function Combobox({
   onChange,
   options,
   value: userValue,
+  label,
+  placeholder,
+  helperText,
   ...rest
 }: ComboboxProps) {
   const { t } = useTranslation();
   const [{ value = [], ...field }, meta, helpers] = useField<string[]>(name);
 
-  const handleChange = (selectedItems: Option[]) => {
-    const nextValues = selectedItems.map((item) => item.value);
+  const handleChange = (selectedItems: (Option | string)[]) => {
+    // HDS 4.x Select returns string values, not Option objects
+    const nextValues = selectedItems
+      .map((item) => (typeof item === 'string' ? item : item.value))
+      .filter((value): value is string => Boolean(value));
 
     if (onChange) {
       onChange(nextValues);
@@ -50,27 +54,31 @@ function Combobox({
   };
 
   const usedValue = userValue || value;
-  const valuesAsOptions = usedValue
-    .map((value) => options.find((option) => option.value === value))
-    .filter((option): option is Option => Boolean(option));
 
   return (
-    <HDSCombobox<Option>
+    <HDSSelect
       {...field}
       className={styles.formField}
-      error={meta.touched && Boolean(meta.error) && t(meta.error || '')}
       invalid={meta.touched && Boolean(meta.error)}
       onBlur={handleBlur}
       onChange={handleChange}
-      value={valuesAsOptions}
-      options={options}
-      clearButtonAriaLabel={t('combobox.clearButtonAriaLabel')}
-      selectedItemRemoveButtonAriaLabel={t('combobox.selectedItemSrLabel')}
-      selectedItemSrLabel={t('combobox.selectedItemRemoveButtonAriaLabel')}
-      toggleButtonAriaLabel={t('combobox.toggleButtonAriaLabel')}
+      value={usedValue}
+      multiSelect
+      texts={{
+        label: label || '',
+        placeholder: placeholder || '',
+        ...(helperText ? { helperText } : {}),
+        ...(meta.touched && meta.error ? { error: t(meta.error || '') } : {}),
+        language: 'fi',
+      }}
       {...rest}
-      multiselect
-    />
+    >
+      {(options as Option[]).map((option) => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </HDSSelect>
   );
 }
 

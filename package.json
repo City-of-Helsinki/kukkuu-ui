@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "engines": {
-    "node": ">=20.19"
+    "node": ">=22.13.1"
   },
   "contributors": [
     "Bernt Andreas Drange",
@@ -45,24 +45,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "//": {
-    "Why are packages in resolutions?": {
-      "hds-react/cookie": [
-        "To fix https://github.com/City-of-Helsinki/kukkuu-ui/security/dependabot/140",
-        "NOTE: This can be removed if hds-react starts to depend on >=v1 cookie"
-      ],
-      "@types/cookie": [
-        "To use the last known @types/cookie version, only for <v1 cookie",
-        "",
-        "NOTE: This can be removed if all dependencies start to depend on >=v1 cookie ",
-        "which provides the types itself"
-      ]
-    }
-  },
-  "resolutions": {
-    "hds-react/cookie": "^0.7.2",
-    "@types/cookie": "^0.6.0"
   },
   "dependencies": {
     "@apollo/client": "^3.12.7",
@@ -111,8 +93,8 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "eslint-plugin-testing-library": "^7.1.1",
     "formik": "^2.4.6",
-    "hds-core": "3.11.0",
-    "hds-react": "3.11.0",
+    "hds-core": "4.9.0",
+    "hds-react": "4.9.0",
     "html-react-parser": "^5.2.2",
     "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.2",

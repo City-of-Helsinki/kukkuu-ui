@@ -75,7 +75,7 @@ const Card = ({
               onKeyPress={handlePrimaryActionOnKeyPress}
               tabIndex={0}
             >
-              {primaryActionText}
+              {primaryActionText || ''}
             </Button>
           )}
           <span>{!!focalContent && focalContent}</span>

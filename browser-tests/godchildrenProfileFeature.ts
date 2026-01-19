@@ -9,6 +9,7 @@ import {
   KukkuuApiTestJwtBearerAuthorization,
 } from './utils/jwt/mocks/testJWTAuthRequests';
 import { browserTestUser } from './utils/jwt/users';
+import { register } from './utils/register';
 
 function buildProfile() {
   return { firstName: `Kukkuu ${new Date().toISOString()}` };
@@ -24,6 +25,9 @@ fixture`Guardian profile feature`
   .beforeEach(async (t) => {
     // Use authorizedGuardian guardian role to populate session storage
     await t.useRole(authorizedGuardian).navigateTo(route());
+
+    await register(t); // this is required first time login only for user
+
     t.ctx.profile = buildProfile();
   })
   .afterEach(async (t) => {

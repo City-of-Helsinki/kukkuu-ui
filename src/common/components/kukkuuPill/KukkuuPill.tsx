@@ -5,13 +5,13 @@ import styles from './kukkuuPill.module.scss';
 
 type Props = {
   name: string | ReactNode;
-  iconLeft?: ReactNode;
+  iconStart?: ReactNode;
   variant?: 'default' | 'success';
 };
 
 export default function KukkuuPill({
   name,
-  iconLeft,
+  iconStart,
   variant = 'default',
 }: Props) {
   return (
@@ -19,7 +19,7 @@ export default function KukkuuPill({
       data-testid={`kukkuu-pill-${variant}`}
       className={classNames(styles.pill, styles[variant])}
     >
-      {iconLeft}
+      {iconStart}
       {name}
     </div>
   );

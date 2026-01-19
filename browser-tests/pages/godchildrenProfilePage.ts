@@ -31,9 +31,9 @@ export const addChildModal = {
   cityInput: screen.getByLabelText(/lapsen kotipaikkakunta\*/i),
   postalCodeInput: screen.getByLabelText(/postinumero\*/i),
   nameInput: screen.getByLabelText(/lapsen nimi/i),
-  relationshipInput: screen.getByLabelText(
-    /ilmoittajan suhde lapseen\* valitse/i
-  ),
+  relationshipInput: screen.getByRole('combobox', {
+    name: /ilmoittajan suhde lapseen/i,
+  }),
   submitButton: screen.getByRole('button', {
     name: /lisää lapsi/i,
   }),

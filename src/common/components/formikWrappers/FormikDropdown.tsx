@@ -7,15 +7,16 @@ import styles from './formikInputs.module.scss';
 
 type DropdownProps = Omit<
   HDSDropdownProps<Option>,
-  'value' | 'onChange' | 'options' | 'defaultValue'
+  'value' | 'onChange' | 'options' | 'defaultValue' | 'texts' | 'className'
 >;
 
 type Props = DropdownProps & {
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  label: any;
+  label?: string;
+  placeholder?: string;
   value?: string;
   options: Option[];
+  className?: string;
 };
 
 const emptyValue = {
@@ -23,15 +24,22 @@ const emptyValue = {
   value: '',
 };
 
-function FormikDropdown({ name, value: userValue, options, ...rest }: Props) {
+function FormikDropdown({
+  name,
+  value: userValue,
+  options,
+  label,
+  placeholder,
+}: Props) {
   const { t } = useTranslation();
   const [{ value, ...field }, meta, helpers] = useField(name);
 
-  const handleChange = (selectedItem: Option | Option[]) => {
-    if (Array.isArray(selectedItem)) {
-      helpers.setValue(selectedItem.map((item) => item.value));
+  const handleChange = (selectedItems: Option[]) => {
+    // For single select, get first item
+    if (selectedItems && selectedItems.length > 0) {
+      helpers.setValue(selectedItems[0].value);
     } else {
-      helpers.setValue(selectedItem.value);
+      helpers.setValue('');
     }
   };
 
@@ -43,17 +51,20 @@ function FormikDropdown({ name, value: userValue, options, ...rest }: Props) {
   const valueAsOption = options.find((option) => option.value === usedValue);
 
   return (
-    <Select<Option>
+    <Select
       {...field}
       className={styles.formField}
-      defaultValue={valueAsOption || emptyValue}
+      value={valueAsOption ? [valueAsOption] : [emptyValue]}
       options={options}
       onChange={handleChange}
       invalid={meta.touched && Boolean(meta.error)}
-      error={meta.touched && Boolean(meta.error) && t(meta.error || '')}
       onBlur={handleBlur}
-      {...rest}
-      multiselect={false}
+      texts={{
+        label: label || '',
+        placeholder: placeholder || '',
+        ...(meta.touched && meta.error ? { error: t(meta.error || '') } : {}),
+        language: 'fi',
+      }}
     />
   );
 }

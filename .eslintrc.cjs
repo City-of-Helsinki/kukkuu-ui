@@ -56,7 +56,7 @@ module.exports = {
     'no-console': 'warn',
     'no-plusplus': 'error',
     'no-undef': 'warn',
-    'object-curly-spacing': ['warn', 'always'],
+    'object-curly-spacing': 'off', // Let Prettier handle this
     'import/no-named-as-default': 'off',
     '@vitest/expect-expect': [
       'error',

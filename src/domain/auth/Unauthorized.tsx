@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router';
-import { IconSignin, useOidcClient } from 'hds-react';
+import { IconSignin, useOidcClient, IconSize } from 'hds-react';
 import React from 'react';
 
 import InfoPageLayout from '../app/layout/InfoPageLayout';
@@ -12,7 +12,7 @@ const LoginButton = () => {
   const { t } = useTranslation();
   return (
     <>
-      {t('authentication.login.shortText')} <IconSignin size="s" />
+      {t('authentication.login.shortText')} <IconSignin size={IconSize.Small} />
     </>
   );
 };
