@@ -1,12 +1,12 @@
 import { useCallback } from 'react';
-import { Navigation as RHHCNavigation } from 'react-helsinki-headless-cms/apollo';
+import { Navigation as RHHCNavigation } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 import {
   Language,
   LanguageCodeEnum,
   MenuItem,
-} from 'react-helsinki-headless-cms';
+} from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import UserNavigation from './UserNavigation';
 import { useCmsLanguageOptions } from '../../../hooks/useCmsLanguageOptions';

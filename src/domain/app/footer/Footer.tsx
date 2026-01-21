@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MenuItem } from 'react-helsinki-headless-cms';
-import { useMenuQuery } from 'react-helsinki-headless-cms/apollo';
+import { MenuItem } from '@city-of-helsinki/react-helsinki-headless-cms';
+import { useMenuQuery } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { Logo, Footer as HDSFooter, logoSv, logoFi, LogoSize } from 'hds-react';
 
 import styles from './footer.module.scss';

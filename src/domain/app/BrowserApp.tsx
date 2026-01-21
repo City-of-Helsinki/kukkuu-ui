@@ -7,7 +7,7 @@ import {
   MatomoProvider,
   createInstance as createMatomoInstance,
 } from '@jonkoops/matomo-tracker-react';
-import { ConfigProvider } from 'react-helsinki-headless-cms';
+import { ConfigProvider } from '@city-of-helsinki/react-helsinki-headless-cms';
 import React from 'react';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';

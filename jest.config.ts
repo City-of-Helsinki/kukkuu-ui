@@ -2,7 +2,7 @@ module.exports = {
   testEnvironment: 'jest-environment-jsdom',
   transformIgnorePatterns: [
     // '/node_modules/',
-    'node_modules/(?!(react-helsinki-headless-cms|react-helsinki-headless-cms/apollo))/',
+    'node_modules/(?!(@city-of-helsinki/react-helsinki-headless-cms))/',
     '^.+\\.module\\.(css|sass|scss)$',
   ],
   moduleNameMapper: {

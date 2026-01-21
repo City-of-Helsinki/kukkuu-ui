@@ -1,4 +1,7 @@
-import { Page, PageContent } from 'react-helsinki-headless-cms/apollo';
+import {
+  Page,
+  PageContent,
+} from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { useLocation } from 'react-router';
 
 import styles from './headlessCmsPage.module.scss';
