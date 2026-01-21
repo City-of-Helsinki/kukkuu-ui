@@ -7,7 +7,7 @@ import {
   ConfigProvider as RHHCConfigProvider,
   defaultConfig as rhhcDefaultConfig,
   Config as RHHCConfig,
-} from 'react-helsinki-headless-cms';
+} from '@city-of-helsinki/react-helsinki-headless-cms';
 import { ApolloClient } from '@apollo/client/core/ApolloClient';
 import { useApolloClient } from '@apollo/client/react/hooks/useApolloClient';
 

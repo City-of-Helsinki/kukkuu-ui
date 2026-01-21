@@ -1,5 +1,5 @@
 import { graphql, HttpResponse } from 'msw';
-import { PageDocument } from 'react-helsinki-headless-cms/apollo';
+import { PageDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import {
   ApolloClient,
   InMemoryCache,

@@ -1,4 +1,7 @@
-import { type Language, LanguageCodeEnum } from 'react-helsinki-headless-cms';
+import {
+  type Language,
+  LanguageCodeEnum,
+} from '@city-of-helsinki/react-helsinki-headless-cms';
 
 export const CMS_FINNISH_LANGUAGE_ENTRY = {
   code: LanguageCodeEnum.Fi,
