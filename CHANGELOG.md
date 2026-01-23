@@ -401,6 +401,13 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.14.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.14.0...kukkuu-ui-v3.14.1) (2026-01-23)
+
+
+### Bug Fixes
+
+* Handle GraphQL errors in profile child check ([44ca3e4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/44ca3e46fce0dfe1fd4325e09a22a1a343de0c32))
+
 ## [3.14.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.13.1...kukkuu-ui-v3.14.0) (2026-01-13)
 
 
