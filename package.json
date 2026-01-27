@@ -118,7 +118,7 @@
     "i18next-browser-languagedetector": "^8.0.2",
     "jsdom": "^26.1.0",
     "jsonwebtoken": "^9.0.3",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "msw": "^2.7.0",
     "oidc-client": "^1.11.5",
     "prettier": "^3.4.2",
