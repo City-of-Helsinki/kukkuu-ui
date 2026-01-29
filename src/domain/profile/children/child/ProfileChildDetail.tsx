@@ -103,7 +103,7 @@ const ProfileChildDetail = () => {
                 <Button
                   variant="secondary"
                   onClick={() => setIsOpen(true)}
-                  iconLeft={<IconPen />}
+                  iconStart={<IconPen />}
                 >
                   {t('profile.children.edit.button.text')}
                 </Button>

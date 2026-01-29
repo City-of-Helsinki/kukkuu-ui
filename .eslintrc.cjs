@@ -33,6 +33,14 @@ module.exports = {
     react: {
       version: 'detect',
     },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+      },
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   rules: {
     'react-refresh/only-export-components': 'error',
@@ -55,9 +63,12 @@ module.exports = {
     'max-len': ['warn', { code: 120 }],
     'no-console': 'warn',
     'no-plusplus': 'error',
+    // False positives with React and ReactDOM default exports
+    'import/no-named-as-default-member': 'off',
     'no-undef': 'warn',
-    'object-curly-spacing': ['warn', 'always'],
+    'object-curly-spacing': 'off', // Let Prettier handle this
     'import/no-named-as-default': 'off',
+    'import/default': 'off', // False positives with TypeScript and React
     '@vitest/expect-expect': [
       'error',
       {

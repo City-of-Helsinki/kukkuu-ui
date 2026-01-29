@@ -32,24 +32,20 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 class="_buttonGroup_b04a84"
               >
                 <button
-                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _registerButton_b04a84"
+                  class="Button-module_button__1msFE Button-module_primary__2LfKB _registerButton_b04a84"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
-                  <span
-                    class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-                  >
+                  <span>
                     Ilmoittaudu mukaan
                   </span>
                 </button>
                 <button
-                  class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _authenticateButton_b04a84"
+                  class="Button-module_button__1msFE Button-module_secondary__1nABp _authenticateButton_b04a84"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
-                  <span
-                    class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-                  >
+                  <span>
                     Kirjaudu sisään
                   </span>
                 </button>
@@ -455,7 +451,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 <svg
                   aria-hidden="true"
                   aria-label="ticket"
-                  class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_s__2WGWe icon_hds-icon--size-s__2Lkik _icon_f9e21e"
+                  class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _icon_f9e21e"
                   role="img"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
@@ -577,11 +573,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz _checkboxField_639ec5"
+                  class="Checkbox-module_checkbox__3r5uI _checkboxField_639ec5"
                   style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                 >
                   <input
-                    class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
+                    class="Checkbox-module_input__2bdJk"
                     id="verifyInformation"
                     name="verifyInformation"
                     required=""
@@ -589,7 +585,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                     value="false"
                   />
                   <label
-                    class="Checkbox-module_label__L5AN1 checkbox_hds-checkbox__label__3HoD3"
+                    class="Checkbox-module_label__148Ac"
                     for="verifyInformation"
                   >
                     Vakuutan antamani tiedot oikeaksi
@@ -597,15 +593,12 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 </div>
               </div>
               <button
-                aria-disabled="true"
-                class="Button-module_button__1msFE button_hds-button__2A0je Button-module_primary__2LfKB button_hds-button--primary__2NVvO _submitButton_1e8528"
+                class="Button-module_button__1msFE Button-module_primary__2LfKB _submitButton_1e8528"
                 disabled=""
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="submit"
               >
-                <span
-                  class="Button-module_label__a4np1 button_hds-button__label__2EQa-"
-                >
+                <span>
                   Ilmoittaudu mukaan
                 </span>
               </button>

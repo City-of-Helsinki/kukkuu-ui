@@ -103,7 +103,7 @@ const ProfileChildrenList = () => {
       <Button
         variant="secondary"
         aria-label={t('child.form.modal.add.label')}
-        iconLeft={<IconPlus />}
+        iconStart={<IconPlus />}
         onClick={() => setIsOpen(true)}
       >
         {t('child.form.modal.add.label')}

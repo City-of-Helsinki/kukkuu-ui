@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import { IconAlertCircle, useOidcClient } from 'hds-react';
+import { IconAlertCircle, useOidcClient, IconSize } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
@@ -30,7 +30,7 @@ const HomeHero = ({
           <p className={styles.bodyXl}>{t('homePage.hero.descriptionText')}</p>
           {Config.featureFlagShowCoronaInfo && (
             <>
-              <IconAlertCircle size="l" />
+              <IconAlertCircle size={IconSize.Large} />
               <p className={styles.notice}>{t('home.coronaNotice')}</p>
             </>
           )}

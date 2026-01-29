@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { MenuDocument } from 'react-helsinki-headless-cms/apollo';
+import { MenuDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { MockedResponse } from '@apollo/client/testing';
 
 import { languageToMenuNameMap } from '../constants';

@@ -53,7 +53,7 @@ const getHdsSelect = (elements: HTMLElement[]) => {
   return elements[0].parentElement;
 };
 
-const selectOption = (
+const selectOption = async (
   selectWrapper: HTMLElement | null,
   optionLabel: string
 ) => {
@@ -67,7 +67,13 @@ const selectOption = (
 
   fireEvent.click(controller);
 
-  const options = selectWrapper?.querySelectorAll('[role="option"]');
+  // Wait for options to appear in document.body (HDS 4.x renders in portal)
+  await waitFor(() => {
+    const options = document.body.querySelectorAll('[role="option"]');
+    expect(options.length).toBeGreaterThan(0);
+  });
+
+  const options = document.body.querySelectorAll('[role="option"]');
   const optionToBeSelected = Array.from(options || []).find((element) => {
     return element.textContent === optionLabel;
   });
@@ -107,8 +113,8 @@ it('should allow all fields to be filled', async () => {
       value: formData.lastName,
     },
   });
-  selectOption(
-    getHdsSelect(screen.getAllByRole('button', { name: /asiointikieli \*/i })),
+  await selectOption(
+    getHdsSelect(screen.getAllByRole('combobox', { name: /asiointikieli/i })),
     'Suomi'
   );
 
@@ -122,8 +128,8 @@ it('should allow all fields to be filled', async () => {
   await waitFor(() => {
     expect(
       getHdsSelect(
-        screen.getAllByRole('button', { name: /asiointikieli \*/i })
+        screen.getAllByRole('combobox', { name: /asiointikieli/i })
       )?.querySelector('button')?.textContent
-    ).toEqual('Suomi');
+    ).toContain('Suomi');
   });
 }, 10_000);

@@ -1,4 +1,4 @@
-import { LanguagesDocument } from 'react-helsinki-headless-cms/apollo';
+import { LanguagesDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { MockedResponse } from '@apollo/client/testing';
 
 import { HARDCODED_CMS_LANGUAGE_QUERY_RESPONSE } from '../../../languages/constants';

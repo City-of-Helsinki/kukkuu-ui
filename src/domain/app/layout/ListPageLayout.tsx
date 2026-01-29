@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Container, IconArrowLeft } from 'hds-react';
+import { Container, IconArrowLeft, IconSize } from 'hds-react';
 import { Link, LinkProps } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
@@ -51,7 +51,7 @@ function ListPageLayoutHeader({
               className={styles.headerBackButton}
               to={backButtonHref}
             >
-              <IconArrowLeft size="s" />
+              <IconArrowLeft size={IconSize.Small} />
             </Link>
           </div>
         )}

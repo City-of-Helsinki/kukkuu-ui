@@ -4,7 +4,7 @@ import {
   defaultConfig as rhhcDefaultConfig,
   LanguageCodeEnum,
   ModuleItemTypeEnum,
-} from 'react-helsinki-headless-cms';
+} from '@city-of-helsinki/react-helsinki-headless-cms';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 

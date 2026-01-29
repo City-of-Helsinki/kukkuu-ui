@@ -1,4 +1,4 @@
-import { usePageQuery as useOriginalPageQuery } from 'react-helsinki-headless-cms/apollo';
+import { usePageQuery as useOriginalPageQuery } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
 import headlessCmsClient from '../domain/headlessCms/client';
 import { normalizeCmsUri } from '../utils/cmsUtils';
