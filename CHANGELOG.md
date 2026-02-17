@@ -403,70 +403,61 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 
 ## [3.14.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.14.1...kukkuu-ui-v3.14.2) (2026-01-28)
 
-
 ### Dependencies
 
-* Bump diff from 4.0.2 to 4.0.4 ([#719](https://github.com/City-of-Helsinki/kukkuu-ui/issues/719)) ([48340d0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/48340d0d4ebe6cb8807d8731d81e850717e1bed7))
-* Bump lodash from 4.17.21 to 4.17.23 ([#722](https://github.com/City-of-Helsinki/kukkuu-ui/issues/722)) ([f2a7603](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f2a76030703e724c26680083ab2897089fa0f016))
-* Bump lodash-es from 4.17.21 to 4.17.23 ([#721](https://github.com/City-of-Helsinki/kukkuu-ui/issues/721)) ([2c2d1a5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2c2d1a56a6dd0528e8503f8d960aefa272637e8c))
+- Bump diff from 4.0.2 to 4.0.4 ([#719](https://github.com/City-of-Helsinki/kukkuu-ui/issues/719)) ([48340d0](https://github.com/City-of-Helsinki/kukkuu-ui/commit/48340d0d4ebe6cb8807d8731d81e850717e1bed7))
+- Bump lodash from 4.17.21 to 4.17.23 ([#722](https://github.com/City-of-Helsinki/kukkuu-ui/issues/722)) ([f2a7603](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f2a76030703e724c26680083ab2897089fa0f016))
+- Bump lodash-es from 4.17.21 to 4.17.23 ([#721](https://github.com/City-of-Helsinki/kukkuu-ui/issues/721)) ([2c2d1a5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2c2d1a56a6dd0528e8503f8d960aefa272637e8c))
 
 ## [3.14.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.14.0...kukkuu-ui-v3.14.1) (2026-01-23)
 
-
 ### Bug Fixes
 
-* Handle GraphQL errors in profile child check ([44ca3e4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/44ca3e46fce0dfe1fd4325e09a22a1a343de0c32))
+- Handle GraphQL errors in profile child check ([44ca3e4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/44ca3e46fce0dfe1fd4325e09a22a1a343de0c32))
 
 ## [3.14.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.13.1...kukkuu-ui-v3.14.0) (2026-01-13)
 
-
 ### Features
 
-* Hardening npm install RATY-280 ([#715](https://github.com/City-of-Helsinki/kukkuu-ui/issues/715)) ([c256804](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c256804ab8bb2245fcdcfd1469bd54fa9bf27693))
-
+- Hardening npm install RATY-280 ([#715](https://github.com/City-of-Helsinki/kukkuu-ui/issues/715)) ([c256804](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c256804ab8bb2245fcdcfd1469bd54fa9bf27693))
 
 ### Bug Fixes
 
-* Remove feedback button ([71f4cd4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/71f4cd4633b2225376f0376bfa088ee799c8e53a))
-* Testcafe settings ([6d655be](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6d655bead74be16c6172bb8924294ce8c160373f))
-
+- Remove feedback button ([71f4cd4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/71f4cd4633b2225376f0376bfa088ee799c8e53a))
+- Testcafe settings ([6d655be](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6d655bead74be16c6172bb8924294ce8c160373f))
 
 ### Dependencies
 
-* Bump react-router from 7.5.2 to 7.12.0 ([3afe6e8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/3afe6e8b920f010cd19b2c33fece7747d10e9ca2))
+- Bump react-router from 7.5.2 to 7.12.0 ([3afe6e8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/3afe6e8b920f010cd19b2c33fece7747d10e9ca2))
 
 ## [3.13.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.13.0...kukkuu-ui-v3.13.1) (2025-12-09)
 
-
 ### Dependencies
 
-* Bump jws from 3.2.2 to 3.2.3 ([6279706](https://github.com/City-of-Helsinki/kukkuu-ui/commit/627970601c859307943e666b1ff1a4087d22ebba))
-* Bump mdast-util-to-hast from 13.2.0 to 13.2.1 ([8b9d9c7](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8b9d9c7de8c29a563997c5eb85269d5bbdbcbccf))
-* Bump validator from 13.15.20 to 13.15.22 ([2dab79b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2dab79b5fc06e09716acee5ef7c61ed087901392))
-* Upgrade jsonwebtoken to 9.0.3 ([8a51c27](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8a51c274265b7e0b79964df2db6b066dce9f4c76))
-* Upgrade uiw md packages to latest ([f3ddd50](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f3ddd50ed45939fb547bf89e48d33890da7305ac))
+- Bump jws from 3.2.2 to 3.2.3 ([6279706](https://github.com/City-of-Helsinki/kukkuu-ui/commit/627970601c859307943e666b1ff1a4087d22ebba))
+- Bump mdast-util-to-hast from 13.2.0 to 13.2.1 ([8b9d9c7](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8b9d9c7de8c29a563997c5eb85269d5bbdbcbccf))
+- Bump validator from 13.15.20 to 13.15.22 ([2dab79b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2dab79b5fc06e09716acee5ef7c61ed087901392))
+- Upgrade jsonwebtoken to 9.0.3 ([8a51c27](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8a51c274265b7e0b79964df2db6b066dce9f4c76))
+- Upgrade uiw md packages to latest ([f3ddd50](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f3ddd50ed45939fb547bf89e48d33890da7305ac))
 
 ## [3.13.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.2...kukkuu-ui-v3.13.0) (2025-11-26)
 
-
 ### Features
 
-* Add csp report-uri Ref: KK-1474 ([4f89797](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4f89797b3774ae1ddfcd05406e98ace6a5440e5a))
-* Enable cloud Sentry Ref: KK-1474 ([03c22ed](https://github.com/City-of-Helsinki/kukkuu-ui/commit/03c22ed929cb21ffe165c1439db8058a6a3b2fe1))
-* Generate sourcemaps Ref: KK-1474 ([03c22ed](https://github.com/City-of-Helsinki/kukkuu-ui/commit/03c22ed929cb21ffe165c1439db8058a6a3b2fe1))
-
+- Add csp report-uri Ref: KK-1474 ([4f89797](https://github.com/City-of-Helsinki/kukkuu-ui/commit/4f89797b3774ae1ddfcd05406e98ace6a5440e5a))
+- Enable cloud Sentry Ref: KK-1474 ([03c22ed](https://github.com/City-of-Helsinki/kukkuu-ui/commit/03c22ed929cb21ffe165c1439db8058a6a3b2fe1))
+- Generate sourcemaps Ref: KK-1474 ([03c22ed](https://github.com/City-of-Helsinki/kukkuu-ui/commit/03c22ed929cb21ffe165c1439db8058a6a3b2fe1))
 
 ### Bug Fixes
 
-* Don't expose entire process.env to define ([43b2a22](https://github.com/City-of-Helsinki/kukkuu-ui/commit/43b2a2261d5a067fa66be5148f4a073198ea1124))
-* Links to privacy policy ([0200bcd](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0200bcd09e8a91178086b5ea87cfec2b3f5876b1))
-* Use correct release variable Ref: KK-1474 ([e53bcaa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e53bcaa4c503c4dc210bf9d21e0f61cb639065f0))
-
+- Don't expose entire process.env to define ([43b2a22](https://github.com/City-of-Helsinki/kukkuu-ui/commit/43b2a2261d5a067fa66be5148f4a073198ea1124))
+- Links to privacy policy ([0200bcd](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0200bcd09e8a91178086b5ea87cfec2b3f5876b1))
+- Use correct release variable Ref: KK-1474 ([e53bcaa](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e53bcaa4c503c4dc210bf9d21e0f61cb639065f0))
 
 ### Dependencies
 
-* Bump validator from 13.12.0 to 13.15.20 ([#703](https://github.com/City-of-Helsinki/kukkuu-ui/issues/703)) ([453d6e2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/453d6e28eb8ffa1173d4fdcb88a239636545b929))
-* Bump vite from 6.3.6 to 6.4.1 ([369eded](https://github.com/City-of-Helsinki/kukkuu-ui/commit/369ededf777c126ce4c653b66e3491808e8b7df2))
+- Bump validator from 13.12.0 to 13.15.20 ([#703](https://github.com/City-of-Helsinki/kukkuu-ui/issues/703)) ([453d6e2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/453d6e28eb8ffa1173d4fdcb88a239636545b929))
+- Bump vite from 6.3.6 to 6.4.1 ([369eded](https://github.com/City-of-Helsinki/kukkuu-ui/commit/369ededf777c126ce4c653b66e3491808e8b7df2))
 
 ## [3.12.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.12.1...kukkuu-ui-v3.12.2) (2025-10-06)
 
