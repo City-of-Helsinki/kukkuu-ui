@@ -36,7 +36,7 @@ describe('Headless CMS Client', () => {
       // NOTE: The React-helsinki-headless-cms library sets a cache here by default
       fetchPolicy: 'no-cache',
     });
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
     expect(data.page.id).toEqual(page!.id);
   });
 
@@ -58,7 +58,7 @@ describe('Headless CMS Client', () => {
       variables,
       fetchPolicy: 'cache-only',
     });
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
     expect(data.page.id).toEqual(page!.id);
   });
 

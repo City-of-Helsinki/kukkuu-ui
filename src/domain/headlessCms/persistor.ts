@@ -169,7 +169,6 @@ export class TimedApolloCachePersistor {
     const millisecondsLeft =
       persistedAt + this.persistedCacheTimeToLiveMs - Date.now();
 
-    // eslint-disable-next-line no-console
     this.logger.debug(
       'Persisted cache expires in',
       millisecondsLeft / 1000,

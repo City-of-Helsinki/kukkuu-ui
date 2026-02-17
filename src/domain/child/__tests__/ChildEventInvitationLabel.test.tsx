@@ -122,7 +122,6 @@ describe('ChildEventInvitationLabel', () => {
     );
   });
 
-  // eslint-disable-next-line max-len
   it('should render the invitation label if there are upcoming events and not all current enrolments are used', async () => {
     const mocks = createMock({
       canChildEnroll: true,

@@ -1,4 +1,3 @@
-/* eslint-disable testing-library/no-node-access */
 import React from 'react';
 import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { MockedResponse } from '@apollo/client/testing';

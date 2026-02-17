@@ -3,7 +3,6 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 import subscribeToFreeSpotNotificationMutation from './mutations/subscribeToFreeSpotNotificationMutation';
-// eslint-disable-next-line max-len
 import { SubscribeToFreeSpotNotificationMutation } from '../api/generatedTypes/graphql';
 import useMutation from '../api/useMutation';
 import useDefaultErrorHandler from '../api/useDefaultErrorHandler';

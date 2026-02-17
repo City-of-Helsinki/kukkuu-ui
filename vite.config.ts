@@ -1,4 +1,3 @@
-/* eslint-disable import/no-anonymous-default-export */
 import path from 'path';
 
 import react from '@vitejs/plugin-react-swc';

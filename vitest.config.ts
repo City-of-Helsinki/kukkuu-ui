@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { defineConfig, mergeConfig } from 'vitest/config';
 import { config } from 'dotenv';
 

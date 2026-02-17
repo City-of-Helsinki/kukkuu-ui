@@ -44,7 +44,6 @@ export const useProfileChildRouteAuthorization = () => {
     ) {
       // eslint-disable-next-line no-console
       console.warn(
-        // eslint-disable-next-line max-len
         'The user should be navigated away from child page, since the user was not authorized to view the content',
         {
           profile,
