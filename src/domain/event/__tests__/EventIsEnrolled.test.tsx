@@ -69,7 +69,6 @@ describe('unenrolment is possible only 48 before the occurrence', async () => {
         hoursBeforeOccurrence >= AppConfig.enrolmentCancellationTimeLimitHours, // 48h
     }))
   )(
-    // eslint-disable-next-line max-len
     'shows unenrolment button enabled when occurrence is in $hoursBeforeOccurrence hours ($isCancellationAvailable)',
     async ({ hoursBeforeOccurrence, isCancellationAvailable }) => {
       const occurrenceQueryMock: MockedResponse = {

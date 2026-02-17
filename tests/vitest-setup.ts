@@ -1,5 +1,5 @@
-/* eslint-disable import/first */
-// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+ 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config({ path: './.env.test' });
 
 import Modal from 'react-modal';

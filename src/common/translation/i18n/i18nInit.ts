@@ -19,7 +19,6 @@ import sv from './sv.json';
 // then use the language it determines to be the most appropriate to
 // use to set the locale.
 export function initI18next() {
-  // eslint-disable-next-line import/no-named-as-default-member
   i18n
     .use(LanguageDetector)
     .use(initReactI18next)

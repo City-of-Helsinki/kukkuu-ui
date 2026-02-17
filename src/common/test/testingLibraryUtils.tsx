@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 
 export const selectHdsButton = (buttonLabel: HTMLElement): HTMLElement => {
-  // eslint-disable-next-line testing-library/no-node-access
   return buttonLabel.closest('button') as HTMLElement;
 };
 

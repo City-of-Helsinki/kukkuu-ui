@@ -152,7 +152,6 @@ describe('<Enrol />', () => {
   });
 
   describe('when the event is full', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const renderEnrolWithOccurrence = (props: any = {}) =>
       renderEnrol({
         occurrence: {
@@ -196,7 +195,6 @@ describe('<Enrol />', () => {
       ).not.toEqual(null);
       expect(
         screen.queryByText(
-          // eslint-disable-next-line max-len
           'Valitettavasti tämä tapahtuma on täynnä. Tilaa ilmoitus vapautuvista paikoista.'
         )
       ).not.toEqual(null);

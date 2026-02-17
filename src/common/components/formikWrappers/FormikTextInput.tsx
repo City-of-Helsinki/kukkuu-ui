@@ -21,7 +21,7 @@ function FormikTextInput({
   ...rest
 }: Props) {
   const { t } = useTranslation();
-  // eslint-disable-next-line react/destructuring-assignment
+
   const [field, meta] = useField({ name, validate });
 
   return (
