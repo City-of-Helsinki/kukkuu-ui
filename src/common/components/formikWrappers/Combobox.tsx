@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Select as HDSSelect, SelectProps as HDSSelectProps } from 'hds-react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';

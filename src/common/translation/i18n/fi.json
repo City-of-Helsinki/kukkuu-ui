@@ -795,8 +795,25 @@
         }
       },
       "ui": {
+        "heading": "{{appName}} käyttää evästeitä",
+        "approveAllConsents": "Hyväksy kaikki evästeet",
         "approveOnlyRequiredConsents": "Hyväksy vain välttämättömät evästeet",
-        "hideSettings": "Piilota asetukset"
+        "approveRequiredAndSelectedConsents": "Hyväksy valitut evästeet",
+        "showDetails": "Näytä tiedot",
+        "hideDetails": "Piilota tiedot",
+        "formHeading": "Evästeasetukset",
+        "showCookieSettings": "Näytä evästeasetukset",
+        "hideSettings": "Piilota asetukset",
+        "acceptedAt": "Hyväksytty {{date}} klo {{time}}",
+        "highlightedGroup": "Korostettu evästeryhmä",
+        "highlightedGroupAria": "Korostettu evästeryhmä",
+        "tableHeadingsName": "Nimi",
+        "tableHeadingsHostName": "Palvelin",
+        "tableHeadingsDescription": "Kuvaus",
+        "tableHeadingsExpiration": "Vanheneminen",
+        "tableHeadingsType": "Tyyppi",
+        "storageType1": "Eväste",
+        "storageType2": "Paikallinen tallennus"
       }
     },
     "required": {

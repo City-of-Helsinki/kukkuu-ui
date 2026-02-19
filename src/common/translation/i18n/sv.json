@@ -795,8 +795,25 @@
         }
       },
       "ui": {
+        "heading": "{{appName}} använder kakor",
+        "approveAllConsents": "Godkänn alla kakor",
         "approveOnlyRequiredConsents": "Acceptera endast nödvändiga kakor",
-        "hideSettings": "Stäng kakinställningarna"
+        "approveRequiredAndSelectedConsents": "Godkänn valda kakor",
+        "showDetails": "Visa detaljer",
+        "hideDetails": "Dölj detaljer",
+        "formHeading": "Kakinställningar",
+        "showCookieSettings": "Visa kakinställningar",
+        "hideSettings": "Stäng kakinställningarna",
+        "acceptedAt": "Godkänd {{date}} kl. {{time}}",
+        "highlightedGroup": "Markerad kakgrupp",
+        "highlightedGroupAria": "Markerad kakgrupp",
+        "tableHeadingsName": "Namn",
+        "tableHeadingsHostName": "Server",
+        "tableHeadingsDescription": "Beskrivning",
+        "tableHeadingsExpiration": "Utgångsdatum",
+        "tableHeadingsType": "Typ",
+        "storageType1": "Kaka",
+        "storageType2": "Lokal lagring"
       }
     },
     "required": {

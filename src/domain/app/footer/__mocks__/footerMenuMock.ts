@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { MenuDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { MockedResponse } from '@apollo/client/testing';
 

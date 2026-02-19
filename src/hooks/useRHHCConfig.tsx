@@ -6,7 +6,6 @@ import {
   ModuleItemTypeEnum,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
 
 import headlessCmsClient from '../domain/headlessCms/client';
 import AppConfig from '../domain/app/AppConfig';
@@ -40,8 +39,6 @@ export default function useRHHCConfig(): Config {
         appLanguageToRHHCLanguageMap[language] ?? LanguageCodeEnum.Fi,
       components: {
         ...rhhcDefaultConfig.components,
-        A: ({ href, ...props }) => <Link to={href ?? ''} {...props} />,
-        Link: ({ href, ...props }) => <Link to={href ?? ''} {...props} />,
         Img: rhhcDefaultConfig.components.Img,
         // Extend the Kukkuu PageMeta with the RHHC PageMeta
         // to get the CMS Page SEO Meta to work properly.
