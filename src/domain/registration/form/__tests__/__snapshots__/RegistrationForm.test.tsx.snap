@@ -146,16 +146,21 @@ exports[`renders snapshot correctly 1`] = `
                   </div>
                   <div
                     class="_formField_b4a938 Select-module_root__-GjU5"
-                    id="hds-select-1"
+                    id="children[0].relationship.type"
                     name="children[0].relationship.type"
                     tabindex="-1"
                   >
                     <label
                       class="FieldLabel-module_label__1zrXK "
-                      for="hds-select-1-main-button"
-                      id="hds-select-1-label"
+                      for="children[0].relationship.type-main-button"
+                      id="children[0].relationship.type-label"
                     >
                       Ilmoittajan suhde lapseen
+                      <span
+                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                      >
+                        *
+                      </span>
                     </label>
                     <div
                       class="Select-module_selectAndListContainer__vSJEv"
@@ -164,13 +169,13 @@ exports[`renders snapshot correctly 1`] = `
                         class="Select-module_selectedOptionsContainer__16tlC"
                       >
                         <button
-                          aria-controls="hds-select-1-list"
+                          aria-controls="children[0].relationship.type-list"
                           aria-disabled="false"
                           aria-expanded="false"
                           aria-haspopup="listbox"
-                          aria-label="Ilmoittajan suhde lapseen. 1 valittu vaihtoehto: ""."
+                          aria-label="Ilmoittajan suhde lapseen. 1 valittu vaihtoehto: "". Pakollinen."
                           class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_singleSelect__3hwAT"
-                          id="hds-select-1-main-button"
+                          id="children[0].relationship.type-main-button"
                           role="combobox"
                           type="button"
                         >
@@ -206,7 +211,7 @@ exports[`renders snapshot correctly 1`] = `
                       <div
                         aria-hidden="true"
                         class="Select-module_listAndInputContainer__2gZ6q"
-                        id="hds-select-1-sl-container"
+                        id="children[0].relationship.type-sl-container"
                       >
                         <div
                           class="Select-module_listContainer__2PfQA"
@@ -215,7 +220,7 @@ exports[`renders snapshot correctly 1`] = `
                           <ul
                             aria-multiselectable="false"
                             class="Select-module_list__2iKlZ"
-                            id="hds-select-1-list"
+                            id="children[0].relationship.type-list"
                             role="listbox"
                             tabindex="-1"
                           />
@@ -425,16 +430,21 @@ exports[`renders snapshot correctly 1`] = `
               </div>
               <div
                 class="_formField_b4a938 Select-module_root__-GjU5"
-                id="hds-select-2"
+                id="preferLanguage"
                 name="preferLanguage"
                 tabindex="-1"
               >
                 <label
                   class="FieldLabel-module_label__1zrXK "
-                  for="hds-select-2-main-button"
-                  id="hds-select-2-label"
+                  for="preferLanguage-main-button"
+                  id="preferLanguage-label"
                 >
                   Asiointikieli
+                  <span
+                    class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                  >
+                    *
+                  </span>
                 </label>
                 <div
                   class="Select-module_selectAndListContainer__vSJEv"
@@ -443,13 +453,13 @@ exports[`renders snapshot correctly 1`] = `
                     class="Select-module_selectedOptionsContainer__16tlC"
                   >
                     <button
-                      aria-controls="hds-select-2-list"
+                      aria-controls="preferLanguage-list"
                       aria-disabled="false"
                       aria-expanded="false"
                       aria-haspopup="listbox"
-                      aria-label="Asiointikieli. 1 valittu vaihtoehto: "Suomi"."
+                      aria-label="Asiointikieli. 1 valittu vaihtoehto: "Suomi". Pakollinen."
                       class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_singleSelect__3hwAT"
-                      id="hds-select-2-main-button"
+                      id="preferLanguage-main-button"
                       role="combobox"
                       type="button"
                     >
@@ -487,7 +497,7 @@ exports[`renders snapshot correctly 1`] = `
                   <div
                     aria-hidden="true"
                     class="Select-module_listAndInputContainer__2gZ6q"
-                    id="hds-select-2-sl-container"
+                    id="preferLanguage-sl-container"
                   >
                     <div
                       class="Select-module_listContainer__2PfQA"
@@ -496,7 +506,7 @@ exports[`renders snapshot correctly 1`] = `
                       <ul
                         aria-multiselectable="false"
                         class="Select-module_list__2iKlZ"
-                        id="hds-select-2-list"
+                        id="preferLanguage-list"
                         role="listbox"
                         tabindex="-1"
                       />

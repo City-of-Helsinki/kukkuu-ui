@@ -30,6 +30,8 @@ function FormikDropdown({
   options,
   label,
   placeholder,
+  className,
+  ...rest
 }: Props) {
   const { t, i18n } = useTranslation();
   const [{ value, ...field }, meta, helpers] = useField(name);
@@ -55,7 +57,7 @@ function FormikDropdown({
   return (
     <Select
       {...field}
-      className={styles.formField}
+      className={className || styles.formField}
       value={valueAsOption ? [valueAsOption] : [emptyValue]}
       options={options}
       onChange={handleChange}
@@ -67,6 +69,7 @@ function FormikDropdown({
         ...(meta.touched && meta.error ? { error: t(meta.error || '') } : {}),
         language: i18n.language,
       }}
+      {...rest}
     />
   );
 }

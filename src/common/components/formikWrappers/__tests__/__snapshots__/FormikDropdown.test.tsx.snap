@@ -4,14 +4,14 @@ exports[`renders snapshot correctly 1`] = `
 <div>
   <div
     class="_formField_b4a938 Select-module_root__-GjU5"
-    id="hds-select-1"
+    id="fooSelect"
     name="fooSelect"
     tabindex="-1"
   >
     <label
       class="FieldLabel-module_label__1zrXK "
-      for="hds-select-1-main-button"
-      id="hds-select-1-label"
+      for="fooSelect-main-button"
+      id="fooSelect-label"
     >
       select label
     </label>
@@ -22,13 +22,13 @@ exports[`renders snapshot correctly 1`] = `
         class="Select-module_selectedOptionsContainer__16tlC"
       >
         <button
-          aria-controls="hds-select-1-list"
+          aria-controls="fooSelect-list"
           aria-disabled="false"
           aria-expanded="false"
           aria-haspopup="listbox"
           aria-label="select label. 1 valittu vaihtoehto: ""."
           class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_singleSelect__3hwAT"
-          id="hds-select-1-main-button"
+          id="fooSelect-main-button"
           role="combobox"
           type="button"
         >
@@ -64,7 +64,7 @@ exports[`renders snapshot correctly 1`] = `
       <div
         aria-hidden="true"
         class="Select-module_listAndInputContainer__2gZ6q"
-        id="hds-select-1-sl-container"
+        id="fooSelect-sl-container"
       >
         <div
           class="Select-module_listContainer__2PfQA"
@@ -73,7 +73,7 @@ exports[`renders snapshot correctly 1`] = `
           <ul
             aria-multiselectable="false"
             class="Select-module_list__2iKlZ"
-            id="hds-select-1-list"
+            id="fooSelect-list"
             role="listbox"
             tabindex="-1"
           />
