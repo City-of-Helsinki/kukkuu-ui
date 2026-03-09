@@ -19,11 +19,6 @@ type Props = DropdownProps & {
   className?: string;
 };
 
-const emptyValue = {
-  label: '',
-  value: '',
-};
-
 function FormikDropdown({
   name,
   value: userValue,
@@ -52,13 +47,12 @@ function FormikDropdown({
   };
 
   const usedValue = userValue || value;
-  const valueAsOption = options.find((option) => option.value === usedValue);
 
   return (
     <Select
       {...field}
       className={className || styles.formField}
-      value={valueAsOption ? [valueAsOption] : [emptyValue]}
+      value={usedValue ? [usedValue] : []}
       options={options}
       onChange={handleChange}
       invalid={meta.touched && Boolean(meta.error)}

@@ -12,7 +12,7 @@ type Props = {
 };
 
 const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const locale = getCurrentLanguage(i18n);
   const { pushInstruction } = useMatomo();
   const tFi = React.useMemo(() => i18n.getFixedT('fi'), [i18n]);
@@ -69,116 +69,42 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
         ],
         focusTargetSelector: `#${MAIN_CONTENT_ID}`,
         translations: {
-          heading: {
-            fi: t('consent.texts.ui.heading', { appName }),
-            sv: t('consent.texts.ui.heading', { appName }),
-            en: t('consent.texts.ui.heading', { appName }),
-          },
-          description: {
-            fi: t('consent.texts.sections.main.text'),
-            sv: t('consent.texts.sections.main.text'),
-            en: t('consent.texts.sections.main.text'),
-          },
-          approveAllConsents: {
-            fi: t('consent.texts.ui.approveAllConsents'),
-            sv: t('consent.texts.ui.approveAllConsents'),
-            en: t('consent.texts.ui.approveAllConsents'),
-          },
-          approveOnlyRequiredConsents: {
-            fi: t('consent.texts.ui.approveOnlyRequiredConsents'),
-            sv: t('consent.texts.ui.approveOnlyRequiredConsents'),
-            en: t('consent.texts.ui.approveOnlyRequiredConsents'),
-          },
-          approveRequiredAndSelectedConsents: {
-            fi: t('consent.texts.ui.approveRequiredAndSelectedConsents'),
-            sv: t('consent.texts.ui.approveRequiredAndSelectedConsents'),
-            en: t('consent.texts.ui.approveRequiredAndSelectedConsents'),
-          },
-          bannerAriaLabel: {
-            fi: t('cookieConsent.title'),
-            sv: t('cookieConsent.title'),
-            en: t('cookieConsent.title'),
-          },
-          showDetails: {
-            fi: t('consent.texts.ui.showDetails'),
-            sv: t('consent.texts.ui.showDetails'),
-            en: t('consent.texts.ui.showDetails'),
-          },
-          hideDetails: {
-            fi: t('consent.texts.ui.hideDetails'),
-            sv: t('consent.texts.ui.hideDetails'),
-            en: t('consent.texts.ui.hideDetails'),
-          },
-          formHeading: {
-            fi: t('consent.texts.ui.formHeading'),
-            sv: t('consent.texts.ui.formHeading'),
-            en: t('consent.texts.ui.formHeading'),
-          },
-          formText: {
-            fi: t('consent.texts.sections.main.text'),
-            sv: t('consent.texts.sections.main.text'),
-            en: t('consent.texts.sections.main.text'),
-          },
-          showCookieSettings: {
-            fi: t('consent.texts.ui.showCookieSettings'),
-            sv: t('consent.texts.ui.showCookieSettings'),
-            en: t('consent.texts.ui.showCookieSettings'),
-          },
-          hideCookieSettings: {
-            fi: t('consent.texts.ui.hideSettings'),
-            sv: t('consent.texts.ui.hideSettings'),
-            en: t('consent.texts.ui.hideSettings'),
-          },
-          acceptedAt: {
-            fi: t('consent.texts.ui.acceptedAt'),
-            sv: t('consent.texts.ui.acceptedAt'),
-            en: t('consent.texts.ui.acceptedAt'),
-          },
-          highlightedGroup: {
-            fi: t('consent.texts.ui.highlightedGroup'),
-            sv: t('consent.texts.ui.highlightedGroup'),
-            en: t('consent.texts.ui.highlightedGroup'),
-          },
-          highlightedGroupAria: {
-            fi: t('consent.texts.ui.highlightedGroupAria'),
-            sv: t('consent.texts.ui.highlightedGroupAria'),
-            en: t('consent.texts.ui.highlightedGroupAria'),
-          },
-          tableHeadingsName: {
-            fi: t('consent.texts.ui.tableHeadingsName'),
-            sv: t('consent.texts.ui.tableHeadingsName'),
-            en: t('consent.texts.ui.tableHeadingsName'),
-          },
-          tableHeadingsHostName: {
-            fi: t('consent.texts.ui.tableHeadingsHostName'),
-            sv: t('consent.texts.ui.tableHeadingsHostName'),
-            en: t('consent.texts.ui.tableHeadingsHostName'),
-          },
-          tableHeadingsDescription: {
-            fi: t('consent.texts.ui.tableHeadingsDescription'),
-            sv: t('consent.texts.ui.tableHeadingsDescription'),
-            en: t('consent.texts.ui.tableHeadingsDescription'),
-          },
-          tableHeadingsExpiration: {
-            fi: t('consent.texts.ui.tableHeadingsExpiration'),
-            sv: t('consent.texts.ui.tableHeadingsExpiration'),
-            en: t('consent.texts.ui.tableHeadingsExpiration'),
-          },
-          tableHeadingsType: {
-            fi: t('consent.texts.ui.tableHeadingsType'),
-            sv: t('consent.texts.ui.tableHeadingsType'),
-            en: t('consent.texts.ui.tableHeadingsType'),
-          },
-          storageType1: {
-            fi: t('consent.texts.ui.storageType1'),
-            sv: t('consent.texts.ui.storageType1'),
-            en: t('consent.texts.ui.storageType1'),
-          },
-          storageType2: {
-            fi: t('consent.texts.ui.storageType2'),
-            sv: t('consent.texts.ui.storageType2'),
-            en: t('consent.texts.ui.storageType2'),
-          },
+          heading: localized('consent.texts.ui.heading', { appName }),
+          description: localized('consent.texts.sections.main.text'),
+          approveAllConsents: localized('consent.texts.ui.approveAllConsents'),
+          approveOnlyRequiredConsents: localized(
+            'consent.texts.ui.approveOnlyRequiredConsents'
+          ),
+          approveRequiredAndSelectedConsents: localized(
+            'consent.texts.ui.approveRequiredAndSelectedConsents'
+          ),
+          bannerAriaLabel: localized('cookieConsent.title'),
+          showDetails: localized('consent.texts.ui.showDetails'),
+          hideDetails: localized('consent.texts.ui.hideDetails'),
+          formHeading: localized('consent.texts.ui.formHeading'),
+          formText: localized('consent.texts.sections.main.text'),
+          showCookieSettings: localized(
+            'consent.texts.ui.showCookieSettings'
+          ),
+          hideCookieSettings: localized('consent.texts.ui.hideSettings'),
+          acceptedAt: localized('consent.texts.ui.acceptedAt'),
+          highlightedGroup: localized('consent.texts.ui.highlightedGroup'),
+          highlightedGroupAria: localized(
+            'consent.texts.ui.highlightedGroupAria'
+          ),
+          tableHeadingsName: localized('consent.texts.ui.tableHeadingsName'),
+          tableHeadingsHostName: localized(
+            'consent.texts.ui.tableHeadingsHostName'
+          ),
+          tableHeadingsDescription: localized(
+            'consent.texts.ui.tableHeadingsDescription'
+          ),
+          tableHeadingsExpiration: localized(
+            'consent.texts.ui.tableHeadingsExpiration'
+          ),
+          tableHeadingsType: localized('consent.texts.ui.tableHeadingsType'),
+          storageType1: localized('consent.texts.ui.storageType1'),
+          storageType2: localized('consent.texts.ui.storageType2'),
         },
         requiredGroups: [
           {
@@ -240,7 +166,6 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
       };
     },
     [
-      t,
       tFi,
       tSv,
       tEn,

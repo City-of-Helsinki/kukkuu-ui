@@ -26,8 +26,8 @@ exports[`renders snapshot correctly 1`] = `
           aria-disabled="false"
           aria-expanded="false"
           aria-haspopup="listbox"
-          aria-label="select label. 1 valittu vaihtoehto: ""."
-          class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_singleSelect__3hwAT"
+          aria-label="select label. . 0 valittua vaihtoehtoa."
+          class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_placeholder__nKgDE Select-module_singleSelect__3hwAT"
           id="fooSelect-main-button"
           role="combobox"
           type="button"
@@ -38,6 +38,7 @@ exports[`renders snapshot correctly 1`] = `
           >
             <span
               class="Select-module_dropdownButtonOption__3Tfsz"
+              data-testid="placeholder"
             />
           </div>
           <div
