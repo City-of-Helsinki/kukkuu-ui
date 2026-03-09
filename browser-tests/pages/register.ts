@@ -23,7 +23,7 @@ export const registrationForm = {
   // Lähiaikuisen tiedot
   guardianPhoneNumberInput: screen.getByLabelText(/Puhelinnumero/i),
   languagesSpokenAtHomeCombobox: Selector(
-    '#languagesSpokenAtHome-toggle-button'
+    '#languagesSpokenAtHome-main-button'
   ),
   agreeCheckbox: screen.getByLabelText(/Olen tutustunut/),
 
