@@ -32,7 +32,7 @@ function Combobox({
   helperText,
   ...rest
 }: ComboboxProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [{ value = [], ...field }, meta, helpers] = useField<string[]>(name);
 
   const handleChange = (selectedItems: (Option | string)[]) => {
@@ -69,7 +69,7 @@ function Combobox({
         placeholder: placeholder || '',
         ...(helperText ? { helperText } : {}),
         ...(meta.touched && meta.error ? { error: t(meta.error || '') } : {}),
-        language: 'fi',
+        language: i18n.language,
       }}
       {...rest}
     />

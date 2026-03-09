@@ -31,13 +31,15 @@ function FormikDropdown({
   label,
   placeholder,
 }: Props) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [{ value, ...field }, meta, helpers] = useField(name);
 
-  const handleChange = (selectedItems: Option[]) => {
+  const handleChange = (selectedItems: (Option | string)[]) => {
     // For single select, get first item
+    // HDS 4.x Select returns string values, not Option objects
     if (selectedItems && selectedItems.length > 0) {
-      helpers.setValue(selectedItems[0].value);
+      const item = selectedItems[0];
+      helpers.setValue(typeof item === 'string' ? item : item.value);
     } else {
       helpers.setValue('');
     }
@@ -63,7 +65,7 @@ function FormikDropdown({
         label: label || '',
         placeholder: placeholder || '',
         ...(meta.touched && meta.error ? { error: t(meta.error || '') } : {}),
-        language: 'fi',
+        language: i18n.language,
       }}
     />
   );
