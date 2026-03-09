@@ -67,7 +67,7 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
           { code: 'sv', name: 'Svenska', direction: 'ltr' },
           { code: 'en', name: 'English', direction: 'ltr' },
         ],
-        focusTargetSelector: MAIN_CONTENT_ID,
+        focusTargetSelector: `#${MAIN_CONTENT_ID}`,
         translations: {
           heading: {
             fi: t('consent.texts.ui.heading', { appName }),
