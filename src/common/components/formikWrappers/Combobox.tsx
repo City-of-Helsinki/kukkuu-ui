@@ -63,6 +63,7 @@ function Combobox({
       onChange={handleChange}
       value={usedValue}
       multiSelect
+      options={options}
       texts={{
         label: label || '',
         placeholder: placeholder || '',
@@ -71,13 +72,7 @@ function Combobox({
         language: 'fi',
       }}
       {...rest}
-    >
-      {(options as Option[]).map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </HDSSelect>
+    />
   );
 }
 
