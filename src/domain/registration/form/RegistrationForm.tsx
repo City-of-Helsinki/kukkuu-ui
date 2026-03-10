@@ -297,7 +297,7 @@ const RegistrationForm = () => {
                     variant="supplementary"
                     aria-label={t('child.form.modal.add.label')}
                     className={styles.addNewChildButton}
-                    iconLeft={<IconPlusCircle />}
+                    iconStart={<IconPlusCircle />}
                     onClick={() => setIsOpen(true)}
                   >
                     {t('child.form.modal.add.label')}
@@ -389,7 +389,7 @@ const RegistrationForm = () => {
                     )}
                   />
                   <LanguagesCombobox
-                    helper={t(
+                    helperText={t(
                       'registration.form.child.languagesSpokenAtHome.input.helper'
                     )}
                     id="languagesSpokenAtHome"

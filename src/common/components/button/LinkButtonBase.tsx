@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { getNodeText } from '../../commonUtils';
 import styles from './buttonOverrides.module.scss';
 
-const variantClassNameMap = {
+const variantClassNameMap: Record<string, string[]> = {
   primary: ['hds-button--primary', styles.primary],
   secondary: ['hds-button--secondary', styles.secondary],
   supplementary: ['hds-button--supplementary', styles.supplementary],
@@ -16,7 +16,7 @@ const variantClassNameMap = {
 };
 
 export type LinkButtonBaseProps = {
-  variant?: ButtonProps['variant'];
+  variant?: ButtonProps['variant'] | 'primary' | 'secondary' | 'supplementary';
   openInNewTab?: boolean;
 };
 

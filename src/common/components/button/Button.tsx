@@ -1,8 +1,19 @@
 import * as React from 'react';
-import { Button as HdsButton, ButtonProps as HDSButtonProps } from 'hds-react';
+import {
+  Button as HdsButton,
+  ButtonProps as HDSButtonProps,
+  ButtonVariant,
+} from 'hds-react';
 
-type ButtonProps = Omit<HDSButtonProps, 'variant'> & {
-  variant?: HDSButtonProps['variant'] | 'disabled' | 'dropdown';
+type ButtonProps = Omit<HDSButtonProps, 'variant' | 'children'> & {
+  variant?:
+    | HDSButtonProps['variant']
+    | 'disabled'
+    | 'dropdown'
+    | 'primary'
+    | 'secondary'
+    | 'supplementary';
+  children?: React.ReactNode;
 };
 
 const kukkuuSecondaryButtonStyles = {
@@ -67,14 +78,23 @@ const Button = ({
   children,
   ...rest
 }: ButtonProps) => {
+  // Convert string variants to ButtonVariant enums for HDS 4.x compatibility
+  let hdsVariant: HDSButtonProps['variant'] =
+    variant as HDSButtonProps['variant'];
+
   switch (variant) {
+    case 'primary':
+      hdsVariant = ButtonVariant.Primary;
+      break;
     case 'secondary':
+      hdsVariant = ButtonVariant.Secondary;
       style = {
         ...kukkuuButtonStyles,
         ...kukkuuSecondaryButtonStyles,
       };
       break;
     case 'supplementary':
+      hdsVariant = ButtonVariant.Supplementary;
       style = {
         ...kukkuuButtonStyles,
         ...kukkuuSupplementaryButtonStyles,
@@ -83,29 +103,37 @@ const Button = ({
     case 'disabled':
       // Can be used to set the button to appear disabled without
       // actually disabling it.
+      hdsVariant = ButtonVariant.Primary;
       style = {
         ...kukkuuButtonStyles,
         ...kukkuuDisabledButtonStyles,
       };
       break;
     case 'dropdown':
+      hdsVariant = ButtonVariant.Primary;
       style = {
         ...kukkuuButtonStyles,
         ...kukkuuDropdownButtonStyles,
       };
       break;
     default:
+      if (variant && typeof variant === 'object') {
+        // Already a ButtonVariant enum
+        hdsVariant = variant;
+      }
   }
 
   return (
     <HdsButton
       className={className}
       style={style}
-      // hds-react v3 Button has children as property, see its type
-      // eslint-disable-next-line react/no-children-prop
-      children={children}
+      variant={hdsVariant || ButtonVariant.Primary}
+      iconEnd={undefined}
       {...rest}
-    ></HdsButton>
+    >
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      {children as any}
+    </HdsButton>
   );
 };
 

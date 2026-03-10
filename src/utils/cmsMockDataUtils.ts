@@ -5,7 +5,7 @@ import {
   LanguageCodeEnum,
   MenuItem,
   PageType as Page,
-} from 'react-helsinki-headless-cms';
+} from '@city-of-helsinki/react-helsinki-headless-cms';
 
 const generateUri = () =>
   faker.word

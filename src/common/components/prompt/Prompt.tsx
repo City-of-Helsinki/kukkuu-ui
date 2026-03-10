@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, Button, IconQuestionCircle } from 'hds-react';
+import { Dialog, Button, IconQuestionCircle, ButtonVariant } from 'hds-react';
 import { useTranslation } from 'react-i18next';
 
 export type PromptProps = {
@@ -26,7 +26,7 @@ export const Prompt = ({ message, onConfirm, onCancel }: PromptProps) => {
       <Dialog.Header
         id={titleId}
         title=""
-        iconLeft={<IconQuestionCircle aria-hidden="true" />}
+        iconStart={<IconQuestionCircle aria-hidden="true" />}
       />
       <Dialog.Content>
         <p id={descriptionId} className="text-body">
@@ -47,7 +47,7 @@ export const Prompt = ({ message, onConfirm, onCancel }: PromptProps) => {
             onCancel();
             close();
           }}
-          variant="secondary"
+          variant={ButtonVariant.Secondary}
         >
           {t('common:backButton') ?? 'Cancel'}
         </Button>

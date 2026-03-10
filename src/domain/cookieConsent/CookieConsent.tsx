@@ -1,164 +1,191 @@
-import type { ContentSource } from 'hds-react';
-import { CookieModal, CookiePage, useCookies } from 'hds-react';
+import { CookieConsentContextProvider, CookieBanner } from 'hds-react';
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { MAIN_CONTENT_ID } from '../constants';
-import { useCookieConfig } from '../../common/components/cookieConfigProvider';
 
 type Props = {
   appName: string;
   allowLanguageSwitch?: boolean;
-  isModal?: boolean;
 };
 
-const CookieConsent: React.FC<Props> = ({
-  appName,
-  allowLanguageSwitch,
-  isModal = true,
-}) => {
-  const { t, i18n } = useTranslation();
+const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
+  const { i18n } = useTranslation();
   const locale = getCurrentLanguage(i18n);
-  const { cookieDomain } = useCookieConfig();
-  const { getAllConsents } = useCookies();
   const { pushInstruction } = useMatomo();
+  const tFi = React.useMemo(() => i18n.getFixedT('fi'), [i18n]);
+  const tSv = React.useMemo(() => i18n.getFixedT('sv'), [i18n]);
+  const tEn = React.useMemo(() => i18n.getFixedT('en'), [i18n]);
 
-  const [language, setLanguage] =
-    React.useState<ContentSource['currentLanguage']>(locale);
-
-  const [showCookieConsentModal, setShowCookieConsentModal] =
-    React.useState(true);
+  const [language, setLanguage] = React.useState<'en' | 'fi' | 'sv'>(
+    locale as 'en' | 'fi' | 'sv'
+  );
 
   useEffect(() => {
-    setLanguage(i18n.language as ContentSource['currentLanguage']);
-  }, [i18n.language]);
+    setLanguage(getCurrentLanguage(i18n) as 'en' | 'fi' | 'sv');
+  }, [i18n.language, i18n]);
 
-  const handleMatomoUpdate = useCallback(() => {
-    const getConsentStatus = (cookieId: string) => {
-      const consents = getAllConsents();
-      return consents[cookieId];
-    };
-    if (getConsentStatus('matomo')) {
-      pushInstruction('requireCookieConsent');
-    } else {
-      pushInstruction('setCookieConsentGiven');
-    }
-  }, [getAllConsents, pushInstruction]);
+  const handleMatomoUpdate = useCallback(
+    (changeEvent: { type: string; acceptedGroups: string[] }) => {
+      if (changeEvent.acceptedGroups.includes('matomo')) {
+        pushInstruction('setCookieConsentGiven');
+      } else {
+        pushInstruction('requireCookieConsent');
+      }
+    },
+    [pushInstruction]
+  );
 
   const onLanguageChange = React.useCallback(
     (newLang: string) => {
       if (allowLanguageSwitch) {
-        setLanguage(newLang as ContentSource['currentLanguage']);
+        setLanguage(newLang as 'en' | 'fi' | 'sv');
         i18n.changeLanguage(newLang);
       }
     },
-    [i18n, setLanguage, allowLanguageSwitch]
+    [i18n, allowLanguageSwitch]
   );
 
-  const contentSource: ContentSource = React.useMemo(
-    () => ({
-      siteName: appName,
-      texts: {
-        sections: {
-          main: {
-            text: t('consent.texts.sections.main.text'),
-          },
+  const siteSettings = React.useMemo(
+    () => {
+      const localized = (key: string, options?: Record<string, unknown>) => ({
+        fi: tFi(key, options),
+        sv: tSv(key, options),
+        en: tEn(key, options),
+      });
+
+      return {
+        siteName: appName,
+        currentLanguage: language,
+        language: {
+          onLanguageChange: allowLanguageSwitch ? onLanguageChange : undefined,
         },
-        ui: {
-          approveOnlyRequiredConsents: t(
+        languages: [
+          { code: 'fi', name: 'Suomi', direction: 'ltr' },
+          { code: 'sv', name: 'Svenska', direction: 'ltr' },
+          { code: 'en', name: 'English', direction: 'ltr' },
+        ],
+        focusTargetSelector: `#${MAIN_CONTENT_ID}`,
+        translations: {
+          heading: localized('consent.texts.ui.heading', { appName }),
+          description: localized('consent.texts.sections.main.text'),
+          approveAllConsents: localized('consent.texts.ui.approveAllConsents'),
+          approveOnlyRequiredConsents: localized(
             'consent.texts.ui.approveOnlyRequiredConsents'
           ),
-          hideSettings: t('consent.texts.ui.hideSettings'),
+          approveRequiredAndSelectedConsents: localized(
+            'consent.texts.ui.approveRequiredAndSelectedConsents'
+          ),
+          bannerAriaLabel: localized('cookieConsent.title'),
+          showDetails: localized('consent.texts.ui.showDetails'),
+          hideDetails: localized('consent.texts.ui.hideDetails'),
+          formHeading: localized('consent.texts.ui.formHeading'),
+          formText: localized('consent.texts.sections.main.text'),
+          showCookieSettings: localized(
+            'consent.texts.ui.showCookieSettings'
+          ),
+          hideCookieSettings: localized('consent.texts.ui.hideSettings'),
+          acceptedAt: localized('consent.texts.ui.acceptedAt'),
+          highlightedGroup: localized('consent.texts.ui.highlightedGroup'),
+          highlightedGroupAria: localized(
+            'consent.texts.ui.highlightedGroupAria'
+          ),
+          tableHeadingsName: localized('consent.texts.ui.tableHeadingsName'),
+          tableHeadingsHostName: localized(
+            'consent.texts.ui.tableHeadingsHostName'
+          ),
+          tableHeadingsDescription: localized(
+            'consent.texts.ui.tableHeadingsDescription'
+          ),
+          tableHeadingsExpiration: localized(
+            'consent.texts.ui.tableHeadingsExpiration'
+          ),
+          tableHeadingsType: localized('consent.texts.ui.tableHeadingsType'),
+          storageType1: localized('consent.texts.ui.storageType1'),
+          storageType2: localized('consent.texts.ui.storageType2'),
         },
-      },
-      onAllConsentsGiven: () => {
-        if (isModal) {
-          setShowCookieConsentModal(false);
-        }
-        handleMatomoUpdate();
-      },
-      currentLanguage: language as string as ContentSource['currentLanguage'],
-      requiredCookies: {
-        title: t('consent.required.title'),
-        text: t('consent.required.text'),
-        groups: [
+        requiredGroups: [
           {
-            id: 'essential-custom',
-            title: t('consent.groups.essential.title'),
-            text: t('consent.groups.essential.text'),
+            groupId: 'essential-custom',
+            title: localized('consent.groups.essential.title'),
+            description: localized('consent.groups.essential.text'),
             cookies: [
               {
-                id: 'wordpress',
+                name: 'city-of-helsinki-cookie-consents',
+                host: window.location.hostname,
+                storageType: 1,
+                description: localized('consent.cookies.i18next'),
+                expiration: localized('consent.expiration.year'),
+              },
+              {
                 name: 'wordpress_*, wp-settings-*',
-                hostName: 'api.hel.fi',
-                description: t('consent.cookies.wordpress'),
-                expiration: t('consent.expiration.session'),
+                host: 'api.hel.fi',
+                storageType: 1,
+                description: localized('consent.cookies.wordpress'),
+                expiration: localized('consent.expiration.session'),
               },
               {
-                id: 'linkedevents',
                 name: 'linkedevents-api-prod-csrftoken',
-                hostName: 'api.hel.fi',
-                description: t('consent.cookies.linkedevents'),
-                expiration: t('consent.expiration.year'),
+                host: 'api.hel.fi',
+                storageType: 1,
+                description: localized('consent.cookies.linkedevents'),
+                expiration: localized('consent.expiration.year'),
               },
               {
-                id: 'i18next',
                 name: 'i18next',
-                hostName: 'api.hel.fi',
-                description: t('consent.cookies.i18next'),
-                expiration: t('consent.expiration.session'),
+                host: 'api.hel.fi',
+                storageType: 1,
+                description: localized('consent.cookies.i18next'),
+                expiration: localized('consent.expiration.session'),
               },
             ],
           },
         ],
-      },
-      optionalCookies: {
-        title: t('consent.optional.title'),
-        groups: [
+        optionalGroups: [
           {
-            title: t('consent.groups.matomo.title'),
-            text: t('consent.groups.matomo.text'),
-            expandAriaLabel: t('consent.groups.matomo.expandAriaLabel'),
-            checkboxAriaDescription: t(
+            groupId: 'matomo',
+            title: localized('consent.groups.matomo.title'),
+            description: localized('consent.groups.matomo.text'),
+            expandAriaLabel: localized('consent.groups.matomo.expandAriaLabel'),
+            checkboxAriaDescription: localized(
               'consent.groups.matomo.checkboxAriaDescription'
             ),
             cookies: [
               {
-                id: 'matomo',
                 name: '_pk*',
-                hostName: 'digia.fi',
-                description: t('consent.cookies.matomo'),
-                expiration: t('consent.expiration.days', { days: 393 }),
+                host: 'digia.fi',
+                storageType: 1,
+                description: localized('consent.cookies.matomo'),
+                expiration: localized('consent.expiration.days', { days: 393 }),
               },
             ],
           },
         ],
-      },
-      language: {
-        current: language,
-        onLanguageChange,
-      },
-      focusTargetSelector: MAIN_CONTENT_ID,
-    }),
-    [appName, t, language, onLanguageChange, isModal, handleMatomoUpdate]
+      };
+    },
+    [
+      tFi,
+      tSv,
+      tEn,
+      appName,
+      language,
+      allowLanguageSwitch,
+      onLanguageChange,
+    ]
   );
 
-  if (!showCookieConsentModal) return null;
-
   return (
-    <>
-      {isModal && showCookieConsentModal && (
-        <CookieModal
-          contentSource={contentSource}
-          cookieDomain={cookieDomain}
-        />
-      )}
-      {!isModal && (
-        <CookiePage contentSource={contentSource} cookieDomain={cookieDomain} />
-      )}
-    </>
+    <CookieConsentContextProvider
+      siteSettings={siteSettings}
+      options={{
+        cookieDomain: window.location.hostname,
+      }}
+      onChange={handleMatomoUpdate}
+    >
+      <CookieBanner />
+    </CookieConsentContextProvider>
   );
 };
 

@@ -118,7 +118,7 @@ function UserNavigation() {
           className={styles.userLink}
           id={dropdownItem.id}
           key={dropdownItem.id}
-          iconLeft={dropdownItem.icon}
+          iconStart={dropdownItem.icon}
           onClick={dropdownItem.onClick}
           variant="dropdown"
         >

@@ -32,7 +32,7 @@ export default function ChildEnrolmentCount({ childId }: Props) {
   return (
     <KukkuuPill
       variant={areAllCurrentEnrolmentsUsed ? 'success' : 'default'}
-      iconLeft={areAllCurrentEnrolmentsUsed && <IconCheck />}
+      iconStart={areAllCurrentEnrolmentsUsed && <IconCheck />}
       name={
         <>
           {t('child.message.eventVisitsThisYear')}:{' '}

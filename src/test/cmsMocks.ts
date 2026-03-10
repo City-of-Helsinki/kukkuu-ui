@@ -1,5 +1,5 @@
 import { graphql, HttpResponse } from 'msw';
-import { Menu } from 'react-helsinki-headless-cms';
+import { Menu } from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import { fakeLanguage } from '../utils/cmsMockDataUtils';
 import { server } from './msw/server';

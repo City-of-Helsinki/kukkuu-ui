@@ -795,8 +795,25 @@
         }
       },
       "ui": {
+        "heading": "{{appName}} uses cookies",
+        "approveAllConsents": "Accept all cookies",
         "approveOnlyRequiredConsents": "Accept only essential cookies",
-        "hideSettings": "Hide cookie settings"
+        "approveRequiredAndSelectedConsents": "Accept selected cookies",
+        "showDetails": "Show details",
+        "hideDetails": "Hide details",
+        "formHeading": "Cookie settings",
+        "showCookieSettings": "Show cookie settings",
+        "hideSettings": "Hide cookie settings",
+        "acceptedAt": "Accepted on {{date}} at {{time}}",
+        "highlightedGroup": "Highlighted cookie group",
+        "highlightedGroupAria": "Highlighted cookie group",
+        "tableHeadingsName": "Name",
+        "tableHeadingsHostName": "Host",
+        "tableHeadingsDescription": "Description",
+        "tableHeadingsExpiration": "Expiration",
+        "tableHeadingsType": "Type",
+        "storageType1": "Cookie",
+        "storageType2": "Local storage"
       }
     },
     "required": {

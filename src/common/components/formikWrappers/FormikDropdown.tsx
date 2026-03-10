@@ -7,31 +7,38 @@ import styles from './formikInputs.module.scss';
 
 type DropdownProps = Omit<
   HDSDropdownProps<Option>,
-  'value' | 'onChange' | 'options' | 'defaultValue'
+  'value' | 'onChange' | 'options' | 'defaultValue' | 'texts' | 'className'
 >;
 
 type Props = DropdownProps & {
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  label: any;
+  label?: string;
+  placeholder?: string;
   value?: string;
   options: Option[];
+  className?: string;
 };
 
-const emptyValue = {
-  label: '',
-  value: '',
-};
-
-function FormikDropdown({ name, value: userValue, options, ...rest }: Props) {
-  const { t } = useTranslation();
+function FormikDropdown({
+  name,
+  value: userValue,
+  options,
+  label,
+  placeholder,
+  className,
+  ...rest
+}: Props) {
+  const { t, i18n } = useTranslation();
   const [{ value, ...field }, meta, helpers] = useField(name);
 
-  const handleChange = (selectedItem: Option | Option[]) => {
-    if (Array.isArray(selectedItem)) {
-      helpers.setValue(selectedItem.map((item) => item.value));
+  const handleChange = (selectedItems: (Option | string)[]) => {
+    // For single select, get first item
+    // HDS 4.x Select returns string values, not Option objects
+    if (selectedItems && selectedItems.length > 0) {
+      const item = selectedItems[0];
+      helpers.setValue(typeof item === 'string' ? item : item.value);
     } else {
-      helpers.setValue(selectedItem.value);
+      helpers.setValue('');
     }
   };
 
@@ -40,20 +47,23 @@ function FormikDropdown({ name, value: userValue, options, ...rest }: Props) {
   };
 
   const usedValue = userValue || value;
-  const valueAsOption = options.find((option) => option.value === usedValue);
 
   return (
-    <Select<Option>
+    <Select
       {...field}
-      className={styles.formField}
-      defaultValue={valueAsOption || emptyValue}
+      className={className || styles.formField}
+      value={usedValue ? [usedValue] : []}
       options={options}
       onChange={handleChange}
       invalid={meta.touched && Boolean(meta.error)}
-      error={meta.touched && Boolean(meta.error) && t(meta.error || '')}
       onBlur={handleBlur}
+      texts={{
+        label: label || '',
+        placeholder: placeholder || '',
+        ...(meta.touched && meta.error ? { error: t(meta.error || '') } : {}),
+        language: i18n.language,
+      }}
       {...rest}
-      multiselect={false}
     />
   );
 }

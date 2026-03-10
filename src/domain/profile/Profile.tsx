@@ -77,7 +77,7 @@ const Profile = () => {
         actions={
           <Button
             variant="secondary"
-            iconLeft={<IconPen />}
+            iconStart={<IconPen />}
             onClick={() => setIsOpen(true)}
           >
             {t('profile.edit.button.text')}
