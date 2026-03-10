@@ -401,6 +401,19 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.15.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.14.2...kukkuu-ui-v3.15.0) (2026-03-10)
+
+
+### Features
+
+* Update to hds 4.9.0 ([#720](https://github.com/City-of-Helsinki/kukkuu-ui/issues/720)) ([7af8057](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7af80574655a84e84b6f4d03890f90dd854beded))
+
+
+### Dependencies
+
+* Add glob@^10.5.0 resolution Refs: RATY-299 ([cb5e88e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/cb5e88e1980562f7e1579fe942531eb13e0a7c83))
+* Migrate eslint to v9 Refs: RATY-299 ([8ecb372](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8ecb372949740ca874115e17136100aa963ef958))
+
 ## [3.14.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.14.1...kukkuu-ui-v3.14.2) (2026-01-28)
 
 ### Dependencies
