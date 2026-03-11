@@ -813,7 +813,8 @@
         "tableHeadingsExpiration": "Utgångsdatum",
         "tableHeadingsType": "Typ",
         "storageType1": "Kaka",
-        "storageType2": "Lokal lagring"
+        "storageType2": "Lokal lagring",
+        "storageType3": "Session lagring"
       }
     },
     "required": {
@@ -839,7 +840,13 @@
       "matomo": "Kaka för statistiksystemet Matomo",
       "linkedevents": "Kaka för att söka evenemang",
       "i18next": "Kaka som sparar användarens språkval på webbplatsen",
-      "wordpress": "Kaka för användning av WordPress-innehållshanteringssystemet."
+      "wordpress": "Kaka för användning av WordPress-innehållshanteringssystemet.",
+      "oidc": "Användarens inloggningsuppgifter lagras i webbläsarens minne (session storage).",
+      "hdsTokenStorage": "Api-token för en autentiserad användare sparas i webbläsarens minne (session storage).",
+      "hdsUserReference": "Den inloggade användarens åtkomsträttigheter lagras i webbläsarens minne för att identifiera vems token som lagras.",
+      "mtm": "Kakan lagrar samtycke för användning av statistikkakorna.",
+      "authSessionId": "Cookie som krävs för att bevara autentiseringssession.",
+      "keycloak_generic": "Cookie som krävs för att bevara autentiseringssession."
     },
     "expiration": {
       "session": "Sessionskakan raderas när användaren lämnar webbsidan",
