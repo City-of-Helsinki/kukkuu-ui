@@ -813,7 +813,8 @@
         "tableHeadingsExpiration": "Expiration",
         "tableHeadingsType": "Type",
         "storageType1": "Cookie",
-        "storageType2": "Local storage"
+        "storageType2": "Local storage",
+        "storageType3": "Session storage"
       }
     },
     "required": {
@@ -839,7 +840,13 @@
       "matomo": "A cookie of the Matomo statistics system",
       "linkedevents": "A cookie to authorise the retrieval of events",
       "i18next": "A cookie to remember the website language selection",
-      "wordpress": "A cookie for operation of the WordPress-content management system."
+      "wordpress": "A cookie for operation of the WordPress-content management system.",
+      "oidc": "Authentication information of the user is saved to browser's memory (session storage).",
+      "hdsTokenStorage": "Api tokens of an authenticated user is saved to browser's memory (session storage).",
+      "hdsUserReference": "Access token of an authenticated user is saved to browser's memory (session storage) to identify whose api tokens are stored.",
+      "mtm": "Cookie stores consent for using analytics cookies.",
+      "authSessionId": "Required to persist the authentication session.",
+      "keycloak_generic": "Required to persist the authentication session."
     },
     "expiration": {
       "session": "The session cookie is deleted once the user exits the page",

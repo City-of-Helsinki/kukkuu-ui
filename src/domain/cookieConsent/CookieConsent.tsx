@@ -6,6 +6,14 @@ import { useMatomo } from '@jonkoops/matomo-tracker-react';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { MAIN_CONTENT_ID } from '../constants';
 
+const COOKIE_CONSENT_STORAGE_TYPE = {
+  cookie: 1,
+  localStorage: 2,
+  sessionStorage: 3,
+  indexedDB: 4,
+  cacheStorage: 5,
+};
+
 type Props = {
   appName: string;
   allowLanguageSwitch?: boolean;
@@ -105,6 +113,7 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
           tableHeadingsType: localized('consent.texts.ui.tableHeadingsType'),
           storageType1: localized('consent.texts.ui.storageType1'),
           storageType2: localized('consent.texts.ui.storageType2'),
+          storageType3: localized('consent.texts.ui.storageType3'),
         },
         requiredGroups: [
           {
@@ -114,30 +123,66 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
             cookies: [
               {
                 name: 'city-of-helsinki-cookie-consents',
-                host: window.location.hostname,
-                storageType: 1,
+                host: globalThis.location.hostname,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.cookie,
                 description: localized('consent.cookies.i18next'),
                 expiration: localized('consent.expiration.year'),
               },
               {
                 name: 'wordpress_*, wp-settings-*',
                 host: 'api.hel.fi',
-                storageType: 1,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.cookie,
                 description: localized('consent.cookies.wordpress'),
                 expiration: localized('consent.expiration.session'),
               },
               {
                 name: 'linkedevents-api-prod-csrftoken',
                 host: 'api.hel.fi',
-                storageType: 1,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.cookie,
                 description: localized('consent.cookies.linkedevents'),
                 expiration: localized('consent.expiration.year'),
               },
               {
                 name: 'i18next',
                 host: 'api.hel.fi',
-                storageType: 1,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.cookie,
                 description: localized('consent.cookies.i18next'),
+                expiration: localized('consent.expiration.session'),
+              },
+              { 
+                name: 'AUTH_SESSION_ID',
+                host: 'tunnistus.hel.fi',
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.cookie,
+                description: localized('consent.cookies.authSessionId'),
+                expiration: localized('consent.expiration.session'),
+              },
+              {
+                name: 'KC_*',
+                host: 'tunnistus.hel.fi',
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.cookie,
+                description: localized('consent.cookies.keycloak_generic'),
+                expiration: localized('consent.expiration.session'),
+              },
+              
+              {
+                name: 'oidc.user:*',
+                host: globalThis.location.hostname,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.sessionStorage,
+                description: localized('consent.cookies.oidc'),
+                expiration: localized('consent.expiration.session'),
+              },
+              {
+                name: 'hds_login_api_token_storage_key',
+                host: globalThis.location.hostname,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.sessionStorage,
+                description: localized('consent.cookies.hdsTokenStorage'),
+                expiration: localized('consent.expiration.session'),
+              },
+              {
+                name: 'hds_login_api_token_user_reference',
+                host: globalThis.location.hostname,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.sessionStorage,
+                description: localized('consent.cookies.hdsUserReference'),
                 expiration: localized('consent.expiration.session'),
               },
             ],
@@ -156,9 +201,16 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
               {
                 name: '_pk*',
                 host: 'digia.fi',
-                storageType: 1,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.cookie,
                 description: localized('consent.cookies.matomo'),
                 expiration: localized('consent.expiration.days', { days: 393 }),
+              },
+              {
+                name: "mtm_.*",
+                host: globalThis.location.hostname,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.cookie,
+                description: localized('consent.cookies.mtm'),
+                expiration: localized('consent.expiration.days', { days: 400 }),
               },
             ],
           },
@@ -180,7 +232,7 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
     <CookieConsentContextProvider
       siteSettings={siteSettings}
       options={{
-        cookieDomain: window.location.hostname,
+        language
       }}
       onChange={handleMatomoUpdate}
     >

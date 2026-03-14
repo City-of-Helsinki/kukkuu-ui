@@ -813,7 +813,8 @@
         "tableHeadingsExpiration": "Vanheneminen",
         "tableHeadingsType": "Tyyppi",
         "storageType1": "Eväste",
-        "storageType2": "Paikallinen tallennus"
+        "storageType2": "Paikallinen tallennus",
+        "storageType3": "Istunto tallennus"
       }
     },
     "required": {
@@ -839,7 +840,13 @@
       "matomo": "Matomo-tilastointijärjestelmän eväste",
       "linkedevents": "Eväste tapahtumien hakemisen valtuuttamiseen",
       "i18next": "Eväste sivuston kielivalinnan muistamiseen",
-      "wordpress": "Wordpress-sisällönhallintajärjestelmän toimintaan liittyvä eväste."
+      "wordpress": "Wordpress-sisällönhallintajärjestelmän toimintaan liittyvä eväste.",
+      "oidc": "Käyttäjän kirjautumistiedot tallennetaan selaimen muistiin (session storage).",
+      "hdsTokenStorage": "Kirjautuneen käyttäjän rajanpinta-avaimet (api tokens) tallennetaan selaimen muistiin (session storage).",
+      "hdsUserReference": "Kirjautuneen käyttäjän pääsyoikeudet tallennetaan selaimen muistiin, jotta tunnistetaan kenen rajapinta-avaimet on tallessa.",
+      "mtm": "Evästeeseen tallennetaan suostumus tilastointievästeisiin.",
+      "authSessionId": "Tunnistautumisistunnon säilymiseksi vaadittu eväste.",
+      "keycloak_generic": "Tunnistautumisistunnon säilymiseksi vaadittu eväste."
     },
     "expiration": {
       "session": "Istunto-eväste tuhotaan, kun käyttäjä poistuu sivulta",
