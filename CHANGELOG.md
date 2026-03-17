@@ -401,6 +401,13 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.15.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.15.0...kukkuu-ui-v3.15.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* Add authentication cookies to consent settings ([d573ace](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d573ace83b398005845c3b621300d550a1cae99c))
+
 ## [3.15.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.14.2...kukkuu-ui-v3.15.0) (2026-03-17)
 
 
