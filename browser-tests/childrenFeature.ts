@@ -58,6 +58,7 @@ fixture`Children feature`
   });
 
 // TODO temporarily disabled
+// eslint-disable-next-line @vitest/no-disabled-tests
 test.skip('As a guardian I want to see a list of my children and to be able to select one', async (t) => {
   // The list displays the expected fields
   await t.expect(godchildrenProfilePage.child(childName).exists).ok();
