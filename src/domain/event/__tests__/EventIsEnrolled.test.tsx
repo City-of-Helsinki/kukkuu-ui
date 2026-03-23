@@ -1,3 +1,4 @@
+/* eslint-disable @vitest/no-conditional-expect */
 import { MockedResponse } from '@apollo/client/testing';
 import { screen } from '@testing-library/react';
 import range from 'lodash/range';

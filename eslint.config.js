@@ -125,6 +125,7 @@ export default [
           ],
         },
       ],
+      '@vitest/no-mocks-import': 0
     },
   },
 

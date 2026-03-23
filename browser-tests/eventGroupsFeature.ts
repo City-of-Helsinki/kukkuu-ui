@@ -22,6 +22,7 @@ fixture`Event groups feature`
   });
 
 // Skipepd because we cannot be sure that there is an event.
+// eslint-disable-next-line @vitest/no-disabled-tests
 test.skip('As a user I can use event groups to find events', async (t) => {
   // Select first child
   await t.click(godchildrenProfilePage.child(/Hertta Citron/));
