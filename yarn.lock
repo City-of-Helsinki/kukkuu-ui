@@ -1128,10 +1128,10 @@
     "@types/tough-cookie" "^4.0.5"
     tough-cookie "^4.1.4"
 
-"@city-of-helsinki/react-helsinki-headless-cms@3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@city-of-helsinki/react-helsinki-headless-cms/-/react-helsinki-headless-cms-3.0.0.tgz#69c4da0f5c447d1de19c5e06c14abf15054cdf1f"
-  integrity sha512-zLyvXpWdD9eUMMSWzmKH7xNeK3wKGIPyDqIRbfXl7m3+UQoYYzOD0/HPZ9VloD0QnM4WalkzLj9HSQIo/e9zWg==
+"@city-of-helsinki/react-helsinki-headless-cms@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@city-of-helsinki/react-helsinki-headless-cms/-/react-helsinki-headless-cms-3.0.1.tgz#3eb5dbe9177244897c8c20ab1cea8a54b020f19b"
+  integrity sha512-rkDkcoSDhedeZ1mUylXCcXDo8VWBrogiibQdeJnBzNME6RfGiED1HtjmHF5BJRCHxA50BcWXbENglhvX+pxNXw==
   dependencies:
     classnames "^2.5.1"
     date-fns "^4.1.0"
