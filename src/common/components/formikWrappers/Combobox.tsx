@@ -1,4 +1,4 @@
-import { Select as HDSSelect, SelectProps as HDSSelectProps } from 'hds-react';
+import { Select as HDSSelect, SelectProps as HDSSelectProps, SupportedLanguage } from 'hds-react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 
@@ -7,7 +7,7 @@ import styles from './formikInputs.module.scss';
 
 type SelectProps = Omit<
   HDSSelectProps,
-  'onChange' | 'value' | 'defaultValue' | 'texts'
+  'onChange' | 'value' | 'defaultValue' | 'texts' | 'children'
 > & {
   onChange?: (values: string[]) => void;
   value?: string[];
@@ -69,7 +69,7 @@ function Combobox({
         placeholder: placeholder || '',
         ...(helperText ? { helperText } : {}),
         ...(meta.touched && meta.error ? { error: t(meta.error || '') } : {}),
-        language: i18n.language,
+        language: i18n.language as SupportedLanguage,
       }}
       {...rest}
     />

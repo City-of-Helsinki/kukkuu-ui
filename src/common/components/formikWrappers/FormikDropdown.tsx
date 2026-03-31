@@ -1,4 +1,4 @@
-import { Select, SelectProps as HDSDropdownProps } from 'hds-react';
+import { Select, SelectProps as HDSDropdownProps, SupportedLanguage } from 'hds-react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 
@@ -7,7 +7,7 @@ import styles from './formikInputs.module.scss';
 
 type DropdownProps = Omit<
   HDSDropdownProps<Option>,
-  'value' | 'onChange' | 'options' | 'defaultValue' | 'texts' | 'className'
+  'value' | 'onChange' | 'options' | 'defaultValue' | 'texts' | 'className' | 'children'
 >;
 
 type Props = DropdownProps & {
@@ -61,7 +61,7 @@ function FormikDropdown({
         label: label || '',
         placeholder: placeholder || '',
         ...(meta.touched && meta.error ? { error: t(meta.error || '') } : {}),
-        language: i18n.language,
+        language: i18n.language as SupportedLanguage,
       }}
       {...rest}
     />
