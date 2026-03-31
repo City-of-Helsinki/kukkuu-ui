@@ -1,8 +1,8 @@
 import path from 'path';
 
+import eslint from '@nabla/vite-plugin-eslint';
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
-import eslint from 'vite-plugin-eslint';
 import svgr from 'vite-plugin-svgr';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 
