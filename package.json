@@ -143,13 +143,25 @@
         "Forces immutable to use version >=3.8.3 which includes security patches",
         "",
         "NOTE: This can be removed when @ardatan/relay-compiler and other dependencies require patched immutable versions"
+      ],
+      "tmp": [
+        "To fix security vulnerability in tmp dependency through external-editor",
+        "Forces tmp to use version >=0.2.4 which includes security patches",
+        "",
+        "NOTE: This can be removed when external-editor and other dependencies require patched tmp versions"
+      ],
+      "hds-react/cookie": [
+        "To fix https://github.com/City-of-Helsinki/palvelutarjotin-ui/security/dependabot/101",
+        "NOTE: This can be removed if hds-react starts to depend on >=v1 cookie"
       ]
     }
   },
   "resolutions": {
     "**/@typescript-eslint/typescript-estree/minimatch": ">9.0.7",
     "**/testcafe-hammerhead/httpntlm/underscore": "1.13.8",
-    "**/@ardatan/relay-compiler/immutable": ">=3.8.3"
+    "**/@ardatan/relay-compiler/immutable": ">=3.8.3",
+    "**/external-editor/tmp": ">=0.2.4",
+    "hds-react/cookie": "^0.7.2"
   },
   "msw": {
     "workerDirectory": "public"
