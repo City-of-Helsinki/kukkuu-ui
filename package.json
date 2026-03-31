@@ -124,6 +124,19 @@
     "vitest-sonar-reporter": "^2.0.0",
     "yup": "^1.6.1"
   },
+  "//": {
+    "Why are packages in resolutions?": {
+      "minimatch": [
+        "To fix ReDoS vulnerability in transitive minimatch dependencies through @typescript-eslint/typescript-estree",
+        "Ensures all minimatch usage is on a version >9.0.7 which includes the security fix",
+        "",
+        "NOTE: This can be removed when @typescript-eslint/typescript-estree and other dependencies require patched versions"
+      ]
+    }
+  },
+  "resolutions": {
+    "**/@typescript-eslint/typescript-estree/minimatch": ">9.0.7"
+  },
   "msw": {
     "workerDirectory": "public"
   },
