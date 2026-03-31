@@ -28,16 +28,19 @@ export default defineConfig(() => {
         ),
       },
     },
+    optimizeDeps: {
+      include: ['redux-persist'],
+    },
     build: {
       outDir: 'build',
       sourcemap: true,
     },
     server: {
-      port: parseInt(process.env.PORT) || 3000,
+      port: parseInt(process.env.PORT || '3000'),
       open: true,
     },
     preview: {
-      port: parseInt(process.env.PORT) || 3000,
+      port: parseInt(process.env.PORT || '3000'),
     },
     plugins: [
       react(),
