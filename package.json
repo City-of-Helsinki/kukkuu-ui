@@ -131,11 +131,18 @@
         "Ensures all minimatch usage is on a version >9.0.7 which includes the security fix",
         "",
         "NOTE: This can be removed when @typescript-eslint/typescript-estree and other dependencies require patched versions"
+      ],
+      "underscore": [
+        "To fix security vulnerability in underscore dependency through testcafe-hammerhead/httpntlm",
+        "Forces underscore to use version 1.13.8 which includes security patches",
+        "",
+        "NOTE: This can be removed when testcafe updates its dependency chain to use patched underscore versions"
       ]
     }
   },
   "resolutions": {
-    "**/@typescript-eslint/typescript-estree/minimatch": ">9.0.7"
+    "**/@typescript-eslint/typescript-estree/minimatch": ">9.0.7",
+    "**/testcafe-hammerhead/httpntlm/underscore": "1.13.8"
   },
   "msw": {
     "workerDirectory": "public"
