@@ -94,7 +94,6 @@
     "globals": "^15.15.0",
     "hds-core": "4.9.0",
     "hds-react": "4.9.0",
-    "html-react-parser": "^5.2.2",
     "i18next": "^24.2.2",
     "i18next-browser-languagedetector": "^8.0.2",
     "jsdom": "^26.1.0",
