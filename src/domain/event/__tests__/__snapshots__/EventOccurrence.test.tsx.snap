@@ -5,7 +5,7 @@ exports[`renders snapshot correctly 1`] = `
   <table>
     <tbody>
       <tr
-        class="_occurrence_cdc216 _isMobile_cdc216"
+        class="_occurrence_010ac1 _isMobile_010ac1"
       >
         <td>
           Musiikkitalo
@@ -19,15 +19,15 @@ exports[`renders snapshot correctly 1`] = `
           </time>
         </td>
         <td
-          class="_remainingCapacity_cdc216"
+          class="_remainingCapacity_010ac1"
         >
           99
         </td>
         <td
-          class="_occurrenceSubmit_cdc216"
+          class="_occurrenceSubmit_010ac1"
         >
           <a
-            class="hds-button _button_f33f10"
+            class="hds-button _button_ed0fc5"
             data-discover="true"
             href="/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
           >
@@ -40,7 +40,7 @@ exports[`renders snapshot correctly 1`] = `
         </td>
       </tr>
       <tr
-        class="_occurrence_cdc216"
+        class="_occurrence_010ac1"
       >
         <td>
           su 8.3.2020
@@ -52,15 +52,15 @@ exports[`renders snapshot correctly 1`] = `
           Musiikkitalo
         </td>
         <td
-          class="_remainingCapacity_cdc216"
+          class="_remainingCapacity_010ac1"
         >
           99
         </td>
         <td
-          class="_occurrenceSubmit_cdc216"
+          class="_occurrenceSubmit_010ac1"
         >
           <a
-            class="hds-button _button_f33f10"
+            class="hds-button _button_ed0fc5"
             data-discover="true"
             href="/occurrence/T2NjdXJyZW5jZU5vZGU6Mg==/enrol"
           >

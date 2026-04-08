@@ -3,10 +3,10 @@
 exports[`renders snapshot correctly 1`] = `
 <div>
   <section
-    class="_wrapper_557708"
+    class="_wrapper_82283c"
   >
     <div
-      class="_innerwrapper_557708"
+      class="_innerwrapper_82283c"
     >
       <h2>
         Lisätietoa palvelusta eri kielillä
@@ -15,7 +15,7 @@ exports[`renders snapshot correctly 1`] = `
         Lataa lisätietoa Kulttuurin kummilapset -palvelusta omalla kielelläsi.
       </p>
       <div
-        class="_link_0c660e"
+        class="_link_9bce3b"
       >
         <a
           href="/brochures/fr.pdf"
@@ -29,7 +29,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -49,7 +49,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -69,7 +69,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -89,7 +89,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -109,7 +109,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -129,7 +129,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -149,7 +149,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -169,7 +169,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -189,7 +189,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -209,7 +209,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -229,7 +229,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -249,7 +249,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -269,7 +269,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -289,7 +289,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -309,7 +309,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -329,7 +329,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (
@@ -349,7 +349,7 @@ exports[`renders snapshot correctly 1`] = `
              
           </span>
           <span
-            class="_localizedLanguage_0c660e"
+            class="_localizedLanguage_9bce3b"
             lang="fi"
           >
             (

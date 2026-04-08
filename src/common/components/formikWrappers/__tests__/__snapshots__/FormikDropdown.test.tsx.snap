@@ -3,7 +3,7 @@
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="_formField_b4a938 Select-module_root__-GjU5"
+    class="_formField_69b114 Select-module_root__-GjU5"
     id="fooSelect"
     name="fooSelect"
     tabindex="-1"

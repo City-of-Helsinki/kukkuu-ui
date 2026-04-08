@@ -3,26 +3,26 @@
 exports[`renders snapshot correctly 1`] = `
 <div>
   <section
-    class="_wrapper_1b4993"
+    class="_wrapper_cebf7d"
   >
     <div
-      class="_innerwrapper_1b4993"
+      class="_innerwrapper_cebf7d"
     >
       <h2>
         Yhteistyökumppanit
       </h2>
       <div
-        class="_partners_1b4993"
+        class="_partners_cebf7d"
       >
         <div
-          class="_big_46f5db"
+          class="_big_7e4182"
         >
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.hel.fi/fi/paatoksenteko-ja-hallinto/kaupungin-organisaatio/toimialat/kulttuurin-ja-vapaa-ajan-toimiala"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="home.partners.partner.hel"
@@ -31,11 +31,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db _jaes-icon_46f5db"
+            class="_container_7e4182 _jaes-icon_7e4182"
             href="https://jaes.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Jane ja Aatos Erkon säätiö"
@@ -45,14 +45,14 @@ exports[`renders snapshot correctly 1`] = `
           </a>
         </div>
         <div
-          class="_small_46f5db"
+          class="_small_7e4182"
         >
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://amosrex.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Amos Rex"
@@ -61,11 +61,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://cirko.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Cirko – Uuden sirkuksen keskus"
@@ -74,11 +74,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://dotdot.fi/suomeksi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="DOT ry"
@@ -87,11 +87,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.designmuseum.fi/fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Designmuseo"
@@ -100,11 +100,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.hamhelsinki.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Helsingin taidemuseo HAM"
@@ -113,11 +113,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.helsinginkaupunginmuseo.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Helsingin kaupunginmuseo"
@@ -126,11 +126,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://helsinginkaupunginorkesteri.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Helsingin kaupunginorkesteri"
@@ -139,11 +139,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://hkt.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Helsingin Kaupunginteatteri"
@@ -152,11 +152,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.hotellijaravintolamuseo.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Hotelli- ja ravintolamuseo"
@@ -165,11 +165,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.hurjaruuth.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Tanssiteatteri Hurjaruuth"
@@ -178,11 +178,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.kaapelitehdas.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="home.partners.partner.kaapeli"
@@ -191,11 +191,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="home.partners.partner.kansallisgalleria"
@@ -204,11 +204,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.kansallismuseo.fi/fi/kansallismuseo"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Kansallismuseo"
@@ -217,11 +217,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://kansallisteatteri.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Kansallisteatteri"
@@ -230,11 +230,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.kulttuuriperintokasvatus.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Suomen Kulttuuriperintökasvatuksen seura"
@@ -243,11 +243,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.helsinki.fi/fi/tiedemuseo-liekki"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Tiedemuseo Liekki"
@@ -256,11 +256,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.mfa.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Arkkitehtuurimuseo"
@@ -269,11 +269,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://nukketeatterisampo.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Nukketeatteri Sampo"
@@ -282,11 +282,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://oopperabaletti.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Suomen kansallisooppera ja -baletti"
@@ -295,11 +295,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.q-teatteri.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Q-teatteri"
@@ -308,11 +308,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://svenskateatern.fi/fi/alku/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Svenska Teatern"
@@ -321,11 +321,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.sointijazzorchestra.com/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="home.partners.partner.sointijazzorchestra"
@@ -334,11 +334,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.tanssintalo.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Tanssin talo"
@@ -347,11 +347,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.teatteri-ilmio.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Teatteri ILMI Ö"
@@ -360,11 +360,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.teatterimuseo.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Teatterimuseo"
@@ -373,11 +373,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://www.valokuvataiteenmuseo.fi/fi"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="Suomen valokuvataiteen museo"
@@ -386,11 +386,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://umohelsinki.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="home.partners.partner.umo"
@@ -399,11 +399,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://dialogikasvatus.fi/fokus-ry/etusivu/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="home.partners.partner.fokus"
@@ -412,11 +412,11 @@ exports[`renders snapshot correctly 1`] = `
             </div>
           </a>
           <a
-            class="_container_46f5db"
+            class="_container_7e4182"
             href="https://osiristeatteri.fi/"
           >
             <div
-              class="_imgWrapper_73ff55 _icon_46f5db"
+              class="_imgWrapper_1fbb90 _icon_7e4182"
             >
               <img
                 alt="home.partners.partner.osiris"

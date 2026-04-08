@@ -3,17 +3,17 @@
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="_pageWrapper_e42bcd"
+    class="_pageWrapper_4ba3e3"
   >
     <div
-      class="_container_533ff0"
+      class="_container_996049"
     >
       <div>
         <div
-          class="_notEligible_cca70d"
+          class="_notEligible_3932a8"
         >
           <div
-            class="_imgWrapper_73ff55 _notEligibleFace_cca70d"
+            class="_imgWrapper_1fbb90 _notEligibleFace_3932a8"
           >
             <img
               alt=""
@@ -28,7 +28,7 @@ exports[`renders snapshot correctly 1`] = `
             target="_blank"
           >
             <button
-              class="Button-module_button__1msFE Button-module_primary__2LfKB _goBackButton_cca70d"
+              class="Button-module_button__1msFE Button-module_primary__2LfKB _goBackButton_3932a8"
               style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
               type="button"
             >

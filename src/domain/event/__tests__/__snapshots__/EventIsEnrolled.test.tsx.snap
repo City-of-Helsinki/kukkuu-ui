@@ -4,10 +4,10 @@ exports[`renders snapshot correctly 1`] = `
 <div>
   <div
     aria-label="Lataa"
-    class="_spinnerWrapper_ce417a"
+    class="_spinnerWrapper_13766e"
   >
     <div
-      class="_spinner_ce417a"
+      class="_spinner_13766e"
     />
   </div>
 </div>

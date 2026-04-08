@@ -3,7 +3,7 @@
 exports[`renders without crashing 1`] = `
 <div>
   <div
-    class="_pageWrapper_87a801"
+    class="_pageWrapper_953203"
   >
     <div>
       <header
@@ -66,7 +66,7 @@ exports[`renders without crashing 1`] = `
                   />
                 </div>
                 <div
-                  class="HeaderActionBarItem-module_container__1uq2m _list_0e6fe3 HeaderActionBarItem-module_hasContent__YJfOU"
+                  class="HeaderActionBarItem-module_container__1uq2m _list_074ea4 HeaderActionBarItem-module_hasContent__YJfOU"
                   id="signinButton"
                 >
                   <button
@@ -103,7 +103,7 @@ exports[`renders without crashing 1`] = `
                           class="HeaderActionBarItemButton-module_actionBarItemButtonLabel__12Iec"
                         >
                           <span
-                            class="_hideBelowSmall_0e6fe3"
+                            class="_hideBelowSmall_074ea4"
                           >
                             Kirjaudu
                           </span>
@@ -136,7 +136,7 @@ exports[`renders without crashing 1`] = `
                           class="HeaderActionBarItemButton-module_actionBarItemButtonLabel__12Iec"
                         >
                           <span
-                            class="_hideBelowSmall_0e6fe3"
+                            class="_hideBelowSmall_074ea4"
                           >
                             Kirjaudu
                           </span>
@@ -163,11 +163,11 @@ exports[`renders without crashing 1`] = `
       </header>
     </div>
     <div
-      class="_pageBody_87a801"
+      class="_pageBody_953203"
       id="main_content"
     />
     <footer
-      class="Footer-module_footer__1aD3T _footer_ca2122"
+      class="Footer-module_footer__1aD3T _footer_21cae1"
     >
       <div
         class="Koros-module_koros__1r3rg Footer-module_koros__Orx_W"
