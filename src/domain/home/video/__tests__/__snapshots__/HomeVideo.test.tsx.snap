@@ -3,13 +3,13 @@
 exports[`renders snapshot correctly 1`] = `
 <div>
   <section
-    class="_wrapper_6eb765"
+    class="_wrapper_3fd32b"
   >
     <div
-      class="_innerwrapper_6eb765"
+      class="_innerwrapper_3fd32b"
     >
       <div
-        class="_embedContainer_6eb765"
+        class="_embedContainer_3fd32b"
       >
         <iframe
           allowfullscreen=""

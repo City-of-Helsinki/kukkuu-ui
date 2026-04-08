@@ -3,31 +3,31 @@
 exports[`Profile > renders profile correctly 1`] = `
 <div>
   <div
-    class="_wrapper_70bd39"
+    class="_wrapper_d9c314"
   >
     <div
-      class="Container-module_container__18lps container_hds-container__ZG2BQ _container_70bd39"
+      class="Container-module_container__18lps container_hds-container__ZG2BQ _container_d9c314"
       role="main"
     >
       <div
-        class="_header_70bd39"
+        class="_header_d9c314"
       >
         <h1
-          class="_text_e4e173 _h1_e4e173 _headerTitle_70bd39"
+          class="_text_f7e7fb _h1_f7e7fb _headerTitle_d9c314"
         >
           Hei 
         </h1>
         <div
-          class="_headerContent_70bd39"
+          class="_headerContent_d9c314"
         >
           <p
-            class="_text_e4e173 _body-l_e4e173 "
+            class="_text_f7e7fb _body-l_f7e7fb "
           >
             Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Kummilapsi voi osallistua vuosittain kahteen tapahtumaan, yhteen tapahtumaan keväällä ja yhteen tapahtumaan syksyllä. Joskus tapahtumia voi olla tarjolla enemmän, silloin ilmoitamme siitä erikseen. Nähdään kulttuurin parissa!
           </p>
         </div>
         <div
-          class="_headerActions_70bd39"
+          class="_headerActions_d9c314"
         >
           <button
             class="Button-module_button__1msFE Button-module_secondary__1nABp"
@@ -61,15 +61,15 @@ exports[`Profile > renders profile correctly 1`] = `
         </div>
       </div>
       <section
-        class="_layout_d7f7d5"
+        class="_layout_b3eb16"
       >
         <h2
-          class="_text_e4e173 _h2_e4e173 "
+          class="_text_f7e7fb _h2_f7e7fb "
         >
           Kummilapset
         </h2>
         <div
-          class="_noChild_d7f7d5"
+          class="_noChild_b3eb16"
         >
           <p>
             Ei kummilapsia

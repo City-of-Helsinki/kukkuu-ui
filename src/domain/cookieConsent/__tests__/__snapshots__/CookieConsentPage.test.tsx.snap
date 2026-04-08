@@ -3,10 +3,10 @@
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="_pageWrapper_e42bcd"
+    class="_pageWrapper_4ba3e3"
   >
     <div
-      class="_container_533ff0"
+      class="_container_996049"
     />
   </div>
 </div>

@@ -1,10 +1,9 @@
 import path from 'path';
 
 import eslint from '@nabla/vite-plugin-eslint';
-import react from '@vitejs/plugin-react-swc';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
-import viteTsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig(() => {
   return {
@@ -20,6 +19,7 @@ export default defineConfig(() => {
     },
     envPrefix: 'VITE_',
     resolve: {
+      tsconfigPaths: true,
       alias: {
         '~styles': path.resolve(__dirname, './src/assets/styles'),
         '~hds-design-tokens': path.resolve(
@@ -45,7 +45,6 @@ export default defineConfig(() => {
     plugins: [
       react(),
       eslint(),
-      viteTsconfigPaths(),
       // svgr options: https://react-svgr.com/docs/options/
       svgr({ svgrOptions: { icon: true } }),
     ],

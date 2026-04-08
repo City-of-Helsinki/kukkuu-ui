@@ -3,36 +3,36 @@
 exports[`<Home /> > renders snapshot correctly 1`] = `
 <div>
   <div
-    class="_pageWrapper_e42bcd"
+    class="_pageWrapper_4ba3e3"
   >
     <div
-      class="_container_533ff0 _gridLayoutOverride_e7e15b"
+      class="_container_996049 _gridLayoutOverride_d8388b"
     >
       <div
-        class="_home_e7e15b"
+        class="_home_d8388b"
       >
         <section
-          class="_heroWrapper_b04a84"
+          class="_heroWrapper_747411"
         >
           <div
-            class="_heroContainer_b04a84"
+            class="_heroContainer_747411"
           >
             <div
-              class="_hero_b04a84"
+              class="_hero_747411"
             >
               <h1>
                 Kulttuurin kummilapset
               </h1>
               <p
-                class="_bodyXl_b04a84"
+                class="_bodyXl_747411"
               >
                 Kaikki vuodesta 2020 eteenpäin syntyvät helsinkiläiset lapset kutsutaan kulttuurin kummilapsiksi. Kummilapset saavat kutsun vuosittain kahteen tapahtumaan, kunnes lapsi aloittaa koulun. Tapahtumat ovat maksuttomia.
               </p>
               <div
-                class="_buttonGroup_b04a84"
+                class="_buttonGroup_747411"
               >
                 <button
-                  class="Button-module_button__1msFE Button-module_primary__2LfKB _registerButton_b04a84"
+                  class="Button-module_button__1msFE Button-module_primary__2LfKB _registerButton_747411"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
@@ -41,7 +41,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </span>
                 </button>
                 <button
-                  class="Button-module_button__1msFE Button-module_secondary__1nABp _authenticateButton_b04a84"
+                  class="Button-module_button__1msFE Button-module_secondary__1nABp _authenticateButton_747411"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
@@ -53,18 +53,18 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
             </div>
           </div>
           <div
-            class="_kidsImageContainer_b04a84"
+            class="_kidsImageContainer_747411"
           >
             <div
-              class="_kidsImage_b04a84"
+              class="_kidsImage_747411"
             />
           </div>
         </section>
         <section
-          class="_wrapper_557708"
+          class="_wrapper_82283c"
         >
           <div
-            class="_innerwrapper_557708"
+            class="_innerwrapper_82283c"
           >
             <h2>
               Lisätietoa palvelusta eri kielillä
@@ -73,7 +73,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
               Lataa lisätietoa Kulttuurin kummilapset -palvelusta omalla kielelläsi.
             </p>
             <div
-              class="_link_0c660e"
+              class="_link_9bce3b"
             >
               <a
                 href="/brochures/fr.pdf"
@@ -87,7 +87,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -107,7 +107,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -127,7 +127,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -147,7 +147,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -167,7 +167,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -187,7 +187,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -207,7 +207,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -227,7 +227,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -247,7 +247,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -267,7 +267,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -287,7 +287,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -307,7 +307,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -327,7 +327,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -347,7 +347,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -367,7 +367,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -387,7 +387,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -407,7 +407,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                    
                 </span>
                 <span
-                  class="_localizedLanguage_0c660e"
+                  class="_localizedLanguage_9bce3b"
                   lang="fi"
                 >
                   (
@@ -419,22 +419,22 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="_wrapper_f9e21e"
+          class="_wrapper_733c12"
         >
           <div
-            class="_instructions_f9e21e"
+            class="_instructions_733c12"
           >
             <h2>
               Miten pääset mukaan toimintaan?
             </h2>
             <div
-              class="_iconContainer_f9e21e"
+              class="_iconContainer_733c12"
             >
               <div
-                class="_iconBox_f9e21e"
+                class="_iconBox_733c12"
               >
                 <div
-                  class="_imgWrapper_73ff55 _icon_f9e21e"
+                  class="_imgWrapper_1fbb90 _icon_733c12"
                 >
                   <img
                     alt=""
@@ -446,12 +446,12 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 </p>
               </div>
               <div
-                class="_iconBox_f9e21e"
+                class="_iconBox_733c12"
               >
                 <svg
                   aria-hidden="true"
                   aria-label="ticket"
-                  class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _icon_f9e21e"
+                  class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _icon_733c12"
                   role="img"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
@@ -468,10 +468,10 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 </p>
               </div>
               <div
-                class="_iconBox_f9e21e"
+                class="_iconBox_733c12"
               >
                 <div
-                  class="_imgWrapper_73ff55 _icon_f9e21e"
+                  class="_imgWrapper_1fbb90 _icon_733c12"
                 >
                   <img
                     alt=""
@@ -486,14 +486,14 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="_wrapper_1e8528"
+          class="_wrapper_d82fc5"
           id="register"
         >
           <div
-            class="_homeForm_1e8528"
+            class="_homeForm_d82fc5"
           >
             <div
-              class="_heading_1e8528"
+              class="_heading_d82fc5"
             >
               <h2>
                 Tule mukaan
@@ -508,11 +508,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
               novalidate=""
             >
               <div
-                class="_inputWrapper_1e8528"
+                class="_inputWrapper_d82fc5"
               >
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
                   >
                     <label
                       class="FieldLabel-module_label__1zrXK "
@@ -542,7 +542,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 </div>
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
                   >
                     <label
                       class="FieldLabel-module_label__1zrXK "
@@ -573,7 +573,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="Checkbox-module_checkbox__3r5uI _checkboxField_639ec5"
+                  class="Checkbox-module_checkbox__3r5uI _checkboxField_4c5c4f"
                   style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                 >
                   <input
@@ -593,7 +593,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 </div>
               </div>
               <button
-                class="Button-module_button__1msFE Button-module_primary__2LfKB _submitButton_1e8528"
+                class="Button-module_button__1msFE Button-module_primary__2LfKB _submitButton_d82fc5"
                 disabled=""
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="submit"
@@ -606,13 +606,13 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="_wrapper_6eb765"
+          class="_wrapper_3fd32b"
         >
           <div
-            class="_innerwrapper_6eb765"
+            class="_innerwrapper_3fd32b"
           >
             <div
-              class="_embedContainer_6eb765"
+              class="_embedContainer_3fd32b"
             >
               <iframe
                 allowfullscreen=""
@@ -625,26 +625,26 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="_wrapper_1b4993"
+          class="_wrapper_cebf7d"
         >
           <div
-            class="_innerwrapper_1b4993"
+            class="_innerwrapper_cebf7d"
           >
             <h2>
               Yhteistyökumppanit
             </h2>
             <div
-              class="_partners_1b4993"
+              class="_partners_cebf7d"
             >
               <div
-                class="_big_46f5db"
+                class="_big_7e4182"
               >
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.hel.fi/fi/paatoksenteko-ja-hallinto/kaupungin-organisaatio/toimialat/kulttuurin-ja-vapaa-ajan-toimiala"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="home.partners.partner.hel"
@@ -653,11 +653,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db _jaes-icon_46f5db"
+                  class="_container_7e4182 _jaes-icon_7e4182"
                   href="https://jaes.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Jane ja Aatos Erkon säätiö"
@@ -667,14 +667,14 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 </a>
               </div>
               <div
-                class="_small_46f5db"
+                class="_small_7e4182"
               >
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://amosrex.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Amos Rex"
@@ -683,11 +683,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://cirko.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Cirko – Uuden sirkuksen keskus"
@@ -696,11 +696,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://dotdot.fi/suomeksi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="DOT ry"
@@ -709,11 +709,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.designmuseum.fi/fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Designmuseo"
@@ -722,11 +722,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.hamhelsinki.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Helsingin taidemuseo HAM"
@@ -735,11 +735,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.helsinginkaupunginmuseo.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Helsingin kaupunginmuseo"
@@ -748,11 +748,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://helsinginkaupunginorkesteri.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Helsingin kaupunginorkesteri"
@@ -761,11 +761,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://hkt.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Helsingin Kaupunginteatteri"
@@ -774,11 +774,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.hotellijaravintolamuseo.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Hotelli- ja ravintolamuseo"
@@ -787,11 +787,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.hurjaruuth.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Tanssiteatteri Hurjaruuth"
@@ -800,11 +800,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.kaapelitehdas.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="home.partners.partner.kaapeli"
@@ -813,11 +813,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.kansallisgalleria.fi/fi/search?category=artwork&hasImage=true"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="home.partners.partner.kansallisgalleria"
@@ -826,11 +826,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.kansallismuseo.fi/fi/kansallismuseo"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Kansallismuseo"
@@ -839,11 +839,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://kansallisteatteri.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Kansallisteatteri"
@@ -852,11 +852,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.kulttuuriperintokasvatus.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Suomen Kulttuuriperintökasvatuksen seura"
@@ -865,11 +865,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.helsinki.fi/fi/tiedemuseo-liekki"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Tiedemuseo Liekki"
@@ -878,11 +878,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.mfa.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Arkkitehtuurimuseo"
@@ -891,11 +891,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://nukketeatterisampo.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Nukketeatteri Sampo"
@@ -904,11 +904,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://oopperabaletti.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Suomen kansallisooppera ja -baletti"
@@ -917,11 +917,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.q-teatteri.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Q-teatteri"
@@ -930,11 +930,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://svenskateatern.fi/fi/alku/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Svenska Teatern"
@@ -943,11 +943,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.sointijazzorchestra.com/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="home.partners.partner.sointijazzorchestra"
@@ -956,11 +956,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.tanssintalo.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Tanssin talo"
@@ -969,11 +969,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.teatteri-ilmio.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Teatteri ILMI Ö"
@@ -982,11 +982,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.teatterimuseo.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Teatterimuseo"
@@ -995,11 +995,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://www.valokuvataiteenmuseo.fi/fi"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="Suomen valokuvataiteen museo"
@@ -1008,11 +1008,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://umohelsinki.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="home.partners.partner.umo"
@@ -1021,11 +1021,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://dialogikasvatus.fi/fokus-ry/etusivu/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="home.partners.partner.fokus"
@@ -1034,11 +1034,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </div>
                 </a>
                 <a
-                  class="_container_46f5db"
+                  class="_container_7e4182"
                   href="https://osiristeatteri.fi/"
                 >
                   <div
-                    class="_imgWrapper_73ff55 _icon_46f5db"
+                    class="_imgWrapper_1fbb90 _icon_7e4182"
                   >
                     <img
                       alt="home.partners.partner.osiris"
@@ -1051,19 +1051,19 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
           </div>
         </section>
         <section
-          class="_wrapper_4c2f32"
+          class="_wrapper_b5fee3"
         >
           <div
-            class="_contact_4c2f32"
+            class="_contact_b5fee3"
           >
             <h2>
               Ota yhteyttä
             </h2>
             <div
-              class="_contactPersons_4c2f32"
+              class="_contactPersons_b5fee3"
             >
               <div
-                class="_service_4c2f32"
+                class="_service_b5fee3"
               >
                 <h3>
                   Kulttuurin kummilapset -palvelu

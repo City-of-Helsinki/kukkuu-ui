@@ -3,10 +3,10 @@
 exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
 <div>
   <div
-    class="_row_e93b69"
+    class="_row_9e1f4e"
   >
     <div
-      class="_label_e93b69 _fullWidth_e93b69"
+      class="_label_9e1f4e _fullWidth_9e1f4e"
       id="venue"
     >
       <svg
@@ -26,19 +26,19 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="_text_e4e173 _body_e4e173 _label_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
         >
           Musiikkitalo
         </p>
         <p
-          class="_text_e4e173 _body_e4e173 _description_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _description_9e1f4e"
         >
           Urho Kekkosen katu 12
         </p>
       </div>
     </div>
     <div
-      class="_label_e93b69"
+      class="_label_9e1f4e"
       id="time"
     >
       <svg
@@ -58,14 +58,14 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="_text_e4e173 _body_e4e173 _label_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
         >
           8.3.2020
         </p>
       </div>
     </div>
     <div
-      class="_label_e93b69"
+      class="_label_9e1f4e"
       id="duration"
     >
       <svg
@@ -85,14 +85,14 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="_text_e4e173 _body_e4e173 _label_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
         >
           06:00 - 06:12
         </p>
       </div>
     </div>
     <div
-      class="_label_e93b69"
+      class="_label_9e1f4e"
       id="participants"
     >
       <svg
@@ -112,7 +112,7 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="_text_e4e173 _body_e4e173 _label_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
         >
           Perhe
         </p>
@@ -125,10 +125,10 @@ exports[`renders childByIdQuery occurrence snapshot correctly 1`] = `
 exports[`renders occurrence snapshot correctly 1`] = `
 <div>
   <div
-    class="_row_e93b69"
+    class="_row_9e1f4e"
   >
     <div
-      class="_label_e93b69 _fullWidth_e93b69"
+      class="_label_9e1f4e _fullWidth_9e1f4e"
       id="venue"
     >
       <svg
@@ -148,14 +148,14 @@ exports[`renders occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="_text_e4e173 _body_e4e173 _label_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
         >
           Musiikkitalo
         </p>
       </div>
     </div>
     <div
-      class="_label_e93b69"
+      class="_label_9e1f4e"
       id="time"
     >
       <svg
@@ -175,14 +175,14 @@ exports[`renders occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="_text_e4e173 _body_e4e173 _label_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
         >
           8.3.2020
         </p>
       </div>
     </div>
     <div
-      class="_label_e93b69"
+      class="_label_9e1f4e"
       id="duration"
     >
       <svg
@@ -202,14 +202,14 @@ exports[`renders occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="_text_e4e173 _body_e4e173 _label_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
         >
           06:00 - 06:12
         </p>
       </div>
     </div>
     <div
-      class="_label_e93b69"
+      class="_label_9e1f4e"
       id="participants"
     >
       <svg
@@ -229,7 +229,7 @@ exports[`renders occurrence snapshot correctly 1`] = `
       </svg>
       <div>
         <p
-          class="_text_e4e173 _body_e4e173 _label_e93b69"
+          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
         >
           Perhe
         </p>
@@ -242,26 +242,26 @@ exports[`renders occurrence snapshot correctly 1`] = `
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="_heroWrapper_4ef685"
+    class="_heroWrapper_58ffbb"
     style="background-image: url(a);"
     title="b"
   >
     <div
-      class="_backButtonWrapper_4ef685"
+      class="_backButtonWrapper_58ffbb"
     >
       <div
-        class="_backButtonInnerWrapper_4ef685"
+        class="_backButtonInnerWrapper_58ffbb"
       >
         <a
           aria-label="Palaa"
-          class="_backButton_4ef685"
+          class="_backButton_58ffbb"
           data-discover="true"
           href="/back-to"
         >
           <svg
             aria-hidden="true"
             aria-label="arrow-left"
-            class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _backButtonIcon_4ef685"
+            class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _backButtonIcon_58ffbb"
             role="img"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
@@ -278,20 +278,20 @@ exports[`renders snapshot correctly 1`] = `
     </div>
   </div>
   <div
-    class="_pageWrapper_e42bcd _wrapper_4ef685"
+    class="_pageWrapper_4ba3e3 _wrapper_58ffbb"
   >
     <div
-      class="_container_533ff0"
+      class="_container_996049"
     >
       <div
-        class="_eventWrapper_4ef685"
+        class="_eventWrapper_58ffbb"
         role="main"
       >
         <div
-          class="_event_4ef685"
+          class="_event_58ffbb"
         >
           <div
-            class="_heading_4ef685"
+            class="_heading_58ffbb"
           >
             <h1>
               event name

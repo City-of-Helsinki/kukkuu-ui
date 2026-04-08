@@ -3,16 +3,16 @@
 exports[`Renders "No events" when no events" 1`] = `
 <div>
   <div
-    class="_noEventWrapper_94137a"
+    class="_noEventWrapper_695780"
   >
     <h2>
       Tapahtumakutsut
     </h2>
     <div
-      class="_noEvent_94137a"
+      class="_noEvent_695780"
     >
       <div
-        class="_imgWrapper_73ff55 _envelopIcon_94137a"
+        class="_imgWrapper_1fbb90 _envelopIcon_695780"
       >
         <img
           alt=""
@@ -30,58 +30,58 @@ exports[`Renders "No events" when no events" 1`] = `
 exports[`Renders events list when events of any type 1`] = `
 <div>
   <ul
-    class="_list_a90dcd _spacing-xl_a90dcd"
+    class="_list_8754a1 _spacing-xl_8754a1"
   >
     <li
-      class="_item_a90dcd"
+      class="_item_8754a1"
     >
       <h2
-        class="_text_e4e173 _h2_e4e173 "
+        class="_text_f7e7fb _h2_f7e7fb "
       >
         Tulevat tapahtumasi
       </h2>
       <ul
-        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
+        class="_list_8754a1 _spacing-layout-2-xs_8754a1"
       >
         <li
-          class="_item_a90dcd"
+          class="_item_8754a1"
         >
           <div
-            class="_wrapper_f3c708"
+            class="_wrapper_2a19a2"
             role="button"
             tabindex="0"
           >
             <div
-              class="_image_f3c708 _fullHeight_f3c708"
+              class="_image_2a19a2 _fullHeight_2a19a2"
             >
               <div
-                class="_qrWrapper_e3c7ac"
+                class="_qrWrapper_6fff92"
               >
                 <div />
               </div>
             </div>
             <div
-              class="_content_f3c708"
+              class="_content_2a19a2"
             >
               <h3
-                class="_text_e4e173 _h3_e4e173 _title_f3c708"
+                class="_text_f7e7fb _h3_f7e7fb _title_2a19a2"
               >
                 pentti
               </h3>
               <p
-                class="_text_e4e173 _body_e4e173 "
+                class="_text_f7e7fb _body_f7e7fb "
               >
                 eventti
               </p>
               <div
-                class="_focalPoint_f3c708"
+                class="_focalPoint_2a19a2"
               >
                 <span>
                   <div
-                    class="_row_e93b69"
+                    class="_row_9e1f4e"
                   >
                     <div
-                      class="_label_e93b69 _fullWidth_e93b69"
+                      class="_label_9e1f4e _fullWidth_9e1f4e"
                       id="venue"
                     >
                       <svg
@@ -101,12 +101,12 @@ exports[`Renders events list when events of any type 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="_text_e4e173 _body_e4e173 _label_e93b69"
+                          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
                         />
                       </div>
                     </div>
                     <div
-                      class="_label_e93b69"
+                      class="_label_9e1f4e"
                       id="time"
                     >
                       <svg
@@ -126,14 +126,14 @@ exports[`Renders events list when events of any type 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="_text_e4e173 _body_e4e173 _label_e93b69"
+                          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
                         >
                           24.2.2020
                         </p>
                       </div>
                     </div>
                     <div
-                      class="_label_e93b69"
+                      class="_label_9e1f4e"
                       id="duration"
                     >
                       <svg
@@ -153,7 +153,7 @@ exports[`Renders events list when events of any type 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="_text_e4e173 _body_e4e173 _label_e93b69"
+                          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
                         >
                           09:07 - 09:19
                         </p>
@@ -164,11 +164,11 @@ exports[`Renders events list when events of any type 1`] = `
               </div>
             </div>
             <div
-              class="_cta_f3c708"
+              class="_cta_2a19a2"
             >
               <button
                 aria-label="Näytä tapahtuman tiedot"
-                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_f3c708"
+                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_2a19a2"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
@@ -196,51 +196,51 @@ exports[`Renders events list when events of any type 1`] = `
       </ul>
     </li>
     <li
-      class="_item_a90dcd"
+      class="_item_8754a1"
     >
       <h2
-        class="_text_e4e173 _h2_e4e173 "
+        class="_text_f7e7fb _h2_f7e7fb "
       >
         Tapahtumakutsut
       </h2>
       <ul
-        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
+        class="_list_8754a1 _spacing-layout-2-xs_8754a1"
       >
         <li
-          class="_item_a90dcd"
+          class="_item_8754a1"
         >
           <div
-            class="_wrapper_f3c708"
+            class="_wrapper_2a19a2"
             role="button"
             tabindex="0"
           >
             <div
-              class="_image_f3c708 _fullHeight_f3c708"
+              class="_image_2a19a2 _fullHeight_2a19a2"
             >
               <img
                 alt="uooo"
-                class="_image_f3c708"
+                class="_image_2a19a2"
                 src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
               />
             </div>
             <div
-              class="_content_f3c708"
+              class="_content_2a19a2"
             >
               <h3
-                class="_text_e4e173 _h3_e4e173 _title_f3c708"
+                class="_text_f7e7fb _h3_f7e7fb _title_2a19a2"
               >
                 pentti
               </h3>
               <p
-                class="_text_e4e173 _body_e4e173 "
+                class="_text_f7e7fb _body_f7e7fb "
               >
                 eventti
               </p>
               <div
-                class="_focalPoint_f3c708"
+                class="_focalPoint_2a19a2"
               >
                 <button
-                  class="Button-module_button__1msFE Button-module_primary__2LfKB _primaryActionButton_f3c708"
+                  class="Button-module_button__1msFE Button-module_primary__2LfKB _primaryActionButton_2a19a2"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   tabindex="0"
                   type="button"
@@ -253,11 +253,11 @@ exports[`Renders events list when events of any type 1`] = `
               </div>
             </div>
             <div
-              class="_cta_f3c708"
+              class="_cta_2a19a2"
             >
               <button
                 aria-label="Lue lisää"
-                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_f3c708"
+                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_2a19a2"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
@@ -285,58 +285,58 @@ exports[`Renders events list when events of any type 1`] = `
       </ul>
     </li>
     <li
-      class="_item_a90dcd"
+      class="_item_8754a1"
     >
       <h2
-        class="_text_e4e173 _h2_e4e173 "
+        class="_text_f7e7fb _h2_f7e7fb "
       >
         Menneet tapahtumat
       </h2>
       <ul
-        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
+        class="_list_8754a1 _spacing-layout-2-xs_8754a1"
       >
         <li
-          class="_item_a90dcd"
+          class="_item_8754a1"
         >
           <div
-            class="_wrapper_f3c708"
+            class="_wrapper_2a19a2"
             role="button"
             tabindex="0"
           >
             <div
-              class="_image_f3c708 _fullHeight_f3c708"
+              class="_image_2a19a2 _fullHeight_2a19a2"
             >
               <img
                 alt="uooo"
-                class="_image_f3c708"
+                class="_image_2a19a2"
                 src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
               />
             </div>
             <div
-              class="_content_f3c708"
+              class="_content_2a19a2"
             >
               <h3
-                class="_text_e4e173 _h3_e4e173 _title_f3c708"
+                class="_text_f7e7fb _h3_f7e7fb _title_2a19a2"
               >
                 pentti
               </h3>
               <p
-                class="_text_e4e173 _body_e4e173 "
+                class="_text_f7e7fb _body_f7e7fb "
               >
                 eventti
               </p>
               <div
-                class="_focalPoint_f3c708"
+                class="_focalPoint_2a19a2"
               >
                 <span />
               </div>
             </div>
             <div
-              class="_cta_f3c708"
+              class="_cta_2a19a2"
             >
               <button
                 aria-label="Näytä tapahtuman tiedot"
-                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_f3c708"
+                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_2a19a2"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
@@ -370,58 +370,58 @@ exports[`Renders events list when events of any type 1`] = `
 exports[`Renders events list when only enrolments 1`] = `
 <div>
   <ul
-    class="_list_a90dcd _spacing-xl_a90dcd"
+    class="_list_8754a1 _spacing-xl_8754a1"
   >
     <li
-      class="_item_a90dcd"
+      class="_item_8754a1"
     >
       <h2
-        class="_text_e4e173 _h2_e4e173 "
+        class="_text_f7e7fb _h2_f7e7fb "
       >
         Tulevat tapahtumasi
       </h2>
       <ul
-        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
+        class="_list_8754a1 _spacing-layout-2-xs_8754a1"
       >
         <li
-          class="_item_a90dcd"
+          class="_item_8754a1"
         >
           <div
-            class="_wrapper_f3c708"
+            class="_wrapper_2a19a2"
             role="button"
             tabindex="0"
           >
             <div
-              class="_image_f3c708 _fullHeight_f3c708"
+              class="_image_2a19a2 _fullHeight_2a19a2"
             >
               <div
-                class="_qrWrapper_e3c7ac"
+                class="_qrWrapper_6fff92"
               >
                 <div />
               </div>
             </div>
             <div
-              class="_content_f3c708"
+              class="_content_2a19a2"
             >
               <h3
-                class="_text_e4e173 _h3_e4e173 _title_f3c708"
+                class="_text_f7e7fb _h3_f7e7fb _title_2a19a2"
               >
                 pentti
               </h3>
               <p
-                class="_text_e4e173 _body_e4e173 "
+                class="_text_f7e7fb _body_f7e7fb "
               >
                 eventti
               </p>
               <div
-                class="_focalPoint_f3c708"
+                class="_focalPoint_2a19a2"
               >
                 <span>
                   <div
-                    class="_row_e93b69"
+                    class="_row_9e1f4e"
                   >
                     <div
-                      class="_label_e93b69 _fullWidth_e93b69"
+                      class="_label_9e1f4e _fullWidth_9e1f4e"
                       id="venue"
                     >
                       <svg
@@ -441,12 +441,12 @@ exports[`Renders events list when only enrolments 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="_text_e4e173 _body_e4e173 _label_e93b69"
+                          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
                         />
                       </div>
                     </div>
                     <div
-                      class="_label_e93b69"
+                      class="_label_9e1f4e"
                       id="time"
                     >
                       <svg
@@ -466,14 +466,14 @@ exports[`Renders events list when only enrolments 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="_text_e4e173 _body_e4e173 _label_e93b69"
+                          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
                         >
                           24.2.2020
                         </p>
                       </div>
                     </div>
                     <div
-                      class="_label_e93b69"
+                      class="_label_9e1f4e"
                       id="duration"
                     >
                       <svg
@@ -493,7 +493,7 @@ exports[`Renders events list when only enrolments 1`] = `
                       </svg>
                       <div>
                         <p
-                          class="_text_e4e173 _body_e4e173 _label_e93b69"
+                          class="_text_f7e7fb _body_f7e7fb _label_9e1f4e"
                         >
                           11:09 - 11:21
                         </p>
@@ -504,11 +504,11 @@ exports[`Renders events list when only enrolments 1`] = `
               </div>
             </div>
             <div
-              class="_cta_f3c708"
+              class="_cta_2a19a2"
             >
               <button
                 aria-label="Näytä tapahtuman tiedot"
-                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_f3c708"
+                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_2a19a2"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
@@ -542,61 +542,61 @@ exports[`Renders events list when only enrolments 1`] = `
 exports[`Renders events list when only past events 1`] = `
 <div>
   <ul
-    class="_list_a90dcd _spacing-xl_a90dcd"
+    class="_list_8754a1 _spacing-xl_8754a1"
   >
     <li
-      class="_item_a90dcd"
+      class="_item_8754a1"
     >
       <h2
-        class="_text_e4e173 _h2_e4e173 "
+        class="_text_f7e7fb _h2_f7e7fb "
       >
         Menneet tapahtumat
       </h2>
       <ul
-        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
+        class="_list_8754a1 _spacing-layout-2-xs_8754a1"
       >
         <li
-          class="_item_a90dcd"
+          class="_item_8754a1"
         >
           <div
-            class="_wrapper_f3c708"
+            class="_wrapper_2a19a2"
             role="button"
             tabindex="0"
           >
             <div
-              class="_image_f3c708 _fullHeight_f3c708"
+              class="_image_2a19a2 _fullHeight_2a19a2"
             >
               <img
                 alt="uooo"
-                class="_image_f3c708"
+                class="_image_2a19a2"
                 src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
               />
             </div>
             <div
-              class="_content_f3c708"
+              class="_content_2a19a2"
             >
               <h3
-                class="_text_e4e173 _h3_e4e173 _title_f3c708"
+                class="_text_f7e7fb _h3_f7e7fb _title_2a19a2"
               >
                 pentti
               </h3>
               <p
-                class="_text_e4e173 _body_e4e173 "
+                class="_text_f7e7fb _body_f7e7fb "
               >
                 eventti
               </p>
               <div
-                class="_focalPoint_f3c708"
+                class="_focalPoint_2a19a2"
               >
                 <span />
               </div>
             </div>
             <div
-              class="_cta_f3c708"
+              class="_cta_2a19a2"
             >
               <button
                 aria-label="Näytä tapahtuman tiedot"
-                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_f3c708"
+                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_2a19a2"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
@@ -630,54 +630,54 @@ exports[`Renders events list when only past events 1`] = `
 exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
 <div>
   <ul
-    class="_list_a90dcd _spacing-xl_a90dcd"
+    class="_list_8754a1 _spacing-xl_8754a1"
   >
     <li
-      class="_item_a90dcd"
+      class="_item_8754a1"
     >
       <h2
-        class="_text_e4e173 _h2_e4e173 "
+        class="_text_f7e7fb _h2_f7e7fb "
       >
         Tapahtumakutsut
       </h2>
       <ul
-        class="_list_a90dcd _spacing-layout-2-xs_a90dcd"
+        class="_list_8754a1 _spacing-layout-2-xs_8754a1"
       >
         <li
-          class="_item_a90dcd"
+          class="_item_8754a1"
         >
           <div
-            class="_wrapper_f3c708"
+            class="_wrapper_2a19a2"
             role="button"
             tabindex="0"
           >
             <div
-              class="_image_f3c708 _fullHeight_f3c708"
+              class="_image_2a19a2 _fullHeight_2a19a2"
             >
               <img
                 alt="uooo"
-                class="_image_f3c708"
+                class="_image_2a19a2"
                 src="http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png"
               />
             </div>
             <div
-              class="_content_f3c708"
+              class="_content_2a19a2"
             >
               <h3
-                class="_text_e4e173 _h3_e4e173 _title_f3c708"
+                class="_text_f7e7fb _h3_f7e7fb _title_2a19a2"
               >
                 pentti
               </h3>
               <p
-                class="_text_e4e173 _body_e4e173 "
+                class="_text_f7e7fb _body_f7e7fb "
               >
                 eventti
               </p>
               <div
-                class="_focalPoint_f3c708"
+                class="_focalPoint_2a19a2"
               >
                 <button
-                  class="Button-module_button__1msFE Button-module_primary__2LfKB _primaryActionButton_f3c708"
+                  class="Button-module_button__1msFE Button-module_primary__2LfKB _primaryActionButton_2a19a2"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   tabindex="0"
                   type="button"
@@ -690,11 +690,11 @@ exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
               </div>
             </div>
             <div
-              class="_cta_f3c708"
+              class="_cta_2a19a2"
             >
               <button
                 aria-label="Lue lisää"
-                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_f3c708"
+                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _actionWrapper_2a19a2"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >

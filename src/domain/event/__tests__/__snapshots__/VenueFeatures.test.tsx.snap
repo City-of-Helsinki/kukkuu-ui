@@ -8,7 +8,7 @@ exports[`renders snapshot correctly 1`] = `
     <button
       aria-controls="collapsible_1"
       aria-expanded="false"
-      class="_header_b278db"
+      class="_header_e661a8"
     >
       <h3>
         Saapuminen
@@ -16,7 +16,7 @@ exports[`renders snapshot correctly 1`] = `
       <svg
         aria-hidden="true"
         aria-label="angle-down"
-        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _arrow_b278db"
+        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _arrow_e661a8"
         role="img"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@ exports[`renders snapshot correctly 1`] = `
     </button>
     <div
       aria-hidden="true"
-      class="_content_b278db"
+      class="_content_e661a8"
       id="collapsible_1"
     >
       <p>
@@ -46,7 +46,7 @@ exports[`renders snapshot correctly 1`] = `
     <button
       aria-controls="collapsible_2"
       aria-expanded="false"
-      class="_header_b278db"
+      class="_header_e661a8"
     >
       <h3>
         Esteettömyys
@@ -54,7 +54,7 @@ exports[`renders snapshot correctly 1`] = `
       <svg
         aria-hidden="true"
         aria-label="angle-down"
-        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _arrow_b278db"
+        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _arrow_e661a8"
         role="img"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ exports[`renders snapshot correctly 1`] = `
     </button>
     <div
       aria-hidden="true"
-      class="_content_b278db"
+      class="_content_e661a8"
       id="collapsible_2"
     >
       <p>
@@ -84,7 +84,7 @@ exports[`renders snapshot correctly 1`] = `
     <button
       aria-controls="collapsible_3"
       aria-expanded="false"
-      class="_header_b278db"
+      class="_header_e661a8"
     >
       <h3>
         WC-tilat ja lastenhoitohuone
@@ -92,7 +92,7 @@ exports[`renders snapshot correctly 1`] = `
       <svg
         aria-hidden="true"
         aria-label="angle-down"
-        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _arrow_b278db"
+        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _arrow_e661a8"
         role="img"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +107,7 @@ exports[`renders snapshot correctly 1`] = `
     </button>
     <div
       aria-hidden="true"
-      class="_content_b278db"
+      class="_content_e661a8"
       id="collapsible_3"
     >
       <p>
@@ -122,7 +122,7 @@ exports[`renders snapshot correctly 1`] = `
     <button
       aria-controls="collapsible_4"
       aria-expanded="false"
-      class="_header_b278db"
+      class="_header_e661a8"
     >
       <h3>
         Lisätietoa
@@ -130,7 +130,7 @@ exports[`renders snapshot correctly 1`] = `
       <svg
         aria-hidden="true"
         aria-label="angle-down"
-        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _arrow_b278db"
+        class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _arrow_e661a8"
         role="img"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +145,7 @@ exports[`renders snapshot correctly 1`] = `
     </button>
     <div
       aria-hidden="true"
-      class="_content_b278db"
+      class="_content_e661a8"
       id="collapsible_4"
     >
       <p>

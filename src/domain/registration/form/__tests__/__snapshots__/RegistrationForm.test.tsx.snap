@@ -3,42 +3,42 @@
 exports[`renders snapshot correctly 1`] = `
 <div>
   <div
-    class="_pageWrapper_e42bcd _grayBackground_72244b"
+    class="_pageWrapper_4ba3e3 _grayBackground_140e51"
   >
     <div
-      class="_container_533ff0"
+      class="_container_996049"
     >
       <div
-        class="_registrationFormContainer_72244b"
+        class="_registrationFormContainer_140e51"
       >
         <div
-          class="_registrationForm_72244b"
+          class="_registrationForm_140e51"
         >
           <form
             data-testid="registrationForm"
             id="registrationForm"
           >
             <div
-              class="_registrationGrayContainer_72244b"
+              class="_registrationGrayContainer_140e51"
             >
               <h1>
                 Tule mukaan
               </h1>
             </div>
             <div
-              class="_childrenInfo_72244b _registrationWhiteContainer_72244b"
+              class="_childrenInfo_140e51 _registrationWhiteContainer_140e51"
             >
               <div
-                class="_childFields_284205"
+                class="_childFields_87b5a0"
               >
                 <div
-                  class="_childInfo_284205"
+                  class="_childInfo_87b5a0"
                 >
                   <div
-                    class="_heading_284205"
+                    class="_heading_87b5a0"
                   >
                     <div
-                      class="_imgWrapper_73ff55 _childImage_284205"
+                      class="_imgWrapper_1fbb90 _childImage_87b5a0"
                     >
                       <img
                         alt=""
@@ -49,11 +49,11 @@ exports[`renders snapshot correctly 1`] = `
                       Lapsen tiedot
                     </h2>
                     <p
-                      class="_right_8fd5d0"
+                      class="_right_409a23"
                       data-testid="mandatory-field-legend"
                     >
                       <span
-                        class="_bold_8fd5d0"
+                        class="_bold_409a23"
                       >
                         *
                       </span>
@@ -64,10 +64,10 @@ exports[`renders snapshot correctly 1`] = `
                     </p>
                   </div>
                   <div
-                    class="_childFixedInfo_284205"
+                    class="_childFixedInfo_87b5a0"
                   >
                     <div
-                      class="_childBirthyear_284205"
+                      class="_childBirthyear_87b5a0"
                     >
                       <label>
                         Lapsen syntymävuosi
@@ -77,7 +77,7 @@ exports[`renders snapshot correctly 1`] = `
                       </p>
                     </div>
                     <div
-                      class="_childHomeCity_284205"
+                      class="_childHomeCity_87b5a0"
                     >
                       <label>
                         Lapsen kotipaikkakunta
@@ -86,11 +86,11 @@ exports[`renders snapshot correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    class="_childName_284205"
+                    class="_childName_87b5a0"
                   >
                     <div>
                       <div
-                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
                       >
                         <label
                           class="FieldLabel-module_label__1zrXK "
@@ -116,7 +116,7 @@ exports[`renders snapshot correctly 1`] = `
                   </div>
                   <div>
                     <div
-                      class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                      class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
                     >
                       <label
                         class="FieldLabel-module_label__1zrXK "
@@ -145,7 +145,7 @@ exports[`renders snapshot correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    class="_formField_b4a938 Select-module_root__-GjU5"
+                    class="_formField_69b114 Select-module_root__-GjU5"
                     id="children[0].relationship.type"
                     name="children[0].relationship.type"
                     tabindex="-1"
@@ -240,11 +240,11 @@ exports[`renders snapshot correctly 1`] = `
               </div>
             </div>
             <div
-              class="_registrationGrayContainer_72244b"
+              class="_registrationGrayContainer_140e51"
             >
               <button
                 aria-label="Lisää lapsi"
-                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _addNewChildButton_72244b"
+                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _addNewChildButton_140e51"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
@@ -274,13 +274,13 @@ exports[`renders snapshot correctly 1`] = `
               </button>
             </div>
             <div
-              class="_guardianInfo_72244b _registrationWhiteContainer_72244b"
+              class="_guardianInfo_140e51 _registrationWhiteContainer_140e51"
             >
               <div
-                class="_heading_72244b"
+                class="_heading_140e51"
               >
                 <div
-                  class="_imgWrapper_73ff55 _childImage_72244b"
+                  class="_imgWrapper_1fbb90 _childImage_140e51"
                 >
                   <img
                     alt=""
@@ -291,11 +291,11 @@ exports[`renders snapshot correctly 1`] = `
                   Lähiaikuisen tiedot
                 </h2>
                 <p
-                  class="_right_8fd5d0"
+                  class="_right_409a23"
                   data-testid="mandatory-field-legend"
                 >
                   <span
-                    class="_bold_8fd5d0"
+                    class="_bold_409a23"
                   >
                     *
                   </span>
@@ -307,7 +307,7 @@ exports[`renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
                 >
                   <label
                     class="FieldLabel-module_label__1zrXK "
@@ -339,7 +339,7 @@ exports[`renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
                 >
                   <label
                     class="FieldLabel-module_label__1zrXK "
@@ -368,11 +368,11 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <div
-                class="_guardianName_72244b"
+                class="_guardianName_140e51"
               >
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
                   >
                     <label
                       class="FieldLabel-module_label__1zrXK "
@@ -402,7 +402,7 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_b4a938"
+                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
                   >
                     <label
                       class="FieldLabel-module_label__1zrXK "
@@ -432,7 +432,7 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <div
-                class="_formField_b4a938 Select-module_root__-GjU5"
+                class="_formField_69b114 Select-module_root__-GjU5"
                 id="preferLanguage"
                 name="preferLanguage"
                 tabindex="-1"
@@ -523,7 +523,7 @@ exports[`renders snapshot correctly 1`] = `
                 />
               </div>
               <div
-                class="_formField_b4a938 Select-module_root__-GjU5"
+                class="_formField_69b114 Select-module_root__-GjU5"
                 id="languagesSpokenAtHome"
                 name="guardian.languagesSpokenAtHome"
                 tabindex="-1"
@@ -609,7 +609,7 @@ exports[`renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="Checkbox-module_checkbox__3r5uI _checkboxField_639ec5"
+                  class="Checkbox-module_checkbox__3r5uI _checkboxField_4c5c4f"
                   style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                 >
                   <input
@@ -629,11 +629,11 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <div
-                class="_agreeContainer_72244b"
+                class="_agreeContainer_140e51"
               >
                 <div>
                   <div
-                    class="Checkbox-module_checkbox__3r5uI _checkboxField_639ec5"
+                    class="Checkbox-module_checkbox__3r5uI _checkboxField_4c5c4f"
                     style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                   >
                     <input
@@ -652,7 +652,7 @@ exports[`renders snapshot correctly 1`] = `
                   </div>
                 </div>
                 <div
-                  class="_agreeLabel_72244b"
+                  class="_agreeLabel_140e51"
                 >
                   Olen tutustunut 
                   <a
@@ -674,14 +674,14 @@ exports[`renders snapshot correctly 1`] = `
                   </a>
                   . Minuun voidaan olla yhteydessä antamieni tietojen avulla.
                   <span
-                    class="_required_72244b"
+                    class="_required_140e51"
                   >
                      *
                   </span>
                 </div>
               </div>
               <button
-                class="Button-module_button__1msFE Button-module_primary__2LfKB _submitButton_72244b"
+                class="Button-module_button__1msFE Button-module_primary__2LfKB _submitButton_140e51"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="submit"
               >
