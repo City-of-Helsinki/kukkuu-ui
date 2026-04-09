@@ -401,6 +401,41 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.15.4](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.15.3...kukkuu-ui-v3.15.4) (2026-04-09)
+
+
+### Bug Fixes
+
+* Restore typecheck for HDS select wrappers ([6d3bf37](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6d3bf37b4f97ebb2956aa444afc57d6736e5154b))
+
+
+### Dependencies
+
+* Add lodash resolution to fix code injection vulnerabilities ([f4eab7e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f4eab7e329413cd23a9f6466089b0e01d28dc42d))
+* Bump lodash from 4.17.23 to 4.18.1 ([496b78f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/496b78f61516c89d6f9b6268e95c0f472cf338bf))
+* Bump lodash-es from 4.17.23 to 4.18.1 ([7b1c034](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7b1c0342163770277aeccc1bc5b9b03ac7fd3104))
+* Bump vite from 8.0.3 to 8.0.5 ([442633e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/442633e5d96c6ba6685ee1eab97e835b378e09dd))
+* Enforce documented security resolutions ([6562061](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6562061b5f78af13c8b00f5ae7fbff2cda7a2868))
+* Remove redux dependency and update import statements for thunk ([3b69397](https://github.com/City-of-Helsinki/kukkuu-ui/commit/3b693974538898a92bc5b9a64e6814c87ca474b4))
+* Remove unused @graphql-codegen/add package ([a1c0799](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a1c0799b3fdd9a4389c3287191554a33bec8337b))
+* Remove unused @types/react-redux package ([7e0bbc8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7e0bbc860d2fb3d4508909fb2884f998b8efc3da))
+* Remove unused @vitejs/plugin-react package ([7811a38](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7811a38a4adf8cd930510a17e8ec9d9375f954de))
+* Remove unused codecov package ([e1eceb7](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e1eceb74b8ce5c81e890bb0ca41993f988df0d73))
+* Remove unused css-what package ([a4d65c4](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a4d65c410cd4eadf4272b6137d07b1c21476477c))
+* Remove unused html-react-parser package ([fb10a04](https://github.com/City-of-Helsinki/kukkuu-ui/commit/fb10a04829eb661c653123e82dea5e547ae0df48))
+* Remove unused oidc-client package ([f63fcc1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/f63fcc1ff8864e7f30e56461b5bb0c7c6aa432f3))
+* Remove unused prop-types package ([0ebd17d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/0ebd17dab842211c5d7f095aea5c227247efcf74))
+* Replace Vite ESLint plugin with @nabla/vite-plugin-eslint ([3a500d2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/3a500d2e76cabf2e86ca2348c1edd31bcbff3735))
+* Update @city-of-helsinki/react-helsinki-headless-cms to 3.0.1 ([5911400](https://github.com/City-of-Helsinki/kukkuu-ui/commit/59114003831d0f3f172707f083211f1a5c705b95))
+* Update babel runtime to version 7.29.2 ([d844620](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d8446205b725fd895bb306bf03eb506ec5347639))
+* Update brace-expansion to versions 1.1.13 and 2.0.3 ([2cf56c3](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2cf56c3a7aed59aa27065a2893a04cce61c3e4c4))
+* Update js-yaml to version 4.1.1 ([2d92676](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2d926767a94ae3f2d6fcefa7d2aef8e45146282a))
+* Update minimatch to fix ReDoS vulnerability ([4111555](https://github.com/City-of-Helsinki/kukkuu-ui/commit/41115551f72e0eb3aa90e2dc4fe71bb16221dcbe))
+* Update rollup packages to version 4.60.1 ([84dde13](https://github.com/City-of-Helsinki/kukkuu-ui/commit/84dde134740c8d635d495c397abb5e000b47cd9d))
+* Update sass to 1.98.0 and immutable to 5.1.5 for security ([b3efbc1](https://github.com/City-of-Helsinki/kukkuu-ui/commit/b3efbc10cd64b6440c3ad55ecf8e86fb46399eab))
+* Update underscore to fix ReDoS vulnerability ([60b5012](https://github.com/City-of-Helsinki/kukkuu-ui/commit/60b5012fec0912a73d4b315ab2d1ccdaf4c43e59))
+* Upgrade to Vite 8 and fix redux-persist compatibility ([a725ed5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/a725ed5a642eeeb7027124412a42abd8510f2b30))
+
 ## [3.15.3](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.15.2...kukkuu-ui-v3.15.3) (2026-03-23)
 
 
