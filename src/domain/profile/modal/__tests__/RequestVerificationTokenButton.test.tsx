@@ -53,7 +53,7 @@ describe('RequestVerificationTokenButton', () => {
 
   type MockProps = {
     success: boolean;
-    mutationCalledFunc?: ReturnType<typeof vi.fn>;
+    mutationCalledFunc?: () => void;
     delayMs?: number;
   };
 
