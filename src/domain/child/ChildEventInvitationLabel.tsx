@@ -32,7 +32,7 @@ export default function ChildEventInvitationLabel({ childId }: Props) {
   });
 
   const upcomingEventsWhereChildCanEnrol =
-    data?.child?.upcomingEventsAndEventGroups?.edges?.map(
+    data?.child?.upcomingEventsAndEventGroups?.edges?.filter(
       (edge) => edge?.node?.canChildEnroll
     ) ?? [];
   const hasUpcomingEventsWhereChildCanEnrol =

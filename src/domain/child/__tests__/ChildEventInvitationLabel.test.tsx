@@ -43,11 +43,16 @@ describe('ChildEventInvitationLabel', () => {
         result: {
           data: {
             child: {
+              __typename: 'ChildNode',
               id: childId,
               upcomingEventsAndEventGroups: {
+                __typename: 'EventConnection',
                 edges: [
                   {
+                    __typename: 'EventEdge',
                     node: {
+                      __typename: 'EventNode',
+                      id: 'event-1',
                       canChildEnroll,
                     },
                   },
@@ -65,10 +70,12 @@ describe('ChildEventInvitationLabel', () => {
         result: {
           data: {
             child: {
+              __typename: 'ChildNode',
               id: childId,
               enrolmentCount: areAllCurrentEnrolmentsUsed ? 10 : 5,
               pastEnrolmentCount: 0,
               project: {
+                __typename: 'ProjectNode',
                 id: 'test-project-id',
                 enrolmentLimit: 10,
               },
