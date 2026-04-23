@@ -17,15 +17,14 @@ import {
 } from '../../api/generatedTypes/graphql';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import enrolOccurrenceMutation from '../mutations/enrolOccurrenceMutation';
-import { saveChildEvents } from '../state/EventActions';
 import ErrorMessage from '../../../common/components/error/Error';
 import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
 import { GQLErrors } from './EnrolConstants';
 import Enrol from './Enrol';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
-import { publicSvgIconPaths } from '../../../public_files';
-import Icon from '../../../common/components/icon/Icon';
 import graphqlClient from '../../api/client';
+import { useProfileContext } from '../../profile/hooks/useProfileContext';
+import { handleEnrolCompleted } from './handleEnrolCompleted';
 
 function containsAlreadyJoinedError(
   errors: ReadonlyArray<GraphQLFormattedError>
@@ -52,6 +51,7 @@ const EnrolPage = () => {
     i18n: { language },
   } = useTranslation();
   const dispatch = useDispatch();
+  const { refetchProfile } = useProfileContext();
   const params = useParams<{
     childId: string;
     eventId: string;
@@ -91,28 +91,15 @@ const EnrolPage = () => {
       childId,
       eventGroupId: data?.occurrence?.event?.eventGroup?.id,
     }),
-    onCompleted: (data) => {
-      if (data?.enrolOccurrence?.enrolment?.child?.occurrences?.edges) {
-        dispatch(
-          saveChildEvents({
-            childId,
-            occurrences: data.enrolOccurrence.enrolment.child.occurrences,
-          })
-        );
-        toast.success(
-          <div>
-            <Icon
-              src={publicSvgIconPaths['tada']}
-              className={styles.tadaIcon}
-            />
-            <h1>{t('enrollment.successToast.heading')}</h1>
-            <p>{t('enrollment.successToast.paragraph')}</p>
-          </div>
-        );
-      }
-
-      goToOccurrence();
-    },
+    awaitRefetchQueries: true,
+    onCompleted: async (data) =>
+      handleEnrolCompleted(data, {
+        childId,
+        dispatch,
+        refetchProfile,
+        goToOccurrence,
+        t,
+      }),
     onError: (error) => {
       if (containsAlreadyJoinedError(error.graphQLErrors)) {
         goToOccurrence();

@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from '@sentry/browser';
 
 import { ProfileContext, ProfileType } from './ProfileContext';
 import useProfileFetcher from './hooks/useProfileFetcher';
@@ -18,12 +19,17 @@ export default function ProfileProvider({
     setProfileToContext,
   });
 
-  const refetchProfile = React.useCallback(() => {
-    refetch().then(({ data: refreshedData }) => {
+  const refetchProfile = React.useCallback(async () => {
+    try {
+      const { data: refreshedData } = await refetch();
       setProfileToContext(refreshedData?.myProfile || null);
       // eslint-disable-next-line no-console
       console.info('ProfileContext', 'profile refetched');
-    });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+      Sentry.captureException(error);
+    }
   }, [refetch]);
 
   const clearProfile = React.useCallback(() => {
