@@ -13,10 +13,11 @@ import {
   UnenrolOccurrenceMutationVariables,
 } from '../../api/generatedTypes/graphql';
 import ConfirmModal from '../../../common/components/confirm/ConfirmModal';
-import { saveChildEvents } from '../state/EventActions';
 import getEventOrEventGroupOccurrenceRefetchQueries from '../getEventOrEventGroupOccurrenceRefetchQueries';
 import AppConfig from '../../app/AppConfig';
 import graphqlClient from '../../api/client';
+import { useProfileContext } from '../../profile/hooks/useProfileContext';
+import { handleUnenrolCompleted } from './handleUnenrolCompleted';
 
 interface UnenrolModalProps {
   isOpen: boolean;
@@ -37,6 +38,7 @@ const UnenrolModal = ({
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const getPathname = useGetPathname();
+  const { refetchProfile } = useProfileContext();
 
   const [unenrolOccurrence] = useMutation<
     UnenrolOccurrenceMutation,
@@ -48,17 +50,14 @@ const UnenrolModal = ({
       eventGroupId,
     }),
     awaitRefetchQueries: true,
-    onCompleted: (data) => {
-      if (data.unenrolOccurrence?.child?.occurrences.edges) {
-        dispatch(
-          saveChildEvents({
-            childId: data.unenrolOccurrence.child.id,
-            occurrences: data.unenrolOccurrence.child.occurrences,
-          })
-        );
-      }
-      navigate(getPathname(`/profile/child/${childId}`), { replace: true });
-    },
+    onCompleted: async (data) =>
+      handleUnenrolCompleted(data, {
+        dispatch,
+        refetchProfile,
+        navigateToProfile: () => {
+          navigate(getPathname(`/profile/child/${childId}`), { replace: true });
+        },
+      }),
   });
 
   const unenrol = async () => {

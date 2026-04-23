@@ -11,7 +11,7 @@ export type ProfileContextType = {
   profile: ProfileType;
   clearProfile: () => void;
   updateProfile: UpdateProfileType;
-  refetchProfile: () => void;
+  refetchProfile: () => Promise<void>;
   isLoading: boolean;
   isFetchCalled: boolean;
 };
@@ -26,7 +26,7 @@ const defaultContext: ProfileContextType = {
   updateProfile: () => {
     throw new Error('Not implemented');
   },
-  refetchProfile: () => {
+  refetchProfile: async () => {
     throw new Error('Not implemented');
   },
 };
