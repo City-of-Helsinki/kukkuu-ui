@@ -263,6 +263,9 @@ importers:
       '@graphql-codegen/typescript-react-apollo':
         specifier: ^4.4.0
         version: 4.4.0(graphql@16.14.0)
+      '@testing-library/user-event':
+        specifier: ^14.6.1
+        version: 14.6.1(@testing-library/dom@8.20.1)
       '@types/jsonwebtoken':
         specifier: ^9.0.8
         version: 9.0.8
@@ -2251,6 +2254,12 @@ packages:
     engines: {node: '>=14', npm: '>=6'}
     peerDependencies:
       testcafe: '>=2.0.0'
+
+  '@testing-library/user-event@14.6.1':
+    resolution: {integrity: sha512-vq7fv0rnt+QTXgPxr5Hjc210p6YKq2kmdziLgnsZGgLJ9e6VAShx1pACLuRjd/AS/sr7phAR58OIIpf0LlmQNw==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      '@testing-library/dom': '>=7.21.4'
 
   '@textlint/ast-node-types@12.6.1':
     resolution: {integrity: sha512-uzlJ+ZsCAyJm+lBi7j0UeBbj+Oy6w/VWoGJ3iHRHE5eZ8Z4iK66mq+PG/spupmbllLtz77OJbY89BYqgFyjXmA==}
@@ -9855,6 +9864,10 @@ snapshots:
     dependencies:
       '@testing-library/dom': 8.20.1
       testcafe: 3.7.4
+
+  '@testing-library/user-event@14.6.1(@testing-library/dom@8.20.1)':
+    dependencies:
+      '@testing-library/dom': 8.20.1
 
   '@textlint/ast-node-types@12.6.1': {}
 
