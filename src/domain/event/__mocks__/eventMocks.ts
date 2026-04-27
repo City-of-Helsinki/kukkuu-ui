@@ -3,6 +3,7 @@ import { MockedResponse } from '@apollo/client/testing';
 import eventQuery, {
   eventExternalTicketSystemHasAnyFreePasswordsQuery,
 } from '../queries/eventQuery';
+import { externalTicketSystemEventQuery } from '../queries/externalTicketSystemEventQuery';
 
 export const testEventId = 'event-456';
 export const testChildId = 'child-123';
@@ -151,6 +152,36 @@ export const dummyPasswordMock: MockedResponse = {
         __typename: 'EventNode',
         id: testEventId,
         ticketSystem: null,
+      },
+    },
+  },
+};
+
+export const externalTicketSystemEnrolledMock: MockedResponse = {
+  request: {
+    query: externalTicketSystemEventQuery,
+    variables: {
+      eventId: testEventId,
+      childId: testChildId,
+    },
+  },
+  result: {
+    data: {
+      event: {
+        __typename: 'EventNode',
+        id: testEventId,
+        name: 'Ticketmaster Event',
+        description: 'An external ticket event description',
+        image: '',
+        imageAltText: '',
+        participantsPerInvite: 'CHILD_AND_GUARDIAN',
+        occurrences: { __typename: 'OccurrenceNodeConnection', edges: [] },
+        ticketSystem: {
+          __typename: 'TicketmasterEventTicketSystem',
+          type: 'TICKETMASTER',
+          childPassword: 'SECRET123',
+          url: 'https://ticketmaster.fi/event/123',
+        },
       },
     },
   },
