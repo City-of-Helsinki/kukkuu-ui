@@ -7,6 +7,11 @@ import { handleEnrolCompleted } from '../handleEnrolCompleted';
 import { customRender as render } from '../../../../common/test/customRender';
 import EnrolPage from '../EnrolPage';
 import occurrenceQuery from '../../queries/occurrenceQuery';
+import { testChildId } from '../../../child/__mocks__/childMocks';
+import {
+  testOccurrenceId,
+  occurrenceWithDataMock,
+} from '../../__mocks__/occurrenceMocks';
 
 vi.mock('react-toastify', () => ({
   toast: {
@@ -28,56 +33,6 @@ vi.mock('react-router', async () => {
     useNavigate: () => vi.fn(),
   };
 });
-
-const testOccurrenceId = 'occurrence-789';
-const testChildId = 'child-123';
-
-const occurrenceWithDataMock: MockedResponse = {
-  request: {
-    query: occurrenceQuery,
-    variables: {
-      id: testOccurrenceId,
-      childId: testChildId,
-    },
-  },
-  result: {
-    data: {
-      occurrence: {
-        __typename: 'OccurrenceNode',
-        id: testOccurrenceId,
-        time: '2025-05-15T10:00:00+00:00',
-        remainingCapacity: 10,
-        event: {
-          __typename: 'EventNode',
-          id: 'event-456',
-          image: 'image-url',
-          imageAltText: 'Test Event Image',
-          description: 'Test Event Description',
-          shortDescription: 'Test Short Description',
-          name: 'Test Event',
-          duration: 60,
-          participantsPerInvite: 1,
-          eventGroup: {
-            __typename: 'EventGroupNode',
-            id: 'group-123',
-          },
-        },
-        venue: {
-          __typename: 'VenueNode',
-          id: 'venue-123',
-          name: 'Test Venue',
-          address: 'Test Address 123',
-          accessibilityInfo: 'Accessible',
-          arrivalInstructions: 'Come early',
-          additionalInfo: 'Extra info',
-          wwwUrl: 'https://example.com',
-          wcAndFacilities: 'Has facilities',
-        },
-        childHasFreeSpotNotificationSubscription: false,
-      },
-    },
-  },
-};
 
 const renderEnrolPage = (mocks: MockedResponse[]) =>
   render(<EnrolPage />, mocks);

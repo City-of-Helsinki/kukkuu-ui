@@ -11,6 +11,15 @@ import eventQuery, {
   eventExternalTicketSystemHasAnyFreePasswordsQuery,
 } from '../queries/eventQuery';
 import { getDateOptions, getTimeOptions } from '../EventUtils';
+import {
+  testEventId,
+  testChildId,
+  eventWithOccurrencesMock,
+  externalTicketSystemEventMock,
+  hasFreePasswordsMock,
+  internalTicketSystemPasswordsMock,
+  dummyPasswordMock,
+} from '../__mocks__/eventMocks';
 
 vi.mock('@sentry/browser');
 
@@ -107,158 +116,6 @@ describe('Event', () => {
   });
 
   describe('Event component', () => {
-    const testEventId = 'event-456';
-    const testChildId = 'child-123';
-
-    const eventWithOccurrencesMock = {
-      request: {
-        query: eventQuery,
-        variables: {
-          id: testEventId,
-          childId: testChildId,
-        },
-      },
-      newData: () => ({
-        data: {
-          event: {
-            __typename: 'EventNode',
-            id: testEventId,
-            name: 'Test Event',
-            description: 'Test event description',
-            shortDescription: 'Test short description',
-            image: 'test-image-url',
-            imageAltText: 'Test image alt',
-            participantsPerInvite: 'CHILD_AND_GUARDIAN',
-            duration: 60,
-            capacityPerOccurrence: 20,
-            canChildEnroll: true,
-            eventGroup: {
-              __typename: 'EventGroupNode',
-              id: 'group-123',
-            },
-            ticketSystem: {
-              __typename: 'InternalEventTicketSystem',
-              type: 'INTERNAL',
-            },
-            allOccurrences: {
-              __typename: 'OccurrenceNodeConnection',
-              edges: [],
-            },
-            occurrences: {
-              __typename: 'OccurrenceNodeConnection',
-              edges: [],
-            },
-          },
-        },
-      }),
-    };
-
-    const externalTicketSystemEventMock = {
-      request: {
-        query: eventQuery,
-        variables: {
-          id: testEventId,
-          childId: testChildId,
-        },
-      },
-      newData: () => ({
-        data: {
-          event: {
-            __typename: 'EventNode',
-            id: testEventId,
-            name: 'External Ticket Event',
-            description: 'Event with external ticket system',
-            shortDescription: 'External short description',
-            image: 'external-image-url',
-            imageAltText: 'External image alt',
-            participantsPerInvite: 'CHILD_AND_GUARDIAN',
-            duration: 60,
-            capacityPerOccurrence: 20,
-            canChildEnroll: true,
-            eventGroup: {
-              __typename: 'EventGroupNode',
-              id: 'group-123',
-            },
-            ticketSystem: {
-              __typename: 'TicketmasterEventTicketSystem',
-              type: 'TICKETMASTER',
-              childPassword: 'test-password',
-              url: 'https://ticketmaster.example',
-            },
-            allOccurrences: {
-              __typename: 'OccurrenceNodeConnection',
-              edges: [],
-            },
-            occurrences: {
-              __typename: 'OccurrenceNodeConnection',
-              edges: [],
-            },
-          },
-        },
-      }),
-    };
-
-    const internalTicketSystemPasswordsMock = {
-      request: {
-        query: eventExternalTicketSystemHasAnyFreePasswordsQuery,
-        variables: {
-          id: testEventId,
-        },
-      },
-      newData: () => ({
-        data: {
-          event: {
-            __typename: 'EventNode',
-            id: testEventId,
-            ticketSystem: {
-              __typename: 'InternalEventTicketSystem',
-              type: 'INTERNAL',
-            },
-          },
-        },
-      }),
-    };
-
-    const hasFreePasswordsMock = {
-      request: {
-        query: eventExternalTicketSystemHasAnyFreePasswordsQuery,
-        variables: {
-          id: testEventId,
-        },
-      },
-      newData: () => ({
-        data: {
-          event: {
-            __typename: 'EventNode',
-            id: testEventId,
-            ticketSystem: {
-              __typename: 'TicketmasterEventTicketSystem',
-              type: 'TICKETMASTER',
-              hasAnyFreePasswords: true,
-            },
-          },
-        },
-      }),
-    };
-
-    const dummyPasswordMock = {
-      request: {
-        query: eventExternalTicketSystemHasAnyFreePasswordsQuery,
-        variables: {
-          id: testEventId,
-        },
-      },
-      result: {
-        data: {
-          event: {
-            __typename: 'EventNode',
-            id: testEventId,
-            ticketSystem: null,
-          },
-        },
-      },
-    };
-
     const renderEvent = (mocks) => render(<Event />, mocks);
 
     const waitForLoadingToFinish = () =>
