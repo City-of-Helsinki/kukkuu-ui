@@ -7,6 +7,8 @@ import {
   PageType as Page,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
+import { Hero } from '../domain/headlessCms/graphql/__generated__';
+
 const generateUri = () =>
   faker.word
     .words({ count: { min: 1, max: 4 } })
@@ -27,6 +29,21 @@ export const fakeMenuItem = (overrides?: Partial<MenuItem>): MenuItem => {
   );
 };
 
+export const fakeHero = (overrides?: Partial<Hero>): Hero => {
+  return merge<Hero, typeof overrides>(
+    {
+      background_color: faker.color.rgb(),
+      background_image_url: faker.internet.url(),
+      description: faker.word.words(),
+      link: null,
+      title: faker.word.words(),
+      wave_motif: null,
+      __typename: 'Hero',
+    },
+    overrides
+  );
+};
+
 export const fakePage = (overrides?: Partial<Page>): Page => {
   return merge<Page, typeof overrides>(
     {
@@ -36,8 +53,12 @@ export const fakePage = (overrides?: Partial<Page>): Page => {
       lead: faker.word.words(),
       slug: generateUri(),
       content: faker.word.words(),
+      hero: fakeHero(),
       language: fakeLanguage({ code: LanguageCodeEnum.Fi }),
       sidebar: [],
+      breadcrumbs: [],
+      modules: [],
+      translations: [],
       seo: fakeSEO(),
       link: generateUri(),
       featuredImage: {
@@ -57,6 +78,11 @@ export const fakeMediaItem = (overrides?: Partial<MediaItem>): MediaItem => {
       mediaItemUrl: faker.internet.url(),
       link: faker.internet.url(),
       altText: faker.word.words(),
+      photographerName: faker.person.fullName(),
+      large: faker.internet.url(),
+      medium_large: faker.internet.url(),
+      medium: faker.internet.url(),
+      thumbnail: faker.internet.url(),
       mimeType: faker.system.mimeType(),
       uri: faker.internet.url(),
       __typename: 'MediaItem',
@@ -70,11 +96,13 @@ export const fakeSEO = (overrides?: Partial<Seo>): Seo => {
     {
       description: faker.lorem.text(),
       title: faker.word.words(),
+      canonicalUrl: faker.internet.url(),
       twitterDescription: faker.word.words(),
       twitterTitle: faker.word.words(),
       openGraphType: faker.word.noun(),
       openGraphDescription: faker.word.words(),
       openGraphTitle: faker.word.words(),
+      socialImage: fakeMediaItem(),
       __typename: 'SEO',
     },
     overrides

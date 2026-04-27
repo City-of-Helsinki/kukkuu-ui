@@ -12,6 +12,8 @@ import {
 } from '../../../api/generatedTypes/graphql';
 import eventQuery from '../../queries/eventQuery';
 
+vi.mock('../../../api/client', () => ({ default: undefined }));
+
 const testChildId = '123';
 const testEventId = 'zzaaz';
 const testOccurrenceId = 'T2NjdXJyZW5jZU5vZGU6Mg==';
