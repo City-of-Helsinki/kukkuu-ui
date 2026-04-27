@@ -161,7 +161,7 @@ export class TimedApolloCachePersistor {
       localStorage.getItem(this.timePersistedLocalStorageKey) ?? ''
     );
 
-    if (isNaN(persistedAt)) {
+    if (Number.isNaN(persistedAt)) {
       this.logger.debug('Persisted cache has not been set.');
       return true;
     }
