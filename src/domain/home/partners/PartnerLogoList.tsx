@@ -19,7 +19,7 @@ const Partners = (props: Props) => {
     <div className={styles[props.size]}>
       {partners.map((partner: Partner, index: number) => {
         const icon =
-          partner.altLangIcons && partner.altLangIcons[currentLocale]
+          partner.altLangIcons?.[currentLocale]
             ? partner.altLangIcons[currentLocale]
             : partner.icon;
         const href = partner.url[currentLocale]

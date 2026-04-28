@@ -274,8 +274,7 @@ const RegistrationForm = () => {
                               }}
                             />
                           )}
-                          {values.children &&
-                            values.children.map((child, index) => (
+                          {values.children?.map((child, index) => (
                               <ChildFormFields
                                 key={index}
                                 arrayHelpers={arrayHelpers}
