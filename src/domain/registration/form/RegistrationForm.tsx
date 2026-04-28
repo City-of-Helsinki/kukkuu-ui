@@ -97,6 +97,12 @@ const getInitialFormData = (
   },
 });
 
+const getLanguagesSpokenAtHomeEdges = (languages: string[]) => ({
+  edges: languages.map((language) => ({
+    node: { id: language, language },
+  })),
+});
+
 const RegistrationForm = () => {
   const { i18n, t } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
@@ -213,13 +219,10 @@ const RegistrationForm = () => {
                         ({
                           ...prevStatus,
                           ...response.data?.submitChildrenAndGuardian?.guardian,
-                          languagesSpokenAtHome: {
-                            edges: values.guardian.languagesSpokenAtHome.map(
-                              (language) => ({
-                                node: { id: language, language },
-                              })
+                          languagesSpokenAtHome:
+                            getLanguagesSpokenAtHomeEdges(
+                              values.guardian.languagesSpokenAtHome
                             ),
-                          },
                         }) as MyProfile
                     );
                   }
