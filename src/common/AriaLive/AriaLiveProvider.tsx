@@ -43,7 +43,7 @@ function AriaLiveProvider({
 }: Readonly<Props>) {
   const rootElement = getOrCreateContainer(id);
   if (dataTestId) {
-    rootElement.setAttribute('data-testid', dataTestId);
+    rootElement.dataset.testid = dataTestId;
   }
   const [message, sendMessage] = useState<string>('');
 
