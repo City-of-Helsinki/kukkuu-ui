@@ -1,2 +1,2 @@
-yarn doctoc .
-yarn lint-staged --relative
+pnpm doctoc .
+pnpm lint-staged --relative

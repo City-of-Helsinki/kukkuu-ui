@@ -12,12 +12,11 @@ services:
     # Load environment variables from base .env and environment-specific files
     # Files are processed in order, with later files overriding earlier ones
     env_file:
-      - ".env"
-      - ".env.development"
-      - ".env.development.local"
+      - '.env'
+      - '.env.development'
+      - '.env.development.local'
     volumes:
-      - ".:/app"
-      - "/app/node_modules"
+      - '.:/app'
+      - '/app/node_modules'
     ports:
-      - "3000:3000" # for development mode
-      - "8082:8080" # for production mode
+      - '3000:8080'

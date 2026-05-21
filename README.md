@@ -25,12 +25,12 @@
     - [Pre-commit Hook](#pre-commit-hook)
     - [Commit-msg Hook](#commit-msg-hook)
 - [Available Scripts](#available-scripts)
-  - [`yarn start`](#yarn-start)
-  - [`yarn build`](#yarn-build)
-  - [`yarn serve`](#yarn-serve)
-  - [`yarn generate:graphql`](#yarn-generategraphql)
-  - [`yarn test`](#yarn-test)
-  - [`yarn test:browser`](#yarn-testbrowser)
+  - [`pnpm start`](#pnpm-start)
+  - [`pnpm build`](#pnpm-build)
+  - [`pnpm serve`](#pnpm-serve)
+  - [`pnpm generate:graphql`](#pnpm-generategraphql)
+  - [`pnpm test`](#pnpm-test)
+  - [`pnpm test:browser`](#pnpm-testbrowser)
 - [Headless CMS](#headless-cms)
   - [Headless CMS React Components -lib](#headless-cms-react-components--lib)
 - [Releases, changelogs and deployments](#releases-changelogs-and-deployments)
@@ -112,8 +112,8 @@ This project is built using the following key frameworks and libraries:
 
 Compatibility defined by [Dockerfile](./Dockerfile):
 
-- Node.js 20.x
-- Yarn 1.x
+- Node.js 24.x
+- pnpm 11.x
 
 ### Getting started
 
@@ -138,8 +138,8 @@ Using the following instructions you should be able to:
 3. If you want to run the Kukkuu backend locally:
    - Copy `.env.development.local.example` to `.env.development.local` (used as env_file for environment variables)
    - Set up the backend by following the steps in [Running the Kukkuu backend locally](#running-the-kukkuu-backend-locally)
-4. Run `yarn` to install dependencies
-5. Run `yarn start` to run the app
+4. Run `pnpm` to install dependencies
+5. Run `pnpm start` to run the app
 6. Open http://localhost:3000 to view the app in the browser.
 7. [Create a user profile](#creating-a-user-profile) if you want to test that authentication and backend connection work.
 
@@ -229,12 +229,12 @@ This project uses [Husky](https://typicode.github.io/husky/#/) to manage Git hoo
 The pre-commit hook is configured to run the following commands:
 
 ```sh
-yarn doctoc .
-yarn lint-staged --relative
+pnpm doctoc .
+pnpm lint-staged --relative
 ```
 
-- `yarn doctoc .`: This command updates the table of contents in your markdown files.
-- `yarn lint-staged --relative`: This command runs linting on staged files to ensure they meet the project's coding standards. The lint-staged configuration can be found from [lint-staged.config.js](./lint-staged.config.js).
+- `pnpm doctoc .`: This command updates the table of contents in your markdown files.
+- `pnpm lint-staged --relative`: This command runs linting on staged files to ensure they meet the project's coding standards. The lint-staged configuration can be found from [lint-staged.config.js](./lint-staged.config.js).
   - Using `--relative` flag to reduce command line length,
     as the combined length of all the absolute paths for a large commit can get quite long
 
@@ -254,7 +254,7 @@ npx --no-install commitlint --edit "$1"
 
 In the project directory, you can run:
 
-### `yarn start`
+### `pnpm start`
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -264,7 +264,7 @@ You will also see any lint errors in the console.
 
 See more from [CLI guide](https://vitejs.dev/guide/cli.html#vite).
 
-### `yarn build`
+### `pnpm build`
 
 Builds the app for production to the `build` directory.
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -274,9 +274,9 @@ Your app is ready to be deployed!
 
 See the section about [building for production](https://vitejs.dev/guide/build.html) and [CLI guide](https://vitejs.dev/guide/cli.html#vite-build) for more information.
 
-### `yarn serve`
+### `pnpm serve`
 
-Locally preview the production build built with `yarn build`.
+Locally preview the production build built with `pnpm build`.
 
 **NOTE**: If you get a white screen on startup, try opening the devtools console
 in the browser, there could be e.g. errors related to missing
@@ -285,21 +285,21 @@ environment variable values.
 Do not use this as a production server as it's not designed for it!
 See more from [CLI guide](https://vitejs.dev/guide/cli.html#vite-preview).
 
-### `yarn generate:graphql`
+### `pnpm generate:graphql`
 
 Fetches the GraphQL schema from the backend (at `VITE_API_URI` in `.env.development.local`) and updates typing information.
 The configuration is written in [codegen.ts](./codegen.ts).
 
-### `yarn test`
+### `pnpm test`
 
 Launches the test runner in the interactive watch mode.<br>
 See Vitest's [Getting started](https://vitest.dev/guide/) for more information.
 
-### `yarn test:browser`
+### `pnpm test:browser`
 
 Runs browser tests against your local version of the application (assumes port `3001`).
 
-- The `yarn test:browser:ci` variant of this command is meant to run in the CI, and it targets the staging server. It uses headless mode and may therefore behave differently compared to the local test runner.
+- The `pnpm test:browser:ci` variant of this command is meant to run in the CI, and it targets the staging server. It uses headless mode and may therefore behave differently compared to the local test runner.
 - The deployment pipelines are running the browser tests as automated actions. They are run against PR and staging environments when after they have been built and deployed.
 - See also [JWT issuance for browser tests](#jwt-issuance-for-browser-tests)
 
@@ -308,7 +308,7 @@ To run browser tests locally, you need to configure the browser testing environm
 1. Run a local Kukkuu API instance with the browser testing JWT features set on. This allows the UI client to issue new JWTs for authorization by itself.
 2. Run a local Kukkuu UI.
 3. Carefully double-check that the UI instance is configured to use the local API. The browser test JWT token configurations also need to match in order to successfully verify the newly issued tokens. You can navigate through the UI manually to see that everything is working as expected.
-4. Run the browser test with `yarn test:browser` or `yarn test:browser:ci`.
+4. Run the browser test with `pnpm test:browser` or `pnpm test:browser:ci`.
 
 For configuration, check the following environment variables:
 
