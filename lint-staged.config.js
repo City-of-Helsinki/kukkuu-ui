@@ -27,9 +27,9 @@ export default {
   '**/*.{js,jsx,ts,tsx,cjs,mjs}': async (files) => {
     const filesToLint = await removeIgnoredFiles(files);
     return [
-      `yarn format:code --max-warnings=0 ${filesToLint}`,
-      `yarn test:staged ${filesToLint}`,
+      `pnpm format:code --max-warnings=0 ${filesToLint}`,
+      `pnpm test:staged ${filesToLint}`,
     ];
   },
-  '**/*.{html,json,css,scss,md,mdx}': ['yarn format:markup'],
+  '**/*.{html,json,css,scss,md,mdx}': ['pnpm format:markup'],
 };
