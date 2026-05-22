@@ -7,12 +7,12 @@ trigger:
       - main
   paths:
     exclude:
-    - '*release-please*'
-    - '**/*.md'
-    - '.github/'
-    - 'pipelines/kukkuu-ui-release.yml'
-    - 'pipelines/kukkuu-ui-review.yml'
-    - 'docker-compose*'
+      - "*release-please*"
+      - "**/*.md"
+      - ".github/"
+      - "pipelines/kukkuu-ui-release.yml"
+      - "pipelines/kukkuu-ui-review.yml"
+      - "docker-compose*"
 
 # Pull request (PR) triggers cause a pipeline to run whenever a pull request is
 # opened with one of the specified target branches, or when updates are made to
@@ -43,15 +43,14 @@ extends:
     # Application build arguments and config map values as key value pairs.
     # Does not contain all buildArguments or configMap values, the rest located in kukkuu-pipelines
     # The values here will override the values defined in the kukkuu-pipelines repository
-    nodeVersion: 22
+    nodeVersion: 24
     buildArgs:
-      VITE_CMS_URI: 'https://kukkuu.app-staging.hkih.hion.dev/graphql'
+      VITE_CMS_URI: "https://kukkuu.app-staging.hkih.hion.dev/graphql"
       # TODO: Instead of using the Kukkuu API from the test environment, use a review specific API.
       # VITE_API_URI: 'https://kukkuu-local.api.dev.hel.ninja/graphql'
       VITE_API_URI: https://kukkuu.api.dev.hel.ninja/graphql
-      VITE_ADMIN_TICKET_VALIDATION_URL: 'https://kukkuu-admin.dev.hel.ninja/check-ticket-validity'
+      VITE_ADMIN_TICKET_VALIDATION_URL: "https://kukkuu-admin.dev.hel.ninja/check-ticket-validity"
       VITE_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO: false
       BROWSER_TESTS_PROJECT_YEAR: 1234
     configMap: # pod environment variables
       BROWSER_TESTS_PROJECT_YEAR: 1234
-

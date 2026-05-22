@@ -1,4 +1,5 @@
 import i18n from '../../common/translation/i18n/i18nInit';
+import { getEnvValue } from '../../common/utils/envUtils';
 
 /**
  * Allowed environments for the application.
@@ -54,7 +55,7 @@ class AppConfig {
    */
   static get environment(): Environment {
     const env =
-      (import.meta.env.VITE_ENVIRONMENT as Environment) || 'development';
+      (getEnvValue('VITE_ENVIRONMENT') as Environment) || 'development';
 
     if (!isEnvironment(env)) {
       throw new Error(`Invalid environment: ${env}`);
@@ -91,7 +92,7 @@ class AppConfig {
    */
   static get helsinkiProfileUrl() {
     return getEnvOrError(
-      import.meta.env.VITE_HELSINKI_PROFILE_URL,
+      getEnvValue('VITE_HELSINKI_PROFILE_URL'),
       'VITE_HELSINKI_PROFILE_URL'
     );
   }
@@ -102,7 +103,7 @@ class AppConfig {
    * @throws {Error} If the `VITE_API_URI` environment variable is not defined.
    */
   static get apiUrl() {
-    return getEnvOrError(import.meta.env.VITE_API_URI, 'VITE_API_URI');
+    return getEnvOrError(getEnvValue('VITE_API_URI'), 'VITE_API_URI');
   }
 
   /**
@@ -112,7 +113,7 @@ class AppConfig {
    */
   static get oidcAuthority() {
     const origin = getEnvOrError(
-      import.meta.env.VITE_OIDC_AUTHORITY,
+      getEnvValue('VITE_OIDC_AUTHORITY'),
       'VITE_OIDC_AUTHORITY'
     );
     return new URL(origin).href;
@@ -127,7 +128,7 @@ class AppConfig {
    * - Keycloak: 'kukkuu-api-test,profile-api-test'
    */
   static get oidcAudiences() {
-    return getEnvAsList(import.meta.env.VITE_OIDC_AUDIENCES);
+    return getEnvAsList(getEnvValue('VITE_OIDC_AUDIENCES'));
   }
 
   /**
@@ -136,7 +137,7 @@ class AppConfig {
    */
   static get oidcClientId() {
     return getEnvOrError(
-      import.meta.env.VITE_OIDC_CLIENT_ID,
+      getEnvValue('VITE_OIDC_CLIENT_ID'),
       'VITE_OIDC_CLIENT_ID'
     );
   }
@@ -146,7 +147,7 @@ class AppConfig {
    * Read env variable `VITE_OIDC_SCOPE`.
    */
   static get oidcScope() {
-    return getEnvOrError(import.meta.env.VITE_OIDC_SCOPE, 'VITE_OIDC_SCOPE,');
+    return getEnvOrError(getEnvValue('VITE_OIDC_SCOPE'), 'VITE_OIDC_SCOPE,');
   }
 
   /**
@@ -157,12 +158,12 @@ class AppConfig {
    */
   static get oidcReturnType() {
     // "code" for authorization code flow.
-    return import.meta.env.VITE_OIDC_RETURN_TYPE ?? 'code';
+    return getEnvValue('VITE_OIDC_RETURN_TYPE') ?? 'code';
   }
 
   static get oidcKukkuuApiClientId() {
     return getEnvOrError(
-      import.meta.env.VITE_OIDC_KUKKUU_API_CLIENT_ID,
+      getEnvValue('VITE_OIDC_KUKKUU_API_CLIENT_ID'),
       'VITE_OIDC_KUKKUU_API_CLIENT_ID'
     );
   }
@@ -177,12 +178,11 @@ class AppConfig {
    *                or has an invalid value (not 'KEYCLOAK' or 'TUNNISTAMO').
    */
   static get oidcServerType(): 'KEYCLOAK' | 'TUNNISTAMO' {
-    const oidcServerType =
-      import.meta.env.VITE_OIDC_SERVER_TYPE ?? 'TUNNISTAMO';
+    const oidcServerType = getEnvValue('VITE_OIDC_SERVER_TYPE') ?? 'TUNNISTAMO';
     if (!['KEYCLOAK', 'TUNNISTAMO'].includes(oidcServerType)) {
       throw new Error(`Invalid OIDC server type: ${oidcServerType}`);
     }
-    return oidcServerType;
+    return oidcServerType as 'KEYCLOAK' | 'TUNNISTAMO';
   }
 
   /**
@@ -191,7 +191,7 @@ class AppConfig {
    * */
   static get oidcAutomaticSilentRenew(): boolean {
     return Boolean(
-      import.meta.env.VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED ?? true
+      getEnvValue('VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED') ?? true
     );
   }
 
@@ -201,7 +201,7 @@ class AppConfig {
    * */
   static get oidcSessionPollerIntervalInMs(): number {
     return (
-      Number(import.meta.env.VITE_OIDC_SESSION_POLLING_INTERVAL_MS) || 60_000
+      Number(getEnvValue('VITE_OIDC_SESSION_POLLING_INTERVAL_MS')) || 60_000
     );
   }
 
@@ -210,7 +210,7 @@ class AppConfig {
    * Defaults to 60 minutes.
    * */
   static get userIdleTimeoutInMs(): number {
-    return Number(import.meta.env.VITE_IDLE_TIMEOUT_IN_MS) || 3_600_000;
+    return Number(getEnvValue('VITE_IDLE_TIMEOUT_IN_MS')) || 3_600_000;
   }
 
   /**
@@ -219,7 +219,7 @@ class AppConfig {
    * @throws {Error} If the `VITE_CMS_URI` environment variable is not defined.
    */
   static get cmsUri() {
-    return getEnvOrError(import.meta.env.VITE_CMS_URI, 'VITE_CMS_URI');
+    return getEnvOrError(getEnvValue('VITE_CMS_URI'), 'VITE_CMS_URI');
   }
 
   /**
@@ -229,7 +229,7 @@ class AppConfig {
    */
   static get matomoBaseUrl() {
     return getEnvOrError(
-      import.meta.env.VITE_MATOMO_URL_BASE,
+      getEnvValue('VITE_MATOMO_URL_BASE'),
       'VITE_MATOMO_URL_BASE'
     );
   }
@@ -241,7 +241,7 @@ class AppConfig {
    */
   static get matomoSiteId() {
     return getEnvOrError(
-      import.meta.env.VITE_MATOMO_SITE_ID,
+      getEnvValue('VITE_MATOMO_SITE_ID'),
       'VITE_MATOMO_SITE_ID'
     );
   }
@@ -250,7 +250,7 @@ class AppConfig {
    * The Matomo Source Url parameter.
    */
   static get matomoSrcUrl() {
-    const srcUrl: string | undefined = import.meta.env.VITE_MATOMO_SRC_URL;
+    const srcUrl: string | undefined = getEnvValue('VITE_MATOMO_SRC_URL');
     return srcUrl;
   }
 
@@ -258,8 +258,9 @@ class AppConfig {
    * The Matomo Tracker Url parameter.
    */
   static get matomoTrackerUrl() {
-    const trackerUrl: string | undefined = import.meta.env
-      .VITE_MATOMO_TRACKER_URL;
+    const trackerUrl: string | undefined = getEnvValue(
+      'VITE_MATOMO_TRACKER_URL'
+    );
     return trackerUrl;
   }
 
@@ -270,7 +271,7 @@ class AppConfig {
    */
   static get matomoEnabled() {
     return Boolean(
-      getEnvOrError(import.meta.env.VITE_MATOMO_ENABLED, 'VITE_MATOMO_ENABLED')
+      getEnvOrError(getEnvValue('VITE_MATOMO_ENABLED'), 'VITE_MATOMO_ENABLED')
     );
   }
 
@@ -281,7 +282,7 @@ class AppConfig {
    */
   static get apolloPersistedCacheTimeToLiveMs() {
     return (
-      Number(import.meta.env.VITE_APOLLO_PERSISTED_CACHE_TIME_TO_LIVE_MS) ||
+      Number(getEnvValue('VITE_APOLLO_PERSISTED_CACHE_TIME_TO_LIVE_MS')) ||
       1000 * 60 * 10
     ); // 10 minutes by default;
   }
@@ -312,7 +313,7 @@ class AppConfig {
    */
   static get enrolmentCancellationTimeLimitHours() {
     return (
-      Number(import.meta.env.VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS) || 48
+      Number(getEnvValue('VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS')) || 48
     ); // Default to 48 hours if not set
   }
 }
@@ -336,7 +337,7 @@ function getEnvOrError(variable?: string, name?: string) {
  * @throws {Error} If the variable is not defined or is not a valid URL.
  */
 function getEnvAsUrl(varName: string): URL {
-  const value = getEnvOrError(import.meta.env[varName], varName);
+  const value = getEnvOrError(getEnvValue(varName), varName);
   try {
     return new URL(value);
   } catch {

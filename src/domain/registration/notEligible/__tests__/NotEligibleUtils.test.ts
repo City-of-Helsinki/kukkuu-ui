@@ -1,6 +1,7 @@
 import { getEligibleCities, isChildEligible } from '../NotEligibleUtils';
 import { RegistrationFormValues } from '../../types/RegistrationTypes';
 import { Language } from '../../../api/generatedTypes/graphql';
+import { getEnvValue } from '../../../../common/utils/envUtils';
 
 const values: RegistrationFormValues = {
   children: [
@@ -34,7 +35,7 @@ describe('notEligibleUtils.test.ts', () => {
     expect(isChildEligible(values.children[0], true)).toEqual(true);
   });
   test('Verify that all cities in VITE_ELIGIBLE_CITIES are eligible', () => {
-    const eligibleCities: string = import.meta.env.VITE_ELIGIBLE_CITIES || '';
+    const eligibleCities: string = getEnvValue('VITE_ELIGIBLE_CITIES') || '';
     const cities = eligibleCities.split(',') || [];
     cities.forEach((city) => {
       values.children[0].homeCity = city;
@@ -42,7 +43,7 @@ describe('notEligibleUtils.test.ts', () => {
     });
   });
   test('Verify that cities are eligible even when user adds whitespace', () => {
-    const eligibleCities: string = import.meta.env.VITE_ELIGIBLE_CITIES || '';
+    const eligibleCities: string = getEnvValue('VITE_ELIGIBLE_CITIES') || '';
     const cities = eligibleCities.split(',') || [];
     cities.forEach((city) => {
       values.children[0].homeCity = `${city} `;
@@ -51,13 +52,13 @@ describe('notEligibleUtils.test.ts', () => {
   });
   test('Verify that getEligibleCities returns an array of eligible cities', () => {
     const eligibleCitiesTest: string =
-      import.meta.env.VITE_ELIGIBLE_CITIES || '';
+      getEnvValue('VITE_ELIGIBLE_CITIES') || '';
     const citiesTest = eligibleCitiesTest.split(',') || [];
     const eligibleCities = getEligibleCities();
     expect(eligibleCities).toEqual(citiesTest);
   });
   test('Verify that all cities in VITE_ELIGIBLE_CITIES in uppercase are eligible', () => {
-    const eligibleCities: string = import.meta.env.VITE_ELIGIBLE_CITIES || '';
+    const eligibleCities: string = getEnvValue('VITE_ELIGIBLE_CITIES') || '';
     const cities = eligibleCities.toUpperCase().split(',') || [];
     cities.forEach((city) => {
       values.children[0].homeCity = city;

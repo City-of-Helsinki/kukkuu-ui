@@ -68,13 +68,11 @@ function UserNavigation() {
         label: t('navbar.profileDropdown.helsinkiProfile.text'),
         icon: <IconLinkExternal />,
         onClick: () => {
-          if (typeof window !== 'undefined') {
-            window.open(
-              AppConfig.helsinkiProfileUrl,
-              '_blank',
-              'noopener,noreferrer'
-            );
-          }
+          globalThis.window?.open(
+            AppConfig.helsinkiProfileUrl,
+            '_blank',
+            'noopener,noreferrer'
+          );
         },
       },
       {

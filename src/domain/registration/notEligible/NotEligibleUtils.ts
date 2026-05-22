@@ -1,4 +1,5 @@
 import { SUPPORTED_START_BIRTH_YEAR } from '../../../common/time/TimeConstants';
+import { getEnvValue } from '../../../common/utils/envUtils';
 import { Child } from '../../child/types/ChildInputTypes';
 
 /** isBirthyearEligible()
@@ -18,7 +19,7 @@ const isBirthyearEligible = (value: number): boolean => {
  */
 const getEligibleCities = (): Array<string> => {
   const eligibleCities =
-    import.meta.env.VITE_ELIGIBLE_CITIES || 'helsinki,helsingfors';
+    getEnvValue('VITE_ELIGIBLE_CITIES') || 'helsinki,helsingfors';
   return eligibleCities.toLowerCase().split(',');
 };
 
