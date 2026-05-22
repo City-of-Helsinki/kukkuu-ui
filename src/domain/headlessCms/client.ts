@@ -3,6 +3,7 @@ import { onError } from '@apollo/client/link/error';
 import * as Sentry from '@sentry/browser';
 
 import AppConfig from '../app/AppConfig';
+import { getEnvValue } from '../../common/utils/envUtils';
 import {
   createApolloCache,
   isConfiguredQueryPolicy,
@@ -12,7 +13,7 @@ import { LogLevel, TimedApolloCachePersistor } from './persistor';
 
 export function createCmsApolloClient() {
   const httpLink = createHttpLink({
-    uri: import.meta.env.VITE_CMS_URI,
+    uri: getEnvValue('VITE_CMS_URI'),
   });
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {

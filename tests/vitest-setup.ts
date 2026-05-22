@@ -1,4 +1,3 @@
- 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config({ path: './.env.test' });
 
@@ -49,7 +48,7 @@ global.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockScrollTo = vi.fn((x?: number | ScrollToOptions, y?: number) => {});
 
-window.scrollTo = mockScrollTo;
+globalThis.window.scrollTo = mockScrollTo;
 
 beforeAll(() => {
   setLocale('fi');

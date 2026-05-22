@@ -89,7 +89,7 @@ describe('<EventGroup />', () => {
       })[0]
     );
 
-    expect(window.location.pathname).toMatchInlineSnapshot(
+    expect(globalThis.window.location.pathname).toMatchInlineSnapshot(
       `"/profile/child/123-567/event/1"`
     );
   });

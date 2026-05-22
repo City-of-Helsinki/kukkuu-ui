@@ -7,11 +7,13 @@ WORKDIR /app
 # 1. Copy needed files for build
 COPY --chown=default:root package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json tsconfig.node.json ./
 COPY --chown=default:root ./public ./public
+COPY --chown=default:root ./scripts ./scripts
 
 # 2. Run the install
 # corepack in the base image will automatically use the version of pnpm
 # defined in your package.json 'packageManager' field if present.
 RUN pnpm install --frozen-lockfile --ignore-scripts && pnpm store prune
+RUN pnpm update-runtime-env
 
 # 3. Copy remaining source files
 COPY --chown=default:root index.html vite.config.ts eslint.config.js .prettierrc.json .env* ./
@@ -44,41 +46,6 @@ CMD pnpm exec vite --port 8080 --no-open --host
 # STAGE 3: Static builder for production
 # ============================================================
 FROM appbase AS staticbuilder
-
-# Accept Vite build-time variables from CI/CD docker --build-arg values.
-ARG VITE_ENVIRONMENT
-ARG VITE_ORIGIN
-ARG VITE_API_URI
-ARG VITE_CMS_URI
-ARG VITE_APPLICATION_NAME
-ARG VITE_VERSION
-ARG VITE_ELIGIBLE_CITIES
-ARG VITE_OIDC_AUTHORITY
-ARG VITE_OIDC_CLIENT_ID
-ARG VITE_OIDC_KUKKUU_API_CLIENT_ID
-ARG VITE_OIDC_SCOPE
-ARG VITE_OIDC_RETURN_TYPE
-ARG VITE_OIDC_SERVER_TYPE
-ARG VITE_OIDC_AUDIENCES
-ARG VITE_OIDC_AUTOMATIC_SILENT_RENEW_ENABLED
-ARG VITE_OIDC_SESSION_POLLING_INTERVAL_MS
-ARG VITE_IDLE_TIMEOUT_IN_MS
-ARG VITE_HELSINKI_PROFILE_URL
-ARG VITE_MATOMO_URL_BASE
-ARG VITE_MATOMO_SITE_ID
-ARG VITE_MATOMO_SRC_URL
-ARG VITE_MATOMO_ENABLED
-ARG VITE_APOLLO_PERSISTED_CACHE_TIME_TO_LIVE_MS
-ARG VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS
-ARG VITE_FEATURE_FLAG_SHOW_CORONAVIRUS_INFO
-ARG VITE_ADMIN_TICKET_VALIDATION_URL
-ARG VITE_SENTRY_DSN
-ARG VITE_SENTRY_ENVIRONMENT
-ARG VITE_SENTRY_RELEASE
-ARG VITE_SENTRY_TRACES_SAMPLE_RATE
-ARG VITE_SENTRY_TRACE_PROPAGATION_TARGETS
-ARG VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE
-ARG VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE
 
 # Perform the build
 ARG REACT_APP_SENTRY_RELEASE

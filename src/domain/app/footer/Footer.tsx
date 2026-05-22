@@ -24,7 +24,7 @@ const Footer: FunctionComponent = () => {
 
   // override Footer component default behaviour which focuses skip-link
   const handleBackToTop = () => {
-    window?.scrollTo({ top: 0 });
+    globalThis.window?.scrollTo({ top: 0 });
     document.querySelector<HTMLDivElement>(`#${RESET_FOCUS_ID}`)?.focus();
   };
 

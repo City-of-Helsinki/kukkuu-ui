@@ -16,9 +16,10 @@ import i18n from '../../common/translation/i18n/i18nInit';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { getKukkuuApiTokenFromStorage } from '../auth/kukkuuApiUtils';
 import { flushAllState } from '../auth/reduxState/utils';
+import { getEnvValue } from '../../common/utils/envUtils';
 
 const httpLink = createHttpLink({
-  uri: import.meta.env.VITE_API_URI,
+  uri: getEnvValue('VITE_API_URI'),
 });
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
