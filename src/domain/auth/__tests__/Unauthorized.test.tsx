@@ -40,7 +40,7 @@ describe('Unauthorized page', () => {
     );
     render(<Unauthorized />);
     await waitFor(() => {
-      expect(window.location.pathname).toBe('/profile');
+      expect(globalThis.window.location.pathname).toBe('/profile');
     });
   });
   it('redirects to nextPath URL parameter when it is given', async () => {

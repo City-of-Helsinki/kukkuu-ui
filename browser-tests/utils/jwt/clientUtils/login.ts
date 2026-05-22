@@ -27,7 +27,10 @@ const storeOIDCUserResponse = ClientFunction(
       userStoreKey,
       oidcUserData,
     });
-    window.sessionStorage.setItem(userStoreKey, JSON.stringify(oidcUserData));
+    globalThis.window.sessionStorage.setItem(
+      userStoreKey,
+      JSON.stringify(oidcUserData)
+    );
   },
   {
     dependencies: { userStoreKey },
@@ -41,7 +44,7 @@ const storeApiTokenUserReference = ClientFunction(
       apiTokenUserReferenceKey,
       apiTokenUserReferenceToken,
     });
-    window.sessionStorage.setItem(
+    globalThis.window.sessionStorage.setItem(
       apiTokenUserReferenceKey,
       apiTokenUserReferenceToken
     );
@@ -59,7 +62,7 @@ const storeApiToken = ClientFunction(
       apiClientId,
       apiToken,
     });
-    window.sessionStorage.setItem(
+    globalThis.window.sessionStorage.setItem(
       apiTokenStorageKey,
       JSON.stringify({
         [apiClientId]: apiToken,
@@ -79,7 +82,8 @@ const hasAuthExpired = ClientFunction(
       userStoreKey,
     });
     try {
-      const userResponseAsString = window.sessionStorage.getItem(userStoreKey);
+      const userResponseAsString =
+        globalThis.window.sessionStorage.getItem(userStoreKey);
       const storedUserResponse = JSON.parse(userResponseAsString ?? '');
       const hasExpired = storedUserResponse?.expires_at * 1000 < Date.now();
       if (hasExpired) {

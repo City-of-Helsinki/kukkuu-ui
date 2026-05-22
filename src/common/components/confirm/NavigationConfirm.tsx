@@ -11,19 +11,19 @@ const NavigationConfirm: FunctionComponent<NavigationConfirmProps> = ({
   isHalfFilling,
   warningMessage,
 }) => {
-  const promptExists = !!window.onbeforeunload;
+  const promptExists = !!globalThis.window?.onbeforeunload;
   const message = warningMessage || 'Are you sure to leave?';
-  if (isHalfFilling && promptExists !== null) {
-    window.onbeforeunload = () => message;
+  if (isHalfFilling && promptExists !== null && globalThis.window) {
+    globalThis.window.onbeforeunload = () => message;
   } else {
-    window.onbeforeunload = null;
+    globalThis.window.onbeforeunload = null;
   }
 
   // TODO: Does people ever get here because the browser blocks the rendering?
   return promptExists ? (
     <Prompt
       message={message}
-      onConfirm={() => (window.onbeforeunload = null)}
+      onConfirm={() => (globalThis.window.onbeforeunload = null)}
       onCancel={() => {}}
     />
   ) : null;

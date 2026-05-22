@@ -33,10 +33,10 @@ const matomoInstance = createMatomoInstance({
 // Prevent non-production data from being submitted to Matomo
 // by pretending to require consent to process analytics data and never ask for it.
 // https://developer.matomo.org/guides/tracking-javascript-guide#step-1-require-consent
-if (!AppConfig.isAppInProductionMode && window?._paq) {
+if (!AppConfig.isAppInProductionMode && globalThis.window?._paq) {
   // eslint-disable-next-line no-console
   console.info('Prevent non-production data from being submitted to Matomo.');
-  window._paq.push(['requireConsent']);
+  globalThis.window._paq.push(['requireConsent']);
 }
 
 type BrowserAppProps = {
