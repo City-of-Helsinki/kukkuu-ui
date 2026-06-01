@@ -41,7 +41,7 @@ function useSubscribeToFreeSpotNotificationMutation(
             // Reload in order to refresh page data. The current page is
             // likely just out of date. After a refresh, the user should
             // see an UI which reflects the correct subscription status.
-            window.location.reload();
+            globalThis.window.location.reload();
           } else if (
             getIsError(
               graphQLError,

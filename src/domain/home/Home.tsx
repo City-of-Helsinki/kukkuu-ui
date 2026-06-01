@@ -22,7 +22,7 @@ const Home = () => {
 
   const scrollToForm = (formRef: RefObject<HTMLDivElement>) => {
     if (formRef && formRef.current) {
-      window.scrollTo(0, formRef.current.offsetTop);
+      globalThis.window.scrollTo(0, formRef.current.offsetTop);
     }
   };
 

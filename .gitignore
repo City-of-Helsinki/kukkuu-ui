@@ -21,9 +21,14 @@
 kukkuu-ui.iml
 
 npm-debug.log*
+.eslintcache
+
+# yarn – not used anymore
+yarn.lock
+.yarn/
+.yarnrc.yml
 yarn-debug.log*
 yarn-error.log*
-.eslintcache
 
 xeno
 
@@ -33,3 +38,7 @@ report
 sonar-report.json
 
 sonar-report.xml
+
+public/env-config.js
+public/test-env-config.js
+

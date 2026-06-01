@@ -26,10 +26,10 @@ export const authorizedGuardian = Role(route(), async (t) => {
   console.info('Use "authorizedGuardian" role.');
   await authorize(t, browserTestUser);
   const currentLocalStorage = await t.eval(() => ({
-    ...window.localStorage,
+    ...globalThis.window.localStorage,
   }));
   const currentSessionStorage = await t.eval(() => ({
-    ...window.sessionStorage,
+    ...globalThis.window.sessionStorage,
   }));
   // eslint-disable-next-line no-console
   console.debug('authorizedAdmin', {

@@ -7,11 +7,11 @@ import { RESET_FOCUS_ID } from './constants';
  * <Link> from react-router.
  */
 const ResetFocus = (): React.ReactElement => {
-  const pathname = window?.location?.pathname;
+  const pathname = globalThis.window?.location?.pathname;
   const node = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const isClient = typeof window !== 'undefined';
+    const isClient = globalThis.window !== undefined;
     if (isClient) {
       node.current?.focus();
     }
