@@ -401,6 +401,13 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.15.8](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.15.7...kukkuu-ui-v3.15.8) (2026-06-04)
+
+
+### Dependencies
+
+* Bump react-router from 7.12.0 to 7.15.0 ([c08d978](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c08d9780f50ab41e5385b28ecf75e642b0591fec))
+
 ## [3.15.7](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.15.6...kukkuu-ui-v3.15.7) (2026-05-11)
 
 
