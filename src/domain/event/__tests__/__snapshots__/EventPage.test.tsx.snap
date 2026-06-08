@@ -22,7 +22,7 @@ exports[`renders snapshot correctly 1`] = `
           <svg
             aria-hidden="true"
             aria-label="arrow-left"
-            class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _backButtonIcon_58ffbb"
+            class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo _backButtonIcon_58ffbb"
             role="img"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"

@@ -20,7 +20,7 @@ const Home = () => {
   const userHasProfile = !!profile;
   const formRef = useRef<HTMLDivElement>(null);
 
-  const scrollToForm = (formRef: RefObject<HTMLDivElement>) => {
+  const scrollToForm = (formRef: RefObject<HTMLDivElement | null>) => {
     if (formRef && formRef.current) {
       globalThis.window.scrollTo(0, formRef.current.offsetTop);
     }

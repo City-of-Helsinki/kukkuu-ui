@@ -42,6 +42,12 @@ export const useLocaleRouteNavigate = () => {
         replace: true,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname, currentLocale, locale]);
+  }, [
+    location.pathname,
+    location.search,
+    location.hash,
+    currentLocale,
+    locale,
+    navigate,
+  ]);
 };

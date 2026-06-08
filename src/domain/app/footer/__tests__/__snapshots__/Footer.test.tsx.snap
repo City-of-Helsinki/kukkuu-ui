@@ -2,142 +2,28 @@
 
 exports[`Footer matches snapshot 1`] = `
 <footer
-  class="Footer-module_footer__1aD3T _footer_21cae1"
+  class="_footer_21cae1"
+  role="contentinfo"
 >
-  <div
-    class="Koros-module_koros__1r3rg Footer-module_koros__Orx_W"
-    style="height: 15px;"
-  >
-    <svg
-      aria-hidden="true"
-      height="85"
-      width="100%"
-      xmlns="http://www.w3.org/2000/svg"
+  <div>
+    <button
+      type="button"
     >
-      <defs>
-        <pattern
-          height="85"
-          id="koros_basic-1"
-          patternUnits="userSpaceOnUse"
-          width="96"
-          x="0"
-          y="0"
-        >
-          <path
-            d="m0 5v80h32v-80c-8 0-8-5-16-5s-8 5-16 5z"
-            transform="scale(3)"
-          />
-        </pattern>
-      </defs>
-      <rect
-        fill="url(#koros_basic-1)"
-        height="85"
-        style="shape-rendering: crispEdges;"
-        width="100%"
-      />
-    </svg>
-  </div>
-  <div
-    class="Footer-module_footerContent__3MC14"
-  >
-    <div
-      class="Footer-module_footerSections__2nrr8"
+      Takaisin alkuun
+    </button>
+    <span>
+      Helsingin kaupunki
+    </span>
+    <a
+      href="https://kukkuu.fi/fi"
     >
-      <h2
-        class="Footer-module_title__269y7"
-      >
-        Kulttuurin kummilapset
-      </h2>
-      <div
-        class="FooterBase-module_base__2f0eu"
-      >
-        <hr
-          aria-hidden="true"
-          class="FooterBase-module_divider__3sz3q"
-        />
-        <div
-          class="FooterBase-module_logoWrapper__3BI7d"
-        >
-          <a
-            class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_link-medium__3gvla link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B"
-          >
-            <img
-              alt="Helsingin kaupunki"
-              class="Logo-module_logo__Y2mwP Logo-module_medium__1zyWm"
-              src="mocked hds-react logoFi"
-            />
-          </a>
-        </div>
-        <div
-          class="FooterBase-module_copyright__2iiev"
-        >
-          <span>
-            © 
-            Helsingin kaupunki
-             
-            2026
-          </span>
-        </div>
-        <div
-          class="FooterBase-module_baseActions__1hCiR"
-        >
-          <div
-            class="FooterBase-module_links__3lfLo"
-          >
-            <span
-              aria-hidden="true"
-              class="FooterBase-module_separator__cwQTe"
-            >
-              |
-            </span>
-            <a
-              class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_link-medium__3gvla link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-              href="https://kukkuu.fi/fi"
-            >
-              <span>
-                Kulttuurin kummilapset
-              </span>
-            </a>
-            <span
-              aria-hidden="true"
-              class="FooterBase-module_separator__cwQTe"
-            >
-              |
-            </span>
-            <a
-              class="Link-module_link__TeBQo link_hds-link__5Oxo- Link-module_link-medium__3gvla link_hds-link--medium__xEU_F FooterLink-module_item__3Ig3B FooterLink-module_base__bzKoj"
-              href="https://hkih.production.geniem.io/saavutettavuusseloste"
-            >
-              <span>
-                Saavutettavuusseloste
-              </span>
-            </a>
-          </div>
-          <button
-            class="FooterBase-module_backToTopButton__hXTHm"
-            role="link"
-            type="button"
-          >
-            Takaisin alkuun
-            <svg
-              aria-hidden="true"
-              aria-label="arrow-up"
-              class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik"
-              role="img"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clip-rule="evenodd"
-                d="M12 3.5L18.5 10L17 11.5L13 7.5V20H11V7.5L7 11.5L5.5 10L12 3.5Z"
-                fill="currentColor"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
+      Kulttuurin kummilapset
+    </a>
+    <a
+      href="https://hkih.production.geniem.io/saavutettavuusseloste"
+    >
+      Saavutettavuusseloste
+    </a>
   </div>
 </footer>
 `;

@@ -32,7 +32,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 class="_buttonGroup_747411"
               >
                 <button
-                  class="Button-module_button__1msFE Button-module_primary__2LfKB _registerButton_747411"
+                  class="Button-module_button__P7hTI Button-module_primary__b-5q5 _registerButton_747411"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
@@ -41,7 +41,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                   </span>
                 </button>
                 <button
-                  class="Button-module_button__1msFE Button-module_secondary__1nABp _authenticateButton_747411"
+                  class="Button-module_button__P7hTI Button-module_secondary__ieoHb _authenticateButton_747411"
                   style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                   type="button"
                 >
@@ -451,7 +451,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 <svg
                   aria-hidden="true"
                   aria-label="ticket"
-                  class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik _icon_733c12"
+                  class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo _icon_733c12"
                   role="img"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
@@ -512,60 +512,58 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
               >
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
+                    class="TextInput-module_root__lPctx text-input_hds-text-input__mG8r6 _formField_69b114"
                   >
                     <label
-                      class="FieldLabel-module_label__1zrXK "
+                      class="FieldLabel-module_label__EyKsf "
                       for="child.birthyear"
                     >
                       Lisää lapsen syntymävuosi
                       <span
-                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                        class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                       >
                         *
                       </span>
                     </label>
                     <div
-                      class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                      class="TextInput-module_inputWrapper__9kbLn text-input_hds-text-input__input-wrapper__1RzOg"
                     >
                       <input
-                        class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                        class="TextInput-module_input__LLKkZ text-input_hds-text-input__input__Kglq3"
                         id="child.birthyear"
                         name="child.birthyear"
                         placeholder="Lisää lapsen syntymävuosi"
                         required=""
                         type="number"
-                        value=""
                       />
                     </div>
                   </div>
                 </div>
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
+                    class="TextInput-module_root__lPctx text-input_hds-text-input__mG8r6 _formField_69b114"
                   >
                     <label
-                      class="FieldLabel-module_label__1zrXK "
+                      class="FieldLabel-module_label__EyKsf "
                       for="child.homeCity"
                     >
                       Lapsen kotipaikkakunta
                       <span
-                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                        class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                       >
                         *
                       </span>
                     </label>
                     <div
-                      class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                      class="TextInput-module_inputWrapper__9kbLn text-input_hds-text-input__input-wrapper__1RzOg"
                     >
                       <input
-                        class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                        class="TextInput-module_input__LLKkZ text-input_hds-text-input__input__Kglq3"
                         id="child.homeCity"
                         name="child.homeCity"
                         placeholder="Lisää lapsen kotipaikkakunta"
                         required=""
                         type="text"
-                        value=""
                       />
                     </div>
                   </div>
@@ -573,11 +571,11 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="Checkbox-module_checkbox__3r5uI _checkboxField_4c5c4f"
+                  class="Checkbox-module_checkbox__CYHqn _checkboxField_4c5c4f"
                   style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                 >
                   <input
-                    class="Checkbox-module_input__2bdJk"
+                    class="Checkbox-module_input__8VEto"
                     id="verifyInformation"
                     name="verifyInformation"
                     required=""
@@ -585,7 +583,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                     value="false"
                   />
                   <label
-                    class="Checkbox-module_label__148Ac"
+                    class="Checkbox-module_label__E-Trx"
                     for="verifyInformation"
                   >
                     Vakuutan antamani tiedot oikeaksi
@@ -593,7 +591,7 @@ exports[`<Home /> > renders snapshot correctly 1`] = `
                 </div>
               </div>
               <button
-                class="Button-module_button__1msFE Button-module_primary__2LfKB _submitButton_d82fc5"
+                class="Button-module_button__P7hTI Button-module_primary__b-5q5 _submitButton_d82fc5"
                 disabled=""
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="submit"

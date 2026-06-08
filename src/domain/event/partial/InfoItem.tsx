@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, ReactElement } from 'react';
 
 import Text from '../../../common/components/text/Text';
 import styles from './occurrenceInfo.module.scss';
@@ -7,7 +7,7 @@ import styles from './occurrenceInfo.module.scss';
 export type InfoItemProps = {
   id: string;
   className?: string;
-  icon: JSX.Element;
+  icon: ReactElement;
   label: string;
   description?: string;
   fullWidth?: boolean;
