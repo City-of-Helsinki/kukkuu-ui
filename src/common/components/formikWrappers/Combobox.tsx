@@ -1,4 +1,5 @@
-import { Select as HDSSelect, SelectProps as HDSSelectProps, SupportedLanguage } from 'hds-react';
+import { Select as HDSSelect, SupportedLanguage } from 'hds-react';
+import type { ComponentProps } from 'react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
 
@@ -6,7 +7,7 @@ import { Option } from './types';
 import styles from './formikInputs.module.scss';
 
 type SelectProps = Omit<
-  HDSSelectProps,
+  ComponentProps<typeof HDSSelect>,
   'onChange' | 'value' | 'defaultValue' | 'texts' | 'children'
 > & {
   onChange?: (values: string[]) => void;

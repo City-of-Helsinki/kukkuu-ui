@@ -7,6 +7,7 @@ import {
   useOidcClient,
   IconLinkExternal,
 } from 'hds-react';
+import type { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
@@ -21,15 +22,15 @@ import AppConfig from '../AppConfig';
 
 type UserNavigationItem = {
   id: string;
-  label: string | JSX.Element;
-  icon: JSX.Element;
-  closeIcon?: JSX.Element;
+  label: string | ReactElement;
+  icon: ReactElement;
+  closeIcon?: ReactElement;
   closeLabel?: string;
   onClick?: () => void;
   dropdownItems: Array<{
     id: string;
     label: string;
-    icon: JSX.Element;
+    icon: ReactElement;
     onClick: () => void;
   }>;
 };

@@ -8,6 +8,7 @@ import useLanguages from './hooks/useLanguages';
 type Props = Omit<ComboboxProps, 'options'>;
 
 const LanguagesCombobox = (props: Props) => {
+  const { name, ...rest } = props;
   const { languages } = useLanguages();
 
   const languageOptions = useMemo(
@@ -19,7 +20,14 @@ const LanguagesCombobox = (props: Props) => {
     [languages.items]
   );
 
-  return <Combobox {...props} clearable={false} options={languageOptions} />;
+  return (
+    <Combobox
+      {...rest}
+      name={name}
+      clearable={false}
+      options={languageOptions}
+    />
+  );
 };
 
 export default LanguagesCombobox;

@@ -171,7 +171,7 @@ const ProfileEventsList = ({
     />
   );
 
-  const enrolmentsListItems: JSX.Element | null = enrolments.length ? (
+  const enrolmentsListItems: React.ReactElement | null = enrolments.length ? (
     <React.Fragment key="enrolments">
       <Text variant="h2">{t('profile.events.enrolled.heading')}</Text>
       <List
@@ -189,7 +189,7 @@ const ProfileEventsList = ({
     </React.Fragment>
   ) : null;
 
-  const upcomingEventsAndEventGroupsListItems: JSX.Element | null =
+  const upcomingEventsAndEventGroupsListItems: React.ReactElement | null =
     upcomingEventsAndEventGroups.length ? (
       <React.Fragment key="upcomingEventsAndEventGroups">
         <Text variant="h2">{t('profile.events.invitations.heading')}</Text>
@@ -239,7 +239,7 @@ const ProfileEventsList = ({
       </React.Fragment>
     ) : null;
 
-  const pastEventsListItems: JSX.Element | null = pastEvents.length ? (
+  const pastEventsListItems: React.ReactElement | null = pastEvents.length ? (
     <React.Fragment key="pastEvents">
       <Text variant="h2">{t('profile.events.past.heading')}</Text>
       <List

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './list.module.scss';
 
 type Props = {
-  items: (JSX.Element | null | false)[];
+  items: (React.ReactElement | null | false)[];
   variant?:
     | 'spacing-4-xs'
     | 'spacing-3-xs'

@@ -10,7 +10,6 @@ export type PromptProps = {
 
 export const Prompt = ({ message, onConfirm, onCancel }: PromptProps) => {
   const { t } = useTranslation();
-  const openConfirmationDialogButtonRef = React.useRef(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const close = () => setIsOpen(false);
   const titleId = 'confirmation-dialog-title';
@@ -21,7 +20,6 @@ export const Prompt = ({ message, onConfirm, onCancel }: PromptProps) => {
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
       isOpen={isOpen}
-      focusAfterCloseRef={openConfirmationDialogButtonRef}
     >
       <Dialog.Header
         id={titleId}

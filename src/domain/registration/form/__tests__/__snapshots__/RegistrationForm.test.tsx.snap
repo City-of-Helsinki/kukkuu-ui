@@ -90,20 +90,20 @@ exports[`renders snapshot correctly 1`] = `
                   >
                     <div>
                       <div
-                        class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
+                        class="TextInput-module_root__lPctx text-input_hds-text-input__mG8r6 _formField_69b114"
                       >
                         <label
-                          class="FieldLabel-module_label__1zrXK "
+                          class="FieldLabel-module_label__EyKsf "
                           for="children[0].name"
                         >
                           Lapsen nimi
                         </label>
                         <div
-                          class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                          class="TextInput-module_inputWrapper__9kbLn text-input_hds-text-input__input-wrapper__1RzOg"
                         >
                           <input
                             autocomplete="new-password"
-                            class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                            class="TextInput-module_input__LLKkZ text-input_hds-text-input__input__Kglq3"
                             id="children[0].name"
                             name="children[0].name"
                             placeholder="Lisää lapsen nimi"
@@ -116,24 +116,24 @@ exports[`renders snapshot correctly 1`] = `
                   </div>
                   <div>
                     <div
-                      class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
+                      class="TextInput-module_root__lPctx text-input_hds-text-input__mG8r6 _formField_69b114"
                     >
                       <label
-                        class="FieldLabel-module_label__1zrXK "
+                        class="FieldLabel-module_label__EyKsf "
                         for="children[0].postalCode"
                       >
                         Postinumero
                         <span
-                          class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                          class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                         >
                           *
                         </span>
                       </label>
                       <div
-                        class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                        class="TextInput-module_inputWrapper__9kbLn text-input_hds-text-input__input-wrapper__1RzOg"
                       >
                         <input
-                          class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                          class="TextInput-module_input__LLKkZ text-input_hds-text-input__input__Kglq3"
                           id="children[0].postalCode"
                           name="children[0].postalCode"
                           placeholder="Lisää postinumero"
@@ -145,28 +145,28 @@ exports[`renders snapshot correctly 1`] = `
                     </div>
                   </div>
                   <div
-                    class="_formField_69b114 Select-module_root__-GjU5"
+                    class="_formField_69b114 Select-module_root__7RUyk"
                     id="children[0].relationship.type"
                     name="children[0].relationship.type"
                     tabindex="-1"
                   >
                     <label
-                      class="FieldLabel-module_label__1zrXK "
+                      class="FieldLabel-module_label__EyKsf "
                       for="children[0].relationship.type-main-button"
                       id="children[0].relationship.type-label"
                     >
                       Ilmoittajan suhde lapseen
                       <span
-                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                        class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                       >
                         *
                       </span>
                     </label>
                     <div
-                      class="Select-module_selectAndListContainer__vSJEv"
+                      class="Select-module_selectAndListContainer__0LfdG"
                     >
                       <div
-                        class="Select-module_selectedOptionsContainer__16tlC"
+                        class="Select-module_selectedOptionsContainer__7dBXl"
                       >
                         <button
                           aria-controls="children[0].relationship.type-list"
@@ -174,29 +174,29 @@ exports[`renders snapshot correctly 1`] = `
                           aria-expanded="false"
                           aria-haspopup="listbox"
                           aria-label="Ilmoittajan suhde lapseen. Valitse. 0 valittua vaihtoehtoa. Pakollinen."
-                          class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_placeholder__nKgDE Select-module_singleSelect__3hwAT"
+                          class="Select-module_dropdownButton__JCbQQ Select-module_selectedOptions__ZV-qI Select-module_placeholder__u-WLf Select-module_singleSelect__y5Oup"
                           id="children[0].relationship.type-main-button"
                           role="combobox"
                           type="button"
                         >
                           <div
                             aria-hidden="true"
-                            class="Select-module_labels__2FlKK"
+                            class="Select-module_labels__hujKB"
                           >
                             <span
-                              class="Select-module_dropdownButtonOption__3Tfsz"
+                              class="Select-module_dropdownButtonOption__QWCG-"
                               data-testid="placeholder"
                             >
                               Valitse
                             </span>
                           </div>
                           <div
-                            class="Select-module_arrowAndSpaceForClearButton__3Fufw Select-module_icon__3AwlD"
+                            class="Select-module_arrowAndSpaceForClearButton__x2ij8 Select-module_icon__WBy3J"
                           >
                             <svg
                               aria-hidden="true"
                               aria-label="angle-down"
-                              class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik Select-module_angleIcon__3A9li"
+                              class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo Select-module_angleIcon__tPtcz"
                               role="img"
                               viewBox="0 0 24 24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -211,28 +211,17 @@ exports[`renders snapshot correctly 1`] = `
                           </div>
                         </button>
                       </div>
-                      <div
-                        aria-hidden="true"
-                        class="Select-module_listAndInputContainer__2gZ6q"
-                        id="children[0].relationship.type-sl-container"
-                      >
+                      <div>
                         <div
-                          class="Select-module_listContainer__2PfQA"
-                          style="max-height: 286px;"
-                        >
-                          <ul
-                            aria-multiselectable="false"
-                            class="Select-module_list__2iKlZ"
-                            id="children[0].relationship.type-list"
-                            role="listbox"
-                            tabindex="-1"
-                          />
-                        </div>
+                          aria-hidden="true"
+                          class="Select-module_listAndInputContainer__9hv5c"
+                          id="children[0].relationship.type-sl-container"
+                        />
                       </div>
                     </div>
                     <div
                       aria-live="polite"
-                      class="Select-module_screenReaderNotifications__2wzzH"
+                      class="Select-module_screenReaderNotifications__I0-Hs"
                       data-testid="hds-select-screen-reader-notifications"
                     />
                   </div>
@@ -244,18 +233,18 @@ exports[`renders snapshot correctly 1`] = `
             >
               <button
                 aria-label="Lisää lapsi"
-                class="Button-module_button__1msFE Button-module_supplementary__3YKiS _addNewChildButton_140e51"
+                class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _addNewChildButton_140e51"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
                 <div
                   aria-hidden="true"
-                  class="Button-module_icon__O-h7R"
+                  class="Button-module_icon__Di-Ga"
                 >
                   <svg
                     aria-hidden="true"
                     aria-label="plus-circle"
-                    class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik"
+                    class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
                     role="img"
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
@@ -307,24 +296,24 @@ exports[`renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
+                  class="TextInput-module_root__lPctx text-input_hds-text-input__mG8r6 _formField_69b114"
                 >
                   <label
-                    class="FieldLabel-module_label__1zrXK "
+                    class="FieldLabel-module_label__EyKsf "
                     for="guardian.email"
                   >
                     Sähköpostiosoite
                     <span
-                      class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                      class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                     >
                       *
                     </span>
                   </label>
                   <div
-                    class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                    class="TextInput-module_inputWrapper__9kbLn text-input_hds-text-input__input-wrapper__1RzOg"
                   >
                     <input
-                      class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                      class="TextInput-module_input__LLKkZ text-input_hds-text-input__input__Kglq3"
                       data-testid="guardian.email"
                       disabled=""
                       id="guardian.email"
@@ -339,24 +328,24 @@ exports[`renders snapshot correctly 1`] = `
               </div>
               <div>
                 <div
-                  class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
+                  class="TextInput-module_root__lPctx text-input_hds-text-input__mG8r6 _formField_69b114"
                 >
                   <label
-                    class="FieldLabel-module_label__1zrXK "
+                    class="FieldLabel-module_label__EyKsf "
                     for="guardian.phoneNumber"
                   >
                     Puhelinnumero
                     <span
-                      class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                      class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                     >
                       *
                     </span>
                   </label>
                   <div
-                    class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                    class="TextInput-module_inputWrapper__9kbLn text-input_hds-text-input__input-wrapper__1RzOg"
                   >
                     <input
-                      class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                      class="TextInput-module_input__LLKkZ text-input_hds-text-input__input__Kglq3"
                       id="guardian.phoneNumber"
                       name="guardian.phoneNumber"
                       placeholder="Lisää puhelinnumero"
@@ -372,24 +361,24 @@ exports[`renders snapshot correctly 1`] = `
               >
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
+                    class="TextInput-module_root__lPctx text-input_hds-text-input__mG8r6 _formField_69b114"
                   >
                     <label
-                      class="FieldLabel-module_label__1zrXK "
+                      class="FieldLabel-module_label__EyKsf "
                       for="guardian.firstName"
                     >
                       Etunimi
                       <span
-                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                        class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                       >
                         *
                       </span>
                     </label>
                     <div
-                      class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                      class="TextInput-module_inputWrapper__9kbLn text-input_hds-text-input__input-wrapper__1RzOg"
                     >
                       <input
-                        class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                        class="TextInput-module_input__LLKkZ text-input_hds-text-input__input__Kglq3"
                         id="guardian.firstName"
                         name="guardian.firstName"
                         placeholder="Lisää etunimi"
@@ -402,24 +391,24 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
                 <div>
                   <div
-                    class="TextInput-module_root__2CMNr text-input_hds-text-input__2LODq _formField_69b114"
+                    class="TextInput-module_root__lPctx text-input_hds-text-input__mG8r6 _formField_69b114"
                   >
                     <label
-                      class="FieldLabel-module_label__1zrXK "
+                      class="FieldLabel-module_label__EyKsf "
                       for="guardian.lastName"
                     >
                       Sukunimi
                       <span
-                        class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                        class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                       >
                         *
                       </span>
                     </label>
                     <div
-                      class="TextInput-module_inputWrapper__3Rvel text-input_hds-text-input__input-wrapper__1OqYG"
+                      class="TextInput-module_inputWrapper__9kbLn text-input_hds-text-input__input-wrapper__1RzOg"
                     >
                       <input
-                        class="TextInput-module_input__1BlHi text-input_hds-text-input__input__GJm5C"
+                        class="TextInput-module_input__LLKkZ text-input_hds-text-input__input__Kglq3"
                         id="guardian.lastName"
                         name="guardian.lastName"
                         placeholder="Lisää sukunimi"
@@ -432,28 +421,28 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <div
-                class="_formField_69b114 Select-module_root__-GjU5"
+                class="_formField_69b114 Select-module_root__7RUyk"
                 id="preferLanguage"
                 name="preferLanguage"
                 tabindex="-1"
               >
                 <label
-                  class="FieldLabel-module_label__1zrXK "
+                  class="FieldLabel-module_label__EyKsf "
                   for="preferLanguage-main-button"
                   id="preferLanguage-label"
                 >
                   Asiointikieli
                   <span
-                    class="RequiredIndicator-module_indicator__Pt7GX text-input_hds-text-input__required__2K-Bs"
+                    class="RequiredIndicator-module_indicator__f1SnK text-input_hds-text-input__required__ZUnA2"
                   >
                     *
                   </span>
                 </label>
                 <div
-                  class="Select-module_selectAndListContainer__vSJEv"
+                  class="Select-module_selectAndListContainer__0LfdG"
                 >
                   <div
-                    class="Select-module_selectedOptionsContainer__16tlC"
+                    class="Select-module_selectedOptionsContainer__7dBXl"
                   >
                     <button
                       aria-controls="preferLanguage-list"
@@ -461,28 +450,28 @@ exports[`renders snapshot correctly 1`] = `
                       aria-expanded="false"
                       aria-haspopup="listbox"
                       aria-label="Asiointikieli. 1 valittu vaihtoehto: "Suomi". Pakollinen."
-                      class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_singleSelect__3hwAT"
+                      class="Select-module_dropdownButton__JCbQQ Select-module_selectedOptions__ZV-qI Select-module_singleSelect__y5Oup"
                       id="preferLanguage-main-button"
                       role="combobox"
                       type="button"
                     >
                       <div
                         aria-hidden="true"
-                        class="Select-module_labels__2FlKK"
+                        class="Select-module_labels__hujKB"
                       >
                         <span
-                          class="Select-module_dropdownButtonOption__3Tfsz"
+                          class="Select-module_dropdownButtonOption__QWCG-"
                         >
                           Suomi
                         </span>
                       </div>
                       <div
-                        class="Select-module_arrowAndSpaceForClearButton__3Fufw Select-module_icon__3AwlD"
+                        class="Select-module_arrowAndSpaceForClearButton__x2ij8 Select-module_icon__WBy3J"
                       >
                         <svg
                           aria-hidden="true"
                           aria-label="angle-down"
-                          class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik Select-module_angleIcon__3A9li"
+                          class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo Select-module_angleIcon__tPtcz"
                           role="img"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
@@ -497,49 +486,38 @@ exports[`renders snapshot correctly 1`] = `
                       </div>
                     </button>
                   </div>
-                  <div
-                    aria-hidden="true"
-                    class="Select-module_listAndInputContainer__2gZ6q"
-                    id="preferLanguage-sl-container"
-                  >
+                  <div>
                     <div
-                      class="Select-module_listContainer__2PfQA"
-                      style="max-height: 286px;"
-                    >
-                      <ul
-                        aria-multiselectable="false"
-                        class="Select-module_list__2iKlZ"
-                        id="preferLanguage-list"
-                        role="listbox"
-                        tabindex="-1"
-                      />
-                    </div>
+                      aria-hidden="true"
+                      class="Select-module_listAndInputContainer__9hv5c"
+                      id="preferLanguage-sl-container"
+                    />
                   </div>
                 </div>
                 <div
                   aria-live="polite"
-                  class="Select-module_screenReaderNotifications__2wzzH"
+                  class="Select-module_screenReaderNotifications__I0-Hs"
                   data-testid="hds-select-screen-reader-notifications"
                 />
               </div>
               <div
-                class="_formField_69b114 Select-module_root__-GjU5"
+                class="_formField_69b114 Select-module_root__7RUyk"
                 id="languagesSpokenAtHome"
                 name="guardian.languagesSpokenAtHome"
                 tabindex="-1"
               >
                 <label
-                  class="FieldLabel-module_label__1zrXK "
+                  class="FieldLabel-module_label__EyKsf "
                   for="languagesSpokenAtHome-main-button"
                   id="languagesSpokenAtHome-label"
                 >
                   Kotona puhutut kielet
                 </label>
                 <div
-                  class="Select-module_selectAndListContainer__vSJEv"
+                  class="Select-module_selectAndListContainer__0LfdG"
                 >
                   <div
-                    class="Select-module_selectedOptionsContainer__16tlC"
+                    class="Select-module_selectedOptionsContainer__7dBXl"
                   >
                     <button
                       aria-controls="languagesSpokenAtHome-list"
@@ -547,27 +525,27 @@ exports[`renders snapshot correctly 1`] = `
                       aria-expanded="false"
                       aria-haspopup="listbox"
                       aria-label="Kotona puhutut kielet. . 0 valittua vaihtoehtoa."
-                      class="Select-module_dropdownButton__2-_Ec Select-module_selectedOptions__VmvqD Select-module_placeholder__nKgDE"
+                      class="Select-module_dropdownButton__JCbQQ Select-module_selectedOptions__ZV-qI Select-module_placeholder__u-WLf"
                       id="languagesSpokenAtHome-main-button"
                       role="combobox"
                       type="button"
                     >
                       <div
                         aria-hidden="true"
-                        class="Select-module_labels__2FlKK"
+                        class="Select-module_labels__hujKB"
                       >
                         <span
-                          class="Select-module_dropdownButtonOption__3Tfsz"
+                          class="Select-module_dropdownButtonOption__QWCG-"
                           data-testid="placeholder"
                         />
                       </div>
                       <div
-                        class="Select-module_arrowAndSpaceForClearButton__3Fufw Select-module_icon__3AwlD"
+                        class="Select-module_arrowAndSpaceForClearButton__x2ij8 Select-module_icon__WBy3J"
                       >
                         <svg
                           aria-hidden="true"
                           aria-label="angle-down"
-                          class="Icon-module_icon__1Jtzj icon_hds-icon__1YqNC Icon-module_small__gTGkU icon_hds-icon--size-s__2Lkik Select-module_angleIcon__3A9li"
+                          class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo Select-module_angleIcon__tPtcz"
                           role="img"
                           viewBox="0 0 24 24"
                           xmlns="http://www.w3.org/2000/svg"
@@ -582,46 +560,35 @@ exports[`renders snapshot correctly 1`] = `
                       </div>
                     </button>
                   </div>
-                  <div
-                    aria-hidden="true"
-                    class="Select-module_listAndInputContainer__2gZ6q"
-                    id="languagesSpokenAtHome-sl-container"
-                  >
+                  <div>
                     <div
-                      class="Select-module_listContainer__2PfQA"
-                      style="max-height: 286px;"
-                    >
-                      <ul
-                        aria-multiselectable="true"
-                        class="Select-module_list__2iKlZ"
-                        id="languagesSpokenAtHome-list"
-                        role="listbox"
-                        tabindex="-1"
-                      />
-                    </div>
+                      aria-hidden="true"
+                      class="Select-module_listAndInputContainer__9hv5c"
+                      id="languagesSpokenAtHome-sl-container"
+                    />
                   </div>
                 </div>
                 <div
                   aria-live="polite"
-                  class="Select-module_screenReaderNotifications__2wzzH"
+                  class="Select-module_screenReaderNotifications__I0-Hs"
                   data-testid="hds-select-screen-reader-notifications"
                 />
               </div>
               <div>
                 <div
-                  class="Checkbox-module_checkbox__3r5uI _checkboxField_4c5c4f"
+                  class="Checkbox-module_checkbox__CYHqn _checkboxField_4c5c4f"
                   style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                 >
                   <input
                     checked=""
-                    class="Checkbox-module_input__2bdJk"
+                    class="Checkbox-module_input__8VEto"
                     id="guardian.hasAcceptedCommunication"
                     name="guardian.hasAcceptedCommunication"
                     type="checkbox"
                     value="true"
                   />
                   <label
-                    class="Checkbox-module_label__148Ac"
+                    class="Checkbox-module_label__E-Trx"
                     for="guardian.hasAcceptedCommunication"
                   >
                     Haluan viestejä uusista kummitapahtumista
@@ -633,12 +600,12 @@ exports[`renders snapshot correctly 1`] = `
               >
                 <div>
                   <div
-                    class="Checkbox-module_checkbox__3r5uI _checkboxField_4c5c4f"
+                    class="Checkbox-module_checkbox__CYHqn _checkboxField_4c5c4f"
                     style="--background-hover: var(--color-summer-dark); --background-selected: var(--color-summer); --background-color-selected-hover: var(--color-summer-dark); --background-color-selected-focus: var(--color-summer-dark); --background-color-selected-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer-dark); --border-color-selected-hover-focus: var(--color-summer-dark); --icon-color-selected: var(--color-black);"
                   >
                     <input
                       aria-label="Olen tutustunut <0>tämän palvelun rekisteriselosteeseen</0> ja <1>kaupungin tietosuojakäytäntöön</1>. Minuun voidaan olla yhteydessä antamieni tietojen avulla."
-                      class="Checkbox-module_input__2bdJk"
+                      class="Checkbox-module_input__8VEto"
                       id="agree"
                       name="agree"
                       required=""
@@ -646,7 +613,7 @@ exports[`renders snapshot correctly 1`] = `
                       value="false"
                     />
                     <label
-                      class="Checkbox-module_label__148Ac Checkbox-module_noLabel__1HSAV"
+                      class="Checkbox-module_label__E-Trx Checkbox-module_noLabel__1jYfv"
                       for="agree"
                     />
                   </div>
@@ -681,7 +648,7 @@ exports[`renders snapshot correctly 1`] = `
                 </div>
               </div>
               <button
-                class="Button-module_button__1msFE Button-module_primary__2LfKB _submitButton_140e51"
+                class="Button-module_button__P7hTI Button-module_primary__b-5q5 _submitButton_140e51"
                 style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: var(--color-summer); --background-color-hover: var(--color-summer-dark); --background-color-focus: var(--color-summer); --background-color-hover-focus: var(--color-summer-dark); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="submit"
               >

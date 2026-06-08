@@ -33,7 +33,6 @@ const Unauthorized = () => {
     if (isAuthenticated()) {
       navigate(nextPath || getPathname('/profile'));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

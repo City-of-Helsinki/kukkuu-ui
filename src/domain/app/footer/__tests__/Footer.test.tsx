@@ -10,8 +10,52 @@ import { languagesMock } from '../__mocks__/languagesMock';
 
 vi.mock('hds-react', async () => {
   const actual = await vi.importActual('hds-react');
+
+  const MockFooter = ({
+    children,
+    className,
+  }: {
+    children: React.ReactNode;
+    className?: string;
+  }) => (
+    <footer className={className} role="contentinfo">
+      {children}
+    </footer>
+  );
+
+  const MockFooterBase = ({
+    children,
+    backToTopLabel,
+    onBackToTopClick,
+    copyrightHolder,
+  }: {
+    children: React.ReactNode;
+    backToTopLabel?: string;
+    onBackToTopClick?: () => void;
+    copyrightHolder?: string;
+  }) => (
+    <div>
+      <button type="button" onClick={onBackToTopClick}>
+        {backToTopLabel}
+      </button>
+      <span>{copyrightHolder}</span>
+      {children}
+    </div>
+  );
+
+  const MockFooterLink = ({ href, label }: { href: string; label: string }) => (
+    <a href={href}>{label}</a>
+  );
+
+  const MockLogo = ({ alt }: { alt?: string }) => <img alt={alt} />;
+
+  MockFooter.Base = MockFooterBase;
+  MockFooter.Link = MockFooterLink;
+
   return {
     ...actual,
+    Footer: MockFooter,
+    Logo: MockLogo,
     logoFi: 'mocked hds-react logoFi',
   };
 });
