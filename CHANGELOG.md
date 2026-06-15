@@ -401,6 +401,13 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.17.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.17.0...kukkuu-ui-v3.17.1) (2026-06-15)
+
+
+### Bug Fixes
+
+* Update headless cms HCRC-194 ([#758](https://github.com/City-of-Helsinki/kukkuu-ui/issues/758)) ([70c6ae8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/70c6ae81ba187ba8e2ae9980b691a78b7a781586))
+
 ## [3.17.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.16.0...kukkuu-ui-v3.17.0) (2026-06-08)
 
 
