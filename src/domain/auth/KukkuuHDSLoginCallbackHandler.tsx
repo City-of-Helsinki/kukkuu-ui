@@ -20,7 +20,7 @@ function KukkuuHDSLoginCallbackHandler() {
   };
 
   const onError = (error?: OidcClientError) => {
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-console
     console.error(error);
     if (!error) return;
     if (

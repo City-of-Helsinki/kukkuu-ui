@@ -17,7 +17,7 @@ if (getEnvValue('VITE_SENTRY_DSN')) {
   Sentry.init({
     beforeSend(event) {
       // Check if the event contains a PERMISSION_DENIED error
-      if (event.exception && event.exception.values) {
+      if (event?.exception?.values) {
         const isPermissionDenied = event.exception.values.some(
           (exception) =>
             exception.type === 'GraphQLError' &&
@@ -38,16 +38,16 @@ if (getEnvValue('VITE_SENTRY_DSN')) {
       Sentry.browserTracingIntegration(),
       Sentry.replayIntegration(),
     ],
-    tracesSampleRate: parseFloat(
+    tracesSampleRate: Number.parseFloat(
       getEnvValue('VITE_SENTRY_TRACES_SAMPLE_RATE') || '0'
     ),
     tracePropagationTargets: (
       getEnvValue('VITE_SENTRY_TRACE_PROPAGATION_TARGETS') || ''
     ).split(','),
-    replaysSessionSampleRate: parseFloat(
+    replaysSessionSampleRate: Number.parseFloat(
       getEnvValue('VITE_SENTRY_REPLAYS_SESSION_SAMPLE_RATE') || '0'
     ),
-    replaysOnErrorSampleRate: parseFloat(
+    replaysOnErrorSampleRate: Number.parseFloat(
       getEnvValue('VITE_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE') || '0'
     ),
   });
