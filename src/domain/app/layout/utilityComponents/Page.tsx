@@ -16,7 +16,6 @@ type Props = {
       };
   isLoading?: boolean;
   isReady?: boolean;
-  // eslint-disable-next-line react/no-unused-prop-types
   layout?: ReactComponentElement<'div'>;
 };
 

@@ -63,7 +63,6 @@ describe('ChildEnrolmentCount', () => {
 
   const getMockedProviders =
     (mocks?: readonly MockedResponse<any, any>[]) =>
-    // eslint-disable-next-line react/display-name
     ({ children }: { children: React.ReactNode }) => {
       return (
         <MockedProvider mocks={mocks} addTypename={false}>

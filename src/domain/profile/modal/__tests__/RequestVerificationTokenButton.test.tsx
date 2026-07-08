@@ -90,7 +90,6 @@ describe('RequestVerificationTokenButton', () => {
 
   const getMockedProviders =
     (mocks: any[]) =>
-    // eslint-disable-next-line react/display-name
     ({ children }: { children: React.ReactNode }) => {
       return (
         <MockedProvider mocks={mocks} addTypename={false}>

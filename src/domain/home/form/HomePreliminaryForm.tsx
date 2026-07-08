@@ -22,7 +22,6 @@ import { SUPPORTED_START_BIRTH_YEAR } from '../../../common/time/TimeConstants';
 interface Props {
   isAuthenticated: boolean;
   setHomeFormValues: (values: HomeFormPayload) => void;
-  // eslint-disable-next-line react/no-unused-prop-types
   stateFormValues: RegistrationFormValues;
   forwardRef: Ref<HTMLDivElement>;
 }
@@ -52,6 +51,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
         .number()
         .required('validation.general.required')
         .min(SUPPORTED_START_BIRTH_YEAR, 'validation.date.unSupported')
+        // eslint-disable-next-line @eslint-react/purity
         .max(new Date().getFullYear(), 'validation.date.unSupported'),
     }),
   });
@@ -160,4 +160,5 @@ const mapStateToProps = (state: StoreState) => {
 
 export const UnconnectedHomePreliminaryForm = HomePreliminaryForm;
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default connect(mapStateToProps, actions)(HomePreliminaryForm);

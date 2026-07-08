@@ -22,6 +22,16 @@ overrides:
   'ws@^7': '^7.5.11'
   '@babel/core@^7': '^7.29.6'
 
+# Widen ESLint peer range for packages that have not yet released a version
+# declaring ESLint v10 peer support:
+#   - eslint-plugin-jsx-a11y: AST-only, works fine with v10.
+#   - eslint-plugin-import: dead transitive pulled by eslint-module-utils;
+#     nothing imports it (we use eslint-plugin-import-x directly).
+peerDependencyRules:
+  allowedVersions:
+    'eslint-plugin-jsx-a11y>eslint': '10'
+    'eslint-plugin-import>eslint': '10'
+
 # pnpm 11 requires explicit opt-in for packages that run install scripts.
 allowBuilds:
   # @ffmpeg-installer/ffmpeg pulls one platform-specific optional dependency.

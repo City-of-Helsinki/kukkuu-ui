@@ -16,6 +16,7 @@ function useHashAnchorLinks() {
       // content may still not be ready for consumption. This linking
       // only works on pages where the element that is linked to exists
       // during the initial render.
+      // eslint-disable-next-line @eslint-react/web-api-no-leaked-timeout
       setTimeout(() => {
         const id = hash.replace('#', '');
         const element = document.getElementById(id);
