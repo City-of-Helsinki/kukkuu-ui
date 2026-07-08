@@ -20,6 +20,7 @@ overrides:
   cookie: '^0.7.2' # hds-react compatibility (https://github.com/City-of-Helsinki/palvelutarjotin-ui/security/dependabot/101)
   lodash: '>=4.18.0' # Code Injection & Prototype Pollution fixes in @graphql-codegen
   'ws@^7': '^7.5.11'
+  '@babel/core@^7': '^7.29.6'
 
 # pnpm 11 requires explicit opt-in for packages that run install scripts.
 allowBuilds:

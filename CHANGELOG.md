@@ -403,25 +403,22 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 
 ## [3.17.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.16.0...kukkuu-ui-v3.17.0) (2026-06-08)
 
-
 ### Features
 
-* Update to react 19 and hds 6 ([ccbf060](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ccbf0600f40d7f9868484a4b8e106caecf1abcd7))
+- Update to react 19 and hds 6 ([ccbf060](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ccbf0600f40d7f9868484a4b8e106caecf1abcd7))
 
 ## [3.16.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.15.8...kukkuu-ui-v3.16.0) (2026-06-05)
 
-
 ### Features
 
-* Added runtime environment configuration ([ca1f46d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ca1f46d70e6e12948e8a53375adb18a5a097c86b))
-* Replace yarn with pnpm ([be3f562](https://github.com/City-of-Helsinki/kukkuu-ui/commit/be3f562ac8bc9f8259451ff3723c8491e0fe6c1f))
+- Added runtime environment configuration ([ca1f46d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/ca1f46d70e6e12948e8a53375adb18a5a097c86b))
+- Replace yarn with pnpm ([be3f562](https://github.com/City-of-Helsinki/kukkuu-ui/commit/be3f562ac8bc9f8259451ff3723c8491e0fe6c1f))
 
 ## [3.15.8](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.15.7...kukkuu-ui-v3.15.8) (2026-06-04)
 
-
 ### Dependencies
 
-* Bump react-router from 7.12.0 to 7.15.0 ([c08d978](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c08d9780f50ab41e5385b28ecf75e642b0591fec))
+- Bump react-router from 7.12.0 to 7.15.0 ([c08d978](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c08d9780f50ab41e5385b28ecf75e642b0591fec))
 
 ## [3.15.7](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.15.6...kukkuu-ui-v3.15.7) (2026-05-11)
 
