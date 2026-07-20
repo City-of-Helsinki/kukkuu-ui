@@ -18,7 +18,6 @@ import IdleTimer from '../../domain/auth/IdleTimerProvider';
 
 type Props = {
   children: ReactElement | ReactNode;
-  // eslint-disable-next-line react/no-unused-prop-types
   mocks?: MockedResponse[];
 };
 

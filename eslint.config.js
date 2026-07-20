@@ -1,15 +1,15 @@
 import js from '@eslint/js';
 import typescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
-import react from 'eslint-plugin-react';
+import eslintReact from '@eslint-react/eslint-plugin';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
-import importPlugin from 'eslint-plugin-import';
+import importX from 'eslint-plugin-import-x';
 import prettier from 'eslint-plugin-prettier';
 import testingLibrary from 'eslint-plugin-testing-library';
 import vitest from '@vitest/eslint-plugin';
-import stylistic from '@stylistic/eslint-plugin-js';
+import stylistic from '@stylistic/eslint-plugin';
 import globals from 'globals';
 
 export default [
@@ -27,6 +27,11 @@ export default [
       '**/mockServiceWorker.js',
     ]
   },
+
+  // @eslint-react's recommended-typescript config (bundles plugin + rules + settings)
+  eslintReact.configs['recommended-typescript'],
+  // Turn off @eslint-react rules that overlap with eslint-plugin-react-hooks
+  eslintReact.configs['disable-conflict-eslint-plugin-react-hooks'],
 
   // Base config for all files
   {
@@ -50,19 +55,23 @@ export default [
     },
     plugins: {
       '@typescript-eslint': typescript,
-      react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'jsx-a11y': jsxA11y,
-      import: importPlugin,
+      'import-x': importX,
       prettier,
       'testing-library': testingLibrary,
       '@vitest': vitest,
-      '@stylistic/js': stylistic,
+      '@stylistic': stylistic,
     },
     settings: {
-      react: {
-        version: 'detect',
+      'import-x/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+        },
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
       },
     },
     rules: {
@@ -72,8 +81,7 @@ export default [
       // TypeScript rules
       ...typescript.configs.recommended.rules,
 
-      // React rules
-      ...react.configs.recommended.rules,
+      // React Hooks rules (react rules already bundled via recommended-typescript above)
       ...reactHooks.configs.recommended.rules,
 
       // JSX A11y rules
@@ -82,17 +90,12 @@ export default [
       // Vitest rules
       ...vitest.configs['legacy-recommended'].rules,
 
-      // Disable unused eslint-disable directive warnings
-      'no-unused-disable-directive': 'off',
-
       // Custom rules from your current config
       'react-refresh/only-export-components': 'error',
-      '@stylistic/js/brace-style': ['error', '1tbs', { allowSingleLine: true }],
+      '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
       'no-use-before-define': 'off',
-      'react/prop-types': 'off',
-      'react/no-unused-prop-types': ['warn', { skipShapeProps: true }],
       'array-bracket-spacing': ['warn', 'never'],
-      'import/order': [
+      'import-x/order': [
         'error',
         {
           groups: [
@@ -108,14 +111,13 @@ export default [
       'no-plusplus': 'error',
       'no-undef': 'warn',
       'object-curly-spacing': ['warn', 'always'],
-      'import/no-named-as-default': 'off',
-      'import/no-named-as-default-member': 'off',
-      'import/no-anonymous-default-export': 'off',
+      'import-x/no-named-as-default': 'off',
+      'import-x/no-named-as-default-member': 'off',
+      'import-x/no-anonymous-default-export': 'off',
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/ban-ts-comment': 'warn',
       '@typescript-eslint/no-non-null-assertion': 'warn',
-      'react/destructuring-assignment': 'off',
       '@vitest/expect-expect': [
         'error',
         {
@@ -125,7 +127,19 @@ export default [
           ],
         },
       ],
-      '@vitest/no-mocks-import': 0
+      '@vitest/no-mocks-import': 0,
+
+      // ESLint 10 migration: silence rules that were added by newer plugins
+      // and would require broader refactors than this upgrade should carry.
+      'react-hooks/immutability': 'off',
+      'react-hooks/set-state-in-effect': 'off',
+      '@eslint-react/use-state': 'off',
+      '@eslint-react/no-array-index-key': 'off',
+      '@eslint-react/no-use-context': 'off',
+      '@eslint-react/no-context-provider': 'off',
+      '@eslint-react/naming-convention-ref-name': 'off',
+      '@eslint-react/set-state-in-effect': 'off',
+      '@eslint-react/exhaustive-deps': 'off',
     },
   },
 
@@ -157,8 +171,8 @@ export default [
   {
     files: ['*.config.{js,ts}', '**/vitest-setup.ts', '**/test*/**/*.{js,ts}'],
     rules: {
-      'import/no-unresolved': 'off',
-      'import/first': 'off',
+      'import-x/no-unresolved': 'off',
+      'import-x/first': 'off',
       '@typescript-eslint/no-var-requires': 'off',
       'max-len': 'off',
     },

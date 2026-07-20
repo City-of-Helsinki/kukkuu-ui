@@ -8,7 +8,6 @@ export type AppRouteProps = Omit<RouteProps, 'lazy' | 'index' | 'children'> & {
   isPrivate?: boolean;
   titleKey?: string;
   noTitle?: boolean;
-  // eslint-disable-next-line react/no-unused-prop-types
   index?: true;
 };
 

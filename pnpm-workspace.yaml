@@ -19,6 +19,18 @@ overrides:
   tmp: '>=0.2.4' # Security fix in external-editor
   cookie: '^0.7.2' # hds-react compatibility (https://github.com/City-of-Helsinki/palvelutarjotin-ui/security/dependabot/101)
   lodash: '>=4.18.0' # Code Injection & Prototype Pollution fixes in @graphql-codegen
+  'ws@^7': '^7.5.11'
+  '@babel/core@^7': '^7.29.6'
+
+# Widen ESLint peer range for packages that have not yet released a version
+# declaring ESLint v10 peer support:
+#   - eslint-plugin-jsx-a11y: AST-only, works fine with v10.
+#   - eslint-plugin-import: dead transitive pulled by eslint-module-utils;
+#     nothing imports it (we use eslint-plugin-import-x directly).
+peerDependencyRules:
+  allowedVersions:
+    'eslint-plugin-jsx-a11y>eslint': '10'
+    'eslint-plugin-import>eslint': '10'
 
 # pnpm 11 requires explicit opt-in for packages that run install scripts.
 allowBuilds:
