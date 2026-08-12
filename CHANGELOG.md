@@ -401,6 +401,25 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.17.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.17.0...kukkuu-ui-v3.17.1) (2026-08-12)
+
+
+### Bug Fixes
+
+* Prefer Number static methods over global numeric helpers ([7449311](https://github.com/City-of-Helsinki/kukkuu-ui/commit/7449311ff8f5ae48ee27efea0e32bf4dd162ae80))
+* Stuck Dependabot workflows ([#768](https://github.com/City-of-Helsinki/kukkuu-ui/issues/768)) ([fd531ec](https://github.com/City-of-Helsinki/kukkuu-ui/commit/fd531ec2d1a9e384e24cde361e9b1343efa07cb2))
+* Update headless cms HCRC-194 ([#758](https://github.com/City-of-Helsinki/kukkuu-ui/issues/758)) ([70c6ae8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/70c6ae81ba187ba8e2ae9980b691a78b7a781586))
+
+
+### Dependencies
+
+* Bump dompurify from 3.4.0 to 3.4.11 ([6796ee2](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6796ee2f45a5aa3b008d0172425e578a149f6aef))
+* Bump dompurify from 3.4.12 to 3.4.13 ([d82b497](https://github.com/City-of-Helsinki/kukkuu-ui/commit/d82b497f12c020ae9d70f6f5a4f61878f2315789))
+* Bump react-router from 7.15.1 to 8.3.0 ([3387aab](https://github.com/City-of-Helsinki/kukkuu-ui/commit/3387aab97567e2857bea3c223c44e4dc321167b1))
+* Bump vite from 8.0.5 to 8.0.16 ([dc40da5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/dc40da5a8186c0ae7bd92a6deb7253145359efe8))
+* Dompurify minimumReleaseAgeExclude Refs: RATY-357 ([9bd164d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/9bd164d33cb95d329fae28bf1805572641f9ae7c))
+* Dompurify release age exclude Refs: RATY-357 ([e3ec827](https://github.com/City-of-Helsinki/kukkuu-ui/commit/e3ec827662091eda02d749b902c847bd710f5f6c))
+
 ## [3.17.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.16.0...kukkuu-ui-v3.17.0) (2026-06-08)
 
 ### Features
