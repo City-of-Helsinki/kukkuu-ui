@@ -19,14 +19,15 @@ describe('ExternalTicketSystemPassword', () => {
     vi.clearAllMocks();
   });
 
-  it('renders the password', () => {
-    render(<ExternalTicketSystemPassword password="SECRET123" />, []);
+  // The password is case sensitive: it must be rendered and copied verbatim.
+  it('renders the password with its original casing', () => {
+    render(<ExternalTicketSystemPassword password="mIxEd-CaSe-123" />, []);
 
-    expect(screen.getByText('SECRET123')).toBeInTheDocument();
+    expect(screen.getByText('mIxEd-CaSe-123')).toBeInTheDocument();
   });
 
   it('renders the copy button', () => {
-    render(<ExternalTicketSystemPassword password="SECRET123" />, []);
+    render(<ExternalTicketSystemPassword password="mIxEd-CaSe-123" />, []);
 
     expect(
       screen.getByRole('button', { name: 'Kopioi salasana' })
@@ -37,13 +38,13 @@ describe('ExternalTicketSystemPassword', () => {
     mockCopy.mockReturnValue(true);
     const user = userEvent.setup();
     const { container } = render(
-      <ExternalTicketSystemPassword password="SECRET123" />,
+      <ExternalTicketSystemPassword password="mIxEd-CaSe-123" />,
       []
     );
 
     await user.click(screen.getByRole('button', { name: 'Kopioi salasana' }));
 
-    expect(mockCopy).toHaveBeenCalledWith('SECRET123');
+    expect(mockCopy).toHaveBeenCalledWith('mIxEd-CaSe-123');
     expect(
       container.querySelector(`.${styles.successWrapper}`)
     ).toBeInTheDocument();
@@ -54,13 +55,13 @@ describe('ExternalTicketSystemPassword', () => {
     const user = userEvent.setup();
 
     const { container } = render(
-      <ExternalTicketSystemPassword password="SECRET123" />,
+      <ExternalTicketSystemPassword password="mIxEd-CaSe-123" />,
       []
     );
 
     await user.click(screen.getByRole('button', { name: 'Kopioi salasana' }));
 
-    expect(mockCopy).toHaveBeenCalledWith('SECRET123');
+    expect(mockCopy).toHaveBeenCalledWith('mIxEd-CaSe-123');
     expect(
       container.querySelector(`.${styles.successWrapper}`)
     ).not.toBeInTheDocument();
