@@ -10,10 +10,7 @@ import {
 import { Hero } from '../domain/headlessCms/graphql/__generated__';
 
 const generateUri = () =>
-  faker.word
-    .words({ count: { min: 1, max: 4 } })
-    .split(' ')
-    .join('/');
+  faker.word.words({ count: { min: 1, max: 4 } }).replaceAll(' ', '/');
 
 type MediaItem = NonNullable<NonNullable<Page>['featuredImage']>['node'];
 type Seo = NonNullable<Page>['seo'];

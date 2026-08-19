@@ -132,7 +132,7 @@ const EnrolPage = () => {
 
   const enrol = async () => {
     if (!data?.occurrence?.id) {
-      const noOccurrenceError = Error('No result');
+      const noOccurrenceError = new Error('No result');
 
       // eslint-disable-next-line no-console
       console.error(noOccurrenceError);
