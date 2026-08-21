@@ -5,7 +5,7 @@ export const nlToParagraph = (text: string) => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getNodeText = (node: any): string => {
   if (['string', 'number'].includes(typeof node)) return node;
-  if (node instanceof Array) return node.map(getNodeText).join('');
+  if (Array.isArray(node)) return node.map(getNodeText).join('');
   if (typeof node === 'object' && node) return getNodeText(node.props.children);
   return node;
 };

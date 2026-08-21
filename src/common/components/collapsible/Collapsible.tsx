@@ -21,6 +21,7 @@ const Collapsible: FunctionComponent<CollapsibleProps> = ({ item }) => {
   return (
     <div className={isOpen ? styles.show : ''}>
       <button
+        type="button"
         aria-expanded={isOpen}
         aria-controls={id}
         className={styles.header}

@@ -9,6 +9,7 @@ exports[`renders snapshot correctly 1`] = `
       aria-controls="collapsible_1"
       aria-expanded="false"
       class="_header_e661a8"
+      type="button"
     >
       <h3>
         Saapuminen
@@ -47,6 +48,7 @@ exports[`renders snapshot correctly 1`] = `
       aria-controls="collapsible_2"
       aria-expanded="false"
       class="_header_e661a8"
+      type="button"
     >
       <h3>
         Esteettömyys
@@ -85,6 +87,7 @@ exports[`renders snapshot correctly 1`] = `
       aria-controls="collapsible_3"
       aria-expanded="false"
       class="_header_e661a8"
+      type="button"
     >
       <h3>
         WC-tilat ja lastenhoitohuone
@@ -123,6 +126,7 @@ exports[`renders snapshot correctly 1`] = `
       aria-controls="collapsible_4"
       aria-expanded="false"
       class="_header_e661a8"
+      type="button"
     >
       <h3>
         Lisätietoa

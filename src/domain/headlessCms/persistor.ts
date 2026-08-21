@@ -157,7 +157,7 @@ export class TimedApolloCachePersistor {
    * @returns `true` if the cache has expired, `false` otherwise.
    */
   hasPersistedCacheExpired() {
-    const persistedAt = parseInt(
+    const persistedAt = Number.parseInt(
       localStorage.getItem(this.timePersistedLocalStorageKey) ?? ''
     );
 
