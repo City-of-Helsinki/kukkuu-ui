@@ -16,13 +16,21 @@ shamefullyHoist: true
 
 # Package version overrides to fix vulnerabilities and ensure compatibility
 overrides:
+  shell-quote: '>=1.8.5' # ReDoS and newline escaping fixes in @graphql-codegen/cli
   minimatch: '>9.0.7' # ReDoS fix in @typescript-eslint/typescript-estree
   underscore: '1.13.8' # Security fix in testcafe-hammerhead/httpntlm
-  immutable: '>=3.8.3' # Prototype Pollution fix in @ardatan/relay-compiler
-  tmp: '>=0.2.4' # Security fix in external-editor
+  immutable: '>=5.1.8' # DoS fixes in @ardatan/relay-compiler
+  tmp: '>=0.2.6' # Path Traversal fix in external-editor
   cookie: '^0.7.2' # hds-react compatibility (https://github.com/City-of-Helsinki/palvelutarjotin-ui/security/dependabot/101)
   lodash: '>=4.18.0' # Code Injection & Prototype Pollution fixes in @graphql-codegen
+  brace-expansion: '>=5.0.9' # DoS fixes in minimatch
+  nanoid: '>=3.3.18' # Infinite loop fixes in testcafe
+  ws: '>=8.21.0' # Memory exhaustion fix in jsdom
   'ws@^7': '^7.5.11'
+  fast-uri: '>=3.1.5' # Path traversal and host confusion fixes in ajv
+  postcss: '>=8.5.18' # Path Traversal fix in hds-react
+  js-yaml: '>=4.3.1' # Quadratic CPU consumption fix in @svgr/core
+  undici: '>=7.29.0' # Information disclosure fix in jsdom
   '@babel/core@^7': '^7.29.6'
 
 # Widen ESLint peer range for packages that have not yet released a version
