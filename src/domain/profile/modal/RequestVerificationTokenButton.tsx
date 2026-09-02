@@ -58,6 +58,11 @@ export default function RequestVerificationTokenButton({
     }
   };
 
+  const buttonLabel = t(
+    'registration.form.guardian.email.verificationToken.request.button'
+  );
+  const coolDownSuffix = coolDownSeconds ? ` (${coolDownSeconds})` : '';
+
   return (
     <Button
       variant="primary"
@@ -65,9 +70,7 @@ export default function RequestVerificationTokenButton({
       className={styles.requestVerificationTokenButton}
       disabled={isDisabled}
     >
-      {`${t(
-        'registration.form.guardian.email.verificationToken.request.button'
-      )}${coolDownSeconds ? ` (${coolDownSeconds})` : ''}`}
+      {`${buttonLabel}${coolDownSuffix}`}
     </Button>
   );
 }
