@@ -53,10 +53,10 @@ const OccurrenceInfo = ({
   return (
     <div className={joinClassNames(className, styles.row)}>
       {infoItems.map(
-        (item, index) =>
+        (item) =>
           show.some((id) => id === item.id) && (
             <InfoItem
-              key={index}
+              key={item.id}
               id={item.id}
               className={joinClassNames(
                 className,

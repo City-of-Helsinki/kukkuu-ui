@@ -43,7 +43,7 @@ interface ChildFormProps {
   formType?: ChildFormType;
 }
 
-const immutableFields = ['birthyear'];
+const immutableFields = new Set(['birthyear']);
 
 const ChildForm: FunctionComponent<ChildFormProps> = ({
   initialValues,
@@ -62,7 +62,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   };
 
   const isFieldImmutable = (fieldName: string) => {
-    return isEditForm && immutableFields.includes(fieldName);
+    return isEditForm && immutableFields.has(fieldName);
   };
 
   const relationshipOptions = getTranslatedRelationshipOptions(t);

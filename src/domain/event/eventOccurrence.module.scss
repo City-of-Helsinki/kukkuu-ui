@@ -15,10 +15,8 @@ tr {
 .occurrence {
   display: none;
 
-  & {
-    @include layout.respond-above(l) {
-      display: table-row;
-    }
+  @include layout.respond-above(l) {
+    display: table-row;
   }
 
   &.isMobile {
