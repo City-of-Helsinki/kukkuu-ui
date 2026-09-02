@@ -43,13 +43,9 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     refetchProfile();
   };
 
-  const onDeleteConfirmModalToggle = (isOpen: boolean) => {
-    if (isOpen === false) {
-      setIsOpen(false);
-    }
-  };
-
-  const onNonEligibleAlertToggle = (isOpen: boolean) => {
+  // Both the delete-confirm and non-eligible-alert modals only need to close
+  // the whole edit flow when they are dismissed.
+  const closeOnDismiss = (isOpen: boolean) => {
     if (isOpen === false) {
       setIsOpen(false);
     }
@@ -81,25 +77,35 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     setIsOpen(false);
   };
 
-  return isFormOpen ? (
-    <ChildFormModal
-      initialValues={initialFormData}
-      onSubmit={onSubmit}
-      onCancel={onCancel}
-      onDelete={openDeleteConfirmModal}
-      label={t('child.form.modal.edit.label')}
-      isOpen={isFormOpen}
-      setIsOpen={onFormModalToggle}
-      formType={ChildFormType.EDIT}
-    />
-  ) : isDeleteConfirmOpen ? (
-    <ChildConfirmDeleteModal
-      deleteChild={onDelete}
-      setIsOpen={onDeleteConfirmModalToggle}
-    />
-  ) : isNonEligibleAlertOpen ? (
-    <ChildAlertNonEligibleModal setIsOpen={onNonEligibleAlertToggle} />
-  ) : null;
+  if (isFormOpen) {
+    return (
+      <ChildFormModal
+        initialValues={initialFormData}
+        onSubmit={onSubmit}
+        onCancel={onCancel}
+        onDelete={openDeleteConfirmModal}
+        label={t('child.form.modal.edit.label')}
+        isOpen={isFormOpen}
+        setIsOpen={onFormModalToggle}
+        formType={ChildFormType.EDIT}
+      />
+    );
+  }
+
+  if (isDeleteConfirmOpen) {
+    return (
+      <ChildConfirmDeleteModal
+        deleteChild={onDelete}
+        setIsOpen={closeOnDismiss}
+      />
+    );
+  }
+
+  if (isNonEligibleAlertOpen) {
+    return <ChildAlertNonEligibleModal setIsOpen={closeOnDismiss} />;
+  }
+
+  return null;
 };
 
 export default ProfileChildDetailEditModal;
