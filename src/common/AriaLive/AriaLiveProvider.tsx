@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import AriaLiveContext from './AriaLiveContext';
@@ -46,14 +46,13 @@ function AriaLiveProvider({
     rootElement.dataset.testid = dataTestId;
   }
   const [message, sendMessage] = useState<string>('');
+  const contextValue = useMemo(
+    () => ({ message, sendMessage }),
+    [message, sendMessage]
+  );
 
   return (
-    <AriaLiveContext.Provider
-      value={{
-        message,
-        sendMessage,
-      }}
-    >
+    <AriaLiveContext.Provider value={contextValue}>
       {children}
       {ReactDOM.createPortal(<AriaLiveRegion />, rootElement) as ReactNode}
     </AriaLiveContext.Provider>

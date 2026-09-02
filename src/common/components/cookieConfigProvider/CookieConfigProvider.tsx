@@ -11,7 +11,7 @@ export default function CookieConfigProvider({
   cookieDomain,
   children,
 }: CookieConfigProviderProps) {
-  const context = { cookieDomain };
+  const context = React.useMemo(() => ({ cookieDomain }), [cookieDomain]);
   return (
     <CookieConfig.Provider value={context}>{children}</CookieConfig.Provider>
   );

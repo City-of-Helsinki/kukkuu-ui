@@ -17,18 +17,17 @@ const Partners = (props: Props) => {
   const partners = props.partners;
   return (
     <div className={styles[props.size]}>
-      {partners.map((partner: Partner, index: number) => {
-        const icon =
-          partner.altLangIcons?.[currentLocale]
-            ? partner.altLangIcons[currentLocale]
-            : partner.icon;
+      {partners.map((partner: Partner) => {
+        const icon = partner.altLangIcons?.[currentLocale]
+          ? partner.altLangIcons[currentLocale]
+          : partner.icon;
         const href = partner.url[currentLocale]
           ? partner.url[currentLocale]
           : partner.url.fi;
 
         return (
           <a
-            key={index}
+            key={partner.name}
             href={href}
             className={classnames(
               styles.container,

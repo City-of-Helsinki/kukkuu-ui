@@ -13,10 +13,10 @@ const MoreInfoLinkList = ({ links }: MoreInfoLinkListProps) => {
   const currentLanguage = getCurrentLanguage(i18n);
   return (
     <div className={styles.link}>
-      {links.map((link, index: number) => {
+      {links.map((link) => {
         const languageName = t(`home.moreInfo.links.${link.langCode}`);
         return (
-          <a href={link.url} key={index}>
+          <a href={link.url} key={link.langCode}>
             <span lang={link.langCode}>{link.langName}</span>
             <span>&thinsp;</span>
             <span lang={currentLanguage} className={styles.localizedLanguage}>

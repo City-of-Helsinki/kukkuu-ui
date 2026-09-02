@@ -50,18 +50,24 @@ const AddNewChildFormModal: React.FunctionComponent<{
     setIsOpen(false);
   };
 
-  return isFormOpen ? (
-    <ChildFormModal
-      initialValues={initialFormData}
-      onSubmit={onSubmit}
-      onCancel={onCancel}
-      label={t('child.form.modal.add.label')}
-      isOpen={isFormOpen}
-      setIsOpen={onFormModalToggle}
-    />
-  ) : isNonEligibleAlertOpen ? (
-    <ChildAlertNonEligibleModal setIsOpen={onNonEligibleAlertToggle} />
-  ) : null;
+  if (isFormOpen) {
+    return (
+      <ChildFormModal
+        initialValues={initialFormData}
+        onSubmit={onSubmit}
+        onCancel={onCancel}
+        label={t('child.form.modal.add.label')}
+        isOpen={isFormOpen}
+        setIsOpen={onFormModalToggle}
+      />
+    );
+  }
+
+  if (isNonEligibleAlertOpen) {
+    return <ChildAlertNonEligibleModal setIsOpen={onNonEligibleAlertToggle} />;
+  }
+
+  return null;
 };
 
 export default AddNewChildFormModal;
