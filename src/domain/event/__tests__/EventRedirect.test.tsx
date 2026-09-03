@@ -212,6 +212,7 @@ describe('EventRedirect', () => {
 
   it('assigns a password and shows it with a link to the ticket system', async () => {
     const user = userEvent.setup();
+    const clearStoreSpy = vi.spyOn(apiClient, 'clearStore');
     render(<EventRedirect />, defaultMocks());
     await waitForLoadingToFinish();
 
@@ -228,6 +229,10 @@ describe('EventRedirect', () => {
         name: /Jatka ulkoiseen lipunmyyntipalveluun/i,
       })
     ).toHaveAttribute('href', TICKET_SYSTEM_URL);
+
+    // The whole store is wiped on completion so the freshly assigned password
+    // is not served from a stale cache.
+    expect(clearStoreSpy).toHaveBeenCalled();
   });
 
   it('shows a password that was already assigned, without offering to acquire one', async () => {
