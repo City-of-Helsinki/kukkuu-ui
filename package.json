@@ -52,7 +52,7 @@
   "dependencies": {
     "@apollo/client": "^3.12.7",
     "@city-of-helsinki/react-helsinki-headless-cms": "3.0.3",
-    "@faker-js/faker": "^9.4.0",
+    "@faker-js/faker": "^10.5.0",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@eslint-react/eslint-plugin": "~5.10.0",
