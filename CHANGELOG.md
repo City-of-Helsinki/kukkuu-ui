@@ -401,6 +401,19 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.17.4](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.17.3...kukkuu-ui-v3.17.4) (2026-09-05)
+
+
+### Bug Fixes
+
+* Memoize context values, dedupe handlers and stable list keys ([989499e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/989499e727885281a616b480f2e2e0a5bdf2aa76))
+* Sonar maintainability issues ([1a8959f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/1a8959fd8028a207d5d05f72a89b3187f1a434cd))
+
+
+### Dependencies
+
+* Bump @faker-js/faker from 9.4.0 to 10.5.0 ([99e317e](https://github.com/City-of-Helsinki/kukkuu-ui/commit/99e317e36f18e5cfe7ac92cfb5aadfef2e3aa9b0))
+
 ## [3.17.3](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.17.2...kukkuu-ui-v3.17.3) (2026-08-31)
 
 
