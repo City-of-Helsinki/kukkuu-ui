@@ -31,5 +31,11 @@ export default {
       `pnpm test:staged ${filesToLint}`,
     ];
   },
-  '**/*.{html,json,css,scss,md,mdx}': ['pnpm format:markup'],
+  // Prettier is called directly rather than through the `format:markup`
+  // script: that script carries its own repo-wide glob, which would make
+  // every commit reformat the whole repository instead of the staged files
+  // that lint-staged appends here.
+  '**/*.{html,json,css,scss,md,mdx}': [
+    'prettier --config .prettierrc.json --write',
+  ],
 };
