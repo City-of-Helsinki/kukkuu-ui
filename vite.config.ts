@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
+import { thirdPartyLicenses } from './scripts/thirdPartyLicenses';
+
 export default defineConfig(() => {
   return {
     css: {
@@ -45,6 +47,7 @@ export default defineConfig(() => {
       eslint(),
       // svgr options: https://react-svgr.com/docs/options/
       svgr({ svgrOptions: { icon: true } }),
+      thirdPartyLicenses(),
     ],
   };
 });
