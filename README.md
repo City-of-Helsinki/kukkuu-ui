@@ -40,6 +40,7 @@
   - [Troubleshoting release-please](#troubleshoting-release-please)
     - [Fix merge conflicts by running release-please -action manually](#fix-merge-conflicts-by-running-release-please--action-manually)
   - [Deployments](#deployments)
+- [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -301,6 +302,13 @@ Runs browser tests against your local version of the application (assumes port `
 
 - The `pnpm test:browser:ci` variant of this command is meant to run in the CI, and it targets the staging server. It uses headless mode and may therefore behave differently compared to the local test runner.
 - The deployment pipelines are running the browser tests as automated actions. They are run against PR and staging environments when after they have been built and deployed.
+- Video recording of failed tests requires FFmpeg, provided by the
+  `@ffmpeg-installer/ffmpeg` dev dependency. It is a test-time tool only: it is never
+  imported by the application and never reaches the production image, which contains
+  only the compiled `build` output. Its binaries are GPL-licensed (GPL-3.0 on Linux;
+  the macOS build additionally enables non-redistributable components), so they must
+  not be copied into any published artifact. Failure screenshots
+  (`--screenshots takeOnFails=true`) work without FFmpeg.
 - See also [JWT issuance for browser tests](#jwt-issuance-for-browser-tests)
 
 To run browser tests locally, you need to configure the browser testing environment:
@@ -418,3 +426,32 @@ There's also a CLI for debugging and manually running releases available for rel
 When a Release-Please pull request is merged and a version tag is created (or a proper tag name for a commit is manually created), this tag will be picked by Azure pipeline, which then triggers a new deployment to staging. From there, the deployment needs to be manually approved to allow it to proceed to the production environment.
 
 The tag name is defined in the [azure-pipelines-release.yml](./azure-pipelines-release.yml).
+
+## License
+
+The source code in this repository is licensed under the MIT License; see
+[LICENSE](./LICENSE). The licenses of the third-party code included in the
+production build are listed in `third-party-licenses.txt`, which is generated
+during the build and served from the root of the deployed application.
+
+The MIT License covers source code only. The following files are **not**
+covered by it and remain with their respective rights holders:
+
+| Files                                 | Rights holder and terms                                                                                                                                             |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/hds-favicon-kit/`             | City of Helsinki. CC BY 4.0, except the City of Helsinki logo, which is a registered trademark. See [its own license notice](./public/hds-favicon-kit/LICENCE.txt). |
+| `public/icons/partners/`              | The partner organisations shown on the front page. These logos are trademarks of those organisations and are included to identify them as partners of the service.  |
+| `public/brochures/`                   | City of Helsinki. Informational brochures describing the service, published in 17 languages; not offered for reuse under the MIT License.                           |
+| `public/images/`, `public/icons/svg/` | Illustrations and photographs created for this service; not offered for reuse under the MIT License.                                                                |
+
+One third-party component is loaded at runtime from a public CDN instead of
+being bundled, so it does not appear in `third-party-licenses.txt`:
+[oidc-client-ts](https://github.com/authts/oidc-client-ts) (Apache-2.0),
+loaded by [silent_renew.html](./public/silent_renew.html) from cdnjs with a
+subresource integrity hash. It is not redistributed by this repository or by
+its build output.
+
+The Helsinki Grotesk typeface used by the user interface is proprietary and
+licensed by Camelot Typefaces. No font files are stored in this repository;
+they are loaded at runtime from a City of Helsinki service. See
+[fonts.scss](./src/assets/styles/fonts.scss).
