@@ -2,8 +2,12 @@
 minimumReleaseAge: 10080
 
 minimumReleaseAgeExclude:
-  - baseline-browser-mapping@2.11.21
-  - electron-to-chromium@1.5.422
+  - array-includes@3.2.0
+  - baseline-browser-mapping@2.11.22
+  - electron-to-chromium@1.5.427
+  - node-releases@2.0.55
+  - obug@2.2.1
+  - update-browserslist-db@1.3.3
 
 # Hoist all dependencies to the root of node_modules because some packages
 # (e.g. the draft-js ecosystem) do not work correctly with pnpm's default isolation strategy
