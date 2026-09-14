@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
   return {
     css: {
       preprocessorOptions: {
@@ -42,7 +42,7 @@ export default defineConfig(() => {
     },
     plugins: [
       react(),
-      eslint(),
+      mode !== 'test' && eslint(),
       // svgr options: https://react-svgr.com/docs/options/
       svgr({ svgrOptions: { icon: true } }),
     ],
