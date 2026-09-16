@@ -401,6 +401,18 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.17.5](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.17.4...kukkuu-ui-v3.17.5) (2026-09-16)
+
+
+### Bug Fixes
+
+* Vitest upgrade fixes Refs: RATY-357 ([edab2b5](https://github.com/City-of-Helsinki/kukkuu-ui/commit/edab2b5483c02c642ce3d34885fb4cbe06306636))
+
+
+### Dependencies
+
+* Bump vitest from 4.1.2 to 4.1.11 ([8a995fe](https://github.com/City-of-Helsinki/kukkuu-ui/commit/8a995feb84d267d240eb8bf692b4c197264cc830))
+
 ## [3.17.4](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.17.3...kukkuu-ui-v3.17.4) (2026-09-14)
 
 
