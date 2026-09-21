@@ -6,6 +6,7 @@ import { defineConfig } from 'vite';
 import svgr from 'vite-plugin-svgr';
 
 import { thirdPartyLicenses } from './scripts/thirdPartyLicenses';
+import { thirdPartyLicensesConfig } from './scripts/thirdPartyLicenses.config';
 
 export default defineConfig(() => {
   return {
@@ -47,7 +48,7 @@ export default defineConfig(() => {
       eslint(),
       // svgr options: https://react-svgr.com/docs/options/
       svgr({ svgrOptions: { icon: true } }),
-      thirdPartyLicenses(),
+      thirdPartyLicenses(thirdPartyLicensesConfig),
     ],
   };
 });

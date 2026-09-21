@@ -52,10 +52,10 @@
   "dependencies": {
     "@apollo/client": "^3.12.7",
     "@city-of-helsinki/react-helsinki-headless-cms": "3.0.3",
-    "@faker-js/faker": "^10.5.0",
-    "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@eslint-react/eslint-plugin": "~5.10.0",
     "@eslint/js": "^10.0.1",
+    "@faker-js/faker": "^10.5.0",
+    "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@nabla/vite-plugin-eslint": "^3.0.1",
     "@reduxjs/toolkit": "^2.5.1",
     "@sentry/browser": "^10.25.0",
@@ -143,6 +143,7 @@
     "doctoc": "^2.2.1",
     "eslint-import-resolver-typescript": "^4.4.5",
     "husky": "^9.1.7",
-    "lint-staged": "^15.4.3"
+    "lint-staged": "^15.4.3",
+    "rollup-license-plugin": "^3.2.1"
   }
 }
