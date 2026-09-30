@@ -34,6 +34,8 @@
     "test:browser:ci": "testcafe \"chrome:headless --disable-features=LocalNetworkAccessChecks --disable-gpu --window-size='1920,1080' --disable-search-engine-choice-screen\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/",
     "test:browser:ci:chromium": "testcafe \"chromium:headless --disable-gpu --window-size='1920,1080' --disable-search-engine-choice-screen\" --lang=fi-FI --screenshots path=report takeOnFails=true --video report browser-tests/",
     "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev --lang=fi-FI",
+    "test:e2e:install": "echo \"e2e install is not needed\"",
+    "test:e2e:ci": "pnpm test:browser:ci",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
     "prepare": "husky"
   },
