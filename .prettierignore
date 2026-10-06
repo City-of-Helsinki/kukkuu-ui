@@ -8,3 +8,4 @@ coverage/
 report/
 sonar-report.json
 sonar-report.xml
+AGENTS.md
