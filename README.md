@@ -3,6 +3,10 @@
 
 # Public UI for the Culture Kids (Kulttuurin kummilapset)
 
+> **Architecture & agent context:** system overview in
+> [ARCHITECTURE.md](https://github.com/City-of-Helsinki/kukkuu/blob/HEAD/ARCHITECTURE.md);
+> working instructions for developers and AI agents in [AGENTS.md](./AGENTS.md).
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -137,7 +141,7 @@ Using the following instructions you should be able to:
 2. If you want to use the [public test environment's backend](https://kukkuu.api.test.hel.ninja/graphql):
    - Delete `.env.development.local` file, if you have it left over, so `.env.development` is used
 3. If you want to run the Kukkuu backend locally:
-   - Copy `.env.development.local.example` to `.env.development.local` (used as env_file for environment variables)
+   - Copy `.env.development` to `.env.development.local` and set `VITE_API_URI=http://localhost:8081/graphql`
    - Set up the backend by following the steps in [Running the Kukkuu backend locally](#running-the-kukkuu-backend-locally)
 4. Run `pnpm` to install dependencies
 5. Run `pnpm start` to run the app
@@ -154,7 +158,7 @@ Using the following instructions you should be able to:
 
 1. If you want to run the Kukkuu backend locally:
    - Copy `compose.override.yaml.example` to `compose.override.yaml` (used for build args and setting the env_file)
-   - Copy `.env.development.local.example` to `.env.development.local` (used as env_file for environment variables)
+   - Copy `.env.development` to `.env.development.local` and set `VITE_API_URI=http://localhost:8081/graphql`
    - Set up the backend by following the steps in [Running the Kukkuu backend locally](#running-the-kukkuu-backend-locally)
 2. If you want to use the [public test environment's backend](https://kukkuu.api.test.hel.ninja/graphql):
    - Delete `compose.override.yaml`, if you have it left over, so `compose.yaml` is used
