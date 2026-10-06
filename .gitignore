@@ -42,3 +42,4 @@ sonar-report.xml
 public/env-config.js
 public/test-env-config.js
 
+.agents
