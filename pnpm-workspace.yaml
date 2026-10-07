@@ -8,6 +8,7 @@ minimumReleaseAgeExclude:
   - node-releases@2.0.55
   - obug@2.2.1
   - update-browserslist-db@1.3.3
+  - '@city-of-helsinki/license-notices@0.1.0'
 
 # Hoist all dependencies to the root of node_modules because some packages
 # (e.g. the draft-js ecosystem) do not work correctly with pnpm's default isolation strategy
