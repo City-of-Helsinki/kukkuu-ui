@@ -22,13 +22,13 @@
         style-src 'self' 'unsafe-inline';
         object-src 'none';
         frame-src 'self' *.hel.fi *.hel.ninja *.youtube.com www.youtube-nocookie.com *.vimeo.com;
-        img-src 'self' data: *.hel.fi *.hel.ninja *.ytimg.com *.youtube.com *.vimeo.com *.vimeocdn.com *.blob.core.windows.net *.hkih.hion.dev;
+        img-src 'self' data: blob: localhost:* 127.0.0.1:* *.hel.fi *.hel.ninja *.ytimg.com *.youtube.com *.vimeo.com *.vimeocdn.com *.blob.core.windows.net *.hkih.hion.dev;
         font-src 'self' *.hel.fi *.hel.ninja;
         connect-src 'self' localhost:* 127.0.0.1:* *.hel.fi *.hel.ninja *.hkih.hion.dev *.digiaiiris.com;
         manifest-src 'self';
         base-uri 'self';
         form-action 'self';
-        media-src 'self' *.hel.fi *.hel.ninja *.hkih.hion.dev;
+        media-src 'self' localhost:* 127.0.0.1:* *.hel.fi *.hel.ninja *.hkih.hion.dev;
         worker-src 'self';
         report-uri %VITE_CSP_REPORT_URI%;
         report-to csp-endpoint
