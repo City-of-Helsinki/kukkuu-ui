@@ -68,6 +68,7 @@ export type AddEventMutationInput = {
   duration?: InputMaybe<Scalars['Int']['input']>;
   eventGroupId?: InputMaybe<Scalars['ID']['input']>;
   image?: InputMaybe<Scalars['Upload']['input']>;
+  organisationId: Scalars['ID']['input'];
   participantsPerInvite: EventParticipantsPerInvite;
   projectId: Scalars['ID']['input'];
   readyForEventGroupPublishing?: InputMaybe<Scalars['Boolean']['input']>;
@@ -139,9 +140,18 @@ export type AdminNode = Node & {
   email: Scalars['String']['output'];
   /** The ID of the object */
   id: Scalars['ID']['output'];
+  organisations: Maybe<OrganisationNodeConnection>;
   projects: Maybe<ProjectNodeConnection>;
   /** Vaaditaan. Enintään 150 merkkiä. Vain kirjaimet, numerot ja @/./+/-/_ ovat sallittuja. */
   username: Scalars['String']['output'];
+};
+
+export type AdminNodeOrganisationsArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  offset: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AdminNodeProjectsArgs = {
@@ -332,6 +342,42 @@ export type ChildNotesNode = Node & {
   notes: Scalars['String']['output'];
 };
 
+export type CopyEventGroupMutationInput = {
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<Scalars['Upload']['input']>;
+  projectId: Scalars['ID']['input'];
+  sourceEventGroupId: Scalars['ID']['input'];
+  translations?: InputMaybe<Array<InputMaybe<EventGroupTranslationsInput>>>;
+};
+
+export type CopyEventGroupMutationPayload = {
+  __typename?: 'CopyEventGroupMutationPayload';
+  clientMutationId: Maybe<Scalars['String']['output']>;
+  eventGroup: Maybe<EventGroupNode>;
+};
+
+export type CopyEventMutationInput = {
+  /** Required for internal ticket system events. */
+  capacityPerOccurrence?: InputMaybe<Scalars['Int']['input']>;
+  clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  duration?: InputMaybe<Scalars['Int']['input']>;
+  eventGroupId?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<Scalars['Upload']['input']>;
+  organisationId: Scalars['ID']['input'];
+  participantsPerInvite: EventParticipantsPerInvite;
+  projectId: Scalars['ID']['input'];
+  readyForEventGroupPublishing?: InputMaybe<Scalars['Boolean']['input']>;
+  sourceEventId: Scalars['ID']['input'];
+  ticketSystem?: InputMaybe<AddEventTicketSystemInput>;
+  translations?: InputMaybe<Array<InputMaybe<EventTranslationsInput>>>;
+};
+
+export type CopyEventMutationPayload = {
+  __typename?: 'CopyEventMutationPayload';
+  clientMutationId: Maybe<Scalars['String']['output']>;
+  event: Maybe<EventNode>;
+};
+
 export type DeleteChildMutationInput = {
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   id: Scalars['ID']['input'];
@@ -502,6 +548,23 @@ export type EventGroupNodeEventsArgs = {
   upcoming: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type EventGroupNodeConnection = {
+  __typename?: 'EventGroupNodeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<EventGroupNodeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `EventGroupNode` and its cursor. */
+export type EventGroupNodeEdge = {
+  __typename?: 'EventGroupNodeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node: Maybe<EventGroupNode>;
+};
+
 export type EventGroupTranslationType = {
   __typename?: 'EventGroupTranslationType';
   description: Scalars['String']['output'];
@@ -522,6 +585,7 @@ export type EventGroupTranslationsInput = {
 export type EventNode = Node & {
   __typename?: 'EventNode';
   canChildEnroll: Maybe<Scalars['Boolean']['output']>;
+  canUserAdminister: Maybe<Scalars['Boolean']['output']>;
   capacityPerOccurrence: Maybe<Scalars['Int']['output']>;
   createdAt: Scalars['DateTime']['output'];
   description: Maybe<Scalars['String']['output']>;
@@ -535,6 +599,7 @@ export type EventNode = Node & {
   messages: MessageNodeConnection;
   name: Maybe<Scalars['String']['output']>;
   occurrences: OccurrenceNodeConnection;
+  organisation: Maybe<OrganisationNode>;
   participantsPerInvite: EventParticipantsPerInvite;
   project: ProjectNode;
   publishedAt: Maybe<Scalars['DateTime']['output']>;
@@ -970,6 +1035,8 @@ export type Mutation = {
   addOccurrence: Maybe<AddOccurrenceMutationPayload>;
   addVenue: Maybe<AddVenueMutationPayload>;
   assignTicketSystemPassword: Maybe<AssignTicketSystemPasswordMutationPayload>;
+  copyEvent: Maybe<CopyEventMutationPayload>;
+  copyEventGroup: Maybe<CopyEventGroupMutationPayload>;
   deleteChild: Maybe<DeleteChildMutationPayload>;
   deleteEvent: Maybe<DeleteEventMutationPayload>;
   deleteEventGroup: Maybe<DeleteEventGroupMutationPayload>;
@@ -1038,6 +1105,14 @@ export type MutationAddVenueArgs = {
 
 export type MutationAssignTicketSystemPasswordArgs = {
   input: AssignTicketSystemPasswordMutationInput;
+};
+
+export type MutationCopyEventArgs = {
+  input: CopyEventMutationInput;
+};
+
+export type MutationCopyEventGroupArgs = {
+  input: CopyEventGroupMutationInput;
 };
 
 export type MutationDeleteChildArgs = {
@@ -1257,6 +1332,32 @@ export type OccurrenceTicketSystemInput = {
   url?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type OrganisationNode = Node & {
+  __typename?: 'OrganisationNode';
+  createdAt: Scalars['DateTime']['output'];
+  /** The ID of the object */
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+export type OrganisationNodeConnection = {
+  __typename?: 'OrganisationNodeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<OrganisationNodeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `OrganisationNode` and its cursor. */
+export type OrganisationNodeEdge = {
+  __typename?: 'OrganisationNodeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node: Maybe<OrganisationNode>;
+};
+
 /** The Relay compliant `PageInfo` type, containing data necessary to paginate this connection. */
 export type PageInfo = {
   __typename?: 'PageInfo';
@@ -1350,6 +1451,7 @@ export type Query = {
   children: Maybe<ChildNodeConnection>;
   event: Maybe<EventNode>;
   eventGroup: Maybe<EventGroupNode>;
+  eventGroups: Maybe<EventGroupNodeConnection>;
   events: Maybe<EventNodeConnection>;
   eventsAndEventGroups: Maybe<EventOrEventGroupConnection>;
   guardians: Maybe<GuardianNodeConnection>;
@@ -1362,6 +1464,7 @@ export type Query = {
   myProfile: Maybe<GuardianNode>;
   occurrence: Maybe<OccurrenceNode>;
   occurrences: Maybe<OccurrenceNodeConnection>;
+  organisations: Maybe<OrganisationNodeConnection>;
   project: Maybe<ProjectNode>;
   projects: Maybe<ProjectNodeConnection>;
   venue: Maybe<VenueNode>;
@@ -1393,6 +1496,15 @@ export type QueryEventArgs = {
 
 export type QueryEventGroupArgs = {
   id: Scalars['ID']['input'];
+};
+
+export type QueryEventGroupsArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  offset: InputMaybe<Scalars['Int']['input']>;
+  projectId: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type QueryEventsArgs = {
@@ -1475,6 +1587,14 @@ export type QueryOccurrencesArgs = {
   upcomingWithLeeway: InputMaybe<Scalars['Boolean']['input']>;
   upcomingWithOngoing: InputMaybe<Scalars['Boolean']['input']>;
   venueId: InputMaybe<Scalars['String']['input']>;
+};
+
+export type QueryOrganisationsArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  offset: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type QueryProjectArgs = {
@@ -1796,6 +1916,7 @@ export type UpdateEventMutationInput = {
   eventGroupId?: InputMaybe<Scalars['ID']['input']>;
   id: Scalars['ID']['input'];
   image?: InputMaybe<Scalars['Upload']['input']>;
+  organisationId?: InputMaybe<Scalars['ID']['input']>;
   participantsPerInvite?: InputMaybe<EventParticipantsPerInvite>;
   projectId?: InputMaybe<Scalars['ID']['input']>;
   readyForEventGroupPublishing?: InputMaybe<Scalars['Boolean']['input']>;
