@@ -37,6 +37,10 @@ You are working on `kukkuu-ui`, the public-facing web application for the Kukkuu
 - **Enrollment Limits**:
   - A project's properties configure how many times a child can enrol per year (usually twice).
   - A child can participate in only **one** event within a single event group. For example, if only one event group is available for a spring season, the child can participate only once during that spring, as all available events belong to that one group.
+- **Visibility Rules (Events vs Enrolments)**:
+  - Published events and occurrences remain globally visible so the public UI and other event organizers can view them.
+  - Unpublished events and occurrences are strictly isolated. Only system administrators and users who are members of the event's designated organisation can view or administer them.
+  - Enrolment and attendee data are **never** globally visible, regardless of the event's publish state. Only system administrators and members of the event's organisation can access them.
 
 ## Rules and Guardrails
 
