@@ -101,7 +101,8 @@
     "breadcrumbNavigationLabel": "Breadcrumb navigation",
     "breadcrumbs": {
       "home": "Home",
-      "events": "Events"
+      "events": "Events",
+      "profile": "Culture Kids"
     },
     "closeButton": {
       "altText": "Close"

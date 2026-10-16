@@ -5,6 +5,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { IconPen } from 'hds-react';
+import type { BreadcrumbListItem } from 'hds-react';
 
 import {
   ChildByIdQuery,
@@ -31,7 +32,6 @@ import styles from './profileChildDetail.module.scss';
 import { useProfileContext } from '../../hooks/useProfileContext';
 import AdditionalNotesCard from '../../events/AdditionalNotesCard';
 import type { ChildDetailEditModalPayload } from './types';
-import useProfileRouteGoBackTo from './useProfileRouteGoBackTo';
 import graphqlClient from '../../../api/client';
 
 const ProfileChildDetail = () => {
@@ -39,7 +39,6 @@ const ProfileChildDetail = () => {
   const params = useParams<{ childId: string }>();
   const { refetchProfile } = useProfileContext();
   const navigate = useNavigate();
-  const goBackTo = useProfileRouteGoBackTo();
   const { profile } = useProfileContext();
 
   const { loading, error, data } = useQuery<ChildByIdQuery>(childByIdQuery, {
@@ -87,8 +86,23 @@ const ProfileChildDetail = () => {
 
   const child = data?.child;
 
+  const breadcrumbs: BreadcrumbListItem[] = [
+    {
+      title: t('common.breadcrumbs.home'),
+      path: getPathname('/'),
+    },
+    {
+      title: t('common.breadcrumbs.profile', t('profile.heading')),
+      path: getPathname('/profile'),
+    },
+    {
+      title: child?.name || t('profile.child.default.name.text'),
+      path: null,
+    },
+  ];
+
   return (
-    <ListPageLayout>
+    <ListPageLayout breadcrumbs={breadcrumbs}>
       {child ? (
         <>
           <ListPageLayout.Header
@@ -116,7 +130,6 @@ const ProfileChildDetail = () => {
                 </Button>
               </>
             }
-            backButtonHref={goBackTo}
           />
           {isOpen && (
             <ProfileChildDetailEditModal

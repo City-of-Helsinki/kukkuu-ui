@@ -101,7 +101,8 @@
     "breadcrumbNavigationLabel": "Brödsmulnavigering",
     "breadcrumbs": {
       "home": "Framsida",
-      "events": "Evenemang"
+      "events": "Evenemang",
+      "profile": "Fadderbarn"
     },
     "closeButton": {
       "altText": "Stäng"

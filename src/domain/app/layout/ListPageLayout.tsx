@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { Container, IconArrowLeft, IconSize } from 'hds-react';
+import { Breadcrumb, Container, IconArrowLeft, IconSize } from 'hds-react';
+import type { BreadcrumbListItem } from 'hds-react';
 import { Link, LinkProps } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
@@ -11,12 +12,29 @@ type Props = {
   children: ReactNode;
   title?: string;
   description?: string;
+  breadcrumbs?: BreadcrumbListItem[];
 };
 
-function ListPageLayout({ children, title, description }: Props) {
+function ListPageLayout({
+  children,
+  title,
+  description,
+  breadcrumbs,
+}: Props) {
+  const { t } = useTranslation();
+
   return (
     <>
       <PageMeta title={title} description={description} />
+      {breadcrumbs && (
+        <div className={styles.breadcrumbsWrapper}>
+          <Breadcrumb
+            aria-label={t('common.breadcrumbNavigationLabel')}
+            list={breadcrumbs}
+            className={styles.breadcrumbs}
+          />
+        </div>
+      )}
       <div className={styles.wrapper}>
         <Container role="main" className={styles.container}>
           {children}

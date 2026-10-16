@@ -101,7 +101,8 @@
     "breadcrumbNavigationLabel": "Leivänmurunavigaatio",
     "breadcrumbs": {
       "home": "Etusivu",
-      "events": "Tapahtumat"
+      "events": "Tapahtumat",
+      "profile": "Kummilapset"
     },
     "closeButton": {
       "altText": "Sulje"
