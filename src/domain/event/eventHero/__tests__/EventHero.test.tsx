@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import EventHero from '../EventHero';
@@ -49,7 +49,7 @@ describe('EventHero', () => {
     expect(screen.getByText('Esimerkkimerkki 2')).toBeInTheDocument();
   });
 
-  it('renders enabled enrolment button when child can enroll and spots remain', () => {
+  it('renders enabled enrolment button when child can enroll and spots remain, opening modal on click', () => {
     render(
       <EventHero
         event={baseEvent}
@@ -58,12 +58,15 @@ describe('EventHero', () => {
       />
     );
 
-    const enrolLink = screen.getByRole('link', { name: 'Ilmoittaudu' });
-    expect(enrolLink).toBeInTheDocument();
-    expect(enrolLink).toHaveAttribute(
-      'href',
-      '/profile/child/child-1/event/event-1/occurrence/occ-1/enrol'
-    );
+    const enrolButton = screen.getByRole('button', { name: 'Ilmoittaudu' });
+    expect(enrolButton).toBeInTheDocument();
+    expect(enrolButton).toBeEnabled();
+
+    fireEvent.click(enrolButton);
+
+    expect(
+      screen.getByRole('dialog', { name: 'Vahvista ilmoittautuminen' })
+    ).toBeInTheDocument();
   });
 
   it('renders disabled enrolment button when child cannot enroll', () => {

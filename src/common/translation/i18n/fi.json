@@ -404,6 +404,23 @@
       "participantsTitle": "Osallistujat",
       "languagesTitle": "Kielet",
       "otherOccurrencesTitle": "Tapahtuman muut ajat"
+    },
+    "enrolModal": {
+      "title": "Vahvista ilmoittautuminen",
+      "forWhom": "Kenelle",
+      "freeSpots": "Vapaata tilaa: {{count}} paikkaa",
+      "freeSpots_one": "Vapaata tilaa: 1 paikka",
+      "freeSpots_other": "Vapaata tilaa: {{count}} paikkaa",
+      "freeSpots_zero": "Ei vapaita paikkoja",
+      "participantsTitle": "Osallistujat",
+      "cultureKidsLabel": "Kulttuurilapset *",
+      "guardianLabel": "Lähiaikuinen *",
+      "guardianYou": "{{name}} (sinä)",
+      "defaultGuardian": "Huoltaja",
+      "quotaNotice": "Kulttuurilapsi voi osallistua yhteen tapahtumaan kaudessa. Ilmoittautuminen käyttää paikan: {{name}}.",
+      "bindingNotice": "Ilmoittautuminen on sitova. Jos este tulee, peru paikka viimeistään vuorokautta ennen tapahtumaa, jotta se vapautuu toiselle perheelle.",
+      "confirmButton": "Vahvista ilmoittautuminen",
+      "cancelButton": "Peruuta"
     }
   },
   "eventRedirectPage": {

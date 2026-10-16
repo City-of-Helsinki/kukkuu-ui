@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
-import { screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
+import { fireEvent, screen } from '@testing-library/react';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import OccurrenceCard from '../OccurrenceCard';
@@ -45,14 +45,17 @@ describe('OccurrenceCard', () => {
   });
 
   it('renders enabled enrolment button when occurrence is enrollable', () => {
-    render(<OccurrenceCard childId="child-1" item={baseItem} />);
-
-    const enrolButton = screen.getByRole('link', { name: 'Ilmoittaudu' });
-    expect(enrolButton).toBeInTheDocument();
-    expect(enrolButton).toHaveAttribute(
-      'href',
-      '/profile/child/child-1/event/event-123/occurrence/occ-456/enrol'
+    const onEnrol = vi.fn();
+    render(
+      <OccurrenceCard childId="child-1" item={baseItem} onEnrol={onEnrol} />
     );
+
+    const enrolButton = screen.getByRole('button', { name: 'Ilmoittaudu' });
+    expect(enrolButton).toBeInTheDocument();
+    expect(enrolButton).toBeEnabled();
+
+    fireEvent.click(enrolButton);
+    expect(onEnrol).toHaveBeenCalledWith(baseItem);
 
     const readMoreLink = screen.getByRole('link', { name: 'Lue lisää' });
     expect(readMoreLink).toHaveAttribute(

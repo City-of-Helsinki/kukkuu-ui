@@ -20,12 +20,14 @@ export interface OccurrenceCardProps {
   childId: string;
   item: FlattenedOccurrenceItem;
   dateBadgePosition?: OccurrenceCardDateBadgePosition;
+  onEnrol?: (item: FlattenedOccurrenceItem) => void;
 }
 
 export const OccurrenceCard: React.FC<OccurrenceCardProps> = ({
   childId,
   item,
   dateBadgePosition,
+  onEnrol,
 }) => {
   const { t } = useTranslation();
   const { event, occurrence } = item;
@@ -50,7 +52,6 @@ export const OccurrenceCard: React.FC<OccurrenceCardProps> = ({
       })
     : null;
 
-  const enrolUrl = `/profile/child/${childId}/event/${event.id}/occurrence/${occurrence.id}/enrol`;
   const detailsUrl = `/profile/child/${childId}/event/${event.id}?occurrenceId=${occurrence.id}`;
 
   return (
@@ -125,16 +126,16 @@ export const OccurrenceCard: React.FC<OccurrenceCardProps> = ({
 
         <div className={styles.actions}>
           {canEnroll ? (
-            <LinkButton
-              to={enrolUrl}
+            <Button
               variant="primary"
+              onClick={() => onEnrol?.(item)}
               className={classNames(
                 styles.actionButton,
                 styles.actionButtonPrimary
               )}
             >
               {t('search.card.enrolButton')}
-            </LinkButton>
+            </Button>
           ) : (
             <Button
               variant="disabled"

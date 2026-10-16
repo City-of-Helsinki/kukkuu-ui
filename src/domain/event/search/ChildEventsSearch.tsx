@@ -25,10 +25,12 @@ import { childAvailableOccurrencesQuery } from '../queries/childAvailableOccurre
 import type {
   ChildAvailableOccurrencesQuery,
   ChildAvailableOccurrencesQueryVariables,
+  FlattenedOccurrenceItem,
 } from '../types/ChildAvailableOccurrencesTypes';
 import { flattenAvailableOccurrences } from './occurrenceSearchUtils';
 import OccurrenceCard from './OccurrenceCard';
 import { OccurrenceCardProvider } from './OccurrenceCardContext';
+import EnrolOccurrenceModal from '../modal/EnrolOccurrenceModal';
 import styles from './childEventsSearch.module.scss';
 
 export const ChildEventsSearch: React.FC = () => {
@@ -37,6 +39,9 @@ export const ChildEventsSearch: React.FC = () => {
   const navigate = useNavigate();
   const getPathname = useGetPathname();
   const { profile } = useProfileContext();
+
+  const [enrollingItem, setEnrollingItem] =
+    useState<FlattenedOccurrenceItem | null>(null);
 
   const breadcrumbs: BreadcrumbListItem[] = [
     {
@@ -188,6 +193,7 @@ export const ChildEventsSearch: React.FC = () => {
                       key={item.occurrence.id}
                       childId={childId || ''}
                       item={item}
+                      onEnrol={(selectedItem) => setEnrollingItem(selectedItem)}
                     />
                   ))}
                 </div>
@@ -200,6 +206,16 @@ export const ChildEventsSearch: React.FC = () => {
           </section>
         </ContentContainer>
       </div>
+
+      {enrollingItem && childId && (
+        <EnrolOccurrenceModal
+          isOpen={Boolean(enrollingItem)}
+          onClose={() => setEnrollingItem(null)}
+          childId={childId}
+          occurrence={enrollingItem.occurrence}
+          event={enrollingItem.event}
+        />
+      )}
     </>
   );
 };

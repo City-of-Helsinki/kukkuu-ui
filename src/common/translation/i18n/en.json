@@ -404,6 +404,23 @@
       "participantsTitle": "Participants",
       "languagesTitle": "Languages",
       "otherOccurrencesTitle": "Other event times"
+    },
+    "enrolModal": {
+      "title": "Confirm enrolment",
+      "forWhom": "For whom",
+      "freeSpots": "Available spots: {{count}}",
+      "freeSpots_one": "Available spots: 1",
+      "freeSpots_other": "Available spots: {{count}}",
+      "freeSpots_zero": "No available spots",
+      "participantsTitle": "Participants",
+      "cultureKidsLabel": "Culture Kids *",
+      "guardianLabel": "Accompanying adult *",
+      "guardianYou": "{{name}} (you)",
+      "defaultGuardian": "Guardian",
+      "quotaNotice": "A Culture Kid can participate in one event per season. Enrolment uses the spot for: {{name}}.",
+      "bindingNotice": "Enrolment is binding. If you cannot attend, please cancel your spot at least 24 hours before the event so it can be offered to another family.",
+      "confirmButton": "Confirm enrolment",
+      "cancelButton": "Cancel"
     }
   },
   "eventRedirectPage": {

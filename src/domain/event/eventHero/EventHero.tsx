@@ -12,8 +12,8 @@ import {
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import PlaceholderImage from '../../../common/components/placeholderImage/PlaceholderImage';
-import LinkButton from '../../../common/components/button/LinkButton';
 import Button from '../../../common/components/button/Button';
+import EnrolOccurrenceModal from '../modal/EnrolOccurrenceModal';
 import {
   formatOccurrenceDateLong,
   formatOccurrenceTimeRange,
@@ -77,15 +77,13 @@ export const EventHero: React.FC<EventHeroProps> = ({
       })
     : null;
 
+  const [isEnrolModalOpen, setIsEnrolModalOpen] = React.useState(false);
+
   const canEnroll = Boolean(
     event.canChildEnroll &&
       selectedOccurrence &&
       selectedOccurrence.remainingCapacity !== 0
   );
-
-  const enrolUrl = selectedOccurrence
-    ? `/profile/child/${childId}/event/${event.id}/occurrence/${selectedOccurrence.id}/enrol`
-    : '#';
 
   return (
     <PageSection
@@ -163,13 +161,12 @@ export const EventHero: React.FC<EventHeroProps> = ({
 
             <div className={styles.actionWrapper}>
               {canEnroll ? (
-                <LinkButton
-                  to={enrolUrl}
-                  variant="primary"
+                <Button
+                  onClick={() => setIsEnrolModalOpen(true)}
                   className={styles.enrolButton}
                 >
                   {t('event.hero.enrolButton')}
-                </LinkButton>
+                </Button>
               ) : (
                 <Button
                   variant="disabled"
@@ -184,6 +181,19 @@ export const EventHero: React.FC<EventHeroProps> = ({
           </div>
         </div>
       </ContentContainer>
+
+      {isEnrolModalOpen && selectedOccurrence && (
+        <EnrolOccurrenceModal
+          isOpen={isEnrolModalOpen}
+          onClose={() => setIsEnrolModalOpen(false)}
+          childId={childId}
+          occurrence={selectedOccurrence}
+          event={{
+            ...event,
+            name: event.name || '',
+          }}
+        />
+      )}
     </PageSection>
   );
 };

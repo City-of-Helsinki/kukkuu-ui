@@ -404,6 +404,23 @@
       "participantsTitle": "Deltagare",
       "languagesTitle": "Språk",
       "otherOccurrencesTitle": "Evenemangets andra tider"
+    },
+    "enrolModal": {
+      "title": "Bekräfta anmälan",
+      "forWhom": "För vem",
+      "freeSpots": "Lediga platser: {{count}}",
+      "freeSpots_one": "Lediga platser: 1",
+      "freeSpots_other": "Lediga platser: {{count}}",
+      "freeSpots_zero": "Inga lediga platser",
+      "participantsTitle": "Deltagare",
+      "cultureKidsLabel": "Kulturfadderbarn *",
+      "guardianLabel": "Närstående vuxen *",
+      "guardianYou": "{{name}} (du)",
+      "defaultGuardian": "Vårdnadshavare",
+      "quotaNotice": "Ett kulturfadderbarn kan delta i ett evenemang per säsong. Anmälan förbrukar platsen för: {{name}}.",
+      "bindingNotice": "Anmälan är bindande. Om du får förhinder, avboka senast ett dygn före evenemanget så att platsen blir tillgänglig för en annan familj.",
+      "confirmButton": "Bekräfta anmälan",
+      "cancelButton": "Avbryt"
     }
   },
   "eventRedirectPage": {

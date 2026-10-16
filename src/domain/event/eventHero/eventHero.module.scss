@@ -141,13 +141,13 @@ $imageMobileHeight: 23.4375rem;
         .enrolButton {
           width: 100%;
           max-width: 20rem;
-          background-color: var(--color-coat-of-arms, #001a82);
-          color: var(--color-white, #fff);
-          border-color: var(--color-coat-of-arms, #001a82);
+          background-color: var(--color-black, #000) !important;
+          color: var(--color-white, #fff) !important;
+          border-color: var(--color-black, #000) !important;
 
           &:hover {
-            background-color: var(--color-coat-of-arms-dark, #001469);
-            border-color: var(--color-coat-of-arms-dark, #001469);
+            background-color: var(--color-black-90, #222) !important;
+            border-color: var(--color-black-90, #222) !important;
           }
         }
 
