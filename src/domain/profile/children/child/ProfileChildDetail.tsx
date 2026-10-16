@@ -15,7 +15,6 @@ import {
 } from '../../../api/generatedTypes/graphql';
 import ErrorMessage from '../../../../common/components/error/Error';
 import Button from '../../../../common/components/button/Button';
-import LinkButton from '../../../../common/components/button/LinkButton';
 import LoadingSpinner from '../../../../common/components/spinner/LoadingSpinner';
 import Text from '../../../../common/components/text/Text';
 import useGetPathname from '../../../../common/route/utils/useGetPathname';
@@ -114,12 +113,6 @@ const ProfileChildDetail = () => {
             }
             actions={
               <>
-                <LinkButton
-                  to={`/profile/child/${child.id}/events`}
-                  variant="primary"
-                >
-                  {t('profile.child.browseEventsButton')}
-                </LinkButton>
                 <ChildEnrolmentCount childId={child.id} />
                 <Button
                   variant="secondary"

@@ -1,4 +1,5 @@
 import { MockedResponse } from '@apollo/client/testing';
+import { screen } from '@testing-library/react';
 
 import ProfileEvents from '../ProfileEvents';
 import {
@@ -237,4 +238,19 @@ test('Renders events list when only past events', () => {
     mocks
   );
   expect(container).toMatchSnapshot();
+});
+
+test('Renders "Selaa tapahtumia" link under empty state when child has no events', () => {
+  render(
+    <ProfileEvents
+      child={{
+        ...childNoEvents,
+        id: 'test-child-123',
+      }}
+    />,
+    mocks
+  );
+  expect(
+    screen.getByRole('link', { name: 'Selaa tapahtumia' })
+  ).toHaveAttribute('href', '/profile/child/test-child-123/events');
 });

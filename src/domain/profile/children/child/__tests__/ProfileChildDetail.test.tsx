@@ -121,16 +121,16 @@ describe('ProfileChildDetail', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders browse events button linking to child events search', async () => {
+  it('renders browse events link linking to child events search', async () => {
     renderComponent();
 
     await waitForLoadingToFinish();
 
-    const browseButton = screen.getByRole('link', {
+    const browseLink = screen.getByRole('link', {
       name: /Selaa tapahtumia/i,
     });
-    expect(browseButton).toBeInTheDocument();
-    expect(browseButton).toHaveAttribute(
+    expect(browseLink).toBeInTheDocument();
+    expect(browseLink).toHaveAttribute(
       'href',
       `/profile/child/${testChildId}/events`
     );
