@@ -1,0 +1,36 @@
+@use '~styles/variables';
+
+.infoWithIcon {
+  display: flex;
+  margin-bottom: var(--spacing-s);
+  line-height: 1.5rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .iconWrapper {
+    width: var(--spacing-xl);
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-start;
+
+    svg {
+      height: var(--spacing-m);
+      width: var(--spacing-m);
+      fill: var(--color-black, var(--color-primary-black, #000));
+    }
+  }
+
+  .iconTextWrapper {
+    word-break: break-word;
+    flex: 1 1 0%;
+
+    .title {
+      font-size: var(--fontsize-body-l);
+      font-weight: 600;
+      margin: 0 0 var(--spacing-2-xs);
+    }
+  }
+}

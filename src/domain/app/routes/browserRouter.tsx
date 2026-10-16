@@ -13,6 +13,7 @@ import WithLocaleRoute from './WithLocaleRoute';
 import HeadlessCmsPage from '../../headlessCms/HeadlessCmsPage';
 import WithProfileChildRouteAuthorization from './WithProfileChildRouteAuthorization';
 import ProfileChildDetail from '../../profile/children/child/ProfileChildDetail';
+import ChildEventsSearch from '../../event/search/ChildEventsSearch';
 import EventGroupPage from '../../eventGroup/EventGroupPage';
 import Event from '../../event/Event';
 import ExternalTicketSystemEventIsEnrolled from '../../event/ExternalTicketSystemEventIsEnrolled';
@@ -139,6 +140,15 @@ const browserRouter = createBrowserRouter([
                   <AppRoute
                     titleKey="profile.child.detail.page.title"
                     element={<ProfileChildDetail />}
+                  />
+                ),
+              },
+              {
+                path: 'events',
+                element: (
+                  <AppRoute
+                    titleKey="search.title"
+                    element={<ChildEventsSearch />}
                   />
                 ),
               },

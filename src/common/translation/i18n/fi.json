@@ -182,6 +182,7 @@
           "text": "Kummilapsi"
         }
       },
+      "browseEventsButton": "Selaa tapahtumia",
       "detail": {
         "availableEvent": {
           "readMoreAndEnrolButton": "Lue lisää ja ilmoittaudu",
@@ -190,6 +191,7 @@
         "availableEventGroup": {
           "readMoreButton": "Selaa tapahtumia"
         },
+        "browseEventsButton": "Selaa tapahtumia",
         "birthyear": "Lapsen syntymävuosi",
         "delete": {
           "prompt": {
@@ -382,6 +384,17 @@
     "externalTicketSystemButtons": {
       "back": "Takaisin",
       "continue": "Jatka ilmoittautumaan"
+    },
+    "hero": {
+      "backButtonAriaLabel": "Palaa takaisin",
+      "enrolButton": "Ilmoittaudu"
+    },
+    "sidebar": {
+      "dateTitle": "Päivä ja aika",
+      "locationTitle": "Paikka",
+      "openMap": "Avaa kartta",
+      "languagesTitle": "Kielet",
+      "otherOccurrencesTitle": "Tapahtuman muut ajat"
     }
   },
   "eventRedirectPage": {
@@ -882,6 +895,40 @@
           "authenticatedErrorMessage": "Ongelma tietojesi lataamisessa. Yritä kirjautua palveluun uudelleen."
         }
       }
+    }
+  },
+  "search": {
+    "title": "Etsi tapahtumia",
+    "hero": {
+      "title": "Hei {{name}}!",
+      "greeting": "Hei {{name}}!",
+      "selectChild": "Valitse lapsi",
+      "childAge": "{{age}} vuotta"
+    },
+    "filter": {
+      "title": "Rajaa hakutuloksia",
+      "searchLabel": "Hae sanalla",
+      "searchPlaceholder": "Esim. konsertti, työpaja...",
+      "dateLabel": "Ajankohta",
+      "datePlaceholder": "Valitse ajankohta",
+      "venueLabel": "Tapahtumapaikka",
+      "venuePlaceholder": "Valitse paikka",
+      "submitButton": "Hae",
+      "clearButton": "Tyhjennä hakuehdot"
+    },
+    "results": {
+      "count": "{{count}} hakutulos",
+      "count_one": "{{count}} hakutulos",
+      "count_other": "{{count}} hakutulosta",
+      "count_zero": "0 hakutulosta",
+      "noResults": "Ei saatavilla olevia tapahtumia."
+    },
+    "card": {
+      "enrolButton": "Ilmoittaudu",
+      "readMoreButton": "Lue lisää",
+      "languages": "Kielet: {{languages}}",
+      "badgeExample1": "Esimerkkimerkki 1",
+      "badgeExample2": "Esimerkkimerkki 2"
     }
   }
 }

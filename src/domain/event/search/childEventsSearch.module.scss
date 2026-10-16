@@ -1,0 +1,116 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.searchPageWrapper {
+  background-color: var(--color-white);
+  min-height: 80vh;
+}
+
+.heroSection {
+  background-color: var(--color-summer, #ffc61e);
+  color: var(--color-black, #000);
+  padding: var(--spacing-l) 0 2rem 0;
+  position: relative;
+}
+
+.heroKoros {
+  fill: var(--color-white, #fff);
+}
+
+.heroContentContainer {
+  .backButtonWrapper {
+    margin-bottom: var(--spacing-m);
+
+    .backButton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      background-color: var(--color-white);
+      color: var(--color-black);
+      text-decoration: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: var(--color-black-5);
+      }
+    }
+  }
+
+  .heroTitle {
+    font-size: var(--fontsize-heading-xl, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 var(--spacing-m);
+    line-height: 1.2;
+    color: var(--color-black);
+  }
+
+  .childSelectWrapper {
+    max-width: 20rem;
+    margin-bottom: var(--spacing-m);
+
+    .childSelect {
+      --select-background-color: var(--color-white);
+    }
+  }
+}
+
+.mainContentContainer {
+  padding-top: var(--spacing-l);
+  padding-bottom: var(--spacing-3-xl);
+
+  .filterSection {
+    margin-bottom: var(--spacing-xl);
+
+    .filterAccordion {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-black-20);
+      border-radius: var(--spacing-2-xs);
+
+      .filterForm {
+        padding: var(--spacing-m) 0;
+
+        .filterFields {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--spacing-m);
+          margin-bottom: var(--spacing-m);
+
+          @include layout.respond-above(m) {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        .filterButtons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--spacing-s);
+        }
+      }
+    }
+  }
+
+  .resultsSection {
+    .resultsCount {
+      font-size: var(--fontsize-heading-m, 1.5rem);
+      font-weight: 700;
+      margin: 0 0 var(--spacing-m);
+      color: var(--color-black);
+    }
+
+    .occurrenceList {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-m);
+    }
+
+    .noResults {
+      font-size: var(--fontsize-body-l, 1.125rem);
+      color: var(--color-black-70);
+      margin: var(--spacing-xl) 0;
+    }
+  }
+}

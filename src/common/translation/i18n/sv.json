@@ -182,6 +182,7 @@
           "text": "Fadderbarn"
         }
       },
+      "browseEventsButton": "Bläddra bland evenemang",
       "detail": {
         "availableEvent": {
           "readMoreAndEnrolButton": "Läs mer och anmäl dig till evenemang",
@@ -190,6 +191,7 @@
         "availableEventGroup": {
           "readMoreButton": "Bläddra i händelser"
         },
+        "browseEventsButton": "Bläddra bland evenemang",
         "birthyear": "Barnets födelseår",
         "delete": {
           "prompt": {
@@ -382,6 +384,17 @@
     "externalTicketSystemButtons": {
       "back": "Tillbaka",
       "continue": "Fortsätt till anmälan"
+    },
+    "hero": {
+      "backButtonAriaLabel": "Gå tillbaka",
+      "enrolButton": "Anmäl dig"
+    },
+    "sidebar": {
+      "dateTitle": "Datum och tid",
+      "locationTitle": "Plats",
+      "openMap": "Öppna kartan",
+      "languagesTitle": "Språk",
+      "otherOccurrencesTitle": "Evenemangets andra tider"
     }
   },
   "eventRedirectPage": {
@@ -882,6 +895,40 @@
           "authenticatedErrorMessage": "Det gick inte att ladda dina data. Försök att logga in på tjänsten igen."
         }
       }
+    }
+  },
+  "search": {
+    "title": "Sök evenemang",
+    "hero": {
+      "title": "Hej {{name}}!",
+      "greeting": "Hej {{name}}!",
+      "selectChild": "Välj barn",
+      "childAge": "{{age}} år"
+    },
+    "filter": {
+      "title": "Filtrera sökresultat",
+      "searchLabel": "Sök med ord",
+      "searchPlaceholder": "T.ex. konsert, verkstad...",
+      "dateLabel": "Tidpunkt",
+      "datePlaceholder": "Välj tidpunkt",
+      "venueLabel": "Evenemangsplats",
+      "venuePlaceholder": "Välj plats",
+      "submitButton": "Sök",
+      "clearButton": "Rensa sökkriterier"
+    },
+    "results": {
+      "count": "{{count}} sökresultat",
+      "count_one": "{{count}} sökresultat",
+      "count_other": "{{count}} sökresultat",
+      "count_zero": "0 sökresultat",
+      "noResults": "Inga tillgängliga evenemang."
+    },
+    "card": {
+      "enrolButton": "Anmäl dig",
+      "readMoreButton": "Läs mer",
+      "languages": "Språk: {{languages}}",
+      "badgeExample1": "Exempelmärke 1",
+      "badgeExample2": "Exempelmärke 2"
     }
   }
 }

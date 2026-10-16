@@ -182,6 +182,7 @@
           "text": "Culture Kid"
         }
       },
+      "browseEventsButton": "Browse events",
       "detail": {
         "availableEvent": {
           "readMoreAndEnrolButton": "Read more and register for event",
@@ -190,6 +191,7 @@
         "availableEventGroup": {
           "readMoreButton": "Browse events"
         },
+        "browseEventsButton": "Browse events",
         "birthyear": "Child's year of birth",
         "delete": {
           "prompt": {
@@ -382,6 +384,17 @@
     "externalTicketSystemButtons": {
       "back": "Back",
       "continue": "Continue to register"
+    },
+    "hero": {
+      "backButtonAriaLabel": "Go back",
+      "enrolButton": "Enrol"
+    },
+    "sidebar": {
+      "dateTitle": "Date and time",
+      "locationTitle": "Location",
+      "openMap": "Open map",
+      "languagesTitle": "Languages",
+      "otherOccurrencesTitle": "Other event times"
     }
   },
   "eventRedirectPage": {
@@ -882,6 +895,40 @@
           "authenticatedErrorMessage": "There was a problem loading your data. Please try logging into the service again."
         }
       }
+    }
+  },
+  "search": {
+    "title": "Search events",
+    "hero": {
+      "title": "Hello {{name}}!",
+      "greeting": "Hello {{name}}!",
+      "selectChild": "Select child",
+      "childAge": "{{age}} years"
+    },
+    "filter": {
+      "title": "Filter search results",
+      "searchLabel": "Search by keyword",
+      "searchPlaceholder": "E.g. concert, workshop...",
+      "dateLabel": "Date",
+      "datePlaceholder": "Select date",
+      "venueLabel": "Venue",
+      "venuePlaceholder": "Select venue",
+      "submitButton": "Search",
+      "clearButton": "Clear search criteria"
+    },
+    "results": {
+      "count": "{{count}} search result",
+      "count_one": "{{count}} search result",
+      "count_other": "{{count}} search results",
+      "count_zero": "0 search results",
+      "noResults": "No available events."
+    },
+    "card": {
+      "enrolButton": "Enrol",
+      "readMoreButton": "Read more",
+      "languages": "Languages: {{languages}}",
+      "badgeExample1": "Example badge 1",
+      "badgeExample2": "Example badge 2"
     }
   }
 }

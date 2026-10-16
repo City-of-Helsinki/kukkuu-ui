@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, useLocation } from 'react-router';
+import { useParams, useLocation, useSearchParams } from 'react-router';
 import { useQuery } from '@apollo/client';
 import * as Sentry from '@sentry/browser';
 import { Notification } from 'hds-react';
@@ -17,8 +17,10 @@ import eventQuery, {
   eventExternalTicketSystemHasAnyFreePasswordsQuery,
 } from './queries/eventQuery';
 import EventEnrol from './EventEnrol';
-import EventPage from './EventPage';
+import EventDetailsPage from './eventDetails/EventDetailsPage';
 import EventParticipantsPerInvite from './EventParticipantsPerInvite';
+import RelayList from '../api/relayList';
+import type { OccurrenceNode } from './types/EventQueryTypes';
 import styles from './event.module.scss';
 import eventRedirectStyles from './eventRedirect.module.scss';
 import { useEventRouteGoBackTo } from './route/EventRoute';
@@ -92,9 +94,12 @@ const ExternalTicketSystemEventEnrol: React.FC<
   );
 };
 
+const OccurrenceList = RelayList<OccurrenceNode>();
+
 const Event = () => {
   const { t } = useTranslation();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const goBackTo = useEventRouteGoBackTo();
   const { childId, eventId } = useParams<{
     childId: string;
@@ -185,8 +190,19 @@ const Event = () => {
     `/profile/child/${childId}/event/${eventId}/redirect`
   );
 
+  const allOccurrences = OccurrenceList(data.event.allOccurrences).items;
+  const occurrenceIdParam = searchParams.get('occurrenceId');
+  const selectedOccurrence =
+    allOccurrences.find((o) => o.id === occurrenceIdParam) ?? allOccurrences[0];
+
   return (
-    <EventPage event={event} backTo={goBackTo}>
+    <EventDetailsPage
+      event={event}
+      selectedOccurrence={selectedOccurrence}
+      otherOccurrences={allOccurrences}
+      childId={childId || ''}
+      backTo={goBackTo}
+    >
       <EventParticipantsPerInvite
         participantsPerInvite={event.participantsPerInvite}
       />
@@ -211,7 +227,7 @@ const Event = () => {
             continueUrl={continueUrl}
           />
         ))}
-    </EventPage>
+    </EventDetailsPage>
   );
 };
 

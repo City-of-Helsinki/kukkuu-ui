@@ -105,6 +105,21 @@ describe('ProfileChildDetail', () => {
     ).toBeInTheDocument();
   });
 
+  it('renders browse events button linking to child events search', async () => {
+    renderComponent();
+
+    await waitForLoadingToFinish();
+
+    const browseButton = screen.getByRole('link', {
+      name: /Selaa tapahtumia/i,
+    });
+    expect(browseButton).toBeInTheDocument();
+    expect(browseButton).toHaveAttribute(
+      'href',
+      `/profile/child/${testChildId}/events`
+    );
+  });
+
   it('shows "no child" text when child data is null', async () => {
     const noChildMock = {
       request: {

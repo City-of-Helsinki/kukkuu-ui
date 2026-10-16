@@ -1,0 +1,28 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.eventContentSection {
+  background-color: var(--color-white);
+  padding: var(--spacing-xl) 0 var(--spacing-4-xl) 0;
+
+  .contentContainer {
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+
+      @include layout.respond-above(m) {
+        grid-template-columns: 2fr 1fr;
+        gap: var(--spacing-3-xl);
+      }
+
+      .mainColumn {
+        min-width: 0;
+      }
+
+      .sidebarColumn {
+        min-width: 0;
+      }
+    }
+  }
+}

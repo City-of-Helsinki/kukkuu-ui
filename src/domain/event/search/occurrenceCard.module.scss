@@ -1,0 +1,124 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.occurrenceCard {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-black-20);
+  border-radius: var(--spacing-2-xs);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-bottom: var(--spacing-m);
+
+  @include layout.respond-above(m) {
+    flex-direction: row;
+    min-height: 14rem;
+  }
+
+  .imageWrapper {
+    position: relative;
+    width: 100%;
+    min-height: 12rem;
+    max-height: 16rem;
+    overflow: hidden;
+    background-color: var(--color-black-5);
+    flex-shrink: 0;
+
+    @include layout.respond-above(m) {
+      width: 18rem;
+      min-height: 14rem;
+      max-height: unset;
+    }
+
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .badgeWrapper {
+      position: absolute;
+      top: var(--spacing-s);
+      left: var(--spacing-s);
+      z-index: 1;
+    }
+  }
+
+  .contentWrapper {
+    padding: var(--spacing-m);
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: space-between;
+
+    .header {
+      margin-bottom: var(--spacing-xs);
+
+      .title {
+        font-size: var(--fontsize-heading-m, 1.5rem);
+        font-weight: 700;
+        margin: 0 0 var(--spacing-2-xs);
+        color: var(--color-black);
+        line-height: 1.25;
+      }
+
+      .shortDescription {
+        font-size: var(--fontsize-body-m, 1rem);
+        color: var(--color-black-90);
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
+
+    .metadata {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-2-xs);
+      margin: var(--spacing-xs) 0;
+
+      .metaRow {
+        display: flex;
+        align-items: center;
+        font-size: var(--fontsize-body-m, 1rem);
+        color: var(--color-black-90);
+
+        .icon {
+          width: var(--spacing-m);
+          height: var(--spacing-m);
+          margin-right: var(--spacing-xs);
+          flex-shrink: 0;
+          color: var(--color-black);
+        }
+      }
+    }
+
+    .badgeList {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-2-xs);
+      margin: var(--spacing-xs) 0;
+
+      .pill {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        font-size: var(--fontsize-body-s, 0.875rem);
+        font-weight: 500;
+        border-radius: 1rem;
+        background-color: var(--color-black-5, #f1f1f1);
+        color: var(--color-black-90, #1a1a1a);
+      }
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-s);
+      margin-top: var(--spacing-s);
+
+      .actionButton {
+        min-width: 9rem;
+      }
+    }
+  }
+}
