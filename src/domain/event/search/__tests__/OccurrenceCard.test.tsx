@@ -3,7 +3,9 @@ import { screen } from '@testing-library/react';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import OccurrenceCard from '../OccurrenceCard';
+import { OccurrenceCardProvider } from '../OccurrenceCardContext';
 import type { FlattenedOccurrenceItem } from '../../types/ChildAvailableOccurrencesTypes';
+import { Language } from '../../../api/generatedTypes/graphql';
 
 describe('OccurrenceCard', () => {
   const baseItem: FlattenedOccurrenceItem = {
@@ -21,7 +23,7 @@ describe('OccurrenceCard', () => {
       id: 'occ-456',
       time: '2026-10-04T10:00:00Z',
       remainingCapacity: 10,
-      occurrenceLanguage: 'FI' as any,
+      occurrenceLanguage: Language.Fi,
       venue: {
         id: 'venue-789',
         name: 'Annantalo',
@@ -72,5 +74,51 @@ describe('OccurrenceCard', () => {
 
     const enrolButton = screen.getByRole('button', { name: 'Ilmoittaudu' });
     expect(enrolButton).toBeDisabled();
+  });
+
+  it('places date badge in upper right corner of the content area by default', () => {
+    const { container } = render(
+      <OccurrenceCard childId="child-1" item={baseItem} />
+    );
+
+    const badge = screen.getByText('SU');
+    expect(badge).toBeInTheDocument();
+
+    // Verify it is inside .badgeTopRight in .topRow and NOT in .badgeOverImage
+    expect(container.querySelector('._badgeTopRight_e35824, [class*="badgeTopRight"]')).toBeInTheDocument();
+    expect(container.querySelector('._badgeOverImage_e35824, [class*="badgeOverImage"]')).toBeNull();
+  });
+
+  it('allows configuring date badge position via direct prop', () => {
+    const { container, rerender } = render(
+      <OccurrenceCard
+        childId="child-1"
+        item={baseItem}
+        dateBadgePosition="over-image"
+      />
+    );
+
+    expect(container.querySelector('[class*="badgeOverImage"]')).toBeInTheDocument();
+    expect(container.querySelector('[class*="badgeTopRight"]')).toBeNull();
+
+    rerender(
+      <OccurrenceCard
+        childId="child-1"
+        item={baseItem}
+        dateBadgePosition="none"
+      />
+    );
+    expect(screen.queryByText('SU')).not.toBeInTheDocument();
+  });
+
+  it('allows configuring date badge position via OccurrenceCardProvider context', () => {
+    const { container } = render(
+      <OccurrenceCardProvider value={{ dateBadgePosition: 'before-title' }}>
+        <OccurrenceCard childId="child-1" item={baseItem} />
+      </OccurrenceCardProvider>
+    );
+
+    expect(container.querySelector('[class*="badgeBeforeTitle"]')).toBeInTheDocument();
+    expect(container.querySelector('[class*="badgeTopRight"]')).toBeNull();
   });
 });

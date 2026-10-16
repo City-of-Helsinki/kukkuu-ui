@@ -27,6 +27,7 @@ import type {
 } from '../types/ChildAvailableOccurrencesTypes';
 import { flattenAvailableOccurrences } from './occurrenceSearchUtils';
 import OccurrenceCard from './OccurrenceCard';
+import { OccurrenceCardProvider } from './OccurrenceCardContext';
 import styles from './childEventsSearch.module.scss';
 
 export const ChildEventsSearch: React.FC = () => {
@@ -170,15 +171,17 @@ export const ChildEventsSearch: React.FC = () => {
             </h2>
 
             {occurrences.length > 0 ? (
-              <div className={styles.occurrenceList}>
-                {occurrences.map((item) => (
-                  <OccurrenceCard
-                    key={item.occurrence.id}
-                    childId={childId || ''}
-                    item={item}
-                  />
-                ))}
-              </div>
+              <OccurrenceCardProvider value={{ dateBadgePosition: 'top-right' }}>
+                <div className={styles.occurrenceList}>
+                  {occurrences.map((item) => (
+                    <OccurrenceCard
+                      key={item.occurrence.id}
+                      childId={childId || ''}
+                      item={item}
+                    />
+                  ))}
+                </div>
+              </OccurrenceCardProvider>
             ) : (
               <p className={styles.noResults}>
                 {t('search.results.noResults')}

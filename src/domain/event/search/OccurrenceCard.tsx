@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 import { IconClock, IconGlobe, IconLocation } from 'hds-react';
 
 import PlaceholderImage from '../../../common/components/placeholderImage/PlaceholderImage';
@@ -9,20 +10,29 @@ import Button from '../../../common/components/button/Button';
 import { formatOccurrenceTimeRange } from '../../../common/time/occurrenceTime';
 import { isOccurrenceEnrollable } from './occurrenceSearchUtils';
 import type { FlattenedOccurrenceItem } from '../types/ChildAvailableOccurrencesTypes';
+import {
+  useOccurrenceCardConfig,
+  OccurrenceCardDateBadgePosition,
+} from './OccurrenceCardContext';
 import styles from './occurrenceCard.module.scss';
 
 export interface OccurrenceCardProps {
   childId: string;
   item: FlattenedOccurrenceItem;
+  dateBadgePosition?: OccurrenceCardDateBadgePosition;
 }
 
 export const OccurrenceCard: React.FC<OccurrenceCardProps> = ({
   childId,
   item,
+  dateBadgePosition,
 }) => {
   const { t } = useTranslation();
   const { event, occurrence } = item;
   const canEnroll = isOccurrenceEnrollable(item);
+  const contextConfig = useOccurrenceCardConfig();
+  const effectiveDateBadgePosition =
+    dateBadgePosition ?? contextConfig.dateBadgePosition ?? 'top-right';
 
   const formattedTime = formatOccurrenceTimeRange(
     occurrence.time,
@@ -58,16 +68,32 @@ export const OccurrenceCard: React.FC<OccurrenceCardProps> = ({
         ) : (
           <PlaceholderImage />
         )}
-        <div className={styles.badgeWrapper}>
-          <OccurrenceDateBadge time={occurrence.time} />
-        </div>
+        {effectiveDateBadgePosition === 'over-image' && (
+          <div className={styles.badgeOverImage}>
+            <OccurrenceDateBadge time={occurrence.time} />
+          </div>
+        )}
       </div>
 
       <div className={styles.contentWrapper}>
-        <div className={styles.header}>
-          <h3 className={styles.title}>{event.name}</h3>
-          {event.shortDescription && (
-            <p className={styles.shortDescription}>{event.shortDescription}</p>
+        <div className={styles.topRow}>
+          {effectiveDateBadgePosition === 'before-title' && (
+            <div className={styles.badgeBeforeTitle}>
+              <OccurrenceDateBadge time={occurrence.time} />
+            </div>
+          )}
+
+          <div className={styles.header}>
+            <h3 className={styles.title}>{event.name}</h3>
+            {event.shortDescription && (
+              <p className={styles.shortDescription}>{event.shortDescription}</p>
+            )}
+          </div>
+
+          {effectiveDateBadgePosition === 'top-right' && (
+            <div className={styles.badgeTopRight}>
+              <OccurrenceDateBadge time={occurrence.time} />
+            </div>
           )}
         </div>
 
@@ -102,7 +128,10 @@ export const OccurrenceCard: React.FC<OccurrenceCardProps> = ({
             <LinkButton
               to={enrolUrl}
               variant="primary"
-              className={styles.actionButton}
+              className={classNames(
+                styles.actionButton,
+                styles.actionButtonPrimary
+              )}
             >
               {t('search.card.enrolButton')}
             </LinkButton>
@@ -111,7 +140,10 @@ export const OccurrenceCard: React.FC<OccurrenceCardProps> = ({
               variant="disabled"
               disabled
               aria-disabled="true"
-              className={styles.actionButton}
+              className={classNames(
+                styles.actionButton,
+                styles.actionButtonDisabled
+              )}
             >
               {t('search.card.enrolButton')}
             </Button>
@@ -119,7 +151,10 @@ export const OccurrenceCard: React.FC<OccurrenceCardProps> = ({
           <LinkButton
             to={detailsUrl}
             variant="secondary"
-            className={styles.actionButton}
+            className={classNames(
+              styles.actionButton,
+              styles.actionButtonSecondary
+            )}
           >
             {t('search.card.readMoreButton')}
           </LinkButton>
