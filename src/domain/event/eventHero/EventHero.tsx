@@ -1,12 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, Link } from 'react-router';
 import {
-  IconArrowLeft,
   IconCalendarClock,
   IconGlobe,
   IconLocation,
-  IconSize,
 } from 'hds-react';
 import {
   ContentContainer,
@@ -55,22 +52,8 @@ export const EventHero: React.FC<EventHeroProps> = ({
   event,
   selectedOccurrence,
   childId,
-  backTo,
 }) => {
   const { t, i18n } = useTranslation();
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const handleBack = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (location.key !== 'default') {
-      navigate(-1);
-    } else if (backTo) {
-      navigate(backTo);
-    } else {
-      navigate(`/profile/child/${childId}/events`);
-    }
-  };
 
   const formattedDateTime = selectedOccurrence
     ? [
@@ -103,8 +86,6 @@ export const EventHero: React.FC<EventHeroProps> = ({
     ? `/profile/child/${childId}/event/${event.id}/occurrence/${selectedOccurrence.id}/enrol`
     : '#';
 
-  const defaultBackUrl = backTo || `/profile/child/${childId}/events`;
-
   return (
     <PageSection
       korosBottom
@@ -113,28 +94,17 @@ export const EventHero: React.FC<EventHeroProps> = ({
     >
       <ContentContainer className={styles.contentContainer}>
         <div className={styles.heroGrid}>
-          {/* Left Column: Image + Circular Back Button */}
+          {/* Left Column: Image (full height, under koros) */}
           <div className={styles.imageColumn}>
-            <Link
-              to={defaultBackUrl}
-              onClick={handleBack}
-              className={styles.backButton}
-              aria-label={t('event.hero.backButtonAriaLabel', 'Palaa takaisin')}
-            >
-              <IconArrowLeft size={IconSize.Small} />
-            </Link>
-
-            <div className={styles.imageWrapper}>
-              {event.image ? (
-                <img
-                  src={event.image}
-                  alt={event.imageAltText || event.name || ''}
-                  className={styles.image}
-                />
-              ) : (
-                <PlaceholderImage />
-              )}
-            </div>
+            {event.image ? (
+              <img
+                src={event.image}
+                alt={event.imageAltText || event.name || ''}
+                className={styles.image}
+              />
+            ) : (
+              <PlaceholderImage />
+            )}
           </div>
 
           {/* Right Column: Title, metadata, badges, and enrolment button */}
@@ -202,7 +172,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
                   variant="disabled"
                   disabled
                   aria-disabled="true"
-                  className={styles.enrolButton}
+                  className={styles.enrolButtonDisabled}
                 >
                   {t('event.hero.enrolButton')}
                 </Button>

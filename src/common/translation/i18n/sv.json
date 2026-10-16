@@ -99,6 +99,10 @@
     },
     "breadcrumbListLabel": "Brödsmulor",
     "breadcrumbNavigationLabel": "Brödsmulnavigering",
+    "breadcrumbs": {
+      "home": "Framsida",
+      "events": "Evenemang"
+    },
     "closeButton": {
       "altText": "Stäng"
     },
@@ -385,6 +389,9 @@
       "back": "Tillbaka",
       "continue": "Fortsätt till anmälan"
     },
+    "description": {
+      "title": "Beskrivning"
+    },
     "hero": {
       "backButtonAriaLabel": "Gå tillbaka",
       "enrolButton": "Anmäl dig"
@@ -393,6 +400,7 @@
       "dateTitle": "Datum och tid",
       "locationTitle": "Plats",
       "openMap": "Öppna kartan",
+      "participantsTitle": "Deltagare",
       "languagesTitle": "Språk",
       "otherOccurrencesTitle": "Evenemangets andra tider"
     }

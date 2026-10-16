@@ -18,6 +18,26 @@
 
       .mainColumn {
         min-width: 0;
+
+        .descriptionSection {
+          .descriptionTitle {
+            font-size: var(--fontsize-heading-m, 1.5rem);
+            font-weight: 500;
+            margin: 0 0 var(--spacing-m);
+            color: var(--color-black, #000);
+          }
+
+          .description {
+            font-size: var(--fontsize-body-l, 1.125rem);
+            line-height: 1.6;
+            color: var(--color-black-90, #1a1a1a);
+            word-break: break-word;
+
+            p {
+              margin: 0 0 1rem;
+            }
+          }
+        }
       }
 
       .sidebarColumn {

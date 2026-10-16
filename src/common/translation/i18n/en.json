@@ -99,6 +99,10 @@
     },
     "breadcrumbListLabel": "Breadcrumbs",
     "breadcrumbNavigationLabel": "Breadcrumb navigation",
+    "breadcrumbs": {
+      "home": "Home",
+      "events": "Events"
+    },
     "closeButton": {
       "altText": "Close"
     },
@@ -385,6 +389,9 @@
       "back": "Back",
       "continue": "Continue to register"
     },
+    "description": {
+      "title": "Description"
+    },
     "hero": {
       "backButtonAriaLabel": "Go back",
       "enrolButton": "Enrol"
@@ -393,6 +400,7 @@
       "dateTitle": "Date and time",
       "locationTitle": "Location",
       "openMap": "Open map",
+      "participantsTitle": "Participants",
       "languagesTitle": "Languages",
       "otherOccurrencesTitle": "Other event times"
     }

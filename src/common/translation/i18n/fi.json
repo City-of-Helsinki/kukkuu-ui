@@ -99,6 +99,10 @@
     },
     "breadcrumbListLabel": "Leivänmurut",
     "breadcrumbNavigationLabel": "Leivänmurunavigaatio",
+    "breadcrumbs": {
+      "home": "Etusivu",
+      "events": "Tapahtumat"
+    },
     "closeButton": {
       "altText": "Sulje"
     },
@@ -385,6 +389,9 @@
       "back": "Takaisin",
       "continue": "Jatka ilmoittautumaan"
     },
+    "description": {
+      "title": "Kuvaus"
+    },
     "hero": {
       "backButtonAriaLabel": "Palaa takaisin",
       "enrolButton": "Ilmoittaudu"
@@ -393,6 +400,7 @@
       "dateTitle": "Päivä ja aika",
       "locationTitle": "Paikka",
       "openMap": "Avaa kartta",
+      "participantsTitle": "Osallistujat",
       "languagesTitle": "Kielet",
       "otherOccurrencesTitle": "Tapahtuman muut ajat"
     }

@@ -15,6 +15,8 @@ import {
   formatOccurrenceDateLong,
   formatOccurrenceTimeRange,
 } from '../../../common/time/occurrenceTime';
+import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../../api/generatedTypes/graphql';
+import { getParticipantsIcon } from '../EventUtils';
 import styles from './eventInfoSidebar.module.scss';
 
 export interface EventSidebarVenue {
@@ -33,6 +35,7 @@ export interface EventSidebarOccurrence {
 export interface EventSidebarEvent {
   id: string;
   duration?: number | null;
+  participantsPerInvite?: EventParticipantsPerInviteEnum | null;
 }
 
 export interface EventInfoSidebarProps {
@@ -114,7 +117,23 @@ export const EventInfoSidebar: React.FC<EventInfoSidebarProps> = ({
           </InfoWithIcon>
         )}
 
-        {/* 3. Kielet */}
+        {/* 3. Osallistujat */}
+        {event.participantsPerInvite && (
+          <InfoWithIcon
+            icon={getParticipantsIcon(event.participantsPerInvite)}
+            title={t('event.sidebar.participantsTitle')}
+          >
+            <div className={styles.infoContent}>
+              <p className={styles.textRow}>
+                {t(
+                  `event.participantsPerInviteEnum.${event.participantsPerInvite}`
+                )}
+              </p>
+            </div>
+          </InfoWithIcon>
+        )}
+
+        {/* 4. Kielet */}
         {languageName && (
           <InfoWithIcon
             icon={<IconGlobe aria-hidden="true" />}
@@ -126,7 +145,7 @@ export const EventInfoSidebar: React.FC<EventInfoSidebarProps> = ({
           </InfoWithIcon>
         )}
 
-        {/* 4. Tapahtuman muut ajat */}
+        {/* 5. Tapahtuman muut ajat */}
         {filteredOtherOccurrences.length > 0 && (
           <InfoWithIcon
             icon={<IconCalendarPlus aria-hidden="true" />}

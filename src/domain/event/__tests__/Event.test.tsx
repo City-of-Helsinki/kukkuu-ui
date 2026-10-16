@@ -7,18 +7,12 @@ import * as Sentry from '@sentry/browser';
 
 import { customRender as render } from '../../../common/test/customRender';
 import Event from '../Event';
-import eventQuery, {
-  eventExternalTicketSystemHasAnyFreePasswordsQuery,
-} from '../queries/eventQuery';
+import eventQuery from '../queries/eventQuery';
 import { getDateOptions, getTimeOptions } from '../EventUtils';
 import {
   testEventId,
   testChildId,
   eventWithOccurrencesMock,
-  externalTicketSystemEventMock,
-  hasFreePasswordsMock,
-  internalTicketSystemPasswordsMock,
-  dummyPasswordMock,
 } from '../__mocks__/eventMocks';
 
 vi.mock('@sentry/browser');
@@ -151,7 +145,7 @@ describe('Event', () => {
         error: new Error('Query failed'),
       };
 
-      renderEvent([errorMock, dummyPasswordMock]);
+      renderEvent([errorMock]);
 
       expect(await screen.findByText(/Tapahtui virhe/i)).toBeInTheDocument();
       expect(Sentry.captureException).toHaveBeenCalled();
@@ -175,148 +169,37 @@ describe('Event', () => {
         }),
       };
 
-      renderEvent([noEventMock, dummyPasswordMock]);
+      renderEvent([noEventMock]);
 
       expect(await screen.findByText('No event')).toBeInTheDocument();
     });
 
-    it('renders event details for internal ticket system', async () => {
-      renderEvent([eventWithOccurrencesMock, internalTicketSystemPasswordsMock]);
+    it('renders event details, breadcrumbs, description and sidebar info', async () => {
+      renderEvent([eventWithOccurrencesMock]);
 
       await waitForLoadingToFinish();
 
-      // Verify event details are rendered with actual EventPage component
-      expect(screen.getByText('Test Event')).toBeInTheDocument();
+      // Verify event details and description
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Test Event' })
+      ).toBeInTheDocument();
       expect(screen.getByText('Test event description')).toBeInTheDocument();
-    });
 
-    it('renders EventEnrol component for internal ticket system on upcoming events', async () => {
-      renderEvent([eventWithOccurrencesMock, internalTicketSystemPasswordsMock]);
+      // Verify breadcrumbs
+      expect(
+        screen.getByRole('navigation', { name: /Leivänmurunavigaatio/i })
+      ).toBeInTheDocument();
 
-      await waitForLoadingToFinish();
+      // Verify sidebar Osallistujat section is rendered
+      expect(screen.getByText('Osallistujat')).toBeInTheDocument();
 
-      // Verify EventEnrol component is rendered by checking for its form fields
-      expect(screen.getByLabelText(/Valitse päivämäärä/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/Valitse kellonaika/i)).toBeInTheDocument();
-    });
-
-    it('does not render EventEnrol on past events', async () => {
-      mockUseLocation.mockReturnValue({
-        pathname: '/profile/child/child-123/event/event-456/past',
-      });
-
-      renderEvent([
-        eventWithOccurrencesMock,
-        internalTicketSystemPasswordsMock,
-      ]);
-
-      await waitForLoadingToFinish();
-
+      // Verify occurrence table dropdowns are not rendered
       expect(
         screen.queryByLabelText(/Valitse päivämäärä/i)
       ).not.toBeInTheDocument();
       expect(
         screen.queryByLabelText(/Valitse kellonaika/i)
       ).not.toBeInTheDocument();
-    });
-
-    it('renders Continue button for external ticket system when can enroll and has free passwords', async () => {
-      renderEvent([externalTicketSystemEventMock, hasFreePasswordsMock]);
-
-      await waitForLoadingToFinish();
-
-      expect(
-        screen.getByText(/Jatka ilmoittautumaan/i)
-      ).toBeInTheDocument();
-    });
-
-    it('renders no free passwords text for external ticket system when passwords are exhausted', async () => {
-      const noFreePasswordsMock = {
-        request: {
-          query: eventExternalTicketSystemHasAnyFreePasswordsQuery,
-          variables: {
-            id: testEventId,
-          },
-        },
-        newData: () => ({
-          data: {
-            event: {
-              __typename: 'EventNode',
-              id: testEventId,
-              ticketSystem: {
-                __typename: 'TicketmasterEventTicketSystem',
-                type: 'TICKETMASTER',
-                hasAnyFreePasswords: false,
-              },
-            },
-          },
-        }),
-      };
-
-      renderEvent([externalTicketSystemEventMock, noFreePasswordsMock]);
-
-      await waitForLoadingToFinish();
-
-      expect(
-        screen.getByText(/Valitettavasti salasanoja ei ole enää jäljellä/i)
-      ).toBeInTheDocument();
-    });
-
-    it('renders cant enroll notification for external ticket system when enrollment is not allowed', async () => {
-      const cannotEnrollExternalEventMock = {
-        request: {
-          query: eventQuery,
-          variables: {
-            id: testEventId,
-            childId: testChildId,
-          },
-        },
-        newData: () => ({
-          data: {
-            event: {
-              __typename: 'EventNode',
-              id: testEventId,
-              name: 'External Ticket Event',
-              description: 'Event with external ticket system',
-              shortDescription: 'External short description',
-              image: 'external-image-url',
-              imageAltText: 'External image alt',
-              participantsPerInvite: 'CHILD_AND_GUARDIAN',
-              duration: 60,
-              capacityPerOccurrence: 20,
-              canChildEnroll: false,
-              eventGroup: {
-                __typename: 'EventGroupNode',
-                id: 'group-123',
-              },
-              ticketSystem: {
-                __typename: 'TicketmasterEventTicketSystem',
-                type: 'TICKETMASTER',
-                childPassword: 'test-password',
-                url: 'https://ticketmaster.example',
-              },
-              allOccurrences: {
-                __typename: 'OccurrenceNodeConnection',
-                edges: [],
-              },
-              occurrences: {
-                __typename: 'OccurrenceNodeConnection',
-                edges: [],
-              },
-            },
-          },
-        }),
-      };
-
-      renderEvent([cannotEnrollExternalEventMock, hasFreePasswordsMock]);
-
-      await waitForLoadingToFinish();
-
-      expect(
-        screen.getByText(
-          /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
-        )
-      ).toBeInTheDocument();
     });
   });
 });

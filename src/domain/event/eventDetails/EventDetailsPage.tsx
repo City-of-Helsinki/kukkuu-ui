@@ -1,5 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Breadcrumb } from 'hds-react';
+import type { BreadcrumbListItem } from 'hds-react';
 
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 import PageMeta from '../../app/layout/utilityComponents/PageMeta';
 import EventHero, { EventHeroEvent, EventHeroOccurrence } from '../eventHero/EventHero';
 import EventContent from '../eventContent/EventContent';
@@ -28,6 +32,24 @@ export const EventDetailsPage: React.FC<EventDetailsPageProps> = ({
   backTo,
   children,
 }) => {
+  const { t } = useTranslation();
+  const getPathname = useGetPathname();
+
+  const breadcrumbs: BreadcrumbListItem[] = [
+    {
+      title: t('common.breadcrumbs.home'),
+      path: getPathname('/'),
+    },
+    {
+      title: t('common.breadcrumbs.events'),
+      path: getPathname(`/profile/child/${childId}/events`),
+    },
+    {
+      title: event.name || '',
+      path: null,
+    },
+  ];
+
   return (
     <>
       <PageMeta
@@ -35,6 +57,13 @@ export const EventDetailsPage: React.FC<EventDetailsPageProps> = ({
         description={event.shortDescription || undefined}
       />
       <div className={styles.eventDetailsPage}>
+        <div className={styles.breadcrumbsWrapper}>
+          <Breadcrumb
+            aria-label={t('common.breadcrumbNavigationLabel')}
+            list={breadcrumbs}
+            className={styles.breadcrumbs}
+          />
+        </div>
         <EventHero
           event={event}
           selectedOccurrence={selectedOccurrence}

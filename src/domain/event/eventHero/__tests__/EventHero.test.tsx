@@ -1,24 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import EventHero from '../EventHero';
-
-const mockNavigate = vi.hoisted(() => vi.fn());
-let mockLocationKey = 'test-key';
-
-vi.mock('react-router', async () => {
-  const actual = await vi.importActual('react-router');
-  return {
-    ...actual,
-    useNavigate: () => mockNavigate,
-    useLocation: () => ({
-      key: mockLocationKey,
-      pathname: '/profile/child/child-1/event/event-1',
-    }),
-  };
-});
 
 describe('EventHero', () => {
   const baseEvent = {
@@ -95,28 +79,25 @@ describe('EventHero', () => {
     expect(button).toBeDisabled();
   });
 
-  it('navigates -1 on back button click when history exists', async () => {
-    mockLocationKey = 'history-key';
-    mockNavigate.mockClear();
-
+  it('renders image when provided', () => {
     render(
       <EventHero
-        event={baseEvent}
+        event={{
+          ...baseEvent,
+          image: 'https://example.com/sirkus.jpg',
+          imageAltText: 'Sirkuskuva',
+        }}
         selectedOccurrence={baseOccurrence}
         childId="child-1"
       />
     );
 
-    const backButton = screen.getByLabelText('Palaa takaisin');
-    await userEvent.click(backButton);
-
-    expect(mockNavigate).toHaveBeenCalledWith(-1);
+    const img = screen.getByRole('img', { name: 'Sirkuskuva' });
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute('src', 'https://example.com/sirkus.jpg');
   });
 
-  it('navigates to fallback search route when location.key is default (direct open)', async () => {
-    mockLocationKey = 'default';
-    mockNavigate.mockClear();
-
+  it('does not render back arrow button', () => {
     render(
       <EventHero
         event={baseEvent}
@@ -125,11 +106,6 @@ describe('EventHero', () => {
       />
     );
 
-    const backButton = screen.getByLabelText('Palaa takaisin');
-    await userEvent.click(backButton);
-
-    expect(mockNavigate).toHaveBeenCalledWith(
-      '/profile/child/child-1/events'
-    );
+    expect(screen.queryByLabelText('Palaa takaisin')).not.toBeInTheDocument();
   });
 });

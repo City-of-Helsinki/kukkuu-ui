@@ -4,71 +4,56 @@
 .heroSection {
   background-color: var(--color-summer, #ffc61e);
   color: var(--color-black, #000);
-  padding: var(--spacing-l) 0 2rem 0;
   position: relative;
+  overflow: hidden;
 }
 
 .heroKoros {
   fill: var(--color-white, #fff);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .contentContainer {
+  @include layout.respond-below(m) {
+    padding: 0 !important;
+  }
+
   .heroGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--spacing-l);
+    position: relative;
 
     @include layout.respond-above(m) {
-      grid-template-columns: 1fr 1fr;
-      align-items: start;
+      grid-template-columns: 1.4fr 1fr;
+      min-height: 30.6875rem;
+      align-items: stretch;
+    }
+
+    @include layout.respond-above(xl) {
+      grid-template-columns: 1.8fr 1fr;
     }
 
     .imageColumn {
       position: relative;
-      display: flex;
-      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      min-height: 20rem;
+      overflow: hidden;
 
-      .backButton {
-        position: absolute;
-        top: var(--spacing-s);
-        left: var(--spacing-s);
-        z-index: 2;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 2.75rem;
-        height: 2.75rem;
-        border-radius: 50%;
-        background-color: var(--color-white);
-        color: var(--color-black);
-        text-decoration: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-        transition: background-color 0.2s ease;
-
-        &:hover {
-          background-color: var(--color-black-5);
-        }
+      @include layout.respond-above(m) {
+        min-height: 30.6875rem;
       }
 
-      .imageWrapper {
+      .image {
         width: 100%;
-        min-height: 18rem;
-        max-height: 24rem;
-        border-radius: var(--spacing-2-xs);
-        overflow: hidden;
-        background-color: var(--color-black-5);
-
-        @include layout.respond-above(m) {
-          min-height: 22rem;
-          max-height: 28rem;
-        }
-
-        .image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
+        height: 100%;
+        object-fit: cover;
+        display: block;
       }
     }
 
@@ -76,6 +61,13 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      padding: var(--spacing-m) var(--spacing-m)
+        calc(var(--spacing-4-xl) + 2.5rem);
+
+      @include layout.respond-above(m) {
+        padding: var(--spacing-xl) 0 calc(var(--spacing-4-xl) + 2.5rem)
+          var(--spacing-xl);
+      }
 
       .title {
         font-size: var(--fontsize-heading-xl, 2.5rem);
@@ -135,6 +127,22 @@
         .enrolButton {
           width: 100%;
           max-width: 20rem;
+          background-color: var(--color-coat-of-arms, #001a82);
+          color: var(--color-white, #fff);
+          border-color: var(--color-coat-of-arms, #001a82);
+
+          &:hover {
+            background-color: var(--color-coat-of-arms-dark, #001469);
+            border-color: var(--color-coat-of-arms-dark, #001469);
+          }
+        }
+
+        .enrolButtonDisabled {
+          width: 100%;
+          max-width: 20rem;
+          background-color: var(--color-black-20, #ccc) !important;
+          color: var(--color-black-60, #666) !important;
+          border-color: var(--color-black-20, #ccc) !important;
         }
       }
     }

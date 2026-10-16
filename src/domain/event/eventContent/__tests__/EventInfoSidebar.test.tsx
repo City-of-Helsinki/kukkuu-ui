@@ -2,12 +2,14 @@ import { describe, expect, it } from 'vitest';
 import { screen } from '@testing-library/react';
 
 import { customRender as render } from '../../../../common/test/customRender';
+import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../../../api/generatedTypes/graphql';
 import EventInfoSidebar from '../EventInfoSidebar';
 
 describe('EventInfoSidebar', () => {
   const baseEvent = {
     id: 'event-1',
     duration: 60,
+    participantsPerInvite: EventParticipantsPerInviteEnum.ChildAndGuardian,
   };
 
   const selectedOccurrence = {
@@ -72,11 +74,15 @@ describe('EventInfoSidebar', () => {
     expect(mapLink).toHaveAttribute('target', '_blank');
     expect(mapLink).toHaveAttribute('rel', 'noopener noreferrer');
 
-    // 3. Kielet
+    // 3. Osallistujat
+    expect(screen.getByText('Osallistujat')).toBeInTheDocument();
+    expect(screen.getByText('1 lapsi + 1 aikuinen')).toBeInTheDocument();
+
+    // 4. Kielet
     expect(screen.getByText('Kielet')).toBeInTheDocument();
     expect(screen.getByText('Suomi')).toBeInTheDocument();
 
-    // 4. Tapahtuman muut ajat
+    // 5. Tapahtuman muut ajat
     expect(screen.getByText('Tapahtuman muut ajat')).toBeInTheDocument();
     // occ-1 must not be listed in other times
     expect(
