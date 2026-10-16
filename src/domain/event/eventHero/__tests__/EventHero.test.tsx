@@ -94,7 +94,9 @@ describe('EventHero', () => {
 
     const img = screen.getByRole('img', { name: 'Sirkuskuva' });
     expect(img).toBeInTheDocument();
-    expect(img).toHaveAttribute('src', 'https://example.com/sirkus.jpg');
+    expect(img).toHaveStyle({
+      backgroundImage: 'url(https://example.com/sirkus.jpg)',
+    });
   });
 
   it('does not render back arrow button', () => {

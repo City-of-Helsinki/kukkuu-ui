@@ -1,11 +1,15 @@
 @use '~styles/variables';
 @use '~styles/layout';
 
+$heroHeight: 30.6875rem;
+$imageMobileHeight: 23.4375rem;
+
 .heroSection {
   background-color: var(--color-summer, #ffc61e);
   color: var(--color-black, #000);
   position: relative;
   overflow: hidden;
+  padding-bottom: 0 !important;
 }
 
 .heroKoros {
@@ -26,34 +30,44 @@
   .heroGrid {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: $imageMobileHeight auto;
+    min-height: $heroHeight;
     position: relative;
 
     @include layout.respond-above(m) {
-      grid-template-columns: 1.4fr 1fr;
-      min-height: 30.6875rem;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: unset;
+      min-height: $heroHeight;
       align-items: stretch;
     }
 
     @include layout.respond-above(xl) {
-      grid-template-columns: 1.8fr 1fr;
+      grid-template-columns: 2fr 1fr;
     }
 
     .imageColumn {
       position: relative;
       width: 100%;
       height: 100%;
-      min-height: 20rem;
+      min-height: 0;
       overflow: hidden;
-
-      @include layout.respond-above(m) {
-        min-height: 30.6875rem;
-      }
 
       .image {
         width: 100%;
         height: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      & > img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        display: block;
+        object-position: center;
       }
     }
 

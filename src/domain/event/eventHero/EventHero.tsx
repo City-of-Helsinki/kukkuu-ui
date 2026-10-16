@@ -6,6 +6,7 @@ import {
   IconLocation,
 } from 'hds-react';
 import {
+  BackgroundImage,
   ContentContainer,
   PageSection,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
@@ -94,13 +95,15 @@ export const EventHero: React.FC<EventHeroProps> = ({
     >
       <ContentContainer className={styles.contentContainer}>
         <div className={styles.heroGrid}>
-          {/* Left Column: Image (full height, under koros) */}
+          {/* Left Column: Background Image (does not dictate hero height) */}
           <div className={styles.imageColumn}>
             {event.image ? (
-              <img
-                src={event.image}
-                alt={event.imageAltText || event.name || ''}
+              <BackgroundImage
                 className={styles.image}
+                id={`event-background-${event.id}`}
+                url={event.image}
+                role="img"
+                aria-label={event.imageAltText || event.name || ''}
               />
             ) : (
               <PlaceholderImage />
