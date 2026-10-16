@@ -1,20 +1,21 @@
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams, Link } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useQuery } from '@apollo/client';
 import {
   Accordion,
-  IconArrowLeft,
-  IconSize,
+  Breadcrumb,
   Select,
   SupportedLanguage,
   TextInput,
 } from 'hds-react';
+import type { BreadcrumbListItem } from 'hds-react';
 import {
   ContentContainer,
   PageSection,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 import PageMeta from '../../app/layout/utilityComponents/PageMeta';
 import Button from '../../../common/components/button/Button';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
@@ -34,7 +35,19 @@ export const ChildEventsSearch: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { childId } = useParams<{ childId: string }>();
   const navigate = useNavigate();
+  const getPathname = useGetPathname();
   const { profile } = useProfileContext();
+
+  const breadcrumbs: BreadcrumbListItem[] = [
+    {
+      title: t('common.breadcrumbs.home'),
+      path: getPathname('/'),
+    },
+    {
+      title: t('common.breadcrumbs.events'),
+      path: null,
+    },
+  ];
 
   const { data, loading, error } = useQuery<
     ChildAvailableOccurrencesQuery,
@@ -81,22 +94,19 @@ export const ChildEventsSearch: React.FC = () => {
     <>
       <PageMeta title={t('search.title')} />
       <div className={styles.searchPageWrapper}>
+        <div className={styles.breadcrumbsWrapper}>
+          <Breadcrumb
+            aria-label={t('common.breadcrumbNavigationLabel')}
+            list={breadcrumbs}
+            className={styles.breadcrumbs}
+          />
+        </div>
         <PageSection
           korosBottom
           korosBottomClassName={styles.heroKoros}
           className={styles.heroSection}
         >
           <ContentContainer className={styles.heroContentContainer}>
-            <div className={styles.backButtonWrapper}>
-              <Link
-                to={`/profile/child/${childId}`}
-                className={styles.backButton}
-                aria-label={t('common.backButton.label')}
-              >
-                <IconArrowLeft size={IconSize.Small} />
-              </Link>
-            </div>
-
             <h1 className={styles.heroTitle}>
               {t('search.hero.greeting', { name: child.name })}
             </h1>

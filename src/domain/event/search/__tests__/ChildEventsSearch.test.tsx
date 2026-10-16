@@ -105,6 +105,14 @@ describe('ChildEventsSearch', () => {
     expect(screen.getByText('1 hakutulos')).toBeInTheDocument();
     expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
     expect(screen.getByText('Seikkailua lapsille')).toBeInTheDocument();
+
+    // Verify breadcrumbs are rendered and back button is removed
+    expect(
+      screen.getByRole('navigation', { name: 'Leivänmurunavigaatio' })
+    ).toBeInTheDocument();
+    expect(screen.getAllByText('Etusivu')).toHaveLength(2);
+    expect(screen.getByText('Tapahtumat')).toBeInTheDocument();
+    expect(screen.queryByLabelText('Takaisin')).not.toBeInTheDocument();
   });
 
   it('renders empty results text when child has no available events', async () => {
