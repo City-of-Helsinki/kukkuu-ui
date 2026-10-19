@@ -15,6 +15,13 @@ const jwtExpirationTimeInSeconds = 1800; // half an hour
 const _jwtSharedSecret = BrowserTestJWTConfig.jwtSigningSecret;
 const _jwtSignAlgorithm = BrowserTestJWTConfig.jwtSignAlgorithm;
 /**
+ * Backdate `iat` by this many seconds to absorb clock skew between the
+ * machine signing the test JWT and the Kukkuu API server verifying it.
+ * Without this, a server clock that lags slightly behind the signing
+ * machine's clock intermittently rejects the token as "not yet valid".
+ */
+const clockSkewLeewayInSeconds = 30;
+/**
  * Get epoch timeframe (from-to) for JWT's timestamp fields.
  * @returns a list of 2 unix timestamps (epochs);
  *  the 1st value is the issued at time and 2nd is expiration time.
@@ -22,7 +29,8 @@ const _jwtSignAlgorithm = BrowserTestJWTConfig.jwtSignAlgorithm;
 export function getEpochTimeframeForTestJWt(
   authTime = new Date()
 ): [number, number] {
-  const issuedAt = Math.round(authTime.getTime() / 1000); // Unit timestamp in seconds
+  const issuedAt =
+    Math.round(authTime.getTime() / 1000) - clockSkewLeewayInSeconds; // Unit timestamp in seconds
   const expiresAt = issuedAt + jwtExpirationTimeInSeconds;
   return [issuedAt, expiresAt];
 }
@@ -34,7 +42,7 @@ export function getEpochTimeframeForTestJWt(
 export function generateTestJwt({
   user,
   prefix,
-  issuer = 'https://kukkuu-ui.dev.hel.ninja',
+  issuer = BrowserTestJWTConfig.jwtIssuer,
   audience = BrowserTestJWTConfig.oidcApiClientId,
   type = 'Bearer',
   authTime = new Date(),
