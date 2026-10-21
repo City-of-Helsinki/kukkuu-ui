@@ -334,7 +334,9 @@
     "enrol": "Register for event",
     "enrolShort": "Register",
     "message": {
-      "cantEnrollNotice": "Please note, that you cannot register for this event."
+      "cantEnrollNotice": "Please note, that you cannot register for this event.",
+      "registrationNotOpen": "Registration has not opened yet",
+      "registrationOpens": "Registration opens {{date}} at {{time}}"
     }
   },
   "event": {

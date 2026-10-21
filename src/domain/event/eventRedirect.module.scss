@@ -18,6 +18,10 @@
     padding: variables.$spacing-layout-m variables.$spacing-layout-l;
   }
 
+  .canNotEnrollNotification {
+    margin-bottom: variables.$spacing-s;
+  }
+
   .acquireButtonRow {
     display: flex;
     align-items: center;
