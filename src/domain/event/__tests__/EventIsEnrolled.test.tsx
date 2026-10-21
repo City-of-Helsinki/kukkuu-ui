@@ -39,6 +39,7 @@ const occurrenceMock: OccurrenceQuery = {
       name: null,
       duration: null,
       participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
+      registrationOpensAt: null,
       eventGroup: null,
     },
     remainingCapacity: null,

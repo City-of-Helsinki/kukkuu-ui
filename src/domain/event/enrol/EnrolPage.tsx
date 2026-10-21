@@ -11,6 +11,7 @@ import PageWrapper from '../../app/layout/PageWrapper';
 import styles from './enrol.module.scss';
 import occurrenceQuery from '../queries/occurrenceQuery';
 import {
+  EnrolmentDeniedReason,
   OccurrenceQuery,
   EnrolOccurrenceMutation,
   EnrolOccurrenceMutationVariables,
@@ -25,23 +26,14 @@ import useGetPathname from '../../../common/route/utils/useGetPathname';
 import graphqlClient from '../../api/client';
 import { useProfileContext } from '../../profile/hooks/useProfileContext';
 import { handleEnrolCompleted } from './handleEnrolCompleted';
+import { getEnrolmentDeniedNotice } from '../EventUtils';
+import getIsError from '../../api/utils/getIsError';
 
-function containsAlreadyJoinedError(
-  errors: ReadonlyArray<GraphQLFormattedError>
+function containsError(
+  errors: ReadonlyArray<GraphQLFormattedError>,
+  errorType: string
 ): boolean {
-  return errors.some(
-    (error: GraphQLFormattedError) =>
-      error.extensions?.code === GQLErrors.CHILD_ALREADY_JOINED_EVENT_ERROR
-  );
-}
-
-function containsOccurrenceFullError(
-  errors: ReadonlyArray<GraphQLFormattedError>
-): boolean {
-  return errors.some(
-    (error: GraphQLFormattedError) =>
-      error.extensions?.code === GQLErrors.OCCURRENCE_IS_FULL_ERROR
-  );
+  return errors.some((error) => getIsError(error, errorType));
 }
 
 const EnrolPage = () => {
@@ -101,16 +93,36 @@ const EnrolPage = () => {
         t,
       }),
     onError: (error) => {
-      if (containsAlreadyJoinedError(error.graphQLErrors)) {
+      if (
+        containsError(
+          error.graphQLErrors,
+          GQLErrors.CHILD_ALREADY_JOINED_EVENT_ERROR
+        )
+      ) {
         goToOccurrence();
         toast.warning(t('enrollment.enroll.error.childAlreadyJoined'));
-      } else if (containsOccurrenceFullError(error.graphQLErrors)) {
+      } else if (
+        containsError(error.graphQLErrors, GQLErrors.OCCURRENCE_IS_FULL_ERROR)
+      ) {
         // The occurrence has become full during the time between now
         // and the last time the data was refreshed. By re-fetching the
         // occurrence, we synchronize the data with the current truth,
         // which will in turn update the view to communicate that this
         // occurrence is full.
         refetchOccurrence();
+      } else if (
+        containsError(
+          error.graphQLErrors,
+          GQLErrors.REGISTRATION_NOT_OPEN_ERROR
+        )
+      ) {
+        toast.warning(
+          getEnrolmentDeniedNotice({
+            t,
+            enrolmentDeniedReason: EnrolmentDeniedReason.RegistrationNotOpen,
+            registrationOpensAt: data?.occurrence?.event?.registrationOpensAt,
+          })
+        );
       } else {
         // eslint-disable-next-line no-console
         console.error(error);

@@ -2,6 +2,7 @@ import { IconGroup } from 'hds-react';
 import { addMinutes } from 'date-fns/addMinutes';
 import uniqBy from 'lodash/uniqBy';
 import { differenceInHours } from 'date-fns/differenceInHours';
+import type { TFunction } from 'i18next';
 
 import { formatTime, newDate } from '../../common/time/utils';
 import {
@@ -9,7 +10,10 @@ import {
   DEFAULT_DATE_FORMAT,
   DEFAULT_TIME_FORMAT,
 } from '../../common/time/TimeConstants';
-import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../api/generatedTypes/graphql';
+import {
+  EnrolmentDeniedReason,
+  EventParticipantsPerInvite as EventParticipantsPerInviteEnum,
+} from '../api/generatedTypes/graphql';
 import RelayList from '../api/relayList';
 import { OccurrenceNode, Occurrences } from './types/EventQueryTypes';
 import AppConfig from '../app/AppConfig';
@@ -82,4 +86,90 @@ export const shouldAllowUnenrolment = (
 ) => {
   const hoursDiff = differenceInHours(occurrenceTime, new Date());
   return Boolean(hoursDiff >= enrolmentCancellationTimeLimitHours);
+};
+
+export type RegistrationOpens = { date: string; time: string };
+
+/**
+ * Returns the date and time in Helsinki time if registrationOpensAt is in
+ * the future, otherwise null.
+ *
+ * @param registrationOpensAt The event's registration opening time as an
+ * ISO 8601 datetime string, e.g. "2030-06-01T10:00:00+03:00". Null or
+ * undefined when the event has no opening time, i.e. registration is not
+ * limited.
+ */
+export const getRegistrationOpens = (
+  registrationOpensAt?: string | null
+): RegistrationOpens | null => {
+  if (!registrationOpensAt) return null;
+  const opensAt = new Date(registrationOpensAt);
+
+  if (opensAt.getTime() > Date.now()) {
+    const zonedOpensAt = newDate(opensAt);
+    return {
+      date: formatTime(zonedOpensAt, DEFAULT_DATE_FORMAT),
+      time: formatTime(zonedOpensAt, DEFAULT_TIME_FORMAT),
+    };
+  }
+  return null;
+};
+
+export type RegistrationNotOpenNotice = {
+  key:
+    | 'enrollPage.message.registrationOpens'
+    | 'enrollPage.message.registrationNotOpen';
+  values?: RegistrationOpens;
+};
+
+/**
+ * Returns the translation key and values for telling that registration is
+ * not open. Tells when it opens if registrationOpensAt is in the future,
+ * otherwise falls back to the generic "not opened yet" text.
+ */
+export const getRegistrationNotOpenNotice = (
+  registrationOpensAt?: string | null
+): RegistrationNotOpenNotice => {
+  const registrationOpens = getRegistrationOpens(registrationOpensAt);
+  return registrationOpens
+    ? { key: 'enrollPage.message.registrationOpens', values: registrationOpens }
+    : { key: 'enrollPage.message.registrationNotOpen' };
+};
+
+/**
+ * Returns the earliest registrationOpensAt of the given events, or null if
+ * none of them has a valid one.
+ *
+ * @returns The earliest opening time as an ISO 8601 datetime string in UTC,
+ * e.g. "2030-06-01T07:00:00.000Z", or null.
+ */
+export const getEarliestRegistrationOpensAt = (
+  events: ReadonlyArray<
+    { registrationOpensAt?: string | null } | null | undefined
+  >
+): string | null => {
+  const times = events
+    .map((event) => new Date(event?.registrationOpensAt ?? NaN).getTime())
+    .filter((time) => !Number.isNaN(time));
+
+  return times.length ? new Date(Math.min(...times)).toISOString() : null;
+};
+
+/**
+ * Return the notice explaining why a child cannot enroll to an event.
+ */
+export const getEnrolmentDeniedNotice = ({
+  t,
+  enrolmentDeniedReason,
+  registrationOpensAt,
+}: {
+  t: TFunction;
+  enrolmentDeniedReason?: EnrolmentDeniedReason | null;
+  registrationOpensAt?: string | null;
+}): string => {
+  if (enrolmentDeniedReason !== EnrolmentDeniedReason.RegistrationNotOpen) {
+    return t('enrollPage.message.cantEnrollNotice');
+  }
+  const { key, values } = getRegistrationNotOpenNotice(registrationOpensAt);
+  return t(key, values);
 };
