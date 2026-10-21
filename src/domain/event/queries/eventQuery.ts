@@ -51,7 +51,8 @@ const eventQuery = gql`
       participantsPerInvite
       duration
       capacityPerOccurrence
-      canChildEnroll(childId: $childId)
+      enrolmentDeniedReason(childId: $childId)
+      registrationOpensAt
       eventGroup {
         id
       }

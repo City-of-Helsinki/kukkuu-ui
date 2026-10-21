@@ -10,6 +10,7 @@ const occurrenceQuery = gql`
     name
     duration
     participantsPerInvite
+    registrationOpensAt
     eventGroup {
       id
     }

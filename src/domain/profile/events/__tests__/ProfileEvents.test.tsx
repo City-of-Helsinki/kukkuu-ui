@@ -59,7 +59,8 @@ const upcomingEventsAndEventGroups: UpcomingEventsAndEventGroups = {
         image:
           'http://localhost:8081/media/2020-02-15-184035_1920x1080_scrot.png',
         imageAltText: 'uooo',
-        canChildEnroll: true,
+        enrolmentDeniedReason: null,
+        registrationOpensAt: null,
         __typename: 'EventNode',
       },
     },

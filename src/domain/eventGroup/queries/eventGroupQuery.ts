@@ -7,7 +7,8 @@ const eventGroupQuery = gql`
     shortDescription
     image
     imageAltText
-    canChildEnroll(childId: $childId)
+    enrolmentDeniedReason(childId: $childId)
+    registrationOpensAt
   }
 
   fragment EventGroupEventsFields on EventNodeConnection {

@@ -334,7 +334,9 @@
     "enrol": "Anmäl dig till evenemanget",
     "enrolShort": "Anmäl",
     "message": {
-      "cantEnrollNotice": "Vänligen observera att du inte kan anmäla dig till detta evenemang."
+      "cantEnrollNotice": "Vänligen observera att du inte kan anmäla dig till detta evenemang.",
+      "registrationNotOpen": "Anmälan har inte öppnats ännu",
+      "registrationOpens": "Anmälan öppnas {{date}} kl. {{time}}"
     }
   },
   "event": {

@@ -1,9 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 // FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 
 import { customRender as render } from '../../../common/test/customRender';
+import { EnrolmentDeniedReason } from '../../api/generatedTypes/graphql';
 import EventGroup from '../EventGroup';
 
 const defaultProps = {};
@@ -14,12 +15,12 @@ const event = {
   id: '1',
   name: 'Event name',
   shortDescription: 'Event short description',
-  canChildEnroll: true,
+  enrolmentDeniedReason: null,
 };
 const eventGroup = {
   name: 'Event group name',
   description: 'Description',
-  canChildEnroll: true,
+  enrolmentDeniedReason: null,
   events: {
     edges: [
       {
@@ -70,6 +71,67 @@ describe('<EventGroup />', () => {
 
     expect(screen.getByText(event.name)).toBeTruthy();
     expect(screen.getByText(event.shortDescription)).toBeTruthy();
+  });
+
+  it('tells about registration only on events whose registration is not open', () => {
+    const { RegistrationNotOpen, AlreadyJoinedEvent } = EnrolmentDeniedReason;
+    const eventEdge = ({
+      id,
+      name,
+      enrolmentDeniedReason,
+      registrationOpensAt,
+    }) => ({
+      node: { ...event, id, name, enrolmentDeniedReason, registrationOpensAt },
+    });
+    const cardOf = (name) =>
+      within(screen.getByRole('button', { name: new RegExp(name) }));
+
+    renderEventGroup({
+      query: {
+        loading: false,
+        data: {
+          eventGroup: {
+            ...eventGroup,
+            events: {
+              edges: [
+                eventEdge({
+                  id: '1',
+                  name: 'Opens later',
+                  enrolmentDeniedReason: RegistrationNotOpen,
+                  registrationOpensAt: '2099-06-01T10:00:00+03:00',
+                }),
+                eventEdge({
+                  id: '2',
+                  name: 'No opening time',
+                  enrolmentDeniedReason: RegistrationNotOpen,
+                  registrationOpensAt: null,
+                }),
+                eventEdge({
+                  id: '3',
+                  name: 'Already joined',
+                  enrolmentDeniedReason: AlreadyJoinedEvent,
+                  registrationOpensAt: '2020-01-01T10:00:00+03:00',
+                }),
+              ],
+            },
+          },
+        },
+      },
+    });
+
+    expect(
+      cardOf('Opens later').getByText(
+        'Ilmoittautuminen alkaa 1.6.2099 klo 10:00'
+      )
+    ).toBeInTheDocument();
+    expect(
+      cardOf('No opening time').getByText(
+        'Ilmoittautuminen ei ole vielä alkanut'
+      )
+    ).toBeInTheDocument();
+    expect(
+      cardOf('Already joined').queryByText(/ilmoittautuminen/i)
+    ).not.toBeInTheDocument();
   });
 
   it('clicking on event should take user to event', () => {

@@ -23,6 +23,7 @@ export const externalTicketSystemEventQuery = gql`
     image
     imageAltText
     participantsPerInvite
+    registrationOpensAt
     occurrences: occurrences(upcoming: true, first: 1) {
       edges {
         node {

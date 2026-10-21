@@ -3,10 +3,15 @@ import { vi } from 'vitest';
 
 import { customRender as render } from '../../../common/test/customRender';
 import EventEnrol from '../EventEnrol';
-import { EventParticipantsPerInvite, EventQuery, TicketSystem } from '../../api/generatedTypes/graphql';
+import {
+  EnrolmentDeniedReason,
+  EventParticipantsPerInvite,
+  EventQuery,
+  TicketSystem,
+} from '../../api/generatedTypes/graphql';
 import type { EventEnrolProps } from '../EventEnrol';
 
-const baseEvent: EventQuery["event"] = {
+const baseEvent: EventQuery['event'] = {
   __typename: 'EventNode',
   id: 'event-1',
   name: 'Test Event',
@@ -17,7 +22,8 @@ const baseEvent: EventQuery["event"] = {
   participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
   duration: 60,
   capacityPerOccurrence: 10,
-  canChildEnroll: true,
+  enrolmentDeniedReason: null,
+  registrationOpensAt: null,
   eventGroup: null,
   ticketSystem: {
     __typename: 'InternalEventTicketSystem',
@@ -41,7 +47,12 @@ const occurrenceEdge = {
     time: '2024-06-01T10:00:00+00:00',
     remainingCapacity: 5,
     childHasFreeSpotNotificationSubscription: false,
-    event: { __typename: 'EventNode' as const, id: 'event-1', name: 'Test Event', duration: 60 },
+    event: {
+      __typename: 'EventNode' as const,
+      id: 'event-1',
+      name: 'Test Event',
+      duration: 60,
+    },
     venue: {
       __typename: 'VenueNode' as const,
       id: 'venue-1',
@@ -70,13 +81,17 @@ describe('EventEnrol', () => {
     const { container } = renderEnrol({ data: { event: null } });
 
     expect(container.querySelector('h2')).not.toBeInTheDocument();
-    expect(screen.queryByLabelText(/Valitse päivämäärä/i)).not.toBeInTheDocument();
+    expect(
+      screen.queryByLabelText(/Valitse päivämäärä/i)
+    ).not.toBeInTheDocument();
   });
 
   it('renders the enrollment heading', () => {
     renderEnrol();
 
-    expect(screen.getByRole('heading', { name: /Ilmoittaudu/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: /Ilmoittaudu/i })
+    ).toBeInTheDocument();
   });
 
   it('renders the date dropdown', () => {
@@ -91,22 +106,133 @@ describe('EventEnrol', () => {
     expect(screen.getByLabelText(/Valitse kellonaika/i)).toBeInTheDocument();
   });
 
-  it('shows can-not-enroll notification when canChildEnroll is false', () => {
+  it('shows can-not-enroll notification when enrolmentDeniedReason is set', () => {
     renderEnrol({
-      data: { event: { ...baseEvent, canChildEnroll: false } },
+      data: {
+        event: {
+          ...baseEvent,
+          enrolmentDeniedReason: EnrolmentDeniedReason.EmptyEvent,
+        },
+      },
     });
 
     expect(
-      screen.getByText(/Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i)
+      screen.getByText(
+        /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
+      )
     ).toBeInTheDocument();
   });
 
-  it('does not show can-not-enroll notification when canChildEnroll is true', () => {
+  it('does not show can-not-enroll notification when enrolmentDeniedReason is null', () => {
     renderEnrol();
 
     expect(
-      screen.queryByText(/Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i)
+      screen.queryByText(
+        /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
+      )
     ).not.toBeInTheDocument();
+  });
+
+  describe('when registration is not open', () => {
+    const getNotOpenEvent = ({
+      registrationOpensAt,
+    }: {
+      registrationOpensAt: string | null;
+    }): EventQuery['event'] => ({
+      ...baseEvent,
+      enrolmentDeniedReason: EnrolmentDeniedReason.RegistrationNotOpen,
+      registrationOpensAt,
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('shows the registration opening time', () => {
+      renderEnrol({
+        data: {
+          event: getNotOpenEvent({
+            registrationOpensAt: '2099-06-01T10:00:00+03:00',
+          }),
+        },
+      });
+
+      expect(
+        screen.getByText('Ilmoittautuminen alkaa 1.6.2099 klo 10:00')
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByText(
+          /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
+        )
+      ).not.toBeInTheDocument();
+    });
+
+    // Edge case fallback to the not-opened-yet notice, not expected to be seen
+    // normally. The backend reports REGISTRATION_NOT_OPEN only for a future
+    // opening time, but the page may be left open past that time without the
+    // data being refetched.
+    it('shows generic not-opened-yet notice when opening time passes while page is open', () => {
+      vi.useFakeTimers({ toFake: ['Date'] });
+      vi.setSystemTime(new Date('2030-06-01T06:00:00Z'));
+      const data = {
+        event: getNotOpenEvent({
+          registrationOpensAt: '2030-06-01T10:00:00+03:00',
+        }),
+      };
+      const { rerender } = renderEnrol({ data });
+
+      expect(
+        screen.getByText('Ilmoittautuminen alkaa 1.6.2030 klo 10:00')
+      ).toBeInTheDocument();
+
+      vi.setSystemTime(new Date('2030-06-01T08:00:00Z'));
+      rerender(<EventEnrol {...defaultProps} data={data} />);
+
+      expect(
+        screen.queryByText(/Ilmoittautuminen alkaa/i)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.getByText('Ilmoittautuminen ei ole vielä alkanut')
+      ).toBeInTheDocument();
+    });
+
+    // Edge case fallback to the not-opened-yet notice, not expected to be seen
+    // normally. The backend never reports REGISTRATION_NOT_OPEN for an event
+    // without an opening time, but the type of registrationOpensAt allows
+    // null, so it is handled.
+    it('shows generic not-opened-yet notice when opening time is missing', () => {
+      renderEnrol({
+        data: { event: getNotOpenEvent({ registrationOpensAt: null }) },
+      });
+
+      expect(
+        screen.queryByText(/Ilmoittautuminen alkaa/i)
+      ).not.toBeInTheDocument();
+      expect(
+        screen.getByText('Ilmoittautuminen ei ole vielä alkanut')
+      ).toBeInTheDocument();
+    });
+  });
+
+  it('shows cannot-enroll notice for EMPTY_EVENT with future opening time', () => {
+    renderEnrol({
+      data: {
+        event: {
+          ...baseEvent,
+          enrolmentDeniedReason: EnrolmentDeniedReason.EmptyEvent,
+          registrationOpensAt: '2099-06-01T10:00:00+03:00',
+        },
+      },
+    });
+
+    expect(
+      screen.queryByText(/Ilmoittautuminen alkaa/i)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByText(
+        /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
+      )
+    ).toBeInTheDocument();
   });
 
   it('renders the occurrence list when occurrences are present', () => {

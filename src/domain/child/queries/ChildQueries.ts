@@ -120,7 +120,8 @@ export const childByIdQuery = gql`
     image
     imageAltText
     participantsPerInvite
-    canChildEnroll(childId: $id)
+    enrolmentDeniedReason(childId: $id)
+    registrationOpensAt
     __typename
   }
 
@@ -130,7 +131,15 @@ export const childByIdQuery = gql`
     shortDescription
     image
     imageAltText
-    canChildEnroll(childId: $id)
+    enrolmentDeniedReason(childId: $id)
+    events(upcoming: true) {
+      edges {
+        node {
+          id
+          registrationOpensAt
+        }
+      }
+    }
     __typename
   }
 

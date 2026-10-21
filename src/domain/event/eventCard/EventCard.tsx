@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 
 import Card from '../../../common/components/card/Card';
 import PlaceholderImage from '../../../common/components/placeholderImage/PlaceholderImage';
@@ -17,7 +17,7 @@ type Props = {
   action: () => void;
   actionText: string;
   primaryAction?: 'visible' | 'hidden';
-  focalContent?: ReactElement;
+  focalContent?: ReactNode;
   imageElement?: ReactElement;
 };
 

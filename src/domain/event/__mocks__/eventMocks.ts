@@ -29,7 +29,8 @@ export const eventWithOccurrencesMock: MockedResponse = {
         participantsPerInvite: 'CHILD_AND_GUARDIAN',
         duration: 60,
         capacityPerOccurrence: 20,
-        canChildEnroll: true,
+        enrolmentDeniedReason: null,
+        registrationOpensAt: null,
         eventGroup: {
           __typename: 'EventGroupNode',
           id: 'group-123',
@@ -72,7 +73,8 @@ export const externalTicketSystemEventMock: MockedResponse = {
         participantsPerInvite: 'CHILD_AND_GUARDIAN',
         duration: 60,
         capacityPerOccurrence: 20,
-        canChildEnroll: true,
+        enrolmentDeniedReason: null,
+        registrationOpensAt: null,
         eventGroup: {
           __typename: 'EventGroupNode',
           id: 'group-123',
@@ -175,6 +177,7 @@ export const externalTicketSystemEnrolledMock: MockedResponse = {
         image: '',
         imageAltText: '',
         participantsPerInvite: 'CHILD_AND_GUARDIAN',
+        registrationOpensAt: null,
         occurrences: { __typename: 'OccurrenceNodeConnection', edges: [] },
         ticketSystem: {
           __typename: 'TicketmasterEventTicketSystem',

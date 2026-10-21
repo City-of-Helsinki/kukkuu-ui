@@ -60,6 +60,64 @@ describe('ExternalTicketSystemEventIsEnrolled', () => {
     ).toBeInTheDocument();
   });
 
+  it('does not render the continue link when the ticket system has no URL', async () => {
+    const event = (
+      externalTicketSystemEnrolledMock.result as {
+        data: { event: { ticketSystem: object } };
+      }
+    ).data.event;
+    const nullUrlMock = {
+      ...externalTicketSystemEnrolledMock,
+      result: {
+        data: {
+          event: {
+            ...event,
+            ticketSystem: { ...event.ticketSystem, url: null },
+          },
+        },
+      },
+    };
+
+    render(<ExternalTicketSystemEventIsEnrolled />, [nullUrlMock]);
+
+    await waitForLoadingToFinish();
+
+    expect(screen.getByText('SECRET123')).toBeInTheDocument();
+    expect(
+      screen.queryByRole('link', {
+        name: /Jatka ulkoiseen lipunmyyntipalveluun/i,
+      })
+    ).not.toBeInTheDocument();
+  });
+
+  it('shows registration opening time when the ticket system has no URL yet', async () => {
+    const event = (
+      externalTicketSystemEnrolledMock.result as {
+        data: { event: { ticketSystem: object } };
+      }
+    ).data.event;
+    const notYetOpenMock = {
+      ...externalTicketSystemEnrolledMock,
+      result: {
+        data: {
+          event: {
+            ...event,
+            registrationOpensAt: '2099-06-01T10:00:00+03:00',
+            ticketSystem: { ...event.ticketSystem, url: null },
+          },
+        },
+      },
+    };
+
+    render(<ExternalTicketSystemEventIsEnrolled />, [notYetOpenMock]);
+
+    await waitForLoadingToFinish();
+
+    expect(
+      screen.getByText('Ilmoittautuminen alkaa 1.6.2099 klo 10:00')
+    ).toBeInTheDocument();
+  });
+
   it('shows error message when query fails', async () => {
     const consoleErrorSpy = vi
       .spyOn(console, 'error')
@@ -75,9 +133,7 @@ describe('ExternalTicketSystemEventIsEnrolled', () => {
 
     render(<ExternalTicketSystemEventIsEnrolled />, [errorMock]);
 
-    expect(
-      await screen.findByText(/Tapahtui virhe/i)
-    ).toBeInTheDocument();
+    expect(await screen.findByText(/Tapahtui virhe/i)).toBeInTheDocument();
 
     consoleErrorSpy.mockRestore();
   });
@@ -93,8 +149,6 @@ describe('ExternalTicketSystemEventIsEnrolled', () => {
 
     render(<ExternalTicketSystemEventIsEnrolled />, [nullEventMock]);
 
-    expect(
-      await screen.findByText(/Tapahtui virhe/i)
-    ).toBeInTheDocument();
+    expect(await screen.findByText(/Tapahtui virhe/i)).toBeInTheDocument();
   });
 });

@@ -16,6 +16,7 @@ export const mockedOccurrenceNode: OccurrenceFields = {
     shortDescription: 'd',
     duration: 12,
     participantsPerInvite: EventParticipantsPerInvite.Family,
+    registrationOpensAt: null,
     eventGroup: {
       id: 'e1',
     },

@@ -8,6 +8,7 @@ import EventOccurrenceList from './EventOccurrenceList';
 import type { FilterValues, FilterOptions } from './types';
 import styles from './event.module.scss';
 import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
+import { getEnrolmentDeniedNotice } from './EventUtils';
 
 export type EventEnrolProps = {
   data: EventQuery;
@@ -33,6 +34,7 @@ const EventEnrol = ({
 
   if (!data?.event) return <div></div>;
 
+  const canChildEnroll = data.event.enrolmentDeniedReason === null;
   const isExternalTicketSystem = externalTicketSystems.includes(
     data?.event?.ticketSystem?.type as TicketSystem
   );
@@ -40,9 +42,13 @@ const EventEnrol = ({
   return (
     <>
       <h2>{t('enrollPage.enrolShort')}</h2>
-      {!data?.event?.canChildEnroll && (
+      {!canChildEnroll && (
         <Notification type="alert">
-          {t('enrollPage.message.cantEnrollNotice')}
+          {getEnrolmentDeniedNotice({
+            t,
+            enrolmentDeniedReason: data.event.enrolmentDeniedReason,
+            registrationOpensAt: data.event.registrationOpensAt,
+          })}
         </Notification>
       )}
       <div className={styles.signup}>
@@ -88,7 +94,7 @@ const EventEnrol = ({
         <EventOccurrenceList
           occurrences={data.event.occurrences}
           showFreePlaces={!isExternalTicketSystem}
-          canEnroll={data?.event?.canChildEnroll}
+          canEnroll={canChildEnroll}
         />
       )}
     </>
