@@ -8,6 +8,7 @@ import { Notification } from 'hds-react';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import {
+  EnrolmentDeniedReason,
   EventQuery,
   TicketSystem,
   EventExternalTicketSystemHasAnyFreePasswordsQuery,
@@ -27,7 +28,11 @@ import useGetPathname from '../../common/route/utils/useGetPathname';
 import Text from '../../common/components/text/Text';
 import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
 import type { FilterValues } from './types';
-import { getDateOptions, getTimeOptions } from './EventUtils';
+import {
+  getDateOptions,
+  getEnrolmentDeniedNotice,
+  getTimeOptions,
+} from './EventUtils';
 
 const initialFilterValues = {
   date: '',
@@ -35,58 +40,61 @@ const initialFilterValues = {
 };
 
 type ExternalTicketSystemEventEnrolProps = {
-  canChildEnroll: boolean;
+  enrolmentDeniedReason?: EnrolmentDeniedReason | null;
+  registrationOpensAt?: string | null;
   hasFreePasswords: boolean;
   continueUrl: string;
 };
 
 /**
- * Deny external ticket system enrolment with notification/text,
- * or allow continuing with link button.
+ * External ticket system enrolment actions of an event: the back button
+ * always, and either a notification above it explaining why the child
+ * cannot enrol, or, when the child can, a continue link button or a text
+ * saying there are no free passwords left.
  */
-const ExternalTicketSystemEventEnrolDenyOrContinue: React.FC<
-  ExternalTicketSystemEventEnrolProps
-> = ({ canChildEnroll, hasFreePasswords, continueUrl }) => {
-  const { t } = useTranslation();
-
-  if (!canChildEnroll) {
-    return (
-      <Notification type="alert">
-        {t('enrollPage.message.cantEnrollNotice')}
-      </Notification>
-    );
-  } else if (hasFreePasswords) {
-    return (
-      <LinkButton variant="primary" to={continueUrl}>
-        {t('event.externalTicketSystemButtons.continue')}
-      </LinkButton>
-    );
-  } else {
-    return (
-      <Text
-        variant="body-l"
-        className={eventRedirectStyles.noFreeTicketSystemPasswordsLeftLabel}
-      >
-        {t('eventRedirectPage.noFreeTicketSystemPasswordsLeftLabel')}
-      </Text>
-    );
-  }
-};
-
 const ExternalTicketSystemEventEnrol: React.FC<
   ExternalTicketSystemEventEnrolProps
-> = (props) => {
+> = ({
+  enrolmentDeniedReason,
+  registrationOpensAt,
+  hasFreePasswords,
+  continueUrl,
+}) => {
   const { t } = useTranslation();
   const goBackTo = useEventRouteGoBackTo();
+  const canChildEnroll = enrolmentDeniedReason === null;
 
   return (
     <>
       <hr className={styles.divider} />
+      {!canChildEnroll && (
+        <div className={styles.externalTicketSystemNotification}>
+          <Notification type="alert">
+            {getEnrolmentDeniedNotice({
+              t,
+              enrolmentDeniedReason,
+              registrationOpensAt,
+            })}
+          </Notification>
+        </div>
+      )}
       <div className={styles.externalTicketSystemButtons}>
         <LinkButton variant="secondary" to={goBackTo}>
           {t('event.externalTicketSystemButtons.back')}
         </LinkButton>
-        <ExternalTicketSystemEventEnrolDenyOrContinue {...props} />
+        {canChildEnroll && hasFreePasswords && (
+          <LinkButton variant="primary" to={continueUrl}>
+            {t('event.externalTicketSystemButtons.continue')}
+          </LinkButton>
+        )}
+        {canChildEnroll && !hasFreePasswords && (
+          <Text
+            variant="body-l"
+            className={eventRedirectStyles.noFreeTicketSystemPasswordsLeftLabel}
+          >
+            {t('eventRedirectPage.noFreeTicketSystemPasswordsLeftLabel')}
+          </Text>
+        )}
       </div>
     </>
   );
@@ -206,7 +214,8 @@ const Event = () => {
           />
         ) : (
           <ExternalTicketSystemEventEnrol
-            canChildEnroll={!!data?.event?.canChildEnroll}
+            enrolmentDeniedReason={event.enrolmentDeniedReason}
+            registrationOpensAt={event.registrationOpensAt}
             hasFreePasswords={hasFreePasswords}
             continueUrl={continueUrl}
           />

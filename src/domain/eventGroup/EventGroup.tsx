@@ -6,10 +6,14 @@ import useGetPathname from '../../common/route/utils/useGetPathname';
 import List from '../../common/components/list/List';
 import Page from '../app/layout/utilityComponents/Page';
 import HeroLayout from '../app/layout/utilityComponents/HeroLayout';
-import { EventGroupQuery } from '../api/generatedTypes/graphql';
+import {
+  EnrolmentDeniedReason,
+  EventGroupQuery,
+} from '../api/generatedTypes/graphql';
 import { nlToParagraph } from '../../common/commonUtils';
 import RelayList from '../api/relayList';
 import EventCard from '../event/eventCard/EventCard';
+import { getEnrolmentDeniedNotice } from '../event/EventUtils';
 import styles from './eventGroup.module.scss';
 import { EventNode } from './types/EventGroupQueryTypes';
 const EventList = RelayList<EventNode>();
@@ -47,24 +51,38 @@ const EventGroup = ({ query: { loading, error, data }, childId }: Props) => {
           </div>
           <List
             variant="spacing-layout-2-xs"
-            items={EventList(eventGroup?.events).items.map((event) => (
-              <EventCard
-                key={event.id}
-                event={event}
-                action={() => {
-                  navigate(
-                    getPathname(`/profile/child/${childId}/event/${event.id}`)
-                  );
-                }}
-                actionText={
-                  event.canChildEnroll
-                    ? t(
-                        'profile.child.detail.availableEvent.readMoreAndEnrolButton'
-                      )
-                    : t('profile.child.detail.availableEvent.readMoreButton')
-                }
-              />
-            ))}
+            items={EventList(eventGroup?.events).items.map((event) => {
+              const canChildEnroll = event.enrolmentDeniedReason === null;
+
+              return (
+                <EventCard
+                  key={event.id}
+                  event={event}
+                  action={() => {
+                    navigate(
+                      getPathname(`/profile/child/${childId}/event/${event.id}`)
+                    );
+                  }}
+                  actionText={
+                    canChildEnroll
+                      ? t(
+                          'profile.child.detail.availableEvent.readMoreAndEnrolButton'
+                        )
+                      : t('profile.child.detail.availableEvent.readMoreButton')
+                  }
+                  focalContent={
+                    event.enrolmentDeniedReason ===
+                    EnrolmentDeniedReason.RegistrationNotOpen
+                      ? getEnrolmentDeniedNotice({
+                          t,
+                          enrolmentDeniedReason: event.enrolmentDeniedReason,
+                          registrationOpensAt: event.registrationOpensAt,
+                        })
+                      : undefined
+                  }
+                />
+              );
+            })}
           />
         </div>
       </HeroLayout>

@@ -65,7 +65,8 @@ const eventMock: MockedResponse = {
         participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
         duration: 60,
         capacityPerOccurrence: 100,
-        canChildEnroll: true,
+        enrolmentDeniedReason: null,
+        registrationOpensAt: null,
         ticketSystem: null,
         eventGroup: null,
         occurrences: {

@@ -12,6 +12,12 @@ import EventCard from '../../event/eventCard/EventCard';
 import Config from '../../config';
 import styles from './profileEventsList.module.scss';
 import useChildEnrolmentCount from '../../child/useChildEnrolmentCount';
+import { EnrolmentDeniedReason } from '../../api/generatedTypes/graphql';
+import {
+  getEarliestRegistrationOpensAt,
+  getRegistrationNotOpenNotice,
+  type RegistrationOpens,
+} from '../../event/EventUtils';
 import {
   PastEvents,
   PastEvent,
@@ -206,8 +212,9 @@ const ProfileEventsList = ({
                 focalContent={
                   focalContent ? (
                     <>
-                      {t(focalContent, {
+                      {t(focalContent.key, {
                         count: enrolmentCount ?? 0,
+                        ...focalContent.values,
                       })}
                     </>
                   ) : undefined
@@ -216,7 +223,10 @@ const ProfileEventsList = ({
                 event={eventOrEventGroup}
                 primaryAction={switchEventOrEventGroup(
                   eventOrEventGroup,
-                  (event) => (event.canChildEnroll ? 'visible' : 'hidden'),
+                  (event) => {
+                    const canChildEnroll = event.enrolmentDeniedReason === null;
+                    return canChildEnroll ? 'visible' : 'hidden';
+                  },
                   () => 'visible'
                 )}
                 action={() =>
@@ -272,26 +282,82 @@ const ProfileEventsList = ({
 const getTicketValidationUrl = (referenceId?: string | null) =>
   referenceId ? `${Config.adminUrl}/${referenceId}` : undefined;
 
+type FocalContent = {
+  key: string;
+  values?: RegistrationOpens;
+};
+
+/**
+ * Get the focal content for an event card the child cannot enrol in.
+ * When registration has not opened yet, the content tells when it opens,
+ * or says generically that it has not opened if the opening time is missing
+ * or already past. Any other reason gets the generic "cannot enrol" text.
+ *
+ * @param event - An upcoming event the child cannot enrol in.
+ * @returns The translation key and, for the opening time text, its values.
+ */
+const getNoEnrolEventFocalContent = (event: UpcomingEvent): FocalContent => {
+  if (
+    event.enrolmentDeniedReason !== EnrolmentDeniedReason.RegistrationNotOpen
+  ) {
+    return { key: 'profileEventList.message.noEnrollEvent' };
+  }
+  return getRegistrationNotOpenNotice(event.registrationOpensAt);
+};
+
+/**
+ * Get the focal content for an event group card the child cannot enrol in.
+ * When registration has not opened yet, the content tells when the first
+ * event of the group opens, or says generically that it has not opened if
+ * no opening time is known or it is already past. Any other reason gets the
+ * generic "cannot enrol" text.
+ *
+ * @param eventGroup - An upcoming event group the child cannot enrol in.
+ * @returns The translation key and, when registration opens in the future,
+ * the earliest opening `date` and `time` to fill into it.
+ */
+const getNoEnrolEventGroupFocalContent = (
+  eventGroup: UpcomingEventGroup
+): FocalContent => {
+  if (
+    eventGroup.enrolmentDeniedReason !==
+    EnrolmentDeniedReason.RegistrationNotOpen
+  ) {
+    return { key: 'profileEventList.message.noEnrollEventGroup' };
+  }
+  return getRegistrationNotOpenNotice(
+    getEarliestRegistrationOpensAt(
+      eventGroup.events.edges.map((edge) => edge?.node)
+    )
+  );
+};
+
 const getFocalContent = (
   eventOrEventGroup: UpcomingEventOrEventGroup,
   childDoesNotHaveEnrolmentsLeft: boolean
-) => {
+): FocalContent | null => {
   if (childDoesNotHaveEnrolmentsLeft) {
-    return switchEventOrEventGroup(
-      eventOrEventGroup,
-      () => 'profileEventList.message.alreadyEnrolledEvent',
-      () => 'profileEventList.message.alreadyEnrolledEventGroup'
-    );
+    return {
+      key: switchEventOrEventGroup(
+        eventOrEventGroup,
+        () => 'profileEventList.message.alreadyEnrolledEvent',
+        () => 'profileEventList.message.alreadyEnrolledEventGroup'
+      ),
+    };
   }
 
-  return switchEventOrEventGroup(
+  return switchEventOrEventGroup<FocalContent | null>(
     eventOrEventGroup,
-    (event) =>
-      !event.canChildEnroll ? 'profileEventList.message.noEnrollEvent' : null,
-    (eventGroup) =>
-      !eventGroup.canChildEnroll
-        ? 'profileEventList.message.noEnrollEventGroup'
-        : null
+    (event) => {
+      const canChildEnroll = event.enrolmentDeniedReason === null;
+      return !canChildEnroll ? getNoEnrolEventFocalContent(event) : null;
+    },
+    (eventGroup) => {
+      const canChildEnroll = eventGroup.enrolmentDeniedReason === null;
+      return !canChildEnroll
+        ? getNoEnrolEventGroupFocalContent(eventGroup)
+        : null;
+    }
   );
 };
 
