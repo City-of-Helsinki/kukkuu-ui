@@ -4,9 +4,13 @@ import { screen } from '@testing-library/react';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import ProfileEventsList from '../ProfileEventsList';
-import { EventParticipantsPerInvite } from '../../../api/generatedTypes/graphql';
+import {
+  EnrolmentDeniedReason,
+  EventParticipantsPerInvite,
+} from '../../../api/generatedTypes/graphql';
 import {
   ChildByIdResponse,
+  UpcomingEventOrEventGroup,
   UpcomingEventsAndEventGroups,
   PastEvents,
   InternalAndTicketSystemEnrolments,
@@ -48,7 +52,8 @@ const eventData = {
   duration: 60,
   participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
   occurrences: { edges: [] },
-  canChildEnroll: true,
+  enrolmentDeniedReason: null,
+  registrationOpensAt: null,
 };
 
 const upcomingEventsAndEventGroups: UpcomingEventsAndEventGroups = {
@@ -186,7 +191,11 @@ const childWithTixlyEnrolment: ChildByIdResponse = {
   pastEvents: null,
 };
 
-const childEnrolmentCountMock: MockedResponse = {
+const getChildEnrolmentCountMock = ({
+  pastEnrolmentCount = 0,
+}: {
+  pastEnrolmentCount?: number;
+} = {}): MockedResponse => ({
   request: {
     query: childEnrolmentCountQuery,
     variables: { childId: testChildId },
@@ -196,7 +205,7 @@ const childEnrolmentCountMock: MockedResponse = {
       child: {
         id: childData.id,
         enrolmentCount: 0,
-        pastEnrolmentCount: 0,
+        pastEnrolmentCount,
         project: {
           id: childData.project.id,
           enrolmentLimit: 1,
@@ -204,9 +213,9 @@ const childEnrolmentCountMock: MockedResponse = {
       },
     },
   },
-};
+});
 
-const mocks: MockedResponse[] = [childEnrolmentCountMock];
+const mocks: MockedResponse[] = [getChildEnrolmentCountMock()];
 
 test('Renders snapshot correctly', () => {
   const { container } = render(
@@ -298,4 +307,100 @@ test.each([
   );
 
   expect(screen.getByText('eventti')).toBeInTheDocument();
+});
+
+describe('registration not open', () => {
+  const renderUpcoming = (
+    node: UpcomingEventOrEventGroup,
+    mocks: MockedResponse[]
+  ) =>
+    render(
+      <ProfileEventsList
+        upcomingEventsAndEventGroups={{ edges: [{ node }] }}
+        enrolments={{ edges: [] }}
+        pastEvents={{ edges: [] }}
+        childId={testChildId}
+      />,
+      mocks
+    );
+
+  const notOpenEvent = (
+    registrationOpensAt: string | null
+  ): UpcomingEventOrEventGroup => ({
+    ...eventData,
+    __typename: 'EventNode',
+    enrolmentDeniedReason: EnrolmentDeniedReason.RegistrationNotOpen,
+    registrationOpensAt,
+  });
+
+  const notOpenEventGroup = (
+    registrationOpensAts: Array<string | null>
+  ): UpcomingEventOrEventGroup => ({
+    id: 'RXZlbnRHcm91cE5vZGU6MQ==',
+    name: 'ryhmä',
+    shortDescription: 'ryhmäkuvaus',
+    image: '',
+    imageAltText: '',
+    enrolmentDeniedReason: EnrolmentDeniedReason.RegistrationNotOpen,
+    events: {
+      edges: registrationOpensAts.map((registrationOpensAt, index) => ({
+        node: { id: `event-${index}`, registrationOpensAt },
+      })),
+    },
+    __typename: 'EventGroupNode',
+  });
+
+  test('event card tells when registration opens', async () => {
+    renderUpcoming(notOpenEvent('2099-06-01T10:00:00+03:00'), mocks);
+
+    expect(
+      await screen.findByText('Ilmoittautuminen alkaa 1.6.2099 klo 10:00')
+    ).toBeInTheDocument();
+  });
+
+  test('event card says registration has not opened when there is no opening time', async () => {
+    renderUpcoming(notOpenEvent(null), mocks);
+
+    expect(
+      await screen.findByText('Ilmoittautuminen ei ole vielä alkanut')
+    ).toBeInTheDocument();
+  });
+
+  test('event group card tells when the first event opens for registration', async () => {
+    renderUpcoming(
+      notOpenEventGroup([
+        '2099-07-01T12:00:00+03:00',
+        '2099-06-01T10:00:00+03:00',
+        null,
+      ]),
+      mocks
+    );
+
+    expect(
+      await screen.findByText('Ilmoittautuminen alkaa 1.6.2099 klo 10:00')
+    ).toBeInTheDocument();
+  });
+
+  test('event group card says registration has not opened when no event has an opening time', async () => {
+    renderUpcoming(notOpenEventGroup([null]), mocks);
+
+    expect(
+      await screen.findByText('Ilmoittautuminen ei ole vielä alkanut')
+    ).toBeInTheDocument();
+  });
+
+  test('already enrolled text wins when the child has no enrolments left', async () => {
+    renderUpcoming(notOpenEvent('2099-06-01T10:00:00+03:00'), [
+      getChildEnrolmentCountMock({ pastEnrolmentCount: 1 }),
+    ]);
+
+    expect(
+      await screen.findByText(
+        'Huomioithan, että et voi ilmoittautua tähän tapahtumaan.'
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('Ilmoittautuminen alkaa 1.6.2099 klo 10:00')
+    ).not.toBeInTheDocument();
+  });
 });

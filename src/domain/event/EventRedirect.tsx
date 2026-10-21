@@ -15,6 +15,7 @@ import {
   EventExternalTicketSystemHasAnyFreePasswordsQuery,
   AssignTicketSystemPasswordMutation,
   AssignTicketSystemPasswordMutationVariables,
+  EnrolmentDeniedReason,
   EventQuery,
 } from '../api/generatedTypes/graphql';
 import eventQuery, {
@@ -29,6 +30,9 @@ import useGetPathname from '../../common/route/utils/useGetPathname';
 import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Button from '../../common/components/button/Button';
 import client from '../api/client';
+import { getEnrolmentDeniedNotice } from './EventUtils';
+import { GQLErrors } from './enrol/EnrolConstants';
+import getIsError from '../api/utils/getIsError';
 
 type Params = {
   eventId: string;
@@ -129,12 +133,19 @@ const ConfirmRequestingExternalTicketSystemPassword = ({
 
 const ExternalTicketSystemPasswordDetails = ({
   externalTicketSystemPassword,
+  registrationOpensAt,
   ticketSystemUrl,
 }: {
   externalTicketSystemPassword: string;
-  ticketSystemUrl: string;
+  registrationOpensAt?: string | null;
+  ticketSystemUrl: string | null;
 }) => {
   const { t } = useTranslation();
+  const registrationNotOpenText = getEnrolmentDeniedNotice({
+    t,
+    enrolmentDeniedReason: EnrolmentDeniedReason.RegistrationNotOpen,
+    registrationOpensAt,
+  });
   return (
     <div className={styles.passwordWrapper}>
       <hr />
@@ -143,51 +154,77 @@ const ExternalTicketSystemPasswordDetails = ({
       <Text variant="body-l">
         {t('eventRedirectPage.passwordCopyDescription')}
       </Text>
-      <AnchorButton
-        className={styles.continueButton}
-        href={ticketSystemUrl}
-        openInNewTab
-      >
-        {t('externalTicketSystemEvent.continueButton')}
-      </AnchorButton>
+      {ticketSystemUrl && (
+        <AnchorButton
+          className={styles.continueButton}
+          href={ticketSystemUrl}
+          openInNewTab
+        >
+          {t('externalTicketSystemEvent.continueButton')}
+        </AnchorButton>
+      )}
+      {!ticketSystemUrl && (
+        <Text variant="body-l">{registrationNotOpenText}</Text>
+      )}
       <Text variant="body-l">{t('externalTicketSystemEvent.extraInfo')}</Text>
     </div>
   );
 };
 
-const CanNotEnrollNotification = ({ backUrl }: { backUrl: string }) => {
+const CanNotEnrollNotification = ({
+  backUrl,
+  enrolmentDeniedReason,
+  registrationOpensAt,
+}: {
+  backUrl: string;
+  enrolmentDeniedReason?: EnrolmentDeniedReason | null;
+  registrationOpensAt?: string | null;
+}) => {
   const { t } = useTranslation();
   return (
-    <div className={styles.acquireButtonRow}>
-      <LinkButton variant="secondary" to={backUrl}>
-        {t('eventRedirectPage.back')}
-      </LinkButton>
-      <Notification type="alert">
-        {t('enrollPage.message.cantEnrollNotice')}
-      </Notification>
-    </div>
+    <>
+      <div className={styles.canNotEnrollNotification}>
+        <Notification type="alert">
+          {getEnrolmentDeniedNotice({
+            t,
+            enrolmentDeniedReason,
+            registrationOpensAt,
+          })}
+        </Notification>
+      </div>
+      <div className={styles.acquireButtonRow}>
+        <LinkButton variant="secondary" to={backUrl}>
+          {t('eventRedirectPage.back')}
+        </LinkButton>
+      </div>
+    </>
   );
 };
 
 const HandleExternalTicketSystemPassword = ({
   assignTicketSystemPassword,
   backUrl,
-  canChildEnroll,
+  enrolmentDeniedReason,
   externalTicketSystemPassword,
   hasFreePasswords,
+  registrationOpensAt,
   ticketSystemUrl,
 }: {
   assignTicketSystemPassword: () => void;
   backUrl: string;
-  canChildEnroll: boolean;
+  enrolmentDeniedReason?: EnrolmentDeniedReason | null;
   externalTicketSystemPassword: string | null | undefined;
   hasFreePasswords: boolean;
-  ticketSystemUrl: string;
+  registrationOpensAt?: string | null;
+  ticketSystemUrl: string | null;
 }) => {
+  const canChildEnroll = enrolmentDeniedReason === null;
+
   if (externalTicketSystemPassword) {
     return (
       <ExternalTicketSystemPasswordDetails
         externalTicketSystemPassword={externalTicketSystemPassword}
+        registrationOpensAt={registrationOpensAt}
         ticketSystemUrl={ticketSystemUrl}
       />
     );
@@ -200,16 +237,24 @@ const HandleExternalTicketSystemPassword = ({
       />
     );
   } else {
-    return <CanNotEnrollNotification backUrl={backUrl} />;
+    return (
+      <CanNotEnrollNotification
+        backUrl={backUrl}
+        enrolmentDeniedReason={enrolmentDeniedReason}
+        registrationOpensAt={registrationOpensAt}
+      />
+    );
   }
 };
 
 const TicketSystemError = ({
   error,
   backUrl,
+  registrationOpensAt,
 }: {
   error: ApolloError;
   backUrl: string;
+  registrationOpensAt?: string | null;
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -217,6 +262,16 @@ const TicketSystemError = ({
     error.graphQLErrors.length > 0 &&
     error.graphQLErrors[0]?.extensions?.code ===
       'NO_FREE_TICKET_SYSTEM_PASSWORDS_ERROR';
+  const isRegistrationNotOpenError = error.graphQLErrors.some((graphQLError) =>
+    getIsError(graphQLError, GQLErrors.REGISTRATION_NOT_OPEN_ERROR)
+  );
+  const backCallToAction = {
+    label: t('eventRedirectPage.back'),
+    onClick: () => {
+      const result = navigate(backUrl);
+      if (result) result.catch(() => toast.error(t('navigation.error')));
+    },
+  };
 
   React.useEffect(() => {
     Sentry.captureException(error);
@@ -229,13 +284,19 @@ const TicketSystemError = ({
         description={
           <Trans i18nKey="eventRedirectPage.noFreeTicketSystemPasswordsErrorDescription" />
         }
-        callToAction={{
-          label: t('eventRedirectPage.back'),
-          onClick: () => {
-            const result = navigate(backUrl);
-            if (result) result.catch(() => toast.error(t('navigation.error')));
-          },
-        }}
+        callToAction={backCallToAction}
+      />
+    );
+  }
+  if (isRegistrationNotOpenError) {
+    return (
+      <InfoPageLayout
+        title={getEnrolmentDeniedNotice({
+          t,
+          enrolmentDeniedReason: EnrolmentDeniedReason.RegistrationNotOpen,
+          registrationOpensAt,
+        })}
+        callToAction={backCallToAction}
       />
     );
   }
@@ -307,8 +368,9 @@ const EventRedirect = () => {
   }
 
   const ticketSystemUrl =
-    ticketSystem && 'url' in ticketSystem ? ticketSystem.url : '#';
+    ticketSystem && 'url' in ticketSystem ? ticketSystem.url : null;
   const backUrl = getPathname(`/profile/child/${childId}/event/${eventId}`);
+  const registrationOpensAt = eventQueryData?.event?.registrationOpensAt;
 
   const error =
     queryError ??
@@ -316,11 +378,16 @@ const EventRedirect = () => {
     eventQueryError ??
     hasAnyFreePasswordsQueryError;
   if (error) {
-    return <TicketSystemError error={error} backUrl={backUrl} />;
+    return (
+      <TicketSystemError
+        error={error}
+        backUrl={backUrl}
+        registrationOpensAt={registrationOpensAt}
+      />
+    );
   }
 
   const event = queryData?.event;
-  const canChildEnroll = !!eventQueryData?.event?.canChildEnroll;
 
   return (
     <PageWrapper className={styles.grey}>
@@ -350,9 +417,10 @@ const EventRedirect = () => {
           <HandleExternalTicketSystemPassword
             assignTicketSystemPassword={assignTicketSystemPassword}
             backUrl={backUrl}
-            canChildEnroll={canChildEnroll}
+            enrolmentDeniedReason={eventQueryData?.event?.enrolmentDeniedReason}
             externalTicketSystemPassword={externalTicketSystemPassword}
             hasFreePasswords={hasFreePasswords}
+            registrationOpensAt={registrationOpensAt}
             ticketSystemUrl={ticketSystemUrl}
           />
         </LoadingSpinner>

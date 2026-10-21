@@ -21,6 +21,7 @@ export const occurrenceData = {
     name: 'Test Event',
     duration: 60,
     participantsPerInvite: 'CHILD_AND_GUARDIAN',
+    registrationOpensAt: null,
     eventGroup: {
       __typename: 'EventGroupNode' as const,
       id: 'group-123',

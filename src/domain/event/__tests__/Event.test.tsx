@@ -3,6 +3,7 @@
 // FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import { vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
+import { MockedResponse } from '@apollo/client/testing';
 import * as Sentry from '@sentry/browser';
 
 import { customRender as render } from '../../../common/test/customRender';
@@ -180,7 +181,10 @@ describe('Event', () => {
     });
 
     it('renders event details for internal ticket system', async () => {
-      renderEvent([eventWithOccurrencesMock, internalTicketSystemPasswordsMock]);
+      renderEvent([
+        eventWithOccurrencesMock,
+        internalTicketSystemPasswordsMock,
+      ]);
 
       await waitForLoadingToFinish();
 
@@ -190,7 +194,10 @@ describe('Event', () => {
     });
 
     it('renders EventEnrol component for internal ticket system on upcoming events', async () => {
-      renderEvent([eventWithOccurrencesMock, internalTicketSystemPasswordsMock]);
+      renderEvent([
+        eventWithOccurrencesMock,
+        internalTicketSystemPasswordsMock,
+      ]);
 
       await waitForLoadingToFinish();
 
@@ -224,9 +231,7 @@ describe('Event', () => {
 
       await waitForLoadingToFinish();
 
-      expect(
-        screen.getByText(/Jatka ilmoittautumaan/i)
-      ).toBeInTheDocument();
+      expect(screen.getByText(/Jatka ilmoittautumaan/i)).toBeInTheDocument();
     });
 
     it('renders no free passwords text for external ticket system when passwords are exhausted', async () => {
@@ -261,56 +266,82 @@ describe('Event', () => {
       ).toBeInTheDocument();
     });
 
-    it('renders cant enroll notification for external ticket system when enrollment is not allowed', async () => {
-      const cannotEnrollExternalEventMock = {
-        request: {
-          query: eventQuery,
-          variables: {
-            id: testEventId,
-            childId: testChildId,
+    const getCannotEnrollExternalEventMock = ({
+      enrolmentDeniedReason = 'ALREADY_HAS_PASSWORD_TO_EVENT_GROUP',
+      registrationOpensAt = null,
+    }: {
+      enrolmentDeniedReason?: string;
+      registrationOpensAt?: string | null;
+    } = {}): MockedResponse => ({
+      ...externalTicketSystemEventMock,
+      newData: () => ({
+        data: {
+          event: {
+            ...externalTicketSystemEventMock.newData().data.event,
+            enrolmentDeniedReason,
+            registrationOpensAt,
           },
         },
-        newData: () => ({
-          data: {
-            event: {
-              __typename: 'EventNode',
-              id: testEventId,
-              name: 'External Ticket Event',
-              description: 'Event with external ticket system',
-              shortDescription: 'External short description',
-              image: 'external-image-url',
-              imageAltText: 'External image alt',
-              participantsPerInvite: 'CHILD_AND_GUARDIAN',
-              duration: 60,
-              capacityPerOccurrence: 20,
-              canChildEnroll: false,
-              eventGroup: {
-                __typename: 'EventGroupNode',
-                id: 'group-123',
-              },
-              ticketSystem: {
-                __typename: 'TicketmasterEventTicketSystem',
-                type: 'TICKETMASTER',
-                childPassword: 'test-password',
-                url: 'https://ticketmaster.example',
-              },
-              allOccurrences: {
-                __typename: 'OccurrenceNodeConnection',
-                edges: [],
-              },
-              occurrences: {
-                __typename: 'OccurrenceNodeConnection',
-                edges: [],
-              },
-            },
-          },
-        }),
-      };
+      }),
+    });
 
-      renderEvent([cannotEnrollExternalEventMock, hasFreePasswordsMock]);
+    it('renders cant enroll notification for external ticket system when enrollment is not allowed', async () => {
+      renderEvent([getCannotEnrollExternalEventMock(), hasFreePasswordsMock]);
 
       await waitForLoadingToFinish();
 
+      expect(
+        screen.getByText(
+          /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
+        )
+      ).toBeInTheDocument();
+    });
+
+    it('renders opening time when REGISTRATION_NOT_OPEN and opening time is in future', async () => {
+      renderEvent([
+        getCannotEnrollExternalEventMock({
+          enrolmentDeniedReason: 'REGISTRATION_NOT_OPEN',
+          registrationOpensAt: '2099-06-01T10:00:00+03:00',
+        }),
+        hasFreePasswordsMock,
+      ]);
+
+      await waitForLoadingToFinish();
+
+      expect(
+        screen.getByText('Ilmoittautuminen alkaa 1.6.2099 klo 10:00')
+      ).toBeInTheDocument();
+    });
+
+    it('renders generic not-opened-yet notice when REGISTRATION_NOT_OPEN without opening time', async () => {
+      renderEvent([
+        getCannotEnrollExternalEventMock({
+          enrolmentDeniedReason: 'REGISTRATION_NOT_OPEN',
+        }),
+        hasFreePasswordsMock,
+      ]);
+
+      await waitForLoadingToFinish();
+
+      expect(
+        screen.getByText('Ilmoittautuminen ei ole vielä alkanut')
+      ).toBeInTheDocument();
+    });
+
+    it('renders cannot-enroll notice when EMPTY_EVENT and opening time is in future', async () => {
+      renderEvent([
+        getCannotEnrollExternalEventMock({
+          enrolmentDeniedReason: 'EMPTY_EVENT',
+          registrationOpensAt: '2099-06-01T10:00:00+03:00',
+        }),
+        hasFreePasswordsMock,
+      ]);
+
+      await waitForLoadingToFinish();
+
+      expect(
+        screen.queryByText(/Ilmoittautuminen alkaa/i)
+      ).not.toBeInTheDocument();
       expect(
         screen.getByText(
           /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
