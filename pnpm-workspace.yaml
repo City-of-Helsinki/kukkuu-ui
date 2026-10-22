@@ -13,22 +13,23 @@ shamefullyHoist: true
 
 # Package version overrides to fix vulnerabilities and ensure compatibility
 overrides:
-  shell-quote: '>=1.8.5' # ReDoS and newline escaping fixes in @graphql-codegen/cli
-  minimatch: '>9.0.7' # ReDoS fix in @typescript-eslint/typescript-estree
-  underscore: '1.13.8' # Security fix in testcafe-hammerhead/httpntlm
-  immutable: '>=5.1.8' # DoS fixes in @ardatan/relay-compiler
-  tmp: '>=0.2.6' # Path Traversal fix in external-editor
-  cookie: '^0.7.2' # hds-react compatibility (https://github.com/City-of-Helsinki/palvelutarjotin-ui/security/dependabot/101)
-  lodash: '>=4.18.0' # Code Injection & Prototype Pollution fixes in @graphql-codegen
-  brace-expansion: '>=5.0.9' # DoS fixes in minimatch
-  nanoid: '>=3.3.18' # Infinite loop fixes in testcafe
-  ws: '>=8.21.0' # Memory exhaustion fix in jsdom
-  'ws@^7': '^7.5.11'
-  fast-uri: '>=3.1.5' # Path traversal and host confusion fixes in ajv
-  postcss: '>=8.5.18' # Path Traversal fix in hds-react
-  js-yaml: '>=4.3.1' # Quadratic CPU consumption fix in @svgr/core
-  undici: '>=7.29.0' # Information disclosure fix in jsdom
-  '@babel/core@^7': '^7.29.6'
+  shell-quote: "^1.11.0" # Command injection and newline escaping fixes in @graphql-codegen/cli
+  minimatch: ">9.0.7" # ReDoS fix in @typescript-eslint/typescript-estree
+  underscore: "1.13.8" # Security fix in testcafe-hammerhead/httpntlm
+  immutable: ">=5.1.8" # DoS fixes in @ardatan/relay-compiler
+  tmp: ">=0.2.6" # Path Traversal fix in external-editor
+  cookie: "^0.7.2" # hds-react compatibility (https://github.com/City-of-Helsinki/palvelutarjotin-ui/security/dependabot/101)
+  lodash: ">=4.18.0" # Code Injection & Prototype Pollution fixes in @graphql-codegen
+  brace-expansion: "^5.0.12" # DoS fixes in minimatch
+  nanoid: ">=3.3.18" # Infinite loop fixes in testcafe
+  ws: ">=8.21.0" # Memory exhaustion fix in jsdom
+  "ws@^7": "^7.5.11"
+  fast-uri: "^4.2.3" # Path traversal, SSRF and host confusion fixes in ajv
+  postcss: ">=8.5.18" # Path Traversal fix in hds-react
+  js-yaml: "^5.4.1" # CPU consumption fixes in @svgr/core
+  undici: "^8.12.2" # TLS validation, information disclosure and DoS fixes in jsdom
+  "@graphql-tools/utils": "^12.0.3"
+  "@babel/core@^7": "^7.29.6"
 
 # Widen ESLint peer range for packages that have not yet released a version
 # declaring ESLint v10 peer support:
@@ -37,22 +38,22 @@ overrides:
 #     nothing imports it (we use eslint-plugin-import-x directly).
 peerDependencyRules:
   allowedVersions:
-    'eslint-plugin-jsx-a11y>eslint': '10'
-    'eslint-plugin-import>eslint': '10'
+    "eslint-plugin-jsx-a11y>eslint": "10"
+    "eslint-plugin-import>eslint": "10"
 
 # pnpm 11 requires explicit opt-in for packages that run install scripts.
 allowBuilds:
   # @ffmpeg-installer/ffmpeg pulls one platform-specific optional dependency.
   # Allow all supported platform packages so installs work on Linux/macOS/Windows.
-  '@ffmpeg-installer/darwin-arm64': true
-  '@ffmpeg-installer/darwin-x64': true
-  '@ffmpeg-installer/linux-arm': true
-  '@ffmpeg-installer/linux-arm64': true
-  '@ffmpeg-installer/linux-ia32': true
-  '@ffmpeg-installer/linux-x64': true
-  '@ffmpeg-installer/win32-ia32': true
-  '@ffmpeg-installer/win32-x64': true
-  '@parcel/watcher': true # Native module for file system watching (used by sass and vite)
+  "@ffmpeg-installer/darwin-arm64": true
+  "@ffmpeg-installer/darwin-x64": true
+  "@ffmpeg-installer/linux-arm": true
+  "@ffmpeg-installer/linux-arm64": true
+  "@ffmpeg-installer/linux-ia32": true
+  "@ffmpeg-installer/linux-x64": true
+  "@ffmpeg-installer/win32-ia32": true
+  "@ffmpeg-installer/win32-x64": true
+  "@parcel/watcher": true # Native module for file system watching (used by sass and vite)
   esbuild: true
   msw: true # Mock Service Worker setup scripts
   unrs-resolver: true # Rust-based module resolver used by eslint-plugin-import-x
