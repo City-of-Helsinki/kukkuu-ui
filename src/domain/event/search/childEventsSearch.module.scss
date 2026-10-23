@@ -1,0 +1,186 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.searchPageWrapper {
+  background-color: var(--color-summer-light, #fffae6);
+  min-height: 80vh;
+
+  .stickyChildHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: var(--color-summer, #fff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid var(--color-black-10, #e6e6e6);
+    z-index: 100;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      transform 0.25s ease,
+      opacity 0.25s ease,
+      visibility 0.25s;
+
+    &.stickyChildHeaderVisible {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .stickyContentContainer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: var(--spacing-xs);
+      padding-bottom: var(--spacing-xs);
+
+      .stickyChildSelectWrapper {
+        width: 100%;
+        max-width: 20rem;
+
+        .childSelect {
+          --select-background-color: var(--color-white);
+        }
+      }
+    }
+  }
+
+  .breadcrumbsWrapper {
+    width: 100%;
+    background-color: var(--color-white, #fff);
+
+    .breadcrumbs {
+      max-width: var(--container-max-width, 1200px);
+      margin: 0 auto;
+      padding: var(--spacing-xs) var(--spacing-m);
+      box-sizing: border-box;
+
+      nav {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.heroSection {
+  background-color: var(--color-summer, #ffc61e);
+  color: var(--color-black, #000);
+  position: relative;
+  box-sizing: border-box;
+  min-height: 14rem;
+  padding-top: var(--spacing-2-xl) !important;
+  padding-bottom: calc(85px + var(--spacing-xl)) !important;
+
+  @include layout.respond-above(m) {
+    min-height: 18rem;
+    padding-top: var(--spacing-3-xl) !important;
+    padding-bottom: calc(85px + var(--spacing-2-xl)) !important;
+  }
+}
+
+.heroKoros {
+  fill: var(--color-summer-light, #fffae6);
+}
+
+.heroContentContainer {
+  .heroTitle {
+    font-size: var(--fontsize-heading-xl, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 var(--spacing-m);
+    line-height: 1.2;
+    color: var(--color-black);
+  }
+
+  .heroDescription {
+    font-size: var(--fontsize-body-l, 1.125rem);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 48rem;
+    color: var(--color-black-90);
+  }
+}
+
+.mainContentContainer {
+  padding-top: var(--spacing-l);
+  padding-bottom: var(--spacing-3-xl);
+
+  .childSelectWrapper {
+    max-width: 20rem;
+    margin-bottom: var(--spacing-l);
+
+    .childSelect {
+      --select-background-color: var(--color-white);
+    }
+  }
+
+  .filterSection {
+    margin-bottom: var(--spacing-xl);
+
+    .filterAccordion {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-black-20);
+      border-radius: var(--spacing-2-xs);
+
+      .filterForm {
+        padding: var(--spacing-m) 0;
+
+        .filterFields {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--spacing-m);
+          margin-bottom: var(--spacing-m);
+
+          @include layout.respond-above(m) {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
+        .filterButtons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--spacing-s);
+        }
+      }
+    }
+  }
+
+  .resultsSection {
+    .resultsHeader {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--spacing-m);
+      margin-bottom: var(--spacing-m);
+    }
+
+    .resultsCount {
+      font-size: var(--fontsize-heading-m, 1.5rem);
+      font-weight: 700;
+      margin: 0;
+      color: var(--color-black);
+    }
+
+    .occurrenceList {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-m);
+    }
+
+    .loadMoreWrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--spacing-xl);
+    }
+
+    .noResults {
+      font-size: var(--fontsize-body-l, 1.125rem);
+      color: var(--color-black-70);
+      margin: var(--spacing-xl) 0;
+    }
+  }
+}
