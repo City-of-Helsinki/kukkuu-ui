@@ -246,6 +246,9 @@ test('Renders only upcoming events and event groups when no other inputs', () =>
   expect(
     screen.queryByRole('heading', { name: 'Menneet tapahtumat' })
   ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole('link', { name: 'Selaa tapahtumia' })
+  ).toHaveAttribute('href', `/profile/child/${testChildId}/events`);
 });
 
 test('Renders only enrolments when no other inputs', () => {
@@ -270,6 +273,9 @@ test('Renders only enrolments when no other inputs', () => {
   expect(
     screen.queryByRole('heading', { name: 'Menneet tapahtumat' })
   ).not.toBeInTheDocument();
+  expect(
+    screen.getByRole('link', { name: 'Selaa tapahtumia' })
+  ).toHaveAttribute('href', `/profile/child/${testChildId}/events`);
 });
 
 test.each([

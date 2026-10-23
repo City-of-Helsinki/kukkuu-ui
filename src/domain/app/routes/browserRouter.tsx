@@ -12,7 +12,7 @@ import Profile from '../../profile/Profile';
 import WithLocaleRoute from './WithLocaleRoute';
 import HeadlessCmsPage from '../../headlessCms/HeadlessCmsPage';
 import WithProfileChildRouteAuthorization from './WithProfileChildRouteAuthorization';
-import ProfileChildDetail from '../../profile/children/child/ProfileChildDetail';
+import ProfileChildRedirect from './ProfileChildRedirect';
 import ChildEventsSearch from '../../event/search/ChildEventsSearch';
 import EventGroupPage from '../../eventGroup/EventGroupPage';
 import Event from '../../event/Event';
@@ -137,8 +137,8 @@ const browserRouter = createBrowserRouter([
                 index: true,
                 element: (
                   <AppRoute
-                    titleKey="profile.child.detail.page.title"
-                    element={<ProfileChildDetail />}
+                    titleKey="profile.heading"
+                    element={<ProfileChildRedirect />}
                   />
                 ),
               },

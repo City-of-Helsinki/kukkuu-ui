@@ -1,0 +1,36 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.heroSection {
+  background-color: var(--color-summer, #ffc61e);
+  color: var(--color-black, #000);
+  position: relative;
+  padding-top: var(--spacing-xl);
+}
+
+.heroKoros {
+  fill: var(--color-white, #fff);
+}
+
+.contentContainer {
+  width: 100%;
+  max-width: var(--container-width-xl, 1200px);
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  .title {
+    font-size: var(--fontsize-heading-xl, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 var(--spacing-m);
+    line-height: 1.2;
+    color: var(--color-black);
+  }
+
+  .description {
+    font-size: var(--fontsize-body-l, 1.125rem);
+    line-height: 1.5;
+    margin: 0 0 var(--spacing-m);
+    max-width: 48rem;
+    color: var(--color-black-90);
+  }
+}

@@ -1,4 +1,4 @@
-import { godchildrenProfilePage, route } from './pages/godchildrenProfilePage';
+import { route, selectChild } from './pages/godchildrenProfilePage';
 import { childrenProfilePage } from './pages/childrenProfilePage';
 import { eventGroupPage } from './pages/eventGroupPage';
 import { eventPage } from './pages/eventPage';
@@ -25,7 +25,7 @@ fixture`Event groups feature`
 // eslint-disable-next-line @vitest/no-disabled-tests
 test.skip('As a user I can use event groups to find events', async (t) => {
   // Select first child
-  await t.click(godchildrenProfilePage.child(/Hertta Citron/));
+  await selectChild(t, /Hertta Citron/);
 
   // Expect to see event group invitations
   await t.expect(childrenProfilePage.selectEventGroupButtons.count).gt(0);

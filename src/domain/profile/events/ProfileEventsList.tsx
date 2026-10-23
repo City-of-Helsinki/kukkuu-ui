@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
+import { IconArrowRight, Link } from 'hds-react';
 import { QRCode } from 'react-qrcode-logo';
 
 import RelayList from '../../api/relayList';
@@ -102,11 +103,6 @@ const ProfileEventsList = ({
     );
   };
 
-  const gotoOccurrencePage = (occurrenceId: string) => {
-    navigate(
-      getPathname(`/profile/child/${childId}/occurrence/${occurrenceId}`)
-    );
-  };
 
   const gotoExternalEnrolmentEventPage = (eventId: string) => {
     navigate(
@@ -144,7 +140,9 @@ const ProfileEventsList = ({
         </div>
       }
       event={internalEnrolment.occurrence.event}
-      action={() => gotoOccurrencePage(internalEnrolment.occurrence.id)}
+      action={() =>
+        gotoEventPage(internalEnrolment.occurrence.event.id)
+      }
       actionText={t('enrollment.showEventInfo.buttonText')}
       primaryAction="hidden"
       focalContent={OccurrenceInfo({
@@ -171,6 +169,8 @@ const ProfileEventsList = ({
     />
   );
 
+  const browseEventsUrl = getPathname(`/profile/child/${childId}/events`);
+
   const enrolmentsListItems: React.ReactElement | null = enrolments.length ? (
     <React.Fragment key="enrolments">
       <Text variant="h2">{t('profile.events.enrolled.heading')}</Text>
@@ -186,6 +186,19 @@ const ProfileEventsList = ({
           )
         )}
       />
+      <div className={styles.browseEventsLinkWrapper}>
+        <Link
+          href={browseEventsUrl}
+          disableVisitedStyles
+          iconEnd={<IconArrowRight aria-hidden="true" />}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(browseEventsUrl);
+          }}
+        >
+          {t('profile.child.browseEventsButton')}
+        </Link>
+      </div>
     </React.Fragment>
   ) : null;
 
@@ -236,6 +249,19 @@ const ProfileEventsList = ({
             );
           })}
         />
+        <div className={styles.browseEventsLinkWrapper}>
+          <Link
+            href={browseEventsUrl}
+            disableVisitedStyles
+            iconEnd={<IconArrowRight aria-hidden="true" />}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate(browseEventsUrl);
+            }}
+          >
+            {t('profile.child.browseEventsButton')}
+          </Link>
+        </div>
       </React.Fragment>
     ) : null;
 

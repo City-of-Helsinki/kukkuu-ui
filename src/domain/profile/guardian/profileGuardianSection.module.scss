@@ -1,0 +1,68 @@
+.guardianSection {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: var(--spacing-3-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.heading {
+  font-size: var(--fontsize-heading-l, 2.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-l) 0;
+  color: var(--color-black-90, #1a1a1a);
+}
+
+.card {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--color-black-20);
+  border-left: 8px solid var(--color-summer);
+  background-color: var(--color-white);
+  padding: var(--spacing-2-xl) var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  color: var(--color-black-90, #1a1a1a);
+  margin-bottom: var(--spacing-s);
+  display: block;
+}
+
+.name {
+  font-size: var(--fontsize-heading-m, 1.5rem);
+  font-weight: 500;
+  color: var(--color-black-90, #1a1a1a);
+  margin: 0 0 var(--spacing-xs) 0;
+  line-height: 1.3;
+}
+
+.phone,
+.email {
+  font-size: var(--fontsize-body-m, 1rem);
+  color: var(--color-black-90, #1a1a1a);
+  margin: 0 0 var(--spacing-3-xs) 0;
+  line-height: 1.5;
+}
+
+.editButton {
+  margin-top: var(--spacing-s);
+  display: inline-flex;
+  align-items: center;
+
+  > div {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  > span {
+    line-height: 1.25;
+    text-box: trim-both cap alphabetic;
+  }
+}

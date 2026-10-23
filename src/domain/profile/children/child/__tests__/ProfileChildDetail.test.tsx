@@ -92,7 +92,23 @@ describe('ProfileChildDetail', () => {
 
     await waitForLoadingToFinish();
 
-    expect(screen.getByText('Test Child')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Test Child' })
+    ).toBeInTheDocument();
+  });
+
+  it('renders breadcrumbs and does not render back arrow button', async () => {
+    renderComponent();
+
+    await waitForLoadingToFinish();
+
+    expect(
+      screen.getByRole('navigation', { name: 'Leivänmurunavigaatio' })
+    ).toBeInTheDocument();
+    expect(screen.getByText('Etusivu')).toBeInTheDocument();
+    expect(screen.getAllByText('Kummilapset')).toHaveLength(2);
+    expect(screen.getAllByText('Test Child')).toHaveLength(2);
+    expect(screen.queryByLabelText('Takaisin')).not.toBeInTheDocument();
   });
 
   it('renders the edit button', async () => {
@@ -103,6 +119,21 @@ describe('ProfileChildDetail', () => {
     expect(
       screen.getByRole('button', { name: /Muokkaa lapsen tietoja/i })
     ).toBeInTheDocument();
+  });
+
+  it('renders browse events link linking to child events search', async () => {
+    renderComponent();
+
+    await waitForLoadingToFinish();
+
+    const browseLink = screen.getByRole('link', {
+      name: /Selaa tapahtumia/i,
+    });
+    expect(browseLink).toBeInTheDocument();
+    expect(browseLink).toHaveAttribute(
+      'href',
+      `/profile/child/${testChildId}/events`
+    );
   });
 
   it('shows "no child" text when child data is null', async () => {

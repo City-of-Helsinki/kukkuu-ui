@@ -1,0 +1,36 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.profilePageWrapper {
+  background-color: var(--color-white, #fff);
+  min-height: 80vh;
+  width: 100%;
+
+  .breadcrumbsWrapper {
+    width: 100%;
+    background-color: var(--color-white, #fff);
+
+    .breadcrumbs {
+      max-width: var(--breakpoint-xl, 1200px);
+      margin: 0 auto;
+      padding: var(--spacing-xs) var(--spacing-m);
+      box-sizing: border-box;
+
+      nav {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.mainContainer {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: var(--breakpoint-xl, 1200px);
+  padding: var(--spacing-2-xl) var(--spacing-m) var(--spacing-4-xl);
+  width: 100%;
+}
+
+.mainContent {
+  width: 100%;
+}
