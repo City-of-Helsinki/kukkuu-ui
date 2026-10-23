@@ -18,7 +18,6 @@ import EventGroupPage from '../../eventGroup/EventGroupPage';
 import Event from '../../event/Event';
 import ExternalTicketSystemEventIsEnrolled from '../../event/ExternalTicketSystemEventIsEnrolled';
 import EventRedirect from '../../event/EventRedirect';
-import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EnrolPage from '../../event/enrol/EnrolPage';
 import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
 import Unauthorized from '../../auth/Unauthorized';
@@ -181,10 +180,6 @@ const browserRouter = createBrowserRouter([
                     element={<EventRedirect />}
                   />
                 ),
-              },
-              {
-                path: 'occurrence/:occurrenceId',
-                element: <AppRoute noTitle element={<EventIsEnrolled />} />,
               },
               {
                 path: 'event/:eventId/occurrence/:occurrenceId/enrol',
