@@ -47,7 +47,10 @@ const ticketSystem = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 });
 
-const passwordQueryMock = (childPassword: string | null = null) => ({
+const passwordQueryMock = (
+  childPassword: string | null = null,
+  url: string | null = TICKET_SYSTEM_URL
+) => ({
   request: {
     query: eventExternalTicketSystemPasswordQuery,
     variables: { id: testEventId, childId: testChildId },
@@ -58,13 +61,16 @@ const passwordQueryMock = (childPassword: string | null = null) => ({
         __typename: 'EventNode',
         id: testEventId,
         participantsPerInvite: 'CHILD_AND_GUARDIAN',
-        ticketSystem: ticketSystem({ childPassword }),
+        ticketSystem: ticketSystem({ childPassword, url }),
       },
     },
   }),
 });
 
-const eventQueryMock = (canChildEnroll = true) => ({
+const eventQueryMock = (
+  enrolmentDeniedReason: string | null = null,
+  registrationOpensAt: string | null = null
+) => ({
   request: {
     query: eventQuery,
     variables: { id: testEventId, childId: testChildId },
@@ -82,7 +88,8 @@ const eventQueryMock = (canChildEnroll = true) => ({
         participantsPerInvite: 'CHILD_AND_GUARDIAN',
         duration: 60,
         capacityPerOccurrence: 20,
-        canChildEnroll,
+        enrolmentDeniedReason,
+        registrationOpensAt,
         eventGroup: { __typename: 'EventGroupNode', id: 'group-123' },
         ticketSystem: ticketSystem(),
         occurrences: {
@@ -116,15 +123,19 @@ const hasFreePasswordsMock = (hasAnyFreePasswords = true) => ({
 
 const defaultMocks = ({
   childPassword = null,
-  canChildEnroll = true,
+  enrolmentDeniedReason = null,
   hasAnyFreePasswords = true,
+  registrationOpensAt = null,
+  url = TICKET_SYSTEM_URL,
 }: {
   childPassword?: string | null;
-  canChildEnroll?: boolean;
+  enrolmentDeniedReason?: string | null;
   hasAnyFreePasswords?: boolean;
+  registrationOpensAt?: string | null;
+  url?: string | null;
 } = {}) => [
-  passwordQueryMock(childPassword),
-  eventQueryMock(canChildEnroll),
+  passwordQueryMock(childPassword, url),
+  eventQueryMock(enrolmentDeniedReason, registrationOpensAt),
   hasFreePasswordsMock(hasAnyFreePasswords),
 ];
 
@@ -163,6 +174,11 @@ const noFreePasswordsError = () =>
     extensions: { code: 'NO_FREE_TICKET_SYSTEM_PASSWORDS_ERROR' },
   });
 
+const registrationNotOpenError = () =>
+  new GraphQLError('Event registration has not opened yet', {
+    extensions: { code: 'REGISTRATION_NOT_OPEN_ERROR' },
+  });
+
 const setApiClientMocks = (mocks: MockedResponse[]) => {
   apiClient = new ApolloClient({
     link: new MockLink(mocks),
@@ -178,6 +194,10 @@ const waitForLoadingToFinish = () =>
 beforeEach(() => {
   vi.clearAllMocks();
   setApiClientMocks([assignMutationMock]);
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 describe('EventRedirect', () => {
@@ -245,6 +265,21 @@ describe('EventRedirect', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('does not offer a link to the ticket system when it has no URL yet', async () => {
+    render(
+      <EventRedirect />,
+      defaultMocks({ childPassword: 'EXISTING-999', url: null })
+    );
+    await waitForLoadingToFinish();
+
+    expect(await screen.findByText('EXISTING-999')).toBeInTheDocument();
+    expect(
+      screen.queryByRole('link', {
+        name: /Jatka ulkoiseen lipunmyyntipalveluun/i,
+      })
+    ).not.toBeInTheDocument();
+  });
+
   it('tells the user when no free passwords are left', async () => {
     render(<EventRedirect />, defaultMocks({ hasAnyFreePasswords: false }));
     await waitForLoadingToFinish();
@@ -257,8 +292,131 @@ describe('EventRedirect', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('shows registration opening time when registration has not opened yet', async () => {
+    render(
+      <EventRedirect />,
+      defaultMocks({
+        enrolmentDeniedReason: 'REGISTRATION_NOT_OPEN',
+        registrationOpensAt: '2099-06-01T10:00:00+03:00',
+      })
+    );
+    await waitForLoadingToFinish();
+
+    expect(
+      await screen.findByText('Ilmoittautuminen alkaa 1.6.2099 klo 10:00')
+    ).toBeInTheDocument();
+  });
+
+  it('shows generic not-opened-yet notice when REGISTRATION_NOT_OPEN without opening time', async () => {
+    render(
+      <EventRedirect />,
+      defaultMocks({
+        enrolmentDeniedReason: 'REGISTRATION_NOT_OPEN',
+        registrationOpensAt: null,
+      })
+    );
+    await waitForLoadingToFinish();
+
+    expect(
+      await screen.findByText('Ilmoittautuminen ei ole vielä alkanut')
+    ).toBeInTheDocument();
+  });
+
+  it('shows cannot-enroll notice when EMPTY_EVENT and opening time is in future', async () => {
+    render(
+      <EventRedirect />,
+      defaultMocks({
+        enrolmentDeniedReason: 'EMPTY_EVENT',
+        registrationOpensAt: '2099-06-01T10:00:00+03:00',
+      })
+    );
+    await waitForLoadingToFinish();
+
+    expect(
+      await screen.findByText(
+        'Huomioithan, että et voi ilmoittautua tähän tapahtumaan.'
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(/Ilmoittautuminen alkaa/i)
+    ).not.toBeInTheDocument();
+  });
+
+  it('shows registration opening time when ticket system has no URL yet', async () => {
+    render(
+      <EventRedirect />,
+      defaultMocks({
+        childPassword: 'EXISTING-999',
+        url: null,
+        registrationOpensAt: '2099-06-01T10:00:00+03:00',
+      })
+    );
+    await waitForLoadingToFinish();
+
+    expect(await screen.findByText('EXISTING-999')).toBeInTheDocument();
+    expect(
+      screen.getByText('Ilmoittautuminen alkaa 1.6.2099 klo 10:00')
+    ).toBeInTheDocument();
+  });
+
+  it('show registration opening time when password assignment fails because registration is not open', async () => {
+    // Silence long mutation error to keep test output clear
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    setApiClientMocks([
+      {
+        request: assignMutationMock.request,
+        result: { errors: [registrationNotOpenError()] },
+      } as never,
+    ]);
+    const user = userEvent.setup();
+
+    render(
+      <EventRedirect />,
+      defaultMocks({ registrationOpensAt: '2099-06-01T10:00:00+03:00' })
+    );
+    await waitForLoadingToFinish();
+
+    await user.click(
+      screen.getByRole('button', { name: 'Kyllä, lunastan salasanan!' })
+    );
+
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Ilmoittautuminen alkaa 1.6.2099 klo 10:00',
+      })
+    ).toBeInTheDocument();
+  });
+
+  it('shows generic not-opened-yet notice on REGISTRATION_NOT_OPEN_ERROR without opening time', async () => {
+    // Silence long mutation error to keep test output clear
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    setApiClientMocks([
+      {
+        request: assignMutationMock.request,
+        result: { errors: [registrationNotOpenError()] },
+      } as never,
+    ]);
+    const user = userEvent.setup();
+
+    render(<EventRedirect />, defaultMocks());
+    await waitForLoadingToFinish();
+
+    await user.click(
+      screen.getByRole('button', { name: 'Kyllä, lunastan salasanan!' })
+    );
+
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Ilmoittautuminen ei ole vielä alkanut',
+      })
+    ).toBeInTheDocument();
+  });
+
   it('shows the cannot-enroll notice when the child cannot enroll', async () => {
-    render(<EventRedirect />, defaultMocks({ canChildEnroll: false }));
+    render(
+      <EventRedirect />,
+      defaultMocks({ enrolmentDeniedReason: 'YEARLY_ENROLMENT_LIMIT_REACHED' })
+    );
     await waitForLoadingToFinish();
 
     expect(

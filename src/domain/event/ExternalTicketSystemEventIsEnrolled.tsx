@@ -4,7 +4,10 @@ import { useQuery } from '@apollo/client';
 
 import styles from './externalTicketSystemEventIsEnrolled.module.scss';
 import { externalTicketSystemEventQuery } from './queries/externalTicketSystemEventQuery';
-import { ExternalTicketSystemEventQuery } from '../api/generatedTypes/graphql';
+import {
+  EnrolmentDeniedReason,
+  ExternalTicketSystemEventQuery,
+} from '../api/generatedTypes/graphql';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import Paragraph from '../../common/components/paragraph/Paragraph';
 import EventPage from './EventPage';
@@ -14,6 +17,7 @@ import ExternalTicketSystemPassword from './ExternalTicketSystemPassword';
 import Text from '../../common/components/text/Text';
 import useChildRouteGoBackTo from '../profile/children/child/useChildRouteGoBackTo';
 import { EventTicketSystem } from './types/ExternalTicketSystemEventQueryTypes';
+import { getEnrolmentDeniedNotice } from './EventUtils';
 
 const ExternalTicketSystemEventIsEnrolled = () => {
   const { t } = useTranslation();
@@ -35,6 +39,11 @@ const ExternalTicketSystemEventIsEnrolled = () => {
   if (error || !data?.event) return errorMessage;
 
   const eventTicketSystem = data?.event.ticketSystem as EventTicketSystem;
+  const registrationNotOpenText = getEnrolmentDeniedNotice({
+    t,
+    enrolmentDeniedReason: EnrolmentDeniedReason.RegistrationNotOpen,
+    registrationOpensAt: data.event.registrationOpensAt,
+  });
 
   return (
     <EventPage event={data.event} backTo={goBackTo}>
@@ -47,10 +56,13 @@ const ExternalTicketSystemEventIsEnrolled = () => {
         <ExternalTicketSystemPassword
           password={eventTicketSystem?.childPassword}
         />
-        <AnchorButton href={eventTicketSystem?.url} openInNewTab>
-          {t('externalTicketSystemEvent.continueButton')}
-        </AnchorButton>
+        {eventTicketSystem?.url && (
+          <AnchorButton href={eventTicketSystem.url} openInNewTab>
+            {t('externalTicketSystemEvent.continueButton')}
+          </AnchorButton>
+        )}
       </div>
+      {!eventTicketSystem?.url && <Text>{registrationNotOpenText}</Text>}
       <Text>
         {t('externalTicketSystemEvent.participantsPerInviteText', {
           participantsPerInvite: t(

@@ -334,7 +334,9 @@
     "enrol": "Ilmoittaudu tapahtumaan",
     "enrolShort": "Ilmoittaudu",
     "message": {
-      "cantEnrollNotice": "Huomioithan, että et voi ilmoittautua tähän tapahtumaan."
+      "cantEnrollNotice": "Huomioithan, että et voi ilmoittautua tähän tapahtumaan.",
+      "registrationNotOpen": "Ilmoittautuminen ei ole vielä alkanut",
+      "registrationOpens": "Ilmoittautuminen alkaa {{date}} klo {{time}}"
     }
   },
   "event": {
