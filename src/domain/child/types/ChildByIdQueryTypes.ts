@@ -41,10 +41,34 @@ export type InternalEnrolmentOccurrence = EnrolmentOccurrenceFieldsFragment;
 export type UpcomingEventsAndEventGroups =
   UpcomingEventsAndEventGroupsFieldsFragment;
 
+export type EnrolmentEventGroup = {
+  __typename?: 'EventGroupNode';
+  id: string;
+  name?: string | null;
+  publishedAt?: string | null;
+};
+
+export type UpcomingEventGroupEvent = {
+  __typename?: 'EventNode';
+  id: string;
+  name?: string | null;
+  publishedAt?: string | null;
+  canChildEnroll?: boolean | null;
+};
+
 export type UpcomingEvent = UpcomingEventFieldsFragment;
 
-export type UpcomingEventGroup = UpcomingEventGroupFieldsFragment;
+export type UpcomingEventGroup = UpcomingEventGroupFieldsFragment & {
+  publishedAt?: string | null;
+  events?: {
+    __typename?: 'EventNodeConnection';
+    edges: Array<{
+      __typename?: 'EventNodeEdge';
+      node?: UpcomingEventGroupEvent | null;
+    } | null>;
+  } | null;
+};
 
 export type UpcomingEventOrEventGroup =
-  | UpcomingEventFieldsFragment
-  | UpcomingEventGroupFieldsFragment;
+  | UpcomingEvent
+  | UpcomingEventGroup;
