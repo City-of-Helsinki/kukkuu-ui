@@ -1,0 +1,261 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+$heroHeight: 30.6875rem;
+
+.heroSection {
+  background-color: var(--color-summer, #ffc61e);
+  color: var(--color-black, #000);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-top: var(--spacing-l);
+  padding-bottom: calc(85px + var(--spacing-3-xl)) !important;
+
+  @include layout.respond-above(m) {
+    padding-top: var(--spacing-xl);
+    padding-bottom: calc(85px + var(--spacing-5-xl)) !important;
+  }
+}
+
+.heroKoros {
+  fill: var(--color-white, #fff);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.contentContainer {
+  @include layout.respond-below(m) {
+    padding: 0 var(--spacing-m) !important;
+  }
+
+  .heroGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    position: relative;
+    box-sizing: border-box;
+    gap: var(--spacing-l);
+
+    @include layout.respond-above(m) {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: unset;
+      min-height: $heroHeight;
+      align-items: center;
+      gap: var(--spacing-xl);
+    }
+
+    @include layout.respond-above(l) {
+      grid-template-columns: 1.6fr 1fr;
+      align-items: stretch;
+    }
+
+    @include layout.respond-above(xl) {
+      grid-template-columns: 2fr 1fr;
+      gap: var(--spacing-2-xl);
+    }
+
+    .imageColumn {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 0;
+
+      .imageCard {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 18rem;
+        background-color: transparent;
+        box-sizing: border-box;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include layout.respond-below(l) {
+          aspect-ratio: 4 / 3;
+          height: auto;
+          max-height: 24rem;
+          min-height: unset;
+        }
+
+        @include layout.respond-below(m) {
+          aspect-ratio: 4 / 3;
+          height: auto;
+          max-height: 22rem;
+          min-height: unset;
+        }
+
+        .image {
+          width: 100%;
+          height: 100%;
+          border: 8px solid var(--color-white, #fff);
+          box-sizing: border-box;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+        }
+
+        & > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          display: block;
+          border: 8px solid var(--color-white, #fff);
+          box-sizing: border-box;
+        }
+
+        :global(.placeholderImage) {
+          border: 8px solid var(--color-white, #fff);
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    .detailsColumn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 0;
+
+      @include layout.respond-above(m) {
+        padding: var(--spacing-m) 0;
+      }
+
+      .title {
+        font-size: var(--fontsize-heading-xl, 2.5rem);
+        font-weight: 700;
+        margin: 0 0 var(--spacing-s);
+        line-height: 1.2;
+        color: var(--color-black);
+      }
+
+      .shortDescription {
+        font-size: var(--fontsize-body-l, 1.125rem);
+        line-height: 1.5;
+        margin: 0 0 var(--spacing-m);
+        color: var(--color-black-90);
+      }
+
+      .metaList {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-m);
+
+        .metaRow {
+          display: flex;
+          align-items: center;
+          font-size: var(--fontsize-body-m, 1rem);
+          color: var(--color-black-90);
+
+          .metaIcon {
+            width: var(--spacing-m);
+            height: var(--spacing-m);
+            margin-right: var(--spacing-xs);
+            flex-shrink: 0;
+            color: var(--color-black);
+          }
+        }
+      }
+
+      .badgeList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-2-xs);
+        margin-bottom: var(--spacing-l);
+
+        .pill {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          font-size: var(--fontsize-body-s, 0.875rem);
+          font-weight: 500;
+          border-radius: 1rem;
+          background-color: var(--color-white);
+          color: var(--color-black-90);
+        }
+
+        .enrolledBadge {
+          background-color: var(--color-summer, #ffc61e);
+          color: var(--color-black-90, #1a1a1a);
+          font-weight: 600;
+        }
+      }
+
+      .actionWrapper {
+        .enrolButton {
+          width: 100%;
+          background-color: var(--color-black, #000) !important;
+          color: var(--color-white, #fff) !important;
+          border-color: var(--color-black, #000) !important;
+
+          @include layout.respond-above(m) {
+            max-width: 26rem;
+          }
+
+          &:hover {
+            background-color: var(--color-black-90, #222) !important;
+            border-color: var(--color-black-90, #222) !important;
+          }
+        }
+
+        .enrolButtonDisabled {
+          width: 100%;
+          background-color: var(--color-black-20, #ccc) !important;
+          color: var(--color-black-60, #666) !important;
+          border-color: var(--color-black-20, #ccc) !important;
+
+          @include layout.respond-above(m) {
+            max-width: 26rem;
+          }
+        }
+
+        .cancelButton {
+          width: 100%;
+          background-color: var(--color-error, #b01038) !important;
+          color: var(--color-white, #fff) !important;
+          border-color: var(--color-error, #b01038) !important;
+
+          @include layout.respond-above(m) {
+            max-width: 26rem;
+          }
+
+          &:hover {
+            background-color: var(--color-error-dark, #8c0c2c) !important;
+            border-color: var(--color-error-dark, #8c0c2c) !important;
+          }
+        }
+
+        .enrolledActionGroup {
+          display: flex;
+          flex-direction: column;
+          gap: var(--spacing-s);
+
+          .viewAllLink {
+            color: var(--color-black-90, #1a1a1a);
+            font-size: var(--fontsize-body-m, 1rem);
+            font-weight: 500;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus {
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

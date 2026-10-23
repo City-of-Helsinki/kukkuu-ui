@@ -6,19 +6,17 @@ import { screen, waitFor } from '@testing-library/react';
 import * as Sentry from '@sentry/browser';
 
 import { customRender as render } from '../../../common/test/customRender';
+import {
+  fakeEventNode,
+  fakeOccurrenceNode,
+} from '../../../utils/eventMockDataUtils';
 import Event from '../Event';
-import eventQuery, {
-  eventExternalTicketSystemHasAnyFreePasswordsQuery,
-} from '../queries/eventQuery';
+import eventQuery from '../queries/eventQuery';
 import { getDateOptions, getTimeOptions } from '../EventUtils';
 import {
   testEventId,
   testChildId,
   eventWithOccurrencesMock,
-  externalTicketSystemEventMock,
-  hasFreePasswordsMock,
-  internalTicketSystemPasswordsMock,
-  dummyPasswordMock,
 } from '../__mocks__/eventMocks';
 
 vi.mock('@sentry/browser');
@@ -27,6 +25,10 @@ const mockUseLocation = vi.hoisted(() =>
   vi.fn().mockReturnValue({
     pathname: '/profile/child/child-123/event/event-456',
   })
+);
+
+const mockUseSearchParams = vi.hoisted(() =>
+  vi.fn().mockReturnValue([new URLSearchParams(), vi.fn()])
 );
 
 vi.mock('react-router', async () => {
@@ -39,6 +41,7 @@ vi.mock('react-router', async () => {
     }),
     useLocation: mockUseLocation,
     useNavigate: () => vi.fn(),
+    useSearchParams: mockUseSearchParams,
   };
 });
 
@@ -128,6 +131,7 @@ describe('Event', () => {
       mockUseLocation.mockReturnValue({
         pathname: '/profile/child/child-123/event/event-456',
       });
+      mockUseSearchParams.mockReturnValue([new URLSearchParams(), vi.fn()]);
     });
 
     afterEach(() => {
@@ -150,7 +154,7 @@ describe('Event', () => {
         error: new Error('Query failed'),
       };
 
-      renderEvent([errorMock, dummyPasswordMock]);
+      renderEvent([errorMock]);
 
       expect(await screen.findByText(/Tapahtui virhe/i)).toBeInTheDocument();
       expect(Sentry.captureException).toHaveBeenCalled();
@@ -174,43 +178,52 @@ describe('Event', () => {
         }),
       };
 
-      renderEvent([noEventMock, dummyPasswordMock]);
+      renderEvent([noEventMock]);
 
       expect(await screen.findByText('No event')).toBeInTheDocument();
     });
 
-    it('renders event details for internal ticket system', async () => {
-      renderEvent([eventWithOccurrencesMock, internalTicketSystemPasswordsMock]);
+    it('renders event details, breadcrumbs, description and sidebar info', async () => {
+      renderEvent([eventWithOccurrencesMock]);
 
       await waitForLoadingToFinish();
 
-      // Verify event details are rendered with actual EventPage component
-      expect(screen.getByText('Test Event')).toBeInTheDocument();
+      // Verify event details and description
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Test Event' })
+      ).toBeInTheDocument();
       expect(screen.getByText('Test event description')).toBeInTheDocument();
-    });
 
-    it('renders EventEnrol component for internal ticket system on upcoming events', async () => {
-      renderEvent([eventWithOccurrencesMock, internalTicketSystemPasswordsMock]);
+      // Verify breadcrumbs
+      expect(
+        screen.getByRole('navigation', { name: /Leivänmurunavigaatio/i })
+      ).toBeInTheDocument();
 
-      await waitForLoadingToFinish();
+      // Verify sidebar Osallistujat section is rendered
+      expect(screen.getByText('Osallistujat')).toBeInTheDocument();
 
-      // Verify EventEnrol component is rendered by checking for its form fields
-      expect(screen.getByLabelText(/Valitse päivämäärä/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/Valitse kellonaika/i)).toBeInTheDocument();
-    });
+      // In event-level mode: Hero link and sidebar button jump to table, table is rendered, other occurrences list is hidden
+      expect(
+        screen.getByRole('link', {
+          name: 'Katso tapahtuma-ajat ja ilmoittaudu',
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', {
+          name: 'Katso tapahtuma-ajat ja ilmoittaudu',
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: 'Tapahtuman ajankohdat ja ilmoittautuminen',
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByText('Tapahtuman muut ajat')
+      ).not.toBeInTheDocument();
 
-    it('does not render EventEnrol on past events', async () => {
-      mockUseLocation.mockReturnValue({
-        pathname: '/profile/child/child-123/event/event-456/past',
-      });
-
-      renderEvent([
-        eventWithOccurrencesMock,
-        internalTicketSystemPasswordsMock,
-      ]);
-
-      await waitForLoadingToFinish();
-
+      // Verify occurrence table dropdowns are not rendered
       expect(
         screen.queryByLabelText(/Valitse päivämäärä/i)
       ).not.toBeInTheDocument();
@@ -219,50 +232,31 @@ describe('Event', () => {
       ).not.toBeInTheDocument();
     });
 
-    it('renders Continue button for external ticket system when can enroll and has free passwords', async () => {
-      renderEvent([externalTicketSystemEventMock, hasFreePasswordsMock]);
+    it('renders event details page in standard event mode even when occurrenceId query param is present', async () => {
+      mockUseSearchParams.mockReturnValue([
+        new URLSearchParams('occurrenceId=occ-1'),
+        vi.fn(),
+      ]);
 
-      await waitForLoadingToFinish();
-
-      expect(
-        screen.getByText(/Jatka ilmoittautumaan/i)
-      ).toBeInTheDocument();
-    });
-
-    it('renders no free passwords text for external ticket system when passwords are exhausted', async () => {
-      const noFreePasswordsMock = {
-        request: {
-          query: eventExternalTicketSystemHasAnyFreePasswordsQuery,
-          variables: {
-            id: testEventId,
-          },
+      const occurrenceNode = fakeOccurrenceNode({
+        id: 'occ-1',
+        time: '2026-10-15T12:00:00Z',
+        remainingCapacity: 10,
+        occurrenceLanguage: 'FI',
+        childHasFreeSpotNotificationSubscription: false,
+        venue: {
+          id: 'v-1',
+          name: 'Kaapelitehdas',
+          address: 'Tallberginkatu 1',
         },
-        newData: () => ({
-          data: {
-            event: {
-              __typename: 'EventNode',
-              id: testEventId,
-              ticketSystem: {
-                __typename: 'TicketmasterEventTicketSystem',
-                type: 'TICKETMASTER',
-                hasAnyFreePasswords: false,
-              },
-            },
-          },
-        }),
-      };
+        event: {
+          id: testEventId,
+          name: 'Test Event',
+          duration: 60,
+        },
+      });
 
-      renderEvent([externalTicketSystemEventMock, noFreePasswordsMock]);
-
-      await waitForLoadingToFinish();
-
-      expect(
-        screen.getByText(/Valitettavasti salasanoja ei ole enää jäljellä/i)
-      ).toBeInTheDocument();
-    });
-
-    it('renders cant enroll notification for external ticket system when enrollment is not allowed', async () => {
-      const cannotEnrollExternalEventMock = {
+      const eventWithSingleOccurrenceMock = {
         request: {
           query: eventQuery,
           variables: {
@@ -270,52 +264,65 @@ describe('Event', () => {
             childId: testChildId,
           },
         },
-        newData: () => ({
+        result: {
           data: {
-            event: {
-              __typename: 'EventNode',
+            event: fakeEventNode({
               id: testEventId,
-              name: 'External Ticket Event',
-              description: 'Event with external ticket system',
-              shortDescription: 'External short description',
-              image: 'external-image-url',
-              imageAltText: 'External image alt',
-              participantsPerInvite: 'CHILD_AND_GUARDIAN',
+              name: 'Test Event',
+              description: 'Test event description',
+              shortDescription: 'Test short description',
+              image: 'test-image-url',
+              imageAltText: 'Test image alt',
               duration: 60,
               capacityPerOccurrence: 20,
-              canChildEnroll: false,
-              eventGroup: {
-                __typename: 'EventGroupNode',
-                id: 'group-123',
-              },
-              ticketSystem: {
-                __typename: 'TicketmasterEventTicketSystem',
-                type: 'TICKETMASTER',
-                childPassword: 'test-password',
-                url: 'https://ticketmaster.example',
-              },
+              canChildEnroll: true,
               allOccurrences: {
                 __typename: 'OccurrenceNodeConnection',
-                edges: [],
+                edges: [
+                  {
+                    __typename: 'OccurrenceNodeEdge',
+                    node: occurrenceNode,
+                  },
+                ],
               },
               occurrences: {
                 __typename: 'OccurrenceNodeConnection',
                 edges: [],
               },
-            },
+            }),
           },
-        }),
+        },
       };
 
-      renderEvent([cannotEnrollExternalEventMock, hasFreePasswordsMock]);
+      renderEvent([eventWithSingleOccurrenceMock]);
 
       await waitForLoadingToFinish();
 
+      // Verify event-level hero button jumps to occurrences table
       expect(
-        screen.getByText(
-          /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
-        )
+        screen.getByRole('link', {
+          name: 'Katso tapahtuma-ajat ja ilmoittaudu',
+        })
       ).toBeInTheDocument();
+
+      // Table on bottom IS rendered
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: 'Tapahtuman ajankohdat ja ilmoittautuminen',
+        })
+      ).toBeInTheDocument();
+
+      // Verify breadcrumb does NOT link event name and does NOT append occurrence datetime
+      expect(screen.queryByRole('link', { name: 'Test Event' })).not.toBeInTheDocument();
+      expect(screen.queryByText('To 15.10.2026, 15:00')).not.toBeInTheDocument();
+
+      // Verify sidebar does NOT contain link to event page or other occurrences
+      expect(screen.queryByText('Tapahtuma')).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole('link', { name: 'Siirry tapahtumasivulle' })
+      ).not.toBeInTheDocument();
+      expect(screen.queryByText('Tapahtuman muut ajat')).not.toBeInTheDocument();
     });
   });
 });

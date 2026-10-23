@@ -13,6 +13,7 @@ import {
   ProfileQueryDocument,
   RelationshipTypeEnum,
 } from '../../../api/generatedTypes/graphql';
+import { childByIdQuery } from '../../../child/queries/ChildQueries';
 import { childEventInvitationLabelQuery } from '../../../child/queries/ChildEventInvitationLabelQuery';
 import { childEnrolmentCountQuery } from '../../../child/queries/ChildEnrolmentCountQuery';
 import { store } from '../../../app/state/AppStore';
@@ -109,7 +110,7 @@ function mockProfile(profile: MyProfile | null) {
 }
 
 const getAddChildButton = () =>
-  screen.getByRole('button', { name: 'Lisää lapsi' });
+  screen.getAllByRole('button', { name: /rekisteröi uusi lapsi/i })[0];
 
 const childInvitationLabelMock: MockedResponse = {
   request: {
@@ -165,6 +166,48 @@ const childEnrolmentCountMock: MockedResponse = {
   },
 };
 
+const childByIdMock: MockedResponse = {
+  request: {
+    query: childByIdQuery,
+    variables: {
+      id: 'child-1',
+    },
+  },
+  result: {
+    data: {
+      child: {
+        __typename: 'ChildNode',
+        id: 'child-1',
+        name: 'Testi Lapsi',
+        birthyear: 2020,
+        postalCode: '00100',
+        project: {
+          __typename: 'ProjectNode',
+          id: 'proj-1',
+          name: 'Testiorganisaatio',
+          year: 2020,
+        },
+        activeInternalAndTicketSystemEnrolments: {
+          __typename: 'InternalOrTicketSystemEnrolmentConnection',
+          edges: [],
+        },
+        upcomingEventsAndEventGroups: {
+          __typename: 'EventOrEventGroupConnection',
+          edges: [],
+        },
+        pastEvents: {
+          __typename: 'EventConnection',
+          edges: [],
+        },
+        relationships: {
+          __typename: 'RelationshipNodeConnection',
+          edges: [],
+        },
+      },
+    },
+  },
+};
+
 const profileRefetchMock: MockedResponse = {
   request: {
     query: ProfileQueryDocument,
@@ -193,7 +236,7 @@ describe('ProfileChildrenList', () => {
       render(<ProfileChildrenList />, []);
 
       expect(
-        screen.getByRole('heading', { name: 'Kummilapset' })
+        screen.getByRole('heading', { level: 2, name: 'Kulttuurilapset ja tapahtumat' })
       ).toBeInTheDocument();
       expect(getAddChildButton()).toBeInTheDocument();
     });
@@ -205,9 +248,24 @@ describe('ProfileChildrenList', () => {
       expect(screen.getByText('Ei kummilapsia')).toBeInTheDocument();
     });
 
-    it('renders a child card when profile has children', () => {
+    it('renders skeleton loader when profile is loading', () => {
+      vi.spyOn(ProfileContextModule, 'useProfileContext').mockReturnValue({
+        profile: null,
+        refetchProfile: mockRefetchProfile,
+        clearProfile: vi.fn(),
+        updateProfile: vi.fn(),
+        isLoading: true,
+        isFetchCalled: true,
+      });
+      render(<ProfileChildrenList />, []);
+
+      expect(screen.getByTestId('profile-child-skeleton')).toBeInTheDocument();
+    });
+
+    it('renders child accordion card when profile has children', () => {
       mockProfile(childProfile);
       render(<ProfileChildrenList />, [
+        childByIdMock,
         childInvitationLabelMock,
         childEnrolmentCountMock,
       ]);
@@ -215,15 +273,34 @@ describe('ProfileChildrenList', () => {
       expect(screen.getByText('Testi Lapsi')).toBeInTheDocument();
     });
 
-    it('renders the project year heading when there are children', () => {
-      mockProfile(childProfile);
-      render(<ProfileChildrenList />, [
-        childInvitationLabelMock,
-        childEnrolmentCountMock,
-      ]);
+    it('opens the accordion item matching the child search param', () => {
+      const twoChildrenProfile: MyProfile = {
+        ...baseProfile,
+        children: {
+          __typename: 'ChildNodeConnection',
+          edges: [
+            childProfile.children.edges[0],
+            {
+              __typename: 'ChildNodeEdge',
+              node: {
+                ...childProfile.children.edges[0]!.node!,
+                id: 'child-2',
+                name: 'Toinen Lapsi',
+              },
+            },
+          ],
+        },
+      };
+      mockProfile(twoChildrenProfile);
+      window.history.pushState({}, '', '/fi/profile?child=child-2');
 
-      // The project year should appear in the project description heading
-      expect(screen.getByText(/2020/)).toBeInTheDocument();
+      render(<ProfileChildrenList />, []);
+
+      const buttons = screen.getAllByRole('button');
+      const accordionBtn1 = buttons.find(b => b.textContent?.includes('Testi Lapsi'));
+      const accordionBtn2 = buttons.find(b => b.textContent?.includes('Toinen Lapsi'));
+      expect(accordionBtn1).toHaveAttribute('aria-expanded', 'false');
+      expect(accordionBtn2).toHaveAttribute('aria-expanded', 'true');
     });
   });
 

@@ -73,7 +73,7 @@ const EnrolPage = () => {
   const goToOccurrence = () =>
     navigate(
       getPathname(
-        `/profile/child/${params.childId}/occurrence/${data?.occurrence?.id}`
+        `/profile/child/${params.childId}/event/${params.eventId}`
       ),
       { replace: true }
     );

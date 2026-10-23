@@ -8,6 +8,7 @@ import {
 type ButtonProps = Omit<HDSButtonProps, 'variant' | 'children'> & {
   variant?:
     | HDSButtonProps['variant']
+    | 'danger'
     | 'disabled'
     | 'dropdown'
     | 'primary'
@@ -24,10 +25,13 @@ const kukkuuSecondaryButtonStyles = {
 };
 const kukkuuSupplementaryButtonStyles = {
   '--background-color': 'transparent',
-  '--background-color-hover': 'transparent',
+  '--background-color-hover': 'var(--color-black-5)',
   '--background-color-focus': 'transparent',
-  '--background-color-hover-focus': 'transparent',
-  '--border-color': 'none',
+  '--background-color-hover-focus': 'var(--color-black-5)',
+  '--border-color': 'transparent',
+  '--border-color-hover': 'transparent',
+  '--border-color-focus': 'transparent',
+  '--border-color-hover-focus': 'transparent',
 };
 const kukkuuDisabledButtonStyles = {
   '--background-color': 'var(--color-black-20)',
@@ -72,12 +76,14 @@ const kukkuuButtonStyles = {
 } as React.CSSProperties;
 
 const Button = ({
-  style = kukkuuButtonStyles,
+  style: styleProp,
   className,
   variant,
   children,
   ...rest
 }: ButtonProps) => {
+  let style: React.CSSProperties | undefined = styleProp ?? kukkuuButtonStyles;
+
   // Convert string variants to ButtonVariant enums for HDS 4.x compatibility
   let hdsVariant: HDSButtonProps['variant'] =
     variant as HDSButtonProps['variant'];
@@ -115,6 +121,10 @@ const Button = ({
         ...kukkuuButtonStyles,
         ...kukkuuDropdownButtonStyles,
       };
+      break;
+    case 'danger':
+      hdsVariant = ButtonVariant.Danger;
+      style = undefined;
       break;
     default:
       if (variant && typeof variant === 'object') {

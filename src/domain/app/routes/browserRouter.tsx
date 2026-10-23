@@ -12,12 +12,12 @@ import Profile from '../../profile/Profile';
 import WithLocaleRoute from './WithLocaleRoute';
 import HeadlessCmsPage from '../../headlessCms/HeadlessCmsPage';
 import WithProfileChildRouteAuthorization from './WithProfileChildRouteAuthorization';
-import ProfileChildDetail from '../../profile/children/child/ProfileChildDetail';
+import ProfileChildRedirect from './ProfileChildRedirect';
+import ChildEventsSearch from '../../event/search/ChildEventsSearch';
 import EventGroupPage from '../../eventGroup/EventGroupPage';
 import Event from '../../event/Event';
 import ExternalTicketSystemEventIsEnrolled from '../../event/ExternalTicketSystemEventIsEnrolled';
 import EventRedirect from '../../event/EventRedirect';
-import EventIsEnrolled from '../../event/EventIsEnrolled';
 import EnrolPage from '../../event/enrol/EnrolPage';
 import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
 import Unauthorized from '../../auth/Unauthorized';
@@ -137,8 +137,17 @@ const browserRouter = createBrowserRouter([
                 index: true,
                 element: (
                   <AppRoute
-                    titleKey="profile.child.detail.page.title"
-                    element={<ProfileChildDetail />}
+                    titleKey="profile.heading"
+                    element={<ProfileChildRedirect />}
+                  />
+                ),
+              },
+              {
+                path: 'events',
+                element: (
+                  <AppRoute
+                    titleKey="search.title"
+                    element={<ChildEventsSearch />}
                   />
                 ),
               },
@@ -171,10 +180,6 @@ const browserRouter = createBrowserRouter([
                     element={<EventRedirect />}
                   />
                 ),
-              },
-              {
-                path: 'occurrence/:occurrenceId',
-                element: <AppRoute noTitle element={<EventIsEnrolled />} />,
               },
               {
                 path: 'event/:eventId/occurrence/:occurrenceId/enrol',

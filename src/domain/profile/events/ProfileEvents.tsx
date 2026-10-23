@@ -25,7 +25,7 @@ const ProfileEvents: FunctionComponent<ProfileEventsProps> = ({ child }) => {
       enrolments={child.activeInternalAndTicketSystemEnrolments}
     />
   ) : (
-    <ProfileNoEvent />
+    <ProfileNoEvent childId={child.id} />
   );
 };
 

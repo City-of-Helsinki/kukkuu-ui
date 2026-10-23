@@ -1,6 +1,12 @@
 import { gql } from '@apollo/client';
 
 export const childByIdQuery = gql`
+  fragment EnrolmentEventGroupFields on EventGroupNode {
+    id
+    name
+    publishedAt
+  }
+
   fragment EnrolmentEventFields on EventNode {
     id
     name
@@ -9,6 +15,9 @@ export const childByIdQuery = gql`
     image
     imageAltText
     participantsPerInvite
+    eventGroup {
+      ...EnrolmentEventGroupFields
+    }
   }
 
   fragment PastEventOccurrenceFields on OccurrenceNode {
@@ -124,13 +133,29 @@ export const childByIdQuery = gql`
     __typename
   }
 
+  fragment UpcomingEventGroupEventFields on EventNode {
+    id
+    name
+    publishedAt
+    canChildEnroll(childId: $id)
+    __typename
+  }
+
   fragment UpcomingEventGroupFields on EventGroupNode {
     id
     name
     shortDescription
     image
     imageAltText
+    publishedAt
     canChildEnroll(childId: $id)
+    events(upcoming: true) {
+      edges {
+        node {
+          ...UpcomingEventGroupEventFields
+        }
+      }
+    }
     __typename
   }
 

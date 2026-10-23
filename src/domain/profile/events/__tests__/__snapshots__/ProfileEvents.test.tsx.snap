@@ -169,7 +169,7 @@ exports[`Renders events list when events of any type 1`] = `
               <button
                 aria-label="Näytä tapahtuman tiedot"
                 class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _actionWrapper_2a19a2"
-                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-black-5); --background-color-focus: transparent; --background-color-hover-focus: var(--color-black-5); --background-selected: var(--color-summer); --border-color: transparent; --border-color-hover: transparent; --border-color-focus: transparent; --border-color-hover-focus: transparent; --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
                 <span>
@@ -194,6 +194,36 @@ exports[`Renders events list when events of any type 1`] = `
           </div>
         </li>
       </ul>
+      <div
+        class="_browseEventsLinkWrapper_6fff92"
+      >
+        <a
+          class="Link-module_link__8XuKE link_hds-link__MZCD0 Link-module_disableVisitedStyles__mDppD link_hds-link--disable-visited-styles__GRNSN Link-module_hasIconEnd__-doNk"
+          href="/profile/child//events"
+        >
+          Selaa tapahtumia
+          <div
+            aria-hidden="true"
+            style="display: contents;"
+          >
+            <svg
+              aria-hidden="true"
+              aria-label="arrow-right"
+              class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M14 5.5L12.5 7L16.5 11H4V13H16.5L12.5 17L14 18.5L20.5 12L14 5.5Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
     </li>
     <li
       class="_item_8754a1"
@@ -258,7 +288,7 @@ exports[`Renders events list when events of any type 1`] = `
               <button
                 aria-label="Lue lisää"
                 class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _actionWrapper_2a19a2"
-                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-black-5); --background-color-focus: transparent; --background-color-hover-focus: var(--color-black-5); --background-selected: var(--color-summer); --border-color: transparent; --border-color-hover: transparent; --border-color-focus: transparent; --border-color-hover-focus: transparent; --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
                 <span>
@@ -283,6 +313,36 @@ exports[`Renders events list when events of any type 1`] = `
           </div>
         </li>
       </ul>
+      <div
+        class="_browseEventsLinkWrapper_6fff92"
+      >
+        <a
+          class="Link-module_link__8XuKE link_hds-link__MZCD0 Link-module_disableVisitedStyles__mDppD link_hds-link--disable-visited-styles__GRNSN Link-module_hasIconEnd__-doNk"
+          href="/profile/child//events"
+        >
+          Selaa tapahtumia
+          <div
+            aria-hidden="true"
+            style="display: contents;"
+          >
+            <svg
+              aria-hidden="true"
+              aria-label="arrow-right"
+              class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M14 5.5L12.5 7L16.5 11H4V13H16.5L12.5 17L14 18.5L20.5 12L14 5.5Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
     </li>
     <li
       class="_item_8754a1"
@@ -337,7 +397,7 @@ exports[`Renders events list when events of any type 1`] = `
               <button
                 aria-label="Näytä tapahtuman tiedot"
                 class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _actionWrapper_2a19a2"
-                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-black-5); --background-color-focus: transparent; --background-color-hover-focus: var(--color-black-5); --background-selected: var(--color-summer); --border-color: transparent; --border-color-hover: transparent; --border-color-focus: transparent; --border-color-hover-focus: transparent; --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
                 <span>
@@ -509,7 +569,7 @@ exports[`Renders events list when only enrolments 1`] = `
               <button
                 aria-label="Näytä tapahtuman tiedot"
                 class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _actionWrapper_2a19a2"
-                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-black-5); --background-color-focus: transparent; --background-color-hover-focus: var(--color-black-5); --background-selected: var(--color-summer); --border-color: transparent; --border-color-hover: transparent; --border-color-focus: transparent; --border-color-hover-focus: transparent; --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
                 <span>
@@ -534,6 +594,36 @@ exports[`Renders events list when only enrolments 1`] = `
           </div>
         </li>
       </ul>
+      <div
+        class="_browseEventsLinkWrapper_6fff92"
+      >
+        <a
+          class="Link-module_link__8XuKE link_hds-link__MZCD0 Link-module_disableVisitedStyles__mDppD link_hds-link--disable-visited-styles__GRNSN Link-module_hasIconEnd__-doNk"
+          href="/profile/child//events"
+        >
+          Selaa tapahtumia
+          <div
+            aria-hidden="true"
+            style="display: contents;"
+          >
+            <svg
+              aria-hidden="true"
+              aria-label="arrow-right"
+              class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M14 5.5L12.5 7L16.5 11H4V13H16.5L12.5 17L14 18.5L20.5 12L14 5.5Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
     </li>
   </ul>
 </div>
@@ -597,7 +687,7 @@ exports[`Renders events list when only past events 1`] = `
               <button
                 aria-label="Näytä tapahtuman tiedot"
                 class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _actionWrapper_2a19a2"
-                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-black-5); --background-color-focus: transparent; --background-color-hover-focus: var(--color-black-5); --background-selected: var(--color-summer); --border-color: transparent; --border-color-hover: transparent; --border-color-focus: transparent; --border-color-hover-focus: transparent; --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
                 <span>
@@ -695,7 +785,7 @@ exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
               <button
                 aria-label="Lue lisää"
                 class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _actionWrapper_2a19a2"
-                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+                style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-black-5); --background-color-focus: transparent; --background-color-hover-focus: var(--color-black-5); --background-selected: var(--color-summer); --border-color: transparent; --border-color-hover: transparent; --border-color-focus: transparent; --border-color-hover-focus: transparent; --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
                 type="button"
               >
                 <span>
@@ -720,6 +810,36 @@ exports[`Renders events list when only upcomingEventsAndEventGroups 1`] = `
           </div>
         </li>
       </ul>
+      <div
+        class="_browseEventsLinkWrapper_6fff92"
+      >
+        <a
+          class="Link-module_link__8XuKE link_hds-link__MZCD0 Link-module_disableVisitedStyles__mDppD link_hds-link--disable-visited-styles__GRNSN Link-module_hasIconEnd__-doNk"
+          href="/profile/child//events"
+        >
+          Selaa tapahtumia
+          <div
+            aria-hidden="true"
+            style="display: contents;"
+          >
+            <svg
+              aria-hidden="true"
+              aria-label="arrow-right"
+              class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M14 5.5L12.5 7L16.5 11H4V13H16.5L12.5 17L14 18.5L20.5 12L14 5.5Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </div>
+        </a>
+      </div>
     </li>
   </ul>
 </div>

@@ -20,20 +20,58 @@
   --border-color-selected-hover-focus: var(--color-summer);
 
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: var(--spacing-2-xs) var(--spacing-l);
+  font-weight: 500;
+  font-size: var(--fontsize-body-m, 1rem);
+  line-height: var(--lineheight-m, 1.5);
+  color: var(--color);
+  background-color: var(--background-color);
+  border: 2px solid var(--border-color);
+  box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-hover);
+    background-color: var(--background-color-hover);
+    border-color: var(--border-color-hover);
+  }
+
+  &:focus,
+  &:focus-visible {
+    color: var(--color-focus);
+    background-color: var(--background-color-focus);
+    border-color: var(--border-color-focus);
+    outline: 3px solid var(--color-coat-of-arms);
+    outline-offset: 2px;
+  }
+
+  :global(.hds-button__label) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    line-height: 1.25;
+  }
 
   &.secondary {
     --background-color: var(--color-white);
-    --background-color-hover: var(--color-white);
+    --background-color-hover: var(--color-black-5);
     --background-color-focus: var(--color-white);
-    --background-color-hover-focus: var(--color-white);
+    --background-color-hover-focus: var(--color-black-5);
   }
 
   &.supplementary {
     --background-color: transparent;
-    --background-color-hover: transparent;
+    --background-color-hover: var(--color-black-5);
     --background-color-focus: transparent;
-    --background-color-hover-focus: transparent;
-    --border-color: none;
+    --background-color-hover-focus: var(--color-black-5);
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --border-color-focus: transparent;
   }
 
   &.disabled {

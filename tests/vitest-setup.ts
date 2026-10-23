@@ -45,6 +45,19 @@ class ResizeObserverMock {
 
 global.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
 
+class IntersectionObserverMock {
+  root = null;
+  rootMargin = '';
+  thresholds = [];
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+  takeRecords = vi.fn(() => []);
+}
+
+global.IntersectionObserver =
+  IntersectionObserverMock as unknown as typeof IntersectionObserver;
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const mockScrollTo = vi.fn((x?: number | ScrollToOptions, y?: number) => {});
 

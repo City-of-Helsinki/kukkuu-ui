@@ -39,16 +39,15 @@ export default function Enrolment({ enrolment, childId }: EnrolmentProps) {
         DEFAULT_TIME_FORMAT
       )
     : startTime;
-  const occurrencePath =
-    '/:lang/profile/child/:childId/occurrence/:occurrenceId'
-      .replace(':lang', language)
-      .replace(':childId', childId)
-      .replace(':occurrenceId', enrolment.occurrence.id);
+  const eventPath = '/:lang/profile/child/:childId/event/:eventId'
+    .replace(':lang', language)
+    .replace(':childId', childId)
+    .replace(':eventId', enrolment.occurrence.event.id);
 
   return (
     <div className={styles.container}>
       <Link
-        to={occurrencePath}
+        to={eventPath}
         className={styles.occurrenceLink}
         onMouseDown={(e) => {
           e.stopPropagation();

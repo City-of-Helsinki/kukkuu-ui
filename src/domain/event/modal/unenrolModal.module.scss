@@ -1,0 +1,148 @@
+@use '~styles/variables';
+
+.modal {
+  max-width: 36rem !important;
+  width: 100%;
+}
+
+.promptText {
+  font-size: var(--fontsize-body-m, 1rem);
+  color: var(--color-black-90, #1a1a1a);
+  margin-top: 0;
+  margin-bottom: var(--spacing-m);
+  line-height: 1.5;
+}
+
+.enrolmentCard {
+  background-color: var(--color-gold-light, #fef4cf);
+  border: 2px solid var(--color-summer, #ffc61e);
+  border-radius: var(--spacing-2-xs, 4px);
+  padding: var(--spacing-m);
+  margin-bottom: var(--spacing-m);
+}
+
+.eventTitle {
+  font-size: var(--fontsize-heading-m, 1.375rem);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+  color: var(--color-black-90, #1a1a1a);
+
+  .eventTitleLink {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+.badgeRow {
+  margin-bottom: var(--spacing-s);
+
+  .enrolledBadge {
+    background-color: var(--color-summer, #ffc61e);
+    color: var(--color-black-90, #1a1a1a);
+    font-weight: 600;
+  }
+}
+
+.metaList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  font-size: var(--fontsize-body-m, 1rem);
+  color: var(--color-black-90, #1a1a1a);
+
+  .icon {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-black-90, #1a1a1a);
+  }
+
+  .timeGroup {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-left: var(--spacing-s);
+  }
+}
+
+.detailsLinkWrapper {
+  margin-top: var(--spacing-s);
+  padding-top: var(--spacing-xs);
+
+  .detailsLink {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-3-xs);
+    color: var(--color-coat-of-arms, #001a82);
+    font-weight: 500;
+    text-decoration: underline;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+.deadlineNotice {
+  color: var(--color-error, #b01038);
+  font-size: var(--fontsize-body-s, 0.875rem);
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-m);
+}
+
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-s);
+  margin-top: var(--spacing-l);
+
+  .confirmButton {
+    background-color: var(--color-error, #b01038) !important;
+    border-color: var(--color-error, #b01038) !important;
+    color: var(--color-white, #fff) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    &:hover {
+      background-color: var(--color-error-dark, #8c0c2c) !important;
+      border-color: var(--color-error-dark, #8c0c2c) !important;
+    }
+
+    > div {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 0 !important;
+      margin: 0 !important;
+    }
+
+    > div > svg,
+    svg {
+      display: block !important;
+    }
+
+    > span {
+      display: inline-flex !important;
+      align-items: center !important;
+      line-height: 1 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+}
