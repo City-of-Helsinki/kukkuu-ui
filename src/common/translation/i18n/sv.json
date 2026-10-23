@@ -99,6 +99,11 @@
     },
     "breadcrumbListLabel": "Brödsmulor",
     "breadcrumbNavigationLabel": "Brödsmulnavigering",
+    "breadcrumbs": {
+      "home": "Framsida",
+      "events": "Evenemang",
+      "profile": "Fadderbarn"
+    },
     "closeButton": {
       "altText": "Stäng"
     },
@@ -162,12 +167,28 @@
     "button": {
       "next": "Nästa",
       "previous": "Föregående"
-    }
+    },
+    "dateTimeSeparator": "kl."
   },
   "navigation": {
     "error": "Det gick inte att byta sida. Försök igen senare"
   },
   "profile": {
+    "breadcrumbs": {
+      "account": "Konto"
+    },
+    "hero": {
+      "title": "Konto",
+      "titleWithGreeting": "Konto – Hej {{firstName}}!",
+      "description": "Här ser du dina barns kommande evenemang och inbjudningsbrev säsongsvis. Du kan avboka anmälningar, redigera barnens och den närstående vuxnas uppgifter eller registrera ett nytt barn."
+    },
+    "guardian": {
+      "heading": "Närstående vuxen",
+      "edit": {
+        "buttonText": "Redigera uppgifter",
+        "ariaLabel": "Redigera den närstående vuxnas uppgifter. Öppnar en dialogruta."
+      }
+    },
     "common": {
       "message": {
         "serviceDescription": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang. Varje fadderbarn kan delta i två evenemang per år, ett evenemang på våren och ett evenemang på hösten. Ibland kan det finnas fler evenemang tillgängliga, om dem informerar vi separat. Vi ses i kulturens tecken!"
@@ -182,6 +203,7 @@
           "text": "Fadderbarn"
         }
       },
+      "browseEventsButton": "Bläddra bland evenemang",
       "detail": {
         "availableEvent": {
           "readMoreAndEnrolButton": "Läs mer och anmäl dig till evenemang",
@@ -190,6 +212,7 @@
         "availableEventGroup": {
           "readMoreButton": "Bläddra i händelser"
         },
+        "browseEventsButton": "Bläddra bland evenemang",
         "birthyear": "Barnets födelseår",
         "delete": {
           "prompt": {
@@ -212,9 +235,23 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Visa Fadderbarnets uppgifter"
-      }
+      },
+      "edit": {
+        "buttonText": "Redigera uppgifter",
+        "ariaLabel": "Redigera barnets {{name}} uppgifter. Öppnar en dialogruta."
+      },
+      "themePath": "Temastig: {{themePath}}"
     },
     "children": {
+      "heading": "Kulturbarn och evenemang",
+      "addChild": {
+        "buttonText": "Registrera ett nytt barn",
+        "buttonAriaLabel": "Registrera ett nytt barn. Öppnar en dialogruta."
+      },
+      "emptyState": {
+        "title": "Inga fadderbarn",
+        "text": "Du har ännu inte registrerat några kulturbarn i tjänsten. Du kan registrera ett nytt barn för att börja med kulturupplevelserna!"
+      },
       "noChild": {
         "text": "Inga fadderbarn"
       },
@@ -230,6 +267,17 @@
       }
     },
     "events": {
+      "future": {
+        "heading": "Kommande evenemang",
+        "enrolmentNotStarted": "Anmälan till evenemang börjar senare."
+      },
+      "searchPrompt": "Anmälan till säsongens evenemang har börjat!",
+      "searchButton": "Sök evenemang",
+      "enrolledBadge": "Anmäld",
+      "cancelEnrolmentButton": "Avboka",
+      "cancelEnrolmentAriaLabel": "Avboka anmälan till evenemanget {{eventName}}. Öppnar en dialogruta.",
+      "cancelDisabledTooltip": "Anmälan kan inte längre avbokas på nätet eftersom det är för kort tid kvar till evenemangets start.",
+      "readMoreButton": "Läs mer",
       "enrolled": {
         "heading": "Dina kommande evenemang"
       },
@@ -237,7 +285,8 @@
         "heading": "Evenemangsinbjudningar"
       },
       "past": {
-        "heading": "Gångna evenemang"
+        "heading": "Gångna evenemang",
+        "empty": "Inga tidigare evenemang"
       }
     },
     "childNotes": {
@@ -340,6 +389,20 @@
   "event": {
     "cancellation": {
       "buttonText": "Avboka din anmälan",
+      "modal": {
+        "title": "Avboka anmälan",
+        "prompt": "Är du säker på att du vill avboka din anmälan till evenemanget?",
+        "keepButton": "Behåll anmälan",
+        "confirmButton": "Avboka anmälan",
+        "viewDetailsLink": "Visa information om evenemangstiden",
+        "enrolledBadge": "Anmäld: {{name}}",
+        "childWithCount": "{{name}} + {{count}} extra barn",
+        "childWithCount_one": "{{name}} + {{count}} extra barn",
+        "childWithCount_other": "{{name}} + {{count}} extra barn",
+        "guardianWithCount": "{{name}} + {{count}} extra vuxen",
+        "guardianWithCount_one": "{{name}} + {{count}} extra vuxen",
+        "guardianWithCount_other": "{{name}} + {{count}} extra vuxna"
+      },
       "confirmationModal": {
         "cancel": {
           "buttonText": "Tillbaka till evenemangssidan"
@@ -382,6 +445,70 @@
     "externalTicketSystemButtons": {
       "back": "Tillbaka",
       "continue": "Fortsätt till anmälan"
+    },
+    "description": {
+      "title": "Beskrivning"
+    },
+    "venueInfo": {
+      "title": "Information om evenemangsplatsen"
+    },
+    "hero": {
+      "backButtonAriaLabel": "Gå tillbaka",
+      "enrolButton": "Anmäl dig",
+      "viewOccurrencesButton": "Se evenemangstider och anmäl dig",
+      "enrolledBadge": "Anmäld",
+      "cancelEnrolmentButton": "Avboka anmälan",
+      "viewAllOccurrencesLink": "Se alla tidpunkter",
+      "dateRangeWithCount": "{{dateRange}} ({{count}} tillfällen)",
+      "dateRangeWithCount_one": "{{dateRange}} ({{count}} tillfälle)",
+      "dateRangeWithCount_other": "{{dateRange}} ({{count}} tillfällen)"
+    },
+    "sidebar": {
+      "dateTitle": "Datum och tid",
+      "durationTitle": "Längd",
+      "occurrencesCount": "{{count}} evenemangstider",
+      "occurrencesCount_one": "{{count}} evenemangstid",
+      "occurrencesCount_other": "{{count}} evenemangstider",
+      "viewOccurrencesAndEnrol": "Se evenemangstider och anmäl dig",
+      "locationTitle": "Plats",
+      "openMap": "Öppna kartan",
+      "participantsTitle": "Deltagare",
+      "languagesTitle": "Språk"
+    },
+    "occurrencesTable": {
+      "title": "Evenemangstider och anmälan",
+      "date": "Datum",
+      "time": "Klockslag",
+      "remainingCapacity": "Platser kvar",
+      "remainingCount": "{{count}} platser",
+      "remainingCount_one": "{{count}} plats",
+      "remainingCount_other": "{{count}} platser",
+      "unlimited": "Obegränsat",
+      "full": "Fullbokat",
+      "enrolButton": "Anmäl dig",
+      "cancelButton": "Avboka",
+      "alreadyEnrolledOther": "Anmäld till en annan tid",
+      "subscribeNotificationButton": "Beställ avisering",
+      "cancelNotificationSubscription": "Avbeställ avisering",
+      "action": "Åtgärd",
+      "noOccurrences": "Inga kommande evenemangstider tillgängliga."
+    },
+    "enrolModal": {
+      "title": "Bekräfta anmälan",
+      "forWhom": "För vem",
+      "freeSpots": "Lediga platser: {{count}}",
+      "freeSpots_one": "Lediga platser: 1",
+      "freeSpots_other": "Lediga platser: {{count}}",
+      "freeSpots_zero": "Inga lediga platser",
+      "participantsTitle": "Deltagare",
+      "cultureKidsLabel": "Kulturfadderbarn *",
+      "guardianLabel": "Närstående vuxen *",
+      "guardianYou": "{{name}} (du)",
+      "defaultGuardian": "Vårdnadshavare",
+      "quotaNotice": "Ett kulturfadderbarn kan delta i ett evenemang per säsong. Anmälan förbrukar platsen för: {{name}}.",
+      "bindingNotice": "Anmälan är bindande. Om du får förhinder, avboka senast ett dygn före evenemanget så att platsen blir tillgänglig för en annan familj.",
+      "confirmButton": "Bekräfta anmälan",
+      "cancelButton": "Avbryt"
     }
   },
   "eventRedirectPage": {
@@ -882,6 +1009,47 @@
           "authenticatedErrorMessage": "Det gick inte att ladda dina data. Försök att logga in på tjänsten igen."
         }
       }
+    }
+  },
+  "search": {
+    "title": "Sök evenemang",
+    "hero": {
+      "title": "Sök evenemang",
+      "greeting": "Hej {{name}}!",
+      "description": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang. Varje fadderbarn kan delta i två evenemang per år, ett evenemang på våren och ett evenemang på hösten. Ibland kan det finnas fler evenemang tillgängliga, om dem informerar vi separat. Vi ses i kulturens tecken!",
+      "selectChild": "Välj barn",
+      "childAge": "{{age}} år"
+    },
+    "childSelector": {
+      "description": "Val av barn uppdaterar sökresultaten automatiskt."
+    },
+    "filter": {
+      "title": "Filtrera sökresultat",
+      "searchLabel": "Sök med ord",
+      "searchPlaceholder": "T.ex. konsert, verkstad...",
+      "dateLabel": "Tidpunkt",
+      "datePlaceholder": "Välj tidpunkt",
+      "venueLabel": "Evenemangsplats",
+      "venuePlaceholder": "Välj plats",
+      "submitButton": "Sök",
+      "clearButton": "Rensa sökkriterier"
+    },
+    "results": {
+      "count": "{{count}} sökresultat",
+      "count_one": "{{count}} sökresultat",
+      "count_other": "{{count}} sökresultat",
+      "count_zero": "0 sökresultat",
+      "noResults": "Inga tillgängliga evenemang.",
+      "loadMore": "Visa fler ({{count}})"
+    },
+    "card": {
+      "enrolButton": "Anmäl dig",
+      "readMoreButton": "Läs mer",
+      "readMoreAndEnrolButton": "Läs mer och anmäl dig",
+      "languages": "Språk: {{languages}}",
+      "dateRangeWithCount": "{{dateRange}} ({{count}} tillfällen)",
+      "badgeExample1": "Exempelmärke 1",
+      "badgeExample2": "Exempelmärke 2"
     }
   }
 }

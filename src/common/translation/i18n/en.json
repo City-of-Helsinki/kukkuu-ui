@@ -99,6 +99,11 @@
     },
     "breadcrumbListLabel": "Breadcrumbs",
     "breadcrumbNavigationLabel": "Breadcrumb navigation",
+    "breadcrumbs": {
+      "home": "Home",
+      "events": "Events",
+      "profile": "Culture Kids"
+    },
     "closeButton": {
       "altText": "Close"
     },
@@ -162,12 +167,28 @@
     "button": {
       "next": "Next",
       "previous": "Previous"
-    }
+    },
+    "dateTimeSeparator": "at"
   },
   "navigation": {
     "error": "Failed to change page. Please try again later"
   },
   "profile": {
+    "breadcrumbs": {
+      "account": "Account"
+    },
+    "hero": {
+      "title": "Account",
+      "titleWithGreeting": "Account – Hi {{firstName}}!",
+      "description": "Here you can see your children's upcoming events and invitation letters by season. You can cancel registrations, edit children's and guardian's details, or register a new child."
+    },
+    "guardian": {
+      "heading": "Guardian",
+      "edit": {
+        "buttonText": "Edit details",
+        "ariaLabel": "Edit guardian details. Opens a dialog."
+      }
+    },
     "common": {
       "message": {
         "serviceDescription": "We are delighted that you are involved in Culture Kids! Here you can view event invitations and register for events. All Culture Kids are welcome to attend two events per year, one event in the spring and one in the autumn. Sometimes there may be more events available, in which case we will announce it separately. We are looking forward to seeing you!"
@@ -182,6 +203,7 @@
           "text": "Culture Kid"
         }
       },
+      "browseEventsButton": "Browse events",
       "detail": {
         "availableEvent": {
           "readMoreAndEnrolButton": "Read more and register for event",
@@ -190,6 +212,7 @@
         "availableEventGroup": {
           "readMoreButton": "Browse events"
         },
+        "browseEventsButton": "Browse events",
         "birthyear": "Child's year of birth",
         "delete": {
           "prompt": {
@@ -212,9 +235,23 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Navigate to child detail"
-      }
+      },
+      "edit": {
+        "buttonText": "Edit details",
+        "ariaLabel": "Edit details for child {{name}}. Opens a dialog."
+      },
+      "themePath": "Theme path: {{themePath}}"
     },
     "children": {
+      "heading": "Culture Kids and events",
+      "addChild": {
+        "buttonText": "Register a new child",
+        "buttonAriaLabel": "Register a new child. Opens a dialog."
+      },
+      "emptyState": {
+        "title": "No children added",
+        "text": "You have not registered any Culture Kids yet. You can register a child to get started with cultural experiences!"
+      },
       "noChild": {
         "text": "No children have been added"
       },
@@ -230,6 +267,17 @@
       }
     },
     "events": {
+      "future": {
+        "heading": "Upcoming events",
+        "enrolmentNotStarted": "Registration for events starts later."
+      },
+      "searchPrompt": "Registration for season events is now open!",
+      "searchButton": "Search events",
+      "enrolledBadge": "Enrolled",
+      "cancelEnrolmentButton": "Cancel",
+      "cancelEnrolmentAriaLabel": "Cancel enrollment for event {{eventName}}. Opens a dialog.",
+      "cancelDisabledTooltip": "Enrollment can no longer be cancelled online as the event start time is too close.",
+      "readMoreButton": "Read more",
       "enrolled": {
         "heading": "Your upcoming events"
       },
@@ -237,7 +285,8 @@
         "heading": "Event invitations"
       },
       "past": {
-        "heading": "Past events"
+        "heading": "Past events",
+        "empty": "No past events"
       }
     },
     "childNotes": {
@@ -340,6 +389,20 @@
   "event": {
     "cancellation": {
       "buttonText": "Cancel registration",
+      "modal": {
+        "title": "Cancel enrolment",
+        "prompt": "Are you sure you want to cancel your enrolment to the event?",
+        "keepButton": "Keep enrolment",
+        "confirmButton": "Cancel enrolment",
+        "viewDetailsLink": "View event time details",
+        "enrolledBadge": "Enrolled: {{name}}",
+        "childWithCount": "{{name}} + {{count}} extra children",
+        "childWithCount_one": "{{name}} + {{count}} extra child",
+        "childWithCount_other": "{{name}} + {{count}} extra children",
+        "guardianWithCount": "{{name}} + {{count}} extra adult",
+        "guardianWithCount_one": "{{name}} + {{count}} extra adult",
+        "guardianWithCount_other": "{{name}} + {{count}} extra adults"
+      },
       "confirmationModal": {
         "cancel": {
           "buttonText": "Return to the event page"
@@ -382,6 +445,70 @@
     "externalTicketSystemButtons": {
       "back": "Back",
       "continue": "Continue to register"
+    },
+    "description": {
+      "title": "Description"
+    },
+    "venueInfo": {
+      "title": "Venue information"
+    },
+    "hero": {
+      "backButtonAriaLabel": "Go back",
+      "enrolButton": "Enrol",
+      "viewOccurrencesButton": "View event times and enrol",
+      "enrolledBadge": "Enrolled",
+      "cancelEnrolmentButton": "Cancel enrolment",
+      "viewAllOccurrencesLink": "View all event times",
+      "dateRangeWithCount": "{{dateRange}} ({{count}} occurrences)",
+      "dateRangeWithCount_one": "{{dateRange}} ({{count}} occurrence)",
+      "dateRangeWithCount_other": "{{dateRange}} ({{count}} occurrences)"
+    },
+    "sidebar": {
+      "dateTitle": "Date and time",
+      "durationTitle": "Duration",
+      "occurrencesCount": "{{count}} event times",
+      "occurrencesCount_one": "{{count}} event time",
+      "occurrencesCount_other": "{{count}} event times",
+      "viewOccurrencesAndEnrol": "View event times and enrol",
+      "locationTitle": "Location",
+      "openMap": "Open map",
+      "participantsTitle": "Participants",
+      "languagesTitle": "Languages"
+    },
+    "occurrencesTable": {
+      "title": "Event times and enrolment",
+      "date": "Date",
+      "time": "Time",
+      "remainingCapacity": "Remaining spots",
+      "remainingCount": "{{count}} spots",
+      "remainingCount_one": "{{count}} spot",
+      "remainingCount_other": "{{count}} spots",
+      "unlimited": "Unlimited",
+      "full": "Event full",
+      "enrolButton": "Enrol",
+      "cancelButton": "Cancel",
+      "alreadyEnrolledOther": "Enrolled in another event time",
+      "subscribeNotificationButton": "Subscribe to notifications",
+      "cancelNotificationSubscription": "Cancel notification subscription",
+      "action": "Action",
+      "noOccurrences": "No upcoming event times available."
+    },
+    "enrolModal": {
+      "title": "Confirm enrolment",
+      "forWhom": "For whom",
+      "freeSpots": "Available spots: {{count}}",
+      "freeSpots_one": "Available spots: 1",
+      "freeSpots_other": "Available spots: {{count}}",
+      "freeSpots_zero": "No available spots",
+      "participantsTitle": "Participants",
+      "cultureKidsLabel": "Culture Kids *",
+      "guardianLabel": "Accompanying adult *",
+      "guardianYou": "{{name}} (you)",
+      "defaultGuardian": "Guardian",
+      "quotaNotice": "A Culture Kid can participate in one event per season. Enrolment uses the spot for: {{name}}.",
+      "bindingNotice": "Enrolment is binding. If you cannot attend, please cancel your spot at least 24 hours before the event so it can be offered to another family.",
+      "confirmButton": "Confirm enrolment",
+      "cancelButton": "Cancel"
     }
   },
   "eventRedirectPage": {
@@ -882,6 +1009,47 @@
           "authenticatedErrorMessage": "There was a problem loading your data. Please try logging into the service again."
         }
       }
+    }
+  },
+  "search": {
+    "title": "Search events",
+    "hero": {
+      "title": "Search events",
+      "greeting": "Hello {{name}}!",
+      "description": "We are delighted that you are involved in Culture Kids! Here you can view event invitations and register for events. All Culture Kids are welcome to attend two events per year, one event in the spring and one in the autumn. Sometimes there may be more events available, in which case we will announce it separately. We are looking forward to seeing you!",
+      "selectChild": "Select child",
+      "childAge": "{{age}} years"
+    },
+    "childSelector": {
+      "description": "Selecting a child updates search results automatically."
+    },
+    "filter": {
+      "title": "Filter search results",
+      "searchLabel": "Search by keyword",
+      "searchPlaceholder": "E.g. concert, workshop...",
+      "dateLabel": "Date",
+      "datePlaceholder": "Select date",
+      "venueLabel": "Venue",
+      "venuePlaceholder": "Select venue",
+      "submitButton": "Search",
+      "clearButton": "Clear search criteria"
+    },
+    "results": {
+      "count": "{{count}} search result",
+      "count_one": "{{count}} search result",
+      "count_other": "{{count}} search results",
+      "count_zero": "0 search results",
+      "noResults": "No available events.",
+      "loadMore": "Show more ({{count}})"
+    },
+    "card": {
+      "enrolButton": "Enrol",
+      "readMoreButton": "Read more",
+      "readMoreAndEnrolButton": "Read more and enrol",
+      "languages": "Languages: {{languages}}",
+      "dateRangeWithCount": "{{dateRange}} ({{count}} occurrences)",
+      "badgeExample1": "Example badge 1",
+      "badgeExample2": "Example badge 2"
     }
   }
 }
