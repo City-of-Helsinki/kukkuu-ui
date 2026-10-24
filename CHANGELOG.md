@@ -401,6 +401,19 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.18.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.18.0...kukkuu-ui-v3.18.1) (2026-10-24)
+
+
+### Bug Fixes
+
+* Use latest Node.js 24 LTS Refs: KK-1605 ([dd98ff8](https://github.com/City-of-Helsinki/kukkuu-ui/commit/dd98ff8e9980a67558a3d70c41a97f771d8e2114))
+
+
+### Dependencies
+
+* Bump dompurify from 3.4.13 to 3.4.16 ([5e6996f](https://github.com/City-of-Helsinki/kukkuu-ui/commit/5e6996f0e774cc2eb0faa9dccaa16e258c933682))
+* Dompurify minimumReleaseAgeExclude Refs: RATY-357 ([2508d7d](https://github.com/City-of-Helsinki/kukkuu-ui/commit/2508d7d615602253d5e7bdc395a13312c27f8d6a))
+
 ## [3.18.0](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.17.5...kukkuu-ui-v3.18.0) (2026-10-14)
 
 
