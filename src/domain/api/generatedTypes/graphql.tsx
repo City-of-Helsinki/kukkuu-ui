@@ -2336,6 +2336,13 @@ export type ChildEventInvitationLabelQuery = {
   } | null;
 };
 
+export type EnrolmentEventGroupFieldsFragment = {
+  __typename?: 'EventGroupNode';
+  id: string;
+  name: string | null;
+  publishedAt: any | null;
+};
+
 export type EnrolmentEventFieldsFragment = {
   __typename?: 'EventNode';
   id: string;
@@ -2345,6 +2352,12 @@ export type EnrolmentEventFieldsFragment = {
   image: string;
   imageAltText: string | null;
   participantsPerInvite: EventParticipantsPerInvite;
+  eventGroup: {
+    __typename?: 'EventGroupNode';
+    id: string;
+    name: string | null;
+    publishedAt: any | null;
+  } | null;
 };
 
 export type PastEventOccurrenceFieldsFragment = {
@@ -2427,6 +2440,12 @@ export type EnrolmentOccurrenceFieldsFragment = {
     image: string;
     imageAltText: string | null;
     participantsPerInvite: EventParticipantsPerInvite;
+    eventGroup: {
+      __typename?: 'EventGroupNode';
+      id: string;
+      name: string | null;
+      publishedAt: any | null;
+    } | null;
   };
 };
 
@@ -2453,6 +2472,12 @@ export type ActiveInternalEnrolmentFieldsFragment = {
       image: string;
       imageAltText: string | null;
       participantsPerInvite: EventParticipantsPerInvite;
+      eventGroup: {
+        __typename?: 'EventGroupNode';
+        id: string;
+        name: string | null;
+        publishedAt: any | null;
+      } | null;
     };
   };
 };
@@ -2469,6 +2494,12 @@ export type ActiveTicketmasterEnrolmentFieldsFragment = {
     image: string;
     imageAltText: string | null;
     participantsPerInvite: EventParticipantsPerInvite;
+    eventGroup: {
+      __typename?: 'EventGroupNode';
+      id: string;
+      name: string | null;
+      publishedAt: any | null;
+    } | null;
   };
 };
 
@@ -2484,6 +2515,12 @@ export type ActiveLippupisteEnrolmentFieldsFragment = {
     image: string;
     imageAltText: string | null;
     participantsPerInvite: EventParticipantsPerInvite;
+    eventGroup: {
+      __typename?: 'EventGroupNode';
+      id: string;
+      name: string | null;
+      publishedAt: any | null;
+    } | null;
   };
 };
 
@@ -2499,6 +2536,12 @@ export type ActiveTixlyEnrolmentFieldsFragment = {
     image: string;
     imageAltText: string | null;
     participantsPerInvite: EventParticipantsPerInvite;
+    eventGroup: {
+      __typename?: 'EventGroupNode';
+      id: string;
+      name: string | null;
+      publishedAt: any | null;
+    } | null;
   };
 };
 
@@ -2530,6 +2573,12 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
               image: string;
               imageAltText: string | null;
               participantsPerInvite: EventParticipantsPerInvite;
+              eventGroup: {
+                __typename?: 'EventGroupNode';
+                id: string;
+                name: string | null;
+                publishedAt: any | null;
+              } | null;
             };
           };
         }
@@ -2545,6 +2594,12 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
             image: string;
             imageAltText: string | null;
             participantsPerInvite: EventParticipantsPerInvite;
+            eventGroup: {
+              __typename?: 'EventGroupNode';
+              id: string;
+              name: string | null;
+              publishedAt: any | null;
+            } | null;
           };
         }
       | {
@@ -2559,6 +2614,12 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
             image: string;
             imageAltText: string | null;
             participantsPerInvite: EventParticipantsPerInvite;
+            eventGroup: {
+              __typename?: 'EventGroupNode';
+              id: string;
+              name: string | null;
+              publishedAt: any | null;
+            } | null;
           };
         }
       | {
@@ -2573,6 +2634,12 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
             image: string;
             imageAltText: string | null;
             participantsPerInvite: EventParticipantsPerInvite;
+            eventGroup: {
+              __typename?: 'EventGroupNode';
+              id: string;
+              name: string | null;
+              publishedAt: any | null;
+            } | null;
           };
         }
       | null;
@@ -2591,6 +2658,15 @@ export type UpcomingEventFieldsFragment = {
   registrationOpensAt: any | null;
 };
 
+export type UpcomingEventGroupEventFieldsFragment = {
+  __typename: 'EventNode';
+  id: string;
+  name: string | null;
+  publishedAt: any | null;
+  enrolmentDeniedReason: EnrolmentDeniedReason | null;
+  registrationOpensAt: any | null;
+};
+
 export type UpcomingEventGroupFieldsFragment = {
   __typename: 'EventGroupNode';
   id: string;
@@ -2598,14 +2674,18 @@ export type UpcomingEventGroupFieldsFragment = {
   shortDescription: string | null;
   image: string;
   imageAltText: string | null;
+  publishedAt: any | null;
   enrolmentDeniedReason: EnrolmentDeniedReason | null;
   events: {
     __typename?: 'EventNodeConnection';
     edges: Array<{
       __typename?: 'EventNodeEdge';
       node: {
-        __typename?: 'EventNode';
+        __typename: 'EventNode';
         id: string;
+        name: string | null;
+        publishedAt: any | null;
+        enrolmentDeniedReason: EnrolmentDeniedReason | null;
         registrationOpensAt: any | null;
       } | null;
     } | null>;
@@ -2624,14 +2704,18 @@ export type UpcomingEventsAndEventGroupsFieldsFragment = {
           shortDescription: string | null;
           image: string;
           imageAltText: string | null;
+          publishedAt: any | null;
           enrolmentDeniedReason: EnrolmentDeniedReason | null;
           events: {
             __typename?: 'EventNodeConnection';
             edges: Array<{
               __typename?: 'EventNodeEdge';
               node: {
-                __typename?: 'EventNode';
+                __typename: 'EventNode';
                 id: string;
+                name: string | null;
+                publishedAt: any | null;
+                enrolmentDeniedReason: EnrolmentDeniedReason | null;
                 registrationOpensAt: any | null;
               } | null;
             } | null>;
@@ -2717,6 +2801,12 @@ export type ChildByIdQueryFieldsFragment = {
                 image: string;
                 imageAltText: string | null;
                 participantsPerInvite: EventParticipantsPerInvite;
+                eventGroup: {
+                  __typename?: 'EventGroupNode';
+                  id: string;
+                  name: string | null;
+                  publishedAt: any | null;
+                } | null;
               };
             };
           }
@@ -2732,6 +2822,12 @@ export type ChildByIdQueryFieldsFragment = {
               image: string;
               imageAltText: string | null;
               participantsPerInvite: EventParticipantsPerInvite;
+              eventGroup: {
+                __typename?: 'EventGroupNode';
+                id: string;
+                name: string | null;
+                publishedAt: any | null;
+              } | null;
             };
           }
         | {
@@ -2746,6 +2842,12 @@ export type ChildByIdQueryFieldsFragment = {
               image: string;
               imageAltText: string | null;
               participantsPerInvite: EventParticipantsPerInvite;
+              eventGroup: {
+                __typename?: 'EventGroupNode';
+                id: string;
+                name: string | null;
+                publishedAt: any | null;
+              } | null;
             };
           }
         | {
@@ -2760,6 +2862,12 @@ export type ChildByIdQueryFieldsFragment = {
               image: string;
               imageAltText: string | null;
               participantsPerInvite: EventParticipantsPerInvite;
+              eventGroup: {
+                __typename?: 'EventGroupNode';
+                id: string;
+                name: string | null;
+                publishedAt: any | null;
+              } | null;
             };
           }
         | null;
@@ -2777,14 +2885,18 @@ export type ChildByIdQueryFieldsFragment = {
             shortDescription: string | null;
             image: string;
             imageAltText: string | null;
+            publishedAt: any | null;
             enrolmentDeniedReason: EnrolmentDeniedReason | null;
             events: {
               __typename?: 'EventNodeConnection';
               edges: Array<{
                 __typename?: 'EventNodeEdge';
                 node: {
-                  __typename?: 'EventNode';
+                  __typename: 'EventNode';
                   id: string;
+                  name: string | null;
+                  publishedAt: any | null;
+                  enrolmentDeniedReason: EnrolmentDeniedReason | null;
                   registrationOpensAt: any | null;
                 } | null;
               } | null>;
@@ -2889,6 +3001,12 @@ export type ChildByIdQuery = {
                   image: string;
                   imageAltText: string | null;
                   participantsPerInvite: EventParticipantsPerInvite;
+                  eventGroup: {
+                    __typename?: 'EventGroupNode';
+                    id: string;
+                    name: string | null;
+                    publishedAt: any | null;
+                  } | null;
                 };
               };
             }
@@ -2904,6 +3022,12 @@ export type ChildByIdQuery = {
                 image: string;
                 imageAltText: string | null;
                 participantsPerInvite: EventParticipantsPerInvite;
+                eventGroup: {
+                  __typename?: 'EventGroupNode';
+                  id: string;
+                  name: string | null;
+                  publishedAt: any | null;
+                } | null;
               };
             }
           | {
@@ -2918,6 +3042,12 @@ export type ChildByIdQuery = {
                 image: string;
                 imageAltText: string | null;
                 participantsPerInvite: EventParticipantsPerInvite;
+                eventGroup: {
+                  __typename?: 'EventGroupNode';
+                  id: string;
+                  name: string | null;
+                  publishedAt: any | null;
+                } | null;
               };
             }
           | {
@@ -2932,6 +3062,12 @@ export type ChildByIdQuery = {
                 image: string;
                 imageAltText: string | null;
                 participantsPerInvite: EventParticipantsPerInvite;
+                eventGroup: {
+                  __typename?: 'EventGroupNode';
+                  id: string;
+                  name: string | null;
+                  publishedAt: any | null;
+                } | null;
               };
             }
           | null;
@@ -2949,14 +3085,18 @@ export type ChildByIdQuery = {
               shortDescription: string | null;
               image: string;
               imageAltText: string | null;
+              publishedAt: any | null;
               enrolmentDeniedReason: EnrolmentDeniedReason | null;
               events: {
                 __typename?: 'EventNodeConnection';
                 edges: Array<{
                   __typename?: 'EventNodeEdge';
                   node: {
-                    __typename?: 'EventNode';
+                    __typename: 'EventNode';
                     id: string;
+                    name: string | null;
+                    publishedAt: any | null;
+                    enrolmentDeniedReason: EnrolmentDeniedReason | null;
                     registrationOpensAt: any | null;
                   } | null;
                 } | null>;
@@ -3407,6 +3547,56 @@ export type UnsubscribeFromFreeSpotNotificationMutation = {
   } | null;
 };
 
+export type ChildAvailableEventsQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+export type ChildAvailableEventsQuery = {
+  __typename?: 'Query';
+  child: {
+    __typename?: 'ChildNode';
+    id: string;
+    name: string;
+    birthyear: number;
+    availableEvents: {
+      __typename?: 'EventConnection';
+      edges: Array<{
+        __typename?: 'EventEdge';
+        node: {
+          __typename?: 'EventNode';
+          id: string;
+          name: string | null;
+          shortDescription: string | null;
+          image: string;
+          imageAltText: string | null;
+          duration: number | null;
+          enrolmentDeniedReason: EnrolmentDeniedReason | null;
+          registrationOpensAt: any | null;
+          occurrences: {
+            __typename?: 'OccurrenceNodeConnection';
+            edges: Array<{
+              __typename?: 'OccurrenceNodeEdge';
+              node: {
+                __typename?: 'OccurrenceNode';
+                id: string;
+                time: any;
+                remainingCapacity: number | null;
+                occurrenceLanguage: Language;
+                venue: {
+                  __typename?: 'VenueNode';
+                  id: string;
+                  name: string | null;
+                  address: string | null;
+                };
+              } | null;
+            } | null>;
+          };
+        } | null;
+      } | null>;
+    } | null;
+  } | null;
+};
+
 export type EventOccurrenceFieldsFragment = {
   __typename?: 'OccurrenceNode';
   id: string;
@@ -3424,6 +3614,11 @@ export type EventOccurrenceFieldsFragment = {
     id: string;
     name: string | null;
     address: string | null;
+    description: string | null;
+    accessibilityInfo: string | null;
+    arrivalInstructions: string | null;
+    wcAndFacilities: string | null;
+    wwwUrl: string | null;
   };
   ticketSystem:
     | { __typename?: 'InternalOccurrenceTicketSystem'; type: TicketSystem }
@@ -3466,6 +3661,11 @@ export type EventOccurrencesFieldsFragment = {
         id: string;
         name: string | null;
         address: string | null;
+        description: string | null;
+        accessibilityInfo: string | null;
+        arrivalInstructions: string | null;
+        wcAndFacilities: string | null;
+        wwwUrl: string | null;
       };
       ticketSystem:
         | { __typename?: 'InternalOccurrenceTicketSystem'; type: TicketSystem }
@@ -3533,6 +3733,11 @@ export type EventQuery = {
             id: string;
             name: string | null;
             address: string | null;
+            description: string | null;
+            accessibilityInfo: string | null;
+            arrivalInstructions: string | null;
+            wcAndFacilities: string | null;
+            wwwUrl: string | null;
           };
           ticketSystem:
             | {
@@ -3579,6 +3784,11 @@ export type EventQuery = {
             id: string;
             name: string | null;
             address: string | null;
+            description: string | null;
+            accessibilityInfo: string | null;
+            arrivalInstructions: string | null;
+            wcAndFacilities: string | null;
+            wwwUrl: string | null;
           };
           ticketSystem:
             | {
@@ -3621,52 +3831,6 @@ export type EventQuery = {
       | {
           __typename?: 'TixlyEventTicketSystem';
           childPassword: string | null;
-          url: string | null;
-          type: TicketSystem;
-        }
-      | null;
-  } | null;
-};
-
-export type EventOccurrenceQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
-  childId: Scalars['ID']['input'];
-}>;
-
-export type EventOccurrenceQuery = {
-  __typename?: 'Query';
-  occurrence: {
-    __typename?: 'OccurrenceNode';
-    id: string;
-    time: any;
-    remainingCapacity: number | null;
-    childHasFreeSpotNotificationSubscription: boolean | null;
-    event: {
-      __typename?: 'EventNode';
-      id: string;
-      name: string | null;
-      duration: number | null;
-    };
-    venue: {
-      __typename?: 'VenueNode';
-      id: string;
-      name: string | null;
-      address: string | null;
-    };
-    ticketSystem:
-      | { __typename?: 'InternalOccurrenceTicketSystem'; type: TicketSystem }
-      | {
-          __typename?: 'LippupisteOccurrenceTicketSystem';
-          url: string | null;
-          type: TicketSystem;
-        }
-      | {
-          __typename?: 'TicketmasterOccurrenceTicketSystem';
-          url: string | null;
-          type: TicketSystem;
-        }
-      | {
-          __typename?: 'TixlyOccurrenceTicketSystem';
           url: string | null;
           type: TicketSystem;
         }
@@ -4880,6 +5044,13 @@ export const EnrolmentVenueFieldsFragmentDoc = gql`
     address
   }
 `;
+export const EnrolmentEventGroupFieldsFragmentDoc = gql`
+  fragment EnrolmentEventGroupFields on EventGroupNode {
+    id
+    name
+    publishedAt
+  }
+`;
 export const EnrolmentEventFieldsFragmentDoc = gql`
   fragment EnrolmentEventFields on EventNode {
     id
@@ -4889,7 +5060,11 @@ export const EnrolmentEventFieldsFragmentDoc = gql`
     image
     imageAltText
     participantsPerInvite
+    eventGroup {
+      ...EnrolmentEventGroupFields
+    }
   }
+  ${EnrolmentEventGroupFieldsFragmentDoc}
 `;
 export const EnrolmentOccurrenceFieldsFragmentDoc = gql`
   fragment EnrolmentOccurrenceFields on OccurrenceNode {
@@ -4983,6 +5158,16 @@ export const UpcomingEventFieldsFragmentDoc = gql`
     __typename
   }
 `;
+export const UpcomingEventGroupEventFieldsFragmentDoc = gql`
+  fragment UpcomingEventGroupEventFields on EventNode {
+    id
+    name
+    publishedAt
+    enrolmentDeniedReason(childId: $id)
+    registrationOpensAt
+    __typename
+  }
+`;
 export const UpcomingEventGroupFieldsFragmentDoc = gql`
   fragment UpcomingEventGroupFields on EventGroupNode {
     id
@@ -4990,17 +5175,18 @@ export const UpcomingEventGroupFieldsFragmentDoc = gql`
     shortDescription
     image
     imageAltText
+    publishedAt
     enrolmentDeniedReason(childId: $id)
     events(upcoming: true) {
       edges {
         node {
-          id
-          registrationOpensAt
+          ...UpcomingEventGroupEventFields
         }
       }
     }
     __typename
   }
+  ${UpcomingEventGroupEventFieldsFragmentDoc}
 `;
 export const UpcomingEventsAndEventGroupsFieldsFragmentDoc = gql`
   fragment UpcomingEventsAndEventGroupsFields on EventOrEventGroupConnection {
@@ -5252,6 +5438,11 @@ export const EventOccurrenceFieldsFragmentDoc = gql`
       id
       name
       address
+      description
+      accessibilityInfo
+      arrivalInstructions
+      wcAndFacilities
+      wwwUrl
     }
     childHasFreeSpotNotificationSubscription(childId: $childId)
     ticketSystem {
@@ -5853,6 +6044,48 @@ export type UnsubscribeFromFreeSpotNotificationMutationMutationOptions =
     UnsubscribeFromFreeSpotNotificationMutation,
     UnsubscribeFromFreeSpotNotificationMutationVariables
   >;
+export const ChildAvailableEventsQueryDocument = gql`
+  query childAvailableEventsQuery($id: ID!) {
+    child(id: $id) {
+      id
+      name
+      birthyear
+      availableEvents {
+        edges {
+          node {
+            id
+            name
+            shortDescription
+            image
+            imageAltText
+            duration
+            enrolmentDeniedReason(childId: $id)
+            registrationOpensAt
+            occurrences(upcoming: true) {
+              edges {
+                node {
+                  id
+                  time
+                  remainingCapacity
+                  occurrenceLanguage
+                  venue {
+                    id
+                    name
+                    address
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+export type ChildAvailableEventsQueryQueryResult = Apollo.QueryResult<
+  ChildAvailableEventsQuery,
+  ChildAvailableEventsQueryVariables
+>;
 export const EventQueryDocument = gql`
   query eventQuery($id: ID!, $date: Date, $time: Time, $childId: ID!) {
     event(id: $id) {
@@ -5898,18 +6131,6 @@ export const EventQueryDocument = gql`
 export type EventQueryQueryResult = Apollo.QueryResult<
   EventQuery,
   EventQueryVariables
->;
-export const EventOccurrenceQueryDocument = gql`
-  query eventOccurrenceQuery($id: ID!, $childId: ID!) {
-    occurrence(id: $id) {
-      ...EventOccurrenceFields
-    }
-  }
-  ${EventOccurrenceFieldsFragmentDoc}
-`;
-export type EventOccurrenceQueryQueryResult = Apollo.QueryResult<
-  EventOccurrenceQuery,
-  EventOccurrenceQueryVariables
 >;
 export const EventExternalTicketSystemPasswordQueryDocument = gql`
   query eventExternalTicketSystemPasswordQuery($id: ID!, $childId: ID!) {
