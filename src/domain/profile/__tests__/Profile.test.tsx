@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import * as HdsReact from 'hds-react';
 import * as ReactRouter from 'react-router';
-import { waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 import { customRender as render } from '../../../common/test/customRender';
 import Profile from '../Profile';
@@ -10,11 +10,11 @@ import { MyProfile } from '../types/ProfileQueryTypes';
 import { Language } from '../../api/generatedTypes/graphql';
 
 const profileMock: MyProfile = {
-  id: '',
+  id: 'profile-1',
   firstName: 'Test',
   lastName: 'Guy',
   email: 'test@kukkuu.fi',
-  phoneNumber: '',
+  phoneNumber: '+358401234567',
   language: Language.Fi,
   hasAcceptedCommunication: false,
   children: {
@@ -57,10 +57,43 @@ describe('Profile', () => {
     vi.spyOn(ProfileContext, 'useProfileContext').mockImplementation(
       () =>
         ({
-          profile: () => profileMock,
+          profile: profileMock,
+          isLoading: false,
+          isFetchCalled: true,
         }) as any
     );
     const { container } = render(<Profile />);
+
+    // Breadcrumbs
+    expect(screen.getByRole('link', { name: 'Etusivu' })).toBeInTheDocument();
+    expect(screen.getByText('Tili')).toBeInTheDocument();
+
+    // Hero section
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Tili – Hei Test!' })
+    ).toBeInTheDocument();
+
+    // Children section
+    expect(
+      screen.getByRole('heading', {
+        level: 2,
+        name: 'Kulttuurilapset ja tapahtumat',
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('button', {
+        name: /Rekisteröi uusi lapsi/i,
+      })
+    ).toHaveLength(2);
+
+    // Guardian section
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'Lähiaikuinen' })
+    ).toBeInTheDocument();
+    expect(screen.getByText('Test Guy')).toBeInTheDocument();
+    expect(screen.getByText('p. +358401234567')).toBeInTheDocument();
+    expect(screen.getByText('test@kukkuu.fi')).toBeInTheDocument();
+
     expect(container).toMatchSnapshot();
     expect(console.info).not.toHaveBeenCalled();
   });
