@@ -1,5 +1,9 @@
 import { gql } from '@apollo/client';
 
+/**
+ * @deprecated Legacy query for `ExternalTicketSystemEventIsEnrolled`.
+ * Superseded by the unified `eventQuery`.
+ */
 export const externalTicketSystemEventQuery = gql`
   fragment TicketmasterEventFields on TicketmasterEventTicketSystem {
     childPassword(childId: $childId)

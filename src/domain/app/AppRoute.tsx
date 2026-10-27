@@ -1,8 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { RouteProps, useNavigate } from 'react-router';
+import { RouteProps, useLocation, useNavigate } from 'react-router';
 import { useOidcClient } from 'hds-react';
 import React from 'react';
+
+import useGetPathname from '../../common/route/utils/useGetPathname';
 
 export type AppRouteProps = Omit<RouteProps, 'lazy' | 'index' | 'children'> & {
   isPrivate?: boolean;
@@ -39,12 +41,18 @@ function AppRoute({
   }
 
   const title = titleKey ? `${t(titleKey)} - ${t('appName')}` : t('appName');
+  const location = useLocation();
+  const getPathname = useGetPathname();
 
   React.useEffect(() => {
     if (!canRenderComponent) {
-      navigate('/unauthorized', { replace: true });
+      const nextDestination = `${location.pathname}${location.search}`;
+      navigate(
+        `${getPathname('/unauthorized')}?next=${encodeURIComponent(nextDestination)}`,
+        { replace: true }
+      );
     }
-  }, [canRenderComponent, navigate]);
+  }, [canRenderComponent, getPathname, location.pathname, location.search, navigate]);
 
   return (
     <>

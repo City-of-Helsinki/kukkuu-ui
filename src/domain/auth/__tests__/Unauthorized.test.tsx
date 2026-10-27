@@ -30,7 +30,7 @@ vi.mock(
 );
 
 describe('Unauthorized page', () => {
-  it('redirects to profile page if user is authenticated', async () => {
+  it('redirects to events page if user is authenticated without a custom next path', async () => {
     vi.spyOn(HdsReact, 'useOidcClient').mockImplementation(
       () =>
         ({
@@ -40,7 +40,7 @@ describe('Unauthorized page', () => {
     );
     render(<Unauthorized />);
     await waitFor(() => {
-      expect(globalThis.window.location.pathname).toBe('/profile');
+      expect(globalThis.window.location.pathname).toBe('/events');
     });
   });
   it('redirects to nextPath URL parameter when it is given', async () => {

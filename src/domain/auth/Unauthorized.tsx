@@ -26,12 +26,16 @@ const Unauthorized = () => {
   const nextPath = searchParams.get('next');
 
   const handleCallToActionClick = () => {
-    login({ url_state: `next=${nextPath}` });
+    login(nextPath ? { url_state: `next=${nextPath}` } : undefined);
   };
 
   React.useEffect(() => {
     if (isAuthenticated()) {
-      navigate(nextPath || getPathname('/profile'));
+      navigate(
+        nextPath && nextPath !== getPathname('/profile')
+          ? nextPath
+          : getPathname('/events')
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
