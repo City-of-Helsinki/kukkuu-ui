@@ -3,35 +3,288 @@
 exports[`Profile > renders profile correctly 1`] = `
 <div>
   <div
-    class="_wrapper_d9c314"
+    class="_profilePageWrapper_0a90d5"
   >
     <div
-      class="Container-module_container__Ob3K8 container_hds-container__Z01Eu _container_d9c314"
-      role="main"
+      class="_breadcrumbsWrapper_0a90d5"
+    >
+      <nav
+        aria-label="Leivänmurunavigaatio"
+        class="Breadcrumb-module_breadcrumb__ZyU0k _breadcrumbs_0a90d5"
+      >
+        <ol
+          class="Breadcrumb-module_list__OCIF5 breadcrumb_hds-breadcrumb__list__BO5kj Breadcrumb-module_desktopList__Zca5d breadcrumb_hds-breadcrumb__list--desktop__3tzvg"
+        >
+          <li
+            class="Breadcrumb-module_listItem__jt-AB breadcrumb_hds-breadcrumb__list-item__x5LfD"
+          >
+            <a
+              class="Link-module_link__8XuKE link_hds-link__MZCD0 Breadcrumb-module_link__wWMWR breadcrumb_hds-breadcrumb__link__mrCFF"
+              href="/"
+            >
+              Etusivu
+            </a>
+            <span
+              aria-hidden="true"
+              class="Breadcrumb-module_separator__Y3mAo breadcrumb_hds-breadcrumb__separator__03dHt"
+            >
+              <svg
+                aria-hidden="true"
+                aria-label="angle-right"
+                class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_extraSmall__BiUSw icon_hds-icon--size-xs__-EMHY"
+                role="img"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M13.5 12L8.5 7L10 5.5L16.5 12L10 18.5L8.5 17L13.5 12Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </li>
+          <li
+            class="Breadcrumb-module_listItem__jt-AB breadcrumb_hds-breadcrumb__list-item__x5LfD"
+          >
+            <span
+              aria-current="true"
+              class="Breadcrumb-module_activeListItem__w0t-q breadcrumb_hds-breadcrumb__list-item--active__9hvUB"
+            >
+              Tili
+            </span>
+          </li>
+        </ol>
+        <div
+          class="Breadcrumb-module_list__OCIF5 breadcrumb_hds-breadcrumb__list__BO5kj Breadcrumb-module_mobileList__E-72Q breadcrumb_hds-breadcrumb__list--mobile__AHxAJ"
+        >
+          <span
+            aria-hidden="true"
+            class="Breadcrumb-module_backArrow__4qrwp breadcrumb_hds-breadcrumb__back-arrow__GUXMy"
+          >
+            <svg
+              aria-hidden="true"
+              aria-label="angle-left"
+              class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
+              role="img"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M10.5 12L15.5 17L14 18.5L7.5 12L14 5.5L15.5 7L10.5 12Z"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+          <a
+            class="Link-module_link__8XuKE link_hds-link__MZCD0 Breadcrumb-module_link__wWMWR breadcrumb_hds-breadcrumb__link__mrCFF"
+            href="/"
+          >
+            Etusivu
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div
+      class="pageSection-module_pageSection__T0yH3 pageSection-module_withKorosBottom__NrLhN _heroSection_4011cb"
+      id="page-section"
     >
       <div
-        class="_header_d9c314"
+        class="Koros-module_koros__NeX-o pageSection-module_korosBottom__usuIU _heroKoros_4011cb"
+      >
+        <svg
+          aria-hidden="true"
+          height="85"
+          width="100%"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              height="85"
+              id="koros_basic-1"
+              patternUnits="userSpaceOnUse"
+              width="96"
+              x="0"
+              y="0"
+            >
+              <path
+                d="m0 5v80h32v-80c-8 0-8-5-16-5s-8 5-16 5z"
+                transform="scale(3)"
+              />
+            </pattern>
+          </defs>
+          <rect
+            fill="url(#koros_basic-1)"
+            height="85"
+            style="shape-rendering: crispEdges;"
+            width="100%"
+          />
+        </svg>
+      </div>
+      <div
+        class="contentContainer-module_container__jp4mL _contentContainer_4011cb"
       >
         <h1
-          class="_text_f7e7fb _h1_f7e7fb _headerTitle_d9c314"
+          class="_title_4011cb"
         >
-          Hei 
+          Tili – Hei Test!
         </h1>
-        <div
-          class="_headerContent_d9c314"
+        <p
+          class="_description_4011cb"
         >
-          <p
-            class="_text_f7e7fb _body-l_f7e7fb "
+          Täällä näet lastesi tulevat tapahtumat ja kutsukirjeet kausittain. Voit perua ilmoittautumisen, muokata lasten ja lähiaikuisen tietoja tai rekisteröidä uuden lapsen.
+        </p>
+      </div>
+    </div>
+    <div
+      class="Container-module_container__Ob3K8 container_hds-container__Z01Eu _mainContainer_0a90d5"
+      role="main"
+    >
+      <section
+        aria-labelledby="children-section-heading"
+        class="_layout_b3eb16"
+      >
+        <div
+          class="_headerRow_b3eb16"
+        >
+          <h2
+            class="_heading_b3eb16"
+            id="children-section-heading"
           >
-            Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Kummilapsi voi osallistua vuosittain kahteen tapahtumaan, yhteen tapahtumaan keväällä ja yhteen tapahtumaan syksyllä. Joskus tapahtumia voi olla tarjolla enemmän, silloin ilmoitamme siitä erikseen. Nähdään kulttuurin parissa!
-          </p>
+            Kulttuurilapset ja tapahtumat
+          </h2>
+          <button
+            aria-haspopup="dialog"
+            aria-label="Rekisteröi uusi lapsi. Avaa valintaikkunan."
+            class="Button-module_button__P7hTI Button-module_secondary__ieoHb _addChildButton_b3eb16"
+            style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+            type="button"
+          >
+            <div
+              aria-hidden="true"
+              class="Button-module_icon__Di-Ga"
+            >
+              <svg
+                aria-hidden="true"
+                aria-label="plus"
+                class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
+                role="img"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M13 6V11H18V13H13V18H11V13H6V11H11V6H13Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <span>
+              Rekisteröi uusi lapsi
+            </span>
+          </button>
         </div>
         <div
-          class="_headerActions_d9c314"
+          class="Card-module_card__s8cfC card_hds-card__3VROS Card-module_border__vQKf9 card_hds-card--border__olLTp _emptyStateCard_b3eb16"
+          role="region"
         >
+          <h3
+            class="_emptyTitle_b3eb16"
+          >
+            Ei kummilapsia
+          </h3>
+          <p
+            class="_emptyText_b3eb16"
+          >
+            Et ole vielä rekisteröinyt kulttuurilapsia palveluun. Voit rekisteröidä uuden lapsen aloittaaksesi kulttuurielämykset!
+          </p>
           <button
-            class="Button-module_button__P7hTI Button-module_secondary__ieoHb"
+            aria-haspopup="dialog"
+            aria-label="Rekisteröi uusi lapsi. Avaa valintaikkunan."
+            class="Button-module_button__P7hTI Button-module_secondary__ieoHb _emptyButton_b3eb16"
             style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+            type="button"
+          >
+            <div
+              aria-hidden="true"
+              class="Button-module_icon__Di-Ga"
+            >
+              <svg
+                aria-hidden="true"
+                aria-label="plus"
+                class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
+                role="img"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M13 6V11H18V13H13V18H11V13H6V11H11V6H13Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <span>
+              Rekisteröi uusi lapsi
+            </span>
+          </button>
+        </div>
+      </section>
+      <section
+        aria-labelledby="guardian-heading"
+        class="_guardianSection_251fdc"
+      >
+        <h2
+          class="_heading_251fdc"
+          id="guardian-heading"
+        >
+          Lähiaikuinen
+        </h2>
+        <div
+          class="Card-module_card__s8cfC card_hds-card__3VROS Card-module_border__vQKf9 card_hds-card--border__olLTp _card_251fdc"
+          role="region"
+        >
+          <svg
+            aria-hidden="true"
+            aria-label="user"
+            class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_large__WtnIH icon_hds-icon--size-l__ZpprL _avatar_251fdc"
+            role="img"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M16.2667 13C18.8082 13 20.8819 15.0031 20.9951 17.5167L21 17.7333V22H3V17.7333C3 15.1918 5.00309 13.1181 7.51667 13.0049L7.73333 13H16.2667ZM7.73333 15C6.27966 15 5.09104 16.1348 5.00499 17.5668L5 17.7333V20H19V17.7333C19 16.3172 17.8926 15.0973 16.54 15.0075L16.3766 15.0022L7.73333 15ZM12 2C14.7614 2 17 4.23858 17 7C17 9.76142 14.7614 12 12 12C9.23858 12 7 9.76142 7 7C7 4.23858 9.23858 2 12 2ZM12 4C10.3431 4 9 5.34315 9 7C9 8.65685 10.3431 10 12 10C13.6569 10 15 8.65685 15 7C15 5.34315 13.6569 4 12 4Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <h3
+            class="_name_251fdc"
+          >
+            Test Guy
+          </h3>
+          <p
+            class="_phone_251fdc"
+          >
+            p. 
+            +358401234567
+          </p>
+          <p
+            class="_email_251fdc"
+          >
+            test@kukkuu.fi
+          </p>
+          <button
+            aria-haspopup="dialog"
+            aria-label="Muokkaa lähiaikuisen tietoja. Avaa valintaikkunan."
+            class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _editButton_251fdc"
+            style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-black-5); --background-color-focus: transparent; --background-color-hover-focus: var(--color-black-5); --background-selected: var(--color-summer); --border-color: transparent; --border-color-hover: transparent; --border-color-focus: transparent; --border-color-hover-focus: transparent; --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
             type="button"
           >
             <div
@@ -55,56 +308,10 @@ exports[`Profile > renders profile correctly 1`] = `
               </svg>
             </div>
             <span>
-              Muokkaa tietojasi
+              Muokkaa tietoja
             </span>
           </button>
         </div>
-      </div>
-      <section
-        class="_layout_b3eb16"
-      >
-        <h2
-          class="_text_f7e7fb _h2_f7e7fb "
-        >
-          Kummilapset
-        </h2>
-        <div
-          class="_noChild_b3eb16"
-        >
-          <p>
-            Ei kummilapsia
-          </p>
-        </div>
-        <button
-          aria-label="Lisää lapsi"
-          class="Button-module_button__P7hTI Button-module_secondary__ieoHb"
-          style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-white); --background-color-focus: var(--color-white); --background-color-hover-focus: var(--color-white); --background-selected: var(--color-summer); --border-color: var(--color-summer); --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
-          type="button"
-        >
-          <div
-            aria-hidden="true"
-            class="Button-module_icon__Di-Ga"
-          >
-            <svg
-              aria-hidden="true"
-              aria-label="plus"
-              class="Icon-module_icon__JQmVx icon_hds-icon__O6EV0 Icon-module_small__nAApk icon_hds-icon--size-s__SloSo"
-              role="img"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clip-rule="evenodd"
-                d="M13 6V11H18V13H13V18H11V13H6V11H11V6H13Z"
-                fill="currentColor"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </div>
-          <span>
-            Lisää lapsi
-          </span>
-        </button>
       </section>
     </div>
   </div>

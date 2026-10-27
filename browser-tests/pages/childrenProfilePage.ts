@@ -2,13 +2,12 @@ import { screen } from '@testing-library/testcafe';
 import { Selector } from 'testcafe';
 
 export const childrenProfilePage = {
-  editChildProfileButton: screen.getByRole('button', {
-    name: /muokkaa lapsen tietoja/i,
-  }),
-  childName: Selector('h1'),
-  selectEventGroupButtons: screen.getAllByRole('button', {
-    name: 'Selaa tapahtumia',
-  }),
+  editChildProfileButton: screen
+    .getAllByRole('button', {
+      name: /muokkaa (lapsen .*tietoja|tietoja)/i,
+    })
+    .nth(0),
+  childName: Selector('h4[class*="childName"], [class*="childName"]'),
 };
 
 export const editChildModal = {

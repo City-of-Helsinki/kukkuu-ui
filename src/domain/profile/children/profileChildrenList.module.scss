@@ -1,19 +1,114 @@
-$buttonLabelMargin: 0.2rem;
+@use '~styles/variables';
+@use '~styles/layout';
 
 .layout {
   display: flex;
   flex-direction: column;
-  row-gap: var(--spacing-layout-xs);
+  width: 100%;
+  margin-top: var(--spacing-s);
+  margin-bottom: var(--spacing-2-xl);
+}
 
-  & > * {
-    margin: 0;
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-m);
+  margin-bottom: var(--spacing-xl);
+}
+
+.heading {
+  font-size: var(--fontsize-heading-l, 2.25rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-black-90, #1a1a1a);
+  margin: 0;
+}
+
+.addChildButton {
+  --border-color: var(--color-black, #000) !important;
+  --border-color-hover: var(--color-black, #000) !important;
+  --border-color-focus: var(--color-black, #000) !important;
+  --border-color-hover-focus: var(--color-black, #000) !important;
+  --background-color-hover: var(--color-black-5, #f5f5f5) !important;
+  display: inline-flex;
+  align-items: center;
+
+  > div {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  button {
-    width: fit-content;
+  > span {
+    line-height: 1.25;
+    text-box: trim-both cap alphabetic;
   }
 }
 
-.projectTitle {
-  margin: 0 0 var(--spacing-layout-2-xs);
+.emptyStateCard {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--color-black-20);
+  border-left: 8px solid var(--color-summer);
+  background-color: var(--color-white);
+  padding: var(--spacing-2-xl) var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-s);
+  margin-bottom: var(--spacing-m);
+}
+
+.emptyTitle {
+  font-size: var(--fontsize-heading-m);
+  font-weight: 500;
+  color: var(--color-black-90);
+  margin: 0;
+}
+
+.emptyText {
+  font-size: var(--fontsize-body-m);
+  color: var(--color-black-70);
+  max-width: 50ch;
+  margin: 0;
+}
+
+.emptyButton {
+  margin-top: var(--spacing-xs);
+  --border-color: var(--color-black, #000) !important;
+  --border-color-hover: var(--color-black, #000) !important;
+  --border-color-focus: var(--color-black, #000) !important;
+  --border-color-hover-focus: var(--color-black, #000) !important;
+  --background-color-hover: var(--color-black-5, #f5f5f5) !important;
+
+  > div {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  > span {
+    line-height: 1.25;
+    text-box: trim-both cap alphabetic;
+  }
+}
+
+.childrenAccordionList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--spacing-l);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.childListItem {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
