@@ -6,6 +6,9 @@ import {
   ChildEnrolmentCountQueryVariables,
 } from '../api/generatedTypes/graphql';
 
+/**
+ * @deprecated Superseded by `childByIdQuery` data in `ProfileChildAccordionItem`.
+ */
 export default function useChildEnrolmentCount(
   options?: QueryHookOptions<
     ChildEnrolmentCountQuery,

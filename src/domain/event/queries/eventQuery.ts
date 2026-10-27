@@ -88,6 +88,11 @@ const eventQuery = gql`
   ${eventQueryFragments}
 `;
 
+/**
+ * @deprecated Legacy password query for `EventRedirect`.
+ * Superseded by `EventTicketSystemSection` using `eventExternalTicketSystemHasAnyFreePasswordsQuery`
+ * and `eventQuery`.
+ */
 export const eventExternalTicketSystemPasswordQuery = gql`
   query eventExternalTicketSystemPasswordQuery($id: ID!, $childId: ID!) {
     event(id: $id) {
