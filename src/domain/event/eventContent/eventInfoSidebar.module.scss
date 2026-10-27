@@ -1,0 +1,98 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.sidebar {
+  background-color: var(--color-gold-light, #fef4cf);
+  padding: var(--spacing-l);
+  box-sizing: border-box;
+
+  .sidebarContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
+  }
+
+  .infoContent {
+    font-size: var(--fontsize-body-m, 1rem);
+    line-height: 1.5;
+    color: var(--color-black-90);
+
+    .textRow {
+      margin: 0 0 var(--spacing-3-xs);
+    }
+
+    .tableLink {
+      display: inline-block;
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      cursor: pointer;
+      text-align: left;
+      color: var(--color-bus, #0000bf);
+      text-decoration: underline;
+      margin-top: var(--spacing-2-xs);
+      font-weight: 500;
+      line-height: 1.4;
+
+      &:hover {
+        color: var(--color-bus-dark, #0000a0);
+      }
+    }
+
+    .mapLink {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-3-xs);
+      color: var(--color-bus, #0000bf);
+      text-decoration: underline;
+      margin-top: var(--spacing-2-xs);
+      font-weight: 500;
+
+      &:hover {
+        color: var(--color-bus-dark, #0000a0);
+      }
+
+      .linkIcon {
+        margin-left: 0.25rem;
+      }
+    }
+
+    .eventLink {
+      display: inline-block;
+      color: var(--color-bus, #0000bf);
+      text-decoration: underline;
+      font-size: var(--fontsize-body-m, 1rem);
+      line-height: 1.4;
+      font-weight: 500;
+
+      &:hover {
+        color: var(--color-bus-dark, #0000a0);
+      }
+    }
+  }
+
+  .otherTimesList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+
+    .otherTimeItem {
+      margin: 0;
+
+      .otherTimeLink {
+        color: var(--color-bus, #0000bf);
+        text-decoration: underline;
+        font-size: var(--fontsize-body-m, 1rem);
+        line-height: 1.4;
+
+        &:hover {
+          color: var(--color-bus-dark, #0000a0);
+        }
+      }
+    }
+  }
+}

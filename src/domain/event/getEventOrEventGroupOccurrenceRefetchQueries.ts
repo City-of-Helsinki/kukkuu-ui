@@ -1,5 +1,6 @@
 import profileQuery from '../profile/queries/ProfileQuery';
 import { childByIdQuery } from '../child/queries/ChildQueries';
+import { childAvailableEventsQuery } from './queries/childAvailableEventsQuery';
 import eventGroupQuery from '../eventGroup/queries/eventGroupQuery';
 import { ChildEnrolmentCountDocument } from '../api/generatedTypes/graphql';
 
@@ -21,6 +22,12 @@ export default function getEventOrEventGroupOccurrenceRefetchQueries({
       },
     },
     { query: ChildEnrolmentCountDocument, variables: { childId } },
+    {
+      query: childAvailableEventsQuery,
+      variables: {
+        id: childId,
+      },
+    },
   ];
 
   if (!eventGroupId) {

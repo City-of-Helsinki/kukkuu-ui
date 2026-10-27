@@ -1,0 +1,88 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.eventContentSection {
+  background-color: var(--color-white);
+  padding: var(--spacing-xl) 0 var(--spacing-4-xl) 0;
+
+  .contentContainer {
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-xl);
+
+      @include layout.respond-above(m) {
+        grid-template-columns: 2fr 1fr;
+        gap: var(--spacing-3-xl);
+      }
+
+      .mainColumn {
+        min-width: 0;
+
+        .descriptionSection {
+          .descriptionTitle {
+            font-size: var(--fontsize-heading-l, 2rem);
+            font-weight: 500;
+            line-height: 1.2;
+            margin: 0 0 var(--spacing-m);
+            color: var(--color-black, #000);
+          }
+
+          .description {
+            font-size: var(--fontsize-body-l, 1.125rem);
+            line-height: 1.6;
+            color: var(--color-black-90, #1a1a1a);
+            overflow-wrap: break-word;
+
+            p {
+              margin: 0 0 1rem;
+            }
+          }
+        }
+
+        .venueInfoCard {
+          border: 1px solid var(--color-black-20, #ccc);
+          padding: var(--spacing-l, 1.5rem);
+          margin-top: var(--spacing-xl, 2rem);
+          background-color: var(--color-white, #fff);
+
+          .venueInfoTitle {
+            font-size: var(--fontsize-heading-s, 1.25rem);
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0 0 var(--spacing-m, 1rem) 0;
+            color: var(--color-black, #000);
+          }
+
+          .venueInfoBody {
+            .venueItem {
+              &:not(:last-child) {
+                margin-bottom: var(--spacing-m, 1rem);
+                padding-bottom: var(--spacing-m, 1rem);
+                border-bottom: 1px dashed var(--color-black-10, #e0e0e0);
+              }
+
+              .venueNameHeader {
+                font-size: var(--fontsize-body-m, 1rem);
+                font-weight: 700;
+                margin: 0 0 var(--spacing-xs, 0.5rem) 0;
+                color: var(--color-black, #000);
+              }
+
+              p {
+                margin: 0 0 1rem;
+                font-size: var(--fontsize-body-m, 1rem);
+                line-height: 1.6;
+                color: var(--color-black-90, #1a1a1a);
+              }
+            }
+          }
+        }
+      }
+
+      .sidebarColumn {
+        min-width: 0;
+      }
+    }
+  }
+}
