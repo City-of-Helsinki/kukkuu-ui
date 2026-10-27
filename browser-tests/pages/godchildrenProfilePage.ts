@@ -9,12 +9,17 @@ export const godchildrenProfilePage = {
   child: (name: string | RegExp) =>
     screen.getAllByRole('heading', {
       name: name,
-      level: 4,
       exact: false,
     }),
-  editProfileButton: screen.getByRole('button', { name: 'Muokkaa tietojasi' }),
+  editProfileButton: screen.getByRole('button', {
+    name: /muokkaa (lähiaikuisen tietoja|tietojasi|tietoja)/i,
+  }),
   profileName: Selector('h1'),
-  addChildButton: screen.getByRole('button', { name: 'Lisää lapsi' }),
+  addChildButton: screen
+    .getAllByRole('button', {
+      name: /(lisää lapsi|rekisteröi uusi lapsi)/i,
+    })
+    .nth(0),
 };
 
 export const editProfileModal = {
@@ -45,7 +50,17 @@ export async function selectChild(
   t: TestController,
   childName: string | RegExp
 ) {
-  await t.click(godchildrenProfilePage.child(childName));
+  const heading = godchildrenProfilePage.child(childName).nth(0);
+  const accordionButton = heading.find('button');
+  const isButton = await accordionButton.exists;
+  if (isButton) {
+    const isExpanded = await accordionButton.getAttribute('aria-expanded');
+    if (isExpanded !== 'true') {
+      await t.click(accordionButton);
+    }
+  } else {
+    await t.click(heading);
+  }
 }
 
 export async function addChild(

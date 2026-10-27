@@ -1,23 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconPen, useOidcClient } from 'hds-react';
+import { Breadcrumb, BreadcrumbListItem, Container, useOidcClient } from 'hds-react';
 import { useNavigate } from 'react-router';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import Button from '../../common/components/button/Button';
-import Text from '../../common/components/text/Text';
-import ListPageLayout from '../app/layout/ListPageLayout';
+import PageMeta from '../app/layout/utilityComponents/PageMeta';
+import ProfileHero from './hero/ProfileHero';
 import ProfileChildrenList from './children/ProfileChildrenList';
-import EditProfileModal from './modal/EditProfileModal';
+import ProfileGuardianSection from './guardian/ProfileGuardianSection';
 import { useProfileContext } from './hooks/useProfileContext';
 import useGetPathname from '../../common/route/utils/useGetPathname';
+import styles from './profile.module.scss';
 
 const Profile = () => {
   const navigate = useNavigate();
   const getPathname = useGetPathname();
   const { isAuthenticated, login } = useOidcClient();
   const isLoggedIn = isAuthenticated();
-  const [isOpen, setIsOpen] = useState(false);
   const {
     profile,
     isLoading: isProfileLoading,
@@ -63,36 +62,35 @@ const Profile = () => {
     return <LoadingSpinner isLoading={true} />;
   }
 
+  const breadcrumbs: BreadcrumbListItem[] = [
+    {
+      title: t('common.breadcrumbs.home'),
+      path: getPathname('/'),
+    },
+    {
+      title: t('profile.breadcrumbs.account', { defaultValue: 'Tili' }),
+      path: null,
+    },
+  ];
+
   return (
-    <ListPageLayout>
-      <ListPageLayout.Header
-        title={t('profile.message.greetings', {
-          firstName: profile.firstName,
-        })}
-        content={
-          <Text variant="body-l">
-            {t('profile.common.message.serviceDescription')}
-          </Text>
-        }
-        actions={
-          <Button
-            variant="secondary"
-            iconStart={<IconPen />}
-            onClick={() => setIsOpen(true)}
-          >
-            {t('profile.edit.button.text')}
-          </Button>
-        }
-      />
-      {isOpen && (
-        <EditProfileModal
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          initialValues={profile}
-        />
-      )}
-      <ProfileChildrenList />
-    </ListPageLayout>
+    <>
+      <PageMeta title="profile.heading" />
+      <div className={styles.profilePageWrapper}>
+        <div className={styles.breadcrumbsWrapper}>
+          <Breadcrumb
+            aria-label={t('common.breadcrumbNavigationLabel')}
+            list={breadcrumbs}
+            className={styles.breadcrumbs}
+          />
+        </div>
+        <ProfileHero profile={profile} />
+        <Container role="main" className={styles.mainContainer}>
+          <ProfileChildrenList />
+          <ProfileGuardianSection profile={profile} />
+        </Container>
+      </div>
+    </>
   );
 };
 
