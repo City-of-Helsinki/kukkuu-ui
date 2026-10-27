@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
 import { customRender as render } from '../../../../../common/test/customRender';
+import { Language } from '../../../../api/generatedTypes/graphql';
 import ProfileEnrolledEventCard from '../ProfileEnrolledEventCard';
 import * as EventUtils from '../../../../event/EventUtils';
 
@@ -23,6 +24,7 @@ const mockInternalEnrolment = {
     __typename: 'OccurrenceNode' as const,
     id: 'occ-1',
     time: '2026-09-12T10:00:00.000Z',
+    occurrenceLanguage: Language.Fi,
     venue: {
       __typename: 'VenueNode' as const,
       id: 'venue-1',
@@ -74,6 +76,7 @@ describe('ProfileEnrolledEventCard', () => {
     expect(screen.getByText('Ilmoittautunut')).toBeInTheDocument();
     expect(screen.getByText('Oma muotokuva')).toBeInTheDocument();
     expect(screen.getByText(/Annankatu 30, Helsinki/)).toBeInTheDocument();
+    expect(screen.getByText(/suomi/i)).toBeInTheDocument();
     expect(
       screen.getByRole('link', { name: /lue lisää/i })
     ).toBeInTheDocument();

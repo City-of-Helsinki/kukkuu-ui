@@ -2425,6 +2425,7 @@ export type EnrolmentOccurrenceFieldsFragment = {
   __typename?: 'OccurrenceNode';
   id: string;
   time: any;
+  occurrenceLanguage: Language;
   venue: {
     __typename?: 'VenueNode';
     id: string;
@@ -2457,6 +2458,7 @@ export type ActiveInternalEnrolmentFieldsFragment = {
     __typename?: 'OccurrenceNode';
     id: string;
     time: any;
+    occurrenceLanguage: Language;
     venue: {
       __typename?: 'VenueNode';
       id: string;
@@ -2558,6 +2560,7 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
             __typename?: 'OccurrenceNode';
             id: string;
             time: any;
+            occurrenceLanguage: Language;
             venue: {
               __typename?: 'VenueNode';
               id: string;
@@ -2786,6 +2789,7 @@ export type ChildByIdQueryFieldsFragment = {
               __typename?: 'OccurrenceNode';
               id: string;
               time: any;
+              occurrenceLanguage: Language;
               venue: {
                 __typename?: 'VenueNode';
                 id: string;
@@ -2986,6 +2990,7 @@ export type ChildByIdQuery = {
                 __typename?: 'OccurrenceNode';
                 id: string;
                 time: any;
+                occurrenceLanguage: Language;
                 venue: {
                   __typename?: 'VenueNode';
                   id: string;
@@ -3547,6 +3552,55 @@ export type UnsubscribeFromFreeSpotNotificationMutation = {
   } | null;
 };
 
+export type SearchEventNodeFieldsFragment = {
+  __typename?: 'EventNode';
+  id: string;
+  name: string | null;
+  shortDescription: string | null;
+  image: string;
+  imageAltText: string | null;
+  duration: number | null;
+  enrolmentDeniedReason: EnrolmentDeniedReason | null;
+  registrationOpensAt: any | null;
+  ticketSystem:
+    | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
+    | {
+        __typename?: 'LippupisteEventTicketSystem';
+        childPassword: string | null;
+        type: TicketSystem;
+      }
+    | {
+        __typename?: 'TicketmasterEventTicketSystem';
+        childPassword: string | null;
+        type: TicketSystem;
+      }
+    | {
+        __typename?: 'TixlyEventTicketSystem';
+        childPassword: string | null;
+        type: TicketSystem;
+      }
+    | null;
+  occurrences: {
+    __typename?: 'OccurrenceNodeConnection';
+    edges: Array<{
+      __typename?: 'OccurrenceNodeEdge';
+      node: {
+        __typename?: 'OccurrenceNode';
+        id: string;
+        time: any;
+        remainingCapacity: number | null;
+        occurrenceLanguage: Language;
+        venue: {
+          __typename?: 'VenueNode';
+          id: string;
+          name: string | null;
+          address: string | null;
+        };
+      } | null;
+    } | null>;
+  };
+};
+
 export type ChildAvailableEventsQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -3558,40 +3612,125 @@ export type ChildAvailableEventsQuery = {
     id: string;
     name: string;
     birthyear: number;
-    availableEvents: {
-      __typename?: 'EventConnection';
+    upcomingEventsAndEventGroups: {
+      __typename?: 'EventOrEventGroupConnection';
       edges: Array<{
-        __typename?: 'EventEdge';
-        node: {
-          __typename?: 'EventNode';
-          id: string;
-          name: string | null;
-          shortDescription: string | null;
-          image: string;
-          imageAltText: string | null;
-          duration: number | null;
-          enrolmentDeniedReason: EnrolmentDeniedReason | null;
-          registrationOpensAt: any | null;
-          occurrences: {
-            __typename?: 'OccurrenceNodeConnection';
-            edges: Array<{
-              __typename?: 'OccurrenceNodeEdge';
-              node: {
-                __typename?: 'OccurrenceNode';
-                id: string;
-                time: any;
-                remainingCapacity: number | null;
-                occurrenceLanguage: Language;
-                venue: {
-                  __typename?: 'VenueNode';
-                  id: string;
-                  name: string | null;
-                  address: string | null;
-                };
-              } | null;
-            } | null>;
-          };
-        } | null;
+        __typename?: 'EventOrEventGroupEdge';
+        node:
+          | {
+              __typename?: 'EventGroupNode';
+              id: string;
+              name: string | null;
+              events: {
+                __typename?: 'EventNodeConnection';
+                edges: Array<{
+                  __typename?: 'EventNodeEdge';
+                  node: {
+                    __typename?: 'EventNode';
+                    id: string;
+                    name: string | null;
+                    shortDescription: string | null;
+                    image: string;
+                    imageAltText: string | null;
+                    duration: number | null;
+                    enrolmentDeniedReason: EnrolmentDeniedReason | null;
+                    registrationOpensAt: any | null;
+                    ticketSystem:
+                      | {
+                          __typename?: 'InternalEventTicketSystem';
+                          type: TicketSystem;
+                        }
+                      | {
+                          __typename?: 'LippupisteEventTicketSystem';
+                          childPassword: string | null;
+                          type: TicketSystem;
+                        }
+                      | {
+                          __typename?: 'TicketmasterEventTicketSystem';
+                          childPassword: string | null;
+                          type: TicketSystem;
+                        }
+                      | {
+                          __typename?: 'TixlyEventTicketSystem';
+                          childPassword: string | null;
+                          type: TicketSystem;
+                        }
+                      | null;
+                    occurrences: {
+                      __typename?: 'OccurrenceNodeConnection';
+                      edges: Array<{
+                        __typename?: 'OccurrenceNodeEdge';
+                        node: {
+                          __typename?: 'OccurrenceNode';
+                          id: string;
+                          time: any;
+                          remainingCapacity: number | null;
+                          occurrenceLanguage: Language;
+                          venue: {
+                            __typename?: 'VenueNode';
+                            id: string;
+                            name: string | null;
+                            address: string | null;
+                          };
+                        } | null;
+                      } | null>;
+                    };
+                  } | null;
+                } | null>;
+              };
+            }
+          | {
+              __typename?: 'EventNode';
+              id: string;
+              name: string | null;
+              shortDescription: string | null;
+              image: string;
+              imageAltText: string | null;
+              duration: number | null;
+              enrolmentDeniedReason: EnrolmentDeniedReason | null;
+              registrationOpensAt: any | null;
+              ticketSystem:
+                | {
+                    __typename?: 'InternalEventTicketSystem';
+                    type: TicketSystem;
+                  }
+                | {
+                    __typename?: 'LippupisteEventTicketSystem';
+                    childPassword: string | null;
+                    type: TicketSystem;
+                  }
+                | {
+                    __typename?: 'TicketmasterEventTicketSystem';
+                    childPassword: string | null;
+                    type: TicketSystem;
+                  }
+                | {
+                    __typename?: 'TixlyEventTicketSystem';
+                    childPassword: string | null;
+                    type: TicketSystem;
+                  }
+                | null;
+              occurrences: {
+                __typename?: 'OccurrenceNodeConnection';
+                edges: Array<{
+                  __typename?: 'OccurrenceNodeEdge';
+                  node: {
+                    __typename?: 'OccurrenceNode';
+                    id: string;
+                    time: any;
+                    remainingCapacity: number | null;
+                    occurrenceLanguage: Language;
+                    venue: {
+                      __typename?: 'VenueNode';
+                      id: string;
+                      name: string | null;
+                      address: string | null;
+                    };
+                  } | null;
+                } | null>;
+              };
+            }
+          | null;
       } | null>;
     } | null;
   } | null;
@@ -5070,6 +5209,7 @@ export const EnrolmentOccurrenceFieldsFragmentDoc = gql`
   fragment EnrolmentOccurrenceFields on OccurrenceNode {
     id
     time
+    occurrenceLanguage
     venue {
       ...EnrolmentVenueFields
     }
@@ -5423,6 +5563,45 @@ export const UnenrolOccurrenceMutationPayloadFieldsFragmentDoc = gql`
     }
   }
   ${UnenrolOccurrencesFieldsFragmentDoc}
+`;
+export const SearchEventNodeFieldsFragmentDoc = gql`
+  fragment SearchEventNodeFields on EventNode {
+    id
+    name
+    shortDescription
+    image
+    imageAltText
+    duration
+    enrolmentDeniedReason(childId: $id)
+    registrationOpensAt
+    ticketSystem {
+      type
+      ... on TicketmasterEventTicketSystem {
+        childPassword(childId: $id)
+      }
+      ... on LippupisteEventTicketSystem {
+        childPassword(childId: $id)
+      }
+      ... on TixlyEventTicketSystem {
+        childPassword(childId: $id)
+      }
+    }
+    occurrences(upcoming: true) {
+      edges {
+        node {
+          id
+          time
+          remainingCapacity
+          occurrenceLanguage
+          venue {
+            id
+            name
+            address
+          }
+        }
+      }
+    }
+  }
 `;
 export const EventOccurrenceFieldsFragmentDoc = gql`
   fragment EventOccurrenceFields on OccurrenceNode {
@@ -6050,28 +6229,19 @@ export const ChildAvailableEventsQueryDocument = gql`
       id
       name
       birthyear
-      availableEvents {
+      upcomingEventsAndEventGroups {
         edges {
           node {
-            id
-            name
-            shortDescription
-            image
-            imageAltText
-            duration
-            enrolmentDeniedReason(childId: $id)
-            registrationOpensAt
-            occurrences(upcoming: true) {
-              edges {
-                node {
-                  id
-                  time
-                  remainingCapacity
-                  occurrenceLanguage
-                  venue {
-                    id
-                    name
-                    address
+            ... on EventNode {
+              ...SearchEventNodeFields
+            }
+            ... on EventGroupNode {
+              id
+              name
+              events(upcoming: true) {
+                edges {
+                  node {
+                    ...SearchEventNodeFields
                   }
                 }
               }
@@ -6081,6 +6251,7 @@ export const ChildAvailableEventsQueryDocument = gql`
       }
     }
   }
+  ${SearchEventNodeFieldsFragmentDoc}
 `;
 export type ChildAvailableEventsQueryQueryResult = Apollo.QueryResult<
   ChildAvailableEventsQuery,
