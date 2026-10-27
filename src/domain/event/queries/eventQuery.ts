@@ -14,6 +14,11 @@ const eventQueryFragments = gql`
       id
       name
       address
+      description
+      accessibilityInfo
+      arrivalInstructions
+      wcAndFacilities
+      wwwUrl
     }
     childHasFreeSpotNotificationSubscription(childId: $childId)
     ticketSystem {
@@ -77,16 +82,6 @@ const eventQuery = gql`
           url
         }
       }
-    }
-  }
-
-  ${eventQueryFragments}
-`;
-
-export const eventOccurrenceQuery = gql`
-  query eventOccurrenceQuery($id: ID!, $childId: ID!) {
-    occurrence(id: $id) {
-      ...EventOccurrenceFields
     }
   }
 
