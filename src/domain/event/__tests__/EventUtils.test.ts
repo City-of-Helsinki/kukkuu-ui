@@ -141,8 +141,39 @@ describe('EventUtils', () => {
     );
 
     test.each([
+      EnrolmentDeniedReason.AlreadyJoinedEventGroup,
+      EnrolmentDeniedReason.AlreadyHasPasswordToEventGroup,
+    ])(
+      'returns season notice when denial reason is %s',
+      (enrolmentDeniedReason) => {
+        expect(
+          getEnrolmentDeniedNotice({
+            t: i18n.t,
+            enrolmentDeniedReason,
+            registrationOpensAt: '2099-06-01T07:00:00+00:00',
+          })
+        ).toBe('Olet jo ilmoittautunut toiseen tämän kauden tapahtumaan.');
+      }
+    );
+
+    test('returns yearly limit notice when denial reason is YEARLY_ENROLMENT_LIMIT_REACHED', () => {
+      expect(
+        getEnrolmentDeniedNotice({
+          t: i18n.t,
+          enrolmentDeniedReason:
+            EnrolmentDeniedReason.YearlyEnrolmentLimitReached,
+          registrationOpensAt: '2099-06-01T07:00:00+00:00',
+        })
+      ).toBe('Vuosittainen ilmoittautumiskiintiö on täynnä.');
+    });
+
+    test.each([
       ...Object.values(EnrolmentDeniedReason).filter(
-        (reason) => reason !== EnrolmentDeniedReason.RegistrationNotOpen
+        (reason) =>
+          reason !== EnrolmentDeniedReason.RegistrationNotOpen &&
+          reason !== EnrolmentDeniedReason.AlreadyJoinedEventGroup &&
+          reason !== EnrolmentDeniedReason.AlreadyHasPasswordToEventGroup &&
+          reason !== EnrolmentDeniedReason.YearlyEnrolmentLimitReached
       ),
       null,
       undefined,
