@@ -1,0 +1,186 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.occurrencesTableSection {
+  background-color: var(--color-white, #fff);
+  padding: 0 0 var(--spacing-4-xl) 0;
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--color-black-10, #e0e0e0);
+    margin: 0 0 var(--spacing-2-xl) 0;
+    width: 100%;
+  }
+
+  .heading {
+    font-size: var(--fontsize-heading-l, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 var(--spacing-l) 0;
+    color: var(--color-black, #000);
+  }
+
+  .notificationWrapper {
+    margin-bottom: var(--spacing-l);
+  }
+
+  .tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: var(--spacing-l);
+  }
+
+  .table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+    text-align: left;
+
+    .headerRow {
+      background-color: var(--color-gold, #ffc61e);
+
+      th {
+        padding: var(--spacing-s) var(--spacing-m);
+        font-size: var(--fontsize-body-m, 1rem);
+        font-weight: 700;
+        color: var(--color-black, #000);
+        white-space: nowrap;
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+    }
+
+    .bodyRow {
+      border-bottom: 1px solid var(--color-black-10, #e0e0e0);
+      transition: background-color 0.15s ease-in-out;
+
+      td {
+        padding: var(--spacing-m);
+        font-size: var(--fontsize-body-m, 1rem);
+        color: var(--color-black-90, #1a1a1a);
+        vertical-align: middle;
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+
+      &:hover {
+        background-color: var(--color-black-5, #f5f5f5);
+      }
+    }
+  }
+
+  .dateCell {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .timeCell {
+    white-space: nowrap;
+  }
+
+  .capacityCell {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-s);
+    white-space: nowrap;
+  }
+
+  .fullBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-3-xs);
+    background-color: var(--color-black-10, #e0e0e0);
+    color: var(--color-black, #000);
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
+    font-size: var(--fontsize-body-s, 0.875rem);
+    font-weight: 500;
+    line-height: 1.4;
+
+    .alertIcon {
+      color: var(--color-black, #000);
+    }
+  }
+
+  .actionCell {
+    text-align: right;
+    white-space: nowrap;
+
+    .actionButton {
+      min-width: 140px;
+      font-weight: 500;
+      justify-content: center;
+    }
+
+    .enrolButton {
+      background-color: var(--color-black, #000);
+      color: var(--color-white, #fff);
+      border: 2px solid var(--color-black, #000);
+
+      &:hover {
+        background-color: var(--color-black-90, #1a1a1a);
+      }
+    }
+
+    .subscribeButton {
+      background-color: var(--color-white, #fff);
+      color: var(--color-black, #000);
+      border: 2px solid var(--color-black, #000);
+
+      &:hover {
+        background-color: var(--color-black-5, #f5f5f5);
+      }
+    }
+
+    .unsubscribeButton {
+      background-color: var(--color-black-10, #e0e0e0);
+      color: var(--color-black, #000);
+      border: 2px solid var(--color-black-20, #ccc);
+
+      &:hover {
+        background-color: var(--color-black-20, #ccc);
+      }
+    }
+
+    .disabledButton {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .cancelButton {
+      background-color: var(--color-error, #b01038) !important;
+      color: var(--color-white, #fff) !important;
+      border: 2px solid var(--color-error, #b01038) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+
+      &:hover {
+        background-color: var(--color-error-dark, #8c0c2c) !important;
+        border-color: var(--color-error-dark, #8c0c2c) !important;
+      }
+
+      > div {
+        display: inline-flex !important;
+        align-items: center !important;
+        line-height: 0 !important;
+      }
+
+      > span {
+        display: inline-flex !important;
+        align-items: center !important;
+        line-height: 1 !important;
+      }
+    }
+  }
+
+  .noOccurrences {
+    font-size: var(--fontsize-body-l, 1.125rem);
+    color: var(--color-black-60, #666);
+    margin: var(--spacing-m) 0;
+  }
+}

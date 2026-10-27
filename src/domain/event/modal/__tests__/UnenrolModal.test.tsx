@@ -29,7 +29,43 @@ vi.mock('../../getEventOrEventGroupOccurrenceRefetchQueries', () => ({
 
 vi.mock('../../../profile/hooks/useProfileContext', () => ({
   useProfileContext: () => ({
-    profile: null,
+    profile: {
+      id: 'profile-1',
+      firstName: 'Maija',
+      lastName: 'Meikäläinen',
+      children: {
+        edges: [
+          {
+            node: {
+              id: testChildId,
+              name: 'Emma',
+              enrolments: {
+                edges: [
+                  {
+                    node: {
+                      id: 'enrolment-1',
+                      occurrence: {
+                        id: testOccurrenceId,
+                        time: '2028-09-19T14:00:00Z',
+                        event: {
+                          id: 'event-1',
+                          name: 'Nukketeatteri Sampo: Pieni yösoitto',
+                        },
+                        venue: {
+                          id: 'venue-1',
+                          name: 'Pakilantie 12 B',
+                          address: 'Helsinki',
+                        },
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+    },
     refetchProfile: vi.fn().mockResolvedValue(undefined),
     clearProfile: vi.fn(),
     updateProfile: vi.fn(),
@@ -47,6 +83,25 @@ const defaultProps = {
   setIsOpen: vi.fn(),
   childId: testChildId,
   occurrenceId: testOccurrenceId,
+  occurrence: {
+    id: testOccurrenceId,
+    time: '2028-09-19T14:00:00Z',
+    venue: {
+      id: 'venue-1',
+      name: 'Pakilantie 12 B',
+      address: 'Helsinki',
+    },
+    event: {
+      id: 'event-1',
+      name: 'Nukketeatteri Sampo: Pieni yösoitto',
+      duration: 90,
+    },
+  },
+  event: {
+    id: 'event-1',
+    name: 'Nukketeatteri Sampo: Pieni yösoitto',
+    duration: 90,
+  },
 };
 
 describe('UnenrolModal', () => {
@@ -54,26 +109,45 @@ describe('UnenrolModal', () => {
     vi.clearAllMocks();
   });
 
-  it('renders the modal heading and cancellation description', () => {
+  it('renders the modal heading, prompt, card details, and buttons', () => {
     render(<UnenrolModal {...defaultProps} />, []);
 
     expect(
+      screen.getByRole('heading', { name: 'Peruuta ilmoittautuminen' })
+    ).toBeInTheDocument();
+    expect(
       screen.getByText(
-        'Haluatko varmasti perua tapahtumaan ilmoittautumisen?'
+        'Oletko varma, että haluat peruuttaa ilmoittautumisesi tapahtumaan?'
       )
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/peru ilmoittautumisenne viimeistään 48 tuntia/i)
+      screen.getByText('Nukketeatteri Sampo: Pieni yösoitto')
+    ).toBeInTheDocument();
+    expect(screen.getByText('Ilmoittautunut: Emma')).toBeInTheDocument();
+    expect(screen.getByText(/Pakilantie 12 B, Helsinki/)).toBeInTheDocument();
+    expect(screen.getByText('Emma')).toBeInTheDocument();
+    expect(screen.getByText('Maija Meikäläinen')).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: /Katso tapahtuma-ajan tiedot/ })
+    ).toHaveAttribute(
+      'href',
+      `/profile/child/${testChildId}/event/event-1`
+    );
+    expect(
+      screen.getByRole('button', { name: 'Peruuta ilmoittautuminen' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Säilytä ilmoittautuminen' })
     ).toBeInTheDocument();
   });
 
-  it('calls setIsOpen(false) when cancel button is clicked', async () => {
+  it('calls setIsOpen(false) when keep button is clicked', async () => {
     const setIsOpen = vi.fn();
     const user = userEvent.setup();
     render(<UnenrolModal {...defaultProps} setIsOpen={setIsOpen} />, []);
 
     await user.click(
-      screen.getByRole('button', { name: 'Palaa tapahtuman sivulle' })
+      screen.getByRole('button', { name: 'Säilytä ilmoittautuminen' })
     );
 
     expect(setIsOpen).toHaveBeenCalledWith(false);
@@ -109,7 +183,7 @@ describe('UnenrolModal', () => {
     ]);
 
     await user.click(
-      screen.getByRole('button', { name: 'Peru ilmoittautuminen' })
+      screen.getByRole('button', { name: 'Peruuta ilmoittautuminen' })
     );
 
     await waitFor(() => {
@@ -121,9 +195,7 @@ describe('UnenrolModal', () => {
     render(<UnenrolModal {...defaultProps} isOpen={false} />, []);
 
     expect(
-      screen.queryByText(
-        'Haluatko varmasti perua tapahtumaan ilmoittautumisen?'
-      )
+      screen.queryByText('Peruuta ilmoittautuminen')
     ).not.toBeInTheDocument();
   });
 });

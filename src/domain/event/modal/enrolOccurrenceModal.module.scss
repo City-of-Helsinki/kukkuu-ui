@@ -1,0 +1,102 @@
+@use '~styles/variables';
+
+.modal {
+  max-width: 38rem !important;
+  width: 100%;
+}
+
+.eventTitle {
+  font-size: var(--fontsize-heading-m, 1.5rem);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--spacing-m);
+  color: var(--color-black-90, #1a1a1a);
+}
+
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-m);
+}
+
+.detailRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xs);
+  font-size: var(--fontsize-body-m, 1rem);
+  color: var(--color-black-90, #1a1a1a);
+
+  .icon {
+    flex-shrink: 0;
+    width: var(--spacing-m);
+    height: var(--spacing-m);
+    margin-top: 0.125rem;
+    color: var(--color-black-70, #4a4a4a);
+  }
+}
+
+.participantsSection {
+  margin-top: var(--spacing-m);
+  padding-top: var(--spacing-m);
+  border-top: 1px solid var(--color-black-20, #ccc);
+}
+
+.participantsTitle {
+  font-size: var(--fontsize-heading-s, 1.25rem);
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--spacing-s);
+}
+
+.groupLabel {
+  font-size: var(--fontsize-body-m, 1rem);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2-xs);
+  color: var(--color-black-90, #1a1a1a);
+}
+
+.checkboxWrapper {
+  margin-bottom: var(--spacing-s);
+}
+
+.noticesWrapper {
+  margin-top: var(--spacing-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.noticeText {
+  font-size: var(--fontsize-body-s, 0.875rem);
+  color: var(--color-black-70, #666);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.actionButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-s);
+}
+
+.confirmButton {
+  background-color: var(--color-black, #000) !important;
+  color: var(--color-white, #fff) !important;
+  border-color: var(--color-black, #000) !important;
+
+  &:hover {
+    background-color: var(--color-black-90, #222) !important;
+    border-color: var(--color-black-90, #222) !important;
+  }
+}
+
+.cancelButton {
+  background-color: var(--color-white, #fff) !important;
+  color: var(--color-black, #000) !important;
+  border-color: var(--color-black, #000) !important;
+
+  &:hover {
+    background-color: var(--color-black-5, #f5f5f5) !important;
+  }
+}

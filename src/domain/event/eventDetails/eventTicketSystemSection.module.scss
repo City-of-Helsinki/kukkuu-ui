@@ -1,0 +1,99 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.ticketSystemSection {
+  background-color: var(--color-white, #fff);
+  padding: 0 0 var(--spacing-4-xl) 0;
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--color-black-10, #e0e0e0);
+    margin: 0 0 var(--spacing-2-xl) 0;
+    width: 100%;
+  }
+
+  .heading {
+    font-size: var(--fontsize-heading-l, 2rem);
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 var(--spacing-l) 0;
+    color: var(--color-black, #000);
+  }
+
+  .description {
+    font-size: var(--fontsize-body-m, 1rem);
+    line-height: 1.5;
+    color: var(--color-black-90, #1a1a1a);
+    margin: 0 0 var(--spacing-xl) 0;
+    max-width: 48rem;
+  }
+
+  .card {
+    background-color: var(--color-black-5, #f7f7f7);
+    border: 1px solid var(--color-black-10, #e0e0e0);
+    border-radius: 4px;
+    padding: var(--spacing-l);
+    margin-bottom: var(--spacing-xl);
+    max-width: 48rem;
+
+    .subHeading {
+      font-size: var(--fontsize-heading-m, 1.5rem);
+      font-weight: 500;
+      margin: 0 0 var(--spacing-m) 0;
+      color: var(--color-black, #000);
+    }
+
+    .cardDescription {
+      font-size: var(--fontsize-body-m, 1rem);
+      line-height: 1.5;
+      color: var(--color-black-90, #1a1a1a);
+      margin: 0 0 var(--spacing-m) 0;
+    }
+
+    .participantsText {
+      font-size: var(--fontsize-body-m, 1rem);
+      font-weight: 500;
+      color: var(--color-black-90, #1a1a1a);
+      margin: 0 0 var(--spacing-l) 0;
+    }
+
+    .actionsRow {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-s);
+      margin-top: var(--spacing-l);
+
+      @include layout.respond-above(m) {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .continueButton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .extraInfo {
+      font-size: var(--fontsize-body-s, 0.875rem);
+      line-height: 1.4;
+      color: var(--color-black-70, #666);
+      margin-top: var(--spacing-l);
+      font-style: italic;
+    }
+
+    .noFreePasswords {
+      font-size: var(--fontsize-body-m, 1rem);
+      font-weight: 500;
+      color: var(--color-error, #b01038);
+      margin-top: var(--spacing-m);
+    }
+  }
+
+  .notificationWrapper {
+    margin-bottom: var(--spacing-l);
+    max-width: 48rem;
+  }
+}
