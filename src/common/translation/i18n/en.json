@@ -448,6 +448,11 @@
       "back": "Back",
       "continue": "Continue to register"
     },
+    "ticketSystem": {
+      "ticketmaster": "Ticketmaster",
+      "lippupiste": "Lippupiste",
+      "tixly": "Tixly"
+    },
     "description": {
       "title": "Description"
     },
@@ -458,6 +463,8 @@
       "backButtonAriaLabel": "Go back",
       "enrolButton": "Enrol",
       "viewOccurrencesButton": "View event times and enrol",
+      "claimPasswordButton": "Claim password",
+      "viewPasswordButton": "View password",
       "enrolledBadge": "Enrolled",
       "cancelEnrolmentButton": "Cancel enrolment",
       "viewAllOccurrencesLink": "View all event times",
@@ -472,6 +479,9 @@
       "occurrencesCount_one": "{{count}} event time",
       "occurrencesCount_other": "{{count}} event times",
       "viewOccurrencesAndEnrol": "View event times and enrol",
+      "ticketSystemTitle": "Ticket service",
+      "claimPassword": "Claim password",
+      "viewPassword": "View password",
       "locationTitle": "Location",
       "openMap": "Open map",
       "participantsTitle": "Participants",
@@ -1015,6 +1025,7 @@
   },
   "search": {
     "title": "Search events",
+    "childNotFoundNotification": "The requested child was not found in your profile. Displaying events for the first child.",
     "hero": {
       "title": "Search events",
       "greeting": "Hello {{name}}!",
@@ -1033,6 +1044,7 @@
       "datePlaceholder": "Select date",
       "venueLabel": "Venue",
       "venuePlaceholder": "Select venue",
+      "availableOnlyLabel": "Show only events available for enrolment",
       "submitButton": "Search",
       "clearButton": "Clear search criteria"
     },
@@ -1051,7 +1063,12 @@
       "languages": "Languages: {{languages}}",
       "dateRangeWithCount": "{{dateRange}} ({{count}} occurrences)",
       "badgeExample1": "Example badge 1",
-      "badgeExample2": "Example badge 2"
+      "badgeExample2": "Example badge 2",
+      "enrolledBadge": "Enrolled",
+      "alreadyEnrolledSeasonBadge": "Season event selected",
+      "alreadyEnrolledNotice": "You are already enrolled in this event.",
+      "alreadyEnrolledSeasonNotice": "You are already enrolled in another event for this season.",
+      "yearlyLimitReachedNotice": "Yearly enrolment limit reached."
     }
   }
 }
