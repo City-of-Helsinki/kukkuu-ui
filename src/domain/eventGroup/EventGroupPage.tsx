@@ -1,24 +1,23 @@
-import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router';
+import React from 'react';
+import { Navigate, useParams } from 'react-router';
 
-import eventGroupQuery from './queries/eventGroupQuery';
-import EventGroup from './EventGroup';
+import useGetPathname from '../../common/route/utils/useGetPathname';
 
 type Params = {
-  childId: string;
-  eventGroupId: string;
+  childId?: string;
+  eventGroupId?: string;
 };
 
-const EventGroupPage = () => {
-  const { childId, eventGroupId } = useParams<Params>();
-  const query = useQuery(eventGroupQuery, {
-    variables: {
-      id: eventGroupId,
-      childId,
-    },
-  });
+/**
+ * @deprecated EventGroupPage is deprecated as event groups are no longer in use.
+ * Navigating to an event-group route redirects the user to their profile page.
+ */
+const EventGroupPage: React.FC = () => {
+  const { childId } = useParams<Params>();
+  const getPathname = useGetPathname();
+  const search = childId ? `?child=${encodeURIComponent(childId)}` : '';
 
-  return <EventGroup query={query} childId={childId ?? ''} />;
+  return <Navigate to={`${getPathname('/profile')}${search}`} replace />;
 };
 
 export default EventGroupPage;
