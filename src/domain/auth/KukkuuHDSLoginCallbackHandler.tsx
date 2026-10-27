@@ -11,10 +11,18 @@ function KukkuuHDSLoginCallbackHandler() {
   const getPathname = useGetPathname();
   const navigate = useNavigate();
   const onSuccess = (user: User) => {
-    let redirectUrl = getPathname('/profile');
+    let redirectUrl = getPathname('/events');
     if (user.url_state) {
-      redirectUrl =
-        new URLSearchParams(user.url_state).get('next') ?? redirectUrl;
+      const next = new URLSearchParams(user.url_state).get('next');
+      if (
+        next &&
+        next !== 'null' &&
+        next !== 'undefined' &&
+        next !== getPathname('/profile') &&
+        next !== '/profile'
+      ) {
+        redirectUrl = next;
+      }
     }
     navigate(redirectUrl, { replace: true });
   };

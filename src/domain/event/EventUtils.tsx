@@ -26,6 +26,10 @@ import AppConfig from '../app/AppConfig';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
+/**
+ * @deprecated Legacy filter option generator for Formik date select dropdowns.
+ * Superseded by the occurrences table in `EventDetailsPage`.
+ */
 export function getDateOptions(occurrences?: Occurrences) {
   const options = OccurrenceList(occurrences).items.map(({ id, time }) => ({
     value: formatTime(newDate(time), BACKEND_DATE_FORMAT),
@@ -36,6 +40,10 @@ export function getDateOptions(occurrences?: Occurrences) {
   return uniqBy(options, 'value');
 }
 
+/**
+ * @deprecated Legacy filter option generator for Formik time select dropdowns.
+ * Superseded by the occurrences table in `EventDetailsPage`.
+ */
 export function getTimeOptions(occurrences?: Occurrences) {
   const options = OccurrenceList(occurrences).items.map(
     ({ id, time, event }) => ({
@@ -51,6 +59,9 @@ export function getTimeOptions(occurrences?: Occurrences) {
   );
 }
 
+/**
+ * @deprecated Superseded by `formatOccurrenceTimeRange` in `src/common/time/occurrenceTime.ts`.
+ */
 export const formatOccurrenceTime = (
   startTimeRaw: Date,
   durationMinutes: number | null
@@ -179,11 +190,23 @@ export const getEnrolmentDeniedNotice = ({
   enrolmentDeniedReason?: EnrolmentDeniedReason | null;
   registrationOpensAt?: string | null;
 }): string => {
-  if (enrolmentDeniedReason !== EnrolmentDeniedReason.RegistrationNotOpen) {
-    return t('enrollPage.message.cantEnrollNotice');
+  if (enrolmentDeniedReason === EnrolmentDeniedReason.RegistrationNotOpen) {
+    const { key, values } = getRegistrationNotOpenNotice(registrationOpensAt);
+    return t(key, values);
   }
-  const { key, values } = getRegistrationNotOpenNotice(registrationOpensAt);
-  return t(key, values);
+  if (
+    enrolmentDeniedReason === EnrolmentDeniedReason.AlreadyJoinedEventGroup ||
+    enrolmentDeniedReason ===
+      EnrolmentDeniedReason.AlreadyHasPasswordToEventGroup
+  ) {
+    return t('search.card.alreadyEnrolledSeasonNotice');
+  }
+  if (
+    enrolmentDeniedReason === EnrolmentDeniedReason.YearlyEnrolmentLimitReached
+  ) {
+    return t('search.card.yearlyLimitReachedNotice');
+  }
+  return t('enrollPage.message.cantEnrollNotice');
 };
 
 export type VenueLike = {
