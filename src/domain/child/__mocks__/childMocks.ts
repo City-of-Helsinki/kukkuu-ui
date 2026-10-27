@@ -1,7 +1,6 @@
 import { MockedResponse } from '@apollo/client/testing';
 
-import { childByIdQuery, childNotesByIdQuery } from '../queries/ChildQueries';
-import { ChildEnrolmentCountDocument } from '../../api/generatedTypes/graphql';
+import { childNotesByIdQuery } from '../queries/ChildQueries';
 
 export const testChildId = 'child-123';
 
@@ -32,33 +31,6 @@ export const childData = {
   relationships: {
     __typename: 'RelationshipNodeConnection' as const,
     edges: [],
-  },
-};
-
-export const childByIdMock: MockedResponse = {
-  request: {
-    query: childByIdQuery,
-    variables: { id: testChildId },
-  },
-  result: {
-    data: { child: childData },
-  },
-};
-
-export const enrolmentCountMock: MockedResponse = {
-  request: {
-    query: ChildEnrolmentCountDocument,
-    variables: { childId: testChildId },
-  },
-  result: {
-    data: {
-      child: {
-        id: testChildId,
-        enrolmentCount: 1,
-        pastEnrolmentCount: 0,
-        project: { id: 'project-1', enrolmentLimit: 2 },
-      },
-    },
   },
 };
 

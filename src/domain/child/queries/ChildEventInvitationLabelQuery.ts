@@ -1,5 +1,8 @@
 import { gql } from '@apollo/client';
 
+/**
+ * @deprecated Legacy query for `ChildEventInvitationLabel`. Superseded by `childByIdQuery`.
+ */
 export const childEventInvitationLabelQuery = gql`
   query ChildEventInvitationLabelQuery($childId: ID!) {
     child(id: $childId) {

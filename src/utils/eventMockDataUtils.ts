@@ -66,6 +66,7 @@ export const fakeAvailableEvent = (
       duration: 60,
       enrolmentDeniedReason: null,
       registrationOpensAt: null,
+      ticketSystem: null,
       occurrences: {
         edges: [{ node: occurrence }],
       },
