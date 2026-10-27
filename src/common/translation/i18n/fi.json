@@ -99,6 +99,11 @@
     },
     "breadcrumbListLabel": "Leivänmurut",
     "breadcrumbNavigationLabel": "Leivänmurunavigaatio",
+    "breadcrumbs": {
+      "home": "Etusivu",
+      "events": "Tapahtumat",
+      "profile": "Kummilapset"
+    },
     "closeButton": {
       "altText": "Sulje"
     },
@@ -162,12 +167,28 @@
     "button": {
       "next": "Seuraava",
       "previous": "Edellinen"
-    }
+    },
+    "dateTimeSeparator": "klo"
   },
   "navigation": {
     "error": "Virhe vaihtaessa sivua. Yritä myöhemmin uudestaan"
   },
   "profile": {
+    "breadcrumbs": {
+      "account": "Tili"
+    },
+    "hero": {
+      "title": "Tili",
+      "titleWithGreeting": "Tili – Hei {{firstName}}!",
+      "description": "Täällä näet lastesi tulevat tapahtumat ja kutsukirjeet kausittain. Voit perua ilmoittautumisen, muokata lasten ja lähiaikuisen tietoja tai rekisteröidä uuden lapsen."
+    },
+    "guardian": {
+      "heading": "Lähiaikuinen",
+      "edit": {
+        "buttonText": "Muokkaa tietoja",
+        "ariaLabel": "Muokkaa lähiaikuisen tietoja. Avaa valintaikkunan."
+      }
+    },
     "common": {
       "message": {
         "serviceDescription": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Kummilapsi voi osallistua vuosittain kahteen tapahtumaan, yhteen tapahtumaan keväällä ja yhteen tapahtumaan syksyllä. Joskus tapahtumia voi olla tarjolla enemmän, silloin ilmoitamme siitä erikseen. Nähdään kulttuurin parissa!"
@@ -182,6 +203,7 @@
           "text": "Kummilapsi"
         }
       },
+      "browseEventsButton": "Selaa tapahtumia",
       "detail": {
         "availableEvent": {
           "readMoreAndEnrolButton": "Lue lisää ja ilmoittaudu",
@@ -190,6 +212,7 @@
         "availableEventGroup": {
           "readMoreButton": "Selaa tapahtumia"
         },
+        "browseEventsButton": "Selaa tapahtumia",
         "birthyear": "Lapsen syntymävuosi",
         "delete": {
           "prompt": {
@@ -212,9 +235,23 @@
       },
       "navigateToDetail": {
         "buttonLabel": "Näytä Kummilapsen tiedot"
-      }
+      },
+      "edit": {
+        "buttonText": "Muokkaa tietoja",
+        "ariaLabel": "Muokkaa lapsen {{name}} tietoja. Avaa valintaikkunan."
+      },
+      "themePath": "Teemapolku: {{themePath}}"
     },
     "children": {
+      "heading": "Kulttuurilapset ja tapahtumat",
+      "addChild": {
+        "buttonText": "Rekisteröi uusi lapsi",
+        "buttonAriaLabel": "Rekisteröi uusi lapsi. Avaa valintaikkunan."
+      },
+      "emptyState": {
+        "title": "Ei kummilapsia",
+        "text": "Et ole vielä rekisteröinyt kulttuurilapsia palveluun. Voit rekisteröidä uuden lapsen aloittaaksesi kulttuurielämykset!"
+      },
       "noChild": {
         "text": "Ei kummilapsia"
       },
@@ -230,6 +267,17 @@
       }
     },
     "events": {
+      "future": {
+        "heading": "Tulevat tapahtumat",
+        "enrolmentNotStarted": "Ilmoittautuminen tapahtumiin alkaa myöhemmin."
+      },
+      "searchPrompt": "Ilmoittautuminen kauden tapahtumiin on alkanut!",
+      "searchButton": "Etsi tapahtumia",
+      "enrolledBadge": "Ilmoittautunut",
+      "cancelEnrolmentButton": "Peruuta",
+      "cancelEnrolmentAriaLabel": "Peruuta ilmoittautuminen tapahtumaan {{eventName}}. Avaa valintaikkunan.",
+      "cancelDisabledTooltip": "Ilmoittautumista ei voi enää perua verkossa, koska tapahtuman alkuun on liian vähän aikaa.",
+      "readMoreButton": "Lue lisää",
       "enrolled": {
         "heading": "Tulevat tapahtumasi"
       },
@@ -237,7 +285,8 @@
         "heading": "Tapahtumakutsut"
       },
       "past": {
-        "heading": "Menneet tapahtumat"
+        "heading": "Menneet tapahtumat",
+        "empty": "Ei menneitä tapahtumia"
       }
     },
     "childNotes": {
@@ -342,6 +391,20 @@
   "event": {
     "cancellation": {
       "buttonText": "Peru ilmoittautuminen",
+      "modal": {
+        "title": "Peruuta ilmoittautuminen",
+        "prompt": "Oletko varma, että haluat peruuttaa ilmoittautumisesi tapahtumaan?",
+        "keepButton": "Säilytä ilmoittautuminen",
+        "confirmButton": "Peruuta ilmoittautuminen",
+        "viewDetailsLink": "Katso tapahtuma-ajan tiedot",
+        "enrolledBadge": "Ilmoittautunut: {{name}}",
+        "childWithCount": "{{name}} + {{count}} lisälasta",
+        "childWithCount_one": "{{name}} + {{count}} lisälapsi",
+        "childWithCount_other": "{{name}} + {{count}} lisälasta",
+        "guardianWithCount": "{{name}} + {{count}} lisäaikuinen",
+        "guardianWithCount_one": "{{name}} + {{count}} lisäaikuinen",
+        "guardianWithCount_other": "{{name}} + {{count}} lisäaikuista"
+      },
       "confirmationModal": {
         "cancel": {
           "buttonText": "Palaa tapahtuman sivulle"
@@ -384,6 +447,70 @@
     "externalTicketSystemButtons": {
       "back": "Takaisin",
       "continue": "Jatka ilmoittautumaan"
+    },
+    "description": {
+      "title": "Kuvaus"
+    },
+    "venueInfo": {
+      "title": "Tietoa tapahtumapaikasta"
+    },
+    "hero": {
+      "backButtonAriaLabel": "Palaa takaisin",
+      "enrolButton": "Ilmoittaudu",
+      "viewOccurrencesButton": "Katso tapahtuma-ajat ja ilmoittaudu",
+      "enrolledBadge": "Ilmoittautunut",
+      "cancelEnrolmentButton": "Peruuta ilmoittautuminen",
+      "viewAllOccurrencesLink": "Katso kaikki ajankohdat",
+      "dateRangeWithCount": "{{dateRange}} ({{count}} tapahtuma-aikaa)",
+      "dateRangeWithCount_one": "{{dateRange}} ({{count}} tapahtuma-aika)",
+      "dateRangeWithCount_other": "{{dateRange}} ({{count}} tapahtuma-aikaa)"
+    },
+    "sidebar": {
+      "dateTitle": "Päivä ja aika",
+      "durationTitle": "Kesto",
+      "occurrencesCount": "{{count}} tapahtuma-aikaa",
+      "occurrencesCount_one": "{{count}} tapahtuma-aika",
+      "occurrencesCount_other": "{{count}} tapahtuma-aikaa",
+      "viewOccurrencesAndEnrol": "Katso tapahtuma-ajat ja ilmoittaudu",
+      "locationTitle": "Paikka",
+      "openMap": "Avaa kartta",
+      "participantsTitle": "Osallistujat",
+      "languagesTitle": "Kielet"
+    },
+    "occurrencesTable": {
+      "title": "Tapahtuman ajankohdat ja ilmoittautuminen",
+      "date": "Päivämäärä",
+      "time": "Kellonaika",
+      "remainingCapacity": "Paikkoja jäljellä",
+      "remainingCount": "{{count}} paikkaa",
+      "remainingCount_one": "{{count}} paikka",
+      "remainingCount_other": "{{count}} paikkaa",
+      "unlimited": "Ei rajoitusta",
+      "full": "Tapahtuma täynnä",
+      "enrolButton": "Ilmoittaudu",
+      "cancelButton": "Peruuta",
+      "alreadyEnrolledOther": "Ilmoittautunut toiseen aikaan",
+      "subscribeNotificationButton": "Tilaa ilmoitus",
+      "cancelNotificationSubscription": "Peruuta ilmoitus",
+      "action": "Toiminto",
+      "noOccurrences": "Ei tulevia tapahtuma-aikoja saatavilla."
+    },
+    "enrolModal": {
+      "title": "Vahvista ilmoittautuminen",
+      "forWhom": "Kenelle",
+      "freeSpots": "Vapaata tilaa: {{count}} paikkaa",
+      "freeSpots_one": "Vapaata tilaa: 1 paikka",
+      "freeSpots_other": "Vapaata tilaa: {{count}} paikkaa",
+      "freeSpots_zero": "Ei vapaita paikkoja",
+      "participantsTitle": "Osallistujat",
+      "cultureKidsLabel": "Kulttuurilapset *",
+      "guardianLabel": "Lähiaikuinen *",
+      "guardianYou": "{{name}} (sinä)",
+      "defaultGuardian": "Huoltaja",
+      "quotaNotice": "Kulttuurilapsi voi osallistua yhteen tapahtumaan kaudessa. Ilmoittautuminen käyttää paikan: {{name}}.",
+      "bindingNotice": "Ilmoittautuminen on sitova. Jos este tulee, peru paikka viimeistään vuorokautta ennen tapahtumaa, jotta se vapautuu toiselle perheelle.",
+      "confirmButton": "Vahvista ilmoittautuminen",
+      "cancelButton": "Peruuta"
     }
   },
   "eventRedirectPage": {
@@ -884,6 +1011,47 @@
           "authenticatedErrorMessage": "Ongelma tietojesi lataamisessa. Yritä kirjautua palveluun uudelleen."
         }
       }
+    }
+  },
+  "search": {
+    "title": "Etsi tapahtumia",
+    "hero": {
+      "title": "Etsi tapahtumia",
+      "greeting": "Hei {{name}}!",
+      "description": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Kummilapsi voi osallistua vuosittain kahteen tapahtumaan, yhteen tapahtumaan keväällä ja yhteen tapahtumaan syksyllä. Joskus tapahtumia voi olla tarjolla enemmän, silloin ilmoitamme siitä erikseen. Nähdään kulttuurin parissa!",
+      "selectChild": "Valitse lapsi",
+      "childAge": "{{age}} vuotta"
+    },
+    "childSelector": {
+      "description": "Lapsen valitseminen päivittää hakutulokset automaattisesti."
+    },
+    "filter": {
+      "title": "Rajaa hakutuloksia",
+      "searchLabel": "Hae sanalla",
+      "searchPlaceholder": "Esim. konsertti, työpaja...",
+      "dateLabel": "Ajankohta",
+      "datePlaceholder": "Valitse ajankohta",
+      "venueLabel": "Tapahtumapaikka",
+      "venuePlaceholder": "Valitse paikka",
+      "submitButton": "Hae",
+      "clearButton": "Tyhjennä hakuehdot"
+    },
+    "results": {
+      "count": "{{count}} hakutulos",
+      "count_one": "{{count}} hakutulos",
+      "count_other": "{{count}} hakutulosta",
+      "count_zero": "0 hakutulosta",
+      "noResults": "Ei saatavilla olevia tapahtumia.",
+      "loadMore": "Näytä lisää ({{count}})"
+    },
+    "card": {
+      "enrolButton": "Ilmoittaudu",
+      "readMoreButton": "Lue lisää",
+      "readMoreAndEnrolButton": "Lue lisää ja ilmoittaudu",
+      "languages": "Kielet: {{languages}}",
+      "dateRangeWithCount": "{{dateRange}} ({{count}} tapahtuma-aikaa)",
+      "badgeExample1": "Esimerkkimerkki 1",
+      "badgeExample2": "Esimerkkimerkki 2"
     }
   }
 }

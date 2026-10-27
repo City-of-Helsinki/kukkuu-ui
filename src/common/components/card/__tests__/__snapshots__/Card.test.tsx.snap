@@ -29,7 +29,7 @@ exports[`renders snapshot correctly 1`] = `
       <button
         aria-label=""
         class="Button-module_button__P7hTI Button-module_supplementary__uEAdn _actionWrapper_2a19a2"
-        style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: transparent; --background-color-focus: transparent; --background-color-hover-focus: transparent; --background-selected: var(--color-summer); --border-color: none; --border-color-hover: var(--color-summer-dark); --border-color-focus: var(--color-summer-dark); --border-color-hover-focus: var(--color-summer-dark); --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
+        style="--color: var(--color-black); --color-hover: var(--color-black); --color-focus: var(--color-black-90); --color-hover-focus: var(--color-black-90); --background-color: transparent; --background-color-hover: var(--color-black-5); --background-color-focus: transparent; --background-color-hover-focus: var(--color-black-5); --background-selected: var(--color-summer); --border-color: transparent; --border-color-hover: transparent; --border-color-focus: transparent; --border-color-hover-focus: transparent; --border-color-selected: var(--color-summer); --border-color-selected-hover: var(--color-summer-dark); --border-color-selected-focus: var(--color-summer); --border-color-selected-hover-focus: var(--color-summer);"
         type="button"
       >
         <span>

@@ -1,0 +1,39 @@
+@use '~styles/variables';
+
+.dateBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  min-width: 5rem;
+  height: 5.5rem;
+  background-color: var(--color-summer, #ffc61e);
+  color: var(--color-black, #000);
+  border-radius: var(--spacing-2-xs);
+  padding: var(--spacing-2-xs) var(--spacing-xs);
+  text-align: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+
+  .weekday {
+    font-size: var(--fontsize-body-xs, 0.75rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .day {
+    font-size: var(--fontsize-heading-l, 2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0.125rem 0;
+  }
+
+  .month {
+    font-size: var(--fontsize-body-xs, 0.75rem);
+    font-weight: 600;
+    line-height: 1;
+  }
+}
