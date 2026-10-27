@@ -448,6 +448,11 @@
       "back": "Takaisin",
       "continue": "Jatka ilmoittautumaan"
     },
+    "ticketSystem": {
+      "ticketmaster": "Ticketmaster",
+      "lippupiste": "Lippupiste",
+      "tixly": "Tixly"
+    },
     "description": {
       "title": "Kuvaus"
     },
@@ -458,6 +463,8 @@
       "backButtonAriaLabel": "Palaa takaisin",
       "enrolButton": "Ilmoittaudu",
       "viewOccurrencesButton": "Katso tapahtuma-ajat ja ilmoittaudu",
+      "claimPasswordButton": "Lunasta salasana",
+      "viewPasswordButton": "Katso salasana",
       "enrolledBadge": "Ilmoittautunut",
       "cancelEnrolmentButton": "Peruuta ilmoittautuminen",
       "viewAllOccurrencesLink": "Katso kaikki ajankohdat",
@@ -472,6 +479,9 @@
       "occurrencesCount_one": "{{count}} tapahtuma-aika",
       "occurrencesCount_other": "{{count}} tapahtuma-aikaa",
       "viewOccurrencesAndEnrol": "Katso tapahtuma-ajat ja ilmoittaudu",
+      "ticketSystemTitle": "Lipunmyynti",
+      "claimPassword": "Lunasta salasana",
+      "viewPassword": "Katso salasana",
       "locationTitle": "Paikka",
       "openMap": "Avaa kartta",
       "participantsTitle": "Osallistujat",
@@ -1015,6 +1025,7 @@
   },
   "search": {
     "title": "Etsi tapahtumia",
+    "childNotFoundNotification": "Valittua lasta ei löytynyt profiilistasi. Näytetään ensimmäisen lapsen tapahtumat.",
     "hero": {
       "title": "Etsi tapahtumia",
       "greeting": "Hei {{name}}!",
@@ -1033,6 +1044,7 @@
       "datePlaceholder": "Valitse ajankohta",
       "venueLabel": "Tapahtumapaikka",
       "venuePlaceholder": "Valitse paikka",
+      "availableOnlyLabel": "Näytä vain tapahtumat, joihin voi ilmoittautua",
       "submitButton": "Hae",
       "clearButton": "Tyhjennä hakuehdot"
     },
@@ -1051,7 +1063,12 @@
       "languages": "Kielet: {{languages}}",
       "dateRangeWithCount": "{{dateRange}} ({{count}} tapahtuma-aikaa)",
       "badgeExample1": "Esimerkkimerkki 1",
-      "badgeExample2": "Esimerkkimerkki 2"
+      "badgeExample2": "Esimerkkimerkki 2",
+      "enrolledBadge": "Ilmoittautunut",
+      "alreadyEnrolledSeasonBadge": "Kauden tapahtuma valittu",
+      "alreadyEnrolledNotice": "Olet jo ilmoittautunut tähän tapahtumaan.",
+      "alreadyEnrolledSeasonNotice": "Olet jo ilmoittautunut toiseen tämän kauden tapahtumaan.",
+      "yearlyLimitReachedNotice": "Vuosittainen ilmoittautumiskiintiö on täynnä."
     }
   }
 }
