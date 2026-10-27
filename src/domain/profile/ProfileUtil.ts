@@ -25,6 +25,9 @@ export const normalizeProfileChild = (
   };
 };
 
+/**
+ * @deprecated No longer used after `ProfileChildrenList` was redesigned with accordions.
+ */
 export const getProjectsFromProfileQuery = (
   children: MyProfileChildren
 ): Project[] => {

@@ -24,6 +24,10 @@ interface AdditionalNotesCardProps {
   title?: string;
 }
 
+/**
+ * @deprecated Legacy child notes card from `ProfileChildDetail`.
+ * Kept in case child notes are integrated into the profile accordion in the future.
+ */
 const AdditionalNotesCard: FunctionComponent<AdditionalNotesCardProps> = ({
   title,
   childId,
