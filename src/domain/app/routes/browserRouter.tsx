@@ -18,10 +18,7 @@ import SearchRedirect from './SearchRedirect';
 import ChildEventsSearch from '../../event/search/ChildEventsSearch';
 import EventGroupPage from '../../eventGroup/EventGroupPage';
 import Event from '../../event/Event';
-import ExternalTicketSystemEventIsEnrolled from '../../event/ExternalTicketSystemEventIsEnrolled';
-import EventRedirect from '../../event/EventRedirect';
-import EventIsEnrolled from '../../event/EventIsEnrolled';
-import EnrolPage from '../../event/enrol/EnrolPage';
+import LegacyEventRedirect from './LegacyEventRedirect';
 import CookieConsentPage from '../../cookieConsent/CookieConsentPage';
 import Unauthorized from '../../auth/Unauthorized';
 import ManageCommunicationSubscriptions from '../../profile/subscriptions/ManageSubscriptions';
@@ -186,34 +183,39 @@ const browserRouter = createBrowserRouter([
                 path: 'event/:eventId/past',
                 element: <AppRoute noTitle element={<Event />} />,
               },
+              /** @deprecated Legacy route for external ticket system enrolled view. Redirects to unified event page. */
               {
                 path: 'event/:eventId/external-enrolment',
                 element: (
                   <AppRoute
                     noTitle
-                    element={<ExternalTicketSystemEventIsEnrolled />}
+                    element={<LegacyEventRedirect />}
                   />
                 ),
               },
+              /**
+               * @deprecated Legacy route for external ticket system redirect/claim view.
+               * Redirects to unified event page.
+               */
               {
                 path: 'event/:eventId/redirect',
                 element: (
                   <AppRoute
-                    titleKey="eventRedirectPage.metaTitle"
-                    element={<EventRedirect />}
+                    noTitle
+                    element={<LegacyEventRedirect />}
                   />
                 ),
               },
-              {
-                path: 'occurrence/:occurrenceId',
-                element: <AppRoute noTitle element={<EventIsEnrolled />} />,
-              },
+              /**
+               * @deprecated Legacy route still linked from backend e-mails (`occurrence_enrol_url`).
+               * Redirects to the unified event details page.
+               */
               {
                 path: 'event/:eventId/occurrence/:occurrenceId/enrol',
                 element: (
                   <AppRoute
-                    titleKey="enrolPage.enrol"
-                    element={<EnrolPage />}
+                    noTitle
+                    element={<LegacyEventRedirect hash="" />}
                   />
                 ),
               },

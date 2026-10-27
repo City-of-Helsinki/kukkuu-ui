@@ -1,0 +1,22 @@
+@use '~styles/variables';
+
+.eventDetailsPage {
+  background-color: var(--color-white);
+  min-height: 80vh;
+
+  .breadcrumbsWrapper {
+    width: 100%;
+    background-color: var(--color-white, #fff);
+
+    .breadcrumbs {
+      max-width: var(--container-max-width, 1200px);
+      margin: 0 auto;
+      padding: var(--spacing-xs) var(--spacing-m);
+      box-sizing: border-box;
+
+      nav {
+        margin: 0;
+      }
+    }
+  }
+}

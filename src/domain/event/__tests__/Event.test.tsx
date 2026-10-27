@@ -1,25 +1,20 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-// FIXME: Fix types and re-enable Typescript checking by removing @ts-nocheck
 import { vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import { MockedResponse } from '@apollo/client/testing';
 import * as Sentry from '@sentry/browser';
 
 import { customRender as render } from '../../../common/test/customRender';
+import {
+  fakeEventNode,
+  fakeOccurrenceNode,
+} from '../../../utils/eventMockDataUtils';
 import Event from '../Event';
-import eventQuery, {
-  eventExternalTicketSystemHasAnyFreePasswordsQuery,
-} from '../queries/eventQuery';
+import eventQuery from '../queries/eventQuery';
 import { getDateOptions, getTimeOptions } from '../EventUtils';
 import {
   testEventId,
   testChildId,
   eventWithOccurrencesMock,
-  externalTicketSystemEventMock,
-  hasFreePasswordsMock,
-  internalTicketSystemPasswordsMock,
-  dummyPasswordMock,
 } from '../__mocks__/eventMocks';
 
 vi.mock('@sentry/browser');
@@ -28,6 +23,10 @@ const mockUseLocation = vi.hoisted(() =>
   vi.fn().mockReturnValue({
     pathname: '/profile/child/child-123/event/event-456',
   })
+);
+
+const mockUseSearchParams = vi.hoisted(() =>
+  vi.fn().mockReturnValue([new URLSearchParams(), vi.fn()])
 );
 
 vi.mock('react-router', async () => {
@@ -40,16 +39,11 @@ vi.mock('react-router', async () => {
     }),
     useLocation: mockUseLocation,
     useNavigate: () => vi.fn(),
+    useSearchParams: mockUseSearchParams,
   };
 });
 
-vi.mock('../route/EventRoute', () => ({
-  useEventRouteGoBackTo: () => '/profile/child/child-123',
-}));
-
 describe('Event', () => {
-  // Test these utils separately so we do not need to mock the API.
-  // Cover that with browser tests.
   describe('utilities', () => {
     it('getDateOptions should return a list of options without duplicates', () => {
       const occurrences = {
@@ -60,7 +54,7 @@ describe('Event', () => {
         ],
       };
 
-      expect(getDateOptions(occurrences)).toMatchInlineSnapshot(`
+      expect(getDateOptions(occurrences as any)).toMatchInlineSnapshot(`
         [
           {
             "key": "1",
@@ -99,7 +93,7 @@ describe('Event', () => {
         ],
       };
 
-      expect(getTimeOptions(occurrences)).toMatchInlineSnapshot(`
+      expect(getTimeOptions(occurrences as any)).toMatchInlineSnapshot(`
         [
           {
             "key": "1",
@@ -117,7 +111,7 @@ describe('Event', () => {
   });
 
   describe('Event component', () => {
-    const renderEvent = (mocks) => render(<Event />, mocks);
+    const renderEvent = (mocks: MockedResponse[]) => render(<Event />, mocks);
 
     const waitForLoadingToFinish = () =>
       waitFor(() => {
@@ -129,6 +123,7 @@ describe('Event', () => {
       mockUseLocation.mockReturnValue({
         pathname: '/profile/child/child-123/event/event-456',
       });
+      mockUseSearchParams.mockReturnValue([new URLSearchParams(), vi.fn()]);
     });
 
     afterEach(() => {
@@ -151,7 +146,7 @@ describe('Event', () => {
         error: new Error('Query failed'),
       };
 
-      renderEvent([errorMock, dummyPasswordMock]);
+      renderEvent([errorMock]);
 
       expect(await screen.findByText(/Tapahtui virhe/i)).toBeInTheDocument();
       expect(Sentry.captureException).toHaveBeenCalled();
@@ -175,135 +170,174 @@ describe('Event', () => {
         }),
       };
 
-      renderEvent([noEventMock, dummyPasswordMock]);
+      renderEvent([noEventMock]);
 
       expect(await screen.findByText('No event')).toBeInTheDocument();
     });
 
-    it('renders event details for internal ticket system', async () => {
-      renderEvent([
-        eventWithOccurrencesMock,
-        internalTicketSystemPasswordsMock,
-      ]);
+    it('renders event details, breadcrumbs, description and sidebar info', async () => {
+      renderEvent([eventWithOccurrencesMock]);
 
       await waitForLoadingToFinish();
 
-      // Verify event details are rendered with actual EventPage component
-      expect(screen.getByText('Test Event')).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Test Event' })
+      ).toBeInTheDocument();
       expect(screen.getByText('Test event description')).toBeInTheDocument();
+
+      expect(
+        screen.getByRole('navigation', { name: /Leivänmurunavigaatio/i })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('link', { name: 'Tapahtumat' })
+      ).toHaveAttribute('href', '/events?child=child-123');
+
+      expect(screen.getByText('Osallistujat')).toBeInTheDocument();
+
+      expect(
+        screen.getByRole('link', {
+          name: 'Katso tapahtuma-ajat ja ilmoittaudu',
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', {
+          name: 'Katso tapahtuma-ajat ja ilmoittaudu',
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: 'Tapahtuman ajankohdat ja ilmoittautuminen',
+        })
+      ).toBeInTheDocument();
     });
 
-    it('renders EventEnrol component for internal ticket system on upcoming events', async () => {
-      renderEvent([
-        eventWithOccurrencesMock,
-        internalTicketSystemPasswordsMock,
+    it('renders event details page in standard event mode even when occurrenceId query param is present', async () => {
+      mockUseSearchParams.mockReturnValue([
+        new URLSearchParams('occurrenceId=occ-1'),
+        vi.fn(),
       ]);
 
-      await waitForLoadingToFinish();
-
-      // Verify EventEnrol component is rendered by checking for its form fields
-      expect(screen.getByLabelText(/Valitse päivämäärä/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/Valitse kellonaika/i)).toBeInTheDocument();
-    });
-
-    it('does not render EventEnrol on past events', async () => {
-      mockUseLocation.mockReturnValue({
-        pathname: '/profile/child/child-123/event/event-456/past',
+      const occurrenceNode = fakeOccurrenceNode({
+        id: 'occ-1',
+        time: '2026-10-15T12:00:00Z',
+        remainingCapacity: 10,
+        childHasFreeSpotNotificationSubscription: false,
+        venue: {
+          id: 'v-1',
+          name: 'Kaapelitehdas',
+          address: 'Tallberginkatu 1',
+          description: null,
+          accessibilityInfo: null,
+          arrivalInstructions: null,
+          wcAndFacilities: null,
+          wwwUrl: null,
+        },
+        event: {
+          id: testEventId,
+          name: 'Test Event',
+          duration: 60,
+        },
       });
 
-      renderEvent([
-        eventWithOccurrencesMock,
-        internalTicketSystemPasswordsMock,
-      ]);
-
-      await waitForLoadingToFinish();
-
-      expect(
-        screen.queryByLabelText(/Valitse päivämäärä/i)
-      ).not.toBeInTheDocument();
-      expect(
-        screen.queryByLabelText(/Valitse kellonaika/i)
-      ).not.toBeInTheDocument();
-    });
-
-    it('renders Continue button for external ticket system when can enroll and has free passwords', async () => {
-      renderEvent([externalTicketSystemEventMock, hasFreePasswordsMock]);
-
-      await waitForLoadingToFinish();
-
-      expect(screen.getByText(/Jatka ilmoittautumaan/i)).toBeInTheDocument();
-    });
-
-    it('renders no free passwords text for external ticket system when passwords are exhausted', async () => {
-      const noFreePasswordsMock = {
+      const eventWithSingleOccurrenceMock = {
         request: {
-          query: eventExternalTicketSystemHasAnyFreePasswordsQuery,
+          query: eventQuery,
           variables: {
             id: testEventId,
+            childId: testChildId,
           },
         },
-        newData: () => ({
+        result: {
           data: {
-            event: {
-              __typename: 'EventNode',
+            event: fakeEventNode({
               id: testEventId,
-              ticketSystem: {
-                __typename: 'TicketmasterEventTicketSystem',
-                type: 'TICKETMASTER',
-                hasAnyFreePasswords: false,
+              name: 'Test Event',
+              description: 'Test event description',
+              shortDescription: 'Test short description',
+              image: 'test-image-url',
+              imageAltText: 'Test image alt',
+              duration: 60,
+              capacityPerOccurrence: 20,
+              enrolmentDeniedReason: null,
+              registrationOpensAt: null,
+              allOccurrences: {
+                __typename: 'OccurrenceNodeConnection',
+                edges: [
+                  {
+                    __typename: 'OccurrenceNodeEdge',
+                    node: occurrenceNode,
+                  },
+                ],
               },
-            },
+              occurrences: {
+                __typename: 'OccurrenceNodeConnection',
+                edges: [],
+              },
+            }),
           },
-        }),
+        },
       };
 
-      renderEvent([externalTicketSystemEventMock, noFreePasswordsMock]);
+      renderEvent([eventWithSingleOccurrenceMock]);
 
       await waitForLoadingToFinish();
 
       expect(
-        screen.getByText(/Valitettavasti salasanoja ei ole enää jäljellä/i)
+        screen.getByRole('link', {
+          name: 'Katso tapahtuma-ajat ja ilmoittaudu',
+        })
+      ).toBeInTheDocument();
+
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: 'Tapahtuman ajankohdat ja ilmoittautuminen',
+        })
       ).toBeInTheDocument();
     });
 
-    const getCannotEnrollExternalEventMock = ({
-      enrolmentDeniedReason = 'ALREADY_HAS_PASSWORD_TO_EVENT_GROUP',
+    const getEventWithDenialMock = ({
+      enrolmentDeniedReason,
       registrationOpensAt = null,
     }: {
-      enrolmentDeniedReason?: string;
+      enrolmentDeniedReason: string;
       registrationOpensAt?: string | null;
-    } = {}): MockedResponse => ({
-      ...externalTicketSystemEventMock,
-      newData: () => ({
-        data: {
-          event: {
-            ...externalTicketSystemEventMock.newData().data.event,
-            enrolmentDeniedReason,
-            registrationOpensAt,
-          },
+    }): MockedResponse => ({
+      request: {
+        query: eventQuery,
+        variables: {
+          id: testEventId,
+          childId: testChildId,
         },
-      }),
+      },
+      result: {
+        data: {
+          event: fakeEventNode({
+            id: testEventId,
+            name: 'Test Event',
+            enrolmentDeniedReason: enrolmentDeniedReason as any,
+            registrationOpensAt,
+            allOccurrences: {
+              __typename: 'OccurrenceNodeConnection',
+              edges: [
+                {
+                  __typename: 'OccurrenceNodeEdge',
+                  node: fakeOccurrenceNode(),
+                },
+              ],
+            },
+          }),
+        },
+      },
     });
 
-    it('renders cant enroll notification for external ticket system when enrollment is not allowed', async () => {
-      renderEvent([getCannotEnrollExternalEventMock(), hasFreePasswordsMock]);
-
-      await waitForLoadingToFinish();
-
-      expect(
-        screen.getByText(
-          /Huomioithan, että et voi ilmoittautua tähän tapahtumaan/i
-        )
-      ).toBeInTheDocument();
-    });
-
-    it('renders opening time when REGISTRATION_NOT_OPEN and opening time is in future', async () => {
+    it('renders opening time notice when REGISTRATION_NOT_OPEN and opening time is in future', async () => {
       renderEvent([
-        getCannotEnrollExternalEventMock({
+        getEventWithDenialMock({
           enrolmentDeniedReason: 'REGISTRATION_NOT_OPEN',
           registrationOpensAt: '2099-06-01T10:00:00+03:00',
         }),
-        hasFreePasswordsMock,
       ]);
 
       await waitForLoadingToFinish();
@@ -315,10 +349,9 @@ describe('Event', () => {
 
     it('renders generic not-opened-yet notice when REGISTRATION_NOT_OPEN without opening time', async () => {
       renderEvent([
-        getCannotEnrollExternalEventMock({
+        getEventWithDenialMock({
           enrolmentDeniedReason: 'REGISTRATION_NOT_OPEN',
         }),
-        hasFreePasswordsMock,
       ]);
 
       await waitForLoadingToFinish();
@@ -330,11 +363,10 @@ describe('Event', () => {
 
     it('renders cannot-enroll notice when EMPTY_EVENT and opening time is in future', async () => {
       renderEvent([
-        getCannotEnrollExternalEventMock({
+        getEventWithDenialMock({
           enrolmentDeniedReason: 'EMPTY_EVENT',
           registrationOpensAt: '2099-06-01T10:00:00+03:00',
         }),
-        hasFreePasswordsMock,
       ]);
 
       await waitForLoadingToFinish();
