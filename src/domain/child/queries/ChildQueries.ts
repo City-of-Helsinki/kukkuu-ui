@@ -62,6 +62,7 @@ export const childByIdQuery = gql`
   fragment EnrolmentOccurrenceFields on OccurrenceNode {
     id
     time
+    occurrenceLanguage
     venue {
       ...EnrolmentVenueFields
     }

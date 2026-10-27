@@ -53,16 +53,7 @@ export type UpcomingEventGroupEvent = UpcomingEventGroupEventFieldsFragment;
 
 export type UpcomingEvent = UpcomingEventFieldsFragment;
 
-export type UpcomingEventGroup = UpcomingEventGroupFieldsFragment & {
-  publishedAt?: string | null;
-  events?: {
-    __typename?: 'EventNodeConnection';
-    edges: Array<{
-      __typename?: 'EventNodeEdge';
-      node?: UpcomingEventGroupEvent | null;
-    } | null>;
-  } | null;
-};
+export type UpcomingEventGroup = UpcomingEventGroupFieldsFragment;
 
 export type UpcomingEventOrEventGroup =
   | UpcomingEvent

@@ -52,18 +52,13 @@ const getVenueText = (
 };
 
 const getLanguageText = (
-  occurrence: unknown,
+  occurrenceLanguage: string | null | undefined,
   t: (key: string, options?: { defaultValue?: string }) => string
 ) => {
-  if (
-    occurrence &&
-    typeof occurrence === 'object' &&
-    'occurrenceLanguage' in occurrence
-  ) {
-    const lang = (occurrence as { occurrenceLanguage?: string }).occurrenceLanguage;
-    if (lang) {
-      return t(`common.language.${lang.toLowerCase()}`, { defaultValue: lang });
-    }
+  if (occurrenceLanguage) {
+    return t(`common.language.${occurrenceLanguage.toLowerCase()}`, {
+      defaultValue: occurrenceLanguage,
+    });
   }
   return null;
 };
@@ -128,7 +123,7 @@ const ProfileEnrolledEventCard: React.FC<ProfileEnrolledEventCardProps> = ({
   );
 
   const venueText = getVenueText(occurrence?.venue);
-  const languageText = getLanguageText(occurrence, t);
+  const languageText = getLanguageText(occurrence?.occurrenceLanguage, t);
   const canUnenrol = occurrence ? shouldAllowUnenrolment(occurrence.time) : false;
 
   const readMoreUrl = getPathname(
