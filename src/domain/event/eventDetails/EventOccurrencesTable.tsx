@@ -1,14 +1,23 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useMediaQueryLessThan } from 'hds-react';
 
 import { sortOccurrencesByTime } from '../EventUtils';
 import { useOccurrenceCapacityText } from '../hooks/useOccurrenceCapacityText';
-import { EnrolmentDeniedReason, TicketSystem } from '../../api/generatedTypes/graphql';
+import {
+  EnrolmentDeniedReason,
+  TicketSystem,
+} from '../../api/generatedTypes/graphql';
 import {
   type EventOccurrencesTableColumn,
   getEventOccurrencesTableColumns,
 } from './eventOccurrencesTableColumns';
+import { EventOccurrencesDesktopTable } from './EventOccurrencesDesktopTable';
 import { EventOccurrencesTableRow } from './EventOccurrencesTableRow';
+import { EventOccurrencesTableCell } from './EventOccurrencesTableCell';
+import { EventOccurrenceActionButton } from './EventOccurrenceActionButton';
+import { EventOccurrencesAccordion } from './EventOccurrencesAccordion';
+import { EventOccurrenceAccordionItem } from './EventOccurrenceAccordionItem';
 import styles from './eventOccurrencesTable.module.scss';
 
 export type EventOccurrencesTableOccurrence = {
@@ -21,6 +30,11 @@ export type EventOccurrencesTableOccurrence = {
     id?: string;
     name?: string | null;
     address?: string | null;
+    description?: string | null;
+    accessibilityInfo?: string | null;
+    arrivalInstructions?: string | null;
+    wcAndFacilities?: string | null;
+    wwwUrl?: string | null;
   } | null;
   ticketSystem?: {
     type?: TicketSystem | string | null;
@@ -57,20 +71,27 @@ export type EventOccurrencesTableProps = {
   onCancelEnrolment?: (occurrence: EventOccurrencesTableOccurrence) => void;
   onSubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
   onUnsubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
+  onVenueInfoClick?: (
+    venue: NonNullable<EventOccurrencesTableOccurrence['venue']>
+  ) => void;
 };
 
-export type EventOccurrencesTableComponent = React.FC<
-  EventOccurrencesTableProps
-> & {
-  Row: typeof EventOccurrencesTableRow;
-};
+export type EventOccurrencesTableComponent =
+  React.FC<EventOccurrencesTableProps> & {
+    DesktopTable: typeof EventOccurrencesDesktopTable;
+    Row: typeof EventOccurrencesTableRow;
+    Cell: typeof EventOccurrencesTableCell;
+    ActionButton: typeof EventOccurrenceActionButton;
+    Accordion: typeof EventOccurrencesAccordion;
+    AccordionItem: typeof EventOccurrenceAccordionItem;
+  };
 
 /**
  * Displays available occurrences in a table with date, time, remaining spots,
  * and registration/subscription action buttons.
  *
- * Employs a compound component pattern (`EventOccurrencesTable.Row`) coupled with
- * a column-definition schema to strictly synchronize `<th>` headers with `<td>` cells.
+ * Responsively renders an HDS Accordion list on mobile and tablet screens (< 992px)
+ * and a 7-column data table on desktop screens.
  */
 export const EventOccurrencesTable: EventOccurrencesTableComponent = ({
   event,
@@ -82,8 +103,10 @@ export const EventOccurrencesTable: EventOccurrencesTableComponent = ({
   onCancelEnrolment,
   onSubscribe,
   onUnsubscribe,
+  onVenueInfoClick,
 }) => {
   const { t } = useTranslation();
+  const isMobile = useMediaQueryLessThan('l');
 
   const sortedOccurrences = React.useMemo(() => {
     return sortOccurrencesByTime(occurrences);
@@ -106,45 +129,52 @@ export const EventOccurrencesTable: EventOccurrencesTableComponent = ({
     );
   }
 
+  if (isMobile) {
+    return (
+      <EventOccurrencesAccordion
+        event={event}
+        occurrences={sortedOccurrences}
+        childId={childId}
+        enrolledOccurrenceId={enrolledOccurrenceId}
+        onEnrol={onEnrol}
+        onCancelEnrolment={onCancelEnrolment}
+        onSubscribe={onSubscribe}
+        onUnsubscribe={onUnsubscribe}
+        onVenueInfoClick={onVenueInfoClick}
+      />
+    );
+  }
+
   return (
-    <div className={styles.tableWrapper}>
-      <table className={styles.table}>
-        <thead>
-          <tr className={styles.headerRow}>
-            {columns.map((column) => (
-              <th
-                key={column.id}
-                scope="col"
-                className={column.headerClassName}
-              >
-                {column.header}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {sortedOccurrences.map((occ) => (
-            <EventOccurrencesTable.Row
-              key={occ.id}
-              columns={columns}
-              occurrence={occ}
-              event={event}
-              childId={childId}
-              enrolledOccurrenceId={enrolledOccurrenceId}
-              formatCapacityText={formatCapacityText}
-              onEnrol={onEnrol}
-              onCancelEnrolment={onCancelEnrolment}
-              onSubscribe={onSubscribe}
-              onUnsubscribe={onUnsubscribe}
-            />
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <EventOccurrencesDesktopTable
+      columns={columns}
+      occurrences={sortedOccurrences}
+      event={event}
+      childId={childId}
+      enrolledOccurrenceId={enrolledOccurrenceId}
+      formatCapacityText={formatCapacityText}
+      onEnrol={onEnrol}
+      onCancelEnrolment={onCancelEnrolment}
+      onSubscribe={onSubscribe}
+      onUnsubscribe={onUnsubscribe}
+      onVenueInfoClick={onVenueInfoClick}
+    />
   );
 };
 
+EventOccurrencesTable.DesktopTable = EventOccurrencesDesktopTable;
 EventOccurrencesTable.Row = EventOccurrencesTableRow;
+EventOccurrencesTable.Cell = EventOccurrencesTableCell;
+EventOccurrencesTable.ActionButton = EventOccurrenceActionButton;
+EventOccurrencesTable.Accordion = EventOccurrencesAccordion;
+EventOccurrencesTable.AccordionItem = EventOccurrenceAccordionItem;
 
-export { EventOccurrencesTableRow };
+export {
+  EventOccurrencesDesktopTable,
+  EventOccurrencesTableRow,
+  EventOccurrencesTableCell,
+  EventOccurrenceActionButton,
+  EventOccurrencesAccordion,
+  EventOccurrenceAccordionItem,
+};
 export default EventOccurrencesTable;

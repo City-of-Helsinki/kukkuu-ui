@@ -120,19 +120,24 @@ export const EventHero: React.FC<EventHeroProps> = ({
           .join(', ') || null
       );
     }
-    const venueNames = uniqueVenues
-      .map((v) => v.name || v.address)
-      .filter((v): v is string => Boolean(v));
-    return venueNames.length > 0 ? venueNames.join(', ') : null;
-  }, [allOccurrences]);
+    return t('event.hero.multipleVenues');
+  }, [allOccurrences, t]);
 
   const languageText = React.useMemo(() => {
     const uniqueLangs = extractUniqueLanguages(null, allOccurrences);
     if (uniqueLangs.length === 0) return null;
-    return t('search.card.languages', {
-      languages: uniqueLangs
-        .map((lang) => t(`common.language.${lang}`))
-        .join(', '),
+    const formattedLangs = uniqueLangs
+      .map((lang) => t(`common.language.${lang}`))
+      .join(', ');
+
+    if (uniqueLangs.length === 1) {
+      return t('event.hero.languageSingle', {
+        languages: formattedLangs,
+      });
+    }
+
+    return t('event.hero.languagesMultiple', {
+      languages: formattedLangs,
     });
   }, [allOccurrences, t]);
 
@@ -151,7 +156,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
             }}
             className={styles.enrolButton}
           >
-            {t('event.hero.viewPasswordButton', 'Katso salasana')}
+            {t('event.hero.viewPasswordButton')}
           </Button>
           {event.ticketSystem?.url && (
             <AnchorButton
@@ -159,10 +164,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
               openInNewTab
               className={styles.continueButton}
             >
-              {t(
-                'externalTicketSystemEvent.continueButton',
-                'Jatka ulkoiseen lipunmyyntipalveluun'
-              )}
+              {t('externalTicketSystemEvent.continueButton')}
             </AnchorButton>
           )}
         </div>
@@ -181,7 +183,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
         }}
         className={styles.enrolButton}
       >
-        {t('event.hero.claimPasswordButton', 'Lunasta salasana')}
+        {t('event.hero.claimPasswordButton')}
       </Button>
     );
   };
@@ -317,7 +319,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
                   className={styles.enrolledBadge}
                   data-testid="hero-enrolled-badge"
                 >
-                  {t('event.hero.enrolledBadge', 'Ilmoittautunut')}
+                  {t('event.hero.enrolledBadge')}
                 </StatusLabel>
               )}
               {isEnrolledInSeasonSibling && (
