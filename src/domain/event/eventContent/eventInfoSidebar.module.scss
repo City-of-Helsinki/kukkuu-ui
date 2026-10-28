@@ -5,6 +5,10 @@
   background-color: var(--color-gold-light, #fef4cf);
   padding: var(--spacing-l);
   box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-break: break-word;
 
   .sidebarContent {
     display: flex;

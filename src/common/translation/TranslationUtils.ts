@@ -1,8 +1,11 @@
 import { i18n as I18nInstanceType } from 'i18next';
 
-import { SUPPORT_LANGUAGES } from './TranslationConstants';
+import {
+  DEFAULT_LANGUAGE,
+  Language,
+} from './TranslationConstants';
 
-type Language = 'fi' | 'en' | 'sv';
+export type { Language };
 
 /**
  * Safety check in case
@@ -12,5 +15,5 @@ export const getCurrentLanguage = (i18n: I18nInstanceType): Language => {
   if (i18n.language && Object.values(i18n.languages).includes(i18n.language)) {
     return i18n.language as Language;
   }
-  return SUPPORT_LANGUAGES.FI as Language;
+  return DEFAULT_LANGUAGE;
 };

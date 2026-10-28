@@ -470,7 +470,10 @@
       "viewAllOccurrencesLink": "View all event times",
       "dateRangeWithCount": "{{dateRange}} ({{count}} occurrences)",
       "dateRangeWithCount_one": "{{dateRange}} ({{count}} occurrence)",
-      "dateRangeWithCount_other": "{{dateRange}} ({{count}} occurrences)"
+      "dateRangeWithCount_other": "{{dateRange}} ({{count}} occurrences)",
+      "multipleVenues": "Multiple event venues",
+      "languageSingle": "Language: {{languages}}",
+      "languagesMultiple": "Languages: {{languages}}"
     },
     "sidebar": {
       "dateTitle": "Date and time",
@@ -483,20 +486,36 @@
       "claimPassword": "Claim password",
       "viewPassword": "View password",
       "locationTitle": "Location",
+      "multipleVenues": "Multiple event venues",
       "openMap": "Open map",
       "participantsTitle": "Participants",
-      "languagesTitle": "Languages"
+      "languagesTitle": "Languages",
+      "languageTitle": "Language"
     },
     "occurrencesTable": {
       "title": "Event times and enrolment",
       "date": "Date",
       "time": "Time",
+      "venueName": "Venue",
+      "address": "Address",
+      "languages": "Languages",
       "remainingCapacity": "Remaining spots",
       "remainingCount": "{{count}} spots",
       "remainingCount_one": "{{count}} spot",
       "remainingCount_other": "{{count}} spots",
+      "remainingSpotsCount": "({{count}} spots left)",
+      "remainingSpotsCount_one": "({{count}} spot left)",
+      "remainingSpotsCount_other": "({{count}} spots left)",
       "unlimited": "Unlimited",
       "full": "Event full",
+      "fullBadge": "Full",
+      "timeLabel": "Time",
+      "languageLabel": "Language",
+      "languagesLabel": "Languages",
+      "venueLabel": "Place",
+      "addressLabel": "Address",
+      "close": "Close",
+      "venueInfoAriaLabel": "Show venue details: {{venue}}",
       "enrolButton": "Enrol",
       "cancelButton": "Cancel",
       "alreadyEnrolledOther": "Enrolled in another event time",
@@ -504,6 +523,14 @@
       "cancelNotificationSubscription": "Cancel notification subscription",
       "action": "Action",
       "noOccurrences": "No upcoming event times available."
+    },
+    "venueModal": {
+      "title": "Venue information",
+      "accessibility": "Accessibility information",
+      "arrivalInstructions": "Arrival instructions",
+      "wcAndFacilities": "Toilets and facilities",
+      "openMap": "Open map",
+      "close": "Close"
     },
     "enrolModal": {
       "title": "Confirm enrolment",

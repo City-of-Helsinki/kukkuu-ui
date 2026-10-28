@@ -4,7 +4,10 @@ import userEvent from '@testing-library/user-event';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import { EventParticipantsPerInvite as EventParticipantsPerInviteEnum } from '../../../api/generatedTypes/graphql';
-import EventInfoSidebar from '../EventInfoSidebar';
+import EventInfoSidebar, {
+  EventSidebarOccurrence,
+  EventSidebarOccurrencesInfo,
+} from '../EventInfoSidebar';
 
 describe('EventInfoSidebar', () => {
   const baseEvent = {
@@ -46,7 +49,7 @@ describe('EventInfoSidebar', () => {
     },
   ];
 
-  it('renders occurrence count, occurrences table button, duration, venues, participants, and languages', async () => {
+  it('renders date range with occurrence count, occurrences table button, duration, venues, participants, and languages', async () => {
     const user = userEvent.setup();
     const scrollIntoViewMock = vi.fn();
     const tableElement = document.createElement('div');
@@ -62,7 +65,9 @@ describe('EventInfoSidebar', () => {
     );
 
     // 1. Date and time / Occurrences summary
-    expect(screen.getByText('3 tapahtuma-aikaa')).toBeInTheDocument();
+    expect(
+      screen.getByText('4.10.2026 – 18.10.2026 (3 tapahtuma-aikaa)')
+    ).toBeInTheDocument();
     const tableButton = screen.getByRole('button', {
       name: 'Katso tapahtuma-ajat ja ilmoittaudu',
     });
@@ -141,5 +146,60 @@ describe('EventInfoSidebar', () => {
     expect(scrollIntoViewMock).toHaveBeenCalledWith({ behavior: 'smooth' });
 
     document.body.removeChild(sectionElement);
+  });
+
+  it('renders "Useita tapahtumapaikkoja" when occurrences span multiple venues', () => {
+    const multiVenueOccurrences: EventSidebarOccurrence[] = [
+      occurrences[0],
+      {
+        id: 'occ-diff-venue',
+        time: '2026-10-10T12:00:00Z',
+        occurrenceLanguage: 'FI',
+        venue: {
+          id: 'venue-annantalo',
+          name: 'Annantalo',
+          address: 'Annankatu 30',
+        },
+      },
+    ];
+
+    render(
+      <EventInfoSidebar
+        event={baseEvent}
+        occurrences={multiVenueOccurrences}
+      />
+    );
+
+    expect(screen.getByText('Useita tapahtumapaikkoja')).toBeInTheDocument();
+  });
+
+  it('renders single occurrence date and time when only one occurrence exists', () => {
+    render(
+      <EventInfoSidebar
+        event={baseEvent}
+        occurrences={[occurrences[0]]}
+      />
+    );
+
+    expect(screen.getByText('Su 4.10.2026, 13:00–14:00')).toBeInTheDocument();
+  });
+
+  it('falls back to occurrences count when occurrences array is empty', () => {
+    render(
+      <EventInfoSidebar
+        event={baseEvent}
+        occurrences={[]}
+      />
+    );
+
+    expect(screen.getByText('0 tapahtuma-aikaa')).toBeInTheDocument();
+  });
+
+  it('renders occurrences count when only occurrencesCount is provided to EventSidebarOccurrencesInfo', () => {
+    render(
+      <EventSidebarOccurrencesInfo occurrencesCount={5} />
+    );
+
+    expect(screen.getByText('5 tapahtuma-aikaa')).toBeInTheDocument();
   });
 });

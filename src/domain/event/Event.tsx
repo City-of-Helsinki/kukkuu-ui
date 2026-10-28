@@ -10,7 +10,6 @@ import eventQuery from './queries/eventQuery';
 import EventDetailsPage from './eventDetails/EventDetailsPage';
 import RelayList from '../api/relayList';
 import type { OccurrenceNode } from './types/EventQueryTypes';
-import { extractUniqueVenues } from './EventUtils';
 import styles from './event.module.scss';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
@@ -51,13 +50,11 @@ const Event = () => {
 
   const event = data.event;
   const allOccurrences = OccurrenceList(data.event.allOccurrences).items;
-  const venues = extractUniqueVenues(null, allOccurrences);
 
   return (
     <EventDetailsPage
       event={event}
       allOccurrences={allOccurrences}
-      venues={venues}
       childId={childId || ''}
     />
   );

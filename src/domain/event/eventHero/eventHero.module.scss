@@ -9,6 +9,10 @@ $heroHeight: 30.6875rem;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
   padding-top: var(--spacing-l);
   padding-bottom: calc(85px + var(--spacing-3-xl)) !important;
 
@@ -29,16 +33,22 @@ $heroHeight: 30.6875rem;
 }
 
 .contentContainer {
+  min-width: 0;
+  width: 100%;
+
   @include layout.respond-below(m) {
     padding: 0 var(--spacing-m) !important;
   }
 
   .heroGrid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto auto;
     position: relative;
     box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     gap: var(--spacing-l);
 
     @include layout.respond-above(m) {
@@ -128,6 +138,9 @@ $heroHeight: 30.6875rem;
       flex-direction: column;
       justify-content: center;
       box-sizing: border-box;
+      min-width: 0;
+      max-width: 100%;
+      width: 100%;
       padding: 0;
 
       @include layout.respond-above(m) {
@@ -135,11 +148,17 @@ $heroHeight: 30.6875rem;
       }
 
       .title {
-        font-size: var(--fontsize-heading-xl, 2.5rem);
+        font-size: var(--fontsize-heading-l, 2rem);
         font-weight: 700;
         margin: 0 0 var(--spacing-s);
         line-height: 1.2;
         color: var(--color-black);
+        overflow-wrap: break-word;
+        word-break: break-word;
+
+        @include layout.respond-above(m) {
+          font-size: var(--fontsize-heading-xl, 2.5rem);
+        }
       }
 
       .shortDescription {
@@ -147,6 +166,8 @@ $heroHeight: 30.6875rem;
         line-height: 1.5;
         margin: 0 0 var(--spacing-m);
         color: var(--color-black-90);
+        overflow-wrap: break-word;
+        word-break: break-word;
       }
 
       .metaList {
@@ -160,6 +181,9 @@ $heroHeight: 30.6875rem;
           align-items: center;
           font-size: var(--fontsize-body-m, 1rem);
           color: var(--color-black-90);
+          min-width: 0;
+          overflow-wrap: break-word;
+          word-break: break-word;
 
           .metaIcon {
             width: var(--spacing-m);
@@ -195,15 +219,26 @@ $heroHeight: 30.6875rem;
       }
 
       .actionWrapper {
-        .enrolButton {
+        width: 100%;
+        max-width: 100%;
+
+        .enrolButton,
+        .enrolButtonDisabled,
+        .cancelButton {
           width: 100%;
-          background-color: var(--color-black, #000) !important;
-          color: var(--color-white, #fff) !important;
-          border-color: var(--color-black, #000) !important;
+          max-width: 100%;
+          box-sizing: border-box;
+          white-space: normal;
 
           @include layout.respond-above(m) {
             max-width: 26rem;
           }
+        }
+
+        .enrolButton {
+          background-color: var(--color-black, #000) !important;
+          color: var(--color-white, #fff) !important;
+          border-color: var(--color-black, #000) !important;
 
           &:hover {
             background-color: var(--color-black-90, #222) !important;
@@ -212,25 +247,15 @@ $heroHeight: 30.6875rem;
         }
 
         .enrolButtonDisabled {
-          width: 100%;
           background-color: var(--color-black-20, #ccc) !important;
           color: var(--color-black-60, #666) !important;
           border-color: var(--color-black-20, #ccc) !important;
-
-          @include layout.respond-above(m) {
-            max-width: 26rem;
-          }
         }
 
         .cancelButton {
-          width: 100%;
           background-color: var(--color-error, #b01038) !important;
           color: var(--color-white, #fff) !important;
           border-color: var(--color-error, #b01038) !important;
-
-          @include layout.respond-above(m) {
-            max-width: 26rem;
-          }
 
           &:hover {
             background-color: var(--color-error-dark, #8c0c2c) !important;
