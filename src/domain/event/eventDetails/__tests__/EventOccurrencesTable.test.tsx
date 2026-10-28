@@ -1,8 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
-import { fireEvent, screen, act } from '@testing-library/react';
+import { fireEvent, screen, act, within } from '@testing-library/react';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import i18n from '../../../../common/translation/i18n/i18nInit';
+import en from '../../../../common/translation/i18n/en.json';
 import EventOccurrencesTable, {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
@@ -11,6 +12,17 @@ import {
   EnrolmentDeniedReason,
   TicketSystem,
 } from '../../../api/generatedTypes/graphql';
+
+const useMediaQueryLessThanMock = vi.fn().mockReturnValue(false);
+
+vi.mock('hds-react', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('hds-react')>();
+  return {
+    ...actual,
+    useMediaQueryLessThan: (breakpoint: string) =>
+      useMediaQueryLessThanMock(breakpoint),
+  };
+});
 
 describe('EventOccurrencesTable', () => {
   const baseEvent: EventOccurrencesTableEvent = {
@@ -57,7 +69,9 @@ describe('EventOccurrencesTable', () => {
     },
   ];
 
-  it('renders table headers, dates, times, and capacity ratios', () => {
+  it('renders desktop table and does not render mobile accordions on large viewports (>= 992px)', () => {
+    useMediaQueryLessThanMock.mockReturnValue(false);
+
     render(
       <EventOccurrencesTable
         event={baseEvent}
@@ -69,9 +83,24 @@ describe('EventOccurrencesTable', () => {
       />
     );
 
+    // Table is rendered on desktop
+    expect(screen.getByRole('table')).toBeInTheDocument();
+    expect(screen.getAllByRole('row').length).toBeGreaterThan(1);
+
+    // Mobile accordions are NOT rendered on desktop
+    expect(
+      screen.queryByRole('button', { expanded: true })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { expanded: false })
+    ).not.toBeInTheDocument();
+
     // Headers
     expect(screen.getByText('Päivämäärä')).toBeInTheDocument();
-    expect(screen.getByText('Kellonaika')).toBeInTheDocument();
+    expect(screen.getByText('Aika')).toBeInTheDocument();
+    expect(screen.getByText('Paikan nimi')).toBeInTheDocument();
+    expect(screen.getByText('Osoite')).toBeInTheDocument();
+    expect(screen.getByText('Kielet')).toBeInTheDocument();
     expect(screen.getByText('Paikkoja jäljellä')).toBeInTheDocument();
     expect(screen.getByText('Toiminto')).toHaveClass('visually-hidden');
 
@@ -86,7 +115,7 @@ describe('EventOccurrencesTable', () => {
     expect(enrolButtons).toHaveLength(1);
   });
 
-  it('renders "Tapahtuma täynnä" badge and notification buttons for full occurrences', () => {
+  it('renders "Täynnä" badge and notification buttons for full occurrences', () => {
     render(
       <EventOccurrencesTable
         event={baseEvent}
@@ -99,7 +128,7 @@ describe('EventOccurrencesTable', () => {
     );
 
     // Badges
-    const fullBadges = screen.getAllByText('Tapahtuma täynnä');
+    const fullBadges = screen.getAllByText('Täynnä');
     expect(fullBadges).toHaveLength(2);
 
     // Subscribe and unsubscribe buttons
@@ -355,8 +384,13 @@ describe('EventOccurrencesTable', () => {
     expect(disabledButtons[0]).toBeDisabled();
   });
 
-  it('exposes EventOccurrencesTable.Row as a compound component', () => {
+  it('exposes compound components (DesktopTable, Row, Cell, ActionButton, Accordion, AccordionItem)', () => {
+    expect(EventOccurrencesTable.DesktopTable).toBeDefined();
     expect(EventOccurrencesTable.Row).toBeDefined();
+    expect(EventOccurrencesTable.Cell).toBeDefined();
+    expect(EventOccurrencesTable.ActionButton).toBeDefined();
+    expect(EventOccurrencesTable.Accordion).toBeDefined();
+    expect(EventOccurrencesTable.AccordionItem).toBeDefined();
 
     render(
       <table>
@@ -406,8 +440,159 @@ describe('EventOccurrencesTable', () => {
     expect(screen.queryByText('Kellonaika')).not.toBeInTheDocument();
     expect(screen.queryByText('Toiminto')).not.toBeInTheDocument();
 
-    const row = screen.getByTestId('occurrence-row-occ-1');
-    const cells = row.querySelectorAll('td');
+    const rows = screen.getAllByRole('row');
+    const cells = within(rows[1]).getAllByRole('cell');
     expect(cells).toHaveLength(2);
+  });
+
+  it('renders venue info icon conditionally and calls onVenueInfoClick when clicked', () => {
+    const handleVenueInfoClick = vi.fn();
+    const occurrenceWithDetailedVenue: EventOccurrencesTableOccurrence = {
+      id: 'occ-venue-details',
+      time: '2026-09-14T15:30:00Z',
+      remainingCapacity: 20,
+      venue: {
+        id: 'venue-detailed',
+        name: 'Nukketeatteri Sampo',
+        address: 'Erottajankatu 7, 00130 Helsinki',
+        description: 'Teatterin esittelyteksti',
+      },
+    };
+
+    render(
+      <EventOccurrencesTable
+        event={baseEvent}
+        occurrences={[occurrenceWithDetailedVenue]}
+        childId="child-1"
+        onEnrol={vi.fn()}
+        onSubscribe={vi.fn()}
+        onUnsubscribe={vi.fn()}
+        onVenueInfoClick={handleVenueInfoClick}
+      />
+    );
+
+    const infoBtn = screen.getByRole('button', {
+      name: /Näytä paikan tiedot: Nukketeatteri Sampo/i,
+    });
+    expect(infoBtn).toBeInTheDocument();
+    fireEvent.click(infoBtn);
+    expect(handleVenueInfoClick).toHaveBeenCalledWith(
+      occurrenceWithDetailedVenue.venue
+    );
+  });
+
+  it('renders mobile HDS accordions and does not render table when viewport is below large breakpoint (< 992px)', () => {
+    useMediaQueryLessThanMock.mockReturnValue(true);
+
+    try {
+      render(
+        <EventOccurrencesTable
+          event={baseEvent}
+          occurrences={baseOccurrences}
+          childId="child-1"
+          onEnrol={vi.fn()}
+          onSubscribe={vi.fn()}
+          onUnsubscribe={vi.fn()}
+        />
+      );
+
+      expect(useMediaQueryLessThanMock).toHaveBeenCalledWith('l');
+
+      // Table is NOT rendered on mobile
+      expect(screen.queryByRole('table')).not.toBeInTheDocument();
+      expect(screen.queryAllByRole('row')).toHaveLength(0);
+
+      // First available occurrence (occ-1) is initially expanded
+      const occ1AccordionButton = screen.getByRole('button', {
+        name: /Ma 14\.9\.2026/i,
+        expanded: true,
+      });
+      expect(occ1AccordionButton).toBeInTheDocument();
+
+      // Subsequent occurrences (occ-2) are collapsed
+      const occ2AccordionButton = screen.getByRole('button', {
+        name: /Ti 22\.9\.2026/i,
+        expanded: false,
+      });
+      expect(occ2AccordionButton).toBeInTheDocument();
+
+      // Content inside expanded accordion is accessible
+      expect(
+        screen.getByRole('button', { name: 'Ilmoittaudu' })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('button', { name: /^Sulje/i })
+      ).toBeInTheDocument();
+    } finally {
+      useMediaQueryLessThanMock.mockReturnValue(false);
+    }
+  });
+
+  it('omits remaining spots count in mobile accordion when remainingCapacity is null', () => {
+    useMediaQueryLessThanMock.mockReturnValue(true);
+
+    try {
+      const occurrenceWithNullCapacity: EventOccurrencesTableOccurrence = {
+        ...baseOccurrences[0],
+        remainingCapacity: null,
+      };
+
+      render(
+        <EventOccurrencesTable
+          event={baseEvent}
+          occurrences={[occurrenceWithNullCapacity]}
+          childId="child-1"
+          onEnrol={vi.fn()}
+          onSubscribe={vi.fn()}
+          onUnsubscribe={vi.fn()}
+        />
+      );
+
+      const accordionButton = screen.getByRole('button', {
+        name: /Ma 14\.9\.2026/i,
+      });
+      expect(accordionButton).toBeInTheDocument();
+      expect(accordionButton.textContent).not.toContain('paikkoja jäljellä');
+    } finally {
+      useMediaQueryLessThanMock.mockReturnValue(false);
+    }
+  });
+
+  it('uses singular form "spot left" in English when remainingCapacity is 1', async () => {
+    useMediaQueryLessThanMock.mockReturnValue(true);
+    i18n.addResourceBundle('en', 'translation', en, true, true);
+
+    try {
+      await act(async () => {
+        await i18n.changeLanguage('en');
+      });
+
+      const occurrenceWithOneSpot: EventOccurrencesTableOccurrence = {
+        ...baseOccurrences[0],
+        remainingCapacity: 1,
+      };
+
+      render(
+        <EventOccurrencesTable
+          event={baseEvent}
+          occurrences={[occurrenceWithOneSpot]}
+          childId="child-1"
+          onEnrol={vi.fn()}
+          onSubscribe={vi.fn()}
+          onUnsubscribe={vi.fn()}
+        />
+      );
+
+      const accordionButton = screen.getByRole('button', {
+        name: /1 spot left/i,
+        expanded: true,
+      });
+      expect(accordionButton).toBeInTheDocument();
+    } finally {
+      await act(async () => {
+        await i18n.changeLanguage('fi');
+      });
+      useMediaQueryLessThanMock.mockReturnValue(false);
+    }
   });
 });

@@ -27,78 +27,13 @@ describe('EventContent', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders venue info section when venue has description', () => {
-    const venues = [
-      {
-        id: 'v-1',
-        name: 'Kaapelitehdas',
-        description: 'Kaapelitehdas on suuri kulttuurikeskus.',
-      },
-    ];
-
+  it('renders children passed into the main column', () => {
     render(
-      <EventContent
-        event={baseEvent}
-        venues={venues}
-      />
+      <EventContent event={baseEvent}>
+        <div data-testid="custom-child">Child Content</div>
+      </EventContent>
     );
 
-    expect(screen.getByText('Tietoa tapahtumapaikasta')).toBeInTheDocument();
-    expect(
-      screen.getByText('Kaapelitehdas on suuri kulttuurikeskus.')
-    ).toBeInTheDocument();
-  });
-
-  it('renders multiple venues with subheadings when multiple venues have descriptions', () => {
-    const venues = [
-      {
-        id: 'v-1',
-        name: 'Kaapelitehdas',
-        description: 'Kaapelitehdas on suuri kulttuurikeskus.',
-      },
-      {
-        id: 'v-2',
-        name: 'Annantalo',
-        description: 'Annantalo on lasten ja nuorten taidekeskus.',
-      },
-    ];
-
-    render(
-      <EventContent
-        event={baseEvent}
-        venues={venues}
-      />
-    );
-
-    expect(screen.getByText('Tietoa tapahtumapaikasta')).toBeInTheDocument();
-    expect(screen.getByText('Kaapelitehdas')).toBeInTheDocument();
-    expect(
-      screen.getByText('Kaapelitehdas on suuri kulttuurikeskus.')
-    ).toBeInTheDocument();
-    expect(screen.getByText('Annantalo')).toBeInTheDocument();
-    expect(
-      screen.getByText('Annantalo on lasten ja nuorten taidekeskus.')
-    ).toBeInTheDocument();
-  });
-
-  it('does not render venue info section when venue description is missing or blank', () => {
-    const venues = [
-      {
-        id: 'v-1',
-        name: 'Kaapelitehdas',
-        description: '',
-      },
-    ];
-
-    render(
-      <EventContent
-        event={baseEvent}
-        venues={venues}
-      />
-    );
-
-    expect(
-      screen.queryByText('Tietoa tapahtumapaikasta')
-    ).not.toBeInTheDocument();
+    expect(screen.getByTestId('custom-child')).toBeInTheDocument();
   });
 });

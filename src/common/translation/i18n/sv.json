@@ -470,7 +470,10 @@
       "viewAllOccurrencesLink": "Se alla tidpunkter",
       "dateRangeWithCount": "{{dateRange}} ({{count}} tillfällen)",
       "dateRangeWithCount_one": "{{dateRange}} ({{count}} tillfälle)",
-      "dateRangeWithCount_other": "{{dateRange}} ({{count}} tillfällen)"
+      "dateRangeWithCount_other": "{{dateRange}} ({{count}} tillfällen)",
+      "multipleVenues": "Flera evenemangsplatser",
+      "languageSingle": "Språk: {{languages}}",
+      "languagesMultiple": "Språk: {{languages}}"
     },
     "sidebar": {
       "dateTitle": "Datum och tid",
@@ -483,20 +486,34 @@
       "claimPassword": "Lös in lösenord",
       "viewPassword": "Visa lösenord",
       "locationTitle": "Plats",
+      "multipleVenues": "Flera evenemangsplatser",
       "openMap": "Öppna kartan",
       "participantsTitle": "Deltagare",
-      "languagesTitle": "Språk"
+      "languagesTitle": "Språk",
+      "languageTitle": "Språk"
     },
     "occurrencesTable": {
       "title": "Evenemangstider och anmälan",
       "date": "Datum",
-      "time": "Klockslag",
+      "time": "Tid",
+      "venueName": "Platsens namn",
+      "address": "Adress",
+      "languages": "Språk",
       "remainingCapacity": "Platser kvar",
       "remainingCount": "{{count}} platser",
       "remainingCount_one": "{{count}} plats",
       "remainingCount_other": "{{count}} platser",
+      "remainingSpotsCount": "(platser kvar: {{count}})",
       "unlimited": "Obegränsat",
       "full": "Fullbokat",
+      "fullBadge": "Fullbokat",
+      "timeLabel": "Tid",
+      "languageLabel": "Språk",
+      "languagesLabel": "Språk",
+      "venueLabel": "Plats",
+      "addressLabel": "Adress",
+      "close": "Stäng",
+      "venueInfoAriaLabel": "Visa platsinformation: {{venue}}",
       "enrolButton": "Anmäl dig",
       "cancelButton": "Avboka",
       "alreadyEnrolledOther": "Anmäld till en annan tid",
@@ -504,6 +521,14 @@
       "cancelNotificationSubscription": "Avbeställ avisering",
       "action": "Åtgärd",
       "noOccurrences": "Inga kommande evenemangstider tillgängliga."
+    },
+    "venueModal": {
+      "title": "Information om evenemangsplatsen",
+      "accessibility": "Tillgänglighetsinformation",
+      "arrivalInstructions": "Ankomstinstruktioner",
+      "wcAndFacilities": "Toaletter och utrymmen",
+      "openMap": "Öppna kartan",
+      "close": "Stäng"
     },
     "enrolModal": {
       "title": "Bekräfta anmälan",

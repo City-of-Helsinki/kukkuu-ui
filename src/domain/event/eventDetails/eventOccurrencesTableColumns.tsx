@@ -4,7 +4,14 @@ import type { TFunction } from 'i18next';
 import type { EventOccurrencesTableOccurrence } from './EventOccurrencesTable';
 import styles from './eventOccurrencesTable.module.scss';
 
-export type EventOccurrencesColumnId = 'date' | 'time' | 'capacity' | 'action';
+export type EventOccurrencesColumnId =
+  | 'date'
+  | 'time'
+  | 'venueName'
+  | 'address'
+  | 'language'
+  | 'capacity'
+  | 'action';
 
 /**
  * Context provided to column render callbacks in {@link EventOccurrencesTableRow}.
@@ -32,7 +39,8 @@ export type EventOccurrencesTableColumn = {
 };
 
 /**
- * Returns default column configurations for the occurrences table.
+ * Returns default column configurations for the occurrences table matching the 7 Figma columns:
+ * Date, Time, Venue Name, Address, Language, Remaining spots, and Action.
  */
 export const getEventOccurrencesTableColumns = (
   t: TFunction
@@ -48,8 +56,24 @@ export const getEventOccurrencesTableColumns = (
     cellClassName: styles.timeCell,
   },
   {
+    id: 'venueName',
+    header: t('event.occurrencesTable.venueName'),
+    cellClassName: styles.venueCell,
+  },
+  {
+    id: 'address',
+    header: t('event.occurrencesTable.address'),
+    cellClassName: styles.addressCell,
+  },
+  {
+    id: 'language',
+    header: t('event.occurrencesTable.languages'),
+    cellClassName: styles.languageCell,
+  },
+  {
     id: 'capacity',
     header: t('event.occurrencesTable.remainingCapacity'),
+    cellClassName: styles.capacityColumnCell,
   },
   {
     id: 'action',

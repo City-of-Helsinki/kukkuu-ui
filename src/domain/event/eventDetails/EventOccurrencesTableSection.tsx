@@ -7,6 +7,9 @@ import EventOccurrencesTable, {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
 } from './EventOccurrencesTable';
+import VenueDetailsModal, {
+  VenueDetailsModalVenue,
+} from './VenueDetailsModal';
 import EnrolOccurrenceModal from '../modal/EnrolOccurrenceModal';
 import UnenrolModal from '../modal/UnenrolModal';
 import EventNotificationSubscriptionModal from '../EventNotificationSubscriptionModal';
@@ -41,6 +44,9 @@ export const EventOccurrencesTableSection: React.FC<
 
   const [subscribingOccurrence, setSubscribingOccurrence] =
     useState<EventOccurrencesTableOccurrence | null>(null);
+
+  const [selectedVenue, setSelectedVenue] =
+    useState<VenueDetailsModalVenue | null>(null);
 
   const [unsubscribe] = useUnsubscribeFromFreeSpotNotificationMutation(
     event.id,
@@ -92,8 +98,17 @@ export const EventOccurrencesTableSection: React.FC<
           onCancelEnrolment={(occ) => setCancellingOccurrence(occ)}
           onSubscribe={(occ) => setSubscribingOccurrence(occ)}
           onUnsubscribe={handleUnsubscribe}
+          onVenueInfoClick={(venue) => setSelectedVenue(venue)}
         />
       </ContentContainer>
+
+      {selectedVenue && (
+        <VenueDetailsModal
+          isOpen={Boolean(selectedVenue)}
+          onClose={() => setSelectedVenue(null)}
+          venue={selectedVenue}
+        />
+      )}
 
       {cancellingOccurrence && (
         <UnenrolModal

@@ -470,7 +470,10 @@
       "viewAllOccurrencesLink": "Katso kaikki ajankohdat",
       "dateRangeWithCount": "{{dateRange}} ({{count}} tapahtuma-aikaa)",
       "dateRangeWithCount_one": "{{dateRange}} ({{count}} tapahtuma-aika)",
-      "dateRangeWithCount_other": "{{dateRange}} ({{count}} tapahtuma-aikaa)"
+      "dateRangeWithCount_other": "{{dateRange}} ({{count}} tapahtuma-aikaa)",
+      "multipleVenues": "Useita tapahtumapaikkoja",
+      "languageSingle": "Kieli: {{languages}}",
+      "languagesMultiple": "Kielet: {{languages}}"
     },
     "sidebar": {
       "dateTitle": "Päivä ja aika",
@@ -483,20 +486,34 @@
       "claimPassword": "Lunasta salasana",
       "viewPassword": "Katso salasana",
       "locationTitle": "Paikka",
+      "multipleVenues": "Useita tapahtumapaikkoja",
       "openMap": "Avaa kartta",
       "participantsTitle": "Osallistujat",
-      "languagesTitle": "Kielet"
+      "languagesTitle": "Kielet",
+      "languageTitle": "Kieli"
     },
     "occurrencesTable": {
       "title": "Tapahtuman ajankohdat ja ilmoittautuminen",
       "date": "Päivämäärä",
-      "time": "Kellonaika",
+      "time": "Aika",
+      "venueName": "Paikan nimi",
+      "address": "Osoite",
+      "languages": "Kielet",
       "remainingCapacity": "Paikkoja jäljellä",
       "remainingCount": "{{count}} paikkaa",
       "remainingCount_one": "{{count}} paikka",
       "remainingCount_other": "{{count}} paikkaa",
+      "remainingSpotsCount": "(paikkoja jäljellä: {{count}})",
       "unlimited": "Ei rajoitusta",
       "full": "Tapahtuma täynnä",
+      "fullBadge": "Täynnä",
+      "timeLabel": "Aika",
+      "languageLabel": "Kieli",
+      "languagesLabel": "Kielet",
+      "venueLabel": "Paikka",
+      "addressLabel": "Osoite",
+      "close": "Sulje",
+      "venueInfoAriaLabel": "Näytä paikan tiedot: {{venue}}",
       "enrolButton": "Ilmoittaudu",
       "cancelButton": "Peruuta",
       "alreadyEnrolledOther": "Ilmoittautunut toiseen aikaan",
@@ -504,6 +521,14 @@
       "cancelNotificationSubscription": "Peruuta ilmoitus",
       "action": "Toiminto",
       "noOccurrences": "Ei tulevia tapahtuma-aikoja saatavilla."
+    },
+    "venueModal": {
+      "title": "Tietoa tapahtumapaikasta",
+      "accessibility": "Esteettömyystiedot",
+      "arrivalInstructions": "Saapumisohjeet",
+      "wcAndFacilities": "WC- ja muut tilat",
+      "openMap": "Avaa kartta",
+      "close": "Sulje"
     },
     "enrolModal": {
       "title": "Vahvista ilmoittautuminen",
