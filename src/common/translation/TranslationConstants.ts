@@ -4,4 +4,6 @@ export const SUPPORT_LANGUAGES = {
   EN: 'en',
 };
 
-export const DEFAULT_LANGUAGE = SUPPORT_LANGUAGES.FI;
+export type Language = 'fi' | 'sv' | 'en';
+
+export const DEFAULT_LANGUAGE = SUPPORT_LANGUAGES.FI as Language;

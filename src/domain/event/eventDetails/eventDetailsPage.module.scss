@@ -3,9 +3,14 @@
 .eventDetailsPage {
   background-color: var(--color-white);
   min-height: 80vh;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 
   .breadcrumbsWrapper {
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     background-color: var(--color-white, #fff);
 
     .breadcrumbs {

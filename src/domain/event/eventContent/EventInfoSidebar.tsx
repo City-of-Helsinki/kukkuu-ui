@@ -19,6 +19,7 @@ import { externalTicketSystems } from '../constants/ExternalTicketSystemConstant
 import {
   extractUniqueVenues,
   formatDuration,
+  formatEventHeroDateTime,
   getParticipantsIcon,
 } from '../EventUtils';
 import { useEventLanguages } from '../hooks/useEventLanguages';
@@ -53,18 +54,25 @@ export type EventSidebarEvent = {
  * Props for {@link EventSidebarOccurrencesInfo}.
  */
 export type EventSidebarOccurrencesInfoProps = {
-  occurrencesCount: number;
+  occurrences?: EventSidebarOccurrence[];
+  occurrencesCount?: number;
+  duration?: number | null;
   onViewOccurrences?: () => void;
 };
 
 /**
- * Section displaying the number of occurrences and an action button
+ * Section displaying the date range / occurrences count and an action button
  * to scroll down to the occurrences table.
  */
 export const EventSidebarOccurrencesInfo: React.FC<
   EventSidebarOccurrencesInfoProps
-> = ({ occurrencesCount, onViewOccurrences }) => {
-  const { t } = useTranslation();
+> = ({
+  occurrences = [],
+  occurrencesCount,
+  duration,
+  onViewOccurrences,
+}) => {
+  const { t, i18n } = useTranslation();
 
   const handleScrollToOccurrences = () => {
     if (onViewOccurrences) {
@@ -76,17 +84,26 @@ export const EventSidebarOccurrencesInfo: React.FC<
       ?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const formattedDateTime = formatEventHeroDateTime({
+    allOccurrences: occurrences,
+    duration,
+    locale: i18n.language,
+    t,
+  });
+
+  const occurrencesText =
+    formattedDateTime ||
+    t('event.sidebar.occurrencesCount', {
+      count: occurrencesCount ?? occurrences.length,
+    });
+
   return (
     <InfoWithIcon
       icon={<IconCalendarClock aria-hidden="true" />}
       title={t('event.sidebar.dateTitle')}
     >
       <div className={styles.infoContent}>
-        <p className={styles.textRow}>
-          {t('event.sidebar.occurrencesCount', {
-            count: occurrencesCount,
-          })}
-        </p>
+        <p className={styles.textRow}>{occurrencesText}</p>
         <button
           type="button"
           onClick={handleScrollToOccurrences}
@@ -123,7 +140,7 @@ export const EventSidebarTicketSystemInfo: React.FC<
   const providerLabel = (() => {
     switch (ticketSystem.type) {
       case TicketSystem.Ticketmaster:
-        return t('event.ticketSystem.ticketmaster', 'Ticketmaster');
+        return t('event.ticketSystem.ticketmaster', 'TicketMaster');
       case TicketSystem.Lippupiste:
         return t('event.ticketSystem.lippupiste', 'Lippupiste');
       case TicketSystem.Tixly:
@@ -134,13 +151,13 @@ export const EventSidebarTicketSystemInfo: React.FC<
   })();
 
   const actionText = ticketSystem.childPassword
-    ? t('event.sidebar.viewPassword', 'Katso salasana')
-    : t('event.sidebar.claimPassword', 'Lunasta salasana');
+    ? t('event.sidebar.viewPassword')
+    : t('event.sidebar.claimPassword');
 
   return (
     <InfoWithIcon
       icon={<IconTicket aria-hidden="true" />}
-      title={t('event.sidebar.ticketSystemTitle', 'Lipunmyynti')}
+      title={t('event.sidebar.ticketSystemTitle')}
     >
       <div className={styles.infoContent}>
         <p className={styles.textRow}>{providerLabel}</p>
@@ -204,40 +221,48 @@ export const EventSidebarLocationInfo: React.FC<
     return null;
   }
 
+  const isMultiple = venues.length > 1;
+
   return (
     <InfoWithIcon
       icon={<IconLocation aria-hidden="true" />}
       title={t('event.sidebar.locationTitle')}
     >
       <div className={styles.infoContent}>
-        {venues.map((v, i) => {
-          const mapUrl = v.address
-            ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                v.address
-              )}`
-            : null;
-          return (
-            <div key={v.id || i} className={styles.venueBlock}>
-              {v.name && <p className={styles.textRow}>{v.name}</p>}
-              {v.address && <p className={styles.textRow}>{v.address}</p>}
-              {mapUrl && (
-                <a
-                  href={mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.mapLink}
-                >
-                  <span>{t('event.sidebar.openMap')}</span>
-                  <IconLinkExternal
-                    size={IconSize.ExtraSmall}
-                    aria-hidden="true"
-                    className={styles.linkIcon}
-                  />
-                </a>
-              )}
-            </div>
-          );
-        })}
+        {isMultiple ? (
+          <p className={styles.textRow}>
+            {t('event.sidebar.multipleVenues')}
+          </p>
+        ) : (
+          venues.map((v, i) => {
+            const mapUrl = v.address
+              ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  v.address
+                )}`
+              : null;
+            return (
+              <div key={v.id || i} className={styles.venueBlock}>
+                {v.name && <p className={styles.textRow}>{v.name}</p>}
+                {v.address && <p className={styles.textRow}>{v.address}</p>}
+                {mapUrl && (
+                  <a
+                    href={mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.mapLink}
+                  >
+                    <span>{t('event.sidebar.openMap')}</span>
+                    <IconLinkExternal
+                      size={IconSize.ExtraSmall}
+                      aria-hidden="true"
+                      className={styles.linkIcon}
+                    />
+                  </a>
+                )}
+              </div>
+            );
+          })
+        )}
       </div>
     </InfoWithIcon>
   );
@@ -281,6 +306,7 @@ export const EventSidebarParticipantsInfo: React.FC<
  */
 export type EventSidebarLanguagesInfoProps = {
   languageText?: string | null;
+  languagesCount?: number;
 };
 
 /**
@@ -288,17 +314,22 @@ export type EventSidebarLanguagesInfoProps = {
  */
 export const EventSidebarLanguagesInfo: React.FC<
   EventSidebarLanguagesInfoProps
-> = ({ languageText }) => {
+> = ({ languageText, languagesCount = 1 }) => {
   const { t } = useTranslation();
 
   if (!languageText) {
     return null;
   }
 
+  const title =
+    languagesCount === 1
+      ? t('event.sidebar.languageTitle')
+      : t('event.sidebar.languagesTitle');
+
   return (
     <InfoWithIcon
       icon={<IconGlobe aria-hidden="true" />}
-      title={t('event.sidebar.languagesTitle')}
+      title={title}
     >
       <div className={styles.infoContent}>
         <p className={styles.textRow}>{languageText}</p>
@@ -328,7 +359,10 @@ export const EventInfoSidebar: React.FC<EventInfoSidebarProps> = ({
     [occurrences]
   );
 
-  const { languageText } = useEventLanguages(null, occurrences);
+  const { uniqueLanguages, languageText } = useEventLanguages(
+    null,
+    occurrences
+  );
 
   const isExternal = Boolean(
     event.ticketSystem?.type &&
@@ -341,14 +375,21 @@ export const EventInfoSidebar: React.FC<EventInfoSidebarProps> = ({
         {isExternal && event.ticketSystem ? (
           <EventSidebarTicketSystemInfo ticketSystem={event.ticketSystem} />
         ) : (
-          <EventSidebarOccurrencesInfo occurrencesCount={occurrences.length} />
+          <EventSidebarOccurrencesInfo
+            occurrences={occurrences}
+            occurrencesCount={occurrences.length}
+            duration={event.duration}
+          />
         )}
         <EventSidebarDurationInfo duration={event.duration} />
         <EventSidebarLocationInfo venues={uniqueVenues} />
         <EventSidebarParticipantsInfo
           participantsPerInvite={event.participantsPerInvite}
         />
-        <EventSidebarLanguagesInfo languageText={languageText} />
+        <EventSidebarLanguagesInfo
+          languageText={languageText}
+          languagesCount={uniqueLanguages.length}
+        />
       </div>
     </aside>
   );

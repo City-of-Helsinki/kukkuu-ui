@@ -9,7 +9,7 @@ import EventHero, {
   EventHeroEvent,
   EventHeroOccurrence,
 } from '../eventHero/EventHero';
-import EventContent, { EventVenueInfo } from '../eventContent/EventContent';
+import EventContent from '../eventContent/EventContent';
 import type { EventSidebarOccurrence } from '../eventContent/EventInfoSidebar';
 import EventOccurrencesTableSection from './EventOccurrencesTableSection';
 import type { EventOccurrencesTableOccurrence } from './EventOccurrencesTable';
@@ -33,7 +33,6 @@ export type EventDetailsPageProps = {
     eventGroup?: { id: string } | null;
   };
   allOccurrences?: EventDetailsPageOccurrence[];
-  venues?: EventVenueInfo[];
   childId: string;
   children?: React.ReactNode;
 };
@@ -41,7 +40,6 @@ export type EventDetailsPageProps = {
 export const EventDetailsPage: React.FC<EventDetailsPageProps> = ({
   event,
   allOccurrences = [],
-  venues = [],
   childId,
   children,
 }) => {
@@ -90,7 +88,6 @@ export const EventDetailsPage: React.FC<EventDetailsPageProps> = ({
         <EventContent
           event={event}
           occurrences={allOccurrences}
-          venues={venues}
         >
           {children}
         </EventContent>

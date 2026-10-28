@@ -348,7 +348,7 @@ type FormatEventHeroDateTimeOptions<T extends { time: string | Date }> = {
 };
 
 /**
- * Formats date and time text for the event hero section based on selected occurrence
+ * Formats date and time text for event hero and sidebar sections based on selected occurrence
  * or all available occurrences (single occurrence vs date range with count).
  *
  * @param options - Configuration and localization options.
@@ -403,3 +403,27 @@ export function formatEventHeroDateTime<T extends { time: string | Date }>({
   }
   return null;
 }
+
+export type VenueWithDetails = {
+  description?: string | null;
+  accessibilityInfo?: string | null;
+  arrivalInstructions?: string | null;
+  wcAndFacilities?: string | null;
+};
+
+/**
+ * Checks whether a venue has any additional detailed text suitable for the details modal.
+ */
+export function venueHasDetailedInfo(
+  venue?: VenueWithDetails | null
+): boolean {
+  if (!venue) return false;
+  return Boolean(
+    (venue.description && venue.description.trim().length > 0) ||
+      (venue.accessibilityInfo && venue.accessibilityInfo.trim().length > 0) ||
+      (venue.arrivalInstructions &&
+        venue.arrivalInstructions.trim().length > 0) ||
+      (venue.wcAndFacilities && venue.wcAndFacilities.trim().length > 0)
+  );
+}
+

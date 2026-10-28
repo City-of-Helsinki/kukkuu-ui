@@ -50,7 +50,7 @@ describe('EventHero', () => {
     expect(
       screen.getByText('Kaapelitehdas, Kaapeliaukio 3')
     ).toBeInTheDocument();
-    expect(screen.getByText(/Kielet:\s*Suomi/)).toBeInTheDocument();
+    expect(screen.getByText(/Kieli:\s*Suomi/)).toBeInTheDocument();
     expect(screen.getByText('Esimerkkimerkki 1')).toBeInTheDocument();
     expect(screen.getByText('Esimerkkimerkki 2')).toBeInTheDocument();
   });
@@ -284,5 +284,32 @@ describe('EventHero', () => {
     expect(screen.getByTestId('hero-season-enrolled-badge')).toHaveTextContent(
       'Kauden tapahtuma valittu'
     );
+  });
+
+  it('renders "Useita tapahtumapaikkoja" and "Kielet: Suomi, Ruotsi" when occurrences span multiple venues and languages', () => {
+    const multiOccurrences = [
+      baseOccurrence,
+      {
+        id: 'occ-2',
+        time: '2026-10-10T12:00:00Z',
+        occurrenceLanguage: 'SV',
+        venue: {
+          id: 'venue-2',
+          name: 'Annantalo',
+          address: 'Annankatu 30',
+        },
+      },
+    ];
+
+    render(
+      <EventHero
+        event={baseEvent}
+        allOccurrences={multiOccurrences}
+        childId="child-1"
+      />
+    );
+
+    expect(screen.getByText('Useita tapahtumapaikkoja')).toBeInTheDocument();
+    expect(screen.getByText(/Kielet:\s*Suomi,\s*Svenska/)).toBeInTheDocument();
   });
 });
