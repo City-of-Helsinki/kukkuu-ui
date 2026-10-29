@@ -3,6 +3,9 @@ import { gql } from '@apollo/client';
 const profileQuery = gql`
   fragment MyProfileEnrolmentFields on EnrolmentNode {
     id
+    extraChildrenCount
+    extraGuardiansCount
+    totalSeats
     occurrence {
       id
       time

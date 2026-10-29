@@ -359,6 +359,8 @@ export const EventHero: React.FC<EventHeroProps> = ({
             name: event.name || '',
           }}
           childName={enrolmentInfo.childName}
+          extraChildrenCount={enrolmentInfo.extraChildrenCount}
+          extraGuardiansCount={enrolmentInfo.extraGuardiansCount}
         />
       )}
     </PageSection>

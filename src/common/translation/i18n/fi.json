@@ -418,12 +418,10 @@
       "paragraph": "Mikäli et pysty osallistumaan tapahtumaan, muistathan perua sen, jotta joku muu pääsee halutessaan osallistumaan tapahtumaan. Kiitos :)"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_1_OR_2_GUARDIANS": "1 lapsi + 1–2 aikuista",
       "CHILD_AND_GUARDIAN": "1 lapsi + 1 aikuinen",
       "FAMILY": "Perhe"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_1_OR_2_GUARDIANS": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1–2 aikuista",
       "CHILD_AND_GUARDIAN": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua 1 aikuinen",
       "FAMILY": "Tällä ilmoittautumisella tapahtumaan voi kummilapsen lisäksi osallistua koko perhe"
     },
@@ -538,14 +536,41 @@
       "freeSpots_other": "Vapaata tilaa: {{count}} paikkaa",
       "freeSpots_zero": "Ei vapaita paikkoja",
       "participantsTitle": "Osallistujat",
-      "cultureKidsLabel": "Kulttuurilapset *",
-      "guardianLabel": "Lähiaikuinen *",
+      "cultureKidLabel": "Kulttuurilapsi",
+      "cultureKidsLabel": "Kulttuurilapsi",
+      "guardianLabel": "Lähiaikuinen",
       "guardianYou": "{{name}} (sinä)",
-      "defaultGuardian": "Huoltaja",
+      "defaultGuardian": "Lähiaikuinen",
       "quotaNotice": "Kulttuurilapsi voi osallistua yhteen tapahtumaan kaudessa. Ilmoittautuminen käyttää paikan: {{name}}.",
       "bindingNotice": "Ilmoittautuminen on sitova. Jos este tulee, peru paikka viimeistään vuorokautta ennen tapahtumaa, jotta se vapautuu toiselle perheelle.",
+      "noticePreRegisteredOnly": "Huomioithan, että tilojen rajallisuuden ja osallistujamäärien vuoksi tapahtumaan voivat osallistua vain etukäteen ilmoitetut osallistujat.",
       "confirmButton": "Vahvista ilmoittautuminen",
-      "cancelButton": "Peruuta"
+      "cancelButton": "Peruuta",
+      "extraChildren": {
+        "label": "Lisälapsien määrä",
+        "helperText": "Voit ilmoittaa enintään kolme lisälasta.",
+        "helperText_one": "Voit ilmoittaa yhden lisälapsen.",
+        "helperText_two": "Voit ilmoittaa enintään kaksi lisälasta.",
+        "helperText_none": "Lisäpaikkoja ei ole vapaana.",
+        "minusAria": "Vähennä muita lapsia",
+        "plusAria": "Lisää muita lapsia"
+      },
+      "extraAdults": {
+        "label": "Lisäaikuisten määrä",
+        "helperText": "Voit ilmoittaa yhden lisäaikuisen.",
+        "helperText_none": "Lisäpaikkoja ei ole vapaana.",
+        "minusAria": "Vähennä muita aikuisia",
+        "plusAria": "Lisää muita aikuisia"
+      },
+      "success": {
+        "title": "Ilmoittautuminen onnistui",
+        "enrolledBadge": "Ilmoittautunut: {{name}}",
+        "extraChildrenSummary_one": "{{name}} + {{count}} lisälapsi",
+        "extraChildrenSummary_other": "{{name}} + {{count}} lisälasta",
+        "extraAdultsSummary": "{{name}} + {{count}} lisäaikuinen",
+        "readyButton": "Valmis",
+        "unenrolButton": "Peruuta ilmoittautuminen"
+      }
     }
   },
   "eventRedirectPage": {

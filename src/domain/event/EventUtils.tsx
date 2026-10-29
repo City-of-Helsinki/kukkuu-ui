@@ -80,9 +80,23 @@ export const formatOccurrenceTime = (
   return occurrenceTime;
 };
 
+export const MIN_SEATS_PER_ENROLMENT = 2;
+
+/**
+ * Returns true if an occurrence has fewer seats remaining than the minimum
+ * required for an enrolment (2 seats: 1 child + 1 guardian).
+ */
+export function isOccurrenceFull(
+  remainingCapacity: number | null | undefined
+): boolean {
+  if (remainingCapacity == null) {
+    return false;
+  }
+  return remainingCapacity < MIN_SEATS_PER_ENROLMENT;
+}
+
 export function getParticipantsIcon(iconType: EventParticipantsPerInviteEnum) {
   switch (iconType) {
-    case EventParticipantsPerInviteEnum.ChildAnd_1Or_2Guardians:
     case EventParticipantsPerInviteEnum.ChildAndGuardian:
     case EventParticipantsPerInviteEnum.Family:
     default:

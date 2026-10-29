@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { sortOccurrencesByTime } from '../EventUtils';
+import { isOccurrenceFull, sortOccurrencesByTime } from '../EventUtils';
 import type {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
@@ -57,7 +57,7 @@ export const EventOccurrencesAccordion: React.FC<
     }
 
     const firstAvailable = sortedOccurrences.find(
-      (occ) => (occ.remainingCapacity ?? 0) > 0
+      (occ) => !isOccurrenceFull(occ.remainingCapacity)
     );
     return firstAvailable?.id ?? null;
   }, [sortedOccurrences, enrolledOccurrenceId]);

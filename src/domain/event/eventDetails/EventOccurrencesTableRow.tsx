@@ -14,6 +14,7 @@ import {
   getEventOccurrencesTableColumns,
 } from './eventOccurrencesTableColumns';
 import { EventOccurrencesTableCell } from './EventOccurrencesTableCell';
+import { isOccurrenceFull } from '../EventUtils';
 import styles from './eventOccurrencesTable.module.scss';
 
 export type {
@@ -75,7 +76,7 @@ export const EventOccurrencesTableRow: React.FC<
     occurrence.time,
     event.duration
   );
-  const isFull = occurrence.remainingCapacity === 0;
+  const isFull = isOccurrenceFull(occurrence.remainingCapacity);
 
   return (
     <tr className={styles.bodyRow}>

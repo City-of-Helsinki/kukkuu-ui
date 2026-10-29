@@ -550,6 +550,7 @@ describe('EventOccurrencesTable', () => {
 
       const accordionButton = screen.getByRole('button', {
         name: /Ma 14\.9\.2026/i,
+        expanded: true,
       });
       expect(accordionButton).toBeInTheDocument();
       expect(accordionButton.textContent).not.toContain('paikkoja jäljellä');
@@ -558,7 +559,7 @@ describe('EventOccurrencesTable', () => {
     }
   });
 
-  it('uses singular form "spot left" in English when remainingCapacity is 1', async () => {
+  it('shows full badge in mobile accordion when remainingCapacity is 1 (fewer than minimum 2 seats)', async () => {
     useMediaQueryLessThanMock.mockReturnValue(true);
     i18n.addResourceBundle('en', 'translation', en, true, true);
 
@@ -584,8 +585,7 @@ describe('EventOccurrencesTable', () => {
       );
 
       const accordionButton = screen.getByRole('button', {
-        name: /1 spot left/i,
-        expanded: true,
+        name: /Full/i,
       });
       expect(accordionButton).toBeInTheDocument();
     } finally {

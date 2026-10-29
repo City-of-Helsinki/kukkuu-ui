@@ -8,6 +8,7 @@ import LinkButton from '../../../common/components/button/LinkButton';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { TicketSystem } from '../../api/generatedTypes/graphql';
 import { externalTicketSystems } from '../constants/ExternalTicketSystemConstants';
+import { isOccurrenceFull } from '../EventUtils';
 import type {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
@@ -203,7 +204,7 @@ export const EventOccurrenceActionButton: EventOccurrenceActionButtonComponent =
 }) => {
   const getPathname = useGetPathname();
 
-  const isFull = occurrence.remainingCapacity === 0;
+  const isFull = isOccurrenceFull(occurrence.remainingCapacity);
   const hasSpots = !isFull;
   const ticketSystemType =
     event.ticketSystem?.type ?? occurrence.ticketSystem?.type;
