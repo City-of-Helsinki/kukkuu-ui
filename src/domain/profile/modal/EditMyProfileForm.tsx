@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
 import * as yup from 'yup';
+import { ButtonPresetTheme } from 'hds-react';
 
 import styles from './editProfileModal.module.scss';
 import { SUPPORT_LANGUAGES } from '../../../common/translation/TranslationConstants';
@@ -221,6 +222,7 @@ export default function EditMyProfileForm({
                 setIsOpen(false);
               }}
               variant="secondary"
+              theme={ButtonPresetTheme.Black}
               type="button"
               className={styles.cancelButton}
             >
@@ -229,6 +231,7 @@ export default function EditMyProfileForm({
 
             <Button
               type="submit"
+              theme={ButtonPresetTheme.Black}
               className={styles.submitButton}
               disabled={isSubmitting}
             >

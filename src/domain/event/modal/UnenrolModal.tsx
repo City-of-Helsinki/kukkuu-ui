@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import {
   Button,
+  ButtonPresetTheme,
   ButtonVariant,
   Dialog,
   IconCalendar,
@@ -349,7 +350,6 @@ const UnenrolModal: React.FC<UnenrolModalProps> = ({
           onClick={handleConfirm}
           disabled={!canUnenrol || isUnenrolling}
           iconStart={<IconTrash aria-hidden="true" />}
-          className={styles.confirmButton}
         >
           {t(
             'event.cancellation.modal.confirmButton',
@@ -359,6 +359,7 @@ const UnenrolModal: React.FC<UnenrolModalProps> = ({
         <Button
           onClick={() => setIsOpen(false)}
           variant={ButtonVariant.Secondary}
+          theme={ButtonPresetTheme.Black}
           disabled={isUnenrolling}
         >
           {t(

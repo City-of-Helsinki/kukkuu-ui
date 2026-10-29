@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
-import { Card, IconPlus } from 'hds-react';
+import { ButtonPresetTheme, Card, IconPlus } from 'hds-react';
 
 import {
   ProfileQueryDocument,
@@ -48,6 +48,7 @@ export const ProfileChildrenEmptyState: React.FC<
       </p>
       <Button
         variant="secondary"
+        theme={ButtonPresetTheme.Black}
         iconStart={<IconPlus aria-hidden="true" />}
         className={styles.emptyButton}
         onClick={onAddChild}
@@ -170,8 +171,8 @@ export const ProfileChildrenList: React.FC = () => {
         </h2>
         <Button
           variant="secondary"
+          theme={ButtonPresetTheme.Black}
           iconStart={<IconPlus aria-hidden="true" />}
-          className={styles.addChildButton}
           onClick={() => setIsAddModalOpen(true)}
           aria-haspopup="dialog"
           aria-label={t('profile.children.addChild.buttonAriaLabel')}

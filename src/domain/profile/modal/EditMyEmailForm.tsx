@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 import * as yup from 'yup';
+import { ButtonPresetTheme } from 'hds-react';
 
 import styles from './editProfileModal.module.scss';
 import {
@@ -159,6 +160,7 @@ export default function EditMyEmailForm({
                   <Button
                     onClick={() => setIsChangingEmail(false)}
                     variant="secondary"
+                    theme={ButtonPresetTheme.Black}
                     type="button"
                     className={styles.cancelButton}
                   >
@@ -167,6 +169,7 @@ export default function EditMyEmailForm({
 
                   <Button
                     type="submit"
+                    theme={ButtonPresetTheme.Black}
                     className={styles.submitButton}
                     disabled={shouldLockActions}
                   >

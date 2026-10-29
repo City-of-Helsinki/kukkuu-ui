@@ -1,22 +1,22 @@
 import * as React from 'react';
 import classNames from 'classnames';
-import { ButtonProps, IconLinkExternal } from 'hds-react';
+import {
+  ButtonPresetTheme,
+  ButtonProps,
+  ButtonTheme,
+  IconLinkExternal,
+} from 'hds-react';
 import { useTranslation } from 'react-i18next';
+import 'hds-core/lib/components/button/button.css';
 
 import { getNodeText } from '../../commonUtils';
 import styles from './buttonOverrides.module.scss';
 
-const variantClassNameMap: Record<string, string[]> = {
-  primary: ['hds-button--primary', styles.primary],
-  secondary: ['hds-button--secondary', styles.secondary],
-  supplementary: ['hds-button--supplementary', styles.supplementary],
-  disabled: ['hds-button--disabled', styles.disabled],
-  success: ['hds-button--success'],
-  danger: ['hds-button--danger'],
-};
-
 export type LinkButtonBaseProps = {
   variant?: ButtonProps['variant'] | 'primary' | 'secondary' | 'supplementary';
+  theme?: ButtonPresetTheme | ButtonTheme;
+  fullWidth?: boolean;
+  iconStart?: React.ReactNode;
   openInNewTab?: boolean;
 };
 
@@ -30,6 +30,9 @@ type Props = LinkButtonBaseProps & {
 const LinkButtonBase = ({
   as = 'a',
   openInNewTab = false,
+  theme,
+  fullWidth = false,
+  iconStart,
   children,
   className,
   ...delegated
@@ -53,11 +56,16 @@ const LinkButtonBase = ({
       className: classNames(
         className,
         'hds-button',
-        styles.button,
-        variant ? variantClassNameMap[variant] : variant
+        variant && `hds-button--${variant}`,
+        theme &&
+          typeof theme === 'string' &&
+          theme !== 'bus' &&
+          `hds-button--theme-${theme}`,
+        fullWidth && 'hds-button--fullwidth'
       ),
     },
     <>
+      {iconStart}
       <span className="hds-button__label">{children}</span>
       {externalLinkIcon}
     </>

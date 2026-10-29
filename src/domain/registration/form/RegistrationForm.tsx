@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from 'react-router';
 import classnames from 'classnames';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
-import { IconPlusCircle, User, useOidcClient } from 'hds-react';
+import { ButtonPresetTheme, IconPlusCircle, User, useOidcClient } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './registrationForm.module.scss';
@@ -297,6 +297,7 @@ const RegistrationForm = () => {
                 <div className={styles.registrationGrayContainer}>
                   <Button
                     variant="supplementary"
+                    theme={ButtonPresetTheme.Black}
                     aria-label={t('child.form.modal.add.label')}
                     className={styles.addNewChildButton}
                     iconStart={<IconPlusCircle />}
@@ -441,6 +442,7 @@ const RegistrationForm = () => {
                   </div>
                   <Button
                     type="submit"
+                    theme={ButtonPresetTheme.Black}
                     className={styles.submitButton}
                     disabled={isSubmitting}
                   >

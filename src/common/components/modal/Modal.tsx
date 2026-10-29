@@ -2,7 +2,7 @@ import * as React from 'react';
 import ReactModal from 'react-modal';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { IconCross } from 'hds-react';
+import { ButtonPresetTheme, IconCross } from 'hds-react';
 
 import styles from './modal.module.scss';
 import Icon from '../icon/Icon';
@@ -58,6 +58,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
           <div className={styles.closeButtonWrapper}>
             <Button
               variant="secondary"
+              theme={ButtonPresetTheme.Black}
               onClick={onClose}
               aria-label={t('common.closeButton.altText')}
             >

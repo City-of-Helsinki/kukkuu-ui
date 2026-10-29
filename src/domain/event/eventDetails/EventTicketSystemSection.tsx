@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery } from '@apollo/client';
-import { Notification } from 'hds-react';
+import { Notification, ButtonPresetTheme } from 'hds-react';
 import { ContentContainer } from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import Button from '../../../common/components/button/Button';
@@ -153,6 +153,7 @@ export const EventTicketSystemSection: React.FC<
       return (
         <div className={styles.actionsRow}>
           <Button
+            theme={ButtonPresetTheme.Black}
             onClick={handleClaimPassword}
             disabled={isAssigning}
             data-testid="claim-password-button"
@@ -199,6 +200,8 @@ export const EventTicketSystemSection: React.FC<
             {ticketSystemUrl ? (
               <AnchorButton
                 href={ticketSystemUrl}
+                variant="primary"
+                theme={ButtonPresetTheme.Black}
                 openInNewTab
                 className={styles.continueButton}
               >

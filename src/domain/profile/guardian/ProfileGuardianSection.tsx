@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Card, IconPen, IconUser, IconSize } from 'hds-react';
+import { ButtonPresetTheme, Card, IconPen, IconUser, IconSize } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
 import EditProfileModal from '../modal/EditProfileModal';
@@ -42,6 +42,7 @@ const ProfileGuardianSection: React.FC<ProfileGuardianSectionProps> = ({
         {profile.email && <p className={styles.email}>{profile.email}</p>}
         <Button
           variant="supplementary"
+          theme={ButtonPresetTheme.Black}
           iconStart={<IconPen aria-hidden="true" />}
           className={styles.editButton}
           onClick={() => setIsEditModalOpen(true)}

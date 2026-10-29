@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  ButtonPresetTheme,
   IconArrowDown,
   IconCalendar,
   IconCheck,
@@ -149,20 +150,21 @@ export const EventHero: React.FC<EventHeroProps> = ({
         <div className={styles.enrolledActionGroup}>
           <Button
             variant="primary"
+            theme={ButtonPresetTheme.Black}
             onClick={() => {
               document
                 .getElementById('ticket-system-section')
                 ?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className={styles.enrolButton}
           >
             {t('event.hero.viewPasswordButton')}
           </Button>
           {event.ticketSystem?.url && (
             <AnchorButton
               href={event.ticketSystem.url}
+              variant="secondary"
+              theme={ButtonPresetTheme.Black}
               openInNewTab
-              className={styles.continueButton}
             >
               {t('externalTicketSystemEvent.continueButton')}
             </AnchorButton>
@@ -174,6 +176,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
     return (
       <Button
         variant="primary"
+        theme={ButtonPresetTheme.Black}
         role="link"
         iconEnd={<IconArrowDown aria-hidden="true" />}
         onClick={() => {
@@ -181,7 +184,6 @@ export const EventHero: React.FC<EventHeroProps> = ({
             .getElementById('ticket-system-section')
             ?.scrollIntoView({ behavior: 'smooth' });
         }}
-        className={styles.enrolButton}
       >
         {t('event.hero.claimPasswordButton')}
       </Button>
@@ -197,7 +199,6 @@ export const EventHero: React.FC<EventHeroProps> = ({
             iconStart={<IconTrash aria-hidden="true" />}
             disabled={!canUnenrol}
             onClick={() => setIsUnenrolModalOpen(true)}
-            className={styles.cancelButton}
           >
             {t(
               'event.hero.cancelEnrolmentButton',
@@ -226,6 +227,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
     return (
       <Button
         variant="primary"
+        theme={ButtonPresetTheme.Black}
         role="link"
         iconEnd={<IconArrowDown aria-hidden="true" />}
         onClick={() => {
@@ -233,7 +235,6 @@ export const EventHero: React.FC<EventHeroProps> = ({
             .getElementById('occurrences-table')
             ?.scrollIntoView({ behavior: 'smooth' });
         }}
-        className={styles.enrolButton}
       >
         {t('event.hero.viewOccurrencesButton')}
       </Button>

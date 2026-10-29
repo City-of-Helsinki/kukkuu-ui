@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ArrayHelpers, FormikState, FormikHelpers } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { IconCrossCircle } from 'hds-react';
+import { ButtonPresetTheme, IconCrossCircle } from 'hds-react';
 
 import styles from './childFormFields.module.scss';
 import { Child } from '../../../child/types/ChildInputTypes';
@@ -48,6 +48,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           {childIndex !== 0 && (
             <Button
               variant="supplementary"
+              theme={ButtonPresetTheme.Black}
               iconEnd={<IconCrossCircle />}
               aria-label={t('child.form.modal.delete.label')}
               onClick={() => arrayHelpers.remove(childIndex)}
