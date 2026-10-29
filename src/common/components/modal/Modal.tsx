@@ -58,6 +58,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
           <div className={styles.closeButtonWrapper}>
             <Button
               variant="secondary"
+              theme="black"
               onClick={onClose}
               aria-label={t('common.closeButton.altText')}
             >

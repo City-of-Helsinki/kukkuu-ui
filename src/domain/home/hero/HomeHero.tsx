@@ -36,7 +36,11 @@ const HomeHero = ({
           )}
           <div className={styles.buttonGroup}>
             {!userHasProfile && (
-              <Button className={styles.registerButton} onClick={scrollToForm}>
+              <Button
+                theme="black"
+                className={styles.registerButton}
+                onClick={scrollToForm}
+              >
                 {t('homePage.hero.buttonText')}
               </Button>
             )}
@@ -47,7 +51,7 @@ const HomeHero = ({
             }
             {userHasProfile && userIsAuthenticated && (
               <Button
-                className={styles.authenticateButton}
+                theme="black"
                 onClick={() => navigate(getPathname('/profile'))}
               >
                 {t('common.profile.goToProfile.buttonText')}
@@ -55,8 +59,8 @@ const HomeHero = ({
             )}
             {!userIsAuthenticated && (
               <Button
+                theme="black"
                 variant="secondary"
-                className={styles.authenticateButton}
                 onClick={() => login()}
               >
                 {t('authentication.login.text')}

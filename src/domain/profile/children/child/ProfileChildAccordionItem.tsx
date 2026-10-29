@@ -315,6 +315,7 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
             </p>
             <Button
               variant="supplementary"
+              theme="black"
               iconStart={<IconPen aria-hidden="true" />}
               className={styles.editButton}
               onClick={() => setIsEditModalOpen(true)}
@@ -412,10 +413,10 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
                       <LinkButton
                         to={`${getPathname('/events')}?child=${encodeURIComponent(child.id)}`}
                         variant="primary"
-                        className={styles.searchButton}
+                        theme="black"
+                        iconStart={<IconSearch aria-hidden="true" />}
                       >
-                        <IconSearch aria-hidden="true" />
-                        <span>{t('profile.events.searchButton')}</span>
+                        {t('profile.events.searchButton')}
                       </LinkButton>
                     </div>
                   </div>
@@ -437,10 +438,10 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
                     <LinkButton
                       to={`${getPathname('/events')}?child=${encodeURIComponent(child.id)}`}
                       variant="primary"
-                      className={styles.searchButton}
+                      theme="black"
+                      iconStart={<IconSearch aria-hidden="true" />}
                     >
-                      <IconSearch aria-hidden="true" />
-                      <span>{t('profile.events.searchButton')}</span>
+                      {t('profile.events.searchButton')}
                     </LinkButton>
                   </div>
                 </div>

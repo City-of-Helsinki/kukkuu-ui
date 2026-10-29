@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
-import classNames from 'classnames';
 import { IconCalendar, IconCheck, IconGlobe, IconLocation, StatusLabel } from 'hds-react';
 
 import PlaceholderImage from '../../../common/components/placeholderImage/PlaceholderImage';
@@ -192,13 +191,7 @@ export const EventSearchCard: React.FC<EventSearchCardProps> = ({
         )}
 
         <div className={styles.actions}>
-          <LinkButton
-            to={detailsUrl}
-            className={classNames(
-              styles.actionButton,
-              styles.actionButtonFullWidth
-            )}
-          >
+          <LinkButton to={detailsUrl} variant="primary" theme="black" fullWidth>
             {t('search.card.readMoreButton')}
           </LinkButton>
         </div>

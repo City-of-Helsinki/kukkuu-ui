@@ -23,7 +23,10 @@ const NotEligible: FunctionComponent = () => {
             to={t('registration.notEligible.otherOptionsLink')}
             target="_blank"
           >
-            <Button className={styles.goBackButton}>
+            <Button
+              theme="black"
+              className={styles.goBackButton}
+            >
               {t('registration.notEligible.buttonText')}
             </Button>
           </Link>

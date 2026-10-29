@@ -37,6 +37,7 @@ const InfoTemplate = ({
       )}
       {callToAction && (
         <Button
+          theme="black"
           className={styles.callToActionButton}
           onClick={callToAction.onClick}
         >

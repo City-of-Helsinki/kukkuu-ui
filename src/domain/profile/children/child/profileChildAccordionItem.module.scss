@@ -86,21 +86,6 @@
 
 .editButton {
   margin-top: var(--spacing-s);
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-
-  > div {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  > span {
-    line-height: 1.25;
-    text-box: trim-both cap alphabetic;
-    white-space: nowrap;
-  }
 }
 
 .rightColumn {
@@ -179,37 +164,6 @@
   margin: 0 0 var(--spacing-xs) 0;
   line-height: 1.4;
   max-width: 45ch;
-}
-
-.searchButton {
-  --background-color: var(--color-black, #000) !important;
-  --background-color-hover: var(--color-black-80, #333) !important;
-  --background-color-focus: var(--color-black, #000) !important;
-  --background-color-hover-focus: var(--color-black-80, #333) !important;
-  --border-color: var(--color-black, #000) !important;
-  --border-color-hover: var(--color-black-80, #333) !important;
-  --border-color-focus: var(--color-black, #000) !important;
-  --border-color-hover-focus: var(--color-black-80, #333) !important;
-  --color: var(--color-white, #fff) !important;
-  --color-hover: var(--color-white, #fff) !important;
-  --color-focus: var(--color-white, #fff) !important;
-  --color-hover-focus: var(--color-white, #fff) !important;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 440px;
-  box-sizing: border-box;
-
-  svg {
-    flex-shrink: 0;
-    display: block;
-  }
-
-  span {
-    line-height: 1.25;
-    text-box: trim-both cap alphabetic;
-  }
 }
 
 .notStartedCard {

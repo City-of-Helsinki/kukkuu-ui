@@ -190,7 +190,7 @@ export const VenueDetailsModal: VenueDetailsModalComponent = ({
         </div>
       </Dialog.Content>
       <Dialog.ActionButtons>
-        <Button variant="secondary" onClick={onClose}>
+        <Button variant="secondary" theme="black" onClick={onClose}>
           {t('event.venueModal.close')}
         </Button>
       </Dialog.ActionButtons>

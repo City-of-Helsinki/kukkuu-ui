@@ -48,6 +48,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           {childIndex !== 0 && (
             <Button
               variant="supplementary"
+              theme="black"
               iconEnd={<IconCrossCircle />}
               aria-label={t('child.form.modal.delete.label')}
               onClick={() => arrayHelpers.remove(childIndex)}

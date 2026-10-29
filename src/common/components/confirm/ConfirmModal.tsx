@@ -49,11 +49,16 @@ const ConfirmModal: FunctionComponent<ConfirmModalProps> = ({
         <Button
           className={styles.cancelButton}
           variant="secondary"
+          theme="black"
           onClick={onCancel}
         >
           {cancel}
         </Button>
-        <Button className={styles.okButton} onClick={onOk}>
+        <Button
+          theme="black"
+          className={styles.okButton}
+          onClick={onOk}
+        >
           {ok}
         </Button>
       </div>

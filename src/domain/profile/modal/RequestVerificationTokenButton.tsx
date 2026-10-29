@@ -66,6 +66,7 @@ export default function RequestVerificationTokenButton({
   return (
     <Button
       variant="primary"
+      theme="black"
       onClick={handleOnClick}
       className={styles.requestVerificationTokenButton}
       disabled={isDisabled}

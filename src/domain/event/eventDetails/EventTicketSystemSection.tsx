@@ -153,6 +153,7 @@ export const EventTicketSystemSection: React.FC<
       return (
         <div className={styles.actionsRow}>
           <Button
+            theme="black"
             onClick={handleClaimPassword}
             disabled={isAssigning}
             data-testid="claim-password-button"
@@ -199,6 +200,8 @@ export const EventTicketSystemSection: React.FC<
             {ticketSystemUrl ? (
               <AnchorButton
                 href={ticketSystemUrl}
+                variant="primary"
+                theme="black"
                 openInNewTab
                 className={styles.continueButton}
               >

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 import {
   Button,
+  ButtonPresetTheme,
   ButtonVariant,
   Dialog,
   IconCalendar,
@@ -426,17 +427,17 @@ export const EnrolOccurrenceModal: React.FC<EnrolOccurrenceModalProps> = ({
             </Dialog.Content>
             <Dialog.ActionButtons className={styles.actionButtons}>
               <Button
+                theme={ButtonPresetTheme.Black}
                 onClick={handleConfirm}
                 disabled={isEnrolling}
-                className={styles.confirmButton}
               >
                 {t('event.enrolModal.confirmButton')}
               </Button>
               <Button
                 onClick={onClose}
                 variant={ButtonVariant.Secondary}
+                theme={ButtonPresetTheme.Black}
                 disabled={isEnrolling}
-                className={styles.cancelButton}
               >
                 {t('event.enrolModal.cancelButton')}
               </Button>
@@ -479,8 +480,8 @@ export const EnrolOccurrenceModal: React.FC<EnrolOccurrenceModalProps> = ({
             </Dialog.Content>
             <Dialog.ActionButtons className={styles.actionButtons}>
               <Button
+                theme={ButtonPresetTheme.Black}
                 onClick={handleGoToEvents}
-                className={styles.confirmButton}
               >
                 {t('event.enrolModal.success.readyButton')}
               </Button>
@@ -488,7 +489,6 @@ export const EnrolOccurrenceModal: React.FC<EnrolOccurrenceModalProps> = ({
                 onClick={handleOpenUnenrol}
                 variant={ButtonVariant.Danger}
                 iconStart={<IconTrash aria-hidden="true" />}
-                className={styles.unenrolButton}
               >
                 {t('event.enrolModal.success.unenrolButton')}
               </Button>

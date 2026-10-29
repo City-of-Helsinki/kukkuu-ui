@@ -297,6 +297,7 @@ const RegistrationForm = () => {
                 <div className={styles.registrationGrayContainer}>
                   <Button
                     variant="supplementary"
+                    theme="black"
                     aria-label={t('child.form.modal.add.label')}
                     className={styles.addNewChildButton}
                     iconStart={<IconPlusCircle />}
@@ -441,6 +442,7 @@ const RegistrationForm = () => {
                   </div>
                   <Button
                     type="submit"
+                    theme="black"
                     className={styles.submitButton}
                     disabled={isSubmitting}
                   >

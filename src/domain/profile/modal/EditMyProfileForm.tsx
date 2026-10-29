@@ -221,6 +221,7 @@ export default function EditMyProfileForm({
                 setIsOpen(false);
               }}
               variant="secondary"
+              theme="black"
               type="button"
               className={styles.cancelButton}
             >
@@ -229,6 +230,7 @@ export default function EditMyProfileForm({
 
             <Button
               type="submit"
+              theme="black"
               className={styles.submitButton}
               disabled={isSubmitting}
             >

@@ -70,6 +70,7 @@ const Card = ({
         <div className={styles.focalPoint}>
           {primaryAction && (
             <Button
+              theme="black"
               className={styles.primaryActionButton}
               onClick={handlePrimaryActionOnClick}
               onKeyPress={handlePrimaryActionOnKeyPress}
@@ -85,6 +86,7 @@ const Card = ({
         {withAction && (
           <Button
             variant="supplementary"
+            theme="black"
             aria-label={actionText}
             className={styles.actionWrapper}
           >

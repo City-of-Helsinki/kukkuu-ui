@@ -133,6 +133,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                 />
                 <Button
                   type="submit"
+                  theme="black"
                   className={styles.submitButton}
                   disabled={isSubmitting || !isRegistrationInformationVerified}
                 >

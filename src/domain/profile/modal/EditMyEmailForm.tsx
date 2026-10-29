@@ -159,6 +159,7 @@ export default function EditMyEmailForm({
                   <Button
                     onClick={() => setIsChangingEmail(false)}
                     variant="secondary"
+                    theme="black"
                     type="button"
                     className={styles.cancelButton}
                   >
@@ -167,6 +168,7 @@ export default function EditMyEmailForm({
 
                   <Button
                     type="submit"
+                    theme="black"
                     className={styles.submitButton}
                     disabled={shouldLockActions}
                   >
