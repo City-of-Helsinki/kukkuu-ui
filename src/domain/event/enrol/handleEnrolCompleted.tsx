@@ -11,7 +11,7 @@ type EnrolCompletedDeps = {
   childId: string;
   dispatch: (action: UnknownAction) => void;
   refetchProfile: () => Promise<void>;
-  goToOccurrence: () => void;
+  goToOccurrence?: () => void;
   t: (key: string) => string;
 };
 
@@ -36,5 +36,5 @@ export async function handleEnrolCompleted(
   }
 
   await refetchProfile();
-  goToOccurrence();
+  goToOccurrence?.();
 }

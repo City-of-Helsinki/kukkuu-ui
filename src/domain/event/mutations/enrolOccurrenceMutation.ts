@@ -34,6 +34,9 @@ const enrolOccurrenceMutation = gql`
     clientMutationId
     enrolment {
       id
+      extraChildrenCount
+      extraGuardiansCount
+      totalSeats
       occurrence {
         id
         event {
