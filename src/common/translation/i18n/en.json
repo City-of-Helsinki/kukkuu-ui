@@ -515,6 +515,7 @@
       "close": "Close",
       "venueInfoAriaLabel": "Show venue details: {{venue}}",
       "enrolButton": "Enrol",
+      "showEnrolmentButton": "Show my enrolment",
       "cancelButton": "Cancel",
       "alreadyEnrolledOther": "Enrolled in another event time",
       "subscribeNotificationButton": "Subscribe to notifications",
