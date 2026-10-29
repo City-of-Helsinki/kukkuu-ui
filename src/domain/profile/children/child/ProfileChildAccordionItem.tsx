@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import {
   Accordion,
   AccordionSize,
+  ButtonPresetTheme,
   IconCalendarEvent,
   IconPen,
   IconSearch,
@@ -315,6 +316,7 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
             </p>
             <Button
               variant="supplementary"
+              theme={ButtonPresetTheme.Black}
               iconStart={<IconPen aria-hidden="true" />}
               className={styles.editButton}
               onClick={() => setIsEditModalOpen(true)}
@@ -412,10 +414,10 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
                       <LinkButton
                         to={`${getPathname('/events')}?child=${encodeURIComponent(child.id)}`}
                         variant="primary"
-                        className={styles.searchButton}
+                        theme={ButtonPresetTheme.Black}
+                        iconStart={<IconSearch aria-hidden="true" />}
                       >
-                        <IconSearch aria-hidden="true" />
-                        <span>{t('profile.events.searchButton')}</span>
+                        {t('profile.events.searchButton')}
                       </LinkButton>
                     </div>
                   </div>
@@ -437,10 +439,10 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
                     <LinkButton
                       to={`${getPathname('/events')}?child=${encodeURIComponent(child.id)}`}
                       variant="primary"
-                      className={styles.searchButton}
+                      theme={ButtonPresetTheme.Black}
+                      iconStart={<IconSearch aria-hidden="true" />}
                     >
-                      <IconSearch aria-hidden="true" />
-                      <span>{t('profile.events.searchButton')}</span>
+                      {t('profile.events.searchButton')}
                     </LinkButton>
                   </div>
                 </div>

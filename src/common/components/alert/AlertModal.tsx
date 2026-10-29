@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { ButtonPresetTheme } from 'hds-react';
 
 import Modal from '../modal/Modal';
 import styles from './alertModal.module.scss';
@@ -35,7 +36,11 @@ const AlertModal: FunctionComponent<AlertModalProps> = ({
       className={styles.modal}
     >
       {children}
-      <Button className={styles.okButton} onClick={() => onClose()}>
+      <Button
+        theme={ButtonPresetTheme.Black}
+        className={styles.okButton}
+        onClick={() => onClose()}
+      >
         {ok}
       </Button>
     </Modal>

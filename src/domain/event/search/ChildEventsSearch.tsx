@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import {
   Accordion,
   Breadcrumb,
+  ButtonPresetTheme,
   Checkbox,
   Select,
   SupportedLanguage,
@@ -325,10 +326,20 @@ export const ChildEventsSearch: React.FC<ChildEventsSearchProps> = ({
                   />
                 </div>
                 <div className={styles.filterButtons}>
-                  <Button variant="primary" disabled aria-disabled="true">
+                  <Button
+                    variant="primary"
+                    theme={ButtonPresetTheme.Black}
+                    disabled
+                    aria-disabled="true"
+                  >
                     {t('search.filter.submitButton')}
                   </Button>
-                  <Button variant="secondary" disabled aria-disabled="true">
+                  <Button
+                    variant="secondary"
+                    theme={ButtonPresetTheme.Black}
+                    disabled
+                    aria-disabled="true"
+                  >
                     {t('search.filter.clearButton')}
                   </Button>
                 </div>
@@ -357,7 +368,11 @@ export const ChildEventsSearch: React.FC<ChildEventsSearchProps> = ({
 
                 {eventsSearch.hasMore && (
                   <div className={styles.loadMoreWrapper}>
-                    <Button variant="secondary" onClick={handleLoadMore}>
+                    <Button
+                      variant="secondary"
+                      theme={ButtonPresetTheme.Black}
+                      onClick={handleLoadMore}
+                    >
                       {t('search.results.loadMore', {
                         count: eventsSearch.remainingCount,
                       })}

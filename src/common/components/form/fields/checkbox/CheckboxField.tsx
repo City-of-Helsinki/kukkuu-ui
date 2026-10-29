@@ -5,25 +5,11 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './checkboxField.module.scss';
 
-const kukkuuCheckboxStyles = {
-  '--background-hover': 'var(--color-summer-dark)',
-  '--background-selected': 'var(--color-summer)',
-  '--background-color-selected-hover': 'var(--color-summer-dark)',
-  '--background-color-selected-focus': 'var(--color-summer-dark)',
-  '--background-color-selected-hover-focus': 'var(--color-summer-dark)',
-  '--border-color-selected': 'var(--color-summer)',
-  '--border-color-selected-hover': 'var(--color-summer-dark)',
-  '--border-color-selected-focus': 'var(--color-summer-dark)',
-  '--border-color-selected-hover-focus': 'var(--color-summer-dark)',
-  '--icon-color-selected': 'var(--color-black)',
-} as React.CSSProperties;
-
 type Props = {
   name: string;
 } & CheckboxProps;
 
-function CheckboxField(props: Props) {
-  const { name, onChange } = props;
+function CheckboxField({ name, onChange, ...rest }: Props) {
   const { t } = useTranslation();
   const [field, meta] = useField({ name });
 
@@ -40,11 +26,10 @@ function CheckboxField(props: Props) {
   return (
     <div>
       <Checkbox
-        {...props}
+        {...rest}
         {...field}
         className={styles.checkboxField}
         type="checkbox"
-        style={kukkuuCheckboxStyles}
         checked={Boolean(field.value)}
         onChange={onChangeHandler}
       />
