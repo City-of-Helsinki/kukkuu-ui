@@ -216,6 +216,16 @@ const ProfileEnrolledEventCard: React.FC<ProfileEnrolledEventCardProps> = ({
           eventGroupId={eventGroupId}
           occurrence={occurrence}
           event={event}
+          extraChildrenCount={
+            'extraChildrenCount' in enrolment
+              ? (enrolment.extraChildrenCount as number | null)
+              : null
+          }
+          extraGuardiansCount={
+            'extraGuardiansCount' in enrolment
+              ? (enrolment.extraGuardiansCount as number | null)
+              : null
+          }
         />
       )}
     </Card>

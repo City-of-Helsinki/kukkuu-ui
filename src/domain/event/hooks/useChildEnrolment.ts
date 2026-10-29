@@ -10,6 +10,9 @@ export interface ChildEnrolmentInfo {
   enrolledOccurrenceTime: string | null;
   enrolledOccurrenceVenueName: string | null;
   enrolmentId: string | null;
+  extraChildrenCount: number | null;
+  extraGuardiansCount: number | null;
+  totalSeats: number | null;
   isEnrolledInOccurrence: (occurrenceId?: string | null) => boolean;
 }
 
@@ -29,6 +32,9 @@ export const useChildEnrolment = (
         enrolledOccurrenceTime: null,
         enrolledOccurrenceVenueName: null,
         enrolmentId: null,
+        extraChildrenCount: null,
+        extraGuardiansCount: null,
+        totalSeats: null,
         isEnrolledInOccurrence: () => false,
       };
     }
@@ -52,6 +58,9 @@ export const useChildEnrolment = (
     const enrolledOccurrenceVenueName =
       matchingEnrolment?.occurrence?.venue?.name ?? null;
     const enrolmentId = matchingEnrolment?.id ?? null;
+    const extraChildrenCount = matchingEnrolment?.extraChildrenCount ?? null;
+    const extraGuardiansCount = matchingEnrolment?.extraGuardiansCount ?? null;
+    const totalSeats = matchingEnrolment?.totalSeats ?? null;
 
     return {
       childName,
@@ -61,6 +70,9 @@ export const useChildEnrolment = (
       enrolledOccurrenceTime,
       enrolledOccurrenceVenueName,
       enrolmentId,
+      extraChildrenCount,
+      extraGuardiansCount,
+      totalSeats,
       isEnrolledInOccurrence: (occurrenceId?: string | null) =>
         Boolean(occurrenceId && enrolledOccurrenceId === occurrenceId),
     };

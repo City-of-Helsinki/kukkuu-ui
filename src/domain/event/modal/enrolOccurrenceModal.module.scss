@@ -5,41 +5,73 @@
   width: 100%;
 }
 
+.eventCard {
+  background-color: var(--color-gold-light, #fef4cf);
+  border: 1px solid var(--color-summer, #ffc61e);
+  border-radius: var(--spacing-2-xs, 4px);
+  padding: var(--spacing-m);
+  margin-bottom: var(--spacing-m);
+}
+
 .eventTitle {
   font-size: var(--fontsize-heading-m, 1.5rem);
   font-weight: 700;
   margin-top: 0;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-xs);
   color: var(--color-black-90, #1a1a1a);
+}
+
+.enrolledBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3-xs);
+  background-color: var(--color-white, #fff);
+  border: 1px solid var(--color-success, #008741);
+  color: var(--color-black-90, #1a1a1a);
+  font-size: var(--fontsize-body-s, 0.875rem);
+  font-weight: 600;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  margin-bottom: var(--spacing-s);
+
+  .badgeIcon {
+    color: var(--color-success, #008741);
+    width: 1rem;
+    height: 1rem;
+  }
 }
 
 .detailsList {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  margin-bottom: var(--spacing-m);
 }
 
 .detailRow {
   display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-xs);
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-m);
   font-size: var(--fontsize-body-m, 1rem);
   color: var(--color-black-90, #1a1a1a);
 
+  .metaInline {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2-xs);
+  }
+
   .icon {
     flex-shrink: 0;
-    width: var(--spacing-m);
-    height: var(--spacing-m);
-    margin-top: 0.125rem;
+    width: 1.25rem;
+    height: 1.25rem;
     color: var(--color-black-70, #4a4a4a);
   }
 }
 
 .participantsSection {
   margin-top: var(--spacing-m);
-  padding-top: var(--spacing-m);
-  border-top: 1px solid var(--color-black-20, #ccc);
+  margin-bottom: var(--spacing-m);
 }
 
 .participantsTitle {
@@ -47,17 +79,39 @@
   font-weight: 700;
   margin-top: 0;
   margin-bottom: var(--spacing-s);
-}
-
-.groupLabel {
-  font-size: var(--fontsize-body-m, 1rem);
-  font-weight: 600;
-  margin-bottom: var(--spacing-2-xs);
   color: var(--color-black-90, #1a1a1a);
 }
 
-.checkboxWrapper {
-  margin-bottom: var(--spacing-s);
+.participantBlock {
+  margin-bottom: var(--spacing-m);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.participantLabel {
+  display: block;
+  font-size: var(--fontsize-body-s, 0.875rem);
+  color: var(--color-black-70, #4a4a4a);
+  margin-bottom: var(--spacing-3-xs);
+}
+
+.participantName {
+  display: block;
+  font-size: var(--fontsize-body-m, 1rem);
+  font-weight: 500;
+  color: var(--color-black-90, #1a1a1a);
+}
+
+.stepperWrapper {
+  margin-top: var(--spacing-xs);
+  max-width: 18rem;
+}
+
+.notification {
+  margin-top: var(--spacing-m);
+  margin-bottom: var(--spacing-m);
 }
 
 .noticesWrapper {
@@ -72,6 +126,18 @@
   color: var(--color-black-70, #666);
   line-height: 1.4;
   margin: 0;
+}
+
+.tadaWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-m);
+
+  .successIcon {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
 }
 
 .actionButtons {
@@ -99,4 +165,8 @@
   &:hover {
     background-color: var(--color-black-5, #f5f5f5) !important;
   }
+}
+
+.unenrolButton {
+  // Uses ButtonVariant.Danger from HDS
 }
