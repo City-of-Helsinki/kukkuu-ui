@@ -1,6 +1,7 @@
 import React, { useState, useId } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
+  ButtonPresetTheme,
   Card,
   IconCheck,
   IconClock,
@@ -184,7 +185,6 @@ const ProfileEnrolledEventCard: React.FC<ProfileEnrolledEventCardProps> = ({
                   eventName: event.name,
                 })}
                 onClick={() => setIsUnenrolModalOpen(true)}
-                className={styles.cancelButton}
               >
                 {t('profile.events.cancelEnrolmentButton')}
               </Button>
@@ -196,11 +196,7 @@ const ProfileEnrolledEventCard: React.FC<ProfileEnrolledEventCardProps> = ({
             </div>
           )}
 
-          <LinkButton
-            to={readMoreUrl}
-            variant="secondary"
-            className={styles.readMoreButton}
-          >
+          <LinkButton to={readMoreUrl} variant="secondary" theme={ButtonPresetTheme.Black}>
             {t('profile.events.readMoreButton')}
           </LinkButton>
         </div>

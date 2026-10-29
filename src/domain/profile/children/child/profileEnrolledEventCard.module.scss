@@ -122,61 +122,6 @@
   flex-direction: column;
 }
 
-.cancelButton {
-  min-height: 3.5rem;
-  height: 3.5rem;
-  padding: 0 var(--spacing-l) !important;
-  box-sizing: border-box;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: var(--spacing-xs);
-  background-color: var(--color-error, #b01038) !important;
-  border: 2px solid var(--color-error, #b01038) !important;
-  color: var(--color-white, #fff) !important;
-
-  &:hover {
-    background-color: var(--color-error-dark, #8c0c2c) !important;
-    border-color: var(--color-error-dark, #8c0c2c) !important;
-  }
-
-  > div {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    line-height: 0 !important;
-    margin: 0 !important;
-  }
-
-  > div > svg,
-  svg {
-    display: block !important;
-  }
-
-  > span {
-    display: inline-flex !important;
-    align-items: center !important;
-    line-height: 1 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-}
-
-.readMoreButton {
-  --border-color: var(--color-black, #000) !important;
-  --border-color-hover: var(--color-black, #000) !important;
-  --border-color-focus: var(--color-black, #000) !important;
-  --border-color-hover-focus: var(--color-black, #000) !important;
-  --background-color-hover: var(--color-black-5, #f5f5f5) !important;
-  min-height: 3.5rem;
-  height: 3.5rem;
-  padding: 0 var(--spacing-l) !important;
-  box-sizing: border-box;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
 .cancelDisabledText {
   font-size: var(--fontsize-body-xs);
   color: var(--color-black-60);

@@ -1,5 +1,10 @@
 .checkboxField {
   margin: var(--spacing-xs);
+  --background-selected: var(--color-black);
+  --background-hover: var(--color-black);
+  --border-color-selected: var(--color-black);
+  --border-color-selected-hover: var(--color-black);
+  --border-color-selected-focus: var(--color-black);
 }
 
 .errorText {

@@ -52,17 +52,4 @@
 
 .editButton {
   margin-top: var(--spacing-s);
-  display: inline-flex;
-  align-items: center;
-
-  > div {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  > span {
-    line-height: 1.25;
-    text-box: trim-both cap alphabetic;
-  }
 }

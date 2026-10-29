@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import classNames from 'classnames';
+import { ButtonPresetTheme } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
 import LinkButton from '../../../common/components/button/LinkButton';
@@ -12,23 +12,26 @@ import type {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
 } from './EventOccurrencesTable';
-import styles from './eventOccurrencesTable.module.scss';
 
 export type ShowEnrolmentButtonProps = {
   onShow?: () => void;
+  fullWidth?: boolean;
   className?: string;
 };
 
 export const ShowEnrolmentButton: React.FC<ShowEnrolmentButtonProps> = ({
   onShow,
+  fullWidth,
   className,
 }) => {
   const { t } = useTranslation();
   return (
     <Button
       variant="secondary"
+      theme={ButtonPresetTheme.Black}
+      fullWidth={fullWidth}
       onClick={onShow}
-      className={classNames(styles.actionButton, className)}
+      className={className}
     >
       {t('event.occurrencesTable.showEnrolmentButton')}
     </Button>
@@ -37,29 +40,40 @@ export const ShowEnrolmentButton: React.FC<ShowEnrolmentButtonProps> = ({
 
 export type CancelEnrolmentButtonProps = {
   onCancel?: () => void;
+  fullWidth?: boolean;
   className?: string;
 };
 
 export const CancelEnrolmentButton: React.FC<CancelEnrolmentButtonProps> = ({
   onCancel,
+  fullWidth,
   className,
-}) => <ShowEnrolmentButton onShow={onCancel} className={className} />;
+}) => (
+  <ShowEnrolmentButton
+    onShow={onCancel}
+    fullWidth={fullWidth}
+    className={className}
+  />
+);
 
 export type AlreadyEnrolledOtherButtonProps = {
+  fullWidth?: boolean;
   className?: string;
 };
 
 export const AlreadyEnrolledOtherButton: React.FC<
   AlreadyEnrolledOtherButtonProps
-> = ({ className }) => {
+> = ({ fullWidth, className }) => {
   const { t } = useTranslation();
   const label = t('event.occurrencesTable.alreadyEnrolledOther');
   return (
     <Button
-      variant="disabled"
+      variant="primary"
+      theme={ButtonPresetTheme.Black}
       disabled
       aria-disabled="true"
-      className={classNames(styles.actionButton, styles.disabledButton, className)}
+      fullWidth={fullWidth}
+      className={className}
       aria-label={label}
       title={label}
     >
@@ -69,19 +83,23 @@ export const AlreadyEnrolledOtherButton: React.FC<
 };
 
 export type CannotEnrolButtonProps = {
+  fullWidth?: boolean;
   className?: string;
 };
 
 export const CannotEnrolButton: React.FC<CannotEnrolButtonProps> = ({
+  fullWidth,
   className,
 }) => {
   const { t } = useTranslation();
   return (
     <Button
-      variant="disabled"
+      variant="primary"
+      theme={ButtonPresetTheme.Black}
       disabled
       aria-disabled="true"
-      className={classNames(styles.actionButton, styles.disabledButton, className)}
+      fullWidth={fullWidth}
+      className={className}
     >
       {t('event.occurrencesTable.enrolButton')}
     </Button>
@@ -90,17 +108,21 @@ export const CannotEnrolButton: React.FC<CannotEnrolButtonProps> = ({
 
 export type ExternalTicketLinkButtonProps = {
   to: string;
+  fullWidth?: boolean;
   className?: string;
 };
 
 export const ExternalTicketLinkButton: React.FC<
   ExternalTicketLinkButtonProps
-> = ({ to, className }) => {
+> = ({ to, fullWidth, className }) => {
   const { t } = useTranslation();
   return (
     <LinkButton
       to={to}
-      className={classNames(styles.actionButton, styles.enrolButton, className)}
+      variant="primary"
+      theme={ButtonPresetTheme.Black}
+      fullWidth={fullWidth}
+      className={className}
     >
       {t('event.occurrencesTable.enrolButton')}
     </LinkButton>
@@ -109,19 +131,23 @@ export const ExternalTicketLinkButton: React.FC<
 
 export type EnrolButtonProps = {
   onEnrol: () => void;
+  fullWidth?: boolean;
   className?: string;
 };
 
 export const EnrolButton: React.FC<EnrolButtonProps> = ({
   onEnrol,
+  fullWidth,
   className,
 }) => {
   const { t } = useTranslation();
   return (
     <Button
       variant="primary"
+      theme={ButtonPresetTheme.Black}
+      fullWidth={fullWidth}
       onClick={onEnrol}
-      className={classNames(styles.actionButton, styles.enrolButton, className)}
+      className={className}
     >
       {t('event.occurrencesTable.enrolButton')}
     </Button>
@@ -130,18 +156,21 @@ export const EnrolButton: React.FC<EnrolButtonProps> = ({
 
 export type UnsubscribeNotificationButtonProps = {
   onUnsubscribe: () => void;
+  fullWidth?: boolean;
   className?: string;
 };
 
 export const UnsubscribeNotificationButton: React.FC<
   UnsubscribeNotificationButtonProps
-> = ({ onUnsubscribe, className }) => {
+> = ({ onUnsubscribe, fullWidth, className }) => {
   const { t } = useTranslation();
   return (
     <Button
       variant="secondary"
+      theme={ButtonPresetTheme.Black}
+      fullWidth={fullWidth}
       onClick={onUnsubscribe}
-      className={classNames(styles.actionButton, styles.unsubscribeButton, className)}
+      className={className}
     >
       {t('event.occurrencesTable.cancelNotificationSubscription')}
     </Button>
@@ -150,18 +179,21 @@ export const UnsubscribeNotificationButton: React.FC<
 
 export type SubscribeNotificationButtonProps = {
   onSubscribe: () => void;
+  fullWidth?: boolean;
   className?: string;
 };
 
 export const SubscribeNotificationButton: React.FC<
   SubscribeNotificationButtonProps
-> = ({ onSubscribe, className }) => {
+> = ({ onSubscribe, fullWidth, className }) => {
   const { t } = useTranslation();
   return (
     <Button
       variant="secondary"
+      theme={ButtonPresetTheme.Black}
+      fullWidth={fullWidth}
       onClick={onSubscribe}
-      className={classNames(styles.actionButton, styles.subscribeButton, className)}
+      className={className}
     >
       {t('event.occurrencesTable.subscribeNotificationButton')}
     </Button>
@@ -181,6 +213,7 @@ export type EventOccurrenceActionButtonProps = {
   onShowEnrolment?: (occurrence: EventOccurrencesTableOccurrence) => void;
   onSubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
   onUnsubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
+  fullWidth?: boolean;
   className?: string;
 };
 
@@ -211,6 +244,7 @@ export const EventOccurrenceActionButton: EventOccurrenceActionButtonComponent =
   onShowEnrolment,
   onSubscribe,
   onUnsubscribe,
+  fullWidth,
   className,
 }) => {
   const getPathname = useGetPathname();
@@ -239,27 +273,37 @@ export const EventOccurrenceActionButton: EventOccurrenceActionButtonComponent =
     return (
       <ShowEnrolmentButton
         onShow={() => handleShowEnrolment?.(occurrence)}
+        fullWidth={fullWidth}
         className={className}
       />
     );
   }
 
   if (isEnrolledInOtherOcc) {
-    return <AlreadyEnrolledOtherButton className={className} />;
+    return (
+      <AlreadyEnrolledOtherButton fullWidth={fullWidth} className={className} />
+    );
   }
 
   if (!canEnroll) {
-    return <CannotEnrolButton className={className} />;
+    return <CannotEnrolButton fullWidth={fullWidth} className={className} />;
   }
 
   if (isExternal) {
-    return <ExternalTicketLinkButton to={redirectUrl} className={className} />;
+    return (
+      <ExternalTicketLinkButton
+        to={redirectUrl}
+        fullWidth={fullWidth}
+        className={className}
+      />
+    );
   }
 
   if (hasSpots) {
     return (
       <EnrolButton
         onEnrol={() => onEnrol(occurrence)}
+        fullWidth={fullWidth}
         className={className}
       />
     );
@@ -269,6 +313,7 @@ export const EventOccurrenceActionButton: EventOccurrenceActionButtonComponent =
     return (
       <UnsubscribeNotificationButton
         onUnsubscribe={() => onUnsubscribe(occurrence)}
+        fullWidth={fullWidth}
         className={className}
       />
     );
@@ -277,6 +322,7 @@ export const EventOccurrenceActionButton: EventOccurrenceActionButtonComponent =
   return (
     <SubscribeNotificationButton
       onSubscribe={() => onSubscribe(occurrence)}
+      fullWidth={fullWidth}
       className={className}
     />
   );

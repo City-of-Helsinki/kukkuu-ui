@@ -26,27 +26,6 @@
   margin: 0;
 }
 
-.addChildButton {
-  --border-color: var(--color-black, #000) !important;
-  --border-color-hover: var(--color-black, #000) !important;
-  --border-color-focus: var(--color-black, #000) !important;
-  --border-color-hover-focus: var(--color-black, #000) !important;
-  --background-color-hover: var(--color-black-5, #f5f5f5) !important;
-  display: inline-flex;
-  align-items: center;
-
-  > div {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  > span {
-    line-height: 1.25;
-    text-box: trim-both cap alphabetic;
-  }
-}
-
 .emptyStateCard {
   width: 100%;
   box-sizing: border-box;
@@ -78,22 +57,6 @@
 
 .emptyButton {
   margin-top: var(--spacing-xs);
-  --border-color: var(--color-black, #000) !important;
-  --border-color-hover: var(--color-black, #000) !important;
-  --border-color-focus: var(--color-black, #000) !important;
-  --border-color-hover-focus: var(--color-black, #000) !important;
-  --background-color-hover: var(--color-black-5, #f5f5f5) !important;
-
-  > div {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  > span {
-    line-height: 1.25;
-    text-box: trim-both cap alphabetic;
-  }
 }
 
 .childrenAccordionList {

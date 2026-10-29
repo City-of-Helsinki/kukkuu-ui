@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Dialog, IconLinkExternal, IconSize } from 'hds-react';
+import { ButtonPresetTheme, Dialog, IconLinkExternal, IconSize } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
 import Paragraph from '../../../common/components/paragraph/Paragraph';
@@ -190,7 +190,7 @@ export const VenueDetailsModal: VenueDetailsModalComponent = ({
         </div>
       </Dialog.Content>
       <Dialog.ActionButtons>
-        <Button variant="secondary" onClick={onClose}>
+        <Button variant="secondary" theme={ButtonPresetTheme.Black} onClick={onClose}>
           {t('event.venueModal.close')}
         </Button>
       </Dialog.ActionButtons>

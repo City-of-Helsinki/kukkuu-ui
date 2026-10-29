@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
+import { ButtonPresetTheme } from 'hds-react';
 
 import styles from './editProfileModal.module.scss';
 import { type RequestEmailUpdateTokenMutation } from '../../api/generatedTypes/graphql';
@@ -66,6 +67,7 @@ export default function RequestVerificationTokenButton({
   return (
     <Button
       variant="primary"
+      theme={ButtonPresetTheme.Black}
       onClick={handleOnClick}
       className={styles.requestVerificationTokenButton}
       disabled={isDisabled}

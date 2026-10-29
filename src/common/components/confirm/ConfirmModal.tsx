@@ -1,4 +1,5 @@
 import { FunctionComponent } from 'react';
+import { ButtonPresetTheme } from 'hds-react';
 
 import Modal from '../modal/Modal';
 import styles from './confirmModal.module.scss';
@@ -49,11 +50,16 @@ const ConfirmModal: FunctionComponent<ConfirmModalProps> = ({
         <Button
           className={styles.cancelButton}
           variant="secondary"
+          theme={ButtonPresetTheme.Black}
           onClick={onCancel}
         >
           {cancel}
         </Button>
-        <Button className={styles.okButton} onClick={onOk}>
+        <Button
+          theme={ButtonPresetTheme.Black}
+          className={styles.okButton}
+          onClick={onOk}
+        >
           {ok}
         </Button>
       </div>

@@ -4,6 +4,7 @@ import { Form, Formik } from 'formik';
 import { useMutation } from '@apollo/client';
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
+import { ButtonPresetTheme } from 'hds-react';
 
 import {
   UpdateMyCommunicationSubscriptionsDocument,
@@ -67,7 +68,7 @@ const ManageSubscriptionsForm = ({
             'subscriptions.manage.form.fields.hasAcceptedCommunication.label'
           )}
         />
-        <Button type="submit">
+        <Button type="submit" theme={ButtonPresetTheme.Black}>
           {t('subscriptions.manage.form.submit.button.label')}
         </Button>
       </Form>

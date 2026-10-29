@@ -110,39 +110,4 @@
   flex-wrap: wrap;
   gap: var(--spacing-s);
   margin-top: var(--spacing-l);
-
-  .confirmButton {
-    background-color: var(--color-error, #b01038) !important;
-    border-color: var(--color-error, #b01038) !important;
-    color: var(--color-white, #fff) !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    &:hover {
-      background-color: var(--color-error-dark, #8c0c2c) !important;
-      border-color: var(--color-error-dark, #8c0c2c) !important;
-    }
-
-    > div {
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      line-height: 0 !important;
-      margin: 0 !important;
-    }
-
-    > div > svg,
-    svg {
-      display: block !important;
-    }
-
-    > span {
-      display: inline-flex !important;
-      align-items: center !important;
-      line-height: 1 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-    }
-  }
 }
