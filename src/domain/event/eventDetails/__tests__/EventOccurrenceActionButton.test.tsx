@@ -56,7 +56,7 @@ describe('EventOccurrenceActionButton', () => {
     expect(handleEnrol).toHaveBeenCalledWith(availableOcc);
   });
 
-  it('renders cancel button when enrolled in this occurrence', () => {
+  it('renders show enrolment button when enrolled in this occurrence', () => {
     const handleCancel = vi.fn();
     render(
       <EventOccurrenceActionButton
@@ -71,7 +71,7 @@ describe('EventOccurrenceActionButton', () => {
       />
     );
 
-    const btn = screen.getByRole('button', { name: 'Peruuta' });
+    const btn = screen.getByRole('button', { name: 'Näytä ilmoittautumiseni' });
     expect(btn).toBeInTheDocument();
     fireEvent.click(btn);
     expect(handleCancel).toHaveBeenCalledWith(availableOcc);
@@ -164,6 +164,7 @@ describe('EventOccurrenceActionButton', () => {
 
   it('exposes button subcomponents as compound components', () => {
     expect(EventOccurrenceActionButton.Cancel).toBeDefined();
+    expect(EventOccurrenceActionButton.ShowEnrolment).toBeDefined();
     expect(EventOccurrenceActionButton.AlreadyEnrolledOther).toBeDefined();
     expect(EventOccurrenceActionButton.CannotEnrol).toBeDefined();
     expect(EventOccurrenceActionButton.External).toBeDefined();

@@ -513,6 +513,7 @@
       "close": "Sulje",
       "venueInfoAriaLabel": "Näytä paikan tiedot: {{venue}}",
       "enrolButton": "Ilmoittaudu",
+      "showEnrolmentButton": "Näytä ilmoittautumiseni",
       "cancelButton": "Peruuta",
       "alreadyEnrolledOther": "Ilmoittautunut toiseen aikaan",
       "subscribeNotificationButton": "Tilaa ilmoitus",
