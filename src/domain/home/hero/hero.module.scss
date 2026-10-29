@@ -71,25 +71,8 @@
         width: 60%;
       }
     }
-    .authenticateButton {
-      background: transparent;
-      border-color: var(--color-white);
-      &:hover,
-      &:focus,
-      &:hover:focus {
-        background-color: var(--color-summer-dark);
-        border-color: var(--color-white);
-      }
-    }
 
     .registerButton {
-      color: var(--color-black-90);
-      border-color: var(--color-white);
-      &:hover {
-        background-color: var(--color-summer-light-20);
-      }
-
-      background-color: var(--color-white);
       margin-bottom: variables.$baseMargin;
     }
   }

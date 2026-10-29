@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import * as yup from 'yup';
-import { CheckboxProps, useOidcClient } from 'hds-react';
+import { ButtonPresetTheme, CheckboxProps, useOidcClient } from 'hds-react';
 
 import styles from './homePreliminaryForm.module.scss';
 import { isChildEligible } from '../../registration/notEligible/NotEligibleUtils';
@@ -133,6 +133,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                 />
                 <Button
                   type="submit"
+                  theme={ButtonPresetTheme.Black}
                   className={styles.submitButton}
                   disabled={isSubmitting || !isRegistrationInformationVerified}
                 >

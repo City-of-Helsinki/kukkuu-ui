@@ -167,7 +167,7 @@ export const EventOccurrenceAccordionItem: React.FC<
             onCancelEnrolment={onCancelEnrolment}
             onSubscribe={onSubscribe}
             onUnsubscribe={onUnsubscribe}
-            className={styles.accordionActionButton}
+            fullWidth
           />
         </div>
       </div>

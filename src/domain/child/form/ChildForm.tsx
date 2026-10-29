@@ -2,6 +2,7 @@ import { FunctionComponent } from 'react';
 import { Formik, FormikProps, Form } from 'formik';
 import { useTranslation } from 'react-i18next';
 import classnames from 'classnames';
+import { ButtonPresetTheme } from 'hds-react';
 import * as yup from 'yup';
 
 import styles from './childForm.module.scss';
@@ -150,6 +151,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             {isEditForm && (
               <Button
                 variant="secondary"
+                theme={ButtonPresetTheme.Black}
                 className={styles.cancelButton}
                 onClick={onCancel}
               >
@@ -158,6 +160,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             )}
             <Button
               type="submit"
+              theme={ButtonPresetTheme.Black}
               className={styles.submitButton}
               disabled={isSubmitting}
             >
@@ -171,6 +174,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
           {isEditForm && (
             <Button
               variant="supplementary"
+              theme={ButtonPresetTheme.Black}
               className={styles.deleteChildButton}
               onClick={onDelete}
             >

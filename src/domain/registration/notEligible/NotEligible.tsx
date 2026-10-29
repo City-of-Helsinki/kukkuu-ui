@@ -1,6 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
+import { ButtonPresetTheme } from 'hds-react';
 
 import styles from './notEligible.module.scss';
 import Icon from '../../../common/components/icon/Icon';
@@ -23,7 +24,10 @@ const NotEligible: FunctionComponent = () => {
             to={t('registration.notEligible.otherOptionsLink')}
             target="_blank"
           >
-            <Button className={styles.goBackButton}>
+            <Button
+              theme={ButtonPresetTheme.Black}
+              className={styles.goBackButton}
+            >
               {t('registration.notEligible.buttonText')}
             </Button>
           </Link>

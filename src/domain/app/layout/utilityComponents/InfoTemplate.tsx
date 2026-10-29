@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import { ButtonPresetTheme } from 'hds-react';
 
 import Icon from '../../../../common/components/icon/Icon';
 import Button from '../../../../common/components/button/Button';
@@ -37,6 +38,7 @@ const InfoTemplate = ({
       )}
       {callToAction && (
         <Button
+          theme={ButtonPresetTheme.Black}
           className={styles.callToActionButton}
           onClick={callToAction.onClick}
         >

@@ -222,47 +222,6 @@ $heroHeight: 30.6875rem;
         width: 100%;
         max-width: 100%;
 
-        .enrolButton,
-        .enrolButtonDisabled,
-        .cancelButton {
-          width: 100%;
-          max-width: 100%;
-          box-sizing: border-box;
-          white-space: normal;
-
-          @include layout.respond-above(m) {
-            max-width: 26rem;
-          }
-        }
-
-        .enrolButton {
-          background-color: var(--color-black, #000) !important;
-          color: var(--color-white, #fff) !important;
-          border-color: var(--color-black, #000) !important;
-
-          &:hover {
-            background-color: var(--color-black-90, #222) !important;
-            border-color: var(--color-black-90, #222) !important;
-          }
-        }
-
-        .enrolButtonDisabled {
-          background-color: var(--color-black-20, #ccc) !important;
-          color: var(--color-black-60, #666) !important;
-          border-color: var(--color-black-20, #ccc) !important;
-        }
-
-        .cancelButton {
-          background-color: var(--color-error, #b01038) !important;
-          color: var(--color-white, #fff) !important;
-          border-color: var(--color-error, #b01038) !important;
-
-          &:hover {
-            background-color: var(--color-error-dark, #8c0c2c) !important;
-            border-color: var(--color-error-dark, #8c0c2c) !important;
-          }
-        }
-
         .enrolledActionGroup {
           display: flex;
           flex-direction: column;

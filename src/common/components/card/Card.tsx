@@ -1,5 +1,5 @@
 import { ReactNode, ReactElement } from 'react';
-import { IconAngleRight } from 'hds-react';
+import { ButtonPresetTheme, IconAngleRight } from 'hds-react';
 import classNames from 'classnames';
 
 import Button from '../button/Button';
@@ -70,6 +70,7 @@ const Card = ({
         <div className={styles.focalPoint}>
           {primaryAction && (
             <Button
+              theme={ButtonPresetTheme.Black}
               className={styles.primaryActionButton}
               onClick={handlePrimaryActionOnClick}
               onKeyPress={handlePrimaryActionOnKeyPress}
@@ -85,6 +86,7 @@ const Card = ({
         {withAction && (
           <Button
             variant="supplementary"
+            theme={ButtonPresetTheme.Black}
             aria-label={actionText}
             className={styles.actionWrapper}
           >

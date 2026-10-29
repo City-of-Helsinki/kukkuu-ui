@@ -145,28 +145,3 @@
   flex-wrap: wrap;
   gap: var(--spacing-s);
 }
-
-.confirmButton {
-  background-color: var(--color-black, #000) !important;
-  color: var(--color-white, #fff) !important;
-  border-color: var(--color-black, #000) !important;
-
-  &:hover {
-    background-color: var(--color-black-90, #222) !important;
-    border-color: var(--color-black-90, #222) !important;
-  }
-}
-
-.cancelButton {
-  background-color: var(--color-white, #fff) !important;
-  color: var(--color-black, #000) !important;
-  border-color: var(--color-black, #000) !important;
-
-  &:hover {
-    background-color: var(--color-black-5, #f5f5f5) !important;
-  }
-}
-
-.unenrolButton {
-  // Uses ButtonVariant.Danger from HDS
-}

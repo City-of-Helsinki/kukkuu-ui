@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import { IconAlertCircle, useOidcClient, IconSize } from 'hds-react';
+import { ButtonPresetTheme, IconAlertCircle, useOidcClient, IconSize } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
@@ -36,7 +36,11 @@ const HomeHero = ({
           )}
           <div className={styles.buttonGroup}>
             {!userHasProfile && (
-              <Button className={styles.registerButton} onClick={scrollToForm}>
+              <Button
+                theme={ButtonPresetTheme.Black}
+                className={styles.registerButton}
+                onClick={scrollToForm}
+              >
                 {t('homePage.hero.buttonText')}
               </Button>
             )}
@@ -47,7 +51,7 @@ const HomeHero = ({
             }
             {userHasProfile && userIsAuthenticated && (
               <Button
-                className={styles.authenticateButton}
+                theme={ButtonPresetTheme.Black}
                 onClick={() => navigate(getPathname('/profile'))}
               >
                 {t('common.profile.goToProfile.buttonText')}
@@ -55,8 +59,8 @@ const HomeHero = ({
             )}
             {!userIsAuthenticated && (
               <Button
+                theme={ButtonPresetTheme.Black}
                 variant="secondary"
-                className={styles.authenticateButton}
                 onClick={() => login()}
               >
                 {t('authentication.login.text')}
