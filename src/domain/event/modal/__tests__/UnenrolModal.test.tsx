@@ -141,6 +141,22 @@ describe('UnenrolModal', () => {
     ).toBeInTheDocument();
   });
 
+  it('renders extra children and extra adults when provided via props', () => {
+    render(
+      <UnenrolModal
+        {...defaultProps}
+        extraChildrenCount={2}
+        extraGuardiansCount={1}
+      />,
+      []
+    );
+
+    expect(screen.getByText('Emma + 2 lisälasta')).toBeInTheDocument();
+    expect(
+      screen.getByText('Maija Meikäläinen + 1 lisäaikuinen')
+    ).toBeInTheDocument();
+  });
+
   it('calls setIsOpen(false) when keep button is clicked', async () => {
     const setIsOpen = vi.fn();
     const user = userEvent.setup();

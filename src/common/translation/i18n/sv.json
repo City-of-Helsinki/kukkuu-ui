@@ -418,12 +418,10 @@
       "paragraph": "Kom ihåg att avboka din plats Ifall du inte kan delta i evenemanget. Då kan får ett annat barn möjligheten att delta istället. Tack för din omtanke!"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_1_OR_2_GUARDIANS": "1 barn + 1–2 vuxna",
       "CHILD_AND_GUARDIAN": "1 barn + 1 vuxen",
       "FAMILY": "Familj"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_1_OR_2_GUARDIANS": "En eller två vuxna kan delta tillsammans med ett fadderbarn per anmälan",
       "CHILD_AND_GUARDIAN": "En vuxen kan delta tillsammans med ett fadderbarn per anmälan",
       "FAMILY": "Hela familjen kan delta tillsammans med ett fadderbarn per anmälan"
     },
@@ -538,14 +536,41 @@
       "freeSpots_other": "Lediga platser: {{count}}",
       "freeSpots_zero": "Inga lediga platser",
       "participantsTitle": "Deltagare",
-      "cultureKidsLabel": "Kulturfadderbarn *",
-      "guardianLabel": "Närstående vuxen *",
+      "cultureKidLabel": "Kulturbarn",
+      "cultureKidsLabel": "Kulturbarn",
+      "guardianLabel": "Närstående vuxen",
       "guardianYou": "{{name}} (du)",
-      "defaultGuardian": "Vårdnadshavare",
+      "defaultGuardian": "Närstående vuxen",
       "quotaNotice": "Ett kulturfadderbarn kan delta i ett evenemang per säsong. Anmälan förbrukar platsen för: {{name}}.",
       "bindingNotice": "Anmälan är bindande. Om du får förhinder, avboka senast ett dygn före evenemanget så att platsen blir tillgänglig för en annan familj.",
+      "noticePreRegisteredOnly": "Observera att på grund av begränsat utrymme och deltagarantal kan endast förhandsanmälda delta i evenemanget.",
       "confirmButton": "Bekräfta anmälan",
-      "cancelButton": "Avbryt"
+      "cancelButton": "Avbryt",
+      "extraChildren": {
+        "label": "Antal övriga barn",
+        "helperText": "Du kan anmäla högst tre övriga barn.",
+        "helperText_one": "Du kan anmäla ett övrigt barn.",
+        "helperText_two": "Du kan anmäla högst två övriga barn.",
+        "helperText_none": "Inga lediga extraplatser.",
+        "minusAria": "Minska övriga barn",
+        "plusAria": "Öka övriga barn"
+      },
+      "extraAdults": {
+        "label": "Antal övriga vuxna",
+        "helperText": "Du kan anmäla en övrig vuxen.",
+        "helperText_none": "Inga lediga extraplatser.",
+        "minusAria": "Minska övriga vuxna",
+        "plusAria": "Öka övriga vuxna"
+      },
+      "success": {
+        "title": "Anmälan lyckades",
+        "enrolledBadge": "Anmäld: {{name}}",
+        "extraChildrenSummary_one": "{{name}} + {{count}} övrigt barn",
+        "extraChildrenSummary_other": "{{name}} + {{count}} övriga barn",
+        "extraAdultsSummary": "{{name}} + {{count}} övrig vuxen",
+        "readyButton": "Klar",
+        "unenrolButton": "Avboka anmälan"
+      }
     }
   },
   "eventRedirectPage": {

@@ -14,7 +14,7 @@ import type {
   EventOccurrencesTableOccurrence,
 } from './EventOccurrencesTable';
 import { EventOccurrenceActionButton } from './EventOccurrenceActionButton';
-import { venueHasDetailedInfo } from '../EventUtils';
+import { isOccurrenceFull, venueHasDetailedInfo } from '../EventUtils';
 import styles from './eventOccurrencesTable.module.scss';
 
 export type EventOccurrenceAccordionItemProps = {
@@ -62,7 +62,7 @@ export const EventOccurrenceAccordionItem: React.FC<
     occurrence.time,
     event.duration
   );
-  const isFull = occurrence.remainingCapacity === 0;
+  const isFull = isOccurrenceFull(occurrence.remainingCapacity);
   const timeSeparator = t('common.dateTimeSeparator');
 
   const venueName = occurrence.venue?.name;

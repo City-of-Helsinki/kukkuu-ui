@@ -18,6 +18,9 @@ describe('useChildEnrolment', () => {
     expect(result.current.childName).toBe('');
     expect(result.current.guardianName).toBe('');
     expect(result.current.enrolledOccurrenceId).toBeNull();
+    expect(result.current.extraChildrenCount).toBeNull();
+    expect(result.current.extraGuardiansCount).toBeNull();
+    expect(result.current.totalSeats).toBeNull();
     expect(result.current.isEnrolledInOccurrence('any-occ')).toBe(false);
   });
 
@@ -36,6 +39,9 @@ describe('useChildEnrolment', () => {
                   {
                     node: {
                       id: 'enrolment-1',
+                      extraChildrenCount: 2,
+                      extraGuardiansCount: 1,
+                      totalSeats: 5,
                       occurrence: {
                         id: 'occ-1',
                         time: '2026-11-01T10:00:00Z',
@@ -68,6 +74,9 @@ describe('useChildEnrolment', () => {
     expect(result.current.enrolledOccurrenceId).toBe('occ-1');
     expect(result.current.enrolledOccurrenceVenueName).toBe('Musiikkitalo');
     expect(result.current.enrolmentId).toBe('enrolment-1');
+    expect(result.current.extraChildrenCount).toBe(2);
+    expect(result.current.extraGuardiansCount).toBe(1);
+    expect(result.current.totalSeats).toBe(5);
     expect(result.current.isEnrolledInOccurrence('occ-1')).toBe(true);
     expect(result.current.isEnrolledInOccurrence('occ-2')).toBe(false);
   });
