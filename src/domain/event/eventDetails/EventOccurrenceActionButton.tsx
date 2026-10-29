@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
-import { IconTrash } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
 import LinkButton from '../../../common/components/button/LinkButton';
@@ -15,6 +14,27 @@ import type {
 } from './EventOccurrencesTable';
 import styles from './eventOccurrencesTable.module.scss';
 
+export type ShowEnrolmentButtonProps = {
+  onShow?: () => void;
+  className?: string;
+};
+
+export const ShowEnrolmentButton: React.FC<ShowEnrolmentButtonProps> = ({
+  onShow,
+  className,
+}) => {
+  const { t } = useTranslation();
+  return (
+    <Button
+      variant="secondary"
+      onClick={onShow}
+      className={classNames(styles.actionButton, className)}
+    >
+      {t('event.occurrencesTable.showEnrolmentButton')}
+    </Button>
+  );
+};
+
 export type CancelEnrolmentButtonProps = {
   onCancel?: () => void;
   className?: string;
@@ -23,19 +43,7 @@ export type CancelEnrolmentButtonProps = {
 export const CancelEnrolmentButton: React.FC<CancelEnrolmentButtonProps> = ({
   onCancel,
   className,
-}) => {
-  const { t } = useTranslation();
-  return (
-    <Button
-      variant="danger"
-      iconStart={<IconTrash aria-hidden="true" />}
-      onClick={onCancel}
-      className={classNames(styles.actionButton, styles.cancelButton, className)}
-    >
-      {t('event.occurrencesTable.cancelButton')}
-    </Button>
-  );
-};
+}) => <ShowEnrolmentButton onShow={onCancel} className={className} />;
 
 export type AlreadyEnrolledOtherButtonProps = {
   className?: string;
@@ -170,6 +178,7 @@ export type EventOccurrenceActionButtonProps = {
   enrolledOccurrenceId?: string | null;
   onEnrol: (occurrence: EventOccurrencesTableOccurrence) => void;
   onCancelEnrolment?: (occurrence: EventOccurrencesTableOccurrence) => void;
+  onShowEnrolment?: (occurrence: EventOccurrencesTableOccurrence) => void;
   onSubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
   onUnsubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
   className?: string;
@@ -179,6 +188,7 @@ export type EventOccurrenceActionButtonComponent = React.FC<
   EventOccurrenceActionButtonProps
 > & {
   Cancel: typeof CancelEnrolmentButton;
+  ShowEnrolment: typeof ShowEnrolmentButton;
   AlreadyEnrolledOther: typeof AlreadyEnrolledOtherButton;
   CannotEnrol: typeof CannotEnrolButton;
   External: typeof ExternalTicketLinkButton;
@@ -198,6 +208,7 @@ export const EventOccurrenceActionButton: EventOccurrenceActionButtonComponent =
   enrolledOccurrenceId,
   onEnrol,
   onCancelEnrolment,
+  onShowEnrolment,
   onSubscribe,
   onUnsubscribe,
   className,
@@ -224,9 +235,10 @@ export const EventOccurrenceActionButton: EventOccurrenceActionButtonComponent =
   );
 
   if (isEnrolledInThisOcc) {
+    const handleShowEnrolment = onShowEnrolment ?? onCancelEnrolment;
     return (
-      <CancelEnrolmentButton
-        onCancel={() => onCancelEnrolment?.(occurrence)}
+      <ShowEnrolmentButton
+        onShow={() => handleShowEnrolment?.(occurrence)}
         className={className}
       />
     );
@@ -271,6 +283,7 @@ export const EventOccurrenceActionButton: EventOccurrenceActionButtonComponent =
 };
 
 EventOccurrenceActionButton.Cancel = CancelEnrolmentButton;
+EventOccurrenceActionButton.ShowEnrolment = ShowEnrolmentButton;
 EventOccurrenceActionButton.AlreadyEnrolledOther = AlreadyEnrolledOtherButton;
 EventOccurrenceActionButton.CannotEnrol = CannotEnrolButton;
 EventOccurrenceActionButton.External = ExternalTicketLinkButton;

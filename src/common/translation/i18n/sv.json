@@ -513,6 +513,7 @@
       "close": "Stäng",
       "venueInfoAriaLabel": "Visa platsinformation: {{venue}}",
       "enrolButton": "Anmäl dig",
+      "showEnrolmentButton": "Visa min anmälan",
       "cancelButton": "Avboka",
       "alreadyEnrolledOther": "Anmäld till en annan tid",
       "subscribeNotificationButton": "Beställ avisering",
