@@ -35,7 +35,11 @@ const AlertModal: FunctionComponent<AlertModalProps> = ({
       className={styles.modal}
     >
       {children}
-      <Button className={styles.okButton} onClick={() => onClose()}>
+      <Button
+        theme="black"
+        className={styles.okButton}
+        onClick={() => onClose()}
+      >
         {ok}
       </Button>
     </Modal>

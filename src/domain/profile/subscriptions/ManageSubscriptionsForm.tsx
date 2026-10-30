@@ -67,7 +67,7 @@ const ManageSubscriptionsForm = ({
             'subscriptions.manage.form.fields.hasAcceptedCommunication.label'
           )}
         />
-        <Button type="submit">
+        <Button type="submit" theme="black">
           {t('subscriptions.manage.form.submit.button.label')}
         </Button>
       </Form>

@@ -20,6 +20,7 @@ const Welcome: FunctionComponent = () => {
         <h1>{t('registration.welcome.hero.header')}</h1>
         <Icon src={publicSvgIconPaths['tada']} className={styles.tada} />
         <Button
+          theme="black"
           aria-label={t('common.profile.goToProfile.buttonText')}
           onClick={() => navigate(getPathname('/profile'))}
           className={styles.submitButton}

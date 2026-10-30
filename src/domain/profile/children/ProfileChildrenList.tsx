@@ -48,6 +48,7 @@ export const ProfileChildrenEmptyState: React.FC<
       </p>
       <Button
         variant="secondary"
+        theme="black"
         iconStart={<IconPlus aria-hidden="true" />}
         className={styles.emptyButton}
         onClick={onAddChild}
@@ -170,8 +171,8 @@ export const ProfileChildrenList: React.FC = () => {
         </h2>
         <Button
           variant="secondary"
+          theme="black"
           iconStart={<IconPlus aria-hidden="true" />}
-          className={styles.addChildButton}
           onClick={() => setIsAddModalOpen(true)}
           aria-haspopup="dialog"
           aria-label={t('profile.children.addChild.buttonAriaLabel')}

@@ -31,6 +31,7 @@ const occurrenceQuery = gql`
     id
     time
     remainingCapacity
+    occurrenceLanguage
     event {
       ...OccurrenceEventFields
     }

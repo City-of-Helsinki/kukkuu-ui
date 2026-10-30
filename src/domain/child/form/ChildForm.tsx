@@ -150,6 +150,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             {isEditForm && (
               <Button
                 variant="secondary"
+                theme="black"
                 className={styles.cancelButton}
                 onClick={onCancel}
               >
@@ -158,6 +159,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             )}
             <Button
               type="submit"
+              theme="black"
               className={styles.submitButton}
               disabled={isSubmitting}
             >
@@ -171,6 +173,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
           {isEditForm && (
             <Button
               variant="supplementary"
+              theme="black"
               className={styles.deleteChildButton}
               onClick={onDelete}
             >

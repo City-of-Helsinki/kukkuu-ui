@@ -42,6 +42,7 @@ const ProfileGuardianSection: React.FC<ProfileGuardianSectionProps> = ({
         {profile.email && <p className={styles.email}>{profile.email}</p>}
         <Button
           variant="supplementary"
+          theme="black"
           iconStart={<IconPen aria-hidden="true" />}
           className={styles.editButton}
           onClick={() => setIsEditModalOpen(true)}
