@@ -201,7 +201,7 @@ describe('Event', () => {
       ).toBeInTheDocument();
       expect(
         screen.getByRole('button', {
-          name: 'Katso tapahtuma-ajat ja ilmoittaudu',
+          name: 'Katso ajat ja ilmoittaudu',
         })
       ).toBeInTheDocument();
       expect(

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  IconCalendarClock,
+  IconCalendar,
   IconClock,
   IconGlobe,
   IconLinkExternal,
@@ -11,6 +11,7 @@ import {
 } from 'hds-react';
 
 import InfoWithIcon from '../../../common/components/infoWithIcon/InfoWithIcon';
+import { formatDuration } from '../../../common/time/occurrenceTime';
 import {
   EventParticipantsPerInvite as EventParticipantsPerInviteEnum,
   TicketSystem,
@@ -18,7 +19,6 @@ import {
 import { externalTicketSystems } from '../constants/ExternalTicketSystemConstants';
 import {
   extractUniqueVenues,
-  formatDuration,
   formatEventHeroDateTime,
   getParticipantsIcon,
 } from '../EventUtils';
@@ -99,7 +99,7 @@ export const EventSidebarOccurrencesInfo: React.FC<
 
   return (
     <InfoWithIcon
-      icon={<IconCalendarClock aria-hidden="true" />}
+      icon={<IconCalendar aria-hidden="true" />}
       title={t('event.sidebar.dateTitle')}
     >
       <div className={styles.infoContent}>

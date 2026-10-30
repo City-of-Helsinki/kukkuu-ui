@@ -106,7 +106,7 @@ describe('EnrolOccurrenceModal', () => {
     expect(screen.getByText('Musiikkisatu')).toBeInTheDocument();
     expect(screen.getByText('Annantalo, Annankatu 30')).toBeInTheDocument();
     expect(screen.getByText('Su 4.10.2026')).toBeInTheDocument();
-    expect(screen.getByText('klo 13:00–13:45')).toBeInTheDocument();
+    expect(screen.getByText('Klo 13:00–13:45 (45 min)')).toBeInTheDocument();
 
     expect(screen.getByText('Osallistujat')).toBeInTheDocument();
     expect(screen.getByText('Kulttuurilapsi')).toBeInTheDocument();
@@ -130,6 +130,18 @@ describe('EnrolOccurrenceModal', () => {
     expect(
       screen.getByRole('button', { name: 'Peruuta' })
     ).toBeInTheDocument();
+  });
+
+  it('renders only start time when event duration is null', () => {
+    render(
+      <EnrolOccurrenceModal
+        {...defaultProps}
+        event={{ ...defaultProps.event, duration: null }}
+      />,
+      []
+    );
+
+    expect(screen.getByText('Klo 13:00')).toBeInTheDocument();
   });
 
   it('does not render dialog when isOpen is false', () => {
