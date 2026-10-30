@@ -25,6 +25,11 @@ import { GQLErrors } from '../enrol/EnrolConstants';
 import { getEnrolmentDeniedNotice } from '../EventUtils';
 import getIsError from '../../api/utils/getIsError';
 
+export type EnrolOccurrenceExtraParams = {
+  extraChildrenCount?: number;
+  extraGuardiansCount?: number;
+};
+
 export type UseEnrolOccurrenceMutationOptions = {
   childId: string;
   eventId: string;
@@ -32,6 +37,7 @@ export type UseEnrolOccurrenceMutationOptions = {
   registrationOpensAt?: string | null;
   onClose?: () => void;
   onSuccess?: (data?: EnrolOccurrenceMutation | null) => void;
+  stayInModalOnSuccess?: boolean;
 };
 
 export type EnrolOccurrenceMutationFn = (
@@ -40,7 +46,8 @@ export type EnrolOccurrenceMutationFn = (
     | MutationFunctionOptions<
         EnrolOccurrenceMutation,
         EnrolOccurrenceMutationVariables
-      >
+      >,
+  extraParams?: EnrolOccurrenceExtraParams
 ) => Promise<unknown>;
 
 function containsError(
@@ -64,6 +71,7 @@ export function useEnrolOccurrenceMutation({
   registrationOpensAt,
   onClose,
   onSuccess,
+  stayInModalOnSuccess = false,
 }: UseEnrolOccurrenceMutationOptions) {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -82,6 +90,16 @@ export function useEnrolOccurrenceMutation({
     }),
     awaitRefetchQueries: true,
     onCompleted: async (data) => {
+      if (stayInModalOnSuccess) {
+        await handleEnrolCompleted(data, {
+          childId,
+          dispatch,
+          refetchProfile,
+          t,
+        });
+        onSuccess?.(data);
+        return;
+      }
       onClose?.();
       await handleEnrolCompleted(data, {
         childId,
@@ -155,7 +173,8 @@ export function useEnrolOccurrenceMutation({
   });
 
   const enrolOccurrence: EnrolOccurrenceMutationFn = async (
-    occurrenceIdOrOptions
+    occurrenceIdOrOptions,
+    extraParams
   ) => {
     if (typeof occurrenceIdOrOptions === 'string') {
       return await mutate({
@@ -163,6 +182,12 @@ export function useEnrolOccurrenceMutation({
           input: {
             occurrenceId: occurrenceIdOrOptions,
             childId,
+            ...(typeof extraParams?.extraChildrenCount === 'number'
+              ? { extraChildrenCount: extraParams.extraChildrenCount }
+              : {}),
+            ...(typeof extraParams?.extraGuardiansCount === 'number'
+              ? { extraGuardiansCount: extraParams.extraGuardiansCount }
+              : {}),
           },
         },
       });

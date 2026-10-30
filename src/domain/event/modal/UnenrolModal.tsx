@@ -72,6 +72,8 @@ export interface UnenrolModalProps {
   event?: UnenrolModalEvent | null;
   childName?: string;
   onSuccess?: () => void;
+  extraChildrenCount?: number | null;
+  extraGuardiansCount?: number | null;
 }
 
 const UnenrolModal: React.FC<UnenrolModalProps> = ({
@@ -85,6 +87,8 @@ const UnenrolModal: React.FC<UnenrolModalProps> = ({
   event,
   childName: propChildName,
   onSuccess,
+  extraChildrenCount: propExtraChildrenCount,
+  extraGuardiansCount: propExtraGuardiansCount,
 }) => {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
@@ -128,6 +132,18 @@ const UnenrolModal: React.FC<UnenrolModalProps> = ({
   const matchedChild = (profile?.children?.edges || [])
     .map((e) => e?.node)
     .find((c) => c?.id === childId);
+  const matchedEnrolment = (matchedChild?.enrolments?.edges || [])
+    .map((e) => e?.node)
+    .find(
+      (enrol) =>
+        (occurrenceId && enrol?.occurrence?.id === occurrenceId) ||
+        (resolvedEventId && enrol?.occurrence?.event?.id === resolvedEventId)
+    );
+  const extraChildren =
+    propExtraChildrenCount ?? matchedEnrolment?.extraChildrenCount ?? 0;
+  const extraGuardians =
+    propExtraGuardiansCount ?? matchedEnrolment?.extraGuardiansCount ?? 0;
+
   const childName = propChildName || matchedChild?.name || '';
   const guardianName = [profile?.firstName, profile?.lastName]
     .filter(Boolean)
@@ -207,8 +223,8 @@ const UnenrolModal: React.FC<UnenrolModalProps> = ({
         title={t('event.cancellation.modal.title', 'Peruuta ilmoittautuminen')}
       />
       <Dialog.Content>
-        <div id={descriptionId}>
-          <p className={styles.promptText}>
+        <div>
+          <p id={descriptionId} className={styles.promptText}>
             {t(
               'event.cancellation.modal.prompt',
               'Oletko varma, että haluat peruuttaa ilmoittautumisesi tapahtumaan?'
@@ -273,14 +289,30 @@ const UnenrolModal: React.FC<UnenrolModalProps> = ({
               {childName && (
                 <div className={styles.metaRow}>
                   <IconFaceSmile aria-hidden="true" className={styles.icon} />
-                  <span>{childName}</span>
+                  <span>
+                    {extraChildren > 0
+                      ? t('event.enrolModal.success.extraChildrenSummary', {
+                          name: childName,
+                          count: extraChildren,
+                        })
+                      : childName}
+                  </span>
                 </div>
               )}
 
-              {guardianName && (
+              {(guardianName || extraGuardians > 0) && (
                 <div className={styles.metaRow}>
                   <IconUser aria-hidden="true" className={styles.icon} />
-                  <span>{guardianName}</span>
+                  <span>
+                    {extraGuardians > 0
+                      ? t('event.enrolModal.success.extraAdultsSummary', {
+                          name:
+                            guardianName ||
+                            t('event.enrolModal.defaultGuardian'),
+                          count: extraGuardians,
+                        })
+                      : guardianName}
+                  </span>
                 </div>
               )}
             </div>

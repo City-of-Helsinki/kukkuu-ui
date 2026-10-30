@@ -3,7 +3,6 @@ import { fireEvent, screen, act, within } from '@testing-library/react';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import i18n from '../../../../common/translation/i18n/i18nInit';
-import en from '../../../../common/translation/i18n/en.json';
 import EventOccurrencesTable, {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
@@ -353,7 +352,7 @@ describe('EventOccurrencesTable', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders "Peruuta" for enrolled occurrence and disabled buttons for other occurrences', () => {
+  it('renders "Näytä ilmoittautumiseni" for enrolled occurrence and disabled buttons for other occurrences', () => {
     const onCancel = vi.fn();
     render(
       <EventOccurrencesTable
@@ -368,7 +367,9 @@ describe('EventOccurrencesTable', () => {
       />
     );
 
-    const cancelButton = screen.getByRole('button', { name: 'Peruuta' });
+    const cancelButton = screen.getByRole('button', {
+      name: 'Näytä ilmoittautumiseni',
+    });
     expect(cancelButton).toBeInTheDocument();
 
     fireEvent.click(cancelButton);
@@ -550,6 +551,7 @@ describe('EventOccurrencesTable', () => {
 
       const accordionButton = screen.getByRole('button', {
         name: /Ma 14\.9\.2026/i,
+        expanded: true,
       });
       expect(accordionButton).toBeInTheDocument();
       expect(accordionButton.textContent).not.toContain('paikkoja jäljellä');
@@ -558,15 +560,10 @@ describe('EventOccurrencesTable', () => {
     }
   });
 
-  it('uses singular form "spot left" in English when remainingCapacity is 1', async () => {
+  it('shows full badge in mobile accordion when remainingCapacity is 1 (fewer than minimum 2 seats)', () => {
     useMediaQueryLessThanMock.mockReturnValue(true);
-    i18n.addResourceBundle('en', 'translation', en, true, true);
 
     try {
-      await act(async () => {
-        await i18n.changeLanguage('en');
-      });
-
       const occurrenceWithOneSpot: EventOccurrencesTableOccurrence = {
         ...baseOccurrences[0],
         remainingCapacity: 1,
@@ -584,14 +581,10 @@ describe('EventOccurrencesTable', () => {
       );
 
       const accordionButton = screen.getByRole('button', {
-        name: /1 spot left/i,
-        expanded: true,
+        name: /Täynnä/i,
       });
       expect(accordionButton).toBeInTheDocument();
     } finally {
-      await act(async () => {
-        await i18n.changeLanguage('fi');
-      });
       useMediaQueryLessThanMock.mockReturnValue(false);
     }
   });

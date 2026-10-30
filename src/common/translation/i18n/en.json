@@ -418,14 +418,12 @@
       "paragraph": "Please remember to cancel your participation in case you are not able to attend the event so that another child is able to take your place. Thank you!"
     },
     "participantsPerInviteEnum": {
-      "CHILD_AND_1_OR_2_GUARDIANS": "1 child + 1–2 adults",
       "CHILD_AND_GUARDIAN": "1 child + 1 adult",
       "FAMILY": "Family"
     },
     "participantsPerInviteEnumLong": {
-      "CHILD_AND_1_OR_2_GUARDIANS": "One or two adults can accompany a child in this registration",
       "CHILD_AND_GUARDIAN": "One adult can accompany a child in this registration",
-      "FAMILY": "The whole faily is welcome to this event with this registration"
+      "FAMILY": "The whole family is welcome to this event with this registration"
     },
     "register": {
       "form": {
@@ -517,6 +515,7 @@
       "close": "Close",
       "venueInfoAriaLabel": "Show venue details: {{venue}}",
       "enrolButton": "Enrol",
+      "showEnrolmentButton": "Show my enrolment",
       "cancelButton": "Cancel",
       "alreadyEnrolledOther": "Enrolled in another event time",
       "subscribeNotificationButton": "Subscribe to notifications",
@@ -540,14 +539,41 @@
       "freeSpots_other": "Available spots: {{count}}",
       "freeSpots_zero": "No available spots",
       "participantsTitle": "Participants",
-      "cultureKidsLabel": "Culture Kids *",
-      "guardianLabel": "Accompanying adult *",
+      "cultureKidLabel": "Culture kid",
+      "cultureKidsLabel": "Culture kid",
+      "guardianLabel": "Accompanying adult",
       "guardianYou": "{{name}} (you)",
-      "defaultGuardian": "Guardian",
+      "defaultGuardian": "Accompanying adult",
       "quotaNotice": "A Culture Kid can participate in one event per season. Enrolment uses the spot for: {{name}}.",
       "bindingNotice": "Enrolment is binding. If you cannot attend, please cancel your spot at least 24 hours before the event so it can be offered to another family.",
+      "noticePreRegisteredOnly": "Please note that due to limited space and participant numbers, only pre-registered participants may attend the event.",
       "confirmButton": "Confirm enrolment",
-      "cancelButton": "Cancel"
+      "cancelButton": "Cancel",
+      "extraChildren": {
+        "label": "Number of additional children",
+        "helperText": "You can enrol up to three additional children.",
+        "helperText_one": "You can enrol one additional child.",
+        "helperText_two": "You can enrol up to two additional children.",
+        "helperText_none": "No extra spots available.",
+        "minusAria": "Decrease other children",
+        "plusAria": "Increase other children"
+      },
+      "extraAdults": {
+        "label": "Number of additional adults",
+        "helperText": "You can enrol one additional adult.",
+        "helperText_none": "No extra spots available.",
+        "minusAria": "Decrease other adults",
+        "plusAria": "Increase other adults"
+      },
+      "success": {
+        "title": "Registration successful",
+        "enrolledBadge": "Enrolled: {{name}}",
+        "extraChildrenSummary_one": "{{name}} + {{count}} extra child",
+        "extraChildrenSummary_other": "{{name}} + {{count}} extra children",
+        "extraAdultsSummary": "{{name}} + {{count}} extra adult",
+        "readyButton": "Done",
+        "unenrolButton": "Cancel enrolment"
+      }
     }
   },
   "eventRedirectPage": {

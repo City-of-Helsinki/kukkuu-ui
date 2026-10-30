@@ -138,6 +138,8 @@ export const EventOccurrencesTableSection: React.FC<
             eventGroup: event.eventGroup,
           }}
           childName={enrolmentInfo.childName}
+          extraChildrenCount={enrolmentInfo.extraChildrenCount}
+          extraGuardiansCount={enrolmentInfo.extraGuardiansCount}
         />
       )}
 

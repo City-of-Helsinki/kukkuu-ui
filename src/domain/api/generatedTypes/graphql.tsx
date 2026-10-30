@@ -444,6 +444,8 @@ export type EnrolOccurrenceMutationInput = {
   /** Guardian's child id */
   childId: Scalars['ID']['input'];
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  extraChildrenCount?: InputMaybe<Scalars['Int']['input']>;
+  extraGuardiansCount?: InputMaybe<Scalars['Int']['input']>;
   /** Occurrence id of event */
   occurrenceId: Scalars['ID']['input'];
 };
@@ -477,11 +479,14 @@ export type EnrolmentNode = Node & {
   attended: Maybe<Scalars['Boolean']['output']>;
   child: Maybe<ChildNode>;
   createdAt: Scalars['DateTime']['output'];
+  extraChildrenCount?: Maybe<Scalars['Int']['output']>;
+  extraGuardiansCount?: Maybe<Scalars['Int']['output']>;
   /** The ID of the object */
   id: Scalars['ID']['output'];
   occurrence: OccurrenceNode;
   /** An unique encoded reference id */
   referenceId: Maybe<Scalars['String']['output']>;
+  totalSeats?: Maybe<Scalars['Int']['output']>;
   updatedAt: Scalars['DateTime']['output'];
 };
 
@@ -713,7 +718,6 @@ export type EventOrEventGroupEdge = {
 export type EventOrEventGroupUnion = EventGroupNode | EventNode;
 
 export enum EventParticipantsPerInvite {
-  ChildAnd_1Or_2Guardians = 'CHILD_AND_1_OR_2_GUARDIANS',
   ChildAndGuardian = 'CHILD_AND_GUARDIAN',
   Family = 'FAMILY',
 }
@@ -1304,6 +1308,7 @@ export type OccurrenceNode = Node & {
   id: Scalars['ID']['output'];
   occurrenceLanguage: Language;
   remainingCapacity: Maybe<Scalars['Int']['output']>;
+  seatCount: Scalars['Int']['output'];
   /** @deprecated There is no need for this because the only field ticketSystemUrl has been moved to EventNode.ticketSystem. */
   ticketSystem: Maybe<OccurrenceTicketSystem>;
   time: Scalars['DateTime']['output'];
@@ -3232,6 +3237,9 @@ export type EnrolOccurrenceMutationPayloadFieldsFragment = {
   enrolment: {
     __typename?: 'EnrolmentNode';
     id: string;
+    extraChildrenCount?: number | null;
+    extraGuardiansCount?: number | null;
+    totalSeats?: number | null;
     occurrence: {
       __typename?: 'OccurrenceNode';
       id: string;
@@ -4546,6 +4554,9 @@ export type ProfileChildrenQuery = {
 export type MyProfileEnrolmentFieldsFragment = {
   __typename?: 'EnrolmentNode';
   id: string;
+  extraChildrenCount?: number | null;
+  extraGuardiansCount?: number | null;
+  totalSeats?: number | null;
   occurrence: {
     __typename?: 'OccurrenceNode';
     id: string;
@@ -4567,6 +4578,9 @@ export type MyProfileEnrolmentsFieldsFragment = {
     node: {
       __typename?: 'EnrolmentNode';
       id: string;
+      extraChildrenCount?: number | null;
+      extraGuardiansCount?: number | null;
+      totalSeats?: number | null;
       occurrence: {
         __typename?: 'OccurrenceNode';
         id: string;
@@ -4652,6 +4666,9 @@ export type MyProfileChildFieldsFragment = {
       node: {
         __typename?: 'EnrolmentNode';
         id: string;
+        extraChildrenCount?: number | null;
+        extraGuardiansCount?: number | null;
+        totalSeats?: number | null;
         occurrence: {
           __typename?: 'OccurrenceNode';
           id: string;
@@ -4735,6 +4752,9 @@ export type MyProfileChildrenFieldsFragment = {
           node: {
             __typename?: 'EnrolmentNode';
             id: string;
+            extraChildrenCount?: number | null;
+            extraGuardiansCount?: number | null;
+            totalSeats?: number | null;
             occurrence: {
               __typename?: 'OccurrenceNode';
               id: string;
@@ -4850,6 +4870,9 @@ export type MyProfileFieldsFragment = {
             node: {
               __typename?: 'EnrolmentNode';
               id: string;
+              extraChildrenCount?: number | null;
+              extraGuardiansCount?: number | null;
+              totalSeats?: number | null;
               occurrence: {
                 __typename?: 'OccurrenceNode';
                 id: string;
@@ -4964,6 +4987,9 @@ export type ProfileQuery = {
               node: {
                 __typename?: 'EnrolmentNode';
                 id: string;
+                extraChildrenCount?: number | null;
+                extraGuardiansCount?: number | null;
+                totalSeats?: number | null;
                 occurrence: {
                   __typename?: 'OccurrenceNode';
                   id: string;
