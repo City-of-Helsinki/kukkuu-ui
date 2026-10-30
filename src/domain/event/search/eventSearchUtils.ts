@@ -241,7 +241,10 @@ export const getEventTimeText = (
       summary.firstOccurrence.time,
       event.duration
     );
-    return [dateStr, timeRange].filter(Boolean).join(', ');
+    const separator = t('common.dateTimeSeparator', 'klo');
+    return dateStr && timeRange
+      ? `${dateStr} ${separator} ${timeRange}`
+      : dateStr || timeRange;
   }
   const dateRange = formatOccurrenceDateRange(
     summary.firstOccurrence.time,

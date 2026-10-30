@@ -43,7 +43,7 @@ describe('EventSearchCard', () => {
     expect(
       screen.getByText('Ihanaa musiikkia koko perheelle')
     ).toBeInTheDocument();
-    expect(screen.getByText(/13:00–14:00/)).toBeInTheDocument();
+    expect(screen.getByText('Su 4.10.2026 klo 13:00–14:00')).toBeInTheDocument();
     expect(screen.getByText('Annantalo, Annankatu 30')).toBeInTheDocument();
     expect(screen.getByText(/Kielet:\s*Suomi/)).toBeInTheDocument();
     expect(screen.queryByText('Esimerkkimerkki 1')).not.toBeInTheDocument();

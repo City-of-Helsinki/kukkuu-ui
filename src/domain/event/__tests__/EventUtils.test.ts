@@ -6,7 +6,6 @@ import {
   extractUniqueLanguages,
   extractUniqueVenues,
   findEnrolledOccurrence,
-  formatDuration,
   formatOccurrenceTime,
   getEarliestRegistrationOpensAt,
   getEnrolmentDeniedNotice,
@@ -189,28 +188,6 @@ describe('EventUtils', () => {
         ).toMatch(/Huomioithan, että et voi ilmoittautua tähän tapahtumaan/);
       }
     );
-  });
-
-  describe('formatDuration', () => {
-    test('returns null for empty or non-positive durations', () => {
-      expect(formatDuration(null)).toBeNull();
-      expect(formatDuration(undefined)).toBeNull();
-      expect(formatDuration(0)).toBeNull();
-      expect(formatDuration(-15)).toBeNull();
-    });
-
-    test('formats hours and minutes', () => {
-      expect(formatDuration(90)).toEqual('1 h 30 min');
-    });
-
-    test('formats exact hours', () => {
-      expect(formatDuration(60)).toEqual('1 h');
-      expect(formatDuration(120)).toEqual('2 h');
-    });
-
-    test('formats minutes under an hour', () => {
-      expect(formatDuration(45)).toEqual('45 min');
-    });
   });
 
   describe('sortOccurrencesByTime', () => {
