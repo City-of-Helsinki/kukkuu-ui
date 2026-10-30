@@ -417,9 +417,6 @@ export const EnrolOccurrenceModal: React.FC<EnrolOccurrenceModalProps> = ({
 
                 <div className={styles.noticesWrapper}>
                   <p className={styles.noticeText}>
-                    {t('event.enrolModal.quotaNotice', { name: childName })}
-                  </p>
-                  <p className={styles.noticeText}>
                     {t('event.enrolModal.bindingNotice')}
                   </p>
                 </div>
@@ -469,9 +466,6 @@ export const EnrolOccurrenceModal: React.FC<EnrolOccurrenceModalProps> = ({
                 </Notification>
 
                 <div className={styles.noticesWrapper}>
-                  <p className={styles.noticeText}>
-                    {t('event.enrolModal.quotaNotice', { name: childName })}
-                  </p>
                   <p className={styles.noticeText}>
                     {t('event.enrolModal.bindingNotice')}
                   </p>

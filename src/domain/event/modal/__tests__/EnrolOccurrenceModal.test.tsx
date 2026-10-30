@@ -118,8 +118,8 @@ describe('EnrolOccurrenceModal', () => {
       screen.getByText(/Huomioithan, että tilojen rajallisuuden ja osallistujamäärien vuoksi/i)
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/Kulttuurilapsi voi osallistua yhteen tapahtumaan kaudessa/i)
-    ).toBeInTheDocument();
+      screen.queryByText(/Kulttuurilapsi voi osallistua yhteen tapahtumaan kaudessa/i)
+    ).not.toBeInTheDocument();
     expect(
       screen.getByText(/Ilmoittautuminen on sitova/i)
     ).toBeInTheDocument();
