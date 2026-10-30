@@ -444,7 +444,9 @@ export type EnrolOccurrenceMutationInput = {
   /** Guardian's child id */
   childId: Scalars['ID']['input'];
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
+  /** Count of extra children in enrolment */
   extraChildrenCount?: InputMaybe<Scalars['Int']['input']>;
+  /** Count of extra guardians in enrolment */
   extraGuardiansCount?: InputMaybe<Scalars['Int']['input']>;
   /** Occurrence id of event */
   occurrenceId: Scalars['ID']['input'];
@@ -479,14 +481,16 @@ export type EnrolmentNode = Node & {
   attended: Maybe<Scalars['Boolean']['output']>;
   child: Maybe<ChildNode>;
   createdAt: Scalars['DateTime']['output'];
-  extraChildrenCount?: Maybe<Scalars['Int']['output']>;
-  extraGuardiansCount?: Maybe<Scalars['Int']['output']>;
+  /** NULL means a legacy enrolment, which counts as 1 seat. */
+  extraChildrenCount: Maybe<Scalars['Int']['output']>;
+  /** NULL means a legacy enrolment, which counts as 1 seat. */
+  extraGuardiansCount: Maybe<Scalars['Int']['output']>;
   /** The ID of the object */
   id: Scalars['ID']['output'];
   occurrence: OccurrenceNode;
   /** An unique encoded reference id */
   referenceId: Maybe<Scalars['String']['output']>;
-  totalSeats?: Maybe<Scalars['Int']['output']>;
+  totalSeats: Scalars['Int']['output'];
   updatedAt: Scalars['DateTime']['output'];
 };
 
@@ -617,6 +621,7 @@ export type EventNode = Node & {
   __typename?: 'EventNode';
   canChildEnroll: Maybe<Scalars['Boolean']['output']>;
   canUserAdminister: Maybe<Scalars['Boolean']['output']>;
+  /** Total physical seat capacity. Each enrolment takes at least 2 seats (1 child + 1 guardian). */
   capacityPerOccurrence: Maybe<Scalars['Int']['output']>;
   createdAt: Scalars['DateTime']['output'];
   description: Maybe<Scalars['String']['output']>;
@@ -1294,7 +1299,7 @@ export type OccurrenceNode = Node & {
   __typename?: 'OccurrenceNode';
   attendedEnrolmentCount: Scalars['Int']['output'];
   capacity: Maybe<Scalars['Int']['output']>;
-  /** When set will be used as the capacity of this occurrence instead of the value coming from the event. */
+  /** Override total physical seat capacity. Each enrolment takes at least 2 seats (1 child + 1 guardian). */
   capacityOverride: Maybe<Scalars['Int']['output']>;
   childHasFreeSpotNotificationSubscription: Maybe<Scalars['Boolean']['output']>;
   children: ChildNodeConnection;
@@ -3237,9 +3242,9 @@ export type EnrolOccurrenceMutationPayloadFieldsFragment = {
   enrolment: {
     __typename?: 'EnrolmentNode';
     id: string;
-    extraChildrenCount?: number | null;
-    extraGuardiansCount?: number | null;
-    totalSeats?: number | null;
+    extraChildrenCount: number | null;
+    extraGuardiansCount: number | null;
+    totalSeats: number;
     occurrence: {
       __typename?: 'OccurrenceNode';
       id: string;
@@ -3312,6 +3317,9 @@ export type EnrolOccurrenceMutation = {
     enrolment: {
       __typename?: 'EnrolmentNode';
       id: string;
+      extraChildrenCount: number | null;
+      extraGuardiansCount: number | null;
+      totalSeats: number;
       occurrence: {
         __typename?: 'OccurrenceNode';
         id: string;
@@ -3749,6 +3757,7 @@ export type EventOccurrenceFieldsFragment = {
   id: string;
   time: any;
   remainingCapacity: number | null;
+  occurrenceLanguage: Language;
   childHasFreeSpotNotificationSubscription: boolean | null;
   event: {
     __typename?: 'EventNode';
@@ -3796,6 +3805,7 @@ export type EventOccurrencesFieldsFragment = {
       id: string;
       time: any;
       remainingCapacity: number | null;
+      occurrenceLanguage: Language;
       childHasFreeSpotNotificationSubscription: boolean | null;
       event: {
         __typename?: 'EventNode';
@@ -3868,6 +3878,7 @@ export type EventQuery = {
           id: string;
           time: any;
           remainingCapacity: number | null;
+          occurrenceLanguage: Language;
           childHasFreeSpotNotificationSubscription: boolean | null;
           event: {
             __typename?: 'EventNode';
@@ -3919,6 +3930,7 @@ export type EventQuery = {
           id: string;
           time: any;
           remainingCapacity: number | null;
+          occurrenceLanguage: Language;
           childHasFreeSpotNotificationSubscription: boolean | null;
           event: {
             __typename?: 'EventNode';
@@ -4226,6 +4238,7 @@ export type OccurrenceFieldsFragment = {
   id: string;
   time: any;
   remainingCapacity: number | null;
+  occurrenceLanguage: Language;
   childHasFreeSpotNotificationSubscription: boolean | null;
   event: {
     __typename?: 'EventNode';
@@ -4265,6 +4278,7 @@ export type OccurrenceQuery = {
     id: string;
     time: any;
     remainingCapacity: number | null;
+    occurrenceLanguage: Language;
     childHasFreeSpotNotificationSubscription: boolean | null;
     event: {
       __typename?: 'EventNode';
@@ -4554,9 +4568,9 @@ export type ProfileChildrenQuery = {
 export type MyProfileEnrolmentFieldsFragment = {
   __typename?: 'EnrolmentNode';
   id: string;
-  extraChildrenCount?: number | null;
-  extraGuardiansCount?: number | null;
-  totalSeats?: number | null;
+  extraChildrenCount: number | null;
+  extraGuardiansCount: number | null;
+  totalSeats: number;
   occurrence: {
     __typename?: 'OccurrenceNode';
     id: string;
@@ -4578,9 +4592,9 @@ export type MyProfileEnrolmentsFieldsFragment = {
     node: {
       __typename?: 'EnrolmentNode';
       id: string;
-      extraChildrenCount?: number | null;
-      extraGuardiansCount?: number | null;
-      totalSeats?: number | null;
+      extraChildrenCount: number | null;
+      extraGuardiansCount: number | null;
+      totalSeats: number;
       occurrence: {
         __typename?: 'OccurrenceNode';
         id: string;
@@ -4666,9 +4680,9 @@ export type MyProfileChildFieldsFragment = {
       node: {
         __typename?: 'EnrolmentNode';
         id: string;
-        extraChildrenCount?: number | null;
-        extraGuardiansCount?: number | null;
-        totalSeats?: number | null;
+        extraChildrenCount: number | null;
+        extraGuardiansCount: number | null;
+        totalSeats: number;
         occurrence: {
           __typename?: 'OccurrenceNode';
           id: string;
@@ -4752,9 +4766,9 @@ export type MyProfileChildrenFieldsFragment = {
           node: {
             __typename?: 'EnrolmentNode';
             id: string;
-            extraChildrenCount?: number | null;
-            extraGuardiansCount?: number | null;
-            totalSeats?: number | null;
+            extraChildrenCount: number | null;
+            extraGuardiansCount: number | null;
+            totalSeats: number;
             occurrence: {
               __typename?: 'OccurrenceNode';
               id: string;
@@ -4870,9 +4884,9 @@ export type MyProfileFieldsFragment = {
             node: {
               __typename?: 'EnrolmentNode';
               id: string;
-              extraChildrenCount?: number | null;
-              extraGuardiansCount?: number | null;
-              totalSeats?: number | null;
+              extraChildrenCount: number | null;
+              extraGuardiansCount: number | null;
+              totalSeats: number;
               occurrence: {
                 __typename?: 'OccurrenceNode';
                 id: string;
@@ -4987,9 +5001,9 @@ export type ProfileQuery = {
               node: {
                 __typename?: 'EnrolmentNode';
                 id: string;
-                extraChildrenCount?: number | null;
-                extraGuardiansCount?: number | null;
-                totalSeats?: number | null;
+                extraChildrenCount: number | null;
+                extraGuardiansCount: number | null;
+                totalSeats: number;
                 occurrence: {
                   __typename?: 'OccurrenceNode';
                   id: string;
@@ -5495,6 +5509,9 @@ export const EnrolOccurrenceMutationPayloadFieldsFragmentDoc = gql`
     clientMutationId
     enrolment {
       id
+      extraChildrenCount
+      extraGuardiansCount
+      totalSeats
       occurrence {
         id
         event {
@@ -5634,6 +5651,7 @@ export const EventOccurrenceFieldsFragmentDoc = gql`
     id
     time
     remainingCapacity
+    occurrenceLanguage
     event {
       id
       name
@@ -5769,6 +5787,7 @@ export const OccurrenceFieldsFragmentDoc = gql`
     id
     time
     remainingCapacity
+    occurrenceLanguage
     event {
       ...OccurrenceEventFields
     }
@@ -5839,6 +5858,9 @@ export const MyProfileChildProjectFieldsFragmentDoc = gql`
 export const MyProfileEnrolmentFieldsFragmentDoc = gql`
   fragment MyProfileEnrolmentFields on EnrolmentNode {
     id
+    extraChildrenCount
+    extraGuardiansCount
+    totalSeats
     occurrence {
       id
       time
