@@ -27,7 +27,7 @@ import {
 import { useProfileContext } from '../../profile/hooks/useProfileContext';
 import {
   formatOccurrenceDateLong,
-  formatOccurrenceTimeRange,
+  formatOccurrenceTimeRangeWithDuration,
 } from '../../../common/time/occurrenceTime';
 import { useEnrolOccurrenceMutation } from '../hooks/useEnrolOccurrenceMutation';
 import UnenrolModal from './UnenrolModal';
@@ -137,7 +137,7 @@ export const EnrolOccurrenceModal: React.FC<EnrolOccurrenceModalProps> = ({
     occurrence.time,
     i18n.language
   );
-  const formattedTime = formatOccurrenceTimeRange(
+  const formattedTime = formatOccurrenceTimeRangeWithDuration(
     occurrence.time,
     event.duration
   );
@@ -275,7 +275,7 @@ export const EnrolOccurrenceModal: React.FC<EnrolOccurrenceModalProps> = ({
           {formattedTime && (
             <div className={styles.metaInline}>
               <IconClock aria-hidden="true" className={styles.icon} />
-              <span>{`${t('common.dateTimeSeparator', 'klo')} ${formattedTime}`}</span>
+              <span>{`${t('common.dateTimeSeparatorCapitalized', 'Klo')} ${formattedTime}`}</span>
             </div>
           )}
         </div>

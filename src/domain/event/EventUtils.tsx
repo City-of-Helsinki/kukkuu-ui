@@ -12,6 +12,7 @@ import {
   DEFAULT_TIME_FORMAT,
 } from '../../common/time/TimeConstants';
 import {
+  formatDuration,
   formatOccurrenceDateLong,
   formatOccurrenceDateRange,
   formatOccurrenceTimeRange,
@@ -295,24 +296,7 @@ export function extractUniqueLanguages<
  * @param minutes - Total duration in minutes.
  * @returns Formatted duration string, or null if duration is invalid or non-positive.
  */
-export const formatDuration = (minutes?: number | null): string | null => {
-  if (!minutes || minutes <= 0) return null;
-
-  // Calculate full hours and leftover minutes
-  const hours = Math.floor(minutes / 60);
-  const remainingMinutes = minutes % 60;
-
-  // When both hours and remaining minutes are present (e.g. "1 h 30 min")
-  if (hours > 0 && remainingMinutes > 0) {
-    return `${hours} h ${remainingMinutes} min`;
-  }
-  // When duration is in exact hours (e.g. "2 h")
-  if (hours > 0) {
-    return `${hours} h`;
-  }
-  // When duration is strictly under an hour (e.g. "45 min")
-  return `${remainingMinutes} min`;
-};
+export { formatDuration };
 
 /**
  * Sorts occurrences chronologically in ascending order by their start time.

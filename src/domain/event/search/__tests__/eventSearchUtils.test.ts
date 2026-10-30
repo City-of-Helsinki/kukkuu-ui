@@ -287,6 +287,9 @@ describe('eventSearchUtils', () => {
       if (key === 'search.card.languages') {
         return `Kielet: ${options.languages}`;
       }
+      if (key === 'common.dateTimeSeparator') {
+        return 'klo';
+      }
       return key;
     }) as any;
 
@@ -340,8 +343,7 @@ describe('eventSearchUtils', () => {
         },
       };
       const timeText = getEventTimeText(singleOccEvent, mockT, 'fi');
-      expect(timeText).toContain('5.10.2026');
-      expect(timeText).toContain('13:00–14:00'); // Europe/Helsinki UTC+3
+      expect(timeText).toBe('Ma 5.10.2026 klo 13:00–14:00'); // Europe/Helsinki UTC+3
     });
 
     it('returns null for event with zero occurrences', () => {

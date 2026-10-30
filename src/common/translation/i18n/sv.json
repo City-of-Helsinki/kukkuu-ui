@@ -168,7 +168,8 @@
       "next": "Nästa",
       "previous": "Föregående"
     },
-    "dateTimeSeparator": "kl."
+    "dateTimeSeparator": "kl.",
+    "dateTimeSeparatorCapitalized": "Kl."
   },
   "navigation": {
     "error": "Det gick inte att byta sida. Försök igen senare"
@@ -474,12 +475,12 @@
       "languagesMultiple": "Språk: {{languages}}"
     },
     "sidebar": {
-      "dateTitle": "Datum och tid",
+      "dateTitle": "Tidpunkt",
       "durationTitle": "Längd",
       "occurrencesCount": "{{count}} evenemangstider",
       "occurrencesCount_one": "{{count}} evenemangstid",
       "occurrencesCount_other": "{{count}} evenemangstider",
-      "viewOccurrencesAndEnrol": "Se evenemangstider och anmäl dig",
+      "viewOccurrencesAndEnrol": "Se tider och anmäl dig",
       "ticketSystemTitle": "Biljettförsäljning",
       "claimPassword": "Lös in lösenord",
       "viewPassword": "Visa lösenord",

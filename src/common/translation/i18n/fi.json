@@ -168,7 +168,8 @@
       "next": "Seuraava",
       "previous": "Edellinen"
     },
-    "dateTimeSeparator": "klo"
+    "dateTimeSeparator": "klo",
+    "dateTimeSeparatorCapitalized": "Klo"
   },
   "navigation": {
     "error": "Virhe vaihtaessa sivua. Yritä myöhemmin uudestaan"
@@ -474,12 +475,12 @@
       "languagesMultiple": "Kielet: {{languages}}"
     },
     "sidebar": {
-      "dateTitle": "Päivä ja aika",
+      "dateTitle": "Ajankohta",
       "durationTitle": "Kesto",
       "occurrencesCount": "{{count}} tapahtuma-aikaa",
       "occurrencesCount_one": "{{count}} tapahtuma-aika",
       "occurrencesCount_other": "{{count}} tapahtuma-aikaa",
-      "viewOccurrencesAndEnrol": "Katso tapahtuma-ajat ja ilmoittaudu",
+      "viewOccurrencesAndEnrol": "Katso ajat ja ilmoittaudu",
       "ticketSystemTitle": "Lipunmyynti",
       "claimPassword": "Lunasta salasana",
       "viewPassword": "Katso salasana",
