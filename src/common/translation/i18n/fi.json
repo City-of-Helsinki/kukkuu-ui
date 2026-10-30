@@ -542,7 +542,6 @@
       "guardianLabel": "Lähiaikuinen",
       "guardianYou": "{{name}} (sinä)",
       "defaultGuardian": "Lähiaikuinen",
-      "quotaNotice": "Kulttuurilapsi voi osallistua yhteen tapahtumaan kaudessa. Ilmoittautuminen käyttää paikan: {{name}}.",
       "bindingNotice": "Ilmoittautuminen on sitova. Jos este tulee, peru paikka viimeistään vuorokautta ennen tapahtumaa, jotta se vapautuu toiselle perheelle.",
       "noticePreRegisteredOnly": "Huomioithan, että tilojen rajallisuuden ja osallistujamäärien vuoksi tapahtumaan voivat osallistua vain etukäteen ilmoitetut osallistujat.",
       "confirmButton": "Vahvista ilmoittautuminen",
