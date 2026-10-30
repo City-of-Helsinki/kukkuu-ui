@@ -65,11 +65,12 @@ describe('EventInfoSidebar', () => {
     );
 
     // 1. Date and time / Occurrences summary
+    expect(screen.getByText('Ajankohta')).toBeInTheDocument();
     expect(
       screen.getByText('4.10.2026 – 18.10.2026 (3 tapahtuma-aikaa)')
     ).toBeInTheDocument();
     const tableButton = screen.getByRole('button', {
-      name: 'Katso tapahtuma-ajat ja ilmoittaudu',
+      name: 'Katso ajat ja ilmoittaudu',
     });
     expect(tableButton).toBeInTheDocument();
     await user.click(tableButton);
