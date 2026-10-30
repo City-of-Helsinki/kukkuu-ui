@@ -4,6 +4,7 @@ import {
   formatOccurrenceDateLong,
   formatOccurrenceDateRange,
   formatOccurrenceTimeRange,
+  formatOccurrenceTimeRangeWithDuration,
   getDateBadgeParts,
   getOccurrenceEndTime,
 } from '../occurrenceTime';
@@ -33,6 +34,32 @@ describe('occurrenceTime utils', () => {
     it('returns start and end time range with en-dash when duration is given', () => {
       const formatted = formatOccurrenceTimeRange('2026-10-04T10:00:00Z', 90);
       expect(formatted).toBe('13:00–14:30');
+    });
+  });
+
+  describe('formatOccurrenceTimeRangeWithDuration', () => {
+    it('returns only start time when duration is missing or non-positive', () => {
+      expect(
+        formatOccurrenceTimeRangeWithDuration('2026-10-04T10:00:00Z')
+      ).toBe('13:00');
+      expect(
+        formatOccurrenceTimeRangeWithDuration('2026-10-04T10:00:00Z', null)
+      ).toBe('13:00');
+      expect(
+        formatOccurrenceTimeRangeWithDuration('2026-10-04T10:00:00Z', 0)
+      ).toBe('13:00');
+    });
+
+    it('returns start–end time range with formatted duration in parentheses', () => {
+      expect(
+        formatOccurrenceTimeRangeWithDuration('2026-10-04T10:00:00Z', 90)
+      ).toBe('13:00–14:30 (1 h 30 min)');
+      expect(
+        formatOccurrenceTimeRangeWithDuration('2026-10-04T10:00:00Z', 45)
+      ).toBe('13:00–13:45 (45 min)');
+      expect(
+        formatOccurrenceTimeRangeWithDuration('2026-10-04T10:00:00Z', 120)
+      ).toBe('13:00–15:00 (2 h)');
     });
   });
 

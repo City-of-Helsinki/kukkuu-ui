@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  IconCalendarClock,
+  IconCalendar,
   IconClock,
   IconGlobe,
   IconLinkExternal,
@@ -99,7 +99,7 @@ export const EventSidebarOccurrencesInfo: React.FC<
 
   return (
     <InfoWithIcon
-      icon={<IconCalendarClock aria-hidden="true" />}
+      icon={<IconCalendar aria-hidden="true" />}
       title={t('event.sidebar.dateTitle')}
     >
       <div className={styles.infoContent}>

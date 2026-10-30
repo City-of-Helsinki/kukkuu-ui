@@ -168,7 +168,8 @@
       "next": "Next",
       "previous": "Previous"
     },
-    "dateTimeSeparator": "at"
+    "dateTimeSeparator": "at",
+    "dateTimeSeparatorCapitalized": "At"
   },
   "navigation": {
     "error": "Failed to change page. Please try again later"
@@ -479,7 +480,7 @@
       "occurrencesCount": "{{count}} event times",
       "occurrencesCount_one": "{{count}} event time",
       "occurrencesCount_other": "{{count}} event times",
-      "viewOccurrencesAndEnrol": "View event times and enrol",
+      "viewOccurrencesAndEnrol": "View times and enrol",
       "ticketSystemTitle": "Ticket service",
       "claimPassword": "Claim password",
       "viewPassword": "View password",
