@@ -1,4 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 
 import AlertModal from '../AlertModal';
@@ -23,7 +24,8 @@ describe('AlertModal', () => {
     expect(screen.getByRole('button', { name: 'OK' })).toBeInTheDocument();
   });
 
-  it('calls onClose when the OK button is clicked', () => {
+  it('calls onClose when the OK button is clicked', async () => {
+    const user = userEvent.setup();
     const onClose = vi.fn();
     render(
       <AlertModal
@@ -36,8 +38,8 @@ describe('AlertModal', () => {
       </AlertModal>
     );
 
-    const okButton = screen.getByText('OK');
-    fireEvent.click(okButton);
+    const okButton = screen.getByRole('button', { name: 'OK' });
+    await user.click(okButton);
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });
@@ -63,7 +65,8 @@ describe('AlertModal', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('calls onClose when the modal is closed via toggleModal', () => {
+  it('calls onClose when the modal is closed via toggleModal', async () => {
+    const user = userEvent.setup();
     const onClose = vi.fn();
     render(
       <AlertModal
@@ -76,7 +79,7 @@ describe('AlertModal', () => {
       </AlertModal>
     );
     const closeButton = screen.getByRole('button', { name: 'Sulje' });
-    fireEvent.click(closeButton);
+    await user.click(closeButton);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 });

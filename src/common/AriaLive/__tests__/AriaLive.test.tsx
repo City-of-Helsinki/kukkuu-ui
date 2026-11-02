@@ -1,4 +1,5 @@
-import { screen, fireEvent } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { customRender as render } from '../../test/customRender';
 import useAriaLive from '../useAriaLive';
@@ -16,6 +17,7 @@ const TestUpdater = ({ message }: any) => {
 
 describe('AriaLive', () => {
   it('should update an aria-live region', async () => {
+    const user = userEvent.setup();
     const message = 'message';
     const id = 'aria-live-region';
     const dataTestId = 'aria-live-region-testid';
@@ -40,7 +42,7 @@ describe('AriaLive', () => {
       </div>
     `);
 
-    fireEvent.click(screen.getByRole('button', { name: 'SEND' }));
+    await user.click(screen.getByRole('button', { name: 'SEND' }));
 
     expect(ariaLiveRegion).toMatchInlineSnapshot(`
       <div
