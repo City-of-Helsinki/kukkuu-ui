@@ -1,12 +1,8 @@
 import { useMemo } from 'react';
 import { useParams, useSearchParams } from 'react-router';
 
-import type { ProfileType } from '../../../profile/ProfileContext';
+import { useProfileContext } from '../../../profile/hooks/useProfileContext';
 import type { MyProfileChild } from '../../../profile/types/ProfileQueryTypes';
-
-export type UseActiveChildOptions = {
-  profile?: ProfileType;
-};
 
 export type UseActiveChildResult = {
   /** The actively selected child node (falls back to firstChild if invalid/unspecified) */
@@ -28,12 +24,10 @@ export type UseActiveChildResult = {
  * (route param :childId or search param ?child= / ?childId=) with fallback to
  * the first registered child in the guardian's profile.
  *
- * @param options.profile - Guardian's profile containing children edges.
  * @returns Object with active child data, fallback flags, and child list.
  */
-export function useActiveChild({
-  profile,
-}: UseActiveChildOptions = {}): UseActiveChildResult {
+export function useActiveChild(): UseActiveChildResult {
+  const { profile } = useProfileContext();
   const { childId: routeChildId } = useParams<{ childId?: string }>();
   const [searchParams] = useSearchParams();
 

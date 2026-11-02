@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import { EventOccurrenceActionButton } from '../EventOccurrenceActionButton';
@@ -37,7 +38,8 @@ describe('EventOccurrenceActionButton', () => {
     childHasFreeSpotNotificationSubscription: true,
   };
 
-  it('renders primary enrol button when spots are available and calls onEnrol', () => {
+  it('renders primary enrol button when spots are available and calls onEnrol', async () => {
+    const user = userEvent.setup();
     const handleEnrol = vi.fn();
     render(
       <EventOccurrenceActionButton
@@ -52,11 +54,12 @@ describe('EventOccurrenceActionButton', () => {
 
     const btn = screen.getByRole('button', { name: 'Ilmoittaudu' });
     expect(btn).toBeInTheDocument();
-    fireEvent.click(btn);
+    await user.click(btn);
     expect(handleEnrol).toHaveBeenCalledWith(availableOcc);
   });
 
-  it('renders show enrolment button when enrolled in this occurrence', () => {
+  it('renders show enrolment button when enrolled in this occurrence', async () => {
+    const user = userEvent.setup();
     const handleCancel = vi.fn();
     render(
       <EventOccurrenceActionButton
@@ -73,7 +76,7 @@ describe('EventOccurrenceActionButton', () => {
 
     const btn = screen.getByRole('button', { name: 'Näytä ilmoittautumiseni' });
     expect(btn).toBeInTheDocument();
-    fireEvent.click(btn);
+    await user.click(btn);
     expect(handleCancel).toHaveBeenCalledWith(availableOcc);
   });
 
@@ -97,7 +100,8 @@ describe('EventOccurrenceActionButton', () => {
     expect(btn).toHaveAttribute('aria-label', 'Ilmoittautunut toiseen aikaan');
   });
 
-  it('renders subscribe button when occurrence is full and not subscribed', () => {
+  it('renders subscribe button when occurrence is full and not subscribed', async () => {
+    const user = userEvent.setup();
     const handleSubscribe = vi.fn();
     render(
       <EventOccurrenceActionButton
@@ -112,11 +116,12 @@ describe('EventOccurrenceActionButton', () => {
 
     const btn = screen.getByRole('button', { name: 'Tilaa ilmoitus' });
     expect(btn).toBeInTheDocument();
-    fireEvent.click(btn);
+    await user.click(btn);
     expect(handleSubscribe).toHaveBeenCalledWith(fullOcc);
   });
 
-  it('renders unsubscribe button when occurrence is full and subscribed', () => {
+  it('renders unsubscribe button when occurrence is full and subscribed', async () => {
+    const user = userEvent.setup();
     const handleUnsubscribe = vi.fn();
     render(
       <EventOccurrenceActionButton
@@ -131,7 +136,7 @@ describe('EventOccurrenceActionButton', () => {
 
     const btn = screen.getByRole('button', { name: 'Peruuta ilmoitus' });
     expect(btn).toBeInTheDocument();
-    fireEvent.click(btn);
+    await user.click(btn);
     expect(handleUnsubscribe).toHaveBeenCalledWith(subscribedOcc);
   });
 
@@ -173,11 +178,12 @@ describe('EventOccurrenceActionButton', () => {
     expect(EventOccurrenceActionButton.Subscribe).toBeDefined();
   });
 
-  it('renders individual subcomponents directly', () => {
+  it('renders individual subcomponents directly', async () => {
+    const user = userEvent.setup();
     const handleEnrol = vi.fn();
     render(<EventOccurrenceActionButton.Enrol onEnrol={handleEnrol} />);
     const enrolBtn = screen.getByRole('button', { name: 'Ilmoittaudu' });
-    fireEvent.click(enrolBtn);
+    await user.click(enrolBtn);
     expect(handleEnrol).toHaveBeenCalled();
   });
 });

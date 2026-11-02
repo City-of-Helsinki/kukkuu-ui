@@ -145,7 +145,7 @@ describe('EventSearchCard', () => {
 
     render(<EventSearchCard childId="child-1" event={ticketSystemEvent} />);
 
-    expect(screen.getByTestId('ticket-system-badge')).toHaveTextContent('Ticketmaster');
+    expect(screen.getByText('Ticketmaster')).toBeInTheDocument();
     expect(screen.getByText('Musiikkiseikkailu')).toBeInTheDocument();
   });
 
@@ -157,10 +157,10 @@ describe('EventSearchCard', () => {
 
     render(<EventSearchCard childId="child-1" event={enrolledEvent} />);
 
-    expect(screen.getByTestId('enrolled-badge')).toHaveTextContent('Ilmoittautunut');
-    expect(screen.getByTestId('already-enrolled-notice')).toHaveTextContent(
-      'Olet jo ilmoittautunut tähän tapahtumaan.'
-    );
+    expect(screen.getByText('Ilmoittautunut')).toBeInTheDocument();
+    expect(
+      screen.getByText('Olet jo ilmoittautunut tähän tapahtumaan.')
+    ).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Lue lisää' })).toBeInTheDocument();
   });
 
@@ -172,12 +172,12 @@ describe('EventSearchCard', () => {
 
     render(<EventSearchCard childId="child-1" event={siblingEvent} />);
 
-    expect(screen.getByTestId('season-enrolled-badge')).toHaveTextContent(
-      'Kauden tapahtuma valittu'
-    );
-    expect(screen.getByTestId('already-enrolled-season-notice')).toHaveTextContent(
-      'Olet jo ilmoittautunut toiseen tämän kauden tapahtumaan.'
-    );
+    expect(screen.getByText('Kauden tapahtuma valittu')).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        'Olet jo ilmoittautunut toiseen tämän kauden tapahtumaan.'
+      )
+    ).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Lue lisää' })).toBeInTheDocument();
   });
 
@@ -189,9 +189,9 @@ describe('EventSearchCard', () => {
 
     render(<EventSearchCard childId="child-1" event={limitReachedEvent} />);
 
-    expect(screen.getByTestId('yearly-limit-reached-notice')).toHaveTextContent(
-      'Vuosittainen ilmoittautumiskiintiö on täynnä.'
-    );
+    expect(
+      screen.getByText('Vuosittainen ilmoittautumiskiintiö on täynnä.')
+    ).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Lue lisää' })).toBeInTheDocument();
   });
 
@@ -209,14 +209,12 @@ describe('EventSearchCard', () => {
       <EventSearchCard childId="child-1" event={enrolledTicketmasterEvent} />
     );
 
-    expect(screen.getByTestId('enrolled-badge')).toHaveTextContent(
-      'Ilmoittautunut'
-    );
-    expect(screen.getByTestId('already-enrolled-notice')).toHaveTextContent(
-      'Olet jo ilmoittautunut tähän tapahtumaan.'
-    );
+    expect(screen.getByText('Ilmoittautunut')).toBeInTheDocument();
     expect(
-      screen.queryByTestId('yearly-limit-reached-notice')
+      screen.getByText('Olet jo ilmoittautunut tähän tapahtumaan.')
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('Vuosittainen ilmoittautumiskiintiö on täynnä.')
     ).not.toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Lue lisää' })).toBeInTheDocument();
   });

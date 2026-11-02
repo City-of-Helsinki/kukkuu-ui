@@ -65,7 +65,29 @@ describe('ChildEventsSearch hooks', () => {
       expect(result.current.selectedOptions).toEqual([]);
     });
 
-    it('navigates when handleChildChange is invoked with a different child', () => {
+    it('invokes onChildSelect when provided instead of navigating', () => {
+      mockNavigate.mockClear();
+      const mockOnChildSelect = vi.fn();
+
+      const { result } = renderHook(() =>
+        useChildSelectOptions({
+          profile: mockProfile,
+          childId: 'child-1',
+          onChildSelect: mockOnChildSelect,
+        })
+      );
+
+      result.current.handleChildChange({
+        label: 'Oona',
+        value: 'child-2',
+      });
+
+      expect(mockOnChildSelect).toHaveBeenCalledWith('child-2');
+      expect(mockNavigate).not.toHaveBeenCalled();
+    });
+
+    it('navigates when handleChildChange is invoked with a different child and no custom callback', () => {
+      mockNavigate.mockClear();
       const { result } = renderHook(() =>
         useChildSelectOptions({
           profile: mockProfile,
@@ -113,14 +135,14 @@ describe('ChildEventsSearch hooks', () => {
 
       const mockDiv = document.createElement('div');
       vi.spyOn(mockDiv, 'getBoundingClientRect').mockReturnValue({
-        top: 5,
-        bottom: 45,
+        top: -40,
+        bottom: 5,
         left: 0,
         right: 100,
         width: 100,
-        height: 40,
+        height: 45,
         x: 0,
-        y: 5,
+        y: -40,
         toJSON: () => {},
       });
 

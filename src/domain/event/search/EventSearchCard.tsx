@@ -97,10 +97,7 @@ export const EventSearchCard: React.FC<EventSearchCardProps> = ({
       : null;
 
   return (
-    <article
-      className={styles.occurrenceCard}
-      data-testid={`event-card-${event.id}`}
-    >
+    <article className={styles.occurrenceCard}>
       <div className={styles.imageWrapper}>
         {event.image ? (
           <img
@@ -118,7 +115,9 @@ export const EventSearchCard: React.FC<EventSearchCardProps> = ({
           <div className={styles.header}>
             <h3 className={styles.title}>{event.name}</h3>
             {event.shortDescription && (
-              <p className={styles.shortDescription}>{event.shortDescription}</p>
+              <p className={styles.shortDescription}>
+                {event.shortDescription}
+              </p>
             )}
           </div>
         </div>
@@ -149,47 +148,34 @@ export const EventSearchCard: React.FC<EventSearchCardProps> = ({
             <StatusLabel
               type="alert"
               iconStart={<IconCheck aria-hidden="true" />}
-              data-testid="enrolled-badge"
             >
               {t('search.card.enrolledBadge')}
             </StatusLabel>
           )}
           {isEnrolledInSeasonSibling && (
-            <StatusLabel
-              type="neutral"
-              data-testid="season-enrolled-badge"
-            >
+            <StatusLabel type="neutral">
               {t('search.card.alreadyEnrolledSeasonBadge')}
             </StatusLabel>
           )}
           {ticketSystemLabel && (
-            <span className={styles.pill} data-testid="ticket-system-badge">
+            <span className={styles.pill}>
               {ticketSystemLabel}
             </span>
           )}
         </div>
 
         {isEnrolledInThisEvent && (
-          <div
-            className={styles.notice}
-            data-testid="already-enrolled-notice"
-          >
+          <div className={styles.notice}>
             {t('search.card.alreadyEnrolledNotice')}
           </div>
         )}
         {isEnrolledInSeasonSibling && (
-          <div
-            className={styles.notice}
-            data-testid="already-enrolled-season-notice"
-          >
+          <div className={styles.notice}>
             {t('search.card.alreadyEnrolledSeasonNotice')}
           </div>
         )}
         {isYearlyLimitReached && (
-          <div
-            className={styles.notice}
-            data-testid="yearly-limit-reached-notice"
-          >
+          <div className={styles.notice}>
             {t('search.card.yearlyLimitReachedNotice')}
           </div>
         )}

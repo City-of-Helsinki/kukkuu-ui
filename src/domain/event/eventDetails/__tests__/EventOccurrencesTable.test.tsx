@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { fireEvent, screen, act, within } from '@testing-library/react';
+import { screen, act, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import i18n from '../../../../common/translation/i18n/i18nInit';
@@ -139,7 +140,8 @@ describe('EventOccurrencesTable', () => {
     ).toBeInTheDocument();
   });
 
-  it('calls onEnrol when enrol button is clicked', () => {
+  it('calls onEnrol when enrol button is clicked', async () => {
+    const user = userEvent.setup();
     const handleEnrol = vi.fn();
     render(
       <EventOccurrencesTable
@@ -153,12 +155,13 @@ describe('EventOccurrencesTable', () => {
     );
 
     const enrolButton = screen.getByRole('button', { name: 'Ilmoittaudu' });
-    fireEvent.click(enrolButton);
+    await user.click(enrolButton);
 
     expect(handleEnrol).toHaveBeenCalledWith(baseOccurrences[0]);
   });
 
-  it('calls onSubscribe and onUnsubscribe respectively', () => {
+  it('calls onSubscribe and onUnsubscribe respectively', async () => {
+    const user = userEvent.setup();
     const handleSubscribe = vi.fn();
     const handleUnsubscribe = vi.fn();
 
@@ -173,10 +176,10 @@ describe('EventOccurrencesTable', () => {
       />
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Tilaa ilmoitus' }));
+    await user.click(screen.getByRole('button', { name: 'Tilaa ilmoitus' }));
     expect(handleSubscribe).toHaveBeenCalledWith(baseOccurrences[1]);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Peruuta ilmoitus' }));
+    await user.click(screen.getByRole('button', { name: 'Peruuta ilmoitus' }));
     expect(handleUnsubscribe).toHaveBeenCalledWith(baseOccurrences[2]);
   });
 
@@ -352,7 +355,8 @@ describe('EventOccurrencesTable', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders "Näytä ilmoittautumiseni" for enrolled occurrence and disabled buttons for other occurrences', () => {
+  it('renders "Näytä ilmoittautumiseni" for enrolled occurrence and disabled buttons for other occurrences', async () => {
+    const user = userEvent.setup();
     const onCancel = vi.fn();
     render(
       <EventOccurrencesTable
@@ -372,7 +376,7 @@ describe('EventOccurrencesTable', () => {
     });
     expect(cancelButton).toBeInTheDocument();
 
-    fireEvent.click(cancelButton);
+    await user.click(cancelButton);
     expect(onCancel).toHaveBeenCalledWith(
       expect.objectContaining({ id: 'occ-1' })
     );
@@ -446,7 +450,8 @@ describe('EventOccurrencesTable', () => {
     expect(cells).toHaveLength(2);
   });
 
-  it('renders venue info icon conditionally and calls onVenueInfoClick when clicked', () => {
+  it('renders venue info icon conditionally and calls onVenueInfoClick when clicked', async () => {
+    const user = userEvent.setup();
     const handleVenueInfoClick = vi.fn();
     const occurrenceWithDetailedVenue: EventOccurrencesTableOccurrence = {
       id: 'occ-venue-details',
@@ -476,7 +481,7 @@ describe('EventOccurrencesTable', () => {
       name: /Näytä paikan tiedot: Nukketeatteri Sampo/i,
     });
     expect(infoBtn).toBeInTheDocument();
-    fireEvent.click(infoBtn);
+    await user.click(infoBtn);
     expect(handleVenueInfoClick).toHaveBeenCalledWith(
       occurrenceWithDetailedVenue.venue
     );
