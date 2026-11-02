@@ -1,4 +1,5 @@
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import { MockedProvider } from '@apollo/client/testing';
 import { I18nextProvider } from 'react-i18next';
@@ -160,6 +161,7 @@ describe('AdditionalNotesCard', () => {
   });
 
   it('pressing edit button brings up textbox for editing notes', async () => {
+    const user = userEvent.setup();
     const mocks = createMock({ withNotes: true });
     renderComponent(mocks);
 
@@ -169,7 +171,7 @@ describe('AdditionalNotesCard', () => {
 
     expect(screen.queryByRole('textbox')).not.toBeInTheDocument();
 
-    fireEvent.click(editButton);
+    await user.click(editButton);
 
     const editor = screen.getByRole('textbox');
     expect(editor).toBeInTheDocument();
@@ -178,6 +180,7 @@ describe('AdditionalNotesCard', () => {
   });
 
   it('calls mutation with correct variables and displays success message on save', async () => {
+    const user = userEvent.setup();
     const baseMocks = createMock({ withNotes: true });
     const sanitizeSpy = vi.spyOn(DOMPurify, 'sanitize');
     const newNotes = 'New Test Notes';
@@ -220,31 +223,33 @@ describe('AdditionalNotesCard', () => {
     const editButton = await screen.findByRole('button', {
       name: 'profile.childNotes.edit',
     });
-    fireEvent.click(editButton);
+    await user.click(editButton);
 
     const editor = screen.getByRole('textbox');
 
-    fireEvent.change(editor, { target: { value: newNotes } });
+    await user.clear(editor);
+    await user.type(editor, newNotes);
     const saveButton = screen.getByRole('button', {
       name: 'profile.childNotes.save',
     });
-    fireEvent.click(saveButton);
+    await user.click(saveButton);
 
     await waitFor(() => expect(sanitizeSpy).toHaveBeenCalledWith(newNotes));
   });
 
   it('displays error message on mutation error', async () => {
+    const user = userEvent.setup();
     const mocks = createMock({ withMutationError: true });
     renderComponent(mocks);
 
     const editButton = await screen.findByRole('button', {
       name: 'profile.childNotes.edit',
     });
-    fireEvent.click(editButton);
+    await user.click(editButton);
     const saveButton = screen.getByRole('button', {
       name: 'profile.childNotes.save',
     });
-    fireEvent.click(saveButton);
+    await user.click(saveButton);
 
     await waitFor(() =>
       expect(toast.error).toHaveBeenCalledWith(
