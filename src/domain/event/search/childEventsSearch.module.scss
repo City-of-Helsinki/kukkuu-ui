@@ -11,7 +11,7 @@
     left: 0;
     right: 0;
     width: 100%;
-    background-color: var(--color-summer, #fff);
+    background-color: var(--color-white, #fff);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     border-bottom: 1px solid var(--color-black-10, #e6e6e6);
     z-index: 100;
@@ -32,18 +32,47 @@
     }
 
     .stickyContentContainer {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding-top: var(--spacing-xs);
-      padding-bottom: var(--spacing-xs);
+      padding-top: var(--spacing-s);
+      padding-bottom: var(--spacing-s);
 
-      .stickyChildSelectWrapper {
-        width: 100%;
-        max-width: 20rem;
+      .stickyBarContent {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--spacing-m);
 
-        .childSelect {
-          --select-background-color: var(--color-white);
+        .stickyChildInfo {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: var(--spacing-xs);
+
+          .stickyLabel {
+            font-size: var(--fontsize-body-m, 1rem);
+            font-weight: 500;
+            color: var(--color-black);
+          }
+
+          .stickyChildBadge {
+            background-color: var(--color-summer, #ffc61e);
+            color: var(--color-black);
+            padding: 2px var(--spacing-xs);
+            border-radius: var(--spacing-3-xs);
+            font-weight: 700;
+            font-size: var(--fontsize-body-m, 1rem);
+          }
+        }
+
+        .editSearchLink {
+          color: var(--color-black);
+          text-decoration: underline;
+          font-weight: 500;
+          font-size: var(--fontsize-body-m, 1rem);
+          cursor: pointer;
+
+          &:hover {
+            color: var(--color-black-90);
+          }
         }
       }
     }
@@ -108,71 +137,181 @@
   padding-top: var(--spacing-l);
   padding-bottom: var(--spacing-3-xl);
 
-  .childSelectWrapper {
-    max-width: 20rem;
-    margin-bottom: var(--spacing-l);
+  .filterFormSection {
+    margin-bottom: var(--spacing-2-xl);
 
-    .childSelect {
-      --select-background-color: var(--color-white);
+    .formSectionHeading {
+      font-size: var(--fontsize-heading-l, 2rem);
+      font-weight: 700;
+      margin: 0 0 var(--spacing-l);
+      color: var(--color-black);
     }
-  }
 
-  .filterSection {
-    margin-bottom: var(--spacing-xl);
+    .childSelectWrapper {
+      width: 100%;
+      margin-bottom: var(--spacing-l);
 
-    .filterAccordion {
-      background-color: var(--color-white);
-      border: 1px solid var(--color-black-20);
-      border-radius: var(--spacing-2-xs);
+      .childSelect {
+        --select-background-color: var(--color-white);
 
-      .filterForm {
-        padding: var(--spacing-m) 0;
+        @include layout.respond-below(m) {
+          max-width: 100%;
+        }
+      }
+    }
 
-        .filterFields {
+    .accordionContainer {
+      margin-bottom: var(--spacing-l);
+
+      .filterAccordion {
+        --background-color: transparent;
+        --border-color: var(--color-black);
+        --header-color: var(--color-black);
+        --header-font-weight: 700;
+        background-color: transparent;
+        border: 2px solid var(--border-color);
+
+        .accordionGrid {
           display: grid;
           grid-template-columns: 1fr;
           gap: var(--spacing-m);
-          margin-bottom: var(--spacing-m);
+          padding: var(--spacing-s) 0;
+          width: 100%;
 
           @include layout.respond-above(m) {
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-l) var(--spacing-m);
+          }
+
+          .gridField {
+            width: 100%;
+
+            .filterSelect,
+            .dateInput {
+              --select-background-color: var(--color-white);
+              --input-background-default: var(--color-white);
+              width: 100%;
+              max-width: none;
+            }
+
+            .filterSelect {
+              /* HDS adds a class Select-module_selectAndListContainer 
+                 * which creates a needless bottom margin to multiselect fields. */
+              & > div {
+                margin-bottom: 0 !important;
+              }
+            }
+
+            .checkbox {
+              --background-unselected: var(--color-white);
+              --background-selected: var(--color-black);
+              --background-hover: var(--color-black-90);
+              --border-color-selected: var(--color-black);
+              --border-color-selected-hover: var(--color-black-90);
+              --border-color-selected-focus: var(--color-black);
+            }
           }
         }
+      }
+    }
 
-        .filterToggles {
-          margin-top: var(--spacing-s);
-          margin-bottom: var(--spacing-m);
+    .formActions {
+      margin-top: var(--spacing-l);
+      margin-bottom: var(--spacing-m);
 
-          .availableOnlyCheckbox {
-            display: inline-flex;
-            align-items: center;
-          }
+      .submitButton {
+        width: 100%;
+
+        @include layout.respond-above(m) {
+          width: auto;
+        }
+      }
+    }
+
+    .filterBadgesWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--spacing-s);
+      margin-top: var(--spacing-m);
+
+      .filterBadgesList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+        align-items: center;
+
+        .filterBadge {
+          background-color: var(--color-black-10, #e6e6e6);
+        }
+      }
+
+      .clearAllButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-3-xs);
+        font-size: var(--fontsize-body-m, 1rem);
+        color: var(--color-black);
+        padding: var(--spacing-2-xs) var(--spacing-xs);
+
+        &:hover {
+          text-decoration: underline;
         }
 
-        .filterButtons {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--spacing-s);
+        .clearIcon {
+          width: 1rem;
+          height: 1rem;
         }
       }
     }
   }
 
   .resultsSection {
+    margin-top: var(--spacing-xl);
+
     .resultsHeader {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: var(--spacing-m);
-      margin-bottom: var(--spacing-m);
+      margin-bottom: var(--spacing-l);
+
+      .resultsCount {
+        font-size: var(--fontsize-heading-xl, 2.5rem);
+        font-weight: 700;
+        margin: 0 0 var(--spacing-2-xs);
+        color: var(--color-black);
+      }
+
+      .childSubheading {
+        font-size: var(--fontsize-heading-m, 1.5rem);
+        font-weight: 700;
+        margin: 0;
+        color: var(--color-black);
+      }
     }
 
-    .resultsCount {
-      font-size: var(--fontsize-heading-m, 1.5rem);
-      font-weight: 700;
-      margin: 0;
-      color: var(--color-black);
+    .themePathNotificationWrapper {
+      margin-bottom: var(--spacing-l);
+
+      .themePathNotification {
+        .notificationText {
+          margin: 0 0 var(--spacing-xs);
+        }
+
+        .themePathActionLink {
+          background: none;
+          border: none;
+          padding: 0;
+          text-decoration: underline;
+          font-weight: 700;
+          color: var(--color-bus, #0000bf);
+          cursor: pointer;
+
+          &:hover {
+            color: var(--color-bus-dark, #000099);
+          }
+        }
+      }
     }
 
     .occurrenceList {
@@ -187,10 +326,37 @@
       margin-top: var(--spacing-xl);
     }
 
-    .noResults {
-      font-size: var(--fontsize-body-l, 1.125rem);
-      color: var(--color-black-70);
-      margin: var(--spacing-xl) 0;
+    .emptyResultsWrapper {
+      display: block;
+      text-align: center;
+      padding: var(--spacing-3-xl) var(--spacing-m);
+      margin: var(--spacing-xl) auto;
+      max-width: 36rem;
+
+      .emptyIconCircle {
+        display: flex;
+        justify-content: center;
+        margin-bottom: var(--spacing-m);
+
+        .sadIcon {
+          width: 64px;
+          height: 64px;
+          color: var(--color-black);
+        }
+      }
+
+      .emptyHeading {
+        font-size: var(--fontsize-heading-m, 1.5rem);
+        font-weight: 700;
+        margin: 0 0 var(--spacing-xs);
+        color: var(--color-black);
+      }
+
+      .emptyAdvice {
+        font-size: var(--fontsize-body-l, 1.125rem);
+        color: var(--color-black-70);
+        margin: 0;
+      }
     }
   }
 }

@@ -1078,36 +1078,78 @@
   },
   "search": {
     "title": "Search events",
+    "formHeading": "Find experiences for the Culture Kid",
     "childNotFoundNotification": "The requested child was not found in your profile. Displaying events for the first child.",
     "hero": {
       "title": "Search events",
       "greeting": "Hello {{name}}!",
       "description": "We are delighted that you are involved in Culture Kids! Here you can view event invitations and register for events. All Culture Kids are welcome to attend two events per year, one event in the spring and one in the autumn. Sometimes there may be more events available, in which case we will announce it separately. We are looking forward to seeing you!",
-      "selectChild": "Select child",
+      "selectChild": "Child",
+      "selectChildRequired": "Child *",
+      "selectChildPlaceholder": "Select child",
       "childAge": "{{age}} years"
     },
     "childSelector": {
-      "description": "Selecting a child updates search results automatically."
+      "description": "Select child and click Search events to update search results."
+    },
+    "stickyHeader": {
+      "resultsForChild": "Search results for the Culture Kid",
+      "editSearch": "Edit search"
     },
     "filter": {
       "title": "Filter search results",
-      "searchLabel": "Search by keyword",
-      "searchPlaceholder": "E.g. concert, workshop...",
-      "dateLabel": "Date",
+      "close": "Close",
+      "themePathLabel": "Theme path",
+      "themePathPlaceholder": "Select theme path",
+      "themePathTooltip": "A theme path groups events according to a theme tailored to the child's age group.",
+      "themePaths": {
+        "rytmi": "Rhythm",
+        "tarina": "Story",
+        "jalki": "Trace"
+      },
+      "dateLabel": "Events starting from",
       "datePlaceholder": "Select date",
-      "venueLabel": "Venue",
-      "venuePlaceholder": "Select venue",
-      "availableOnlyLabel": "Show only events available for enrolment",
-      "submitButton": "Search",
-      "clearButton": "Clear search criteria"
+      "dateFilterBadge": "From {{date}}",
+      "accessibilityLabel": "Accessibility",
+      "accessibilityPlaceholder": "Select",
+      "accessibility": {
+        "mobility": "Mobility needs accommodated",
+        "sensory": "Sensory sensitivities accommodated",
+        "neurodiversity": "Neurodiversity needs accommodated",
+        "vision": "Visual needs accommodated",
+        "hearing": "Hearing needs accommodated"
+      },
+      "languageLabel": "Language",
+      "languagePlaceholder": "Select language",
+      "languages": {
+        "fi": "Finnish",
+        "sv": "Swedish",
+        "en": "English"
+      },
+      "availableOnlyLabel": "Show only events with available spots",
+      "familyOnlyLabel": "Show only family events",
+      "submitButton": "Search events",
+      "clearButton": "Clear selections",
+      "activeFilters": "Selected filters",
+      "removeFilter": "Remove selection: {{filter}}"
+    },
+    "notification": {
+      "childThemePath": "Theme path {{themePath}} has been chosen for {{name}}. You can filter results to events on this theme path.",
+      "applyThemePath": "Show only {{themePath}} events",
+      "dismissNotice": "Close notification"
     },
     "results": {
+      "sectionLabel": "Search results",
       "count": "{{count}} search result",
       "count_one": "{{count}} search result",
       "count_other": "{{count}} search results",
       "count_zero": "0 search results",
+      "childHeading": "Culture Kid {{name}}",
+      "noResultsForChild": "No search results found for the Culture Kid {{name}}.",
+      "noResultsAdvice": "Try changing the search criteria.",
       "noResults": "No available events.",
-      "loadMore": "Show more ({{count}})"
+      "loadMore": "Show more search results ({{count}})",
+      "announcement": "Search results updated. Found {{count}} results for the Culture Kid {{name}}."
     },
     "card": {
       "enrolButton": "Enrol",

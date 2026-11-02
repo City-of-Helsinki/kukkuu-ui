@@ -14,6 +14,7 @@
 - [Service architecture](#service-architecture)
   - [Environments](#environments)
   - [Frameworks and Libraries](#frameworks-and-libraries)
+  - [Domain Architecture](#domain-architecture)
 - [Development](#development)
   - [Requirements](#requirements)
   - [Getting started](#getting-started)
@@ -110,6 +111,13 @@ This project is built using the following key frameworks and libraries:
 - **[React](https://react.dev/):** A JavaScript library for building user interfaces. It allows for the creation of reusable UI components and efficient management of application state.
 - **[Apollo](https://www.apollographql.com/docs/react):** Apollo Client is a comprehensive state management library for JavaScript. It enables you to manage both local and remote data with GraphQL.
 - **[React Helsinki Headless CMS -library](https://github.com/City-of-Helsinki/react-helsinki-headless-cms/):** React Helsinki Headless CMS - is a highly customized component library based on HDS. It is designed for Helsinki City Web applications which are using preconfigured Wordpress Headless CMS environments (compatible with the library). This library is a set of unified visual components.
+
+### Domain Architecture
+
+Detailed documentation for feature domains inside `src/domain/`:
+
+- **[Event Search Architecture (`src/domain/event/search/README.md`)](./src/domain/event/search/README.md):** Documents the 3-layer context/provider stack (`EventSearchProviders`), two-tier URL vs. form draft state synchronization (`useSearchDraftSync`), custom hooks, UI components, and Mermaid architecture/flow diagrams.
+- **[Authentication & LoginProvider Configurations (`src/domain/auth/README.md`)](./src/domain/auth/README.md):** Examples and guidance for local Tunnistamo and test-environment Keycloak configurations.
 
 ## Development
 

@@ -1,6 +1,7 @@
 import type {
   ChildNode,
   EventNode,
+  EventParticipantsPerInvite,
   OccurrenceNode,
   TicketSystem,
   VenueNode,
@@ -30,10 +31,16 @@ export type AvailableEvent = Omit<
   'image'
 > & {
   image?: string | null;
+  participantsPerInvite?: EventParticipantsPerInvite | null;
   ticketSystem?: {
     type: TicketSystem;
     childPassword?: string | null;
+    hasAnyFreePasswords?: boolean | null;
   } | null;
+  // Dynamic theme paths from upcoming KK-1578 backend integration
+  themePaths?: Array<{ id?: string; slug: string; name?: string } | null> | null;
+  // Optional accessibility attributes for upcoming accessibility endpoint
+  accessibility?: string[] | null;
   occurrences: {
     edges: Array<{ node: AvailableOccurrence | null } | null>;
   };
@@ -55,6 +62,8 @@ export type UpcomingEventOrGroupNode =
 export type ChildAvailableOccurrencesQuery = {
   child?:
     | (Pick<ChildNode, 'id' | 'name' | 'birthyear'> & {
+        // TODO: Populate from GraphQL once child predefined theme path endpoint is implemented
+        themePath?: { id?: string; slug: string; name: string } | null;
         availableEvents?: {
           edges: Array<{ node: AvailableEvent | null } | null>;
         } | null;

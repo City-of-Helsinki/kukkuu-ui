@@ -1,8 +1,13 @@
-import { describe, expect, it, vi } from 'vitest';
+import React from 'react';
+import { describe, expect, it, vi, beforeEach } from 'vitest';
 import { renderHook } from '@testing-library/react';
 
 import { useActiveChild } from '../useActiveChild';
-import type { ProfileType } from '../../../../profile/ProfileContext';
+import {
+  ProfileContext,
+  type ProfileContextType,
+  type ProfileType,
+} from '../../../../profile/ProfileContext';
 
 let mockRouteParams: { childId?: string } = {};
 let mockSearchParams = new URLSearchParams();
@@ -49,15 +54,25 @@ describe('useActiveChild', () => {
     },
   } as unknown as ProfileType;
 
+  const createWrapper = (profile?: ProfileType | null) => {
+    return ({ children }: { children: React.ReactNode }) => (
+      <ProfileContext.Provider
+        value={{ profile: profile ?? null } as unknown as ProfileContextType}
+      >
+        {children}
+      </ProfileContext.Provider>
+    );
+  };
+
   beforeEach(() => {
     mockRouteParams = {};
     mockSearchParams = new URLSearchParams();
   });
 
   it('defaults to first child when no child is specified in URL', () => {
-    const { result } = renderHook(() =>
-      useActiveChild({ profile: mockProfileWithChildren })
-    );
+    const { result } = renderHook(() => useActiveChild(), {
+      wrapper: createWrapper(mockProfileWithChildren),
+    });
 
     expect(result.current.hasChildren).toBe(true);
     expect(result.current.activeChild).toEqual(mockChild1);
@@ -70,9 +85,9 @@ describe('useActiveChild', () => {
   it('selects matching child when ?child=<id> query parameter is present', () => {
     mockSearchParams = new URLSearchParams('child=child-2');
 
-    const { result } = renderHook(() =>
-      useActiveChild({ profile: mockProfileWithChildren })
-    );
+    const { result } = renderHook(() => useActiveChild(), {
+      wrapper: createWrapper(mockProfileWithChildren),
+    });
 
     expect(result.current.activeChild).toEqual(mockChild2);
     expect(result.current.activeChildId).toBe('child-2');
@@ -82,9 +97,9 @@ describe('useActiveChild', () => {
   it('supports ?childId=<id> alternative query parameter', () => {
     mockSearchParams = new URLSearchParams('childId=child-2');
 
-    const { result } = renderHook(() =>
-      useActiveChild({ profile: mockProfileWithChildren })
-    );
+    const { result } = renderHook(() => useActiveChild(), {
+      wrapper: createWrapper(mockProfileWithChildren),
+    });
 
     expect(result.current.activeChild).toEqual(mockChild2);
     expect(result.current.activeChildId).toBe('child-2');
@@ -94,9 +109,9 @@ describe('useActiveChild', () => {
   it('selects matching child when legacy route param childId is present', () => {
     mockRouteParams = { childId: 'child-2' };
 
-    const { result } = renderHook(() =>
-      useActiveChild({ profile: mockProfileWithChildren })
-    );
+    const { result } = renderHook(() => useActiveChild(), {
+      wrapper: createWrapper(mockProfileWithChildren),
+    });
 
     expect(result.current.activeChild).toEqual(mockChild2);
     expect(result.current.activeChildId).toBe('child-2');
@@ -106,9 +121,9 @@ describe('useActiveChild', () => {
   it('falls back to first child and flags isInvalidChildInUrl when requested child ID does not match profile', () => {
     mockSearchParams = new URLSearchParams('child=unknown-foreign-child');
 
-    const { result } = renderHook(() =>
-      useActiveChild({ profile: mockProfileWithChildren })
-    );
+    const { result } = renderHook(() => useActiveChild(), {
+      wrapper: createWrapper(mockProfileWithChildren),
+    });
 
     expect(result.current.activeChild).toEqual(mockChild1);
     expect(result.current.activeChildId).toBe('child-1');
@@ -116,9 +131,9 @@ describe('useActiveChild', () => {
   });
 
   it('returns hasChildren=false and undefined activeChild when guardian has no children', () => {
-    const { result } = renderHook(() =>
-      useActiveChild({ profile: mockProfileNoChildren })
-    );
+    const { result } = renderHook(() => useActiveChild(), {
+      wrapper: createWrapper(mockProfileNoChildren),
+    });
 
     expect(result.current.hasChildren).toBe(false);
     expect(result.current.activeChild).toBeUndefined();
@@ -128,7 +143,9 @@ describe('useActiveChild', () => {
   });
 
   it('handles null/undefined profile gracefully while loading', () => {
-    const { result } = renderHook(() => useActiveChild({ profile: null }));
+    const { result } = renderHook(() => useActiveChild(), {
+      wrapper: createWrapper(null),
+    });
 
     expect(result.current.hasChildren).toBe(false);
     expect(result.current.activeChild).toBeUndefined();
@@ -136,3 +153,4 @@ describe('useActiveChild', () => {
     expect(result.current.isInvalidChildInUrl).toBe(false);
   });
 });
+
