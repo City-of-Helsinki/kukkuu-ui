@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import { fakeProfile } from '../../../../utils/eventMockDataUtils';
@@ -87,7 +88,8 @@ describe('EventHero', () => {
     expect(screen.queryByLabelText('Palaa takaisin')).not.toBeInTheDocument();
   });
 
-  it('renders anchor button jumping to occurrences table for multi-occurrence event', () => {
+  it('renders anchor button jumping to occurrences table for multi-occurrence event', async () => {
+    const user = userEvent.setup();
     const scrollIntoViewMock = vi.fn();
     const tableElement = document.createElement('div');
     tableElement.id = 'occurrences-table';
@@ -113,13 +115,14 @@ describe('EventHero', () => {
     });
     expect(viewButton).toBeInTheDocument();
 
-    fireEvent.click(viewButton);
+    await user.click(viewButton);
     expect(scrollIntoViewMock).toHaveBeenCalledWith({ behavior: 'smooth' });
 
     document.body.removeChild(tableElement);
   });
 
-  it('renders "Ilmoittautunut" badge, "Peruuta ilmoittautuminen" button, and view all link when enrolled in event', () => {
+  it('renders "Ilmoittautunut" badge, "Peruuta ilmoittautuminen" button, and view all link when enrolled in event', async () => {
+    const user = userEvent.setup();
     vi.spyOn(ProfileContextModule, 'useProfileContext').mockReturnValue({
       profile: fakeProfile({
         id: 'profile-1',
@@ -179,13 +182,14 @@ describe('EventHero', () => {
       screen.getByRole('link', { name: 'Katso kaikki ajankohdat' })
     ).toBeInTheDocument();
 
-    fireEvent.click(cancelButton);
+    await user.click(cancelButton);
     expect(
       screen.getByRole('dialog', { name: 'Peruuta ilmoittautuminen' })
     ).toBeInTheDocument();
   });
 
-  it('renders "Lunasta salasana" button scrolling to #ticket-system-section for ticket system events', () => {
+  it('renders "Lunasta salasana" button scrolling to #ticket-system-section for ticket system events', async () => {
+    const user = userEvent.setup();
     const scrollIntoViewMock = vi.fn();
     const sectionElement = document.createElement('div');
     sectionElement.id = 'ticket-system-section';
@@ -213,7 +217,7 @@ describe('EventHero', () => {
       name: /lunasta salasana/i,
     });
     expect(claimButton).toBeInTheDocument();
-    fireEvent.click(claimButton);
+    await user.click(claimButton);
     expect(scrollIntoViewMock).toHaveBeenCalledWith({ behavior: 'smooth' });
 
     expect(
@@ -223,7 +227,8 @@ describe('EventHero', () => {
     document.body.removeChild(sectionElement);
   });
 
-  it('renders "Ilmoittautunut" badge, "Katso salasana", and external link for enrolled ticket system event', () => {
+  it('renders "Ilmoittautunut" badge, "Katso salasana", and external link for enrolled ticket system event', async () => {
+    const user = userEvent.setup();
     const scrollIntoViewMock = vi.fn();
     const sectionElement = document.createElement('div');
     sectionElement.id = 'ticket-system-section';
@@ -252,7 +257,7 @@ describe('EventHero', () => {
       name: /katso salasana/i,
     });
     expect(viewPasswordButton).toBeInTheDocument();
-    fireEvent.click(viewPasswordButton);
+    await user.click(viewPasswordButton);
     expect(scrollIntoViewMock).toHaveBeenCalledWith({ behavior: 'smooth' });
 
     const externalLink = screen.getByRole('link', {

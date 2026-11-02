@@ -1,5 +1,6 @@
 import React from 'react';
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { MockedResponse } from '@apollo/client/testing';
 
 import EditProfileModal from '../EditProfileModal';
@@ -53,6 +54,7 @@ const getHdsSelect = (elements: HTMLElement[]) => {
 };
 
 const selectOption = async (
+  user: ReturnType<typeof userEvent.setup>,
   selectWrapper: HTMLElement | null,
   optionLabel: string
 ) => {
@@ -64,7 +66,7 @@ const selectOption = async (
     throw Error('Could not find controlling element');
   }
 
-  fireEvent.click(controller);
+  await user.click(controller);
 
   // Wait for options to appear in document.body (HDS 4.x renders in portal)
   await waitFor(() => {
@@ -81,7 +83,7 @@ const selectOption = async (
     throw Error(`Option with label "${optionLabel}" could not be found`);
   }
 
-  fireEvent.click(optionToBeSelected);
+  await user.click(optionToBeSelected);
 };
 
 it('renders snapshot correctly', () => {
@@ -98,21 +100,24 @@ it('renders snapshot correctly', () => {
 });
 
 it('should allow all fields to be filled', async () => {
+  const user = userEvent.setup();
   initModal();
   render(<EditProfileModal {...defaultProps} />, mocks);
 
-  fireEvent.change(screen.getByRole('textbox', { name: 'Puhelinnumero *' }), {
-    target: { value: formData.phoneNumber },
-  });
-  fireEvent.change(screen.getByRole('textbox', { name: 'Etunimi *' }), {
-    target: { value: formData.firstName },
-  });
-  fireEvent.change(screen.getByRole('textbox', { name: 'Sukunimi *' }), {
-    target: {
-      value: formData.lastName,
-    },
-  });
+  const phoneInput = screen.getByRole('textbox', { name: 'Puhelinnumero *' });
+  await user.clear(phoneInput);
+  await user.type(phoneInput, formData.phoneNumber);
+
+  const firstNameInput = screen.getByRole('textbox', { name: 'Etunimi *' });
+  await user.clear(firstNameInput);
+  await user.type(firstNameInput, formData.firstName);
+
+  const lastNameInput = screen.getByRole('textbox', { name: 'Sukunimi *' });
+  await user.clear(lastNameInput);
+  await user.type(lastNameInput, formData.lastName);
+
   await selectOption(
+    user,
     getHdsSelect(screen.getAllByRole('combobox', { name: /asiointikieli/i })),
     'Suomi'
   );
