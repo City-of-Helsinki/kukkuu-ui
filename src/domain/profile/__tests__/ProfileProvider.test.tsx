@@ -1,4 +1,5 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import * as Sentry from '@sentry/browser';
 
 import ProfileProvider from '../ProfileProvider';
@@ -28,6 +29,7 @@ describe('ProfileProvider', () => {
   });
 
   it('updates context profile after successful refetch', async () => {
+    const user = userEvent.setup();
     const refetch = vi.fn().mockResolvedValue({
       data: {
         myProfile: {
@@ -49,7 +51,7 @@ describe('ProfileProvider', () => {
       </ProfileProvider>
     );
 
-    fireEvent.click(screen.getByText('refetch profile'));
+    await user.click(screen.getByRole('button', { name: 'refetch profile' }));
 
     await waitFor(() => {
       expect(screen.getByText('Updated name')).toBeInTheDocument();
@@ -57,6 +59,7 @@ describe('ProfileProvider', () => {
   });
 
   it('captures the error when refetch fails', async () => {
+    const user = userEvent.setup();
     const error = new Error('refetch failed');
     const refetch = vi.fn().mockRejectedValue(error);
 
@@ -72,7 +75,7 @@ describe('ProfileProvider', () => {
       </ProfileProvider>
     );
 
-    fireEvent.click(screen.getByText('refetch profile'));
+    await user.click(screen.getByRole('button', { name: 'refetch profile' }));
 
     await waitFor(() => {
       expect(Sentry.captureException).toHaveBeenCalledWith(error);

@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import { fireEvent, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import { VenueDetailsModal, VenueDetailsModalVenue } from '../VenueDetailsModal';
@@ -15,7 +16,8 @@ describe('VenueDetailsModal', () => {
     wcAndFacilities: 'Esteetön wc ensimmäisessä kerroksessa.',
   };
 
-  it('renders venue details and sections when open', () => {
+  it('renders venue details and sections when open', async () => {
+    const user = userEvent.setup();
     const handleClose = vi.fn();
     render(
       <VenueDetailsModal
@@ -56,7 +58,7 @@ describe('VenueDetailsModal', () => {
     // Close button
     const closeButtons = screen.getAllByRole('button', { name: 'Sulje' });
     expect(closeButtons.length).toBeGreaterThanOrEqual(1);
-    fireEvent.click(closeButtons[0]);
+    await user.click(closeButtons[0]);
     expect(handleClose).toHaveBeenCalled();
   });
 
