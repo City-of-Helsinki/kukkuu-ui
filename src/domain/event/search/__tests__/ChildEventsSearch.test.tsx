@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { toast } from 'react-toastify';
 
 import { customRender as render } from '../../../../common/test/customRender';
@@ -7,6 +8,7 @@ import {
   fakeAvailableEvent,
   fakeAvailableOccurrence,
 } from '../../../../utils/eventMockDataUtils';
+import { Language } from '../../../api/generatedTypes/graphql';
 import ChildEventsSearch from '../ChildEventsSearch';
 import { childAvailableEventsQuery } from '../../queries/childAvailableEventsQuery';
 
@@ -56,6 +58,7 @@ const defaultProfile = {
 let mockProfileData: any = defaultProfile;
 let mockIsProfileLoading = false;
 let mockIsFetchCalled = true;
+let mockIsSticky = false;
 
 vi.mock('../../../profile/hooks/useProfileContext', () => ({
   useProfileContext: () => ({
@@ -65,12 +68,24 @@ vi.mock('../../../profile/hooks/useProfileContext', () => ({
   }),
 }));
 
+vi.mock('../hooks/useStickyChildSelect', () => ({
+  useStickyChildSelect: () => ({
+    isSticky: mockIsSticky,
+    childSelectRef: { current: null },
+  }),
+  default: () => ({
+    isSticky: mockIsSticky,
+    childSelectRef: { current: null },
+  }),
+}));
+
 describe('ChildEventsSearch', () => {
   beforeEach(() => {
     mockParams = {};
     mockProfileData = defaultProfile;
     mockIsProfileLoading = false;
     mockIsFetchCalled = true;
+    mockIsSticky = false;
     mockNavigate.mockClear();
     window.history.pushState({}, '', '/');
   });
@@ -89,6 +104,7 @@ describe('ChildEventsSearch', () => {
             id: 'occ-1',
             time: '2026-10-04T10:00:00Z',
             remainingCapacity: 5,
+            occurrenceLanguage: Language.Fi,
             venue: {
               id: 'v-1',
               name: 'Lastenkulttuurikeskus',
@@ -111,6 +127,7 @@ describe('ChildEventsSearch', () => {
           id: 'child-1',
           name: 'Malla Mallikas',
           birthyear: 2020,
+          themePath: null,
           upcomingEventsAndEventGroups: {
             edges: [
               {
@@ -129,8 +146,6 @@ describe('ChildEventsSearch', () => {
   it('renders hero, title, filter accordion, results count, and event card', async () => {
     render(<ChildEventsSearch />, [getSuccessEventsMock()]);
 
-    expect(screen.getByLabelText('Lataa')).toBeInTheDocument();
-
     await waitFor(() => {
       expect(
         screen.getByRole('heading', { level: 1, name: 'Etsi tapahtumia' })
@@ -141,49 +156,62 @@ describe('ChildEventsSearch', () => {
       screen.getByText(/Hienoa että olet mukana Kulttuurin kummilapset/)
     ).toBeInTheDocument();
 
-    expect(screen.getByText('Rajaa hakutuloksia')).toBeInTheDocument();
-    expect(screen.getByText('1 hakutulos')).toBeInTheDocument();
-    expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
-    expect(screen.getByText('Seikkailua lapsille')).toBeInTheDocument();
-
-    // Verify child selector is rendered above the filter accordion, not inside the hero
-    const heroTitle = screen.getByRole('heading', { level: 1, name: 'Etsi tapahtumia' });
-    const heroSection = heroTitle.closest('section') || heroTitle.parentElement;
-    const childSelector = document.getElementById('child-selector');
-    expect(childSelector).toBeInTheDocument();
-    expect(heroSection).not.toContainElement(childSelector);
-
-    // Verify accessibility attributes on child selector
-    expect(childSelector).toHaveAttribute(
-      'aria-describedby',
-      'child-selector-description'
-    );
-    expect(childSelector).toHaveAttribute('aria-live', 'polite');
-    const childSelectorDesc = document.getElementById(
-      'child-selector-description'
-    );
-    expect(childSelectorDesc).toBeInTheDocument();
-    expect(childSelectorDesc).toHaveClass('visually-hidden');
-    expect(childSelectorDesc).toHaveTextContent(
-      'Lapsen valitseminen päivittää hakutulokset automaattisesti.'
-    );
-
-    // Verify results count has aria-live="polite"
-    expect(screen.getByText('1 hakutulos')).toHaveAttribute(
-      'aria-live',
-      'polite'
-    );
-
-    // Verify breadcrumbs are rendered and back button is removed
     expect(
-      screen.getByRole('navigation', { name: 'Leivänmurunavigaatio' })
+      screen.getByRole('heading', {
+        level: 2,
+        name: 'Löydä elämyksiä kulttuurilapselle',
+      })
     ).toBeInTheDocument();
-    expect(screen.getAllByText('Etusivu')).toHaveLength(2);
-    expect(screen.getByText('Tapahtumat')).toBeInTheDocument();
-    expect(screen.queryByLabelText('Takaisin')).not.toBeInTheDocument();
+
+    // Accordion
+    expect(screen.getByText('Rajaa hakutuloksia')).toBeInTheDocument();
+
+    // Results header
+    await waitFor(() => {
+      expect(screen.getByText('1 hakutulos')).toBeInTheDocument();
+    });
+    expect(screen.getByText('Kulttuurilapsi Malla Mallikas')).toBeInTheDocument();
+
+    // Event card
+    expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
   });
 
-  it('renders empty results text when child has no available events', async () => {
+  it('provides accessible description for child selector dropdown via visually-hidden span that screen readers can read', async () => {
+    const user = userEvent.setup();
+    render(<ChildEventsSearch />, [getSuccessEventsMock()]);
+
+    // The child selector is exposed to assistive technology as a labelled
+    // combobox. HDS Select renders the visible <label> and the
+    // role="combobox" button that the label points to.
+    const childSelector = await screen.findByRole('combobox', {
+      name: /Lapsi/,
+    });
+
+    // Select a child using only accessible queries. Only the draft state is
+    // updated here, so no additional GraphQL request is triggered.
+    await user.click(childSelector);
+    await user.click(
+      await screen.findByRole('option', { name: /Pikkuveli Mallikas/ })
+    );
+
+    // The combobox announces the newly selected child to screen reader users.
+    await waitFor(() => {
+      expect(childSelector).toHaveAccessibleName(/Pikkuveli Mallikas/);
+    });
+
+    // The description is linked with aria-describedby on the combobox itself,
+    // so screen readers announce it when the child selector receives focus.
+    const descriptionText =
+      'Valitse lapsi ja paina Etsi tapahtumia päivittääksesi hakutulokset.';
+    expect(childSelector).toHaveAccessibleDescription(descriptionText);
+
+    // The visually-hidden description is still present in the accessibility
+    // tree, verified through a text query instead of raw DOM selectors or
+    // implementation-specific class names.
+    expect(screen.getByText(descriptionText)).toBeInTheDocument();
+  });
+
+  it('renders empty results state', async () => {
     const emptyMock = {
       request: {
         query: childAvailableEventsQuery,
@@ -195,6 +223,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: null,
             upcomingEventsAndEventGroups: {
               edges: [],
             },
@@ -211,17 +240,20 @@ describe('ChildEventsSearch', () => {
       ).toBeInTheDocument();
     });
 
-    expect(
-      screen.getByText(/Hienoa että olet mukana Kulttuurin kummilapset/)
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText(
+          'Kulttuurilapselle Malla Mallikas ei löytynyt yhtään hakutulosta.'
+        )
+      ).toBeInTheDocument();
+    });
 
-    expect(screen.getByText('0 hakutulosta')).toBeInTheDocument();
-    expect(
-      screen.getByText('Ei saatavilla olevia tapahtumia.')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Kokeile muuttaa hakuehtoja.')).toBeInTheDocument();
+    expect(screen.queryByText('0 hakutulosta')).not.toBeInTheDocument();
   });
 
-  it('supports Load More pagination when results exceed pageSize', async () => {
+  it('renders matching events with pagination and loads more when button is clicked', async () => {
+    const user = userEvent.setup();
     const eventsData = Array.from({ length: 20 }, (_, i) => ({
       node: {
         id: `event-${i + 1}`,
@@ -253,7 +285,7 @@ describe('ChildEventsSearch', () => {
       },
     }));
 
-    const paginatedMock = {
+    const allEventsMock = {
       request: {
         query: childAvailableEventsQuery,
         variables: { id: 'child-1' },
@@ -264,6 +296,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: null,
             upcomingEventsAndEventGroups: {
               edges: eventsData.map((e) => ({
                 node: {
@@ -277,85 +310,72 @@ describe('ChildEventsSearch', () => {
       },
     };
 
-    render(<ChildEventsSearch pageSize={15} />, [paginatedMock]);
+    render(<ChildEventsSearch />, [allEventsMock]);
 
     await waitFor(() => {
       expect(screen.getByText('20 hakutulosta')).toBeInTheDocument();
     });
 
+    // Initial page shows first 15 events
+    expect(screen.getAllByRole('article')).toHaveLength(15);
+
+    // Load more button shows remaining 5 events
     const loadMoreButton = screen.getByRole('button', {
-      name: 'Näytä lisää (5)',
+      name: 'Näytä lisää hakutuloksia (5)',
     });
     expect(loadMoreButton).toBeInTheDocument();
 
-    fireEvent.click(loadMoreButton);
+    await user.click(loadMoreButton);
 
-    await waitFor(() => {
-      expect(
-        screen.queryByRole('button', { name: /Näytä lisää/ })
-      ).not.toBeInTheDocument();
-    });
+    // After loading more, all 20 events are shown and load more button disappears
+    expect(screen.getAllByRole('article')).toHaveLength(20);
+    expect(
+      screen.queryByRole('button', { name: /Näytä lisää hakutuloksia/ })
+    ).not.toBeInTheDocument();
   });
 
-  it('renders child selector in sticky header and activates when scrolled down', async () => {
-    render(<ChildEventsSearch />, [getSuccessEventsMock()]);
+  it('renders child info and anchor in sticky header and reacts to sticky activation', async () => {
+    const user = userEvent.setup();
+    mockIsSticky = false;
+    const { rerender } = render(<ChildEventsSearch />, [getSuccessEventsMock()]);
 
-    await waitFor(() => {
-      expect(
-        screen.getByRole('heading', { level: 1, name: 'Etsi tapahtumia' })
-      ).toBeInTheDocument();
+    const stickyHeader = await screen.findByRole('complementary', {
+      hidden: true,
     });
-
-    expect(
-      screen.getByText(/Hienoa että olet mukana Kulttuurin kummilapset/)
-    ).toBeInTheDocument();
-
-    const stickyHeader = screen.getByTestId('sticky-child-header');
     expect(stickyHeader).toBeInTheDocument();
     expect(stickyHeader).toHaveAttribute('aria-hidden', 'true');
 
-    const stickySelector = document.getElementById('sticky-child-selector');
-    expect(stickySelector).toHaveAttribute(
-      'aria-describedby',
-      'sticky-child-selector-description'
-    );
-    expect(stickySelector).toHaveAttribute('aria-live', 'polite');
-    const stickyDesc = document.getElementById(
-      'sticky-child-selector-description'
-    );
-    expect(stickyDesc).toBeInTheDocument();
-    expect(stickyDesc).toHaveClass('visually-hidden');
+    expect(
+      screen.getByText('Hakutulokset kulttuurilapselle')
+    ).toBeInTheDocument();
+    expect(screen.getByText('Muokkaa hakua')).toBeInTheDocument();
 
-    // Simulate scrolling down past the child selector
-    Object.defineProperty(window, 'scrollY', { value: 300, writable: true, configurable: true });
-    const childSelector = document.getElementById('child-selector');
-    if (childSelector) {
-      vi.spyOn(childSelector.parentElement!, 'getBoundingClientRect').mockReturnValue({
-        top: -50,
-        bottom: -10,
-        left: 0,
-        right: 300,
-        width: 300,
-        height: 40,
-        x: 0,
-        y: -50,
-        toJSON: () => {},
-      });
-    }
-
-    fireEvent.scroll(window);
+    // Activate sticky state cleanly without fragile scroll or geometry mocks
+    mockIsSticky = true;
+    rerender(<ChildEventsSearch />);
 
     await waitFor(() => {
       expect(stickyHeader).toHaveAttribute('aria-hidden', 'false');
       expect(stickyHeader.className).toMatch(/stickyChildHeaderVisible/);
     });
 
-    // Simulate scrolling back to top
-    Object.defineProperty(window, 'scrollY', { value: 0, writable: true, configurable: true });
-    fireEvent.scroll(window);
+    // Simulate clicking "Muokkaa hakua"
+    const formEl = document.getElementById('child-events-search-form');
+    const scrollIntoViewSpy = vi.fn();
+    if (formEl) {
+      formEl.scrollIntoView = scrollIntoViewSpy;
+    }
+    const editSearchLink = screen.getByText('Muokkaa hakua');
+    await user.click(editSearchLink);
+    expect(scrollIntoViewSpy).toHaveBeenCalled();
+
+    // Deactivate sticky state when scrolled back up
+    mockIsSticky = false;
+    rerender(<ChildEventsSearch />);
 
     await waitFor(() => {
       expect(stickyHeader).toHaveAttribute('aria-hidden', 'true');
+      expect(stickyHeader.className).not.toMatch(/stickyChildHeaderVisible/);
     });
   });
 
@@ -407,6 +427,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-2',
             name: 'Pikkuveli Mallikas',
             birthyear: 2022,
+            themePath: null,
             upcomingEventsAndEventGroups: {
               edges: [
                 {
@@ -429,11 +450,20 @@ describe('ChildEventsSearch', () => {
     });
   });
 
-  it('filters results when availableOnly checkbox is toggled', async () => {
+  it('filters results when availableOnly checkbox is toggled and search is submitted', async () => {
     const eligibleEvent = fakeAvailableEvent({
       id: 'event-eligible',
       name: 'Vapaa tapahtuma',
       enrolmentDeniedReason: null,
+      occurrences: {
+        edges: [
+          {
+            node: fakeAvailableOccurrence({
+              remainingCapacity: 5,
+            }),
+          },
+        ],
+      },
     });
 
     const ineligibleEvent = fakeAvailableEvent({
@@ -453,6 +483,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: null,
             upcomingEventsAndEventGroups: {
               edges: [
                 {
@@ -474,6 +505,7 @@ describe('ChildEventsSearch', () => {
       },
     };
 
+    const user = userEvent.setup();
     render(<ChildEventsSearch />, [filterTestMock]);
 
     await waitFor(() => {
@@ -483,22 +515,191 @@ describe('ChildEventsSearch', () => {
     expect(screen.getByText('Vapaa tapahtuma')).toBeInTheDocument();
     expect(screen.getByText('Varattu tapahtuma')).toBeInTheDocument();
 
-    const accordionButton = screen.getByRole('button', {
-      name: 'Rajaa hakutuloksia',
-    });
-    fireEvent.click(accordionButton);
-
     const checkbox = screen.getByRole('checkbox', {
-      name: 'Näytä vain tapahtumat, joihin voi ilmoittautua',
+      name: 'Näytä vain ne, joissa on tilaa',
     });
     expect(checkbox).not.toBeChecked();
 
-    fireEvent.click(checkbox);
-
+    await user.click(checkbox);
     expect(checkbox).toBeChecked();
-    expect(screen.getByText('1 hakutulos')).toBeInTheDocument();
+
+    // Filter badge does not appear and URL is not updated before submitting the form
+    expect(mockNavigate).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole('button', {
+        name: /Poista valinta: Näytä vain ne, joissa on tilaa/,
+      })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Tyhjennä valinnat' })
+    ).not.toBeInTheDocument();
+
+    // Submitting the form commits the filter to results and updates badges
+    const submitBtn = screen.getByRole('button', { name: 'Etsi tapahtumia' });
+    await user.click(submitBtn);
+
+    expect(mockNavigate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        search: expect.stringContaining('availableOnly=true'),
+      }),
+      { replace: false }
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('1 hakutulos')).toBeInTheDocument();
+    });
     expect(screen.getByText('Vapaa tapahtuma')).toBeInTheDocument();
     expect(screen.queryByText('Varattu tapahtuma')).not.toBeInTheDocument();
+
+    // Filter badge is now visible because the filter is affecting results
+    const removeBadgeBtn = screen.getByRole('button', {
+      name: /Poista valinta: Näytä vain ne, joissa on tilaa/,
+    });
+    expect(removeBadgeBtn).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Tyhjennä valinnat' })
+    ).toBeInTheDocument();
+
+    // Removing the badge immediately clears the filter and updates URL
+    await user.click(removeBadgeBtn);
+
+    expect(mockNavigate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        search: '?child=child-1',
+      }),
+      { replace: false }
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('2 hakutulosta')).toBeInTheDocument();
+    });
+    expect(screen.getByText('Varattu tapahtuma')).toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', {
+        name: /Poista valinta: Näytä vain ne, joissa on tilaa/,
+      })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('button', { name: 'Tyhjennä valinnat' })
+    ).not.toBeInTheDocument();
+    expect(checkbox).not.toBeChecked();
+  });
+
+  it('renders child theme path notification when child has predefined theme path and applies filter on click', async () => {
+    const themeEventRytmi = fakeAvailableEvent({
+      id: 'event-rytmi',
+      name: 'Rytmiseikkailu',
+      themePaths: [{ id: 'tp-1', slug: 'rytmi', name: 'Rytmi' }],
+    });
+
+    const themeEventTarina = fakeAvailableEvent({
+      id: 'event-tarina',
+      name: 'Tarinaseikkailu',
+      themePaths: [{ id: 'tp-2', slug: 'tarina', name: 'Tarina' }],
+    });
+
+    const themeMock = {
+      request: {
+        query: childAvailableEventsQuery,
+        variables: { id: 'child-1' },
+      },
+      result: {
+        data: {
+          child: {
+            id: 'child-1',
+            name: 'Malla Mallikas',
+            birthyear: 2020,
+            themePath: {
+              id: 'tp-1',
+              slug: 'rytmi',
+              name: 'Rytmi',
+            },
+            upcomingEventsAndEventGroups: {
+              edges: [
+                {
+                  node: {
+                    __typename: 'EventNode' as const,
+                    ...themeEventRytmi,
+                  },
+                },
+                {
+                  node: {
+                    __typename: 'EventNode' as const,
+                    ...themeEventTarina,
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    };
+
+    const user = userEvent.setup();
+    render(
+      <ChildEventsSearch />,
+      [themeMock]
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/Lapselle Malla Mallikas on valittu Rytmi-teemapolku/)
+      ).toBeInTheDocument();
+    });
+
+    const applyBtn = screen.getByRole('button', {
+      name: 'Näytä vain Rytmi-tapahtumat',
+    });
+    await user.click(applyBtn);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('button', { name: /Poista valinta: Rytmi/i })
+      ).toBeInTheDocument();
+    });
+
+    // When the theme path filter is active, notification is hidden
+    expect(
+      screen.queryByText(/Lapselle Malla Mallikas on valittu Rytmi-teemapolku/)
+    ).not.toBeInTheDocument();
+  });
+
+  it('clears all filters when clear all button is clicked', async () => {
+    const user = userEvent.setup();
+    window.history.pushState(
+      {},
+      '',
+      '/fi/events?child=child-1&themePath=rytmi&availableOnly=true'
+    );
+
+    render(<ChildEventsSearch />, [getSuccessEventsMock()]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('button', { name: /Poista valinta: Rytmi/i })
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.getByRole('button', {
+        name: /Poista valinta: Näytä vain ne, joissa on tilaa/i,
+      })
+    ).toBeInTheDocument();
+
+    const clearAllBtn = screen.getByRole('button', {
+      name: 'Tyhjennä valinnat',
+    });
+    await user.click(clearAllBtn);
+
+    await waitFor(() => {
+      expect(
+        screen.queryByRole('button', { name: /Poista valinta: Rytmi/i })
+      ).not.toBeInTheDocument();
+    });
+    expect(
+      screen.queryByRole('button', {
+        name: /Poista valinta: Näytä vain ne, joissa on tilaa/i,
+      })
+    ).not.toBeInTheDocument();
   });
 
   it('redirects guardian to /profile when guardian has no registered children', async () => {

@@ -1076,36 +1076,78 @@
   },
   "search": {
     "title": "Sök evenemang",
+    "formHeading": "Hitta upplevelser för kulturbarnet",
     "childNotFoundNotification": "Det valda barnet hittades inte i din profil. Evenemang för det första barnet visas.",
     "hero": {
       "title": "Sök evenemang",
       "greeting": "Hej {{name}}!",
       "description": "Det är fint att ha dig med i Kulturens fadderbarn! Här kan du se evenemangsinbjudningar och anmäla dig till evenemang. Varje fadderbarn kan delta i två evenemang per år, ett evenemang på våren och ett evenemang på hösten. Ibland kan det finnas fler evenemang tillgängliga, om dem informerar vi separat. Vi ses i kulturens tecken!",
-      "selectChild": "Välj barn",
+      "selectChild": "Barn",
+      "selectChildRequired": "Barn *",
+      "selectChildPlaceholder": "Välj barn",
       "childAge": "{{age}} år"
     },
     "childSelector": {
-      "description": "Val av barn uppdaterar sökresultaten automatiskt."
+      "description": "Välj barn och tryck på Sök evenemang för att uppdatera sökresultaten."
+    },
+    "stickyHeader": {
+      "resultsForChild": "Sökresultat för kulturbarnet",
+      "editSearch": "Redigera sökning"
     },
     "filter": {
       "title": "Filtrera sökresultat",
-      "searchLabel": "Sök med ord",
-      "searchPlaceholder": "T.ex. konsert, verkstad...",
-      "dateLabel": "Tidpunkt",
-      "datePlaceholder": "Välj tidpunkt",
-      "venueLabel": "Evenemangsplats",
-      "venuePlaceholder": "Välj plats",
-      "availableOnlyLabel": "Visa endast evenemang öppna för anmälning",
-      "submitButton": "Sök",
-      "clearButton": "Rensa sökkriterier"
+      "close": "Stäng",
+      "themePathLabel": "Temastig",
+      "themePathPlaceholder": "Välj temastig",
+      "themePathTooltip": "Temastigen grupperar evenemang enligt ett visst tema för barnets åldersgrupp.",
+      "themePaths": {
+        "rytmi": "Rytm",
+        "tarina": "Berättelse",
+        "jalki": "Spår"
+      },
+      "dateLabel": "Evenemang från och med",
+      "datePlaceholder": "Välj datum",
+      "dateFilterBadge": "Från {{date}}",
+      "accessibilityLabel": "Tillgänglighet",
+      "accessibilityPlaceholder": "Välj",
+      "accessibility": {
+        "mobility": "Hänsyn tagen till rörelsehinder",
+        "sensory": "Hänsyn tagen till sensorisk överkänslighet",
+        "neurodiversity": "Hänsyn tagen till neuropsykiatriska behov",
+        "vision": "Hänsyn tagen till synbehov",
+        "hearing": "Hänsyn tagen till hörselbehov"
+      },
+      "languageLabel": "Språk",
+      "languagePlaceholder": "Välj språk",
+      "languages": {
+        "fi": "Finska",
+        "sv": "Svenska",
+        "en": "Engelska"
+      },
+      "availableOnlyLabel": "Visa endast lediga platser",
+      "familyOnlyLabel": "Visa endast familjeevenemang",
+      "submitButton": "Sök evenemang",
+      "clearButton": "Rensa val",
+      "activeFilters": "Valda filter",
+      "removeFilter": "Ta bort val: {{filter}}"
+    },
+    "notification": {
+      "childThemePath": "För barnet {{name}} har temastigen {{themePath}} valts. Du kan avgränsa sökresultaten till evenemang i denna temastig.",
+      "applyThemePath": "Visa endast {{themePath}}-evenemang",
+      "dismissNotice": "Stäng meddelande"
     },
     "results": {
+      "sectionLabel": "Sökresultat",
       "count": "{{count}} sökresultat",
       "count_one": "{{count}} sökresultat",
       "count_other": "{{count}} sökresultat",
       "count_zero": "0 sökresultat",
+      "childHeading": "Kulturbarnet {{name}}",
+      "noResultsForChild": "Inga sökresultat hittades för kulturbarnet {{name}}.",
+      "noResultsAdvice": "Försök ändra sökvillkoren.",
       "noResults": "Inga tillgängliga evenemang.",
-      "loadMore": "Visa fler ({{count}})"
+      "loadMore": "Visa fler sökresultat ({{count}})",
+      "announcement": "Sökresultat uppdaterade. {{count}} resultat hittades för kulturbarnet {{name}}."
     },
     "card": {
       "enrolButton": "Anmäl dig",

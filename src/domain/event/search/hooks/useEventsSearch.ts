@@ -1,7 +1,6 @@
-import { useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ApolloError,
-  DocumentNode,
   useQuery,
   type WatchQueryFetchPolicy,
 } from '@apollo/client';
@@ -15,18 +14,19 @@ import type {
 import {
   DEFAULT_SEARCH_PAGE_SIZE,
   extractAvailableEvents,
+  filterAvailableEvents,
   isEventEligible,
   paginateSearchItems,
 } from '../eventSearchUtils';
+import type { EventSearchFilters } from '../types/filterTypes';
 
 export type UseEventsSearchOptions = {
   childId?: string;
-  page?: number;
   pageSize?: number;
   skip?: boolean;
-  query?: DocumentNode;
   fetchPolicy?: WatchQueryFetchPolicy;
   availableOnly?: boolean;
+  filters?: Partial<EventSearchFilters>;
   enrolledEventIds?: Set<string>;
 };
 
@@ -37,39 +37,44 @@ export type UseEventsSearchResult = {
   totalCount: number;
   remainingCount: number;
   hasMore: boolean;
+  loadMore: () => void;
   loading: boolean;
   error?: ApolloError;
 };
 
 /**
- * Hook to fetch and paginate available events for a specific child.
+ * Hook to fetch available events for a specific child directly from Apollo Client query / cache.
  *
- * Extracts available events from GraphQL query data, sorts them by their earliest occurrence,
- * and paginates the results according to the requested page index and page size.
+ * Extracts available events from GraphQL query data, applies active search filters,
+ * and paginates the visible items by page size with a loadMore action.
  *
- * @param options - Configuration options for the search query and pagination.
+ * @param options - Configuration options for the events search query.
  * @param options.childId - ID of the child whose events are being queried.
- * @param options.page - Current page number (1-based, default: 1).
  * @param options.pageSize - Number of items displayed per page (default: 15).
  * @param options.skip - When true, skips executing the GraphQL query.
- * @param options.query - Optional GraphQL DocumentNode override (defaults to childAvailableEventsQuery).
  * @param options.fetchPolicy - Optional Apollo Client cache watch policy.
- * @returns Query state, current page's events, total sorted events, pagination counts, and error.
+ * @returns Query state, paginated events, remaining count, loadMore handler, and error state.
  */
 export const useEventsSearch = ({
   childId,
-  page = 1,
   pageSize = DEFAULT_SEARCH_PAGE_SIZE,
   skip = false,
-  query = childAvailableEventsQuery,
   fetchPolicy,
   availableOnly = false,
+  filters,
   enrolledEventIds,
 }: UseEventsSearchOptions): UseEventsSearchResult => {
+  const [page, setPage] = useState(1);
+
+  // Reset pagination to page 1 whenever childId, filters, or availableOnly change
+  useEffect(() => {
+    setPage(1);
+  }, [childId, filters, availableOnly]);
+
   const { data, loading, error } = useQuery<
     ChildAvailableOccurrencesQuery,
     ChildAvailableOccurrencesQueryVariables
-  >(query, {
+  >(childAvailableEventsQuery, {
     skip: skip || !childId,
     variables: { id: childId || '' },
     fetchPolicy,
@@ -81,16 +86,23 @@ export const useEventsSearch = ({
   );
 
   const allEvents: AvailableEvent[] = useMemo(() => {
+    if (filters) {
+      return filterAvailableEvents(rawEvents, filters, enrolledEventIds);
+    }
     if (!availableOnly) {
       return rawEvents;
     }
     return rawEvents.filter((ev) => isEventEligible(ev, enrolledEventIds));
-  }, [rawEvents, availableOnly, enrolledEventIds]);
+  }, [rawEvents, filters, availableOnly, enrolledEventIds]);
 
   const pagination = useMemo(
     () => paginateSearchItems(allEvents, page, pageSize),
     [allEvents, page, pageSize]
   );
+
+  const loadMore = useCallback(() => {
+    setPage((prev) => prev + 1);
+  }, []);
 
   return {
     child: data?.child ?? null,
@@ -99,6 +111,7 @@ export const useEventsSearch = ({
     totalCount: pagination.totalCount,
     remainingCount: pagination.remainingCount,
     hasMore: pagination.hasMore,
+    loadMore,
     loading,
     error,
   };

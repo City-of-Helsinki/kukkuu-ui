@@ -8,18 +8,27 @@ export const childAvailableEventsQuery = gql`
     image
     imageAltText
     duration
+    participantsPerInvite
     enrolmentDeniedReason(childId: $id)
     registrationOpensAt
+    themePaths {
+      id
+      slug
+      name
+    }
     ticketSystem {
       type
       ... on TicketmasterEventTicketSystem {
         childPassword(childId: $id)
+        hasAnyFreePasswords
       }
       ... on LippupisteEventTicketSystem {
         childPassword(childId: $id)
+        hasAnyFreePasswords
       }
       ... on TixlyEventTicketSystem {
         childPassword(childId: $id)
+        hasAnyFreePasswords
       }
     }
     occurrences(upcoming: true) {
@@ -44,6 +53,11 @@ export const childAvailableEventsQuery = gql`
       id
       name
       birthyear
+      themePath {
+        id
+        slug
+        name
+      }
       upcomingEventsAndEventGroups {
         edges {
           node {

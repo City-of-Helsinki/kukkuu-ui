@@ -64,6 +64,7 @@ export const fakeAvailableEvent = (
       image: faker.image.url(),
       imageAltText: faker.lorem.words(2),
       duration: 60,
+      participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
       enrolmentDeniedReason: null,
       registrationOpensAt: null,
       ticketSystem: null,
