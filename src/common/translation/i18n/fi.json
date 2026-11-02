@@ -1076,36 +1076,78 @@
   },
   "search": {
     "title": "Etsi tapahtumia",
+    "formHeading": "Löydä elämyksiä kulttuurilapselle",
     "childNotFoundNotification": "Valittua lasta ei löytynyt profiilistasi. Näytetään ensimmäisen lapsen tapahtumat.",
     "hero": {
       "title": "Etsi tapahtumia",
       "greeting": "Hei {{name}}!",
       "description": "Hienoa että olet mukana Kulttuurin kummilapset -toiminnassa! Täällä voit tarkastella tapahtumakutsuja ja ilmoittautua tapahtumiin. Kummilapsi voi osallistua vuosittain kahteen tapahtumaan, yhteen tapahtumaan keväällä ja yhteen tapahtumaan syksyllä. Joskus tapahtumia voi olla tarjolla enemmän, silloin ilmoitamme siitä erikseen. Nähdään kulttuurin parissa!",
-      "selectChild": "Valitse lapsi",
+      "selectChild": "Lapsi",
+      "selectChildRequired": "Lapsi *",
+      "selectChildPlaceholder": "Valitse lapsi",
       "childAge": "{{age}} vuotta"
     },
     "childSelector": {
-      "description": "Lapsen valitseminen päivittää hakutulokset automaattisesti."
+      "description": "Valitse lapsi ja paina Etsi tapahtumia päivittääksesi hakutulokset."
+    },
+    "stickyHeader": {
+      "resultsForChild": "Hakutulokset kulttuurilapselle",
+      "editSearch": "Muokkaa hakua"
     },
     "filter": {
       "title": "Rajaa hakutuloksia",
-      "searchLabel": "Hae sanalla",
-      "searchPlaceholder": "Esim. konsertti, työpaja...",
-      "dateLabel": "Ajankohta",
-      "datePlaceholder": "Valitse ajankohta",
-      "venueLabel": "Tapahtumapaikka",
-      "venuePlaceholder": "Valitse paikka",
-      "availableOnlyLabel": "Näytä vain tapahtumat, joihin voi ilmoittautua",
-      "submitButton": "Hae",
-      "clearButton": "Tyhjennä hakuehdot"
+      "close": "Sulje",
+      "themePathLabel": "Teemapolku",
+      "themePathPlaceholder": "Valitse teemapolku",
+      "themePathTooltip": "Teemapolku ryhmittelee tapahtumia tietyn teeman mukaan lapsen ikäkaudelle.",
+      "themePaths": {
+        "rytmi": "Rytmi",
+        "tarina": "Tarina",
+        "jalki": "Jälki"
+      },
+      "dateLabel": "Tapahtuma alkaen",
+      "datePlaceholder": "Valitse päivä",
+      "dateFilterBadge": "{{date}} alkaen",
+      "accessibilityLabel": "Saavutettavuus",
+      "accessibilityPlaceholder": "Valitse",
+      "accessibility": {
+        "mobility": "Liikkumisen rajoitteet huomioitu",
+        "sensory": "Aistiyliherkkyydet huomioitu",
+        "neurodiversity": "Neurokirjon tarpeet huomioitu",
+        "vision": "Näkemiseen liittyvät tarpeet huomioitu",
+        "hearing": "Kuulemiseen liittyvät tarpeet huomioitu"
+      },
+      "languageLabel": "Kieli",
+      "languagePlaceholder": "Valitse kieli",
+      "languages": {
+        "fi": "Suomi",
+        "sv": "Ruotsi",
+        "en": "Englanti"
+      },
+      "availableOnlyLabel": "Näytä vain ne, joissa on tilaa",
+      "familyOnlyLabel": "Näytä vain perhetapahtumat",
+      "submitButton": "Etsi tapahtumia",
+      "clearButton": "Tyhjennä valinnat",
+      "activeFilters": "Valitut suodattimet",
+      "removeFilter": "Poista valinta: {{filter}}"
+    },
+    "notification": {
+      "childThemePath": "Lapselle {{name}} on valittu {{themePath}}-teemapolku. Voit rajata hakutulokset tämän teemapolun tapahtumiin.",
+      "applyThemePath": "Näytä vain {{themePath}}-tapahtumat",
+      "dismissNotice": "Sulje ilmoitus"
     },
     "results": {
+      "sectionLabel": "Hakutulokset",
       "count": "{{count}} hakutulos",
       "count_one": "{{count}} hakutulos",
       "count_other": "{{count}} hakutulosta",
       "count_zero": "0 hakutulosta",
+      "childHeading": "Kulttuurilapsi {{name}}",
+      "noResultsForChild": "Kulttuurilapselle {{name}} ei löytynyt yhtään hakutulosta.",
+      "noResultsAdvice": "Kokeile muuttaa hakuehtoja.",
       "noResults": "Ei saatavilla olevia tapahtumia.",
-      "loadMore": "Näytä lisää ({{count}})"
+      "loadMore": "Näytä lisää hakutuloksia ({{count}})",
+      "announcement": "Hakutulokset päivitetty. Löytyi {{count}} hakutulosta kulttuurilapselle {{name}}."
     },
     "card": {
       "enrolButton": "Ilmoittaudu",

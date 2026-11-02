@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * Hook to monitor whether the child selector has scrolled past a sticky threshold.
- * Controls the visibility of the sticky child header bar.
+ * Hook to monitor whether the search form has scrolled past a sticky threshold.
+ * Controls the visibility of the sticky child header bar when the user scrolls down to view results.
  *
  * @param offset - Distance in pixels from top of viewport to trigger sticky state. Defaults to 10.
+ * @param externalRef - Optional external RefObject to observe instead of creating an internal ref.
  * @returns Object containing `childSelectRef` for the sentinel element and `isSticky` boolean.
  */
-export function useStickyChildSelect<T extends HTMLElement = HTMLDivElement>(
-  offset = 10
+export function useStickyChildSelect<T extends HTMLElement = HTMLElement>(
+  offset = 10,
+  externalRef?: React.RefObject<T | null>
 ) {
   const [isSticky, setIsSticky] = useState(false);
-  const childSelectRef = useRef<T>(null);
+  const internalRef = useRef<T>(null);
+  const activeRef = externalRef || internalRef;
 
   useEffect(() => {
     const updateSticky = () => {
@@ -19,10 +22,11 @@ export function useStickyChildSelect<T extends HTMLElement = HTMLDivElement>(
         setIsSticky(false);
         return;
       }
-      const target = childSelectRef.current;
+      const target = activeRef.current;
       if (!target) return;
       const rect = target.getBoundingClientRect();
-      setIsSticky(rect.top <= offset);
+      // Activate when the bottom of the form sentinel has scrolled past the top threshold
+      setIsSticky(rect.bottom <= offset);
     };
 
     updateSticky();
@@ -33,9 +37,9 @@ export function useStickyChildSelect<T extends HTMLElement = HTMLDivElement>(
       window.removeEventListener('scroll', updateSticky);
       window.removeEventListener('resize', updateSticky);
     };
-  }, [offset]);
+  }, [offset, activeRef]);
 
-  return { isSticky, childSelectRef };
+  return { isSticky, childSelectRef: activeRef };
 }
 
 export default useStickyChildSelect;
