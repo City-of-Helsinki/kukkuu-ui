@@ -1,2 +1,2 @@
-pnpm doctoc .
+pnpm doctoc --update-only .
 pnpm lint-staged --relative
