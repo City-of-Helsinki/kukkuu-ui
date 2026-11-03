@@ -311,6 +311,8 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
             <p className={styles.age}>
               {t('search.hero.childAge', { age: childAge })}
             </p>
+            {/* TODO: Populate child's themePath from GraphQL once ChildNode.themePath is implemented in backend,
+                and remove '!src/domain/event/queries/childAvailableEventsQuery.ts' exclude rule from codegen.ts */}
             <p className={styles.themePath}>
               {t('profile.child.themePath', { themePath: '–' })}
             </p>

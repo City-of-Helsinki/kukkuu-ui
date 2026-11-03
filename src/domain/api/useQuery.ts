@@ -2,7 +2,7 @@ import {
   useQuery as useApolloQuery,
   DocumentNode,
   TypedDocumentNode,
-  MutationHookOptions,
+  QueryHookOptions,
   OperationVariables,
 } from '@apollo/client';
 
@@ -14,7 +14,7 @@ function useQuery<
   TVariables extends OperationVariables = OperationVariables,
 >(
   query: DocumentNode | TypedDocumentNode<TData, TVariables>,
-  options: MutationHookOptions<TData, TVariables> & {
+  options: QueryHookOptions<TData, TVariables> & {
     useDefaultErrorHandling?: boolean;
   } = {}
 ) {
