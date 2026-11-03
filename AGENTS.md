@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 # Kukkuu Public UI Agent Instructions
 
 ## Role
