@@ -37,6 +37,7 @@
     "test:e2e:install": "echo \"e2e install is not needed\"",
     "test:e2e:ci": "pnpm test:browser:ci",
     "typecheck": "tsc --project ./tsconfig.json --noEmit",
+    "doctoc": "doctoc --update-only .",
     "prepare": "husky"
   },
   "browserslist": {

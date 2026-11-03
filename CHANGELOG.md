@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 # Change Log
 
 # 1.13.1

@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 # HDS Favicon kit
 
 Here are the favicons to be used on desktop and mobile web browsers. If you need the Helsinki-logo for general use instead it is available on [the Helsinki brand site](https://brand.hel.fi/tunnus/).

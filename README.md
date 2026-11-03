@@ -234,11 +234,11 @@ This project uses [Husky](https://typicode.github.io/husky/#/) to manage Git hoo
 The pre-commit hook is configured to run the following commands:
 
 ```sh
-pnpm doctoc .
+pnpm doctoc --update-only .
 pnpm lint-staged --relative
 ```
 
-- `pnpm doctoc .`: This command updates the table of contents in your markdown files.
+- `pnpm doctoc --update-only .`: This command updates the table of contents in your markdown files (only for files with an existing TOC).
 - `pnpm lint-staged --relative`: This command runs linting on staged files to ensure they meet the project's coding standards. The lint-staged configuration can be found from [lint-staged.config.js](./lint-staged.config.js).
   - Using `--relative` flag to reduce command line length,
     as the combined length of all the absolute paths for a large commit can get quite long
