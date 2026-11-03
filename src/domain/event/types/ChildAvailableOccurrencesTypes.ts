@@ -62,7 +62,8 @@ export type UpcomingEventOrGroupNode =
 export type ChildAvailableOccurrencesQuery = {
   child?:
     | (Pick<ChildNode, 'id' | 'name' | 'birthyear'> & {
-        // TODO: Populate from GraphQL once child predefined theme path endpoint is implemented
+        // TODO: Populate from GraphQL once child predefined theme path endpoint (ChildNode.themePath) is implemented,
+        // and remove '!src/domain/event/queries/childAvailableEventsQuery.ts' exclude rule from codegen.ts
         themePath?: { id?: string; slug: string; name: string } | null;
         availableEvents?: {
           edges: Array<{ node: AvailableEvent | null } | null>;

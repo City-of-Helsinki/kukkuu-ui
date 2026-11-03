@@ -1100,11 +1100,6 @@
       "themePathLabel": "Temastig",
       "themePathPlaceholder": "Välj temastig",
       "themePathTooltip": "Temastigen grupperar evenemang enligt ett visst tema för barnets åldersgrupp.",
-      "themePaths": {
-        "rytmi": "Rytm",
-        "tarina": "Berättelse",
-        "jalki": "Spår"
-      },
       "dateLabel": "Evenemang från och med",
       "datePlaceholder": "Välj datum",
       "dateFilterBadge": "Från {{date}}",

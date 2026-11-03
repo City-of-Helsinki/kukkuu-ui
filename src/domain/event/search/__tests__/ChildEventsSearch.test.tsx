@@ -1,9 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { screen, waitFor } from '@testing-library/react';
+import { screen, waitFor, type RenderOptions } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toast } from 'react-toastify';
+import type { MockedResponse } from '@apollo/client/testing';
+import type { ReactElement } from 'react';
 
-import { customRender as render } from '../../../../common/test/customRender';
+import { customRender } from '../../../../common/test/customRender';
 import {
   fakeAvailableEvent,
   fakeAvailableOccurrence,
@@ -11,6 +13,52 @@ import {
 import { Language } from '../../../api/generatedTypes/graphql';
 import ChildEventsSearch from '../ChildEventsSearch';
 import { childAvailableEventsQuery } from '../../queries/childAvailableEventsQuery';
+import { themePathsQuery } from '../../queries/themePathsQuery';
+
+const getThemePathsMock = (): MockedResponse => ({
+  request: {
+    query: themePathsQuery,
+  },
+  maxUsageCount: Infinity,
+  result: {
+    data: {
+      themePaths: {
+        edges: [
+          {
+            node: {
+              __typename: 'ThemePathNode',
+              id: 'tp-1',
+              slug: 'rytmi',
+              name: 'Rytmi',
+            },
+          },
+          {
+            node: {
+              __typename: 'ThemePathNode',
+              id: 'tp-2',
+              slug: 'tarina',
+              name: 'Tarina',
+            },
+          },
+          {
+            node: {
+              __typename: 'ThemePathNode',
+              id: 'tp-3',
+              slug: 'jalki',
+              name: 'Jälki',
+            },
+          },
+        ],
+      },
+    },
+  },
+});
+
+const render = (
+  ui: ReactElement,
+  mocks: MockedResponse[] = [],
+  options?: RenderOptions
+) => customRender(ui, [getThemePathsMock(), ...mocks], options);
 
 const mockNavigate = vi.hoisted(() => vi.fn());
 let mockParams: Record<string, string> = {};
