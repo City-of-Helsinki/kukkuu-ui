@@ -1,5 +1,3 @@
-<!-- DOCTOC SKIP -->
-
 ## Description
 
 <!-- Describe your changes in detail -->
