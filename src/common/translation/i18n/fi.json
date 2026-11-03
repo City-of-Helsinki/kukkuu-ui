@@ -1100,11 +1100,6 @@
       "themePathLabel": "Teemapolku",
       "themePathPlaceholder": "Valitse teemapolku",
       "themePathTooltip": "Teemapolku ryhmittelee tapahtumia tietyn teeman mukaan lapsen ikäkaudelle.",
-      "themePaths": {
-        "rytmi": "Rytmi",
-        "tarina": "Tarina",
-        "jalki": "Jälki"
-      },
       "dateLabel": "Tapahtuma alkaen",
       "datePlaceholder": "Valitse päivä",
       "dateFilterBadge": "{{date}} alkaen",

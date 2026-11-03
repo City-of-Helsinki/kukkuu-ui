@@ -72,6 +72,8 @@ export type AddEventMutationInput = {
   participantsPerInvite: EventParticipantsPerInvite;
   projectId: Scalars['ID']['input'];
   readyForEventGroupPublishing?: InputMaybe<Scalars['Boolean']['input']>;
+  /** At least one theme path is required. */
+  themePathIds: Array<Scalars['ID']['input']>;
   ticketSystem?: InputMaybe<AddEventTicketSystemInput>;
   translations?: InputMaybe<Array<InputMaybe<EventTranslationsInput>>>;
 };
@@ -370,6 +372,8 @@ export type CopyEventMutationInput = {
   projectId: Scalars['ID']['input'];
   readyForEventGroupPublishing?: InputMaybe<Scalars['Boolean']['input']>;
   sourceEventId: Scalars['ID']['input'];
+  /** Omit to copy the source event's theme paths. If given, at least one theme path is required. The resulting theme paths must not be empty. */
+  themePathIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   ticketSystem?: InputMaybe<AddEventTicketSystemInput>;
   translations?: InputMaybe<Array<InputMaybe<EventTranslationsInput>>>;
 };
@@ -580,6 +584,7 @@ export type EventGroupNodeEventsArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
+  themePath: InputMaybe<Scalars['String']['input']>;
   upcoming: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -644,6 +649,7 @@ export type EventNode = Node & {
   readyForEventGroupPublishing: Scalars['Boolean']['output'];
   registrationOpensAt: Maybe<Scalars['DateTime']['output']>;
   shortDescription: Maybe<Scalars['String']['output']>;
+  themePaths: Array<ThemePathNode>;
   ticketSystem: Maybe<EventTicketSystem>;
   translations: Array<EventTranslationType>;
   updatedAt: Scalars['DateTime']['output'];
@@ -1517,6 +1523,8 @@ export type Query = {
   organisations: Maybe<OrganisationNodeConnection>;
   project: Maybe<ProjectNode>;
   projects: Maybe<ProjectNodeConnection>;
+  themePath: Maybe<ThemePathNode>;
+  themePaths: Maybe<ThemePathNodeConnection>;
   venue: Maybe<VenueNode>;
   venues: Maybe<VenueNodeConnection>;
   verifyTicket: Maybe<TicketVerificationNode>;
@@ -1565,6 +1573,7 @@ export type QueryEventsArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
+  themePath: InputMaybe<Scalars['String']['input']>;
   upcoming: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1656,6 +1665,18 @@ export type QueryProjectArgs = {
 };
 
 export type QueryProjectsArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  offset: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type QueryThemePathArgs = {
+  id: Scalars['ID']['input'];
+};
+
+export type QueryThemePathsArgs = {
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
@@ -1786,6 +1807,43 @@ export type SubscribeToFreeSpotNotificationMutationPayload = {
   child: Maybe<ChildNode>;
   clientMutationId: Maybe<Scalars['String']['output']>;
   occurrence: Maybe<OccurrenceNode>;
+};
+
+export type ThemePathNode = Node & {
+  __typename?: 'ThemePathNode';
+  description: Scalars['String']['output'];
+  /** The ID of the object */
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  /** Stable identifier of the tag. Use lowercase letters and underscores. */
+  slug: Scalars['String']['output'];
+  /** Tags without a sort order are listed last. */
+  sortOrder: Maybe<Scalars['Int']['output']>;
+  translations: Array<ThemePathTranslationType>;
+};
+
+export type ThemePathNodeConnection = {
+  __typename?: 'ThemePathNodeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<ThemePathNodeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `ThemePathNode` and its cursor. */
+export type ThemePathNodeEdge = {
+  __typename?: 'ThemePathNodeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node: Maybe<ThemePathNode>;
+};
+
+export type ThemePathTranslationType = {
+  __typename?: 'ThemePathTranslationType';
+  description: Scalars['String']['output'];
+  languageCode: Language;
+  name: Scalars['String']['output'];
 };
 
 export enum TicketSystem {
@@ -1978,6 +2036,8 @@ export type UpdateEventMutationInput = {
   participantsPerInvite?: InputMaybe<EventParticipantsPerInvite>;
   projectId?: InputMaybe<Scalars['ID']['input']>;
   readyForEventGroupPublishing?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Omit to keep the current theme paths. If given, at least one theme path is required. */
+  themePathIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   ticketSystem?: InputMaybe<UpdateEventTicketSystemInput>;
   translations?: InputMaybe<Array<InputMaybe<EventTranslationsInput>>>;
 };
@@ -3568,190 +3628,6 @@ export type UnsubscribeFromFreeSpotNotificationMutation = {
   } | null;
 };
 
-export type SearchEventNodeFieldsFragment = {
-  __typename?: 'EventNode';
-  id: string;
-  name: string | null;
-  shortDescription: string | null;
-  image: string;
-  imageAltText: string | null;
-  duration: number | null;
-  enrolmentDeniedReason: EnrolmentDeniedReason | null;
-  registrationOpensAt: any | null;
-  ticketSystem:
-    | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
-    | {
-        __typename?: 'LippupisteEventTicketSystem';
-        childPassword: string | null;
-        type: TicketSystem;
-      }
-    | {
-        __typename?: 'TicketmasterEventTicketSystem';
-        childPassword: string | null;
-        type: TicketSystem;
-      }
-    | {
-        __typename?: 'TixlyEventTicketSystem';
-        childPassword: string | null;
-        type: TicketSystem;
-      }
-    | null;
-  occurrences: {
-    __typename?: 'OccurrenceNodeConnection';
-    edges: Array<{
-      __typename?: 'OccurrenceNodeEdge';
-      node: {
-        __typename?: 'OccurrenceNode';
-        id: string;
-        time: any;
-        remainingCapacity: number | null;
-        occurrenceLanguage: Language;
-        venue: {
-          __typename?: 'VenueNode';
-          id: string;
-          name: string | null;
-          address: string | null;
-        };
-      } | null;
-    } | null>;
-  };
-};
-
-export type ChildAvailableEventsQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
-}>;
-
-export type ChildAvailableEventsQuery = {
-  __typename?: 'Query';
-  child: {
-    __typename?: 'ChildNode';
-    id: string;
-    name: string;
-    birthyear: number;
-    upcomingEventsAndEventGroups: {
-      __typename?: 'EventOrEventGroupConnection';
-      edges: Array<{
-        __typename?: 'EventOrEventGroupEdge';
-        node:
-          | {
-              __typename?: 'EventGroupNode';
-              id: string;
-              name: string | null;
-              events: {
-                __typename?: 'EventNodeConnection';
-                edges: Array<{
-                  __typename?: 'EventNodeEdge';
-                  node: {
-                    __typename?: 'EventNode';
-                    id: string;
-                    name: string | null;
-                    shortDescription: string | null;
-                    image: string;
-                    imageAltText: string | null;
-                    duration: number | null;
-                    enrolmentDeniedReason: EnrolmentDeniedReason | null;
-                    registrationOpensAt: any | null;
-                    ticketSystem:
-                      | {
-                          __typename?: 'InternalEventTicketSystem';
-                          type: TicketSystem;
-                        }
-                      | {
-                          __typename?: 'LippupisteEventTicketSystem';
-                          childPassword: string | null;
-                          type: TicketSystem;
-                        }
-                      | {
-                          __typename?: 'TicketmasterEventTicketSystem';
-                          childPassword: string | null;
-                          type: TicketSystem;
-                        }
-                      | {
-                          __typename?: 'TixlyEventTicketSystem';
-                          childPassword: string | null;
-                          type: TicketSystem;
-                        }
-                      | null;
-                    occurrences: {
-                      __typename?: 'OccurrenceNodeConnection';
-                      edges: Array<{
-                        __typename?: 'OccurrenceNodeEdge';
-                        node: {
-                          __typename?: 'OccurrenceNode';
-                          id: string;
-                          time: any;
-                          remainingCapacity: number | null;
-                          occurrenceLanguage: Language;
-                          venue: {
-                            __typename?: 'VenueNode';
-                            id: string;
-                            name: string | null;
-                            address: string | null;
-                          };
-                        } | null;
-                      } | null>;
-                    };
-                  } | null;
-                } | null>;
-              };
-            }
-          | {
-              __typename?: 'EventNode';
-              id: string;
-              name: string | null;
-              shortDescription: string | null;
-              image: string;
-              imageAltText: string | null;
-              duration: number | null;
-              enrolmentDeniedReason: EnrolmentDeniedReason | null;
-              registrationOpensAt: any | null;
-              ticketSystem:
-                | {
-                    __typename?: 'InternalEventTicketSystem';
-                    type: TicketSystem;
-                  }
-                | {
-                    __typename?: 'LippupisteEventTicketSystem';
-                    childPassword: string | null;
-                    type: TicketSystem;
-                  }
-                | {
-                    __typename?: 'TicketmasterEventTicketSystem';
-                    childPassword: string | null;
-                    type: TicketSystem;
-                  }
-                | {
-                    __typename?: 'TixlyEventTicketSystem';
-                    childPassword: string | null;
-                    type: TicketSystem;
-                  }
-                | null;
-              occurrences: {
-                __typename?: 'OccurrenceNodeConnection';
-                edges: Array<{
-                  __typename?: 'OccurrenceNodeEdge';
-                  node: {
-                    __typename?: 'OccurrenceNode';
-                    id: string;
-                    time: any;
-                    remainingCapacity: number | null;
-                    occurrenceLanguage: Language;
-                    venue: {
-                      __typename?: 'VenueNode';
-                      id: string;
-                      name: string | null;
-                      address: string | null;
-                    };
-                  } | null;
-                } | null>;
-              };
-            }
-          | null;
-      } | null>;
-    } | null;
-  } | null;
-};
-
 export type EventOccurrenceFieldsFragment = {
   __typename?: 'OccurrenceNode';
   id: string;
@@ -4304,6 +4180,31 @@ export type OccurrenceQuery = {
       wwwUrl: string | null;
       wcAndFacilities: string | null;
     };
+  } | null;
+};
+
+export type ThemePathFieldsFragment = {
+  __typename?: 'ThemePathNode';
+  id: string;
+  slug: string;
+  name: string;
+};
+
+export type ThemePathsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type ThemePathsQuery = {
+  __typename?: 'Query';
+  themePaths: {
+    __typename?: 'ThemePathNodeConnection';
+    edges: Array<{
+      __typename?: 'ThemePathNodeEdge';
+      node: {
+        __typename?: 'ThemePathNode';
+        id: string;
+        slug: string;
+        name: string;
+      } | null;
+    } | null>;
   } | null;
 };
 
@@ -5607,45 +5508,6 @@ export const UnenrolOccurrenceMutationPayloadFieldsFragmentDoc = gql`
   }
   ${UnenrolOccurrencesFieldsFragmentDoc}
 `;
-export const SearchEventNodeFieldsFragmentDoc = gql`
-  fragment SearchEventNodeFields on EventNode {
-    id
-    name
-    shortDescription
-    image
-    imageAltText
-    duration
-    enrolmentDeniedReason(childId: $id)
-    registrationOpensAt
-    ticketSystem {
-      type
-      ... on TicketmasterEventTicketSystem {
-        childPassword(childId: $id)
-      }
-      ... on LippupisteEventTicketSystem {
-        childPassword(childId: $id)
-      }
-      ... on TixlyEventTicketSystem {
-        childPassword(childId: $id)
-      }
-    }
-    occurrences(upcoming: true) {
-      edges {
-        node {
-          id
-          time
-          remainingCapacity
-          occurrenceLanguage
-          venue {
-            id
-            name
-            address
-          }
-        }
-      }
-    }
-  }
-`;
 export const EventOccurrenceFieldsFragmentDoc = gql`
   fragment EventOccurrenceFields on OccurrenceNode {
     id
@@ -5798,6 +5660,13 @@ export const OccurrenceFieldsFragmentDoc = gql`
   }
   ${OccurrenceEventFieldsFragmentDoc}
   ${OccurrenceVenueFieldsFragmentDoc}
+`;
+export const ThemePathFieldsFragmentDoc = gql`
+  fragment ThemePathFields on ThemePathNode {
+    id
+    slug
+    name
+  }
 `;
 export const EventGroupEventFieldsFragmentDoc = gql`
   fragment EventGroupEventFields on EventNode {
@@ -6271,40 +6140,6 @@ export type UnsubscribeFromFreeSpotNotificationMutationMutationOptions =
     UnsubscribeFromFreeSpotNotificationMutation,
     UnsubscribeFromFreeSpotNotificationMutationVariables
   >;
-export const ChildAvailableEventsQueryDocument = gql`
-  query childAvailableEventsQuery($id: ID!) {
-    child(id: $id) {
-      id
-      name
-      birthyear
-      upcomingEventsAndEventGroups {
-        edges {
-          node {
-            ... on EventNode {
-              ...SearchEventNodeFields
-            }
-            ... on EventGroupNode {
-              id
-              name
-              events(upcoming: true) {
-                edges {
-                  node {
-                    ...SearchEventNodeFields
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  ${SearchEventNodeFieldsFragmentDoc}
-`;
-export type ChildAvailableEventsQueryQueryResult = Apollo.QueryResult<
-  ChildAvailableEventsQuery,
-  ChildAvailableEventsQueryVariables
->;
 export const EventQueryDocument = gql`
   query eventQuery($id: ID!, $date: Date, $time: Time, $childId: ID!) {
     event(id: $id) {
@@ -6423,6 +6258,22 @@ export const OccurrenceQueryDocument = gql`
 export type OccurrenceQueryQueryResult = Apollo.QueryResult<
   OccurrenceQuery,
   OccurrenceQueryVariables
+>;
+export const ThemePathsQueryDocument = gql`
+  query themePathsQuery {
+    themePaths {
+      edges {
+        node {
+          ...ThemePathFields
+        }
+      }
+    }
+  }
+  ${ThemePathFieldsFragmentDoc}
+`;
+export type ThemePathsQueryQueryResult = Apollo.QueryResult<
+  ThemePathsQuery,
+  ThemePathsQueryVariables
 >;
 export const EventGroupQueryDocument = gql`
   query eventGroupQuery($id: ID!, $childId: ID!) {

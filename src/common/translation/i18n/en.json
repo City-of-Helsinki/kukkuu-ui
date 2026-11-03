@@ -1102,11 +1102,6 @@
       "themePathLabel": "Theme path",
       "themePathPlaceholder": "Select theme path",
       "themePathTooltip": "A theme path groups events according to a theme tailored to the child's age group.",
-      "themePaths": {
-        "rytmi": "Rhythm",
-        "tarina": "Story",
-        "jalki": "Trace"
-      },
       "dateLabel": "Events starting from",
       "datePlaceholder": "Select date",
       "dateFilterBadge": "From {{date}}",

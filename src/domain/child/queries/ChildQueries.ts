@@ -199,6 +199,8 @@ export const childByIdQuery = gql`
     name
     birthyear
     postalCode
+    # TODO: Query themePath on ChildNode once implemented in backend, and remove
+    # '!src/domain/event/queries/childAvailableEventsQuery.ts' exclude rule from codegen.ts
     project {
       ...ChildByIdQueryProjectFields
     }

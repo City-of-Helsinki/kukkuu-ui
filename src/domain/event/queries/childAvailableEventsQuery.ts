@@ -53,6 +53,8 @@ export const childAvailableEventsQuery = gql`
       id
       name
       birthyear
+      # TODO: Remove '!src/domain/event/queries/childAvailableEventsQuery.ts' exclude rule
+      # from codegen.ts once ChildNode.themePath is implemented in backend
       themePath {
         id
         slug

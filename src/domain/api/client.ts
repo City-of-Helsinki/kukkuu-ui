@@ -62,9 +62,9 @@ const authLink = setContext((_, { headers }) => {
   const kukkuuApiToken = getKukkuuApiTokenFromStorage();
   return {
     headers: {
+      'accept-language': getCurrentLanguage(i18n),
       ...headers,
       authorization: kukkuuApiToken ? `Bearer ${kukkuuApiToken}` : null,
-      'accept-language': getCurrentLanguage(i18n),
     },
   };
 });
