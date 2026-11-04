@@ -54,6 +54,14 @@ export type PaginatedSearchResult<T> = {
   currentPage: number;
 };
 
+/**
+ * Splits an in-memory array into paginated slices for search results.
+ *
+ * @deprecated TODO: Deprecate client-side in-memory pagination.
+ * Pagination should be handled by the backend API via GraphQL connections / cursor-based pagination
+ * (e.g., `first`, `after`) or offset pagination rather than slicing in-memory arrays on the client.
+ * Remove this function once backend-driven pagination is integrated into the search queries.
+ */
 export const paginateSearchItems = <T>(
   allItems: T[],
   page = 1,
@@ -270,6 +278,18 @@ const matchesOccurrenceFilters = (
 
 /**
  * Filters available events by combining event-level and occurrence-level criteria.
+ *
+ * @deprecated TODO: Deprecate client-side in-memory event filtering.
+ * This function performs filtering over an in-memory array of events on the client side.
+ * Filtering should be handled on the backend/API level via GraphQL query arguments
+ * (e.g. date range, language, theme paths, accessibility, availability).
+ * Once the backend API supports querying filtered events directly, remove this in-memory filter logic
+ * and pass the search filter parameters directly to the GraphQL query.
+ *
+ * @param events - Raw array of available events to filter.
+ * @param filters - Active search filters to apply.
+ * @param enrolledEventIds - Optional set of event IDs the child has already enrolled in.
+ * @returns Filtered array of available events.
  */
 export const filterAvailableEvents = (
   events: AvailableEvent[],
