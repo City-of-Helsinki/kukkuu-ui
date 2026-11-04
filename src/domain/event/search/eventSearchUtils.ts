@@ -13,14 +13,34 @@ import type {
   ChildAvailableOccurrencesQuery,
 } from '../types/ChildAvailableOccurrencesTypes';
 import type { EventSearchFilters } from './types/filterTypes';
+import {
+  FILTER_URL_CONFIG,
+  type FilterOptionsContext,
+} from './searchFilterUrlConfig';
+import { parseFilterStartDate } from './searchDateUtils';
+
 export {
   EVENT_SEARCH_FILTER_KEYS,
   type EventSearchFilterKey,
 } from './types/filterTypes';
 export {
+  FILTER_URL_CONFIG,
+  type FilterUrlConfig,
+  type FilterOptionsContext,
+  SEARCH_URL_PARAMS,
+} from './searchFilterUrlConfig';
+export {
   BADGE_FILTER_REMOVERS,
   removeFilterByBadge,
 } from './hooks/useFilterBadges';
+export {
+  createValidDate,
+  formatFinnishDateToIso,
+  formatIsoDateToFinnish,
+  parseFilterStartDate,
+  parseFinnishDate,
+  parseIsoDate,
+} from './searchDateUtils';
 
 export const DEFAULT_SEARCH_PAGE_SIZE = 15;
 
@@ -57,14 +77,12 @@ export const paginateSearchItems = <T>(
   };
 };
 
-export const DEFAULT_SEARCH_FILTERS: EventSearchFilters = {
-  themePaths: [],
-  startDate: '',
-  accessibility: [],
-  languages: [],
-  availableOnly: false,
-  familyOnly: false,
-};
+export const DEFAULT_SEARCH_FILTERS: EventSearchFilters = Object.fromEntries(
+  (Object.keys(FILTER_URL_CONFIG) as (keyof EventSearchFilters)[]).map((key) => [
+    key,
+    FILTER_URL_CONFIG[key].defaultValue,
+  ])
+) as EventSearchFilters;
 
 /**
  * Checks whether a specific search filter category has an active (non-default) value.
@@ -77,17 +95,8 @@ export const isFilterActive = (
   filters: EventSearchFilters,
   key: keyof EventSearchFilters
 ): boolean => {
-  const value = filters[key];
-  if (Array.isArray(value)) {
-    return value.length > 0;
-  }
-  if (typeof value === 'boolean') {
-    return value;
-  }
-  if (typeof value === 'string') {
-    return value.trim().length > 0;
-  }
-  return false;
+  const config = FILTER_URL_CONFIG[key];
+  return config ? config.isActive(filters[key] as never) : false;
 };
 
 /**
@@ -103,172 +112,20 @@ export const hasActiveFilters = (filters: EventSearchFilters): boolean => {
 };
 
 /**
- * Creates a Date instance representing the start of the specified day (00:00:00.000 local time),
- * ensuring the date components are valid (e.g. rejects non-existent dates like February 30).
- *
- * @param year - Full 4-digit calendar year.
- * @param monthIndex - Zero-based month index (0 for January, 11 for December).
- * @param day - Day of the month (1-31).
- * @returns A validated local Date object, or null if the date is invalid.
- */
-export const createValidDate = (
-  year: number,
-  monthIndex: number,
-  day: number
-): Date | null => {
-  const date = new Date(year, monthIndex, day, 0, 0, 0, 0);
-  if (
-    date.getFullYear() === year &&
-    date.getMonth() === monthIndex &&
-    date.getDate() === day
-  ) {
-    return date;
-  }
-  return null;
-};
-
-/**
- * Parses a Finnish date string ('DD.MM.YYYY' or 'D.M.YYYY') into a local start-of-day Date.
- * Validates calendar correctness (e.g., leap years and month lengths).
- *
- * @param dateStr - Finnish date string to parse.
- * @returns Valid Date object representing start of the day, or null if invalid or malformed.
- */
-export const parseFinnishDate = (dateStr?: string | null): Date | null => {
-  if (!dateStr || typeof dateStr !== 'string') return null;
-  const trimmed = dateStr.trim();
-  if (!trimmed) return null;
-
-  const fiMatch = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/.exec(trimmed);
-  if (!fiMatch) return null;
-
-  const day = Number.parseInt(fiMatch[1], 10);
-  const monthIndex = Number.parseInt(fiMatch[2], 10) - 1;
-  const year = Number.parseInt(fiMatch[3], 10);
-
-  return createValidDate(year, monthIndex, day);
-};
-
-/**
- * Parses an ISO 8601 date string ('YYYY-MM-DD') into a local start-of-day Date.
- * Validates calendar correctness (e.g., leap years and month lengths).
- *
- * @param dateStr - ISO date string to parse.
- * @returns Valid Date object representing start of the day, or null if invalid or malformed.
- */
-export const parseIsoDate = (dateStr?: string | null): Date | null => {
-  if (!dateStr || typeof dateStr !== 'string') return null;
-  const trimmed = dateStr.trim();
-  if (!trimmed) return null;
-
-  const isoMatch = /^(\d{4})-(\d{2})-(\d{2})$/.exec(trimmed);
-  if (!isoMatch) return null;
-
-  const year = Number.parseInt(isoMatch[1], 10);
-  const monthIndex = Number.parseInt(isoMatch[2], 10) - 1;
-  const day = Number.parseInt(isoMatch[3], 10);
-
-  return createValidDate(year, monthIndex, day);
-};
-
-/**
- * Parses a date string formatted as either Finnish 'DD.MM.YYYY' or ISO 'YYYY-MM-DD'
- * into a local start-of-day Date object. Returns null if invalid.
- *
- * Evaluates Finnish format first, falling back to ISO format.
- *
- * @param dateStr - Date string in either Finnish or ISO format.
- * @returns Valid Date object, or null if neither matcher matches or the date is invalid.
- */
-export const parseFilterStartDate = (dateStr?: string | null): Date | null => {
-  return parseFinnishDate(dateStr) ?? parseIsoDate(dateStr);
-};
-
-/**
- * Converts an ISO date string (YYYY-MM-DD) into Finnish format (DD.MM.YYYY).
- */
-export const formatIsoDateToFinnish = (isoStr?: string | null): string => {
-  const d = parseFilterStartDate(isoStr);
-  if (!d) return '';
-  const day = String(d.getDate()).padStart(2, '0');
-  const month = String(d.getMonth() + 1).padStart(2, '0');
-  const year = d.getFullYear();
-  return `${day}.${month}.${year}`;
-};
-
-/**
- * Converts a Finnish date string (DD.MM.YYYY) into ISO format (YYYY-MM-DD).
- */
-export const formatFinnishDateToIso = (fiStr?: string | null): string => {
-  const d = parseFilterStartDate(fiStr);
-  if (!d) return '';
-  const day = String(d.getDate()).padStart(2, '0');
-  const month = String(d.getMonth() + 1).padStart(2, '0');
-  const year = d.getFullYear();
-  return `${year}-${month}-${day}`;
-};
-
-/**
  * Parses and sanitizes search filter values from URLSearchParams.
  * Accepts both repeated parameters and comma-separated values, and both ISO and Finnish date strings.
  */
 export const parseSearchFiltersFromUrl = (
   searchParams: URLSearchParams,
-  validOptions?: {
-    themePaths?: string[];
-    accessibility?: string[];
-    languages?: string[];
-  }
+  validOptions?: FilterOptionsContext
 ): EventSearchFilters => {
-  const extractValues = (keys: string[]): string[] => {
-    const raw: string[] = [];
-    for (const key of keys) {
-      for (const val of searchParams.getAll(key)) {
-        for (const part of val.split(',')) {
-          const trimmed = part.trim();
-          if (trimmed) raw.push(trimmed);
-        }
-      }
-    }
-    return Array.from(new Set(raw));
-  };
-
-  const rawThemePaths = extractValues(['themePath', 'themePaths']);
-  const themePaths = validOptions?.themePaths
-    ? rawThemePaths.filter((slug) => validOptions.themePaths?.includes(slug))
-    : rawThemePaths;
-
-  const rawAccessibility = extractValues(['accessibility']);
-  const accessibility = validOptions?.accessibility
-    ? rawAccessibility.filter((item) =>
-        validOptions.accessibility?.includes(item)
-      )
-    : rawAccessibility;
-
-  const rawLanguages = extractValues(['language', 'languages']).map((l) =>
-    l.toLowerCase()
-  );
-  const languages = validOptions?.languages
-    ? rawLanguages.filter((lang) =>
-        validOptions.languages?.map((l) => l.toLowerCase()).includes(lang)
-      )
-    : rawLanguages;
-
-  const rawDate = searchParams.get('startDate') || searchParams.get('date');
-  const parsedDate = parseFilterStartDate(rawDate);
-  const startDate = parsedDate ? formatIsoDateToFinnish(rawDate) : '';
-
-  const availableOnly = searchParams.get('availableOnly') === 'true';
-  const familyOnly = searchParams.get('familyOnly') === 'true';
-
-  return {
-    themePaths,
-    startDate,
-    accessibility,
-    languages,
-    availableOnly,
-    familyOnly,
-  };
+  const entries = (
+    Object.keys(FILTER_URL_CONFIG) as (keyof EventSearchFilters)[]
+  ).map((key) => [
+    key,
+    FILTER_URL_CONFIG[key].parseFromUrl(searchParams, validOptions),
+  ]);
+  return Object.fromEntries(entries) as EventSearchFilters;
 };
 
 /**
@@ -287,43 +144,11 @@ export const writeSearchFiltersToUrlParams = (
   }
   params.delete('childId');
 
-  params.delete('themePath');
-  params.delete('themePaths');
-  for (const slug of filters.themePaths) {
-    params.append('themePath', slug);
-  }
-
-  params.delete('startDate');
-  params.delete('date');
-  if (filters.startDate) {
-    const isoDate = formatFinnishDateToIso(filters.startDate);
-    if (isoDate) {
-      params.set('startDate', isoDate);
+  (Object.keys(FILTER_URL_CONFIG) as (keyof EventSearchFilters)[]).forEach(
+    (key) => {
+      FILTER_URL_CONFIG[key].writeToUrl(params, filters[key] as never);
     }
-  }
-
-  params.delete('accessibility');
-  for (const acc of filters.accessibility) {
-    params.append('accessibility', acc);
-  }
-
-  params.delete('language');
-  params.delete('languages');
-  for (const lang of filters.languages) {
-    params.append('language', lang.toLowerCase());
-  }
-
-  if (filters.availableOnly) {
-    params.set('availableOnly', 'true');
-  } else {
-    params.delete('availableOnly');
-  }
-
-  if (filters.familyOnly) {
-    params.set('familyOnly', 'true');
-  } else {
-    params.delete('familyOnly');
-  }
+  );
 };
 
 /**
@@ -386,6 +211,63 @@ export const doesOccurrenceMatchFilters = (
   return true;
 };
 
+const matchesAvailableFilter = (
+  event: AvailableEvent,
+  enrolledEventIds?: Set<string>
+): boolean => isEventEligible(event, enrolledEventIds) && isEventNotFull(event);
+
+const matchesFamilyFilter = (event: AvailableEvent): boolean =>
+  event.participantsPerInvite === EventParticipantsPerInvite.Family;
+
+const matchesThemePathsFilter = (
+  event: AvailableEvent,
+  filterThemePaths: string[]
+): boolean => {
+  const eventSlugs = (event.themePaths || [])
+    .map((tp) => tp?.slug)
+    .filter((s): s is string => Boolean(s));
+  return (
+    eventSlugs.length > 0 &&
+    filterThemePaths.some((slug) => eventSlugs.includes(slug))
+  );
+};
+
+const matchesAccessibilityFilter = (
+  event: AvailableEvent,
+  filterAccessibility: string[]
+): boolean => {
+  const eventAcc = (event.accessibility || []).filter(Boolean);
+  return (
+    eventAcc.length > 0 &&
+    filterAccessibility.some((acc) => eventAcc.includes(acc))
+  );
+};
+
+const matchesOccurrenceFilters = (
+  event: AvailableEvent,
+  options: {
+    parsedStartDate: Date | null;
+    filterLanguages: string[];
+    availableOnly?: boolean;
+  }
+): boolean => {
+  const occurrences = (event.occurrences?.edges || [])
+    .map((e) => e?.node)
+    .filter((occ): occ is AvailableOccurrence => Boolean(occ));
+
+  if (occurrences.length === 0) {
+    return !options.parsedStartDate && options.filterLanguages.length === 0;
+  }
+
+  return occurrences.some((occ) =>
+    doesOccurrenceMatchFilters(occ, {
+      startDate: options.parsedStartDate,
+      languages: options.filterLanguages,
+      availableOnly: options.availableOnly,
+    })
+  );
+};
+
 /**
  * Filters available events by combining event-level and occurrence-level criteria.
  */
@@ -403,76 +285,42 @@ export const filterAvailableEvents = (
   );
 
   return events.filter((event) => {
-    // availableOnly: eligibility + not full
-    if (filters.availableOnly) {
-      if (!isEventEligible(event, enrolledEventIds)) {
-        return false;
-      }
-      if (!isEventNotFull(event)) {
-        return false;
-      }
+    if (
+      filters.availableOnly &&
+      !matchesAvailableFilter(event, enrolledEventIds)
+    ) {
+      return false;
     }
 
-    // familyOnly: participantsPerInvite === Family
-    if (filters.familyOnly) {
-      if (event.participantsPerInvite !== EventParticipantsPerInvite.Family) {
-        return false;
-      }
+    if (filters.familyOnly && !matchesFamilyFilter(event)) {
+      return false;
     }
 
-    // themePaths: event must have matching themePath slug
-    if (filters.themePaths && filters.themePaths.length > 0) {
-      const eventSlugs = (event.themePaths || [])
-        .map((tp) => tp?.slug)
-        .filter((s): s is string => Boolean(s));
-      if (eventSlugs.length === 0) {
-        return false;
-      }
-      const matchesTheme = filters.themePaths.some((slug) =>
-        eventSlugs.includes(slug)
-      );
-      if (!matchesTheme) {
-        return false;
-      }
+    if (
+      filters.themePaths &&
+      filters.themePaths.length > 0 &&
+      !matchesThemePathsFilter(event, filters.themePaths)
+    ) {
+      return false;
     }
 
-    // accessibility: event must have matching accessibility attribute
-    if (filters.accessibility && filters.accessibility.length > 0) {
-      const eventAcc = (event.accessibility || []).filter(Boolean);
-      if (eventAcc.length === 0) {
-        return false;
-      }
-      const matchesAcc = filters.accessibility.some((acc) =>
-        eventAcc.includes(acc)
-      );
-      if (!matchesAcc) {
-        return false;
-      }
+    if (
+      filters.accessibility &&
+      filters.accessibility.length > 0 &&
+      !matchesAccessibilityFilter(event, filters.accessibility)
+    ) {
+      return false;
     }
 
-    // Occurrence-level criteria: at least one upcoming occurrence must satisfy all occurrence filters simultaneously
-    if (hasOccurrenceFilters) {
-      const occurrences = (event.occurrences?.edges || [])
-        .map((e) => e?.node)
-        .filter((occ): occ is AvailableOccurrence => Boolean(occ));
-
-      if (occurrences.length === 0) {
-        // If event has no occurrences, it cannot match date or language criteria
-        if (parsedStartDate || filterLanguages.length > 0) {
-          return false;
-        }
-      } else {
-        const hasMatchingOccurrence = occurrences.some((occ) =>
-          doesOccurrenceMatchFilters(occ, {
-            startDate: parsedStartDate,
-            languages: filterLanguages,
-            availableOnly: filters.availableOnly,
-          })
-        );
-        if (!hasMatchingOccurrence) {
-          return false;
-        }
-      }
+    if (
+      hasOccurrenceFilters &&
+      !matchesOccurrenceFilters(event, {
+        parsedStartDate,
+        filterLanguages,
+        availableOnly: filters.availableOnly,
+      })
+    ) {
+      return false;
     }
 
     return true;
