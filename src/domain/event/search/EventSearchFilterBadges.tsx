@@ -7,10 +7,10 @@ import { useEventSearchFormContext } from './context/EventSearchFormContext';
 import styles from './childEventsSearch.module.scss';
 
 /**
- * Renders active filter badges as a list of removable tags followed by
+ * Renders active filter badges as a list of removable pills followed by
  * a clear-all button. Returns early (null) when no badges are active.
  */
-export const EventSearchFilterTags: React.FC = () => {
+export const EventSearchFilterBadges: React.FC = () => {
   const { t } = useTranslation();
   const { activeBadges, removeBadge, clearAllFilters, registerBadgeRef } =
     useEventSearchFormContext();
@@ -20,8 +20,7 @@ export const EventSearchFilterTags: React.FC = () => {
   }
 
   return (
-    <div
-      role="group"
+    <section
       className={styles.filterBadgesWrapper}
       aria-label={t('search.filter.activeFilters', 'Valitut suodattimet')}
     >
@@ -50,8 +49,8 @@ export const EventSearchFilterTags: React.FC = () => {
         <IconCross aria-hidden="true" className={styles.clearIcon} />
         {t('search.filter.clearButton')}
       </Button>
-    </div>
+    </section>
   );
 };
 
-export default EventSearchFilterTags;
+export default EventSearchFilterBadges;
