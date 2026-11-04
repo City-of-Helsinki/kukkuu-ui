@@ -127,6 +127,7 @@ export type EventSearchFilters = {
 TypeScript will automatically flag missing definitions across the codebase:
 
 - **`searchFilterUrlConfig.ts`**: Add entry to `FILTER_URL_CONFIG` defining `paramName`, `defaultValue`, `isActive`, `parseFromUrl`, and `writeToUrl`. (This also updates `SEARCH_URL_PARAMS`, `DEFAULT_SEARCH_FILTERS`, and `parseSearchFiltersFromUrl` automatically).
+  - _Optional (`FilterOptionsContext`)_: If the filter represents dynamic options (like `themePaths` or `languages`) and URL parameter values should be validated/whitelisted against known options during URL parsing, also add the option list to `FilterOptionsContext`. For booleans, dates, or freeform filters, `FilterOptionsContext` does not need updating.
 - **`hooks/useActiveBadges.ts`**: Add entry to `BADGE_GENERATORS` defining how the badge label renders.
 - **`hooks/useFilterBadges.ts`**: Add entry to `BADGE_FILTER_REMOVERS` defining how clicking `×` removes the filter.
 
@@ -162,14 +163,7 @@ src/domain/event/search/
 ├── searchDateUtils.ts            # Finnish & ISO date parser/formatter helpers
 ├── eventSearchUtils.ts           # Event filtering, sorting, and pagination logic
 ├── context/                      # React Context providers (URL, Form, Results)
-├── fields/                       # Isolated form input field components
-│   ├── ChildSelectorField.tsx
-│   ├── ThemePathFilterField.tsx
-│   ├── StartDateFilterField.tsx
-│   ├── AccessibilityFilterField.tsx
-│   ├── LanguageFilterField.tsx
-│   ├── AvailableOnlyFilterField.tsx
-│   └── FamilyOnlyFilterField.tsx
+├── fields/                       # Form input field components (e.g. ThemePath, Language)
 ├── hooks/                        # Custom hooks (state sync, options, sticky header)
 └── types/                        # Filter types and contracts
 ```
