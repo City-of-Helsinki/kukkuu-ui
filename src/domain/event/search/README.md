@@ -1,137 +1,175 @@
 # Event Search Architecture
 
 This directory implements the guardian-facing event search experience using a
-**two-tier state model** and a **3-layer React Context/Provider stack**.
+**three-state synchronization model** and a **3-layer React Context stack**.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Two-Tier State Model](#two-tier-state-model)
-- [Provider Stack & Data Flow](#provider-stack--data-flow)
-- [Deferred vs. Immediate Action Flows](#deferred-vs-immediate-action-flows)
-- [Contexts & Providers](#contexts--providers)
-- [Module Organization](#module-organization)
+- [The Triad of Search State](#the-triad-of-search-state)
+- [Action Flows & State Transitions](#action-flows--state-transitions)
+  - [Flow A: Deferred Form Submit](#flow-a-deferred-form-submit)
+  - [Flow B: Immediate Action](#flow-b-immediate-action)
+- [Key Invariants (Golden Rules)](#key-invariants-golden-rules)
+- [How to Add a New Search Filter](#how-to-add-a-new-search-filter)
+  - [1. Declare the Filter Type](#1-declare-the-filter-type)
+  - [2. Follow TypeScript Compiler Errors](#2-follow-typescript-compiler-errors)
+  - [3. Create the Form Field Component](#3-create-the-form-field-component)
+  - [4. Filter Available Events](#4-filter-available-events)
+- [Contexts & State Hooks](#contexts--state-hooks)
+- [Directory Organization](#directory-organization)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Two-Tier State Model
-
-To avoid firing network requests or mutating browser history on every checkbox
-toggle, dropdown selection, or date input change, event search separates state
-into two tiers:
-
-- **Committed State (URL-backed)**:
-  - Managed by `EventSearchUrlProvider` (`EventSearchUrlContext`).
-  - The URL query string is the single source of truth for active search
-    results and filter badges.
-- **Draft State (Form-local)**:
-  - Managed by `EventSearchFormProvider` (`EventSearchFormContext`).
-  - Holds uncommitted form selections (`draftChildId`, `draftFilters`) while
-    the user interacts with form controls, and automatically re-syncs when the
-    URL changes externally (e.g., browser back/forward navigation).
-  - Commits to the URL either **deferred** on form submit or **immediately**
-    for direct actions (removing a filter badge, clearing all filters, or
-    applying a recommended theme path).
-
 ---
 
-## Provider Stack & Data Flow
+## The Triad of Search State
 
-`EventSearchProviders` stacks three specialized context providers so each
-concern is isolated:
+To prevent state inconsistencies and unnecessary network traffic, event search
+is organized into three synchronized state slices:
 
 ```mermaid
-flowchart TD
-    subgraph Providers["EventSearchProviders (3-Layer Context Stack)"]
-        direction TB
-        P1["1. EventSearchUrlProvider<br/>(Committed URL State)"]
-        P2["2. EventSearchFormProvider<br/>(Draft Form State & Options)"]
-        P3["3. EventSearchResultsUiProvider<br/>(Query Results & Page UX)"]
-        P1 --> P2 --> P3
-    end
+flowchart LR
+    URL["1. URL State\n(Committed)"]
+    Draft["2. Form State\n(Draft Inputs)"]
+    Badges["3. Filter Badges\n(Active Pills)"]
 
-    subgraph UI["Search UI Layer"]
-        Controls["Search Controls<br/>(Filter Form, Active Filter Tags)"]
-        Header["Sticky Header & Notifications<br/>(Sticky Bar, Theme Banner)"]
-        Results["Results View<br/>(Event Cards, Pagination, Empty State)"]
-    end
-
-    P1 -.->|Active child & URL state| Results
-    P2 -.->|Draft state, options & filter actions| Controls
-    P2 -.->|Quick-filter action| Header
-    P3 -.->|Events, counts & loadMore| Results
-    P3 -.->|Scroll state & child metadata| Header
+    Draft -->|1. Submit Click| URL
+    URL -->|2. Back/Forward Nav| Draft
+    URL -->|3. Derives Pills| Badges
+    Badges -->|4. Dismiss Pill / Clear All| URL
+    URL -->|5. Re-syncs Draft| Draft
 ```
+
+| State Slice                  | Location / Storage                                | Purpose & Lifecycle                                                                                                                                                                                                                                               |
+| :--------------------------- | :------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. URL State (Committed)** | Browser URL query string                          | **Single source of truth** for active search query results, shareable links, and active badges. Managed by `EventSearchUrlProvider` (`useEventSearchUrlContext`). Survives page refreshes and browser history navigation.                                         |
+| **2. Form State (Draft)**    | Form-local state (`draftFilters`, `draftChildId`) | **Staged user input**. Allows guardians to change multiple criteria freely without triggering unwanted GraphQL queries or polluting browser history. Commits to URL only when the user clicks "Etsi tapahtumia" (Submit). Access via `useEventSearchFormContext`. |
+| **3. Filter Badges**         | Active badges under submit button                 | **Visual representation of committed filters**. Rendered via `EventSearchFilterBadges`. Clicking `×` on a badge or clicking "Tyhjennä valinnat" immediately updates the URL and re-syncs the form inputs. Access via `useEventSearchFormContext`.                 |
 
 ---
 
-## Deferred vs. Immediate Action Flows
+## Action Flows & State Transitions
+
+### Flow A: Deferred Form Submit
+
+Triggered when the user interacts with form controls (selects, date pickers, checkboxes) and submits the form:
 
 ```mermaid
 sequenceDiagram
+    autonumber
     actor User
-    participant UI as Form / Filter Tags
-    participant Draft as Form Provider (Draft)
-    participant URL as URL Provider (Params)
-    participant Query as Results UI Provider
+    participant Form as Form Controls
+    participant Draft as Draft State
+    participant URL as URL State
+    participant Badges as Filter Badges
+    participant Results as Search Results
 
-    Note over User,Query: Deferred Form Flow (Draft -> Submit)
-    User->>UI: Edits filter inputs or selects child
-    UI->>Draft: Updates local draft state only
-    Note right of Draft: No URL change or query refetch
-    User->>UI: Clicks "Hae" (Submit)
-    UI->>Draft: submitSearch()
-    Draft->>URL: Commits draft child & filters to URL
-    URL->>Draft: Syncs committed URL state back to draft
-    URL->>Query: Updates search results & active badges
+    User->>Form: Changes filter or selects child
+    Form->>Draft: Updates local draft state only
+    Note over Draft: No URL change, no GraphQL refetch
+    User->>Form: Clicks 'Etsi tapahtumia' (Submit)
+    Form->>URL: Commits draft filters to URL
+    URL->>Badges: Renders active badges
+    URL->>Results: Executes search query with new filters
+    URL->>Draft: Re-syncs draft state from URL
+```
 
-    Note over User,Query: Immediate Action Flow (Badges / Clear / Banner)
-    User->>UI: Removes badge, clears all, or applies theme path
-    UI->>Draft: Triggers direct filter action
-    Draft->>Draft: Updates draft state immediately
-    Draft->>URL: Commits updated filters to URL immediately
-    URL->>Query: Updates search results & active badges
+### Flow B: Immediate Action
+
+Triggered when the user dismisses an active badge (`×`), clears all filters, or applies a recommended theme path banner:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User
+    participant Badges as Filter Badges
+    participant URL as URL State
+    participant Draft as Draft State
+    participant Results as Search Results
+
+    User->>Badges: Clicks badge [X] or 'Tyhjennä valinnat'
+    Badges->>URL: Immediately removes filter from URL
+    URL->>Badges: Updates active badges
+    URL->>Draft: Re-syncs form inputs to match URL
+    URL->>Results: Refetches query results
 ```
 
 ---
 
-## Contexts & Providers
+## Key Invariants (Golden Rules)
 
-- **`EventSearchProviders`**: Composite wrapper nesting the URL, Form, and
-  Results UI providers in order.
-- **`EventSearchUrlContext` / `EventSearchUrlProvider`**: Parses committed
-  filters and the active child ID from the URL, sanitizes invalid/foreign child
-  IDs, and exposes `commitSearchToUrl`.
-- **`EventSearchFormContext` / `EventSearchFormProvider`**: Coordinates two-way
-  draft/URL synchronization, dropdown options, form submission, and removable
-  filter badges with focus management.
-- **`EventSearchResultsUiContext` / `EventSearchResultsUiProvider`**: Executes
-  and paginates the event search query, resolves active child metadata and
-  notifications, tracks sticky scroll state, and provides screen-reader
-  announcements.
+1. **Never query GraphQL on form input changes**: GraphQL queries only execute in response to URL state changes, never during form typing or checkbox toggling.
+2. **Never write to the URL directly from form inputs**: Form controls only update form draft state (`draftFilters`). They flush to the URL only on form submission.
+3. **Badges reflect committed URL state**: The badges list is derived from `committedFilters`, not `draftFilters`. However, dismissing a badge updates the URL immediately.
+4. **URL query parameters are canonical**: External URL navigation (browser back/forward, bookmarks, external links) automatically resets the form draft state to match the URL.
 
 ---
 
-## Module Organization
+## How to Add a New Search Filter
 
-Rather than placing business logic inside providers or UI components,
-responsibilities are split by layer:
+Follow this 4-step checklist when adding a new search filter category (e.g. `venue`):
 
-- **Custom Hooks**: Each provider delegates its logic to focused hooks covering
-  three areas:
-  - _URL & Draft Synchronization_: Parsing/serializing URL query parameters,
-    cleaning up invalid child IDs, and keeping local form draft state
-    synchronized with committed URL state.
-  - _Filter Options & Active Badges_: Supplying localized select options
-    (children, theme paths, accessibility, languages) and deriving removable
-    filter badges with keyboard focus continuity.
-  - _Event Querying & Results UX_: Fetching available events via Apollo,
-    filtering and paginating results client-side, tracking scroll position for
-    the sticky header, and managing dismissible recommendations.
-- **UI Components**: Thin presentation components that subscribe only to the
-  context slices they need—split into the page container (handling
-  profile/child redirects), search controls (filter form and active filter
-  tags), sticky/notification banners, and result cards.
-- **Pure Utilities**: Stateless helper functions for URL parameter
-  parsing/serialization, date formatting, event/occurrence eligibility
-  matching, and client-side pagination.
+### 1. Declare the Filter Type
+
+In `types/filterTypes.ts`, add the property and its type to `EventSearchFilters`:
+
+```ts
+export type EventSearchFilters = {
+  themePaths: string[];
+  // ... existing fields
+  venue: string[]; // <-- new field
+};
+```
+
+### 2. Follow TypeScript Compiler Errors
+
+TypeScript will automatically flag missing definitions across the codebase:
+
+- **`searchFilterUrlConfig.ts`**: Add entry to `FILTER_URL_CONFIG` defining `paramName`, `defaultValue`, `isActive`, `parseFromUrl`, and `writeToUrl`. (This also updates `SEARCH_URL_PARAMS`, `DEFAULT_SEARCH_FILTERS`, and `parseSearchFiltersFromUrl` automatically).
+- **`hooks/useActiveBadges.ts`**: Add entry to `BADGE_GENERATORS` defining how the badge label renders.
+- **`hooks/useFilterBadges.ts`**: Add entry to `BADGE_FILTER_REMOVERS` defining how clicking `×` removes the filter.
+
+### 3. Create the Form Field Component
+
+1. Create `fields/VenueFilterField.tsx` consuming `useEventSearchFormContext()` (`draftFilters.venue` and `updateDraftFilter('venue', ...)`).
+2. Export it from `fields/index.ts` and mount it inside the accordion grid in `EventSearchFilterForm.tsx`.
+
+### 4. Filter Available Events
+
+Update `filterAvailableEvents()` in `eventSearchUtils.ts` to evaluate the new filter criteria against available events or occurrences.
+
+---
+
+## Contexts & State Hooks
+
+The feature uses three context providers stacked in `EventSearchProviders`:
+
+- **`EventSearchUrlProvider`**: Manages URL parsing and browser history navigation. Access via `useEventSearchUrlContext()`.
+- **`EventSearchFormProvider`**: Manages form draft state, option lists, and active badges. Access via `useEventSearchFormContext()`.
+- **`EventSearchResultsUiProvider`**: Manages Apollo query results, client-side pagination, sticky header scroll state, and screen-reader announcements. Access via `useEventSearchResultsUiContext()`.
+
+---
+
+## Directory Organization
+
+```text
+src/domain/event/search/
+├── ChildEventsSearch.tsx         # Page container & routing guard
+├── EventSearchFilterForm.tsx     # Form orchestrator (accordion, submit button)
+├── EventSearchFilterBadges.tsx   # Active filter pills & clear-all button
+├── searchFilterUrlConfig.ts      # URL parameter definitions & mapping strategies
+├── searchDateUtils.ts            # Finnish & ISO date parser/formatter helpers
+├── eventSearchUtils.ts           # Event filtering, sorting, and pagination logic
+├── context/                      # React Context providers (URL, Form, Results)
+├── fields/                       # Isolated form input field components
+│   ├── ChildSelectorField.tsx
+│   ├── ThemePathFilterField.tsx
+│   ├── StartDateFilterField.tsx
+│   ├── AccessibilityFilterField.tsx
+│   ├── LanguageFilterField.tsx
+│   ├── AvailableOnlyFilterField.tsx
+│   └── FamilyOnlyFilterField.tsx
+├── hooks/                        # Custom hooks (state sync, options, sticky header)
+└── types/                        # Filter types and contracts
+```
