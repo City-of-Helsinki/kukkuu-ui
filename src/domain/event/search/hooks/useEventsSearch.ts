@@ -48,6 +48,21 @@ export type UseEventsSearchResult = {
  * Extracts available events from GraphQL query data, applies active search filters,
  * and paginates the visible items by page size with a loadMore action.
  *
+ * @deprecated TODO: Deprecate client-side in-memory filtering and pagination.
+ * Currently, `useEventsSearch` fetches the entire child query tree with all upcoming events
+ * and performs in-memory filtering (`filterAvailableEvents`) and client-side slice-based
+ * pagination (`paginateSearchItems`).
+ * This approach does not scale as the number of events grows, downloads unnecessary payload data,
+ * and disconnects total result counts and active filters from server-side state.
+ *
+ * Real API-level fetching and filtering should be implemented instead:
+ * 1. Update the backend GraphQL schema/queries to accept filter arguments (e.g. `startDate`,
+ *    `languages`, `availableOnly`, `themePaths`, `accessibility`, `familyOnly`) and pagination
+ *    variables (`first`/`after` or `offset`/`limit`).
+ * 2. Delegate filtering, sorting, and pagination entirely to the backend API.
+ * 3. Replace this in-memory hook with server-side pagination (e.g. Apollo Client `fetchMore` /
+ *    Relay cursor connection handling).
+ *
  * @param options - Configuration options for the events search query.
  * @param options.childId - ID of the child whose events are being queried.
  * @param options.pageSize - Number of items displayed per page (default: 15).
@@ -85,6 +100,9 @@ export const useEventsSearch = ({
     [data?.child]
   );
 
+  // TODO: Replace client-side filtering and in-memory pagination with API-level query arguments
+  // and server-side pagination. The backend API should handle filter arguments (dates, languages,
+  // theme paths, accessibility, availability) and pagination cursors/offsets.
   const allEvents: AvailableEvent[] = useMemo(() => {
     if (filters) {
       return filterAvailableEvents(rawEvents, filters, enrolledEventIds);
@@ -95,6 +113,8 @@ export const useEventsSearch = ({
     return rawEvents.filter((ev) => isEventEligible(ev, enrolledEventIds));
   }, [rawEvents, filters, availableOnly, enrolledEventIds]);
 
+  // TODO: Replace client-side slicing with server-side pagination
+  // (e.g., Apollo Client fetchMore / cursor connection)
   const pagination = useMemo(
     () => paginateSearchItems(allEvents, page, pageSize),
     [allEvents, page, pageSize]
