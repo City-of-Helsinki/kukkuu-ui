@@ -5,19 +5,17 @@ import {
   formatOccurrenceDateRange,
   formatOccurrenceTimeRange,
 } from '../../../common/time/occurrenceTime';
-import { EventParticipantsPerInvite } from '../../api/generatedTypes/graphql';
 import type {
   AvailableEvent,
   AvailableOccurrence,
   AvailableVenue,
-  ChildAvailableOccurrencesQuery,
-} from '../types/ChildAvailableOccurrencesTypes';
+  EventsSearchQuery,
+} from '../types/EventsSearchTypes';
 import type { EventSearchFilters } from './types/filterTypes';
 import {
   FILTER_URL_CONFIG,
   type FilterOptionsContext,
 } from './searchFilterUrlConfig';
-import { parseFilterStartDate } from './searchDateUtils';
 
 export {
   EVENT_SEARCH_FILTER_KEYS,
@@ -43,47 +41,6 @@ export {
 } from './searchDateUtils';
 
 export const DEFAULT_SEARCH_PAGE_SIZE = 15;
-
-export type PaginatedSearchResult<T> = {
-  items: T[];
-  allItems: T[];
-  totalCount: number;
-  remainingCount: number;
-  hasMore: boolean;
-  pageCount: number;
-  currentPage: number;
-};
-
-/**
- * Splits an in-memory array into paginated slices for search results.
- *
- * @deprecated TODO: Deprecate client-side in-memory pagination.
- * Pagination should be handled by the backend API via GraphQL connections / cursor-based pagination
- * (e.g., `first`, `after`) or offset pagination rather than slicing in-memory arrays on the client.
- * Remove this function once backend-driven pagination is integrated into the search queries.
- */
-export const paginateSearchItems = <T>(
-  allItems: T[],
-  page = 1,
-  pageSize = DEFAULT_SEARCH_PAGE_SIZE
-): PaginatedSearchResult<T> => {
-  const safePageSize = Math.max(1, pageSize);
-  const totalCount = allItems.length;
-  const pageCount = Math.max(1, Math.ceil(totalCount / safePageSize));
-  const currentPage = Math.min(Math.max(1, page), pageCount);
-  const items = allItems.slice(0, currentPage * safePageSize);
-  const remainingCount = Math.max(0, totalCount - items.length);
-
-  return {
-    items,
-    allItems,
-    totalCount,
-    remainingCount,
-    hasMore: remainingCount > 0,
-    pageCount,
-    currentPage,
-  };
-};
 
 export const DEFAULT_SEARCH_FILTERS: EventSearchFilters = Object.fromEntries(
   (Object.keys(FILTER_URL_CONFIG) as (keyof EventSearchFilters)[]).map((key) => [
@@ -160,193 +117,22 @@ export const writeSearchFiltersToUrlParams = (
 };
 
 /**
- * Checks whether an event is considered to have available capacity.
- * For external ticket events with hasAnyFreePasswords, checks that flag.
- * For events with occurrences, checks if at least one occurrence has remainingCapacity >= 2.
+ * Extracts non-null event nodes in server-returned order from the `Query.events` connection.
  */
-export const isEventNotFull = (event: AvailableEvent): boolean => {
-  if (event.ticketSystem?.hasAnyFreePasswords !== undefined) {
-    return Boolean(event.ticketSystem.hasAnyFreePasswords);
-  }
-
-  const occurrences = (event.occurrences?.edges || [])
-    .map((e) => e?.node)
-    .filter((occ): occ is AvailableOccurrence => Boolean(occ));
-
-  if (occurrences.length === 0) {
-    return true;
-  }
-
-  return occurrences.some(
-    (occ) => occ.remainingCapacity == null || occ.remainingCapacity >= 2
-  );
-};
-
-/**
- * Checks whether a single occurrence matches simultaneous occurrence-level filter criteria.
- */
-export const doesOccurrenceMatchFilters = (
-  occurrence: AvailableOccurrence,
-  filters: {
-    startDate?: Date | null;
-    languages?: string[];
-    availableOnly?: boolean;
-  }
-): boolean => {
-  if (filters.startDate) {
-    const occTime = new Date(occurrence.time);
-    if (occTime < filters.startDate) {
-      return false;
-    }
-  }
-
-  if (filters.languages && filters.languages.length > 0) {
-    const occLang = occurrence.occurrenceLanguage?.toLowerCase();
-    if (!occLang || !filters.languages.includes(occLang)) {
-      return false;
-    }
-  }
-
-  if (filters.availableOnly) {
-    if (
-      occurrence.remainingCapacity != null &&
-      occurrence.remainingCapacity < 2
-    ) {
-      return false;
-    }
-  }
-
-  return true;
-};
-
-const matchesAvailableFilter = (
-  event: AvailableEvent,
-  enrolledEventIds?: Set<string>
-): boolean => isEventEligible(event, enrolledEventIds) && isEventNotFull(event);
-
-const matchesFamilyFilter = (event: AvailableEvent): boolean =>
-  event.participantsPerInvite === EventParticipantsPerInvite.Family;
-
-const matchesThemePathsFilter = (
-  event: AvailableEvent,
-  filterThemePaths: string[]
-): boolean => {
-  const eventSlugs = (event.themePaths || [])
-    .map((tp) => tp?.slug)
-    .filter((s): s is string => Boolean(s));
-  return (
-    eventSlugs.length > 0 &&
-    filterThemePaths.some((slug) => eventSlugs.includes(slug))
-  );
-};
-
-const matchesAccessibilityFilter = (
-  event: AvailableEvent,
-  filterAccessibility: string[]
-): boolean => {
-  const eventAcc = (event.accessibility || []).filter(Boolean);
-  return (
-    eventAcc.length > 0 &&
-    filterAccessibility.some((acc) => eventAcc.includes(acc))
-  );
-};
-
-const matchesOccurrenceFilters = (
-  event: AvailableEvent,
-  options: {
-    parsedStartDate: Date | null;
-    filterLanguages: string[];
-    availableOnly?: boolean;
-  }
-): boolean => {
-  const occurrences = (event.occurrences?.edges || [])
-    .map((e) => e?.node)
-    .filter((occ): occ is AvailableOccurrence => Boolean(occ));
-
-  if (occurrences.length === 0) {
-    return !options.parsedStartDate && options.filterLanguages.length === 0;
-  }
-
-  return occurrences.some((occ) =>
-    doesOccurrenceMatchFilters(occ, {
-      startDate: options.parsedStartDate,
-      languages: options.filterLanguages,
-      availableOnly: options.availableOnly,
-    })
-  );
-};
-
-/**
- * Filters available events by combining event-level and occurrence-level criteria.
- *
- * @deprecated TODO: Deprecate client-side in-memory event filtering.
- * This function performs filtering over an in-memory array of events on the client side.
- * Filtering should be handled on the backend/API level via GraphQL query arguments
- * (e.g. date range, language, theme paths, accessibility, availability).
- * Once the backend API supports querying filtered events directly, remove this in-memory filter logic
- * and pass the search filter parameters directly to the GraphQL query.
- *
- * @param events - Raw array of available events to filter.
- * @param filters - Active search filters to apply.
- * @param enrolledEventIds - Optional set of event IDs the child has already enrolled in.
- * @returns Filtered array of available events.
- */
-export const filterAvailableEvents = (
-  events: AvailableEvent[],
-  filters: Partial<EventSearchFilters>,
-  enrolledEventIds?: Set<string>
+export const extractSearchEvents = (
+  eventsConnection?: EventsSearchQuery['events'] | null
 ): AvailableEvent[] => {
-  const parsedStartDate = filters.startDate
-    ? parseFilterStartDate(filters.startDate)
-    : null;
-  const filterLanguages = (filters.languages || []).map((l) => l.toLowerCase());
-  const hasOccurrenceFilters = Boolean(
-    parsedStartDate || filterLanguages.length > 0 || filters.availableOnly
-  );
-
-  return events.filter((event) => {
-    if (
-      filters.availableOnly &&
-      !matchesAvailableFilter(event, enrolledEventIds)
-    ) {
-      return false;
-    }
-
-    if (filters.familyOnly && !matchesFamilyFilter(event)) {
-      return false;
-    }
-
-    if (
-      filters.themePaths &&
-      filters.themePaths.length > 0 &&
-      !matchesThemePathsFilter(event, filters.themePaths)
-    ) {
-      return false;
-    }
-
-    if (
-      filters.accessibility &&
-      filters.accessibility.length > 0 &&
-      !matchesAccessibilityFilter(event, filters.accessibility)
-    ) {
-      return false;
-    }
-
-    if (
-      hasOccurrenceFilters &&
-      !matchesOccurrenceFilters(event, {
-        parsedStartDate,
-        filterLanguages,
-        availableOnly: filters.availableOnly,
-      })
-    ) {
-      return false;
-    }
-
-    return true;
-  });
+  if (!eventsConnection?.edges) {
+    return [];
+  }
+  return eventsConnection.edges
+    .map((edge) => edge?.node)
+    .filter((event): event is AvailableEvent => Boolean(event));
 };
 
+/**
+ * Returns non-null event occurrences sorted chronologically by start time ascending.
+ */
 export const getSortedEventOccurrences = (
   event: AvailableEvent
 ): AvailableOccurrence[] => {
@@ -354,122 +140,6 @@ export const getSortedEventOccurrences = (
     .map((edge) => edge?.node)
     .filter((occ): occ is AvailableOccurrence => Boolean(occ))
     .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
-};
-
-/**
- * Sorts available events in ascending order based on the start time of their earliest occurrence.
- * Events with occurrences are ordered before events without any occurrences.
- *
- * @param events - List of events to sort.
- * @returns A sorted copy of the events array.
- */
-export const sortEventsByEarliestOccurrence = (
-  events: AvailableEvent[]
-): AvailableEvent[] => {
-  return [...events].sort((a, b) => {
-    const occsA = getSortedEventOccurrences(a);
-    const occsB = getSortedEventOccurrences(b);
-    const earliestA =
-      occsA.length > 0 ? new Date(occsA[0].time).getTime() : null;
-    const earliestB =
-      occsB.length > 0 ? new Date(occsB[0].time).getTime() : null;
-    if (earliestA === null && earliestB === null) return 0;
-    if (earliestA === null) return 1;
-    if (earliestB === null) return -1;
-    return earliestA - earliestB;
-  });
-};
-
-const appendEventIfNotSeen = (
-  event: AvailableEvent | null | undefined,
-  seenIds: Set<string>,
-  target: AvailableEvent[]
-) => {
-  if (event?.id && !seenIds.has(event.id)) {
-    seenIds.add(event.id);
-    target.push(event);
-  }
-};
-
-const extractEventsFromUpcomingNode = (
-  node:
-    | NonNullable<
-        NonNullable<
-          NonNullable<
-            ChildAvailableOccurrencesQuery['child']
-          >['upcomingEventsAndEventGroups']
-        >['edges'][number]
-      >['node']
-    | undefined,
-  seenIds: Set<string>,
-  target: AvailableEvent[]
-) => {
-  if (!node) return;
-
-  if (
-    node.__typename === 'EventGroupNode' ||
-    ('events' in node && Boolean(node.events))
-  ) {
-    const groupEvents = ('events' in node && node.events?.edges) || [];
-    for (const groupEdge of groupEvents) {
-      appendEventIfNotSeen(groupEdge?.node, seenIds, target);
-    }
-  } else {
-    appendEventIfNotSeen(node as AvailableEvent, seenIds, target);
-  }
-};
-
-export const extractAvailableEvents = (
-  child?: ChildAvailableOccurrencesQuery['child'] | null
-): AvailableEvent[] => {
-  if (!child) {
-    return [];
-  }
-
-  // Extract from upcomingEventsAndEventGroups (standalone events + event group events)
-  if (child.upcomingEventsAndEventGroups?.edges) {
-    const events: AvailableEvent[] = [];
-    const seenIds = new Set<string>();
-
-    for (const edge of child.upcomingEventsAndEventGroups.edges) {
-      extractEventsFromUpcomingNode(edge?.node, seenIds, events);
-    }
-
-    return sortEventsByEarliestOccurrence(events);
-  }
-
-  // Fallback to legacy availableEvents
-  if (child.availableEvents?.edges) {
-    const events = child.availableEvents.edges
-      .map((edge) => edge?.node)
-      .filter((event): event is AvailableEvent => Boolean(event));
-
-    return sortEventsByEarliestOccurrence(events);
-  }
-
-  return [];
-};
-
-/**
- * Determines whether a child is eligible to enrol in a given event.
- * An event is ineligible if the child is already enrolled in it or
- * if an enrolmentDeniedReason is present (e.g. season event chosen, yearly limit, registration not open).
- *
- * @param event - The event to check.
- * @param enrolledEventIds - Optional set of event IDs the child has already enrolled in.
- * @returns True if the child is eligible to enrol, false otherwise.
- */
-export const isEventEligible = (
-  event: AvailableEvent,
-  enrolledEventIds?: Set<string>
-): boolean => {
-  if (enrolledEventIds?.has(event.id)) {
-    return false;
-  }
-  if (event.ticketSystem?.childPassword) {
-    return false;
-  }
-  return event.enrolmentDeniedReason === null;
 };
 
 export type EventOccurrencesSummary = {
@@ -480,6 +150,10 @@ export type EventOccurrencesSummary = {
   uniqueLanguages: string[];
 };
 
+/**
+ * Aggregates an event's occurrences into a summary with total count, first/last occurrence,
+ * deduplicated venues, and deduplicated lowercase language codes.
+ */
 export const getEventOccurrencesSummary = (
   event: AvailableEvent
 ): EventOccurrencesSummary => {

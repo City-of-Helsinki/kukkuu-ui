@@ -15,6 +15,10 @@ type EnrolCompletedDeps = {
   t: (key: string) => string;
 };
 
+/**
+ * Handles post-enrolment side effects, including updating Redux child event state,
+ * displaying the success toast, refetching the guardian profile, and navigating to the occurrence.
+ */
 export async function handleEnrolCompleted(
   data: EnrolOccurrenceMutation | null | undefined,
   { childId, dispatch, refetchProfile, goToOccurrence, t }: EnrolCompletedDeps

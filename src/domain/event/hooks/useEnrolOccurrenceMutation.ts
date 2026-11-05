@@ -50,6 +50,9 @@ export type EnrolOccurrenceMutationFn = (
   extraParams?: EnrolOccurrenceExtraParams
 ) => Promise<unknown>;
 
+/**
+ * Checks whether an array of GraphQL formatted errors includes a specific error code.
+ */
 function containsError(
   errors: ReadonlyArray<GraphQLFormattedError>,
   errorType: string
@@ -84,6 +87,10 @@ export function useEnrolOccurrenceMutation({
     EnrolOccurrenceMutationVariables
   >(enrolOccurrenceMutation, {
     client: graphqlClient,
+    update: (cache) => {
+      cache.evict({ fieldName: 'events' });
+      cache.gc();
+    },
     refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({
       childId,
       eventGroupId: eventGroupId ?? undefined,
