@@ -12,7 +12,7 @@ import {
 } from '../../../../utils/eventMockDataUtils';
 import { Language } from '../../../api/generatedTypes/graphql';
 import ChildEventsSearch from '../ChildEventsSearch';
-import { childAvailableEventsQuery } from '../../queries/childAvailableEventsQuery';
+import { eventsSearchQuery } from '../../queries/eventsSearchQuery';
 import { themePathsQuery } from '../../queries/themePathsQuery';
 
 const getThemePathsMock = (): MockedResponse => ({
@@ -127,6 +127,18 @@ vi.mock('../hooks/useStickyChildSelect', () => ({
   }),
 }));
 
+const defaultSearchVars = (overrides: Record<string, unknown> = {}) => ({
+  childId: 'child-1',
+  first: 15,
+  startDate: undefined,
+  languages: undefined,
+  themePaths: undefined,
+  accessibility: undefined,
+  familyOnly: undefined,
+  availableOnly: undefined,
+  ...overrides,
+});
+
 describe('ChildEventsSearch', () => {
   beforeEach(() => {
     mockParams = {};
@@ -145,6 +157,7 @@ describe('ChildEventsSearch', () => {
     duration: 60,
     enrolmentDeniedReason: null,
     registrationOpensAt: null,
+    themePaths: [],
     occurrences: {
       edges: [
         {
@@ -164,28 +177,38 @@ describe('ChildEventsSearch', () => {
     },
   });
 
-  const getSuccessEventsMock = () => ({
+  const getSuccessEventsMock = (varOverrides: Record<string, unknown> = {}) => ({
     request: {
-      query: childAvailableEventsQuery,
-      variables: { id: 'child-1' },
+      query: eventsSearchQuery,
+      variables: defaultSearchVars(varOverrides),
     },
+    maxUsageCount: Infinity,
     result: {
       data: {
         child: {
+          __typename: 'ChildNode',
           id: 'child-1',
           name: 'Malla Mallikas',
           birthyear: 2020,
-          themePath: null,
-          upcomingEventsAndEventGroups: {
-            edges: [
-              {
-                node: {
-                  __typename: 'EventNode',
-                  ...testEventNode,
-                },
-              },
-            ],
+        },
+        events: {
+          __typename: 'EventsConnection',
+          count: 1,
+          pageInfo: {
+            __typename: 'PageInfo',
+            hasNextPage: false,
+            endCursor: 'cursor-1',
           },
+          edges: [
+            {
+              __typename: 'EventNodeEdge',
+              cursor: 'cursor-1',
+              node: {
+                __typename: 'EventNode',
+                ...testEventNode,
+              },
+            },
+          ],
         },
       },
     },
@@ -228,53 +251,48 @@ describe('ChildEventsSearch', () => {
     const user = userEvent.setup();
     render(<ChildEventsSearch />, [getSuccessEventsMock()]);
 
-    // The child selector is exposed to assistive technology as a labelled
-    // combobox. HDS Select renders the visible <label> and the
-    // role="combobox" button that the label points to.
     const childSelector = await screen.findByRole('combobox', {
       name: /Lapsi/,
     });
 
-    // Select a child using only accessible queries. Only the draft state is
-    // updated here, so no additional GraphQL request is triggered.
     await user.click(childSelector);
     await user.click(
       await screen.findByRole('option', { name: /Pikkuveli Mallikas/ })
     );
 
-    // The combobox announces the newly selected child to screen reader users.
     await waitFor(() => {
       expect(childSelector).toHaveAccessibleName(/Pikkuveli Mallikas/);
     });
 
-    // The description is linked with aria-describedby on the combobox itself,
-    // so screen readers announce it when the child selector receives focus.
     const descriptionText =
       'Valitse lapsi ja paina Etsi tapahtumia päivittääksesi hakutulokset.';
     expect(childSelector).toHaveAccessibleDescription(descriptionText);
-
-    // The visually-hidden description is still present in the accessibility
-    // tree, verified through a text query instead of raw DOM selectors or
-    // implementation-specific class names.
     expect(screen.getByText(descriptionText)).toBeInTheDocument();
   });
 
   it('renders empty results state', async () => {
     const emptyMock = {
       request: {
-        query: childAvailableEventsQuery,
-        variables: { id: 'child-1' },
+        query: eventsSearchQuery,
+        variables: defaultSearchVars(),
       },
       result: {
         data: {
           child: {
+            __typename: 'ChildNode',
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
-            themePath: null,
-            upcomingEventsAndEventGroups: {
-              edges: [],
+          },
+          events: {
+            __typename: 'EventsConnection',
+            count: 0,
+            pageInfo: {
+              __typename: 'PageInfo',
+              hasNextPage: false,
+              endCursor: null,
             },
+            edges: [],
           },
         },
       },
@@ -300,65 +318,101 @@ describe('ChildEventsSearch', () => {
     expect(screen.queryByText('0 hakutulosta')).not.toBeInTheDocument();
   });
 
-  it('renders matching events with pagination and loads more when button is clicked', async () => {
+  it('renders matching events with cursor pagination and loads more via fetchMore when button is clicked', async () => {
     const user = userEvent.setup();
-    const eventsData = Array.from({ length: 20 }, (_, i) => ({
+    const eventsEdges = Array.from({ length: 20 }, (_, i) => ({
+      __typename: 'EventNodeEdge' as const,
+      cursor: `cursor-${i + 1}`,
       node: {
-        id: `event-${i + 1}`,
-        name: `Tapahtuma ${i + 1}`,
-        shortDescription: `Kuvaus ${i + 1}`,
-        image: null,
-        imageAltText: null,
-        duration: 60,
-        enrolmentDeniedReason: null,
-        registrationOpensAt: null,
-        ticketSystem: null,
-        occurrences: {
-          edges: [
-            {
-              node: {
-                id: `occ-${i + 1}`,
-                time: `2026-10-${String(i + 1).padStart(2, '0')}T10:00:00Z`,
-                remainingCapacity: 5,
-                occurrenceLanguage: 'FI',
-                venue: {
-                  id: 'v-1',
-                  name: 'Lastenkulttuurikeskus',
-                  address: 'Lastenkatu 1',
+        __typename: 'EventNode' as const,
+        ...fakeAvailableEvent({
+          id: `event-${i + 1}`,
+          name: `Tapahtuma ${i + 1}`,
+          shortDescription: `Kuvaus ${i + 1}`,
+          image: null,
+          imageAltText: null,
+          duration: 60,
+          enrolmentDeniedReason: null,
+          registrationOpensAt: null,
+          ticketSystem: null,
+          themePaths: [],
+          occurrences: {
+            edges: [
+              {
+                node: {
+                  __typename: 'OccurrenceNode' as const,
+                  id: `occ-${i + 1}`,
+                  time: `2026-10-${String(i + 1).padStart(2, '0')}T10:00:00Z`,
+                  remainingCapacity: 5,
+                  occurrenceLanguage: Language.Fi,
+                  venue: {
+                    id: 'v-1',
+                    name: 'Lastenkulttuurikeskus',
+                    address: 'Lastenkatu 1',
+                  },
                 },
               },
-            },
-          ],
-        },
+            ],
+          },
+        }),
       },
     }));
 
-    const allEventsMock = {
+    const page1Mock = {
       request: {
-        query: childAvailableEventsQuery,
-        variables: { id: 'child-1' },
+        query: eventsSearchQuery,
+        variables: defaultSearchVars(),
       },
       result: {
         data: {
           child: {
+            __typename: 'ChildNode',
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
-            themePath: null,
-            upcomingEventsAndEventGroups: {
-              edges: eventsData.map((e) => ({
-                node: {
-                  __typename: 'EventNode',
-                  ...e.node,
-                },
-              })),
+          },
+          events: {
+            __typename: 'EventsConnection',
+            count: 20,
+            pageInfo: {
+              __typename: 'PageInfo',
+              hasNextPage: true,
+              endCursor: 'cursor-15',
             },
+            edges: eventsEdges.slice(0, 15),
           },
         },
       },
     };
 
-    render(<ChildEventsSearch />, [allEventsMock]);
+    const page2Mock = {
+      request: {
+        query: eventsSearchQuery,
+        variables: defaultSearchVars({ after: 'cursor-15' }),
+      },
+      result: {
+        data: {
+          child: {
+            __typename: 'ChildNode',
+            id: 'child-1',
+            name: 'Malla Mallikas',
+            birthyear: 2020,
+          },
+          events: {
+            __typename: 'EventsConnection',
+            count: 20,
+            pageInfo: {
+              __typename: 'PageInfo',
+              hasNextPage: false,
+              endCursor: 'cursor-20',
+            },
+            edges: eventsEdges.slice(15, 20),
+          },
+        },
+      },
+    };
+
+    render(<ChildEventsSearch />, [page1Mock, page2Mock]);
 
     await waitFor(() => {
       expect(screen.getByText('20 hakutulosta')).toBeInTheDocument();
@@ -376,7 +430,9 @@ describe('ChildEventsSearch', () => {
     await user.click(loadMoreButton);
 
     // After loading more, all 20 events are shown and load more button disappears
-    expect(screen.getAllByRole('article')).toHaveLength(20);
+    await waitFor(() => {
+      expect(screen.getAllByRole('article')).toHaveLength(20);
+    });
     expect(
       screen.queryByRole('button', { name: /Näytä lisää hakutuloksia/ })
     ).not.toBeInTheDocument();
@@ -398,7 +454,6 @@ describe('ChildEventsSearch', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Muokkaa hakua')).toBeInTheDocument();
 
-    // Activate sticky state cleanly without fragile scroll or geometry mocks
     mockIsSticky = true;
     rerender(<ChildEventsSearch />);
 
@@ -407,7 +462,6 @@ describe('ChildEventsSearch', () => {
       expect(stickyHeader.className).toMatch(/stickyChildHeaderVisible/);
     });
 
-    // Simulate clicking "Muokkaa hakua"
     const formEl = document.getElementById('child-events-search-form');
     const scrollIntoViewSpy = vi.fn();
     if (formEl) {
@@ -417,7 +471,6 @@ describe('ChildEventsSearch', () => {
     await user.click(editSearchLink);
     expect(scrollIntoViewSpy).toHaveBeenCalled();
 
-    // Deactivate sticky state when scrolled back up
     mockIsSticky = false;
     rerender(<ChildEventsSearch />);
 
@@ -462,30 +515,40 @@ describe('ChildEventsSearch', () => {
       id: 'event-2',
       name: 'Pikkuveljen sirkus',
       shortDescription: 'Sirkushuveja',
+      themePaths: [],
     });
 
     const child2Mock = {
       request: {
-        query: childAvailableEventsQuery,
-        variables: { id: 'child-2' },
+        query: eventsSearchQuery,
+        variables: defaultSearchVars({ childId: 'child-2' }),
       },
       result: {
         data: {
           child: {
+            __typename: 'ChildNode',
             id: 'child-2',
             name: 'Pikkuveli Mallikas',
             birthyear: 2022,
-            themePath: null,
-            upcomingEventsAndEventGroups: {
-              edges: [
-                {
-                  node: {
-                    __typename: 'EventNode',
-                    ...child2EventNode,
-                  },
-                },
-              ],
+          },
+          events: {
+            __typename: 'EventsConnection',
+            count: 1,
+            pageInfo: {
+              __typename: 'PageInfo',
+              hasNextPage: false,
+              endCursor: 'cursor-1',
             },
+            edges: [
+              {
+                __typename: 'EventNodeEdge',
+                cursor: 'cursor-1',
+                node: {
+                  __typename: 'EventNode',
+                  ...child2EventNode,
+                },
+              },
+            ],
           },
         },
       },
@@ -498,63 +561,105 @@ describe('ChildEventsSearch', () => {
     });
   });
 
-  it('filters results when availableOnly checkbox is toggled and search is submitted', async () => {
+  it('queries backend with availableOnly=true when checkbox is toggled and search is submitted', async () => {
     const eligibleEvent = fakeAvailableEvent({
       id: 'event-eligible',
       name: 'Vapaa tapahtuma',
       enrolmentDeniedReason: null,
-      occurrences: {
-        edges: [
-          {
-            node: fakeAvailableOccurrence({
-              remainingCapacity: 5,
-            }),
-          },
-        ],
-      },
+      themePaths: [],
     });
 
     const ineligibleEvent = fakeAvailableEvent({
       id: 'event-ineligible',
       name: 'Varattu tapahtuma',
       enrolmentDeniedReason: 'ALREADY_JOINED_EVENT_GROUP' as any,
+      themePaths: [],
     });
 
-    const filterTestMock = {
+    const unfilteredMock = {
       request: {
-        query: childAvailableEventsQuery,
-        variables: { id: 'child-1' },
+        query: eventsSearchQuery,
+        variables: defaultSearchVars(),
       },
+      maxUsageCount: Infinity,
       result: {
         data: {
           child: {
+            __typename: 'ChildNode',
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
-            themePath: null,
-            upcomingEventsAndEventGroups: {
-              edges: [
-                {
-                  node: {
-                    __typename: 'EventNode' as const,
-                    ...eligibleEvent,
-                  },
-                },
-                {
-                  node: {
-                    __typename: 'EventNode' as const,
-                    ...ineligibleEvent,
-                  },
-                },
-              ],
+          },
+          events: {
+            __typename: 'EventsConnection',
+            count: 2,
+            pageInfo: {
+              __typename: 'PageInfo',
+              hasNextPage: false,
+              endCursor: 'cursor-2',
             },
+            edges: [
+              {
+                __typename: 'EventNodeEdge',
+                cursor: 'cursor-1',
+                node: {
+                  __typename: 'EventNode' as const,
+                  ...eligibleEvent,
+                },
+              },
+              {
+                __typename: 'EventNodeEdge',
+                cursor: 'cursor-2',
+                node: {
+                  __typename: 'EventNode' as const,
+                  ...ineligibleEvent,
+                },
+              },
+            ],
+          },
+        },
+      },
+    };
+
+    const availableOnlyMock = {
+      request: {
+        query: eventsSearchQuery,
+        variables: defaultSearchVars({ availableOnly: true }),
+      },
+      maxUsageCount: Infinity,
+      result: {
+        data: {
+          child: {
+            __typename: 'ChildNode',
+            id: 'child-1',
+            name: 'Malla Mallikas',
+            birthyear: 2020,
+          },
+          events: {
+            __typename: 'EventsConnection',
+            count: 1,
+            pageInfo: {
+              __typename: 'PageInfo',
+              hasNextPage: false,
+              endCursor: 'cursor-1',
+            },
+            edges: [
+              {
+                __typename: 'EventNodeEdge',
+                cursor: 'cursor-1',
+                node: {
+                  __typename: 'EventNode' as const,
+                  ...eligibleEvent,
+                },
+              },
+            ],
           },
         },
       },
     };
 
     const user = userEvent.setup();
-    render(<ChildEventsSearch />, [filterTestMock]);
+    render(<ChildEventsSearch />, [unfilteredMock, availableOnlyMock]);
 
     await waitFor(() => {
       expect(screen.getByText('2 hakutulosta')).toBeInTheDocument();
@@ -571,7 +676,6 @@ describe('ChildEventsSearch', () => {
     await user.click(checkbox);
     expect(checkbox).toBeChecked();
 
-    // Filter badge does not appear and URL is not updated before submitting the form
     expect(mockNavigate).not.toHaveBeenCalled();
     expect(
       screen.queryByRole('button', {
@@ -582,7 +686,6 @@ describe('ChildEventsSearch', () => {
       screen.queryByRole('button', { name: 'Tyhjennä valinnat' })
     ).not.toBeInTheDocument();
 
-    // Submitting the form commits the filter to results and updates badges
     const submitBtn = screen.getByRole('button', { name: 'Etsi tapahtumia' });
     await user.click(submitBtn);
 
@@ -599,7 +702,6 @@ describe('ChildEventsSearch', () => {
     expect(screen.getByText('Vapaa tapahtuma')).toBeInTheDocument();
     expect(screen.queryByText('Varattu tapahtuma')).not.toBeInTheDocument();
 
-    // Filter badge is now visible because the filter is affecting results
     const removeBadgeBtn = screen.getByRole('button', {
       name: /Poista valinta: Näytä vain ne, joissa on tilaa/,
     });
@@ -608,7 +710,6 @@ describe('ChildEventsSearch', () => {
       screen.getByRole('button', { name: 'Tyhjennä valinnat' })
     ).toBeInTheDocument();
 
-    // Removing the badge immediately clears the filter and updates URL
     await user.click(removeBadgeBtn);
 
     expect(mockNavigate).toHaveBeenCalledWith(
@@ -630,86 +731,11 @@ describe('ChildEventsSearch', () => {
     expect(
       screen.queryByRole('button', { name: 'Tyhjennä valinnat' })
     ).not.toBeInTheDocument();
-    expect(checkbox).not.toBeChecked();
-  });
-
-  it('renders child theme path notification when child has predefined theme path and applies filter on click', async () => {
-    const themeEventRytmi = fakeAvailableEvent({
-      id: 'event-rytmi',
-      name: 'Rytmiseikkailu',
-      themePaths: [{ id: 'tp-1', slug: 'rytmi', name: 'Rytmi' }],
-    });
-
-    const themeEventTarina = fakeAvailableEvent({
-      id: 'event-tarina',
-      name: 'Tarinaseikkailu',
-      themePaths: [{ id: 'tp-2', slug: 'tarina', name: 'Tarina' }],
-    });
-
-    const themeMock = {
-      request: {
-        query: childAvailableEventsQuery,
-        variables: { id: 'child-1' },
-      },
-      result: {
-        data: {
-          child: {
-            id: 'child-1',
-            name: 'Malla Mallikas',
-            birthyear: 2020,
-            themePath: {
-              id: 'tp-1',
-              slug: 'rytmi',
-              name: 'Rytmi',
-            },
-            upcomingEventsAndEventGroups: {
-              edges: [
-                {
-                  node: {
-                    __typename: 'EventNode' as const,
-                    ...themeEventRytmi,
-                  },
-                },
-                {
-                  node: {
-                    __typename: 'EventNode' as const,
-                    ...themeEventTarina,
-                  },
-                },
-              ],
-            },
-          },
-        },
-      },
-    };
-
-    const user = userEvent.setup();
-    render(
-      <ChildEventsSearch />,
-      [themeMock]
-    );
-
-    await waitFor(() => {
-      expect(
-        screen.getByText(/Lapselle Malla Mallikas on valittu Rytmi-teemapolku/)
-      ).toBeInTheDocument();
-    });
-
-    const applyBtn = screen.getByRole('button', {
-      name: 'Näytä vain Rytmi-tapahtumat',
-    });
-    await user.click(applyBtn);
-
-    await waitFor(() => {
-      expect(
-        screen.getByRole('button', { name: /Poista valinta: Rytmi/i })
-      ).toBeInTheDocument();
-    });
-
-    // When the theme path filter is active, notification is hidden
     expect(
-      screen.queryByText(/Lapselle Malla Mallikas on valittu Rytmi-teemapolku/)
-    ).not.toBeInTheDocument();
+      screen.getByRole('checkbox', {
+        name: 'Näytä vain ne, joissa on tilaa',
+      })
+    ).not.toBeChecked();
   });
 
   it('clears all filters when clear all button is clicked', async () => {
@@ -720,7 +746,10 @@ describe('ChildEventsSearch', () => {
       '/fi/events?child=child-1&themePath=rytmi&availableOnly=true'
     );
 
-    render(<ChildEventsSearch />, [getSuccessEventsMock()]);
+    render(<ChildEventsSearch />, [
+      getSuccessEventsMock({ themePaths: ['rytmi'], availableOnly: true }),
+      getSuccessEventsMock(),
+    ]);
 
     await waitFor(() => {
       expect(

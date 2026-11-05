@@ -6,6 +6,10 @@ import { ContentContainer } from '@city-of-helsinki/react-helsinki-headless-cms'
 import { useEventSearchResultsUiContext } from './context/EventSearchResultsUiContext';
 import styles from './childEventsSearch.module.scss';
 
+/**
+ * Renders a sticky top navigation bar displaying the currently selected child's name
+ * and a shortcut link to scroll back to and focus the search filter form.
+ */
 export const StickySearchHeader: React.FC = () => {
   const { t } = useTranslation();
   const { isSticky, activeChildName, focusChildSelector } =
@@ -15,6 +19,9 @@ export const StickySearchHeader: React.FC = () => {
     return null;
   }
 
+  /**
+   * Prevents default anchor jump and smoothly scrolls back to focus the child selector.
+   */
   const handleEditSearchClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     focusChildSelector();

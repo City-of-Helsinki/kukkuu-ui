@@ -71,7 +71,10 @@ export const EventTicketSystemSection: React.FC<
     fetchPolicy: 'network-only',
   });
 
-  const [assignTicketSystemPassword, { loading: isAssigning }] = useMutation<
+  const [
+    assignTicketSystemPassword,
+    { loading: isAssigning, client: mutationClient },
+  ] = useMutation<
     AssignTicketSystemPasswordMutation,
     AssignTicketSystemPasswordMutationVariables
   >(assignTicketSystemPasswordMutation, {
@@ -80,6 +83,10 @@ export const EventTicketSystemSection: React.FC<
       childId,
     }),
     awaitRefetchQueries: false,
+    onCompleted: () => {
+      mutationClient.cache.evict({ fieldName: 'events' });
+      mutationClient.cache.gc();
+    },
     onError: (err) => {
       const code = err.graphQLErrors?.[0]?.extensions?.code;
       if (code === 'NO_FREE_TICKET_SYSTEM_PASSWORDS_ERROR') {

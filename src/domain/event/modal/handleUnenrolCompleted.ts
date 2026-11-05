@@ -9,6 +9,10 @@ type UnenrolCompletedDeps = {
   navigateToProfile: () => void;
 };
 
+/**
+ * Handles post-unenrolment side effects, including updating Redux child event state,
+ * refetching the guardian profile, and invoking the post-completion callback.
+ */
 export async function handleUnenrolCompleted(
   data: UnenrolOccurrenceMutation | null | undefined,
   { dispatch, refetchProfile, navigateToProfile }: UnenrolCompletedDeps

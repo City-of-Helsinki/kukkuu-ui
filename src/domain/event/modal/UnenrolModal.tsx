@@ -77,6 +77,9 @@ export interface UnenrolModalProps {
   extraGuardiansCount?: number | null;
 }
 
+/**
+ * Modal dialog allowing a guardian to confirm or cancel unenrolling a child from an event occurrence.
+ */
 const UnenrolModal: React.FC<UnenrolModalProps> = ({
   isOpen,
   setIsOpen,
@@ -158,18 +161,23 @@ const UnenrolModal: React.FC<UnenrolModalProps> = ({
     ? getPathname(`/profile/child/${childId}/event/${resolvedEventId}`)
     : `${getPathname('/events')}?child=${encodeURIComponent(childId)}`;
 
-  const [unenrolOccurrence, { loading: isUnenrolling }] = useMutation<
-    UnenrolOccurrenceMutation,
-    UnenrolOccurrenceMutationVariables
-  >(unenrolOccurrenceMutation, {
-    client: graphqlClient,
-    refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({
-      childId,
-      eventGroupId: resolvedEventGroupId,
-    }),
-    awaitRefetchQueries: true,
-    onCompleted: async (data) => {
-      await handleUnenrolCompleted(data, {
+  const [unenrolOccurrence, { loading: isUnenrolling }] =
+    useMutation<
+      UnenrolOccurrenceMutation,
+      UnenrolOccurrenceMutationVariables
+    >(unenrolOccurrenceMutation, {
+      client: graphqlClient,
+      update: (cache) => {
+        cache.evict({ fieldName: 'events' });
+        cache.gc();
+      },
+      refetchQueries: getEventOrEventGroupOccurrenceRefetchQueries({
+        childId,
+        eventGroupId: resolvedEventGroupId,
+      }),
+      awaitRefetchQueries: true,
+      onCompleted: async (data) => {
+        await handleUnenrolCompleted(data, {
         dispatch,
         refetchProfile,
         navigateToProfile: () => {

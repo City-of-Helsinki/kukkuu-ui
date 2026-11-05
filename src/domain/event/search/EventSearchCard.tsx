@@ -25,9 +25,12 @@ import {
   TicketSystem,
 } from '../../api/generatedTypes/graphql';
 import { externalTicketSystems } from '../constants/ExternalTicketSystemConstants';
-import type { AvailableEvent } from '../types/ChildAvailableOccurrencesTypes';
+import type { AvailableEvent } from '../types/EventsSearchTypes';
 import styles from './occurrenceCard.module.scss';
 
+/**
+ * Resolves the localized display label for an external ticket system provider.
+ */
 const getTicketSystemLabel = (type: TicketSystem, t: TFunction): string => {
   switch (type) {
     case TicketSystem.Ticketmaster:
@@ -46,6 +49,11 @@ export type EventSearchCardProps = {
   event: AvailableEvent;
 };
 
+/**
+ * Renders an individual event card in the search results list, including image,
+ * summary metadata (date/time, venue, languages), enrolment status badges/notices,
+ * and a link to the event details page.
+ */
 export const EventSearchCard: React.FC<EventSearchCardProps> = ({
   childId,
   event,
