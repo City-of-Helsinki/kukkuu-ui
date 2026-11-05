@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 
 import { ProfileContext } from '../../../profile/ProfileContext';
 import { EventSearchUrlContext } from '../context/EventSearchUrlContext';
-import type { ChildAvailableOccurrencesQuery } from '../../types/ChildAvailableOccurrencesTypes';
+import type { EventsSearchQuery } from '../../types/EventsSearchTypes';
 
 /**
  * Resolves the display name of the currently active child.
@@ -15,7 +15,7 @@ import type { ChildAvailableOccurrencesQuery } from '../../types/ChildAvailableO
  * @returns The resolved child name or an empty string if unresolved.
  */
 export const useActiveChildName = (
-  searchChild?: ChildAvailableOccurrencesQuery['child'] | null
+  searchChild?: EventsSearchQuery['child'] | null
 ): string => {
   const profileContext = React.useContext(ProfileContext);
   const urlContext = React.useContext(EventSearchUrlContext);

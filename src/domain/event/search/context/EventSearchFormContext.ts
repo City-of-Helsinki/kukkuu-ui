@@ -57,6 +57,9 @@ export type EventSearchFormContextType = {
 export const EventSearchFormContext =
   createContext<EventSearchFormContextType | null>(null);
 
+/**
+ * Consumes {@link EventSearchFormContext} and throws if called outside an `EventSearchFormProvider`.
+ */
 export function useEventSearchFormContext(): EventSearchFormContextType {
   const context = useContext(EventSearchFormContext);
   if (!context) {

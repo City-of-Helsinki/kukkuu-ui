@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import { customRender as render } from '../../../../common/test/customRender';
 import i18n from '../../../../common/translation/i18n/i18nInit';
 import EventSearchCard from '../EventSearchCard';
-import type { AvailableEvent } from '../../types/ChildAvailableOccurrencesTypes';
+import type { AvailableEvent } from '../../types/EventsSearchTypes';
 import { EnrolmentDeniedReason, Language, TicketSystem } from '../../../api/generatedTypes/graphql';
 
 describe('EventSearchCard', () => {

@@ -6,6 +6,10 @@ import { useEventSearchResultsUiContext } from './context/EventSearchResultsUiCo
 import { useEventSearchFormContext } from './context/EventSearchFormContext';
 import styles from './childEventsSearch.module.scss';
 
+/**
+ * Renders a dismissible informational notification banner when the active child has an assigned theme path
+ * that is not yet applied in the current search filters.
+ */
 export const ChildThemePathNotification: React.FC = () => {
   const { t } = useTranslation();
   const { visibleChildThemePath, activeChildName, dismissThemePathNotice } =
@@ -16,6 +20,9 @@ export const ChildThemePathNotification: React.FC = () => {
     return null;
   }
 
+  /**
+   * Immediately applies the child's recommended theme path filter to the search query.
+   */
   const handleApplyClick = () => {
     applyThemePathFilter(visibleChildThemePath.slug);
   };

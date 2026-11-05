@@ -1,6 +1,5 @@
 import profileQuery from '../profile/queries/ProfileQuery';
 import { childByIdQuery } from '../child/queries/ChildQueries';
-import { childAvailableEventsQuery } from './queries/childAvailableEventsQuery';
 import eventGroupQuery from '../eventGroup/queries/eventGroupQuery';
 import { ChildEnrolmentCountDocument } from '../api/generatedTypes/graphql';
 
@@ -9,6 +8,10 @@ type Config = {
   eventGroupId?: string;
 };
 
+/**
+ * Builds the list of GraphQL refetch queries required after enrolling or unenrolling a child
+ * in an event or event group occurrence.
+ */
 export default function getEventOrEventGroupOccurrenceRefetchQueries({
   childId,
   eventGroupId,
@@ -22,12 +25,7 @@ export default function getEventOrEventGroupOccurrenceRefetchQueries({
       },
     },
     { query: ChildEnrolmentCountDocument, variables: { childId } },
-    {
-      query: childAvailableEventsQuery,
-      variables: {
-        id: childId,
-      },
-    },
+    'eventsSearchQuery',
   ];
 
   if (!eventGroupId) {
