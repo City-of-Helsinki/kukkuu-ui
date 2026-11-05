@@ -1,7 +1,6 @@
 import {
   ApolloClient,
   createHttpLink,
-  InMemoryCache,
   ApolloLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -17,6 +16,7 @@ import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { getKukkuuApiTokenFromStorage } from '../auth/kukkuuApiUtils';
 import { flushAllState } from '../auth/reduxState/utils';
 import { getEnvValue } from '../../common/utils/envUtils';
+import { createApolloCache } from './cacheConfig';
 
 const httpLink = createHttpLink({
   uri: getEnvValue('VITE_API_URI'),
@@ -71,7 +71,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: ApolloLink.from([errorLink, authLink, httpLink]),
-  cache: new InMemoryCache(),
+  cache: createApolloCache(),
 });
 
 export default client;

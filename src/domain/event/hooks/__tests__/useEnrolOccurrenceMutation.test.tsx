@@ -51,20 +51,30 @@ describe('useEnrolOccurrenceMutation', () => {
         },
       },
     },
+    maxUsageCount: Infinity,
     result: {
       data: {
         enrolOccurrence: {
+          __typename: 'EnrolOccurrenceMutationPayload',
           clientMutationId: null,
           enrolment: {
+            __typename: 'EnrolmentNode',
             id: 'enrolment-1',
+            extraChildrenCount: 0,
+            extraGuardiansCount: 0,
+            totalSeats: 2,
             occurrence: {
+              __typename: 'OccurrenceNode',
               id: occurrenceId,
-              event: { id: eventId },
-              venue: { id: 'venue-1' },
+              event: { __typename: 'EventNode', id: eventId },
+              venue: { __typename: 'VenueNode', id: 'venue-1' },
             },
             child: {
+              __typename: 'ChildNode',
               id: childId,
-              occurrences: { edges: [] },
+              occurrences: { __typename: 'OccurrenceNodeConnection', edges: [] },
+              pastEvents: { __typename: 'EventConnection', edges: [] },
+              availableEvents: { __typename: 'EventConnection', edges: [] },
             },
           },
         },
@@ -79,7 +89,7 @@ describe('useEnrolOccurrenceMutation', () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <Provider store={store}>
         <BrowserRouter>
-          <MockedProvider mocks={[mutationMock]} addTypename={false}>
+          <MockedProvider mocks={[mutationMock]} addTypename={true}>
             {children}
           </MockedProvider>
         </BrowserRouter>
@@ -119,7 +129,7 @@ describe('useEnrolOccurrenceMutation', () => {
     const wrapper = ({ children }: { children: React.ReactNode }) => (
       <Provider store={store}>
         <BrowserRouter>
-          <MockedProvider mocks={[mutationMock]} addTypename={false}>
+          <MockedProvider mocks={[mutationMock]} addTypename={true}>
             {children}
           </MockedProvider>
         </BrowserRouter>

@@ -1,22 +1,22 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import {
   ApolloError,
+  NetworkStatus,
   useQuery,
   type WatchQueryFetchPolicy,
 } from '@apollo/client';
 
-import { childAvailableEventsQuery } from '../../queries/childAvailableEventsQuery';
+import useDefaultErrorHandler from '../../../api/useDefaultErrorHandler';
+import { eventsSearchQuery } from '../../queries/eventsSearchQuery';
 import type {
   AvailableEvent,
-  ChildAvailableOccurrencesQuery,
-  ChildAvailableOccurrencesQueryVariables,
-} from '../../types/ChildAvailableOccurrencesTypes';
+  EventsSearchQuery,
+  EventsSearchQueryVariables,
+} from '../../types/EventsSearchTypes';
 import {
   DEFAULT_SEARCH_PAGE_SIZE,
-  extractAvailableEvents,
-  filterAvailableEvents,
-  isEventEligible,
-  paginateSearchItems,
+  extractSearchEvents,
+  formatFinnishDateToIso,
 } from '../eventSearchUtils';
 import type { EventSearchFilters } from '../types/filterTypes';
 
@@ -27,13 +27,11 @@ export type UseEventsSearchOptions = {
   fetchPolicy?: WatchQueryFetchPolicy;
   availableOnly?: boolean;
   filters?: Partial<EventSearchFilters>;
-  enrolledEventIds?: Set<string>;
 };
 
 export type UseEventsSearchResult = {
-  child: ChildAvailableOccurrencesQuery['child'] | null;
+  child: EventsSearchQuery['child'] | null;
   events: AvailableEvent[];
-  allEvents: AvailableEvent[];
   totalCount: number;
   remainingCount: number;
   hasMore: boolean;
@@ -43,32 +41,7 @@ export type UseEventsSearchResult = {
 };
 
 /**
- * Hook to fetch available events for a specific child directly from Apollo Client query / cache.
- *
- * Extracts available events from GraphQL query data, applies active search filters,
- * and paginates the visible items by page size with a loadMore action.
- *
- * @deprecated TODO: Deprecate client-side in-memory filtering and pagination.
- * Currently, `useEventsSearch` fetches the entire child query tree with all upcoming events
- * and performs in-memory filtering (`filterAvailableEvents`) and client-side slice-based
- * pagination (`paginateSearchItems`).
- * This approach does not scale as the number of events grows, downloads unnecessary payload data,
- * and disconnects total result counts and active filters from server-side state.
- *
- * Real API-level fetching and filtering should be implemented instead:
- * 1. Update the backend GraphQL schema/queries to accept filter arguments (e.g. `startDate`,
- *    `languages`, `availableOnly`, `themePaths`, `accessibility`, `familyOnly`) and pagination
- *    variables (`first`/`after` or `offset`/`limit`).
- * 2. Delegate filtering, sorting, and pagination entirely to the backend API.
- * 3. Replace this in-memory hook with server-side pagination (e.g. Apollo Client `fetchMore` /
- *    Relay cursor connection handling).
- *
- * @param options - Configuration options for the events search query.
- * @param options.childId - ID of the child whose events are being queried.
- * @param options.pageSize - Number of items displayed per page (default: 15).
- * @param options.skip - When true, skips executing the GraphQL query.
- * @param options.fetchPolicy - Optional Apollo Client cache watch policy.
- * @returns Query state, paginated events, remaining count, loadMore handler, and error state.
+ * Hook to fetch filtered, sorted, and cursor-paginated events for a child from the GraphQL API.
  */
 export const useEventsSearch = ({
   childId,
@@ -77,60 +50,89 @@ export const useEventsSearch = ({
   fetchPolicy,
   availableOnly = false,
   filters,
-  enrolledEventIds,
 }: UseEventsSearchOptions): UseEventsSearchResult => {
-  const [page, setPage] = useState(1);
+  const isFetchingMoreRef = useRef(false);
+  const handleError = useDefaultErrorHandler();
 
-  // Reset pagination to page 1 whenever childId, filters, or availableOnly change
-  useEffect(() => {
-    setPage(1);
-  }, [childId, filters, availableOnly]);
+  const variables = useMemo<EventsSearchQueryVariables>(() => {
+    const isoStartDate = filters?.startDate
+      ? formatFinnishDateToIso(filters.startDate) || undefined
+      : undefined;
 
-  const { data, loading, error } = useQuery<
-    ChildAvailableOccurrencesQuery,
-    ChildAvailableOccurrencesQueryVariables
-  >(childAvailableEventsQuery, {
+    return {
+      childId: childId || '',
+      first: pageSize,
+      startDate: isoStartDate,
+      languages:
+        filters?.languages && filters.languages.length > 0
+          ? filters.languages
+          : undefined,
+      themePaths:
+        filters?.themePaths && filters.themePaths.length > 0
+          ? filters.themePaths
+          : undefined,
+      accessibility:
+        filters?.accessibility && filters.accessibility.length > 0
+          ? filters.accessibility
+          : undefined,
+      familyOnly: filters?.familyOnly ? true : undefined,
+      availableOnly:
+        (filters?.availableOnly ?? availableOnly) ? true : undefined,
+    };
+  }, [childId, pageSize, filters, availableOnly]);
+
+  const {
+    data,
+    loading: queryLoading,
+    networkStatus,
+    error,
+    fetchMore,
+  } = useQuery<
+    EventsSearchQuery,
+    EventsSearchQueryVariables
+  >(eventsSearchQuery, {
     skip: skip || !childId,
-    variables: { id: childId || '' },
+    variables,
     fetchPolicy,
+    notifyOnNetworkStatusChange: true,
   });
 
-  const rawEvents: AvailableEvent[] = useMemo(
-    () => extractAvailableEvents(data?.child),
-    [data?.child]
+  const loading = queryLoading && networkStatus !== NetworkStatus.fetchMore;
+
+  const events: AvailableEvent[] = useMemo(
+    () => extractSearchEvents(data?.events),
+    [data?.events]
   );
 
-  // TODO: Replace client-side filtering and in-memory pagination with API-level query arguments
-  // and server-side pagination. The backend API should handle filter arguments (dates, languages,
-  // theme paths, accessibility, availability) and pagination cursors/offsets.
-  const allEvents: AvailableEvent[] = useMemo(() => {
-    if (filters) {
-      return filterAvailableEvents(rawEvents, filters, enrolledEventIds);
-    }
-    if (!availableOnly) {
-      return rawEvents;
-    }
-    return rawEvents.filter((ev) => isEventEligible(ev, enrolledEventIds));
-  }, [rawEvents, filters, availableOnly, enrolledEventIds]);
-
-  // TODO: Replace client-side slicing with server-side pagination
-  // (e.g., Apollo Client fetchMore / cursor connection)
-  const pagination = useMemo(
-    () => paginateSearchItems(allEvents, page, pageSize),
-    [allEvents, page, pageSize]
-  );
+  const totalCount = data?.events?.count ?? events.length;
+  const hasMore = Boolean(data?.events?.pageInfo?.hasNextPage);
+  const endCursor = data?.events?.pageInfo?.endCursor;
+  const remainingCount = Math.max(0, totalCount - events.length);
 
   const loadMore = useCallback(() => {
-    setPage((prev) => prev + 1);
-  }, []);
+    if (!hasMore || !endCursor || queryLoading || isFetchingMoreRef.current) {
+      return;
+    }
+    isFetchingMoreRef.current = true;
+    void fetchMore({
+      variables: {
+        after: endCursor,
+      },
+    })
+      .catch((err: unknown) => {
+        handleError(err instanceof Error ? err : new Error(String(err)));
+      })
+      .finally(() => {
+        isFetchingMoreRef.current = false;
+      });
+  }, [hasMore, endCursor, queryLoading, fetchMore, handleError]);
 
   return {
     child: data?.child ?? null,
-    events: pagination.items,
-    allEvents: pagination.allItems,
-    totalCount: pagination.totalCount,
-    remainingCount: pagination.remainingCount,
-    hasMore: pagination.hasMore,
+    events,
+    totalCount,
+    remainingCount,
+    hasMore,
     loadMore,
     loading,
     error,
