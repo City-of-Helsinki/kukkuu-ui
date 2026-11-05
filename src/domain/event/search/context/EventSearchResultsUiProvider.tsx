@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { useEventSearchUrlContext } from './EventSearchUrlContext';
 import { useEventsSearch } from '../hooks/useEventsSearch';
-import { useChildEnrolledEventIds } from '../hooks/useChildEnrolledEventIds';
 import { useActiveChildName } from '../hooks/useActiveChildName';
 import { useSearchFormSticky } from '../hooks/useSearchFormSticky';
 import { useChildThemePathNotice } from '../hooks/useChildThemePathNotice';
@@ -20,9 +19,8 @@ export type EventSearchResultsUiProviderProps = {
  * Context provider that manages and distributes search results, active child metadata,
  * pagination state, sticky header state, dismissible notifications, and screen reader announcements.
  *
- * Coordinates data fetching via `useEventsSearch`, isolates enrolled event IDs from
- * the user's profile, tracks scroll position for the sticky header, and exposes
- * action handlers to child components.
+ * Coordinates data fetching via `useEventsSearch`, tracks scroll position for the sticky header,
+ * and exposes action handlers to child components.
  */
 export const EventSearchResultsUiProvider: React.FC<
   EventSearchResultsUiProviderProps
@@ -30,14 +28,10 @@ export const EventSearchResultsUiProvider: React.FC<
   const { t } = useTranslation();
   const { activeChildId, committedFilters } = useEventSearchUrlContext();
 
-  // Derive IDs of events the active child is already enrolled in
-  const enrolledEventIds = useChildEnrolledEventIds();
-
-  // Fetch available events from Apollo cache / query
+  // Fetch filtered and paginated events from Apollo query
   const eventsSearch = useEventsSearch({
     childId: activeChildId,
     filters: committedFilters,
-    enrolledEventIds,
     skip: !activeChildId,
   });
 
@@ -48,8 +42,9 @@ export const EventSearchResultsUiProvider: React.FC<
   const { searchFormRef, isSticky, focusChildSelector } = useSearchFormSticky();
 
   // Predefined theme path notification state and dismissal
+  // (ChildNode.themePath is not yet exposed by the backend schema; passes undefined until supported)
   const { visibleChildThemePath, dismissThemePathNotice } =
-    useChildThemePathNotice(eventsSearch.child?.themePath);
+    useChildThemePathNotice(undefined);
 
   // Accessible aria-live screen reader announcement
   const resultsAnnouncement = useMemo(() => {

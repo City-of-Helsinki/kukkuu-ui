@@ -3,11 +3,11 @@ import { ApolloError } from '@apollo/client';
 
 import type {
   AvailableEvent,
-  ChildAvailableOccurrencesQuery,
-} from '../../types/ChildAvailableOccurrencesTypes';
+  EventsSearchQuery,
+} from '../../types/EventsSearchTypes';
 
 export type EventSearchResultsUiContextType = {
-  child: ChildAvailableOccurrencesQuery['child'] | null;
+  child: EventsSearchQuery['child'] | null;
   activeChildName: string;
   events: AvailableEvent[];
   totalCount: number;
@@ -27,6 +27,9 @@ export type EventSearchResultsUiContextType = {
 export const EventSearchResultsUiContext =
   createContext<EventSearchResultsUiContextType | null>(null);
 
+/**
+ * Consumes {@link EventSearchResultsUiContext} and throws if called outside an `EventSearchResultsUiProvider`.
+ */
 export function useEventSearchResultsUiContext(): EventSearchResultsUiContextType {
   const context = useContext(EventSearchResultsUiContext);
   if (!context) {

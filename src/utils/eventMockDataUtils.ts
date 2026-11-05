@@ -12,7 +12,7 @@ import {
   AvailableEvent,
   AvailableOccurrence,
   AvailableVenue,
-} from '../domain/event/types/ChildAvailableOccurrencesTypes';
+} from '../domain/event/types/EventsSearchTypes';
 import { OccurrenceNode } from '../domain/event/types/EventQueryTypes';
 
 export type EventQueryEventNode = NonNullable<EventQuery['event']>;

@@ -12,6 +12,9 @@ export type EventSearchUrlContextType = {
 export const EventSearchUrlContext =
   createContext<EventSearchUrlContextType | null>(null);
 
+/**
+ * Consumes {@link EventSearchUrlContext} and throws if called outside an `EventSearchUrlProvider`.
+ */
 export function useEventSearchUrlContext(): EventSearchUrlContextType {
   const context = useContext(EventSearchUrlContext);
   if (!context) {
