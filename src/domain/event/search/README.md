@@ -15,7 +15,7 @@ This directory implements the guardian-facing event search experience using a
   - [1. Declare the Filter Type](#1-declare-the-filter-type)
   - [2. Follow TypeScript Compiler Errors](#2-follow-typescript-compiler-errors)
   - [3. Create the Form Field Component](#3-create-the-form-field-component)
-  - [4. Filter Available Events](#4-filter-available-events)
+  - [4. Pass the Filter to the GraphQL Search Query](#4-pass-the-filter-to-the-graphql-search-query)
 - [Contexts & State Hooks](#contexts--state-hooks)
 - [Directory Organization](#directory-organization)
 
@@ -127,6 +127,7 @@ export type EventSearchFilters = {
 TypeScript will automatically flag missing definitions across the codebase:
 
 - **`searchFilterUrlConfig.ts`**: Add entry to `FILTER_URL_CONFIG` defining `paramName`, `defaultValue`, `isActive`, `parseFromUrl`, and `writeToUrl`. (This also updates `SEARCH_URL_PARAMS`, `DEFAULT_SEARCH_FILTERS`, and `parseSearchFiltersFromUrl` automatically).
+  - _Optional (`FilterOptionsContext`)_: If the filter represents dynamic options (like `themePaths` or `languages`) and URL parameter values should be validated/whitelisted against known options during URL parsing, also add the option list to `FilterOptionsContext`. For booleans, dates, or freeform filters, `FilterOptionsContext` does not need updating.
 - **`hooks/useActiveBadges.ts`**: Add entry to `BADGE_GENERATORS` defining how the badge label renders.
 - **`hooks/useFilterBadges.ts`**: Add entry to `BADGE_FILTER_REMOVERS` defining how clicking `×` removes the filter.
 
@@ -135,9 +136,9 @@ TypeScript will automatically flag missing definitions across the codebase:
 1. Create `fields/VenueFilterField.tsx` consuming `useEventSearchFormContext()` (`draftFilters.venue` and `updateDraftFilter('venue', ...)`).
 2. Export it from `fields/index.ts` and mount it inside the accordion grid in `EventSearchFilterForm.tsx`.
 
-### 4. Filter Available Events
+### 4. Pass the Filter to the GraphQL Search Query
 
-Update `filterAvailableEvents()` in `eventSearchUtils.ts` to evaluate the new filter criteria against available events or occurrences.
+Update `eventsSearchQuery.ts`, `EventsSearchTypes.ts`, `useEventsSearch.ts`, and `cacheConfig.ts` (`relayStylePagination` keyArgs) to pass the new filter argument to `Query.events` on the backend API.
 
 ---
 
@@ -147,7 +148,7 @@ The feature uses three context providers stacked in `EventSearchProviders`:
 
 - **`EventSearchUrlProvider`**: Manages URL parsing and browser history navigation. Access via `useEventSearchUrlContext()`.
 - **`EventSearchFormProvider`**: Manages form draft state, option lists, and active badges. Access via `useEventSearchFormContext()`.
-- **`EventSearchResultsUiProvider`**: Manages Apollo query results, client-side pagination, sticky header scroll state, and screen-reader announcements. Access via `useEventSearchResultsUiContext()`.
+- **`EventSearchResultsUiProvider`**: Manages Apollo query results, Relay cursor pagination (`fetchMore`), sticky header scroll state, and screen-reader announcements. Access via `useEventSearchResultsUiContext()`.
 
 ---
 
@@ -160,16 +161,9 @@ src/domain/event/search/
 ├── EventSearchFilterBadges.tsx   # Active filter pills & clear-all button
 ├── searchFilterUrlConfig.ts      # URL parameter definitions & mapping strategies
 ├── searchDateUtils.ts            # Finnish & ISO date parser/formatter helpers
-├── eventSearchUtils.ts           # Event filtering, sorting, and pagination logic
+├── eventSearchUtils.ts           # URL filter helpers and event card formatting utilities
 ├── context/                      # React Context providers (URL, Form, Results)
-├── fields/                       # Isolated form input field components
-│   ├── ChildSelectorField.tsx
-│   ├── ThemePathFilterField.tsx
-│   ├── StartDateFilterField.tsx
-│   ├── AccessibilityFilterField.tsx
-│   ├── LanguageFilterField.tsx
-│   ├── AvailableOnlyFilterField.tsx
-│   └── FamilyOnlyFilterField.tsx
+├── fields/                       # Form input field components (e.g. ThemePath, Language)
 ├── hooks/                        # Custom hooks (state sync, options, sticky header)
 └── types/                        # Filter types and contracts
 ```

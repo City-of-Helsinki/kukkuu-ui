@@ -1,5 +1,4 @@
 import eventQuery from './queries/eventQuery';
-import { childAvailableEventsQuery } from './queries/childAvailableEventsQuery';
 import { ProfileQueryDocument } from '../api/generatedTypes/graphql';
 
 export type TicketSystemPasswordRefetchConfig = {
@@ -19,9 +18,6 @@ export default function getTicketSystemPasswordRefetchQueries({
     {
       query: ProfileQueryDocument,
     },
-    {
-      query: childAvailableEventsQuery,
-      variables: { id: childId },
-    },
+    'eventsSearchQuery',
   ];
 }

@@ -46,8 +46,9 @@ const config: CodegenConfig = {
         ...excludeDocuments(headlessCmsDocuments),
         // Exclude the generated type files as sources
         ...excludeDocuments(Object.values(generatedTargetFiles)),
-        // Exclude childAvailableEventsQuery until ChildNode.themePath is in backend schema
-        '!src/domain/event/queries/childAvailableEventsQuery.ts',
+        // TODO: Remove this exclusion once Query.events search filter arguments are deployed to the test backend,
+        // and remove the hand-written EventsSearchTypes.ts types so codegen can provide them.
+        '!src/domain/event/queries/eventsSearchQuery.ts',
       ],
       targetFile: generatedTargetFiles.kukkuuBackend,
     }),

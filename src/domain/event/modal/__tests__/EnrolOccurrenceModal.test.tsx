@@ -495,22 +495,26 @@ describe('EnrolOccurrenceModal', () => {
     const mutationResult = vi.fn(() => ({
       data: {
         enrolOccurrence: {
+          __typename: 'EnrolOccurrenceMutationPayload',
           clientMutationId: null,
           enrolment: {
+            __typename: 'EnrolmentNode',
             id: 'enrolment-fam-1',
             extraChildrenCount: 1,
             extraGuardiansCount: 1,
             totalSeats: 4,
             occurrence: {
+              __typename: 'OccurrenceNode',
               id: 'occ-1',
-              event: { id: 'event-1' },
-              venue: { id: 'venue-1' },
+              event: { __typename: 'EventNode', id: 'event-1' },
+              venue: { __typename: 'VenueNode', id: 'venue-1' },
             },
             child: {
+              __typename: 'ChildNode',
               id: 'child-123',
-              occurrences: { edges: [] },
-              pastEvents: { edges: [] },
-              availableEvents: { edges: [] },
+              occurrences: { __typename: 'OccurrenceNodeConnection', edges: [] },
+              pastEvents: { __typename: 'EventConnection', edges: [] },
+              availableEvents: { __typename: 'EventConnection', edges: [] },
             },
           },
         },

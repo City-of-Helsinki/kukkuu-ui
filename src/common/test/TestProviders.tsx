@@ -12,6 +12,7 @@ import { ApolloClient } from '@apollo/client/core/ApolloClient';
 import { useApolloClient } from '@apollo/client/react/hooks/useApolloClient';
 
 import { store } from '../../domain/app/state/AppStore';
+import { createApolloCache } from '../../domain/api/cacheConfig';
 import ProfileProvider from '../../domain/profile/ProfileProvider';
 import KukkuuHDSLoginProvider from '../../domain/auth/KukkuuHDSLoginProvider';
 import IdleTimer from '../../domain/auth/IdleTimerProvider';
@@ -25,7 +26,7 @@ const TestProviders = (props: Props) => {
   const { children, mocks } = props;
   return (
     <Provider store={store}>
-      <MockedProvider mocks={mocks}>
+      <MockedProvider mocks={mocks} cache={createApolloCache()}>
         <KukkuuHDSLoginProvider>
           <IdleTimer>
             <ProfileProvider>
