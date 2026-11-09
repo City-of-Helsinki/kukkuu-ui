@@ -4,30 +4,26 @@ import { renderHook } from '@testing-library/react';
 import { useOccurrenceCapacityText } from '../useOccurrenceCapacityText';
 
 describe('useOccurrenceCapacityText', () => {
-  it('formats remaining capacity as a ratio when capacityPerOccurrence is known', () => {
-    const { result } = renderHook(() => useOccurrenceCapacityText(10));
-    const format = result.current;
+  it('returns plain remaining capacity as a string when remaining is a number', () => {
+    const { result } = renderHook(() => useOccurrenceCapacityText());
+    const formatCapacity = result.current;
 
-    expect(format(5)).toBe('5/10');
-    expect(format(0)).toBe('0/10');
-    expect(format(null)).toBe('0/10');
-    expect(format(undefined)).toBe('0/10');
+    expect(formatCapacity(10)).toBe('10');
+    expect(formatCapacity(0)).toBe('0');
+    expect(formatCapacity(66)).toBe('66');
   });
 
-  it('formats as unlimited when remaining is null or undefined and capacityPerOccurrence is not known', () => {
-    const { result } = renderHook(() => useOccurrenceCapacityText(undefined));
-    const format = result.current;
+  it('returns unlimited text when remaining is undefined', () => {
+    const { result } = renderHook(() => useOccurrenceCapacityText());
+    const formatCapacity = result.current;
 
-    expect(format(null)).toBeTruthy();
-    expect(format(undefined)).toBeTruthy();
+    expect(formatCapacity(undefined)).toBe('Ei rajoitusta');
   });
 
-  it('formats as remaining count when capacityPerOccurrence is not known but remaining is provided', () => {
-    const { result } = renderHook(() => useOccurrenceCapacityText(null));
-    const format = result.current;
+  it('returns unlimited text when remaining is null', () => {
+    const { result } = renderHook(() => useOccurrenceCapacityText());
+    const formatCapacity = result.current;
 
-    const formatted = format(3);
-    expect(formatted).toContain('3');
+    expect(formatCapacity(null)).toBe('Ei rajoitusta');
   });
 });
-

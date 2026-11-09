@@ -4,12 +4,19 @@
   .venueName {
     font-size: var(--fontsize-heading-m, 1.5rem);
     font-weight: 700;
-    margin: 0 0 var(--spacing-m) 0;
+    margin: 0 0 var(--spacing-2-xs) 0;
     color: var(--color-black, #000);
   }
 
+  .venueAddress {
+    font-size: var(--fontsize-body-m, 1rem);
+    font-weight: 400;
+    margin: 0 0 var(--spacing-m) 0;
+    color: var(--color-black-90, #1a1a1a);
+  }
+
   .section {
-    margin-bottom: var(--spacing-l);
+    margin-bottom: var(--spacing-m);
 
     &:last-child {
       margin-bottom: 0;
@@ -18,7 +25,7 @@
     .sectionTitle {
       font-size: var(--fontsize-heading-xs, 1.125rem);
       font-weight: 700;
-      margin: 0 0 var(--spacing-xs) 0;
+      margin: 0 0 var(--spacing-2-xs) 0;
       color: var(--color-black, #000);
     }
 
@@ -30,29 +37,7 @@
     }
   }
 
-  .addressBlock {
-    margin-bottom: var(--spacing-l);
-    padding-bottom: var(--spacing-m);
-    border-bottom: 1px solid var(--color-black-10, #e0e0e0);
-
-    .addressText {
-      font-size: var(--fontsize-body-m, 1rem);
-      margin: 0 0 var(--spacing-xs) 0;
-      color: var(--color-black, #000);
-    }
-
-    .mapLink {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--spacing-3-xs);
-      color: var(--color-coat-of-arms, #0000bf);
-      text-decoration: underline;
-      font-size: var(--fontsize-body-s, 0.875rem);
-      font-weight: 500;
-
-      &:hover {
-        text-decoration: none;
-      }
-    }
+  .actionButtons {
+    width: 100%;
   }
 }
