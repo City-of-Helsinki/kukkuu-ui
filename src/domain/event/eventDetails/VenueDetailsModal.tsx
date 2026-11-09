@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ButtonPresetTheme, Dialog, IconLinkExternal, IconSize } from 'hds-react';
+import { ButtonPresetTheme, Dialog } from 'hds-react';
 
 import Button from '../../../common/components/button/Button';
 import Paragraph from '../../../common/components/paragraph/Paragraph';
@@ -28,27 +28,8 @@ export type VenueAddressSectionProps = {
 export const VenueAddressSection: React.FC<VenueAddressSectionProps> = ({
   address,
 }) => {
-  const { t } = useTranslation();
   if (!address) return null;
-
-  const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    address
-  )}`;
-
-  return (
-    <div className={styles.addressBlock}>
-      <p className={styles.addressText}>{address}</p>
-      <a
-        href={mapUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.mapLink}
-      >
-        <span>{t('event.venueModal.openMap')}</span>
-        <IconLinkExternal size={IconSize.ExtraSmall} aria-hidden="true" />
-      </a>
-    </div>
-  );
+  return <p className={styles.venueAddress}>{address}</p>;
 };
 
 export type VenueDescriptionSectionProps = {
@@ -142,8 +123,9 @@ export type VenueDetailsModalComponent = React.FC<VenueDetailsModalProps> & {
 };
 
 /**
- * Modal dialog displaying detailed venue information including description,
- * accessibility notes, arrival instructions, and Google Maps search link.
+ * Modal dialog displaying detailed venue information matching design:
+ * Header with venue details title, bold venue name heading,
+ * address, description, accessibility notes, and full-width black close button.
  */
 export const VenueDetailsModal: VenueDetailsModalComponent = ({
   isOpen,
@@ -172,10 +154,11 @@ export const VenueDetailsModal: VenueDetailsModalComponent = ({
     >
       <Dialog.Header
         id={titleId}
-        title={venue.name || t('event.venueModal.title')}
+        title={t('event.venueModal.title')}
       />
       <Dialog.Content>
         <div id={descriptionId}>
+          {venue.name && <h3 className={styles.venueName}>{venue.name}</h3>}
           <VenueAddressSection address={venue.address} />
           <VenueDescriptionSection description={venue.description} />
           <VenueAccessibilitySection
@@ -189,8 +172,13 @@ export const VenueDetailsModal: VenueDetailsModalComponent = ({
           />
         </div>
       </Dialog.Content>
-      <Dialog.ActionButtons>
-        <Button variant="secondary" theme={ButtonPresetTheme.Black} onClick={onClose}>
+      <Dialog.ActionButtons className={styles.actionButtons}>
+        <Button
+          variant="primary"
+          theme={ButtonPresetTheme.Black}
+          fullWidth
+          onClick={onClose}
+        >
           {t('event.venueModal.close')}
         </Button>
       </Dialog.ActionButtons>

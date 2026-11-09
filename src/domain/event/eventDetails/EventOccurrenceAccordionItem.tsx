@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Accordion, IconInfoCircle, IconSize } from 'hds-react';
+import { Accordion } from 'hds-react';
 
 import { DEFAULT_TIME_FORMAT } from '../../../common/time/TimeConstants';
 import {
@@ -13,9 +13,10 @@ import type {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
 } from './EventOccurrencesTable';
-import { EventOccurrenceActionButton } from './EventOccurrenceActionButton';
-import { isOccurrenceFull, venueHasDetailedInfo } from '../EventUtils';
-import styles from './eventOccurrencesTable.module.scss';
+import { getOccurrenceStatus } from './occurrenceStatus';
+import { useOccurrenceFeatures } from '../hooks/useOccurrenceFeatures';
+import { OccurrenceAccordionHeading } from './components/OccurrenceAccordionHeading';
+import { OccurrenceDetailsList } from './components/OccurrenceDetailsList';
 
 export type EventOccurrenceAccordionItemProps = {
   occurrence: EventOccurrencesTableOccurrence;
@@ -34,8 +35,9 @@ export type EventOccurrenceAccordionItemProps = {
 
 /**
  * Mobile HDS Accordion card representing an individual occurrence matching Figma designs:
- * 2-line header with date, start time, and remaining capacity badge;
- * expanded body displaying time range, language, venue with info icon, address, and action button.
+ * 2-line header with date, start time, remaining capacity badge, and special feature icons;
+ * expanded body displaying time range, venue link, address, languages, accessibilities,
+ * and the primary action button.
  */
 export const EventOccurrenceAccordionItem: React.FC<
   EventOccurrenceAccordionItemProps
@@ -51,7 +53,7 @@ export const EventOccurrenceAccordionItem: React.FC<
   onUnsubscribe,
   onVenueInfoClick,
 }) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const formattedDate = formatOccurrenceDateLong(
     occurrence.time,
@@ -62,34 +64,26 @@ export const EventOccurrenceAccordionItem: React.FC<
     occurrence.time,
     event.duration
   );
-  const isFull = isOccurrenceFull(occurrence.remainingCapacity);
-  const timeSeparator = t('common.dateTimeSeparator');
 
-  const venueName = occurrence.venue?.name;
-  const venueAddress = occurrence.venue?.address;
-  const showVenueInfoIcon = venueHasDetailedInfo(occurrence.venue);
+  const isEnrolledHere = enrolledOccurrenceId === occurrence.id;
+  const status = getOccurrenceStatus({
+    remainingCapacity: occurrence.remainingCapacity,
+    isEnrolledHere,
+  });
 
-  const languageText = occurrence.occurrenceLanguage
-    ? t(`common.language.${occurrence.occurrenceLanguage.toLowerCase()}`)
-    : null;
+  const { languageText, accessibilities, isSpeechless } =
+    useOccurrenceFeatures(occurrence);
 
-  const getCapacityText = () => {
-    if (isFull) {
-      return `(${t('event.occurrencesTable.fullBadge')})`;
-    }
-    if (typeof occurrence.remainingCapacity === 'number') {
-      return t('event.occurrencesTable.remainingSpotsCount', {
-        count: occurrence.remainingCapacity,
-      });
-    }
-    return '';
-  };
-
-  const capacityText = getCapacityText();
-
-  const heading = capacityText
-    ? `${formattedDate} • ${timeSeparator} ${startTime}\n${capacityText}`
-    : `${formattedDate} • ${timeSeparator} ${startTime}`;
+  const heading = (
+    <OccurrenceAccordionHeading
+      formattedDate={formattedDate}
+      formattedStartTime={startTime}
+      status={status}
+      remainingCapacity={occurrence.remainingCapacity}
+      accessibilities={accessibilities}
+      speechless={isSpeechless}
+    />
+  );
 
   return (
     <Accordion
@@ -97,80 +91,25 @@ export const EventOccurrenceAccordionItem: React.FC<
       border
       closeButton
       initiallyOpen={initiallyOpen}
-      heading={heading}
+      heading={heading as unknown as string}
       headingLevel={3}
       language={getCurrentLanguage(i18n)}
       id={`occurrence-accordion-${occurrence.id}`}
     >
-      <div className={styles.accordionBodyContent}>
-        <div className={styles.detailItem}>
-          <span className={styles.detailLabel}>
-            {t('event.occurrencesTable.timeLabel')}:
-          </span>{' '}
-          <span className={styles.detailValue}>{formattedTimeRange}</span>
-        </div>
-
-        {languageText && (
-          <div className={styles.detailItem}>
-            <span className={styles.detailLabel}>
-              {t('event.occurrencesTable.languageLabel')}:
-            </span>{' '}
-            <span className={styles.detailValue}>{languageText}</span>
-          </div>
-        )}
-
-        {venueName && (
-          <div className={styles.detailItem}>
-            <span className={styles.detailLabel}>
-              {t('event.occurrencesTable.venueLabel')}:
-            </span>{' '}
-            <span className={styles.detailValue}>{venueName}</span>
-            {showVenueInfoIcon && occurrence.venue && (
-              <button
-                type="button"
-                className={styles.venueInfoButton}
-                onClick={() => {
-                  if (occurrence.venue) {
-                    onVenueInfoClick?.(occurrence.venue);
-                  }
-                }}
-                aria-label={t('event.occurrencesTable.venueInfoAriaLabel', {
-                  venue: venueName,
-                })}
-              >
-                <IconInfoCircle
-                  aria-hidden="true"
-                  size={IconSize.ExtraSmall}
-                  className={styles.venueInfoIcon}
-                />
-              </button>
-            )}
-          </div>
-        )}
-
-        {venueAddress && (
-          <div className={styles.detailItem}>
-            <span className={styles.detailLabel}>
-              {t('event.occurrencesTable.addressLabel')}:
-            </span>{' '}
-            <span className={styles.detailValue}>{venueAddress}</span>
-          </div>
-        )}
-
-        <div className={styles.accordionActionWrapper}>
-          <EventOccurrenceActionButton
-            occurrence={occurrence}
-            event={event}
-            childId={childId}
-            enrolledOccurrenceId={enrolledOccurrenceId}
-            onEnrol={onEnrol}
-            onCancelEnrolment={onCancelEnrolment}
-            onSubscribe={onSubscribe}
-            onUnsubscribe={onUnsubscribe}
-            fullWidth
-          />
-        </div>
-      </div>
+      <OccurrenceDetailsList
+        occurrence={occurrence}
+        event={event}
+        childId={childId}
+        enrolledOccurrenceId={enrolledOccurrenceId}
+        formattedTimeRange={formattedTimeRange}
+        languageText={languageText}
+        accessibilities={accessibilities}
+        onEnrol={onEnrol}
+        onCancelEnrolment={onCancelEnrolment}
+        onSubscribe={onSubscribe}
+        onUnsubscribe={onUnsubscribe}
+        onVenueInfoClick={onVenueInfoClick}
+      />
     </Accordion>
   );
 };

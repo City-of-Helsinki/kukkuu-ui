@@ -25,6 +25,7 @@ export type EventOccurrencesTableOccurrence = {
   time: string;
   remainingCapacity?: number | null;
   occurrenceLanguage?: string | null;
+  accessibilities?: string[] | null;
   childHasFreeSpotNotificationSubscription?: boolean | null;
   venue?: {
     id?: string;
@@ -117,9 +118,7 @@ export const EventOccurrencesTable: EventOccurrencesTableComponent = ({
     [columnsProp, t]
   );
 
-  const formatCapacityText = useOccurrenceCapacityText(
-    event.capacityPerOccurrence
-  );
+  const formatCapacityText = useOccurrenceCapacityText();
 
   if (sortedOccurrences.length === 0) {
     return (

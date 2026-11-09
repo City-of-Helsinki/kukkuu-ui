@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { screen, act, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { faker } from '@faker-js/faker';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import i18n from '../../../../common/translation/i18n/i18nInit';
@@ -25,9 +26,12 @@ vi.mock('hds-react', async (importOriginal) => {
 });
 
 describe('EventOccurrencesTable', () => {
+  const testVenueName = faker.company.name();
+  const testVenueAddress = faker.location.streetAddress();
+
   const baseEvent: EventOccurrencesTableEvent = {
     id: 'event-1',
-    name: 'Nukketeatteri Sampo: Pieni yösoitto',
+    name: faker.lorem.words(3),
     duration: 90,
     capacityPerOccurrence: 120,
     enrolmentDeniedReason: null,
@@ -41,8 +45,8 @@ describe('EventOccurrencesTable', () => {
       remainingCapacity: 66,
       venue: {
         id: 'venue-1',
-        name: 'Pakilantie 12 B',
-        address: 'Pakilantie 12 B',
+        name: testVenueName,
+        address: testVenueAddress,
       },
     },
     {
@@ -52,8 +56,8 @@ describe('EventOccurrencesTable', () => {
       childHasFreeSpotNotificationSubscription: false,
       venue: {
         id: 'venue-1',
-        name: 'Pakilantie 12 B',
-        address: 'Pakilantie 12 B',
+        name: testVenueName,
+        address: testVenueAddress,
       },
     },
     {
@@ -63,8 +67,8 @@ describe('EventOccurrencesTable', () => {
       childHasFreeSpotNotificationSubscription: true,
       venue: {
         id: 'venue-1',
-        name: 'Pakilantie 12 B',
-        address: 'Pakilantie 12 B',
+        name: testVenueName,
+        address: testVenueAddress,
       },
     },
   ];
@@ -88,26 +92,25 @@ describe('EventOccurrencesTable', () => {
     expect(screen.getAllByRole('row').length).toBeGreaterThan(1);
 
     // Mobile accordions are NOT rendered on desktop
+    expect(screen.queryByRole('region')).not.toBeInTheDocument();
     expect(
-      screen.queryByRole('button', { expanded: true })
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByRole('button', { expanded: false })
+      screen.queryByRole('button', { name: /Ma 14\.9\.2026 •/ })
     ).not.toBeInTheDocument();
 
     // Headers
-    expect(screen.getByText('Päivämäärä')).toBeInTheDocument();
-    expect(screen.getByText('Aika')).toBeInTheDocument();
+    expect(screen.getByText('Ajankohta')).toBeInTheDocument();
     expect(screen.getByText('Paikan nimi')).toBeInTheDocument();
-    expect(screen.getByText('Osoite')).toBeInTheDocument();
     expect(screen.getByText('Kielet')).toBeInTheDocument();
+    expect(screen.getByText('Erityishuomiot')).toHaveClass('visually-hidden');
     expect(screen.getByText('Paikkoja jäljellä')).toBeInTheDocument();
     expect(screen.getByText('Toiminto')).toHaveClass('visually-hidden');
 
     // Occ-1: Available spots
-    expect(screen.getByText('Ma 14.9.2026')).toBeInTheDocument();
-    expect(screen.getAllByText('18:30–20:00')).toHaveLength(2);
-    expect(screen.getByText('66/120')).toBeInTheDocument();
+    expect(screen.getByText('Ma 14.9.2026 klo 18:30')).toBeInTheDocument();
+    expect(
+      screen.getAllByRole('button', { name: testVenueName })
+    ).toHaveLength(3);
+    expect(screen.getByText('66')).toBeInTheDocument();
 
     const enrolButtons = screen.getAllByRole('button', {
       name: 'Ilmoittaudu',
@@ -335,7 +338,7 @@ describe('EventOccurrencesTable', () => {
       />
     );
 
-    expect(screen.getByText('66 paikkaa')).toBeInTheDocument();
+    expect(screen.getByText('66')).toBeInTheDocument();
   });
 
   it('renders empty message when occurrences array is empty', () => {
@@ -355,7 +358,7 @@ describe('EventOccurrencesTable', () => {
     ).toBeInTheDocument();
   });
 
-  it('renders "Näytä ilmoittautumiseni" for enrolled occurrence and disabled buttons for other occurrences', async () => {
+  it('renders "Katso tiedot" for enrolled occurrence and disabled buttons for other occurrences', async () => {
     const user = userEvent.setup();
     const onCancel = vi.fn();
     render(
@@ -372,7 +375,7 @@ describe('EventOccurrencesTable', () => {
     );
 
     const cancelButton = screen.getByRole('button', {
-      name: 'Näytä ilmoittautumiseni',
+      name: 'Katso tiedot',
     });
     expect(cancelButton).toBeInTheDocument();
 
@@ -404,7 +407,7 @@ describe('EventOccurrencesTable', () => {
             occurrence={baseOccurrences[0]}
             event={baseEvent}
             childId="child-1"
-            formatCapacityText={() => '66/120'}
+            formatCapacityText={() => '66'}
             onEnrol={vi.fn()}
             onSubscribe={vi.fn()}
             onUnsubscribe={vi.fn()}
@@ -413,13 +416,13 @@ describe('EventOccurrencesTable', () => {
       </table>
     );
 
-    expect(screen.getByText('Ma 14.9.2026')).toBeInTheDocument();
+    expect(screen.getByText('Ma 14.9.2026 klo 18:30')).toBeInTheDocument();
   });
 
   it('synchronizes custom columns between headers and row cells', () => {
     const customColumns = [
       {
-        id: 'date' as const,
+        id: 'dateTime' as const,
         header: 'Custom Date Header',
       },
       {
@@ -453,16 +456,17 @@ describe('EventOccurrencesTable', () => {
   it('renders venue info icon conditionally and calls onVenueInfoClick when clicked', async () => {
     const user = userEvent.setup();
     const handleVenueInfoClick = vi.fn();
+    const detailedVenue = {
+      id: 'venue-detailed',
+      name: faker.company.name(),
+      address: faker.location.streetAddress(),
+      description: faker.lorem.sentence(),
+    };
     const occurrenceWithDetailedVenue: EventOccurrencesTableOccurrence = {
       id: 'occ-venue-details',
       time: '2026-09-14T15:30:00Z',
       remainingCapacity: 20,
-      venue: {
-        id: 'venue-detailed',
-        name: 'Nukketeatteri Sampo',
-        address: 'Erottajankatu 7, 00130 Helsinki',
-        description: 'Teatterin esittelyteksti',
-      },
+      venue: detailedVenue,
     };
 
     render(
@@ -478,7 +482,7 @@ describe('EventOccurrencesTable', () => {
     );
 
     const infoBtn = screen.getByRole('button', {
-      name: /Näytä paikan tiedot: Nukketeatteri Sampo/i,
+      name: detailedVenue.name,
     });
     expect(infoBtn).toBeInTheDocument();
     await user.click(infoBtn);
@@ -559,7 +563,9 @@ describe('EventOccurrencesTable', () => {
         expanded: true,
       });
       expect(accordionButton).toBeInTheDocument();
-      expect(accordionButton.textContent).not.toContain('paikkoja jäljellä');
+      expect(accordionButton.textContent?.toLowerCase()).not.toContain(
+        'paikkoja jäljellä'
+      );
     } finally {
       useMediaQueryLessThanMock.mockReturnValue(false);
     }

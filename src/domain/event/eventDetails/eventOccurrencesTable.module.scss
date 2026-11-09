@@ -26,8 +26,6 @@
 
   .tableWrapper {
     width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
     margin-bottom: var(--spacing-l);
   }
 
@@ -35,7 +33,6 @@
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    min-width: 820px;
 
     .headerRow {
       background-color: var(--color-gold, #ffc61e);
@@ -74,75 +71,26 @@
     }
   }
 
-  .dateCell {
+  .dateTimeCell {
     white-space: nowrap;
     font-weight: 500;
-  }
-
-  .timeCell {
-    white-space: nowrap;
   }
 
   .venueCell {
     white-space: normal;
   }
 
-  .venueNameWrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-2-xs);
-  }
-
-  .venueInfoButton {
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    color: var(--color-black-80, #333);
-    line-height: 1;
-
-    &:hover {
-      color: var(--color-black, #000);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-coat-of-arms, #0000bf);
-      outline-offset: 2px;
-    }
-  }
-
-  .addressCell {
-    white-space: normal;
-    color: var(--color-black-80, #333);
-  }
-
   .languageCell {
+    white-space: nowrap;
+  }
+
+  .specialFeaturesCell {
     white-space: nowrap;
   }
 
   .capacityColumnCell {
     white-space: nowrap;
     font-weight: 500;
-  }
-
-  .fullBadge {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--spacing-3-xs);
-    background-color: var(--color-black-10, #e0e0e0);
-    color: var(--color-black, #000);
-    padding: 0.15rem 0.5rem;
-    border-radius: 9999px;
-    font-size: var(--fontsize-body-s, 0.875rem);
-    font-weight: 500;
-    line-height: 1.4;
-
-    .alertIcon {
-      color: var(--color-black, #000);
-    }
   }
 
   .actionCell {
