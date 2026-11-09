@@ -24,7 +24,7 @@ const mockOccurrences: EventDetailsPageOccurrence[] = [
     occurrenceLanguage: 'FI',
     venue: {
       id: 'venue-1',
-      name: 'Musiikkitalo',
+      name: 'Music Centre',
       address: 'Mannerheimintie 13 A',
     },
   },
@@ -54,9 +54,9 @@ describe('EventDetailsPage', () => {
   it('renders occurrences table section for internal events', () => {
     const internalEvent: EventDetailsPageProps['event'] = {
       id: 'int-event-1',
-      name: 'Sisäinen tapahtuma',
-      shortDescription: 'Kuvaus',
-      description: '<p>Tarkempi kuvaus</p>',
+      name: 'Internal event',
+      shortDescription: 'Description',
+      description: '<p>Detailed description</p>',
       duration: 60,
       capacityPerOccurrence: 30,
       participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
@@ -72,7 +72,7 @@ describe('EventDetailsPage', () => {
     );
 
     expect(
-      screen.getByRole('heading', { level: 1, name: 'Sisäinen tapahtuma' })
+      screen.getByRole('heading', { level: 1, name: 'Internal event' })
     ).toBeInTheDocument();
     // Occurrence table is rendered
     expect(
@@ -86,9 +86,9 @@ describe('EventDetailsPage', () => {
   it('renders ticket system section for external ticket system events', async () => {
     const externalEvent: EventDetailsPageProps['event'] = {
       id: 'ext-event-1',
-      name: 'Ulkoinen Lippupiste-tapahtuma',
-      shortDescription: 'Kuvaus',
-      description: '<p>Tarkempi kuvaus</p>',
+      name: 'External Lippupiste event',
+      shortDescription: 'Description',
+      description: '<p>Detailed description</p>',
       duration: 60,
       capacityPerOccurrence: 30,
       participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
@@ -111,7 +111,7 @@ describe('EventDetailsPage', () => {
     expect(
       screen.getByRole('heading', {
         level: 1,
-        name: 'Ulkoinen Lippupiste-tapahtuma',
+        name: 'External Lippupiste event',
       })
     ).toBeInTheDocument();
     // Ticket system section is rendered instead of occurrences table

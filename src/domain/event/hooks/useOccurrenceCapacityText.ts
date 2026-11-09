@@ -3,22 +3,20 @@ import { useTranslation } from 'react-i18next';
 
 /**
  * Hook providing a function to format the capacity text for an occurrence.
+ * In the redesigned table, displays the plain remaining seat count (e.g. "66"),
+ * or localized unlimited capacity message if capacity is unlimited / null.
  *
- * @param capacityPerOccurrence - Optional maximum capacity per occurrence.
  * @returns Formatting function taking remaining capacity and returning a localized string.
  */
-export function useOccurrenceCapacityText(
-  capacityPerOccurrence?: number | null
-): (remaining: number | null | undefined) => string {
+export function useOccurrenceCapacityText(): (
+  remaining: number | null | undefined
+) => string {
   const { t } = useTranslation();
 
   return useCallback(
     (remaining: number | null | undefined): string => {
-      const isTotalKnown =
-        typeof capacityPerOccurrence === 'number' && capacityPerOccurrence > 0;
-
-      if (isTotalKnown) {
-        return `${remaining ?? 0}/${capacityPerOccurrence}`;
+      if (typeof remaining === 'number') {
+        return String(remaining);
       }
 
       if (remaining === null || remaining === undefined) {
@@ -27,9 +25,8 @@ export function useOccurrenceCapacityText(
 
       return t('event.occurrencesTable.remainingCount', { count: remaining });
     },
-    [capacityPerOccurrence, t]
+    [t]
   );
 }
 
 export default useOccurrenceCapacityText;
-

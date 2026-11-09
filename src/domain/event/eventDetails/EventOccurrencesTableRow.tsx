@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  formatOccurrenceDateLong,
-  formatOccurrenceTimeRange,
-} from '../../../common/time/occurrenceTime';
+import { DEFAULT_TIME_FORMAT } from '../../../common/time/TimeConstants';
+import { formatOccurrenceDateLong } from '../../../common/time/occurrenceTime';
+import { formatTime, newDate } from '../../../common/time/utils';
 import type {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
@@ -14,7 +13,7 @@ import {
   getEventOccurrencesTableColumns,
 } from './eventOccurrencesTableColumns';
 import { EventOccurrencesTableCell } from './EventOccurrencesTableCell';
-import { isOccurrenceFull } from '../EventUtils';
+import { getOccurrenceStatus } from './occurrenceStatus';
 import styles from './eventOccurrencesTable.module.scss';
 
 export type {
@@ -36,15 +35,14 @@ export type EventOccurrencesTableRowProps = {
   onCancelEnrolment?: (occurrence: EventOccurrencesTableOccurrence) => void;
   onSubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
   onUnsubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
-  onVenueInfoClick?: (venue: NonNullable<EventOccurrencesTableOccurrence['venue']>) => void;
+  onVenueInfoClick?: (
+    venue: NonNullable<EventOccurrencesTableOccurrence['venue']>
+  ) => void;
 };
 
 /**
  * Renders a single row in the occurrences table.
- *
- * Implemented as a compound child component of {@link EventOccurrencesTable} (`EventOccurrencesTable.Row`).
- * Coordinates rendering cells via {@link EventOccurrencesTableCell} to guarantee `<td>` cells
- * always strictly match `<th>` headers.
+ * Coordinates rendering cells via {@link EventOccurrencesTableCell}.
  */
 export const EventOccurrencesTableRow: React.FC<
   EventOccurrencesTableRowProps
@@ -72,11 +70,18 @@ export const EventOccurrencesTableRow: React.FC<
     occurrence.time,
     i18n.language
   );
-  const formattedTime = formatOccurrenceTimeRange(
-    occurrence.time,
-    event.duration
+  const formattedStartTime = formatTime(
+    newDate(occurrence.time),
+    DEFAULT_TIME_FORMAT
   );
-  const isFull = isOccurrenceFull(occurrence.remainingCapacity);
+  const timeSeparator = t('common.dateTimeSeparator');
+  const formattedDateTime = `${formattedDate} ${timeSeparator} ${formattedStartTime}`;
+
+  const isEnrolledHere = enrolledOccurrenceId === occurrence.id;
+  const status = getOccurrenceStatus({
+    remainingCapacity: occurrence.remainingCapacity,
+    isEnrolledHere,
+  });
 
   return (
     <tr className={styles.bodyRow}>
@@ -89,8 +94,9 @@ export const EventOccurrencesTableRow: React.FC<
           childId={childId}
           enrolledOccurrenceId={enrolledOccurrenceId}
           formattedDate={formattedDate}
-          formattedTime={formattedTime}
-          isFull={isFull}
+          formattedStartTime={formattedStartTime}
+          formattedDateTime={formattedDateTime}
+          status={status}
           formatCapacityText={formatCapacityText}
           onEnrol={onEnrol}
           onCancelEnrolment={onCancelEnrolment}

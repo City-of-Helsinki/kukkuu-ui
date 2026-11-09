@@ -2,14 +2,14 @@ import React from 'react';
 import type { TFunction } from 'i18next';
 
 import type { EventOccurrencesTableOccurrence } from './EventOccurrencesTable';
+import type { OccurrenceStatus } from './occurrenceStatus';
 import styles from './eventOccurrencesTable.module.scss';
 
 export type EventOccurrencesColumnId =
-  | 'date'
-  | 'time'
+  | 'dateTime'
   | 'venueName'
-  | 'address'
   | 'language'
+  | 'specialFeatures'
   | 'capacity'
   | 'action';
 
@@ -18,8 +18,10 @@ export type EventOccurrencesColumnId =
  */
 export type EventOccurrencesTableCellContext = {
   formattedDate: string;
-  formattedTime: string;
+  formattedStartTime: string;
+  formattedDateTime: string;
   isFull: boolean;
+  status: OccurrenceStatus;
   renderActionButton: () => React.ReactNode;
 };
 
@@ -39,21 +41,16 @@ export type EventOccurrencesTableColumn = {
 };
 
 /**
- * Returns default column configurations for the occurrences table matching the 7 Figma columns:
- * Date, Time, Venue Name, Address, Language, Remaining spots, and Action.
+ * Returns default column configurations for the occurrences table matching the 6 redesigned columns:
+ * Date & time, Venue name, Languages, Special features, Remaining capacity, and Action.
  */
 export const getEventOccurrencesTableColumns = (
   t: TFunction
 ): EventOccurrencesTableColumn[] => [
   {
-    id: 'date',
-    header: t('event.occurrencesTable.date'),
-    cellClassName: styles.dateCell,
-  },
-  {
-    id: 'time',
-    header: t('event.occurrencesTable.time'),
-    cellClassName: styles.timeCell,
+    id: 'dateTime',
+    header: t('event.occurrencesTable.dateTime'),
+    cellClassName: styles.dateTimeCell,
   },
   {
     id: 'venueName',
@@ -61,14 +58,18 @@ export const getEventOccurrencesTableColumns = (
     cellClassName: styles.venueCell,
   },
   {
-    id: 'address',
-    header: t('event.occurrencesTable.address'),
-    cellClassName: styles.addressCell,
-  },
-  {
     id: 'language',
     header: t('event.occurrencesTable.languages'),
     cellClassName: styles.languageCell,
+  },
+  {
+    id: 'specialFeatures',
+    header: (
+      <span className="visually-hidden">
+        {t('event.occurrencesTable.specialFeatures')}
+      </span>
+    ),
+    cellClassName: styles.specialFeaturesCell,
   },
   {
     id: 'capacity',

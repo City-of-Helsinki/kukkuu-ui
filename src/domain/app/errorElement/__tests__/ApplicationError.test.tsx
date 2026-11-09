@@ -16,12 +16,12 @@ describe('ApplicationError', () => {
   });
 
   it('links to the homepage and renders the icon', () => {
-    render(<ApplicationError />);
+    const { container } = render(<ApplicationError />);
 
     const returnLink = screen.getByRole('link', { name: 'Etusivulle' });
     expect(returnLink).toHaveAttribute('href', '/');
 
-    const icon = screen.getByRole('img');
+    const icon = container.querySelector('img');
     expect(icon).toHaveAttribute('src', publicSvgIconPaths.adultFace);
   });
 });

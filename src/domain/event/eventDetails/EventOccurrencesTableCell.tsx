@@ -1,8 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { IconAlertCircle, IconInfoCircle, IconSize } from 'hds-react';
 
-import { venueHasDetailedInfo } from '../EventUtils';
 import type {
   EventOccurrencesTableEvent,
   EventOccurrencesTableOccurrence,
@@ -11,6 +8,11 @@ import type {
   EventOccurrencesTableCellContext,
   EventOccurrencesTableColumn,
 } from './eventOccurrencesTableColumns';
+import { OccurrenceStatus } from './occurrenceStatus';
+import { useOccurrenceFeatures } from '../hooks/useOccurrenceFeatures';
+import { OccurrenceVenueLink } from './components/OccurrenceVenueLink';
+import { OccurrenceSpecialIcons } from './components/OccurrenceSpecialIcons';
+import { OccurrenceStatusBadge } from './components/OccurrenceStatusBadge';
 import { EventOccurrenceActionButton } from './EventOccurrenceActionButton';
 import styles from './eventOccurrencesTable.module.scss';
 
@@ -21,19 +23,22 @@ export type EventOccurrencesTableCellProps = {
   childId: string;
   enrolledOccurrenceId?: string | null;
   formattedDate: string;
-  formattedTime: string;
-  isFull: boolean;
+  formattedStartTime: string;
+  formattedDateTime: string;
+  status: OccurrenceStatus;
   formatCapacityText: (remaining: number | null | undefined) => string;
   onEnrol: (occurrence: EventOccurrencesTableOccurrence) => void;
   onCancelEnrolment?: (occurrence: EventOccurrencesTableOccurrence) => void;
   onSubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
   onUnsubscribe: (occurrence: EventOccurrencesTableOccurrence) => void;
-  onVenueInfoClick?: (venue: NonNullable<EventOccurrencesTableOccurrence['venue']>) => void;
+  onVenueInfoClick?: (
+    venue: NonNullable<EventOccurrencesTableOccurrence['venue']>
+  ) => void;
 };
 
 /**
  * Renders a single `<td>` cell in the occurrences table according to the column definition,
- * supporting custom renderCell overrides and default formatting for the 7 Figma columns.
+ * delegating cell presentation cleanly to focused subcomponents.
  */
 export const EventOccurrencesTableCell: React.FC<
   EventOccurrencesTableCellProps
@@ -44,8 +49,9 @@ export const EventOccurrencesTableCell: React.FC<
   childId,
   enrolledOccurrenceId,
   formattedDate,
-  formattedTime,
-  isFull,
+  formattedStartTime,
+  formattedDateTime,
+  status,
   formatCapacityText,
   onEnrol,
   onCancelEnrolment,
@@ -53,7 +59,8 @@ export const EventOccurrencesTableCell: React.FC<
   onUnsubscribe,
   onVenueInfoClick,
 }) => {
-  const { t } = useTranslation();
+  const { languageText, accessibilities, isSpeechless } =
+    useOccurrenceFeatures(occurrence);
 
   const actionButton = (
     <EventOccurrenceActionButton
@@ -70,8 +77,10 @@ export const EventOccurrencesTableCell: React.FC<
 
   const cellContext: EventOccurrencesTableCellContext = {
     formattedDate,
-    formattedTime,
-    isFull,
+    formattedStartTime,
+    formattedDateTime,
+    isFull: status === OccurrenceStatus.Full,
+    status,
     renderActionButton: () => actionButton,
   };
 
@@ -81,65 +90,34 @@ export const EventOccurrencesTableCell: React.FC<
     }
 
     switch (column.id) {
-      case 'date':
-        return formattedDate;
+      case 'dateTime':
+        return formattedDateTime;
 
-      case 'time':
-        return formattedTime;
-
-      case 'venueName': {
-        const venueName = occurrence.venue?.name || '–';
-        const showInfoIcon = venueHasDetailedInfo(occurrence.venue);
-
+      case 'venueName':
         return (
-          <div className={styles.venueNameWrapper}>
-            <span>{venueName}</span>
-            {showInfoIcon && occurrence.venue && (
-              <button
-                type="button"
-                className={styles.venueInfoButton}
-                onClick={() => {
-                  if (occurrence.venue) {
-                    onVenueInfoClick?.(occurrence.venue);
-                  }
-                }}
-                aria-label={t('event.occurrencesTable.venueInfoAriaLabel', {
-                  venue: venueName,
-                })}
-              >
-                <IconInfoCircle
-                  aria-hidden="true"
-                  size={IconSize.ExtraSmall}
-                  className={styles.venueInfoIcon}
-                />
-              </button>
-            )}
-          </div>
+          <OccurrenceVenueLink
+            venue={occurrence.venue}
+            onVenueInfoClick={onVenueInfoClick}
+          />
         );
-      }
 
-      case 'address':
-        return occurrence.venue?.address || '–';
+      case 'language':
+        return languageText;
 
-      case 'language': {
-        if (!occurrence.occurrenceLanguage) return '–';
-        return t(
-          `common.language.${occurrence.occurrenceLanguage.toLowerCase()}`
+      case 'specialFeatures':
+        return (
+          <OccurrenceSpecialIcons
+            accessibilities={accessibilities}
+            speechless={isSpeechless}
+          />
         );
-      }
 
       case 'capacity':
-        if (isFull) {
-          return (
-            <span className={styles.fullBadge}>
-              <IconAlertCircle
-                aria-hidden="true"
-                size={IconSize.ExtraSmall}
-                className={styles.alertIcon}
-              />
-              <span>{t('event.occurrencesTable.fullBadge')}</span>
-            </span>
-          );
+        if (
+          status === OccurrenceStatus.Enrolled ||
+          status === OccurrenceStatus.Full
+        ) {
+          return <OccurrenceStatusBadge status={status} />;
         }
         return formatCapacityText(occurrence.remainingCapacity);
 
@@ -149,7 +127,7 @@ export const EventOccurrencesTableCell: React.FC<
   };
 
   return (
-    <td className={column.cellClassName}>
+    <td className={column.cellClassName ?? styles.cell}>
       {renderCellContent()}
     </td>
   );
