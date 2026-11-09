@@ -74,7 +74,7 @@ describe('EventOccurrenceActionButton', () => {
       />
     );
 
-    const btn = screen.getByRole('button', { name: 'Näytä ilmoittautumiseni' });
+    const btn = screen.getByRole('button', { name: 'Katso tiedot' });
     expect(btn).toBeInTheDocument();
     await user.click(btn);
     expect(handleCancel).toHaveBeenCalledWith(availableOcc);

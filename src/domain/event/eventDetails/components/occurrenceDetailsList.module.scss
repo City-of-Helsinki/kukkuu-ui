@@ -1,0 +1,35 @@
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--spacing-s, 0.75rem);
+  padding-top: var(--spacing-xs, 0.5rem);
+}
+
+.detailsList {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: var(--spacing-xs, 0.5rem);
+  column-gap: var(--spacing-s, 0.75rem);
+  margin: 0;
+  padding: 0;
+  font-size: var(--fontsize-body-m, 1rem);
+  line-height: 1.5;
+
+  dt {
+    font-weight: 700;
+    color: var(--color-black, #000);
+    margin: 0;
+  }
+
+  dd {
+    font-weight: 400;
+    color: var(--color-black-90, #1a1a1a);
+    margin: 0;
+  }
+}
+
+.actionWrapper {
+  margin-top: var(--spacing-s, 0.75rem);
+  width: 100%;
+}

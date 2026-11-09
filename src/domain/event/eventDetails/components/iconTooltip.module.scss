@@ -1,0 +1,74 @@
+.tooltipWrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.triggerButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-black-80, #333);
+  line-height: 1;
+  border-radius: 2px;
+
+  &:hover {
+    color: var(--color-black, #000);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-coat-of-arms, #0000bf);
+    outline-offset: 2px;
+  }
+}
+
+.tooltipContent {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-coat-of-arms-light, #e8f0fc);
+  border-top: 6px solid var(--color-coat-of-arms, #0000bf);
+  box-shadow: var(--box-shadow-s, 0 4px 12px rgba(0, 0, 0, 0.15));
+  color: var(--color-black-90, #1a1a1a);
+  font-size: var(--fontsize-body-s, 0.875rem);
+  font-weight: 400;
+  line-height: 1.4;
+  padding: var(--spacing-xs, 0.5rem) var(--spacing-s, 0.75rem);
+  border-radius: 0 0 2px 2px;
+  min-width: 140px;
+  max-width: 280px;
+  white-space: normal;
+  text-align: left;
+  z-index: 1000;
+  pointer-events: auto;
+
+  /* Upward pointing arrow matching blue border */
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent var(--color-coat-of-arms, #0000bf)
+      transparent;
+  }
+
+  /* Transparent hover bridge across the 8px gap between trigger and tooltip */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    height: 8px;
+  }
+}

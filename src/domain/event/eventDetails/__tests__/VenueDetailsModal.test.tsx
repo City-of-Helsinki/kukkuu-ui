@@ -1,19 +1,20 @@
 import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { faker } from '@faker-js/faker';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import { VenueDetailsModal, VenueDetailsModalVenue } from '../VenueDetailsModal';
 
 describe('VenueDetailsModal', () => {
   const mockVenue: VenueDetailsModalVenue = {
-    id: 'venue-1',
-    name: 'Nukketeatteri Sampo',
-    address: 'Erottajankatu 7, 00130 Helsinki',
-    description: 'Tunnettu nukketeatteri Helsingin keskustassa.',
-    accessibilityInfo: 'Pyörätuoliluiska sisäänkäynnillä.',
-    arrivalInstructions: 'Raitiovaunu 3 ja 6 pysähtyvät lähellä.',
-    wcAndFacilities: 'Esteetön wc ensimmäisessä kerroksessa.',
+    id: faker.string.uuid(),
+    name: faker.company.name(),
+    address: faker.location.streetAddress(),
+    description: faker.lorem.paragraph(),
+    accessibilityInfo: faker.lorem.sentence(),
+    arrivalInstructions: faker.lorem.sentence(),
+    wcAndFacilities: faker.lorem.sentence(),
   };
 
   it('renders venue details and sections when open', async () => {
@@ -28,36 +29,25 @@ describe('VenueDetailsModal', () => {
     );
 
     // Title / Header
-    expect(screen.getByText('Nukketeatteri Sampo')).toBeInTheDocument();
+    expect(screen.getByText('Lisätietoa tapahtumapaikasta')).toBeInTheDocument();
 
-    // Address & Map link
-    expect(screen.getByText('Erottajankatu 7, 00130 Helsinki')).toBeInTheDocument();
-    const mapLink = screen.getByRole('link', { name: /Avaa kartta/i });
-    expect(mapLink).toHaveAttribute(
-      'href',
-      expect.stringContaining('Erottajankatu%207')
-    );
+    // Venue name & Address in body
+    expect(screen.getByText(mockVenue.name!)).toBeInTheDocument();
+    expect(screen.getByText(mockVenue.address!)).toBeInTheDocument();
 
     // Description & other sections
-    expect(
-      screen.getByText('Tunnettu nukketeatteri Helsingin keskustassa.')
-    ).toBeInTheDocument();
+    expect(screen.getByText(mockVenue.description!)).toBeInTheDocument();
     expect(screen.getByText('Esteettömyystiedot')).toBeInTheDocument();
-    expect(
-      screen.getByText('Pyörätuoliluiska sisäänkäynnillä.')
-    ).toBeInTheDocument();
+    expect(screen.getByText(mockVenue.accessibilityInfo!)).toBeInTheDocument();
     expect(screen.getByText('Saapumisohjeet')).toBeInTheDocument();
-    expect(
-      screen.getByText('Raitiovaunu 3 ja 6 pysähtyvät lähellä.')
-    ).toBeInTheDocument();
+    expect(screen.getByText(mockVenue.arrivalInstructions!)).toBeInTheDocument();
     expect(screen.getByText('WC- ja muut tilat')).toBeInTheDocument();
-    expect(
-      screen.getByText('Esteetön wc ensimmäisessä kerroksessa.')
-    ).toBeInTheDocument();
+    expect(screen.getByText(mockVenue.wcAndFacilities!)).toBeInTheDocument();
 
     // Close button
     const closeButtons = screen.getAllByRole('button', { name: 'Sulje' });
     expect(closeButtons.length).toBeGreaterThanOrEqual(1);
+
     await user.click(closeButtons[0]);
     expect(handleClose).toHaveBeenCalled();
   });
