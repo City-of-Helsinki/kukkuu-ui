@@ -161,10 +161,6 @@ const EnrolPage = () => {
     );
   };
 
-  const handleUnsubscribed = async () => {
-    goToEvent();
-  };
-
   return (
     <PageWrapper
       className={styles.wrapper}
@@ -175,7 +171,7 @@ const EnrolPage = () => {
         occurrence={data.occurrence}
         onCancel={() => goToEvent()}
         onEnrol={() => enrol()}
-        onUnsubscribed={handleUnsubscribed}
+        onUnsubscribed={() => goToEvent()}
         onSubscribed={() => goToEvent()}
       />
     </PageWrapper>

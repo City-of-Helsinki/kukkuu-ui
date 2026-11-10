@@ -26,7 +26,7 @@ const defaultContext: ProfileContextType = {
   updateProfile: () => {
     throw new Error('Not implemented');
   },
-  refetchProfile: async () => {
+  refetchProfile: () => {
     throw new Error('Not implemented');
   },
 };

@@ -37,10 +37,10 @@ const ProfileChildDetailEditModal: FunctionComponent<{
     }
   };
 
-  const openDeleteConfirmModal = async () => {
+  const openDeleteConfirmModal = () => {
     setIsFormOpen(false);
     setIsDeleteConfirmOpen(true);
-    refetchProfile();
+    void refetchProfile();
   };
 
   // Both the delete-confirm and non-eligible-alert modals only need to close

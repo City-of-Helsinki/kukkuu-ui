@@ -54,7 +54,12 @@ export function createCmsApolloClient() {
       // eslint-disable-next-line no-console
       console.info('Persisted cache has been restored.');
     }
-  })();
+  })().catch((error) => {
+    // Cache persistence failure is non-critical: the app works without
+    // a restored cache, so only log a warning.
+    // eslint-disable-next-line no-console
+    console.warn('Apollo cache persistor failed:', error);
+  });
 
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, httpLink]),
