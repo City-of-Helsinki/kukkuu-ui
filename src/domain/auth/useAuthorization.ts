@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from '@sentry/browser';
 
 export type Authorization = (() => Promise<boolean>) | boolean;
 
@@ -16,6 +17,14 @@ export function useAuthorization(
         .then((result) => {
           if (!ignore) {
             setAuthorized(result);
+          }
+        })
+        .catch((error) => {
+          // A failed authorization check is critical: the user may be
+          // denied access to a protected route.
+          Sentry.captureException(error);
+          if (!ignore) {
+            setAuthorized(false);
           }
         })
         .finally(() => {

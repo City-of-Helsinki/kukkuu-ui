@@ -79,7 +79,7 @@ const UnenrolModal = ({
   };
 
   const confirmUnenrol = (answer: boolean) => {
-    if (answer === true) unenrol();
+    if (answer === true) void unenrol();
   };
 
   return (

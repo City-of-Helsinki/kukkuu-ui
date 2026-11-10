@@ -182,6 +182,28 @@ describe('Headless CMS Client', () => {
       expect(dataAfterRestore.page.id).toEqual(page!.id);
     });
 
+    it('logs a warning when restoring the persisted cache fails', async () => {
+      vi.spyOn(
+        TimedApolloCachePersistor.prototype,
+        'hasPersistedCacheExpired'
+      ).mockReturnValue(false);
+      const restoreError = new Error('restore failed');
+      vi.spyOn(
+        TimedApolloCachePersistor.prototype,
+        'restore'
+      ).mockRejectedValue(restoreError);
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      createCmsApolloClient();
+
+      await vi.waitFor(() => {
+        expect(warnSpy).toHaveBeenCalledWith(
+          'Apollo cache persistor failed:',
+          restoreError
+        );
+      });
+    });
+
     it.each([600000, 10000])(
       'expires the persisted cache in set time (%i ms)',
       async (persistedCacheTimeToLiveMs) => {
