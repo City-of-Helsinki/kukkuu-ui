@@ -1,7 +1,7 @@
 import { MenuDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { MockedResponse } from '@apollo/client/testing';
 
-import { languageToMenuNameMap } from '../constants';
+import AppConfig from '../../AppConfig';
 
 /**
  * This is a mock of the response from the header menu query.
@@ -104,7 +104,7 @@ export const headerMenuMock: MockedResponse = {
   request: {
     query: MenuDocument,
     variables: {
-      id: languageToMenuNameMap['fi'],
+      id: AppConfig.cmsHeaderMenuNames['fi'],
       menuIdentifiersOnly: false,
     },
   },
