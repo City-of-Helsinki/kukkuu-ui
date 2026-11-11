@@ -11,7 +11,8 @@ import {
 import UserNavigation from './UserNavigation';
 import { useCmsLanguageOptions } from '../../../hooks/useCmsLanguageOptions';
 import { stripLocaleFromUri } from '../../../utils/cmsUtils';
-import { languageToMenuNameMap } from './constants';
+import AppConfig from '../AppConfig';
+import { getIsMenuItemActive } from './navigationUtils';
 
 function Navigation() {
   const { i18n } = useTranslation();
@@ -47,20 +48,20 @@ function Navigation() {
     return getHref(languageCode);
   };
 
-  const getIsItemActive = (menuItem: MenuItem): boolean => {
-    const pathWithoutTrailingSlash = (menuItem.path ?? '').replace(/\/$/, '');
-    return decodeURIComponent(globalThis.window.location.pathname).includes(
-      decodeURIComponent(
-        `/${i18n.language}${stripLocaleFromUri(pathWithoutTrailingSlash)}`
-      )
+  const getIsItemActive = (menuItem: MenuItem): boolean =>
+    getIsMenuItemActive(
+      menuItem,
+      location.pathname || globalThis.window.location.pathname
     );
-  };
+
+  const headerMenuName =
+    AppConfig.cmsHeaderMenuNames[
+      i18n.language as keyof typeof AppConfig.cmsHeaderMenuNames
+    ] ?? AppConfig.cmsHeaderMenuNames.fi;
 
   return (
     <RHHCNavigation
-      menuName={
-        languageToMenuNameMap[i18n.language] ?? languageToMenuNameMap.fi
-      }
+      menuName={headerMenuName}
       onTitleClick={() => {
         const rootPath = i18n.language === 'fi' ? '/' : `/${i18n.language}`;
         navigate(rootPath);
