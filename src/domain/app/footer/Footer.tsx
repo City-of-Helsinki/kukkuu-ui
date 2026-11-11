@@ -7,7 +7,7 @@ import { Logo, Footer as HDSFooter, logoSv, logoFi, LogoSize } from 'hds-react';
 import styles from './footer.module.scss';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import { RESET_FOCUS_ID } from '../../../common/components/resetFocus/constants';
-import { languageToMenuNameMap } from './constants';
+import AppConfig from '../AppConfig';
 
 type ValidMenuItem = {
   id: MenuItem['id'];
@@ -30,7 +30,7 @@ const Footer: FunctionComponent = () => {
 
   const footerMenuQuery = useMenuQuery({
     variables: {
-      id: languageToMenuNameMap[currentLocale],
+      id: AppConfig.cmsFooterMenuNames[currentLocale],
       menuIdentifiersOnly: true,
     },
   });
