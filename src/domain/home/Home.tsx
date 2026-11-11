@@ -1,6 +1,7 @@
 import { useRef, RefObject } from 'react';
 import classnames from 'classnames';
 import { useOidcClient } from 'hds-react';
+import { TemplateEnum } from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import styles from './home.module.scss';
 import HomePreliminaryForm from './form/HomePreliminaryForm';
@@ -12,6 +13,12 @@ import HomeVideo from './video/HomeVideo';
 import HomeContact from './contact/HomeContact';
 import HomeMoreInfo from './moreInfo/HomeMoreInfo';
 import { useProfileContext } from '../profile/hooks/useProfileContext';
+import usePageByTemplateQuery from '../../hooks/usePageByTemplateQuery';
+import {
+  getCmsPageDescription,
+  getCmsPageImage,
+  getCmsPageTitle,
+} from '../../utils/cmsUtils';
 
 const Home = () => {
   const { isAuthenticated } = useOidcClient();
@@ -19,6 +26,8 @@ const Home = () => {
   const { profile } = useProfileContext();
   const userHasProfile = !!profile;
   const formRef = useRef<HTMLDivElement>(null);
+  const { data: cmsPageData } = usePageByTemplateQuery(TemplateEnum.FrontPage);
+  const page = cmsPageData?.pageByTemplate;
 
   const scrollToForm = (formRef: RefObject<HTMLDivElement | null>) => {
     if (formRef?.current) {
@@ -26,8 +35,12 @@ const Home = () => {
     }
   };
 
+  const heroImage = page ? getCmsPageImage(page) : undefined;
+
   return (
     <PageWrapper
+      page={page}
+      image={heroImage?.url}
       containerClassName={classnames(
         styles.gridLayoutOverride,
         userHasProfile && styles.userHasProfileContainer
@@ -35,6 +48,13 @@ const Home = () => {
     >
       <div className={styles.home}>
         <HomeHero
+          title={getCmsPageTitle(page)}
+          description={
+            page !== null && page !== undefined
+              ? getCmsPageDescription(page)
+              : undefined
+          }
+          image={heroImage}
           userHasProfile={userHasProfile}
           userIsAuthenticated={isLoggedIn}
           scrollToForm={() => scrollToForm(formRef)}
