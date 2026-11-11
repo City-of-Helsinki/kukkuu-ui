@@ -1,4 +1,5 @@
 import i18n from '../../common/translation/i18n/i18nInit';
+import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import { getEnvValue } from '../../common/utils/envUtils';
 
 /**
@@ -223,6 +224,105 @@ class AppConfig {
   }
 
   /**
+   * The base origin URL of the Content Management System (CMS).
+   */
+  static get cmsOrigin() {
+    return new URL(this.cmsUri).origin;
+  }
+
+  /**
+   * Localized header menu identifiers in WordPress Headless CMS.
+   *
+   * @throws {Error} If any of the localized header menu name environment variables are not defined.
+   * @example
+   * // In your environment:
+   * VITE_CMS_HEADER_MENU_NAME_FI='Main Navigation FI'
+   * VITE_CMS_HEADER_MENU_NAME_SV='Main Navigation SV'
+   * VITE_CMS_HEADER_MENU_NAME_EN='Main Navigation EN'
+   */
+  static get cmsHeaderMenuNames() {
+    return {
+      [SUPPORT_LANGUAGES.FI]: getEnvOrError(
+        getEnvValue('VITE_CMS_HEADER_MENU_NAME_FI'),
+        'VITE_CMS_HEADER_MENU_NAME_FI'
+      ),
+      [SUPPORT_LANGUAGES.SV]: getEnvOrError(
+        getEnvValue('VITE_CMS_HEADER_MENU_NAME_SV'),
+        'VITE_CMS_HEADER_MENU_NAME_SV'
+      ),
+      [SUPPORT_LANGUAGES.EN]: getEnvOrError(
+        getEnvValue('VITE_CMS_HEADER_MENU_NAME_EN'),
+        'VITE_CMS_HEADER_MENU_NAME_EN'
+      ),
+    } as const;
+  }
+
+  /**
+   * Localized footer menu identifiers in WordPress Headless CMS.
+   *
+   * @throws {Error} If any of the localized footer menu name environment variables are not defined.
+   * @example
+   * // In your environment:
+   * VITE_CMS_FOOTER_MENU_NAME_FI='Footer Navigation FI'
+   * VITE_CMS_FOOTER_MENU_NAME_SV='Footer Navigation SV'
+   * VITE_CMS_FOOTER_MENU_NAME_EN='Footer Navigation EN'
+   */
+  static get cmsFooterMenuNames() {
+    return {
+      [SUPPORT_LANGUAGES.FI]: getEnvOrError(
+        getEnvValue('VITE_CMS_FOOTER_MENU_NAME_FI'),
+        'VITE_CMS_FOOTER_MENU_NAME_FI'
+      ),
+      [SUPPORT_LANGUAGES.SV]: getEnvOrError(
+        getEnvValue('VITE_CMS_FOOTER_MENU_NAME_SV'),
+        'VITE_CMS_FOOTER_MENU_NAME_SV'
+      ),
+      [SUPPORT_LANGUAGES.EN]: getEnvOrError(
+        getEnvValue('VITE_CMS_FOOTER_MENU_NAME_EN'),
+        'VITE_CMS_FOOTER_MENU_NAME_EN'
+      ),
+    } as const;
+  }
+
+  /**
+   * Context path prefix for dynamic CMS articles.
+   * Defaults to '/articles'.
+   */
+  static get cmsArticlesContextPath() {
+    return normalizeContextPath(
+      getEnvValue('VITE_CMS_ARTICLES_CONTEXT_PATH') || '/articles'
+    );
+  }
+
+  /**
+   * Context path prefix for dynamic CMS pages.
+   * Defaults to '/pages'.
+   */
+  static get cmsPagesContextPath() {
+    return normalizeContextPath(
+      getEnvValue('VITE_CMS_PAGES_CONTEXT_PATH') || '/pages'
+    );
+  }
+
+  /**
+   * Context path for the Search page in WordPress Headless CMS.
+   */
+  static get cmsSearchContextPath() {
+    return normalizeContextPath(
+      getEnvValue('VITE_CMS_SEARCH_CONTEXT_PATH') || '/search'
+    );
+  }
+
+  /**
+   * Context path for the Profile page in WordPress Headless CMS.
+   */
+  static get cmsProfileContextPath() {
+    return normalizeContextPath(
+      getEnvValue('VITE_CMS_PROFILE_CONTEXT_PATH') || '/profile'
+    );
+  }
+
+  /**
    * The Matomo Base Url parameter.
    *
    * @throws {Error} If the `VITE_MATOMO_URL_BASE` environment variable is not defined.
@@ -352,6 +452,15 @@ function getEnvAsList(variable?: string) {
     return undefined;
   }
   return variable.split(',').map((e) => e.trim());
+}
+
+function normalizeContextPath(path: string): string {
+  if (!path) {
+    return '/';
+  }
+  const withLeading = path.startsWith('/') ? path : `/${path}`;
+  const withoutTrailing = withLeading.replace(/\/+$/, '');
+  return withoutTrailing === '' ? '/' : withoutTrailing;
 }
 
 export default AppConfig;
