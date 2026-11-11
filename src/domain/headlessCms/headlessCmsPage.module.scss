@@ -2,6 +2,7 @@
 @use '~styles/variables';
 
 .cmsPageContainer {
+  --hcrc-color-hero-bg: var(--color-summer);
   padding-bottom: variables.$spacing-xl;
   h1 {
     overflow-wrap: break-word;
