@@ -1,23 +1,42 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { ButtonPresetTheme, IconSearch } from 'hds-react';
 import {
   ContentContainer,
   PageSection,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
+import LinkButton from '../../../common/components/button/LinkButton';
+import useGetPathname from '../../../common/route/utils/useGetPathname';
 import { MyProfile } from '../types/ProfileQueryTypes';
 import styles from './profileHero.module.scss';
 
 export interface ProfileHeroProps {
   profile?: MyProfile | null;
+  title?: string;
+  description?: string;
 }
 
-const ProfileHero: React.FC<ProfileHeroProps> = ({ profile }) => {
+const ProfileHero: React.FC<ProfileHeroProps> = ({
+  profile,
+  title: propTitle,
+  description: propDescription,
+}) => {
   const { t } = useTranslation();
+  const getPathname = useGetPathname();
 
-  const title = profile?.firstName
-    ? t('profile.hero.titleWithGreeting', { firstName: profile.firstName })
-    : t('profile.hero.title');
+  const title =
+    propTitle ||
+    (profile?.firstName
+      ? t('profile.hero.titleWithGreeting', { firstName: profile.firstName })
+      : t('profile.hero.title'));
+
+  const description =
+    propDescription !== undefined
+      ? propDescription
+      : t('profile.hero.description');
+
+  const hasChildren = (profile?.children?.edges?.length ?? 0) > 0;
 
   return (
     <PageSection
@@ -28,9 +47,19 @@ const ProfileHero: React.FC<ProfileHeroProps> = ({ profile }) => {
     >
       <ContentContainer className={styles.contentContainer}>
         <h1 className={styles.title}>{title}</h1>
-        <p className={styles.description}>
-          {t('profile.hero.description')}
-        </p>
+        {description && <p className={styles.description}>{description}</p>}
+        {hasChildren && (
+          <div className={styles.buttonWrapper}>
+            <LinkButton
+              to={getPathname('/events')}
+              variant="primary"
+              theme={ButtonPresetTheme.Black}
+              iconStart={<IconSearch aria-hidden="true" />}
+            >
+              {t('profile.events.searchButton', 'Etsi tapahtumia')}
+            </LinkButton>
+          </div>
+        )}
       </ContentContainer>
     </PageSection>
   );

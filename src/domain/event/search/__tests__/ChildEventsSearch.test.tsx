@@ -2,10 +2,15 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor, type RenderOptions } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toast } from 'react-toastify';
+import { PageDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import type { MockedResponse } from '@apollo/client/testing';
 import type { ReactElement } from 'react';
 
 import { customRender } from '../../../../common/test/customRender';
+import {
+  fakeHero,
+  fakePage,
+} from '../../../../utils/cmsMockDataUtils';
 import {
   fakeAvailableEvent,
   fakeAvailableOccurrence,
@@ -820,5 +825,101 @@ describe('ChildEventsSearch', () => {
     await waitFor(() => {
       expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
     });
+  });
+
+  it('renders CMS hero title, description, and breadcrumbs when CMS search page is returned', async () => {
+    const cmsSearchPage = fakePage({
+      title: 'Find events CMS',
+      lead: '<p>CMS search page lead</p>',
+      hero: fakeHero({
+        title: 'CMS Search Page Title',
+        description: 'CMS Search Page Description',
+      }),
+      breadcrumbs: [
+        {
+          title: 'Home CMS',
+          uri: '/fi/',
+          __typename: 'Breadcrumb',
+        },
+        {
+          title: 'Find events CMS',
+          uri: '/fi/search/',
+          __typename: 'Breadcrumb',
+        },
+      ],
+    });
+
+    render(<ChildEventsSearch />, [
+      getSuccessEventsMock(),
+      {
+        request: {
+          query: PageDocument,
+          variables: { id: 'search' },
+        },
+        result: {
+          data: {
+            page: cmsSearchPage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'CMS Search Page Title' })
+      ).toBeInTheDocument();
+    });
+    expect(screen.getByText('CMS Search Page Description')).toBeInTheDocument();
+    expect(screen.getAllByText('Home CMS')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Find events CMS')[0]).toBeInTheDocument();
+  });
+
+  it('renders empty ingress without fallback when CMS search page has empty description even with content populated', async () => {
+    const cmsSearchPage = fakePage({
+      title: 'Find events CMS',
+      lead: '',
+      content: '<p>CMS Page Body Content That Should Not Appear As Ingress</p>',
+      hero: fakeHero({
+        title: 'CMS Search Page Title',
+        description: '',
+      }),
+      breadcrumbs: [
+        {
+          title: 'Home CMS',
+          uri: '/',
+        },
+        {
+          title: 'Find events CMS',
+          uri: '/search',
+        },
+      ],
+    });
+
+    render(<ChildEventsSearch />, [
+      getSuccessEventsMock(),
+      {
+        request: {
+          query: PageDocument,
+          variables: { id: 'search' },
+        },
+        result: {
+          data: {
+            page: cmsSearchPage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'CMS Search Page Title' })
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByText(/Hienoa että olet mukana Kulttuurin kummilapset/)
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByText(/CMS Page Body Content That Should Not Appear As Ingress/)
+    ).not.toBeInTheDocument();
   });
 });
