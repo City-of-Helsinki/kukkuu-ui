@@ -1,11 +1,13 @@
 import { faker } from '@faker-js/faker';
 import merge from 'lodash/merge';
 import {
+  ArticleType,
   Language,
   LanguageCodeEnum,
   MenuItem,
   PageType as Page,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
+import type { PostsQuery } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
 import { Hero } from '../domain/headlessCms/graphql/__generated__';
 
@@ -125,6 +127,83 @@ export const fakeLanguage = (overrides?: Partial<Language>): Language => {
         [LanguageCodeEnum.Fi]: 'Suomi',
         [LanguageCodeEnum.Sv]: 'Ruotsi',
       }[languageCode],
+    },
+    overrides
+  );
+};
+
+export type PostsConnection = NonNullable<PostsQuery['posts']>;
+
+export const fakeCategory = (
+  overrides?: Partial<
+    NonNullable<
+      NonNullable<
+        NonNullable<NonNullable<ArticleType>['categories']>['edges']
+      >[number]
+    >['node']
+  >
+) => {
+  return merge(
+    {
+      id: faker.string.uuid(),
+      name: faker.word.words(),
+      __typename: 'Category' as const,
+    },
+    overrides
+  );
+};
+
+export const fakeArticle = (
+  overrides?: Partial<ArticleType>
+): NonNullable<ArticleType> => {
+  return merge<NonNullable<ArticleType>, typeof overrides>(
+    {
+      id: faker.string.uuid(),
+      uri: `/${generateUri()}/`,
+      title: faker.word.words(),
+      lead: faker.word.words(),
+      slug: generateUri(),
+      content: `<p>${faker.word.words()}</p>`,
+      date: new Date().toISOString(),
+      language: fakeLanguage({ code: LanguageCodeEnum.Fi }),
+      featuredImage: null,
+      breadcrumbs: [],
+      sidebar: [],
+      link: null,
+      categories: {
+        __typename: 'PostToCategoryConnection',
+        edges: [],
+      },
+      modules: [],
+      translations: [],
+      seo: fakeSEO(),
+      __typename: 'Post',
+    },
+    overrides
+  );
+};
+
+export const fakePost = fakeArticle;
+
+export const fakePostsConnection = (
+  nodes: NonNullable<ArticleType>[] = [fakeArticle()],
+  overrides?: Partial<PostsConnection>
+): PostsConnection => {
+  return merge<PostsConnection, typeof overrides>(
+    {
+      __typename: 'RootQueryToPostConnection',
+      pageInfo: {
+        __typename: 'RootQueryToPostConnectionPageInfo',
+        hasNextPage: false,
+        hasPreviousPage: false,
+        endCursor: null,
+        startCursor: null,
+      },
+      edges: nodes.map((node) => ({
+        __typename: 'RootQueryToPostConnectionEdge',
+        cursor: null,
+        node,
+      })),
     },
     overrides
   );

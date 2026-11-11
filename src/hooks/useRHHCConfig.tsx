@@ -3,19 +3,20 @@ import {
   Config,
   defaultConfig as rhhcDefaultConfig,
   LanguageCodeEnum,
-  ModuleItemTypeEnum,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 
 import headlessCmsClient from '../domain/headlessCms/client';
-import AppConfig from '../domain/app/AppConfig';
 import { SUPPORT_LANGUAGES } from '../common/translation/TranslationConstants';
 import PageMeta from '../domain/app/layout/utilityComponents/PageMeta';
-
-const APP_DOMAIN = new URL(AppConfig.origin).origin;
-const API_URI = new URL(AppConfig.apiUrl).origin;
-const CMS_URI = new URL(AppConfig.cmsUri).origin;
+import ArticleDetails, {
+  ArticleDetailsProps,
+} from '../domain/article/articleDetails/ArticleDetails';
+import {
+  getInternalHrefOrigins,
+  getRoutedInternalHref,
+} from '../utils/cmsUtils';
 
 const appLanguageToRHHCLanguageMap = {
   [SUPPORT_LANGUAGES.FI]: LanguageCodeEnum.Fi,
@@ -29,7 +30,7 @@ export default function useRHHCConfig(): Config {
     i18n: { language },
   } = useTranslation();
 
-  const internalHrefOrigins = useMemo(() => [APP_DOMAIN, API_URI, CMS_URI], []);
+  const internalHrefOrigins = useMemo(() => getInternalHrefOrigins(), []);
   return useMemo(
     () => ({
       ...rhhcDefaultConfig,
@@ -48,6 +49,9 @@ export default function useRHHCConfig(): Config {
           ...props
         }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
           <Link to={href ?? ''} {...props} />
+        ),
+        ArticleCardContent: (props: ArticleDetailsProps) => (
+          <ArticleDetails {...props} />
         ),
         Img: rhhcDefaultConfig.components.Img,
         // Extend the Kukkuu PageMeta with the RHHC PageMeta
@@ -68,36 +72,23 @@ export default function useRHHCConfig(): Config {
         loadMoreButtonLabelText: t('common.loadMoreButtonLabelText'),
         showAllText: t('common.showAllText'),
         archiveSearch: {
-          title: '', // t('cms:archiveSearch.title'),
-          searchTextPlaceholder: t('cms:archiveSearch.searchTextPlaceholder'),
-          searchButtonLabelText: t('cms:archiveSearch.searchButtonLabelText'),
+          title: t('cms.archiveSearch.title', 'Ajankohtaista'),
+          searchTextPlaceholder: t('cms.archiveSearch.searchTextPlaceholder'),
+          searchButtonLabelText: t('cms.archiveSearch.searchButtonLabelText'),
           loadMoreButtonLabelText: t(
-            'cms:archiveSearch.loadMoreButtonLabelText'
+            'cms.archiveSearch.loadMoreButtonLabelText'
           ),
-          noResultsText: t('cms:archiveSearch.noResultsText'),
-          noResultsTitle: t('cms:archiveSearch.noResultsTitle'),
-          clearAll: t('cms:archiveSearch.buttonClearFilters'),
+          noResultsText: t('cms.archiveSearch.noResultsText'),
+          noResultsTitle: t('cms.archiveSearch.noResultsTitle'),
+          clearAll: t('cms.archiveSearch.buttonClearFilters'),
         },
         next: t('common:button.next'),
         previous: t('common:button.previous'),
       },
       utils: {
         ...rhhcDefaultConfig.utils,
-        getRoutedInternalHref: (
-          link?: string | null,
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          type?: ModuleItemTypeEnum
-        ): string => {
-          if (!link) {
-            return '#';
-          }
-          for (const origin of internalHrefOrigins) {
-            if (link.includes(origin)) {
-              return link.replace(origin, '');
-            }
-          }
-          return link;
-        },
+        getRoutedInternalHref: (link, type) =>
+          getRoutedInternalHref(link, type, language),
         getShowAllUrl: () => '',
       },
       htmlSanitizer: {
