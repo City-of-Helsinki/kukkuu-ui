@@ -1,18 +1,19 @@
 import { usePageQuery as useOriginalPageQuery } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
-import headlessCmsClient from '../domain/headlessCms/client';
 import { normalizeCmsUri } from '../utils/cmsUtils';
 
 // Takes care of removing surrounding slashes so basically same requests are not repeated
-// instead they are fetched from the cache
+// instead they are fetched from the cache.
+// Uses the ApolloClient configured in RHHC ConfigProvider (headlessCmsClient in app, MockedProvider in tests).
 const usePageQuery = (uri: string, { skip }: { skip?: boolean } = {}) => {
+  const normalizedUri = normalizeCmsUri(uri);
   return useOriginalPageQuery({
-    client: headlessCmsClient,
     variables: {
-      id: normalizeCmsUri(uri),
+      id: normalizedUri,
     },
-    skip: !!skip,
+    skip: Boolean(skip || !normalizedUri),
   });
 };
 
 export { usePageQuery };
+export default usePageQuery;
