@@ -1,4 +1,5 @@
 import { graphql, HttpResponse } from 'msw';
+import { SynchronousCachePersistor } from 'apollo3-cache-persist';
 import { PageDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import {
   ApolloClient,
@@ -130,8 +131,7 @@ describe('Headless CMS Client', () => {
       expect(persistedTimestamp).not.toBeNull();
     });
 
-    it('restores the cache from localStorage', async () => {
-      // Make a query to write cache
+    it('synchronously restores non-expired cache from localStorage via restoreSync', async () => {
       await client.query({
         query: PageDocument,
         variables: {
@@ -141,7 +141,6 @@ describe('Headless CMS Client', () => {
         fetchPolicy: 'network-only',
       });
 
-      // Create a persistor
       const cachePersistor = new TimedApolloCachePersistor(
         client.cache as InMemoryCache,
         {
@@ -150,14 +149,12 @@ describe('Headless CMS Client', () => {
         }
       );
 
-      // Persist to localStorage
-      cachePersistor.persist();
-
-      // reset the client cache
+      await cachePersistor.persist();
       client.cache.reset();
 
-      // Test that the cache is empty
-      const { data: dataBeforeRestore } = await client.query({
+      cachePersistor.restoreSync();
+
+      const { data: dataAfterSyncRestore } = await client.query({
         query: PageDocument,
         variables: {
           id: page!.id,
@@ -165,41 +162,54 @@ describe('Headless CMS Client', () => {
         },
         fetchPolicy: 'cache-only',
       });
-      expect(dataBeforeRestore).toEqual({});
-
-      // Restore the cache from locaStorage
-      await cachePersistor.restore();
-
-      // Test that the cache is restored
-      const { data: dataAfterRestore } = await client.query({
-        query: PageDocument,
-        variables: {
-          id: page!.id,
-          language: 'EN',
-        },
-        fetchPolicy: 'cache-only',
-      });
-      expect(dataAfterRestore.page.id).toEqual(page!.id);
+      expect(dataAfterSyncRestore.page.id).toEqual(page!.id);
     });
 
-    it('logs a warning when restoring the persisted cache fails', async () => {
+    it('logs an error and continues when synchronously restoring the persisted cache fails', () => {
       vi.spyOn(
         TimedApolloCachePersistor.prototype,
         'hasPersistedCacheExpired'
       ).mockReturnValue(false);
       const restoreError = new Error('restore failed');
       vi.spyOn(
+        SynchronousCachePersistor.prototype,
+        'restoreSync'
+      ).mockImplementation(() => {
+        throw restoreError;
+      });
+      const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+      expect(() => createCmsApolloClient()).not.toThrow();
+
+      expect(errorSpy).toHaveBeenCalledWith(
+        'Failed to synchronously restore persisted cache:',
+        restoreError
+      );
+      expect(warnSpy).not.toHaveBeenCalledWith(
+        'Apollo cache purging failed:',
+        expect.anything()
+      );
+    });
+
+    it('logs a warning when purging the expired persisted cache fails', async () => {
+      vi.spyOn(
         TimedApolloCachePersistor.prototype,
-        'restore'
-      ).mockRejectedValue(restoreError);
+        'hasPersistedCacheExpired'
+      ).mockReturnValue(true);
+      const purgeError = new Error('purge failed');
+      vi.spyOn(TimedApolloCachePersistor.prototype, 'purge').mockRejectedValue(
+        purgeError
+      );
+      vi.spyOn(console, 'info').mockImplementation(() => {});
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
       createCmsApolloClient();
 
       await vi.waitFor(() => {
         expect(warnSpy).toHaveBeenCalledWith(
-          'Apollo cache persistor failed:',
-          restoreError
+          'Apollo cache purging failed:',
+          purgeError
         );
       });
     });
