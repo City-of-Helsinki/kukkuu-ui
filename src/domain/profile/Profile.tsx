@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Breadcrumb, BreadcrumbListItem, Container, useOidcClient } from 'hds-react';
+import { Breadcrumb, Container, useOidcClient } from 'hds-react';
 import { useNavigate } from 'react-router';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
@@ -10,6 +10,13 @@ import ProfileChildrenList from './children/ProfileChildrenList';
 import ProfileGuardianSection from './guardian/ProfileGuardianSection';
 import { useProfileContext } from './hooks/useProfileContext';
 import useGetPathname from '../../common/route/utils/useGetPathname';
+import usePageQuery from '../../hooks/usePageQuery';
+import {
+  getCmsPageDescription,
+  getCmsPageTitle,
+} from '../../utils/cmsUtils';
+import AppConfig from '../app/AppConfig';
+import { useCmsBreadcrumbs } from '../headlessCms/breadcrumbUtils';
 import styles from './profile.module.scss';
 
 const Profile = () => {
@@ -23,6 +30,12 @@ const Profile = () => {
     isFetchCalled,
   } = useProfileContext();
   const { t } = useTranslation();
+
+  const { data: cmsPageData } = usePageQuery(AppConfig.cmsProfileContextPath);
+  const page = cmsPageData?.page;
+  const breadcrumbs = useCmsBreadcrumbs(page, {
+    fallbackTitle: t('profile.breadcrumbs.account', { defaultValue: 'Tili' }),
+  });
 
   React.useEffect(() => {
     if (!isLoggedIn) {
@@ -62,20 +75,26 @@ const Profile = () => {
     return <LoadingSpinner isLoading={true} />;
   }
 
-  const breadcrumbs: BreadcrumbListItem[] = [
-    {
-      title: t('common.breadcrumbs.home'),
-      path: getPathname('/'),
-    },
-    {
-      title: t('profile.breadcrumbs.account', { defaultValue: 'Tili' }),
-      path: null,
-    },
-  ];
+  const cmsTitle = page ? getCmsPageTitle(page) : '';
+  const pageMetaTitle = cmsTitle || t('profile.hero.title');
+  const heroTitle =
+    cmsTitle ||
+    (profile?.firstName
+      ? t('profile.hero.titleWithGreeting', { firstName: profile.firstName })
+      : t('profile.hero.title'));
+
+  const profileDescription =
+    page !== null && page !== undefined
+      ? getCmsPageDescription(page)
+      : t('profile.hero.description');
 
   return (
     <>
-      <PageMeta title="profile.heading" />
+      <PageMeta
+        title={pageMetaTitle}
+        description={profileDescription}
+        page={page}
+      />
       <div className={styles.profilePageWrapper}>
         <div className={styles.breadcrumbsWrapper}>
           <Breadcrumb
@@ -84,7 +103,11 @@ const Profile = () => {
             className={styles.breadcrumbs}
           />
         </div>
-        <ProfileHero profile={profile} />
+        <ProfileHero
+          profile={profile}
+          title={heroTitle}
+          description={profileDescription}
+        />
         <Container role="main" className={styles.mainContainer}>
           <ProfileChildrenList />
           <ProfileGuardianSection profile={profile} />

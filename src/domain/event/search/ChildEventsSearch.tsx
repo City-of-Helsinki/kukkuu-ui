@@ -2,14 +2,17 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 import { Breadcrumb, ButtonPresetTheme } from 'hds-react';
-import type { BreadcrumbListItem } from 'hds-react';
 import {
   ContentContainer,
   PageSection,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import useGetPathname from '../../../common/route/utils/useGetPathname';
+import usePageQuery from '../../../hooks/usePageQuery';
+import { getCmsPageTitle } from '../../../utils/cmsUtils';
+import AppConfig from '../../app/AppConfig';
 import PageMeta from '../../app/layout/utilityComponents/PageMeta';
+import { useCmsBreadcrumbs } from '../../headlessCms/breadcrumbUtils';
 import Button from '../../../common/components/button/Button';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import ErrorMessage from '../../../common/components/error/Error';
@@ -170,7 +173,11 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
   description,
 }) => {
   const { t } = useTranslation();
-  const getPathname = useGetPathname();
+  const { data: cmsPageData } = usePageQuery(AppConfig.cmsSearchContextPath);
+  const page = cmsPageData?.page;
+  const breadcrumbs = useCmsBreadcrumbs(page, {
+    fallbackTitle: t('common.breadcrumbs.events'),
+  });
   const { isLoading: isRedirectLoading, hasChildren } =
     useChildEventsSearchRedirect();
   const { isLoading: isEventsLoading, error } =
@@ -184,30 +191,31 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
     return <ErrorMessage message={t('search.error.failedToLoadEvents')} />;
   }
 
-  const breadcrumbs: BreadcrumbListItem[] = [
-    {
-      title: t('common.breadcrumbs.home'),
-      path: getPathname('/'),
-    },
-    {
-      title: t('common.breadcrumbs.events'),
-      path: null,
-    },
-  ];
-
   const searchTitle =
-    title || t('search.hero.title', t('search.title'));
+    title ||
+    (page ? getCmsPageTitle(page) : '') ||
+    t('search.hero.title', t('search.title'));
+  const cmsHeroDescription =
+    (page && 'hero' in page && page.hero?.description?.trim()) ||
+    page?.lead?.trim() ||
+    '';
   const searchDescription =
     description !== undefined
       ? description
-      : t(
-          'search.hero.description',
-          t('profile.common.message.serviceDescription')
-        );
+      : page !== null && page !== undefined
+        ? cmsHeroDescription
+        : t(
+            'search.hero.description',
+            t('profile.common.message.serviceDescription')
+          );
 
   return (
     <>
-      <PageMeta title={searchTitle} />
+      <PageMeta
+        title={searchTitle}
+        description={searchDescription}
+        page={page}
+      />
       <div className={styles.searchPageWrapper}>
         <StickySearchHeader />
 

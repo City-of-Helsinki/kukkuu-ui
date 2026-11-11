@@ -1,7 +1,9 @@
 import { describe, expect, it, vi } from 'vitest';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
+import { PageDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
 import { customRender as render } from '../../../../common/test/customRender';
+import { fakePage } from '../../../../utils/cmsMockDataUtils';
 import EventDetailsPage, {
   EventDetailsPageOccurrence,
   EventDetailsPageProps,
@@ -124,5 +126,61 @@ describe('EventDetailsPage', () => {
         name: /tapahtuman ajankohdat/i,
       })
     ).not.toBeInTheDocument();
+  });
+
+  it('uses CMS search page breadcrumbs when available and preserves child query param', async () => {
+    const internalEvent: EventDetailsPageProps['event'] = {
+      id: 'int-event-1',
+      name: 'Sisäinen tapahtuma',
+      shortDescription: 'Kuvaus',
+      description: '<p>Tarkempi kuvaus</p>',
+      duration: 60,
+      capacityPerOccurrence: 30,
+      participantsPerInvite: EventParticipantsPerInvite.ChildAndGuardian,
+      ticketSystem: null,
+    };
+
+    const cmsSearchPage = fakePage({
+      title: 'Löydä tapahtumia CMS',
+      breadcrumbs: [
+        {
+          title: 'Etusivu CMS',
+          uri: '/fi/',
+          __typename: 'Breadcrumb',
+        },
+        {
+          title: 'Löydä tapahtumia CMS',
+          uri: '/fi/search/',
+          __typename: 'Breadcrumb',
+        },
+      ],
+    });
+
+    render(
+      <EventDetailsPage
+        event={internalEvent}
+        allOccurrences={mockOccurrences}
+        childId="child-1"
+      />,
+      [
+        {
+          request: {
+            query: PageDocument,
+            variables: { id: 'search' },
+          },
+          result: {
+            data: {
+              page: cmsSearchPage,
+            },
+          },
+        },
+      ]
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('link', { name: 'Löydä tapahtumia CMS' })
+      ).toHaveAttribute('href', '/events?child=child-1');
+    });
   });
 });

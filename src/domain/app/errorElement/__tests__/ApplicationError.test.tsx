@@ -16,12 +16,14 @@ describe('ApplicationError', () => {
   });
 
   it('links to the homepage and renders the icon', () => {
-    const { container } = render(<ApplicationError />);
+    render(<ApplicationError />);
 
     const returnLink = screen.getByRole('link', { name: 'Etusivulle' });
     expect(returnLink).toHaveAttribute('href', '/');
 
-    const icon = container.querySelector('img');
+    // The icon is decorative (alt=""), so it is presentational rather than an
+    // image in the accessibility tree.
+    const icon = screen.getByRole('presentation');
     expect(icon).toHaveAttribute('src', publicSvgIconPaths.adultFace);
   });
 });
