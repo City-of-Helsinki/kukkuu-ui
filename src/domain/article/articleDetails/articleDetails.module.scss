@@ -1,0 +1,9 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2-xs, 4px);
+}
+
+.tagCount {
+  background-color: var(--color-white) !important;
+}
