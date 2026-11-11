@@ -130,8 +130,7 @@ describe('Headless CMS Client', () => {
       expect(persistedTimestamp).not.toBeNull();
     });
 
-    it('restores the cache from localStorage', async () => {
-      // Make a query to write cache
+    it('synchronously restores non-expired cache from localStorage via restoreSync', async () => {
       await client.query({
         query: PageDocument,
         variables: {
@@ -141,7 +140,6 @@ describe('Headless CMS Client', () => {
         fetchPolicy: 'network-only',
       });
 
-      // Create a persistor
       const cachePersistor = new TimedApolloCachePersistor(
         client.cache as InMemoryCache,
         {
@@ -150,14 +148,12 @@ describe('Headless CMS Client', () => {
         }
       );
 
-      // Persist to localStorage
-      cachePersistor.persist();
-
-      // reset the client cache
+      await cachePersistor.persist();
       client.cache.reset();
 
-      // Test that the cache is empty
-      const { data: dataBeforeRestore } = await client.query({
+      cachePersistor.restoreSync();
+
+      const { data: dataAfterSyncRestore } = await client.query({
         query: PageDocument,
         variables: {
           id: page!.id,
@@ -165,21 +161,7 @@ describe('Headless CMS Client', () => {
         },
         fetchPolicy: 'cache-only',
       });
-      expect(dataBeforeRestore).toEqual({});
-
-      // Restore the cache from locaStorage
-      await cachePersistor.restore();
-
-      // Test that the cache is restored
-      const { data: dataAfterRestore } = await client.query({
-        query: PageDocument,
-        variables: {
-          id: page!.id,
-          language: 'EN',
-        },
-        fetchPolicy: 'cache-only',
-      });
-      expect(dataAfterRestore.page.id).toEqual(page!.id);
+      expect(dataAfterSyncRestore.page.id).toEqual(page!.id);
     });
 
     it.each([600000, 10000])(

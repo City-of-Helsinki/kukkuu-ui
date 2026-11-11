@@ -1,5 +1,8 @@
 import { InMemoryCache } from '@apollo/client/cache/inmemory/inMemoryCache';
-import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist';
+import {
+  LocalStorageWrapper,
+  SynchronousCachePersistor,
+} from 'apollo3-cache-persist';
 import { NormalizedCacheObject } from '@apollo/client';
 
 import AppConfig from '../app/AppConfig';
@@ -64,7 +67,7 @@ export class TimedApolloCachePersistor {
   persistorLocalStorageKey: string;
   timePersistedLocalStorageKey: string;
   persistedCacheTimeToLiveMs: number;
-  persistor: CachePersistor<NormalizedCacheObject>;
+  persistor: SynchronousCachePersistor<NormalizedCacheObject>;
   private readonly logger: TimedApolloCachePersistorLogger;
 
   /**
@@ -143,7 +146,7 @@ export class TimedApolloCachePersistor {
         this.timePersistedLocalStorageKey
       );
     }
-    return new CachePersistor({
+    return new SynchronousCachePersistor({
       cache,
       storage: new LocalStorageWrapper(localStorage),
       key: this.persistorLocalStorageKey,
@@ -209,10 +212,19 @@ export class TimedApolloCachePersistor {
   }
 
   /**
-   * Restores the Apollo cache from localStorage.
+   * Synchronously restores the Apollo cache from localStorage if available.
+   * Ensures cached queries (such as the CMS navigation menu) are available
+   * on the initial React render without a loading blink.
    */
-  async restore() {
-    await this.persistor.restore();
-    this.logger.info('Persisted cache has been restored.');
+  restoreSync() {
+    try {
+      this.persistor.restoreSync();
+      this.logger.info('Persisted cache has been restored synchronously.');
+    } catch (e: unknown) {
+      this.logger.error(
+        'Failed to synchronously restore persisted cache:',
+        e
+      );
+    }
   }
 }
