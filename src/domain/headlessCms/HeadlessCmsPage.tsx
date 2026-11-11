@@ -1,14 +1,26 @@
 import {
+  ArticleType,
+  PageType,
+} from '@city-of-helsinki/react-helsinki-headless-cms';
+import {
   Page,
   PageContent,
 } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
+import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
 
+import useGetPathname from '../../common/route/utils/useGetPathname';
+import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
+import { getCmsPageTitle } from '../../utils/cmsUtils';
+import { getCmsBreadcrumbs } from './breadcrumbUtils';
 import styles from './headlessCmsPage.module.scss';
 import NotFound from '../app/notFound/NotFound';
 
 const HeadlessCmsPage = () => {
   const location = useLocation();
+  const { t, i18n } = useTranslation();
+  const currentLocale = getCurrentLanguage(i18n);
+  const getPathname = useGetPathname();
 
   return (
     <Page
@@ -18,7 +30,21 @@ const HeadlessCmsPage = () => {
       content={
         <PageContent
           notFoundPageContent={<NotFound />}
-          collections={() => null}
+          breadcrumbs={(page?: PageType | ArticleType) =>
+            getCmsBreadcrumbs(page, {
+              locale: currentLocale,
+              fallbackBreadcrumbs: [
+                {
+                  title: t('common.breadcrumbs.home'),
+                  path: getPathname('/'),
+                },
+                {
+                  title: getCmsPageTitle(page),
+                  path: null,
+                },
+              ],
+            })
+          }
         />
       }
       footer={undefined}
