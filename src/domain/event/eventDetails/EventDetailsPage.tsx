@@ -4,7 +4,11 @@ import { Breadcrumb } from 'hds-react';
 import type { BreadcrumbListItem } from 'hds-react';
 
 import useGetPathname from '../../../common/route/utils/useGetPathname';
+import usePageQuery from '../../../hooks/usePageQuery';
+import { getCmsPageTitle } from '../../../utils/cmsUtils';
+import AppConfig from '../../app/AppConfig';
 import PageMeta from '../../app/layout/utilityComponents/PageMeta';
+import { useCmsBreadcrumbs } from '../../headlessCms/breadcrumbUtils';
 import EventHero, {
   EventHeroEvent,
   EventHeroOccurrence,
@@ -45,21 +49,33 @@ export const EventDetailsPage: React.FC<EventDetailsPageProps> = ({
 }) => {
   const { t } = useTranslation();
   const getPathname = useGetPathname();
+  const { data: searchPageData } = usePageQuery(AppConfig.cmsSearchContextPath);
+  const searchPage = searchPageData?.page;
 
   const isExternalTicketSystem = Boolean(
     event.ticketSystem?.type &&
       externalTicketSystems.includes(event.ticketSystem.type)
   );
 
+  const eventsPathWithChild = `${getPathname('/events')}?child=${encodeURIComponent(childId)}`;
+  const searchBreadcrumbs = useCmsBreadcrumbs(searchPage, {
+    disableLastLink: false,
+    fallbackBreadcrumbs: [
+      {
+        title: t('common.breadcrumbs.home'),
+        path: getPathname('/'),
+      },
+      {
+        title: getCmsPageTitle(searchPage) || t('common.breadcrumbs.events'),
+        path: eventsPathWithChild,
+      },
+    ],
+  }).map((item, index, arr) =>
+    index === arr.length - 1 ? { ...item, path: eventsPathWithChild } : item
+  );
+
   const breadcrumbs: BreadcrumbListItem[] = [
-    {
-      title: t('common.breadcrumbs.home'),
-      path: getPathname('/'),
-    },
-    {
-      title: t('common.breadcrumbs.events'),
-      path: `${getPathname('/events')}?child=${encodeURIComponent(childId)}`,
-    },
+    ...searchBreadcrumbs,
     {
       title: event.name || '',
       path: null,

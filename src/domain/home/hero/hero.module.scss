@@ -1,52 +1,75 @@
-@use 'sass:map';
 @use '~styles/layout';
 @use '~styles/variables';
 
 .heroWrapper {
-  background-color: var(--color-summer);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   position: relative;
   overflow: visible;
+  width: 100%;
 }
 
-.kidsImageContainer {
-  grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
-  display: grid;
-  @include layout.respond-above(xl-minus) {
-    background-image: linear-gradient(
-        to bottom,
-        var(--color-summer) 276px,
-        var(--color-black-5) 0
-      ),
-      url('/images/Culture_kids_background@2x.png');
-    background-repeat: repeat-x;
-    background-position: center bottom -2px;
-    background-size: 100% 321px;
-  }
+.heroTopSection {
+  background-color: var(--color-summer);
+  position: relative;
+  width: 100%;
+  padding-bottom: 35px;
 }
 
-.kidsImage {
-  grid-column: 2;
-  background-image: url('/images/Culture_kids@2x.jpg');
-  background-repeat: no-repeat;
-  background-position: center bottom -2px;
-  background-size: 100% auto;
-  min-height: calc(0.265 * 100vw);
-  @media (min-width: map.get(layout.$breakpoints, xl-minus)) {
-    min-height: 0.265 * variables.$containerMaxWidth;
-  }
+.heroKoros {
+  position: absolute;
+  bottom: -34px;
+  left: 0;
+  width: 100%;
+  fill: var(--color-summer);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.heroImageContainer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background-color: var(--color-black-20, rgba(0, 0, 0, 0.2));
+}
+
+.heroImageWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  opacity: 0.5;
+  transition:
+    opacity 1s,
+    background 1s;
+}
+
+.photographerCredit {
+  text-align: right;
+  font-size: variables.$fontsize-body-s;
+  color: var(--color-black-90);
+  padding: variables.$spacing-2-xs variables.$spacing-xs 0;
 }
 
 .heroContainer {
   display: grid;
-  text-align: center;
+  text-align: left;
+  padding-bottom: variables.$spacing-2-xl;
 
   @include layout.heroContainer();
 }
 
 .hero {
   h1 {
-    margin: variables.$spacing-layout-l 0 variables.$spacing-l;
+    margin: variables.$spacing-layout-l 0 variables.$spacing-m;
 
     font-size: variables.$fontsize-heading-l;
 
@@ -61,19 +84,20 @@
   .bodyXl {
     font-size: variables.$fontsize-body-xl;
     line-height: variables.$lineheight-l;
+    max-width: 48rem;
   }
 
   .buttonGroup {
-    margin: variables.$spacing-2-xl auto 0;
-    button {
-      width: 80%;
-      @include layout.respond-above(m) {
-        width: 60%;
-      }
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: variables.$spacing-m;
+    margin: variables.$spacing-xl 0 0;
 
-    .registerButton {
-      margin-bottom: variables.$baseMargin;
+    button {
+      width: 100%;
+      @include layout.respond-above(s) {
+        width: auto;
+      }
     }
   }
 

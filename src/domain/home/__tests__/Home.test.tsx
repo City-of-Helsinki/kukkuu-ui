@@ -1,8 +1,11 @@
 import type { ReactNode } from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { TemplateEnum } from '@city-of-helsinki/react-helsinki-headless-cms';
+import { PageByTemplateDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
 import { customRender as render } from '../../../common/test/customRender';
+import { fakeHero, fakePage } from '../../../utils/cmsMockDataUtils';
 import Home from '../Home';
 import styles from '../home.module.scss';
 
@@ -36,24 +39,23 @@ vi.mock('../../auth/IdleTimerProvider', () => ({
   default: ({ children }: { children: ReactNode }) => children,
 }));
 
-vi.mock('../app/layout/PageWrapper', () => ({
-  default: ({ children }: { children: ReactNode }) => children,
-}));
-
 vi.mock('../hero/HomeHero', () => ({
   default: ({
     userHasProfile,
     userIsAuthenticated,
     scrollToForm,
+    title,
   }: {
     userHasProfile: boolean;
     userIsAuthenticated: boolean;
     scrollToForm: () => void;
+    title?: string;
   }) => (
     <div>
       <div data-testid="hero-props">
         {String(userHasProfile)}:{String(userIsAuthenticated)}
       </div>
+      {title && <div data-testid="hero-page-title">{title}</div>}
       <button type="button" onClick={scrollToForm}>
         Scroll to form
       </button>
@@ -120,5 +122,69 @@ describe('<Home />', () => {
     await user.click(screen.getByRole('button', { name: 'Scroll to form' }));
 
     expect(scrollToSpy).toHaveBeenCalledWith(0, 321);
+  });
+
+  it('fetches frontpage from CMS using PageByTemplateDocument and passes title to HomeHero', async () => {
+    const cmsFrontPage = fakePage({
+      title: 'CMS Etusivu',
+      hero: fakeHero({ title: 'CMS Etusivu' }),
+    });
+
+    render(<Home />, [
+      {
+        request: {
+          query: PageByTemplateDocument,
+          variables: { template: TemplateEnum.FrontPage, language: 'fi' },
+        },
+        result: {
+          data: {
+            pageByTemplate: cmsFrontPage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('hero-page-title')).toHaveTextContent(
+        'CMS Etusivu'
+      );
+    });
+  });
+
+  it('passes resolved hero image to PageWrapper and PageMeta when available from CMS', async () => {
+    const cmsFrontPage = fakePage({
+      title: 'CMS Etusivu',
+      hero: fakeHero({
+        title: 'CMS Etusivu',
+        background_image_url: 'https://example.com/hero-bg.jpg',
+      }),
+      featuredImage: null,
+      seo: {
+        __typename: 'SEO',
+        socialImage: null,
+      },
+    });
+
+    render(<Home />, [
+      {
+        request: {
+          query: PageByTemplateDocument,
+          variables: { template: TemplateEnum.FrontPage, language: 'fi' },
+        },
+        result: {
+          data: {
+            pageByTemplate: cmsFrontPage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      const ogImage = document.querySelector('meta[property="og:image"]');
+      expect(ogImage).toHaveAttribute(
+        'content',
+        'https://example.com/hero-bg.jpg'
+      );
+    });
   });
 });

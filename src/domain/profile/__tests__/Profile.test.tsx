@@ -2,8 +2,10 @@
 import * as HdsReact from 'hds-react';
 import * as ReactRouter from 'react-router';
 import { screen, waitFor } from '@testing-library/react';
+import { PageDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
 import { customRender as render } from '../../../common/test/customRender';
+import { fakeHero, fakePage } from '../../../utils/cmsMockDataUtils';
 import Profile from '../Profile';
 import * as ProfileContext from '../hooks/useProfileContext';
 import { MyProfile } from '../types/ProfileQueryTypes';
@@ -46,7 +48,7 @@ afterEach(() => {
 });
 
 describe('Profile', () => {
-  it('renders profile correctly', () => {
+  it('renders profile correctly', async () => {
     vi.spyOn(HdsReact, 'useOidcClient').mockImplementation(
       () =>
         ({
@@ -94,6 +96,15 @@ describe('Profile', () => {
     expect(screen.getByText('p. +358401234567')).toBeInTheDocument();
     expect(screen.getByText('test@kukkuu.fi')).toBeInTheDocument();
 
+    // Verify non-personal document title for page-view analytics and personalized greeting in hero
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Tili – Hei Test!' })
+    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(document.title).toContain('Tili');
+      expect(document.title).not.toContain('Test');
+    });
+
     expect(container).toMatchSnapshot();
     expect(console.info).not.toHaveBeenCalled();
   });
@@ -126,14 +137,129 @@ describe('Profile', () => {
       { timeout: 15000 }
     );
 
-    expect(console.info).toHaveBeenCalledTimes(2);
-    expect(console.info).toHaveBeenNthCalledWith(
-      1,
+    expect(console.info).toHaveBeenCalledWith(
       'Using a loading spinner to wait for profile to be added in the context.'
     );
-    expect(console.info).toHaveBeenNthCalledWith(
-      2,
+    expect(console.info).toHaveBeenCalledWith(
       'User has logged in, but not created a profile. Send them to front page for registration.'
     );
+  });
+
+  it('renders CMS title, description, and breadcrumbs when available', async () => {
+    vi.spyOn(HdsReact, 'useOidcClient').mockImplementation(
+      () =>
+        ({
+          isAuthenticated: () => true,
+          isRenewing: () => false,
+        }) as any
+    );
+    vi.spyOn(ProfileContext, 'useProfileContext').mockImplementation(
+      () =>
+        ({
+          profile: profileMock,
+          isLoading: false,
+          isFetchCalled: true,
+        }) as any
+    );
+
+    const cmsProfilePage = fakePage({
+      title: 'Kulttuurilapset-profiili CMS',
+      lead: 'CMS Profiilin Kuvaus',
+      hero: fakeHero({
+        title: 'Kulttuurilapset-profiili CMS',
+        description: 'CMS Profiilin Kuvaus',
+      }),
+      breadcrumbs: [
+        { title: 'Etusivu CMS', uri: '/' },
+        { title: 'Kulttuurilapset-profiili CMS', uri: '/profile' },
+      ],
+    });
+
+    render(<Profile />, [
+      {
+        request: {
+          query: PageDocument,
+          variables: { id: 'profile' },
+        },
+        result: {
+          data: {
+            page: cmsProfilePage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', {
+          level: 1,
+          name: 'Kulttuurilapset-profiili CMS',
+        })
+      ).toBeInTheDocument();
+    });
+    expect(screen.getByText('CMS Profiilin Kuvaus')).toBeInTheDocument();
+    expect(screen.getAllByText('Etusivu CMS')[0]).toBeInTheDocument();
+    expect(
+      screen.getAllByText('Kulttuurilapset-profiili CMS')[0]
+    ).toBeInTheDocument();
+  });
+
+  it('renders empty ingress without fallback when CMS profile page has empty description', async () => {
+    vi.spyOn(HdsReact, 'useOidcClient').mockImplementation(
+      () =>
+        ({
+          isAuthenticated: () => true,
+          isRenewing: () => false,
+        }) as any
+    );
+    vi.spyOn(ProfileContext, 'useProfileContext').mockImplementation(
+      () =>
+        ({
+          profile: profileMock,
+          isLoading: false,
+          isFetchCalled: true,
+        }) as any
+    );
+
+    const cmsProfilePage = fakePage({
+      title: 'Kulttuurilapset-profiili CMS',
+      lead: '',
+      hero: fakeHero({
+        title: 'Kulttuurilapset-profiili CMS',
+        description: '',
+      }),
+      breadcrumbs: [
+        { title: 'Etusivu CMS', uri: '/' },
+        { title: 'Kulttuurilapset-profiili CMS', uri: '/profile' },
+      ],
+    });
+
+    render(<Profile />, [
+      {
+        request: {
+          query: PageDocument,
+          variables: { id: 'profile' },
+        },
+        result: {
+          data: {
+            page: cmsProfilePage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', {
+          level: 1,
+          name: 'Kulttuurilapset-profiili CMS',
+        })
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByText(
+        'Täällä näet lastesi tulevat tapahtumat ja kutsukirjeet kausittain. Voit perua ilmoittautumisen, muokata lasten ja lähiaikuisen tietoja tai rekisteröidä uuden lapsen.'
+      )
+    ).not.toBeInTheDocument();
   });
 });
