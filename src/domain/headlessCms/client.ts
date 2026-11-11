@@ -44,17 +44,15 @@ export function createCmsApolloClient() {
     persistedCacheTimeToLiveMs: AppConfig.apolloPersistedCacheTimeToLiveMs,
   });
 
-  (async () => {
-    if (kukkuuApolloCachePersistor.hasPersistedCacheExpired()) {
+  if (!kukkuuApolloCachePersistor.hasPersistedCacheExpired()) {
+    kukkuuApolloCachePersistor.restoreSync();
+  } else {
+    (async () => {
       // eslint-disable-next-line no-console
       console.info('Persisted cache has expired.');
       await kukkuuApolloCachePersistor.purge();
-    } else {
-      await kukkuuApolloCachePersistor.restore();
-      // eslint-disable-next-line no-console
-      console.info('Persisted cache has been restored.');
-    }
-  })();
+    })();
+  }
 
   const client = new ApolloClient({
     link: ApolloLink.from([errorLink, httpLink]),
@@ -83,9 +81,8 @@ export function createCmsApolloClient() {
             return initialFetchPolicy;
           }
           // The languages are hardcoded in the cache, so we can always return cache-only,
-          // because the languages never changes. Also, flashing on menus should be avoided,
-          // so the menu query should first try from cache, but could still update cache
-          // on background.
+          // because the languages never change. Also, menus do not change often and layout
+          // flashing should be avoided, so the menu query uses cache-first.
           if (isConfiguredQueryPolicy(observable.queryName)) {
             return queryPolicies[observable.queryName];
           }

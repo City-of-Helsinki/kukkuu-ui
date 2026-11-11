@@ -1,11 +1,12 @@
 import { InMemoryCache } from '@apollo/client/cache/inmemory/inMemoryCache';
+import { relayStylePagination } from '@apollo/client/utilities';
 
 import { HARDCODED_CMS_LANGUAGE_QUERY_RESPONSE } from '../languages/constants';
 
 export const queryPolicies = {
   languages: 'cache-only',
   language: 'cache-only',
-  menu: 'cache-and-network',
+  menu: 'cache-first',
 } as const;
 
 export function isConfiguredQueryPolicy(
@@ -39,6 +40,7 @@ export function createApolloCache() {
               ].find((language) => language.id === id);
             },
           },
+          posts: relayStylePagination(['where']),
         },
       },
     },
