@@ -1,5 +1,6 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter, type RouteObject } from 'react-router';
 
+import AppConfig from '../AppConfig';
 import { NavigateToLocalePath } from './NavigateToLocalePath';
 import AppRoute from '../AppRoute';
 import Layout from '../Layout';
@@ -11,6 +12,8 @@ import Welcome from '../../registration/welcome/Welcome';
 import Profile from '../../profile/Profile';
 import WithLocaleRoute from './WithLocaleRoute';
 import HeadlessCmsPage from '../../headlessCms/HeadlessCmsPage';
+import ArticleArchivePage from '../../article/ArticleArchivePage';
+import ArticlePage from '../../article/ArticlePage';
 import WithProfileChildRouteAuthorization from './WithProfileChildRouteAuthorization';
 import ProfileChildRedirect from './ProfileChildRedirect';
 import ProfileChildEventsRedirect from './ProfileChildEventsRedirect';
@@ -27,7 +30,7 @@ import KukkuuHDSLoginCallbackHandler from '../../auth/KukkuuHDSLoginCallbackHand
 import SilentRenewRedirect from './SilentRenewRedirect';
 import ApplicationError from '../errorElement/ApplicationError';
 
-const browserRouter = createBrowserRouter([
+export const getAppRoutes = (): RouteObject[] => [
   {
     path: '/',
     element: <NavigateToLocalePath />,
@@ -227,6 +230,23 @@ const browserRouter = createBrowserRouter([
           },
         ],
       },
+      {
+        path: 'pages/*',
+        Component: HeadlessCmsPage,
+      },
+      {
+        path: AppConfig.cmsArticlesContextPath.replace(/^\/+|\/+$/g, ''),
+        children: [
+          {
+            index: true,
+            Component: ArticleArchivePage,
+          },
+          {
+            path: '*',
+            Component: ArticlePage,
+          },
+        ],
+      },
       // All the rest of the localised routes should be handled as CMS pages
       {
         path: '*',
@@ -234,6 +254,8 @@ const browserRouter = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+const browserRouter = createBrowserRouter(getAppRoutes());
 
 export default browserRouter;
