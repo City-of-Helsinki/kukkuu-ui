@@ -608,7 +608,13 @@
     }
   },
   "footer": {
-    "backToTop": "Takaisin alkuun"
+    "backToTop": "Takaisin alkuun",
+    "cimode": "Käännöstyökalu",
+    "cimodeAriaClose": "Piilota käännöstyökalu ruudun oikeasta alakulmasta",
+    "cimodeAriaOpen": "Käännöstyökalu, avaa työkalun ruudun oikeaan alakulmaan",
+    "cimodeHide": "Piilota käännöstyökalu",
+    "cimodeTooltip": "Avaa työkalun käyttöliittymän käännösavainten (CIMODE) tarkasteluun.",
+    "cimodeTooltipLabel": "Lisätietoa käännöstyökalusta"
   },
   "home": {
     "contact": {
@@ -1037,6 +1043,7 @@
       }
     },
     "cookies": {
+      "cimode": "Käännöstyökalun (CIMODE) tila ja näkyvyys tallennetaan selaimen istuntomuistiin (session storage).",
       "matomo": "Matomo-tilastointijärjestelmän eväste",
       "linkedevents": "Eväste tapahtumien hakemisen valtuuttamiseen",
       "i18next": "Eväste sivuston kielivalinnan muistamiseen",

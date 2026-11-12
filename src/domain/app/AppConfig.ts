@@ -424,6 +424,22 @@ class AppConfig {
       Number(getEnvValue('VITE_ENROLMENT_CANCELLATION_TIME_LIMIT_HOURS')) || 48
     ); // Default to 48 hours if not set
   }
+
+  /**
+   * The translation tool (CIMODE) enabled flag.
+   *
+   * By default, it is enabled only in 'development' and 'testing' environments.
+   * Can be explicitly overridden with `VITE_TRANSLATION_TOOL_ENABLED`.
+   */
+  static get translationToolEnabled(): boolean {
+    const envValue = getEnvValue('VITE_TRANSLATION_TOOL_ENABLED');
+
+    if (envValue !== undefined && envValue !== '') {
+      return envValue === 'true' || envValue === '1';
+    }
+
+    return ['development', 'testing'].includes(AppConfig.environment);
+  }
 }
 
 // Accept both variable and name so that variable can be correctly replaced

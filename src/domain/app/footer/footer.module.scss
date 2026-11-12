@@ -13,3 +13,48 @@
     color: var(--color-black-60);
   }
 }
+
+.cimodeContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3-xs, 0.25rem);
+}
+
+.cimodeButton {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--color-black-90);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-coat-of-arms);
+    outline-offset: 2px;
+  }
+}
+
+.tooltipButton {
+  width: 1rem !important;
+  height: 1rem !important;
+  min-width: 1rem !important;
+  min-height: 1rem !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+
+  svg {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+    min-width: 0.875rem !important;
+    min-height: 0.875rem !important;
+  }
+}
