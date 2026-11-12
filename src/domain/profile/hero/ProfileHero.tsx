@@ -17,6 +17,13 @@ export interface ProfileHeroProps {
   description?: string;
 }
 
+/**
+ * Hero section for the guardian Profile page.
+ *
+ * Displays a greeting heading, description, and an event search button (when the guardian has children).
+ *
+ * @param props - ProfileHeroProps with profile and optional CMS overrides.
+ */
 const ProfileHero: React.FC<ProfileHeroProps> = ({
   profile,
   title: propTitle,

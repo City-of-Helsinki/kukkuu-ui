@@ -126,5 +126,14 @@ describe('getIsMenuItemActive', () => {
         )
       ).toBe(true);
     });
+
+    it('returns false without throwing when encountering malformed percent-encoded paths', () => {
+      expect(
+        getIsMenuItemActive(createMenuItem('/pages/%E0%A4%A'), '/fi/pages/test')
+      ).toBe(false);
+      expect(
+        getIsMenuItemActive(createMenuItem('/pages/test'), '/fi/pages/%E0%A4%A')
+      ).toBe(false);
+    });
   });
 });

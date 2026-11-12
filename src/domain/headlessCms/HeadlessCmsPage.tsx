@@ -16,6 +16,12 @@ import { getCmsBreadcrumbs } from './breadcrumbUtils';
 import styles from './headlessCmsPage.module.scss';
 import NotFound from '../app/notFound/NotFound';
 
+/**
+ * Dynamic CMS page component rendered for arbitrary Headless CMS routes.
+ *
+ * Fetches page content dynamically using the current pathname, provides localized
+ * breadcrumbs with home and page fallbacks, and renders NotFound for missing pages.
+ */
 const HeadlessCmsPage = () => {
   const location = useLocation();
   const { t, i18n } = useTranslation();

@@ -6,6 +6,12 @@ import {
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 import { format } from 'date-fns';
 
+/**
+ * Formats an ISO date string into standard Finnish date format (d.M.yyyy).
+ *
+ * @param dateStr - The raw date string.
+ * @returns Formatted date string, or an empty string if null/invalid.
+ */
 export const formatDate = (dateStr?: string | null): string => {
   if (!dateStr) return '';
   try {
@@ -16,6 +22,16 @@ export const formatDate = (dateStr?: string | null): string => {
   }
 };
 
+/**
+ * Extracts and formats presentation properties for an article card component.
+ *
+ * Resolves card props, categories/keywords, internal link URL, fallback image,
+ * and localized publish date subtitle.
+ *
+ * @param item - The CMS collection item.
+ * @param getRoutedInternalHref - Route resolver function for internal links.
+ * @returns Structured card data for rendering.
+ */
 export const getArticleCardData = (
   item: CollectionItemType,
   getRoutedInternalHref: (

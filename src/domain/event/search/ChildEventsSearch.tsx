@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router';
 import { Breadcrumb, ButtonPresetTheme } from 'hds-react';
 import {
   ContentContainer,
+  getTextFromHtml,
   PageSection,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
@@ -195,10 +196,13 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
     title ||
     (page ? getCmsPageTitle(page) : '') ||
     t('search.hero.title', t('search.title'));
-  const cmsHeroDescription =
+  const rawHeroDescription =
     (page && 'hero' in page && page.hero?.description?.trim()) ||
     page?.lead?.trim() ||
     '';
+  const cmsHeroDescription = rawHeroDescription
+    ? getTextFromHtml(rawHeroDescription).trim()
+    : '';
   const searchDescription =
     description !== undefined
       ? description

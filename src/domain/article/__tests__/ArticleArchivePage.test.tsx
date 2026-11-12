@@ -271,4 +271,58 @@ describe('<ArticleArchivePage />', () => {
       expect(screen.getByText('999')).toBeInTheDocument();
     });
   });
+
+  it('renders error message when posts query fails instead of empty archive', async () => {
+    window.history.pushState({}, '', '/fi/articles');
+
+    render(<ArticleArchivePage />, [
+      {
+        request: {
+          query: PageByTemplateDocument,
+          variables: { template: TemplateEnum.PostsPage, language: 'fi' },
+        },
+        result: {
+          data: {
+            pageByTemplate: null,
+          },
+        },
+      },
+      {
+        request: {
+          query: PostsDocument,
+          variables: {
+            first: 10,
+            search: '',
+            language: LanguageCodeFilterEnum.Fi,
+            categories: [],
+          },
+        },
+        error: new Error('Network error loading posts'),
+      },
+      {
+        request: {
+          query: CategoriesDocument,
+          variables: {
+            first: 20,
+            language: LanguageCodeFilterEnum.Fi,
+          },
+        },
+        result: {
+          data: {
+            categories: {
+              __typename: 'RootQueryToCategoryConnection',
+              nodes: [],
+            },
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Artikkeleiden lataaminen epäonnistui')
+      ).toBeInTheDocument();
+    });
+    expect(screen.queryByText(/Ei tuloksia/i)).not.toBeInTheDocument();
+  });
 });

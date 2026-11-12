@@ -15,6 +15,7 @@ import { useSearchParams } from 'react-router';
 
 import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
+import ErrorMessage from '../../common/components/error/Error';
 import usePageByTemplateQuery from '../../hooks/usePageByTemplateQuery';
 import { getCmsPageDescription, getCmsPageTitle } from '../../utils/cmsUtils';
 import PageMeta from '../app/layout/utilityComponents/PageMeta';
@@ -32,6 +33,12 @@ const languageToFilterEnumMap: Record<string, LanguageCodeFilterEnum> = {
   [SUPPORT_LANGUAGES.EN]: LanguageCodeFilterEnum.En,
 };
 
+/**
+ * Article archive page component for browsing and searching CMS articles.
+ *
+ * Provides text and category filtering, pagination, responsive cards,
+ * and handles loading and error states.
+ */
 const ArticleArchivePage = () => {
   const { t, i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
@@ -53,6 +60,7 @@ const ArticleArchivePage = () => {
     fetchMore,
     loading: loadingPosts,
     networkStatus,
+    error: postsError,
   } = usePostsQuery({
     notifyOnNetworkStatusChange: true,
     variables: {
@@ -137,6 +145,17 @@ const ArticleArchivePage = () => {
     fallbackTitle: archiveTitle,
   });
 
+  if (postsError && !postsData) {
+    return (
+      <ErrorMessage
+        message={t(
+          'cms.archiveSearch.error',
+          'Artikkeleiden lataaminen epäonnistui'
+        )}
+      />
+    );
+  }
+
   return (
     <Page
       className={styles.articleArchiveContainer}
@@ -153,7 +172,7 @@ const ArticleArchivePage = () => {
             breadcrumbs={breadcrumbs}
             page={page ?? (fallbackPage as unknown as PageType)}
             isLoading={isLoading || isLoadingMore}
-            noResults={!isLoading && articles.length === 0}
+            noResults={!isLoading && !postsError && articles.length === 0}
             items={!isLoading ? articles : []}
             tags={categoryOptions}
             currentTags={currentCategories}

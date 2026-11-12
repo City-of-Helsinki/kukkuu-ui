@@ -24,6 +24,14 @@ const appLanguageToRHHCLanguageMap = {
   [SUPPORT_LANGUAGES.EN]: LanguageCodeEnum.En,
 };
 
+/**
+ * Provides the configuration object for `react-helsinki-headless-cms` (RHHC) ConfigProvider.
+ *
+ * Configures the Apollo Client, language mapping, internal href origins,
+ * link router components (react-router `Link`), custom article details, and page SEO metadata.
+ *
+ * @returns Configured RHHC Config object.
+ */
 export default function useRHHCConfig(): Config {
   const {
     t,
