@@ -19,6 +19,12 @@ import AppConfig from '../app/AppConfig';
 import { useCmsBreadcrumbs } from '../headlessCms/breadcrumbUtils';
 import styles from './profile.module.scss';
 
+/**
+ * Profile page component for managing guardian details and registered children.
+ *
+ * Directs unauthenticated users to login, integrates CMS profile page metadata,
+ * renders the profile hero, children list, and guardian contact section.
+ */
 const Profile = () => {
   const navigate = useNavigate();
   const getPathname = useGetPathname();

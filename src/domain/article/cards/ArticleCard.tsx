@@ -8,6 +8,12 @@ import {
 import ArticleDetails from '../articleDetails/ArticleDetails';
 import { getArticleCardData } from './articleCardUtils';
 
+/**
+ * Standard article card component rendered in article listings and archives.
+ *
+ * @param item - The collection item representing a CMS article.
+ * @returns Card component with article image, title, publish date, and category tags.
+ */
 export const ArticleCard = (item: CollectionItemType) => {
   const {
     utils: { getRoutedInternalHref },

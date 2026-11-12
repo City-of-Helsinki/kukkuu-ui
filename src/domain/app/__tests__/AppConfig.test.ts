@@ -69,4 +69,11 @@ describe('AppConfig', () => {
     expect(AppConfig.cmsArticlesContextPath).toBe('/articles');
     expect(AppConfig.cmsPagesContextPath).toBe('/');
   });
+
+  it('throws an error if CMS articles context path is configured as root ("/")', () => {
+    vi.stubEnv('VITE_CMS_ARTICLES_CONTEXT_PATH', '/');
+    expect(() => AppConfig.cmsArticlesContextPath).toThrow(
+      'Configuration error: VITE_CMS_ARTICLES_CONTEXT_PATH cannot be root ("/")'
+    );
+  });
 });

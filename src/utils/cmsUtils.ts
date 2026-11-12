@@ -7,6 +7,12 @@ import {
 
 import AppConfig from '../domain/app/AppConfig';
 
+/**
+ * Strips language locale prefix (/fi, /sv, /en) from the beginning of a URI.
+ *
+ * @param uri - The raw URI string.
+ * @returns URI without leading locale prefix.
+ */
 export const stripLocaleFromUri = (uri: string): string => {
   return uri.replace(/^\/(en|sv|fi)(?![a-z0-9])/i, '');
 };
@@ -21,10 +27,22 @@ export const removeSurroundingSlashes = (path: string) => {
   return path.replace(/(^\/|\/$)/g, '');
 };
 
+/**
+ * Normalizes a CMS URI by decoding URI components and removing locale prefix and surrounding slashes.
+ *
+ * @param uri - The raw CMS URI.
+ * @returns Normalized CMS URI slug.
+ */
 export const normalizeCmsUri = (uri: string) => {
   return decodeURIComponent(removeSurroundingSlashes(stripLocaleFromUri(uri)));
 };
 
+/**
+ * Replaces HTML entity `&#x2d;` with a standard dash `-`.
+ *
+ * @param str - The raw string.
+ * @returns String with dashes unescaped.
+ */
 export const unescapeDash = (str?: string | null): string => {
   if (!str) {
     return str ?? '';
@@ -32,6 +50,12 @@ export const unescapeDash = (str?: string | null): string => {
   return str.replace(/&#x2d;/g, '-');
 };
 
+/**
+ * Resolves the display title for a CMS page or article, prioritizing hero title over page title.
+ *
+ * @param page - The CMS page or article.
+ * @returns Trimmed title string or empty string.
+ */
 export const getCmsPageTitle = (
   page?: PageType | ArticleType | null
 ): string => {
@@ -44,6 +68,13 @@ export const getCmsPageTitle = (
   return page.title?.trim() || '';
 };
 
+/**
+ * Resolves the description for a CMS page or article, converted to plain text.
+ * Prioritizes hero description, then lead, then page content.
+ *
+ * @param page - The CMS page or article.
+ * @returns Plain-text description or empty string.
+ */
 export const getCmsPageDescription = (
   page?: PageType | ArticleType | null
 ): string => {
@@ -62,6 +93,12 @@ export const getCmsPageDescription = (
   return '';
 };
 
+/**
+ * Extracts the primary image URL and metadata from a CMS page or article.
+ *
+ * @param page - The CMS page or article.
+ * @returns Image URL, alt text, and photographer name.
+ */
 export const getCmsPageImage = (
   page?: PageType | ArticleType | null
 ): {
@@ -102,12 +139,28 @@ export const withCmsPagesContextPath = (uri: string): string => {
   return `${localePrefix}${contextPath}${normalizedSlug}`;
 };
 
+/**
+ * Returns origins considered internal to the application and CMS.
+ *
+ * @returns Array of internal origin URL strings.
+ */
 export const getInternalHrefOrigins = (): string[] => [
   new URL(AppConfig.origin).origin,
   new URL(AppConfig.apiUrl).origin,
   new URL(AppConfig.cmsUri).origin,
 ];
 
+/**
+ * Resolves an internal CMS or application link into a localized routed path.
+ *
+ * Strips internal origins, handles search and profile redirects to `/events` and `/profile`,
+ * formats article links with configured article prefix, and ensures target locale.
+ *
+ * @param link - The raw target link.
+ * @param type - The module item type (e.g. Article).
+ * @param language - Fallback language code.
+ * @returns Resolved application route path.
+ */
 export const getRoutedInternalHref = (
   link?: string | null,
   type?: ModuleItemTypeEnum,

@@ -20,6 +20,12 @@ import {
   getCmsPageTitle,
 } from '../../utils/cmsUtils';
 
+/**
+ * Front page component for the Kukkuu service.
+ *
+ * Integrates WordPress Headless CMS frontpage content, hero section with background image,
+ * registration preliminary form, service instructions, partners, video, and contact sections.
+ */
 const Home = () => {
   const { isAuthenticated } = useOidcClient();
   const isLoggedIn = isAuthenticated();

@@ -10,6 +10,9 @@ import type {
 import { getCurrentLanguage } from '../../../../common/translation/TranslationUtils';
 import { unescapeDash } from '../../../../utils/cmsUtils';
 
+/**
+ * Formats the document title with the app name suffix unless it is the base app name.
+ */
 function useTitle(title?: string) {
   const { t } = useTranslation();
 
@@ -29,6 +32,11 @@ export type PageMetaProps = {
   children?: React.ReactNode;
 };
 
+/**
+ * Renders HTML document head metadata, OpenGraph, Twitter, and canonical tags using react-helmet-async.
+ *
+ * Automatically tracks page views in Matomo and prioritizes CMS SEO metadata when available.
+ */
 const PageMeta = ({
   title,
   description = 'homePage.hero.descriptionText',
