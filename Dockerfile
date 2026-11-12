@@ -59,6 +59,12 @@ FROM helsinki.azurecr.io/ubi10/nginx-126-spa-standard AS production
 
 ARG VITE_SENTRY_RELEASE
 ENV APP_RELEASE=${VITE_SENTRY_RELEASE:-""}
+ARG VITE_CSP_REPORT_URI
+COPY --chmod=444 nginx/security-headers.conf.template /etc/nginx/templates/security-headers.conf.template
+COPY --chmod=444 nginx/configure-csp.sh /tmp/configure-csp.sh
+RUN bash /tmp/configure-csp.sh \
+	&& rm /tmp/configure-csp.sh
+
 # 1. Copy the compiled assets
 COPY --from=staticbuilder /app/build /usr/share/nginx/html
 
