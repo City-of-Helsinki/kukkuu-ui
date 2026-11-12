@@ -1,9 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
-import { LanguageCodeFilterEnum } from '@city-of-helsinki/react-helsinki-headless-cms';
+import {
+  LanguageCodeFilterEnum,
+  TemplateEnum,
+} from '@city-of-helsinki/react-helsinki-headless-cms';
 import {
   ArticleDocument,
   CategoriesDocument,
+  PageByTemplateDocument,
   PostsDocument,
 } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
@@ -296,5 +300,54 @@ describe('<ArticlePage />', () => {
     await waitFor(() => {
       expect(window.location.search).toContain('tags=999');
     });
+  });
+
+  it('renders error message when article query fails instead of not found', async () => {
+    window.history.pushState({}, '', '/fi/articles/virheellinen-artikkeli');
+
+    render(<ArticlePage />, [
+      {
+        request: {
+          query: ArticleDocument,
+          variables: { id: '/fi/virheellinen-artikkeli' },
+        },
+        error: new Error('Network error loading article'),
+      },
+      {
+        request: {
+          query: PageByTemplateDocument,
+          variables: { template: TemplateEnum.PostsPage, language: 'fi' },
+        },
+        result: {
+          data: {
+            pageByTemplate: null,
+          },
+        },
+      },
+      {
+        request: {
+          query: CategoriesDocument,
+          variables: {
+            first: 20,
+            language: LanguageCodeFilterEnum.Fi,
+          },
+        },
+        result: {
+          data: {
+            categories: {
+              __typename: 'RootQueryToCategoryConnection',
+              nodes: [],
+            },
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Artikkelin lataaminen epäonnistui')
+      ).toBeInTheDocument();
+    });
+    expect(screen.queryByText(/404/i)).not.toBeInTheDocument();
   });
 });

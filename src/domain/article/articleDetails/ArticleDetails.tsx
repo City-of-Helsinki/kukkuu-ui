@@ -7,6 +7,11 @@ export type ArticleDetailsProps = {
   keywords?: string[];
 };
 
+/**
+ * Renders keyword tag pills for article cards.
+ *
+ * Displays up to two keyword tags and shows a count badge (+N) for remaining tags.
+ */
 const ArticleDetails: React.FC<ArticleDetailsProps> = ({ keywords }) => {
   if (!keywords || keywords.length === 0) {
     return null;
