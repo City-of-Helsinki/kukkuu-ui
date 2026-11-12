@@ -287,11 +287,19 @@ class AppConfig {
   /**
    * Context path prefix for dynamic CMS articles.
    * Defaults to '/articles'.
+   *
+   * @throws {Error} If configured as the root path ('/').
    */
   static get cmsArticlesContextPath() {
-    return normalizeContextPath(
+    const path = normalizeContextPath(
       getEnvValue('VITE_CMS_ARTICLES_CONTEXT_PATH') || '/articles'
     );
+    if (path === '/') {
+      throw new Error(
+        'Configuration error: VITE_CMS_ARTICLES_CONTEXT_PATH cannot be root ("/")'
+      );
+    }
+    return path;
   }
 
   /**
@@ -447,6 +455,12 @@ function getEnvAsUrl(varName: string): URL {
   }
 }
 
+/**
+ * Splits a comma-separated environment variable into an array of trimmed strings.
+ *
+ * @param variable - The raw environment variable string.
+ * @returns An array of trimmed strings, or undefined if the variable is not set.
+ */
 function getEnvAsList(variable?: string) {
   if (!variable) {
     return undefined;
@@ -454,6 +468,13 @@ function getEnvAsList(variable?: string) {
   return variable.split(',').map((e) => e.trim());
 }
 
+/**
+ * Normalizes a context path by ensuring a leading slash and removing trailing slashes,
+ * while preserving a single '/' for valid root paths.
+ *
+ * @param path - The raw context path string.
+ * @returns Normalized context path string.
+ */
 function normalizeContextPath(path: string): string {
   if (!path) {
     return '/';

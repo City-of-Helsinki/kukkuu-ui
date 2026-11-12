@@ -22,6 +22,11 @@ export type PageWrapperProps = {
   usePageMeta?: boolean;
 };
 
+/**
+ * Base layout wrapper component for application pages.
+ *
+ * Integrates PageMeta head metadata and a responsive Container layout.
+ */
 const PageWrapper = ({
   children,
   className,

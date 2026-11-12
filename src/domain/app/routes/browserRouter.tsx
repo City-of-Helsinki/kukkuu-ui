@@ -30,6 +30,15 @@ import KukkuuHDSLoginCallbackHandler from '../../auth/KukkuuHDSLoginCallbackHand
 import SilentRenewRedirect from './SilentRenewRedirect';
 import ApplicationError from '../errorElement/ApplicationError';
 
+/**
+ * Generates the application route hierarchy.
+ *
+ * Configures top-level auth and callback routes, locale routing wrapper,
+ * registration and profile views, event search and occurrences, article archives,
+ * and dynamic CMS page fallbacks.
+ *
+ * @returns Array of RouteObject configurations for React Router.
+ */
 export const getAppRoutes = (): RouteObject[] => [
   {
     path: '/',

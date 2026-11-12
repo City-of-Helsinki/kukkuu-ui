@@ -28,6 +28,7 @@ import {
 import AppConfig from '../app/AppConfig';
 import PageMeta from '../app/layout/utilityComponents/PageMeta';
 import NotFound from '../app/notFound/NotFound';
+import ErrorMessage from '../../common/components/error/Error';
 import { useCmsBreadcrumbs } from '../headlessCms/breadcrumbUtils';
 import ArticleArchivePage from './ArticleArchivePage';
 import styles from './articlePage.module.scss';
@@ -40,6 +41,15 @@ const languageToFilterEnumMap: Record<string, LanguageCodeFilterEnum> = {
   [SUPPORT_LANGUAGES.EN]: LanguageCodeFilterEnum.En,
 };
 
+/**
+ * Extracts the localized CMS article URI from the current pathname.
+ *
+ * Compares the stripped pathname against the configured articles context path
+ * prefix and extracts the trailing article slug.
+ *
+ * @param pathname - The browser pathname.
+ * @returns Localized CMS article URI, or an empty string if not an article route.
+ */
 const getArticleUriFromPathname = (pathname: string): string => {
   const articlesPrefix = AppConfig.cmsArticlesContextPath.replace(/\/$/, '');
   const strippedLocale = stripLocaleFromUri(pathname);
@@ -57,16 +67,26 @@ const getArticleUriFromPathname = (pathname: string): string => {
   return '';
 };
 
+/**
+ * Article detail page component for rendering individual CMS articles.
+ *
+ * Fetches article data by URI, provides middle breadcrumbs, category tag searching,
+ * SEO page metadata, and handles loading and error states.
+ */
 const ArticlePage = () => {
   const client = useApolloClient();
   const location = useLocation();
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const currentLocale = getCurrentLanguage(i18n);
   const getPathname = useGetPathname();
 
   const articleUri = getArticleUriFromPathname(location.pathname);
-  const { data: articleData, loading: loadingArticle } = useArticleQuery({
+  const {
+    data: articleData,
+    loading: loadingArticle,
+    error: articleError,
+  } = useArticleQuery({
     variables: {
       id: articleUri,
     },
@@ -110,6 +130,17 @@ const ArticlePage = () => {
       <div className={styles.loadingSpinnerContainer}>
         <LoadingSpinner multicolor />
       </div>
+    );
+  }
+
+  if (articleError) {
+    return (
+      <ErrorMessage
+        message={t(
+          'article.error.failedToLoad',
+          'Artikkelin lataaminen epäonnistui'
+        )}
+      />
     );
   }
 

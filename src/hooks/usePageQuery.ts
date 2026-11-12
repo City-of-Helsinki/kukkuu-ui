@@ -2,9 +2,16 @@ import { usePageQuery as useOriginalPageQuery } from '@city-of-helsinki/react-he
 
 import { normalizeCmsUri } from '../utils/cmsUtils';
 
-// Takes care of removing surrounding slashes so basically same requests are not repeated
-// instead they are fetched from the cache.
-// Uses the ApolloClient configured in RHHC ConfigProvider (headlessCmsClient in app, MockedProvider in tests).
+/**
+ * Hook to query a CMS page by its URI.
+ *
+ * Normalizes the URI by removing surrounding slashes to maximize cache hits.
+ * Uses the ApolloClient configured in RHHC ConfigProvider.
+ *
+ * @param uri - The CMS page URI or slug.
+ * @param options - Query options including `skip`.
+ * @returns Query result object containing page data, loading, and error states.
+ */
 const usePageQuery = (uri: string, { skip }: { skip?: boolean } = {}) => {
   const normalizedUri = normalizeCmsUri(uri);
   return useOriginalPageQuery({
