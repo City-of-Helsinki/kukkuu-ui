@@ -76,4 +76,73 @@ describe('AppConfig', () => {
       'Configuration error: VITE_CMS_ARTICLES_CONTEXT_PATH cannot be root ("/")'
     );
   });
+
+  describe('AppConfig.translationToolEnabled', () => {
+    const origProcessEnv = { ...process.env };
+    const origWindowEnv = { ...(globalThis.window?._env_ ?? {}) };
+
+    beforeEach(() => {
+      process.env = { ...origProcessEnv };
+      if (globalThis.window?._env_) {
+        globalThis.window._env_ = { ...origWindowEnv };
+      }
+    });
+
+    afterEach(() => {
+      process.env = { ...origProcessEnv };
+      if (globalThis.window?._env_) {
+        globalThis.window._env_ = { ...origWindowEnv };
+      }
+    });
+
+    const setEnv = (key: string, value: string | undefined) => {
+      if (value === undefined) {
+        delete process.env[key];
+        if (globalThis.window?._env_) {
+          delete globalThis.window._env_[key];
+        }
+      } else {
+        process.env[key] = value;
+        if (globalThis.window?._env_) {
+          globalThis.window._env_[key] = value;
+        }
+      }
+    };
+
+    describe('default behavior based on environment', () => {
+      beforeEach(() => {
+        setEnv('VITE_TRANSLATION_TOOL_ENABLED', undefined);
+      });
+
+      it.each([
+        ['development', true],
+        ['testing', true],
+        ['production', false],
+        ['staging', false],
+        ['review', false],
+      ])(
+        'for %s environment, evaluates to %s by default',
+        (environment, expected) => {
+          setEnv('VITE_ENVIRONMENT', environment);
+          expect(AppConfig.translationToolEnabled).toBe(expected);
+        }
+      );
+    });
+
+    describe('explicit override via VITE_TRANSLATION_TOOL_ENABLED', () => {
+      it.each([
+        ['production', 'true', true],
+        ['production', '1', true],
+        ['development', 'false', false],
+        ['testing', '0', false],
+      ])(
+        'in %s environment, VITE_TRANSLATION_TOOL_ENABLED="%s" resolves to %s',
+        (environment, envValue, expected) => {
+          setEnv('VITE_ENVIRONMENT', environment);
+          setEnv('VITE_TRANSLATION_TOOL_ENABLED', envValue);
+          expect(AppConfig.translationToolEnabled).toBe(expected);
+        }
+      );
+    });
+  });
 });
