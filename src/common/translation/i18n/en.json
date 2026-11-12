@@ -610,7 +610,13 @@
     }
   },
   "footer": {
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "cimode": "Translation tool",
+    "cimodeAriaClose": "Hide translation tool from the bottom right corner of the screen",
+    "cimodeAriaOpen": "Translation tool, opens the tool in the bottom right corner of the screen",
+    "cimodeHide": "Hide translation tool",
+    "cimodeTooltip": "Opens a tool to inspect user interface translation keys (CIMODE).",
+    "cimodeTooltipLabel": "More information about translation tool"
   },
   "home": {
     "contact": {
@@ -1039,6 +1045,7 @@
       }
     },
     "cookies": {
+      "cimode": "Translation tool (CIMODE) state and widget visibility are stored in browser session storage.",
       "matomo": "A cookie of the Matomo statistics system",
       "linkedevents": "A cookie to authorise the retrieval of events",
       "i18next": "A cookie to remember the website language selection",
