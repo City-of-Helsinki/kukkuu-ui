@@ -4,6 +4,11 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import setLocale, { Locale } from '../../localization/setLocale';
 import { DEFAULT_LANGUAGE, SUPPORT_LANGUAGES } from '../TranslationConstants';
+import {
+  cimodePostProcessor,
+  CIMODE_POST_PROCESSOR_NAME,
+} from '../cimode/cimodePostProcessor';
+import { initializeCimodeFromUrl } from '../cimode/cimodeUtils';
 import en from './en.json';
 import fi from './fi.json';
 import sv from './sv.json';
@@ -19,10 +24,14 @@ import sv from './sv.json';
 // then use the language it determines to be the most appropriate to
 // use to set the locale.
 export function initI18next() {
+  initializeCimodeFromUrl();
+
   i18n
+    .use(cimodePostProcessor)
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
+      postProcess: [CIMODE_POST_PROCESSOR_NAME],
       detection: {
         order: [
           'path',

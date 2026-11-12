@@ -8,6 +8,7 @@ import styles from './footer.module.scss';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import { RESET_FOCUS_ID } from '../../../common/components/resetFocus/constants';
 import AppConfig from '../AppConfig';
+import CimodeToggle from './CimodeToggle';
 
 type ValidMenuItem = {
   id: MenuItem['id'];
@@ -58,6 +59,9 @@ const Footer: FunctionComponent = () => {
             label={footerLink.label}
           />
         ))}
+        {AppConfig.translationToolEnabled && (
+          <HDSFooter.Link as={CimodeToggle} />
+        )}
       </HDSFooter.Base>
     </HDSFooter>
   );

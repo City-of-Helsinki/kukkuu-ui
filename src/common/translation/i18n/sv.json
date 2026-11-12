@@ -608,7 +608,13 @@
     }
   },
   "footer": {
-    "backToTop": "Tillbaka till upp"
+    "backToTop": "Tillbaka till upp",
+    "cimode": "Översättningsverktyg",
+    "cimodeAriaClose": "Dölj översättningsverktyg från skärmens nedre högra hörn",
+    "cimodeAriaOpen": "Översättningsverktyg, öppnar verktyget i skärmens nedre högra hörn",
+    "cimodeHide": "Dölj översättningsverktyg",
+    "cimodeTooltip": "Öppnar ett verktyg för att granska gränssnittets översättningsnycklar (CIMODE).",
+    "cimodeTooltipLabel": "Mer information om översättningsverktyget"
   },
   "home": {
     "contact": {
@@ -1037,6 +1043,7 @@
       }
     },
     "cookies": {
+      "cimode": "Översättningsverktygets (CIMODE) tillstånd och synlighet sparas i webbläsarens sessionsminne (session storage).",
       "matomo": "Kaka för statistiksystemet Matomo",
       "linkedevents": "Kaka för att söka evenemang",
       "i18next": "Kaka som sparar användarens språkval på webbplatsen",
