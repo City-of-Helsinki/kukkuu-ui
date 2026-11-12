@@ -185,6 +185,13 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
                 description: localized('consent.cookies.hdsUserReference'),
                 expiration: localized('consent.expiration.session'),
               },
+              {
+                name: 'kukkuu_cimode*',
+                host: globalThis.location.hostname,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.sessionStorage,
+                description: localized('consent.cookies.cimode'),
+                expiration: localized('consent.expiration.session'),
+              },
             ],
           },
         ],
