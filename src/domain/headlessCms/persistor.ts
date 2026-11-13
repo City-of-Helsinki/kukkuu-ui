@@ -15,6 +15,12 @@ export enum LogLevel {
   ERROR,
 }
 
+export enum PersistedCacheState {
+  Missing = 'missing',
+  Fresh = 'fresh',
+  Stale = 'stale',
+}
+
 class TimedApolloCachePersistorLogger {
   private readonly logLevel: LogLevel;
 
@@ -88,9 +94,6 @@ export class TimedApolloCachePersistor {
    * and reinitialization of the Apollo client.
    * See more: https://v5.reactrouter.com/web/api/Link.
    *
-   * @param cache The Apollo InMemoryCache instance to be managed.
-   * @param options Options for configuring the persistor.
-   *
    * @example
    * const cache = new InMemoryCache();
    * const persistor = new TimedApolloCachePersistor(cache, {
@@ -107,8 +110,9 @@ export class TimedApolloCachePersistor {
       logLevel = LogLevel.INFO,
     } = options;
     this.logger = new TimedApolloCachePersistorLogger(logLevel);
-    this.persistorLocalStorageKey = `kukkuu-ui-cms-${AppConfig.environment}-apollo-cache`;
-    this.timePersistedLocalStorageKey = `kukkuu-ui-cms-${AppConfig.environment}-apollo-cache-persisted-at`;
+    this.persistorLocalStorageKey = AppConfig.cmsApolloCacheLocalStorageKey;
+    this.timePersistedLocalStorageKey =
+      AppConfig.cmsApolloCachePersistedAtLocalStorageKey;
     this.persistedCacheTimeToLiveMs = persistedCacheTimeToLiveMs;
     this.persistor = this.createApolloCachePersistor(cache);
   }
@@ -116,12 +120,10 @@ export class TimedApolloCachePersistor {
   /**
    * @private
    * Creates and configures the Apollo CachePersistor instance.
-   * This method also handles clearing expired caches from localStorage.
-   * * @param cache The Apollo InMemoryCache instance.
-   * @returns The configured CachePersistor instance.
+   * This method initializes storage timestamp if not present.
    */
   private createApolloCachePersistor(cache: InMemoryCache) {
-    if (this.hasPersistedCacheExpired()) {
+    if (this.getPersistedCacheState() === PersistedCacheState.Missing) {
       try {
         this.clearLocalStorage();
       } catch (e: unknown) {
@@ -154,31 +156,44 @@ export class TimedApolloCachePersistor {
   }
 
   /**
-   * Checks if the persisted Apollo cache has expired based on the
-   * `persistedCacheTimeToLiveMs` value.
-   *
-   * @returns `true` if the cache has expired, `false` otherwise.
+   * Evaluates whether the persisted Apollo cache is missing, fresh (within TTL),
+   * or stale (past TTL but still retained for synchronous SWR hydration).
    */
-  hasPersistedCacheExpired() {
+  getPersistedCacheState(): PersistedCacheState {
     const persistedAt = Number.parseInt(
-      localStorage.getItem(this.timePersistedLocalStorageKey) ?? ''
+      localStorage.getItem(this.timePersistedLocalStorageKey) ?? '',
+      10
     );
 
     if (Number.isNaN(persistedAt)) {
       this.logger.debug('Persisted cache has not been set.');
-      return true;
+      return PersistedCacheState.Missing;
     }
 
-    const millisecondsLeft =
-      persistedAt + this.persistedCacheTimeToLiveMs - Date.now();
+    const age = Date.now() - persistedAt;
+    if (age <= this.persistedCacheTimeToLiveMs) {
+      this.logger.debug(
+        'Persisted cache is fresh, expires in',
+        (this.persistedCacheTimeToLiveMs - age) / 1000,
+        'seconds.'
+      );
+      return PersistedCacheState.Fresh;
+    }
 
     this.logger.debug(
-      'Persisted cache expires in',
-      millisecondsLeft / 1000,
+      'Persisted cache is stale by',
+      (age - this.persistedCacheTimeToLiveMs) / 1000,
       'seconds.'
     );
+    return PersistedCacheState.Stale;
+  }
 
-    return millisecondsLeft <= 0;
+  /**
+   * Checks if the persisted Apollo cache has expired based on the
+   * `persistedCacheTimeToLiveMs` value.
+   */
+  hasPersistedCacheExpired() {
+    return this.getPersistedCacheState() !== PersistedCacheState.Fresh;
   }
 
   /**
@@ -186,8 +201,7 @@ export class TimedApolloCachePersistor {
    * Note: This does not clear the cache from the Apollo cache itself.
    * `this.purge()` should be used to clear the cache from the Apollo cache,
    * but it should be noted that it is an async function.
-   * @returns void
-   **/
+   */
   clearLocalStorage() {
     localStorage.removeItem(this.timePersistedLocalStorageKey);
     localStorage.removeItem(this.persistorLocalStorageKey);

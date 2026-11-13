@@ -38,6 +38,7 @@
   - [`pnpm test:browser`](#pnpm-testbrowser)
 - [Headless CMS](#headless-cms)
   - [Headless CMS React Components -lib](#headless-cms-react-components--lib)
+  - [CMS Caching & Loading Architecture](#cms-caching--loading-architecture)
 - [Releases, changelogs and deployments](#releases-changelogs-and-deployments)
   - [Conventional Commits](#conventional-commits)
   - [Releasable units](#releasable-units)
@@ -370,6 +371,10 @@ The architecture of the React Helsinki Headless CMS is modular and designed for 
 - Component-Based Structure: The library is organized into reusable React components, each responsible for a specific piece of functionality or UI element. This modularity allows developers to compose applications efficiently by assembling these components as needed.
 - Integration with Headless CMS: The library is tailored to work seamlessly with headless WordPress CMS environments. It relies on GraphQL schemas to fetch and present content, making it heavily dependent on the structure and features of the connected WordPress instance.
 - Apollo Client Integration: For data management, the library utilizes Apollo Client to handle GraphQL queries and mutations. Developers are expected to provide an Apollo client linked to a GraphQL endpoint with a supported schema (headless CMS) in the apolloClient field of the configuration object.
+
+### CMS Caching & Loading Architecture
+
+For in-depth details on Apollo Client persisted caching, Stale-While-Revalidate (SWR) background updates, 0ms startup restoration, accessible skeleton loaders, and GDPR/Cookie Consent configuration, see [docs/cms-caching.md](./docs/cms-caching.md).
 
 ## Releases, changelogs and deployments
 
