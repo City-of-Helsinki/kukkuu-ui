@@ -61,6 +61,9 @@ vi.mock('hds-react', async () => {
     as?: React.ElementType;
     [key: string]: unknown;
   }) => {
+    if (typeof Component !== 'string') {
+      return <Component {...props} />;
+    }
     if (Component === 'button') {
       return (
         <button type="button" onClick={onClick} {...props}>
