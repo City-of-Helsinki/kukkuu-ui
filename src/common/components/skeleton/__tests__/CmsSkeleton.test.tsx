@@ -6,6 +6,7 @@ import {
   HeroImageSkeleton,
   NavPillSkeleton,
   FooterPillSkeleton,
+  CmsPageSkeleton,
 } from '../CmsSkeleton';
 
 describe('CmsSkeleton primitives', () => {
@@ -72,6 +73,33 @@ describe('CmsSkeleton primitives', () => {
       expect(el).toHaveAttribute('aria-hidden', 'true');
       expect(el).toHaveStyle({ width: '9rem' });
       expect(el.className).toContain('custom-footer-pill');
+    });
+  });
+
+  describe('CmsPageSkeleton', () => {
+    it('renders accessible full-width subpage skeleton with aria-busy and koros', () => {
+      render(<CmsPageSkeleton />);
+      const el = screen.getByTestId('cms-page-skeleton');
+      expect(el).toBeInTheDocument();
+      expect(el).toHaveAttribute('aria-busy', 'true');
+
+      // Verify breadcrumb, hero lines, and multiple content lines are rendered
+      const skeletonLines = screen.getAllByTestId('skeleton-line');
+      expect(skeletonLines.length).toBeGreaterThanOrEqual(10);
+    });
+
+    it('applies custom testid, className, and style', () => {
+      render(
+        <CmsPageSkeleton
+          data-testid="custom-page-skeleton"
+          className="custom-page-skeleton-class"
+          style={{ opacity: 0.9 }}
+        />
+      );
+      const el = screen.getByTestId('custom-page-skeleton');
+      expect(el).toBeInTheDocument();
+      expect(el.className).toContain('custom-page-skeleton-class');
+      expect(el).toHaveStyle({ opacity: '0.9' });
     });
   });
 });

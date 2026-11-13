@@ -82,9 +82,10 @@ export const useCmsBreadcrumbs = (
       getCmsBreadcrumbs(page, {
         locale,
         fallbackBreadcrumbs: resolvedFallbackBreadcrumbs,
+        middleBreadcrumbs,
         disableLastLink,
       }),
-    [page, locale, resolvedFallbackBreadcrumbs, disableLastLink]
+    [page, locale, resolvedFallbackBreadcrumbs, middleBreadcrumbs, disableLastLink]
   );
 };
 

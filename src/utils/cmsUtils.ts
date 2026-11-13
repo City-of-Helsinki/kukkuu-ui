@@ -94,6 +94,34 @@ export const getCmsPageDescription = (
 };
 
 /**
+ * Determines whether a CMS page or article contains collection modules.
+ * Used to suppress empty collection rendering that creates stray Koros wave decorations.
+ *
+ * @param page - The CMS page or article.
+ * @returns True if at least one collection module is present.
+ */
+export const hasCmsCollections = (
+  page?: PageType | ArticleType | null
+): boolean => {
+  return Boolean(
+    page?.modules?.some((m) =>
+      Boolean(
+        m &&
+          [
+            'LayoutCollection',
+            'EventSearch',
+            'EventSelected',
+            'EventSearchCarousel',
+            'EventSelectedCarousel',
+            'LocationsSelected',
+            'LocationsSelectedCarousel',
+          ].includes(m.__typename ?? '')
+      )
+    )
+  );
+};
+
+/**
  * Extracts the primary image URL and metadata from a CMS page or article.
  *
  * @param page - The CMS page or article.
@@ -220,5 +248,35 @@ export const getRoutedInternalHref = (
   }
 
   return `/${targetLocale}${strippedUri}`;
+};
+
+/**
+ * Extracts the localized CMS article URI from the current pathname.
+ *
+ * Compares the stripped pathname against the configured articles context path
+ * prefix and extracts the trailing article slug.
+ *
+ * @param pathname - The browser pathname.
+ * @returns Localized CMS article URI, or an empty string if not an article route.
+ */
+export const getArticleUriFromPathname = (pathname: string): string => {
+  const articlesPrefix = AppConfig.cmsArticlesContextPath.replace(/\/$/, '');
+  const strippedLocale = stripLocaleFromUri(pathname);
+  if (
+    articlesPrefix &&
+    (strippedLocale === articlesPrefix ||
+      strippedLocale.startsWith(`${articlesPrefix}/`))
+  ) {
+    const slug = strippedLocale
+      .slice(articlesPrefix.length)
+      .replace(/^\/+|\/+$/g, '');
+    if (!slug) {
+      return '';
+    }
+    const localeMatch = /^\/(fi|sv|en)(\/.*|$)/i.exec(pathname);
+    const localePrefix = localeMatch ? `/${localeMatch[1].toLowerCase()}` : '';
+    return `${localePrefix}/${slug}`;
+  }
+  return '';
 };
 

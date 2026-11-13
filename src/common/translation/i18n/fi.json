@@ -7,6 +7,14 @@
     "errorMessage": "Tapahtui virhe. Yritä myöhemmin uudestaan"
   },
   "appName": "Kulttuurin kummilapset",
+  "article": {
+    "archive": {
+      "title": "Artikkelit"
+    },
+    "error": {
+      "failedToLoad": "Artikkelin lataaminen epäonnistui"
+    }
+  },
   "auth": {
     "wrongLoginMethod": {
       "description": "Vaikuttaisi siltä, että olet käyttänyt eri tunnistautumistapaa rekisteröityessäsi palveluun. Kirjaudu ulos palvelusta ja koita sitten kirjautua uudestaan käyttäen jotain toista tunnistautumistapaa.",
@@ -101,6 +109,7 @@
     "breadcrumbNavigationLabel": "Leivänmurunavigaatio",
     "breadcrumbs": {
       "home": "Etusivu",
+      "articles": "Artikkelit",
       "events": "Tapahtumat",
       "profile": "Kummilapset"
     },

@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   Navigation as RHHCNavigation,
   useMenuQuery,
@@ -11,11 +11,16 @@ import {
   MenuItem,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
+import headlessCmsClient from '../../headlessCms/client';
 import UserNavigation from './UserNavigation';
 import { useCmsLanguageOptions } from '../../../hooks/useCmsLanguageOptions';
 import { stripLocaleFromUri } from '../../../utils/cmsUtils';
 import AppConfig from '../AppConfig';
-import { getIsMenuItemActive } from './navigationUtils';
+import {
+  getIsMenuItemActive,
+  prefetchCmsMenuItems,
+  scheduleIdle,
+} from './navigationUtils';
 import { NavPillSkeleton } from '../../../common/components/skeleton/CmsSkeleton';
 import { useCmsLoadingState } from '../../../hooks/useCmsLoadingState';
 import styles from './navigation.module.scss';
@@ -72,6 +77,19 @@ function Navigation() {
     },
   });
   const { isInitialLoading: isNavLoading } = useCmsLoadingState(menuQueryResult);
+
+  const menuItems = menuQueryResult.data?.menu?.menuItems?.nodes;
+  useEffect(() => {
+    if (!menuItems || menuItems.length === 0) {
+      return;
+    }
+
+    const cancelIdle = scheduleIdle(() => {
+      prefetchCmsMenuItems(menuItems, i18n.language, headlessCmsClient);
+    });
+
+    return cancelIdle;
+  }, [menuItems, i18n.language]);
 
   return (
     <div

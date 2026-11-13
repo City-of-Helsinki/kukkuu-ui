@@ -100,20 +100,48 @@ const PageMeta = ({
       )}
       {openGraphType && <meta property="og:type" content={openGraphType} />}
       {socialImage && <meta property="og:image" content={socialImage} />}
+      <meta name="twitter:card" content="summary_large_image" />
       {twitterTitle && <meta name="twitter:title" content={twitterTitle} />}
       {twitterDescription && (
         <meta name="twitter:description" content={twitterDescription} />
       )}
       {socialImage && <meta name="twitter:image" content={socialImage} />}
       <link rel="canonical" href={canonical} />
-      {locales.map((l) => (
-        <link
-          key={l}
-          rel="alternate"
-          hrefLang={l}
-          href={`${origin}/${l}${path}`}
-        />
-      ))}
+      {page?.translations && page.translations.length > 0
+        ? [
+            <link
+              key={lang}
+              rel="alternate"
+              hrefLang={lang}
+              href={canonical}
+            />,
+            ...page.translations.map((translation) => {
+              const translationLang = (
+                translation?.language?.code ||
+                translation?.language?.slug ||
+                'fi'
+              ).toLowerCase();
+              const translationUri = translation?.uri
+                ? `${origin}${translation.uri.replace(/\/$/, '')}`
+                : `${origin}/${translationLang}${path}`;
+              return (
+                <link
+                  key={translationLang}
+                  rel="alternate"
+                  hrefLang={translationLang}
+                  href={translationUri}
+                />
+              );
+            }),
+          ]
+        : locales.map((l) => (
+            <link
+              key={l}
+              rel="alternate"
+              hrefLang={l}
+              href={`${origin}/${l}${path}`}
+            />
+          ))}
       <link
         rel="alternate"
         hrefLang="x-default"

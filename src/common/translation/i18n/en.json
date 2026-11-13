@@ -7,6 +7,14 @@
     "errorMessage": "An error occured. Please try again later"
   },
   "appName": "Culture Kids",
+  "article": {
+    "archive": {
+      "title": "Articles"
+    },
+    "error": {
+      "failedToLoad": "Failed to load article"
+    }
+  },
   "auth": {
     "wrongLoginMethod": {
       "description": "It seems like you have registered to the service using another login method. Please log out of the service and try a different login method.",
@@ -101,6 +109,7 @@
     "breadcrumbNavigationLabel": "Breadcrumb navigation",
     "breadcrumbs": {
       "home": "Home",
+      "articles": "Articles",
       "events": "Events",
       "profile": "Culture Kids"
     },

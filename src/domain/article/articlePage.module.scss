@@ -12,14 +12,9 @@
     -webkit-hyphens: manual;
     hyphens: manual;
     font-size: variables.$fontsize-heading-xl !important;
-  }
-}
 
-.loadingSpinnerContainer {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  padding: variables.$spacing-3-xl 0;
-  width: 100%;
+    @include layout.respond-below(s) {
+      font-size: var(--fontsize-heading-xl-mobile, 2rem) !important;
+    }
+  }
 }

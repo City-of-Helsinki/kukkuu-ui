@@ -1,9 +1,19 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import type { MenuItem } from '@city-of-helsinki/react-helsinki-headless-cms';
+import {
+  ArticleDocument,
+  PageDocument,
+} from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
 import Navigation from '../Navigation';
-import { getIsMenuItemActive } from '../navigationUtils';
+import {
+  extractMenuItems,
+  getIsMenuItemActive,
+  prefetchCmsMenuItems,
+  scheduleIdle,
+} from '../navigationUtils';
+import headlessCmsClient from '../../../headlessCms/client';
 import { headerMenuMock } from '../__mocks__/headerMenuMock';
 import { languagesMock } from '../../footer/__mocks__/languagesMock';
 import { customRender } from '../../../../common/test/customRender';
@@ -165,5 +175,167 @@ describe('<Navigation />', () => {
     });
     expect(screen.queryByTestId('nav-menu-skeleton')).not.toBeInTheDocument();
     expect(busyWrapper).not.toHaveAttribute('aria-busy');
+  });
+
+  it('triggers idle prefetching for CMS menu items when menu items load', async () => {
+    const querySpy = vi.spyOn(headlessCmsClient, 'query').mockResolvedValue({
+      data: { page: null },
+    } as never);
+
+    customRender(<Navigation />, [headerMenuMock, languagesMock]);
+
+    await waitFor(() => {
+      expect(screen.getByText('Ajankohtaista')).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      expect(querySpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          query: PageDocument,
+          variables: { id: '/fi/ajankohtaista' },
+          fetchPolicy: 'cache-first',
+        })
+      );
+    });
+  });
+});
+
+describe('scheduleIdle', () => {
+  it('uses window.requestIdleCallback if available and cancels correctly', () => {
+    const originalRequestIdle = window.requestIdleCallback;
+    const originalCancelIdle = window.cancelIdleCallback;
+
+    const requestIdleMock = vi.fn().mockReturnValue(123);
+    const cancelIdleMock = vi.fn();
+
+    window.requestIdleCallback = requestIdleMock;
+    window.cancelIdleCallback = cancelIdleMock;
+
+    const cb = vi.fn();
+    const cancel = scheduleIdle(cb);
+
+    expect(requestIdleMock).toHaveBeenCalledWith(cb);
+    cancel();
+    expect(cancelIdleMock).toHaveBeenCalledWith(123);
+
+    window.requestIdleCallback = originalRequestIdle;
+    window.cancelIdleCallback = originalCancelIdle;
+  });
+
+  it('safely cancels without error even if window.cancelIdleCallback is undefined', () => {
+    const originalRequestIdle = window.requestIdleCallback;
+    const originalCancelIdle = window.cancelIdleCallback;
+
+    window.requestIdleCallback = vi.fn().mockReturnValue(456);
+    // @ts-expect-error test missing cancel callback
+    delete window.cancelIdleCallback;
+
+    const cb = vi.fn();
+    const cancel = scheduleIdle(cb);
+
+    expect(() => cancel()).not.toThrow();
+
+    window.requestIdleCallback = originalRequestIdle;
+    window.cancelIdleCallback = originalCancelIdle;
+  });
+
+  it('falls back to setTimeout when window.requestIdleCallback is absent', () => {
+    const originalRequestIdle = window.requestIdleCallback;
+    // @ts-expect-error test fallback
+    delete window.requestIdleCallback;
+
+    const setTimeoutSpy = vi.spyOn(globalThis, 'setTimeout');
+    const clearTimeoutSpy = vi.spyOn(globalThis, 'clearTimeout');
+
+    const cb = vi.fn();
+    const cancel = scheduleIdle(cb);
+
+    expect(setTimeoutSpy).toHaveBeenCalledWith(cb, 50);
+    cancel();
+    expect(clearTimeoutSpy).toHaveBeenCalled();
+
+    if (originalRequestIdle) {
+      window.requestIdleCallback = originalRequestIdle;
+    }
+  });
+});
+
+describe('extractMenuItems', () => {
+  it('returns empty array when items are undefined or empty', () => {
+    expect(extractMenuItems(undefined)).toEqual([]);
+    expect(extractMenuItems([])).toEqual([]);
+  });
+
+  it('extracts flat and nested menu items recursively with children and childItems.nodes', () => {
+    const items = [
+      { id: '1', path: '/page-1' },
+      {
+        id: '2',
+        path: '/page-2',
+        children: [{ id: '2-1', path: '/page-2-1' }],
+      },
+      {
+        id: '3',
+        path: '/page-3',
+        childItems: {
+          nodes: [{ id: '3-1', path: '/page-3-1' }],
+        },
+      },
+    ] as unknown as MenuItem[];
+
+    const extracted = extractMenuItems(items);
+    expect(extracted.map((i) => i.id)).toEqual(['1', '2', '2-1', '3', '3-1']);
+  });
+});
+
+describe('prefetchCmsMenuItems', () => {
+  it('prefetches internal CMS pages with PageDocument and articles with ArticleDocument', () => {
+    const mockClient = {
+      query: vi.fn().mockResolvedValue({ data: null }),
+    };
+
+    const items = [
+      { id: '1', path: '/ajankohtaista/' },
+      { id: '2', path: '/articles/uusin-juttu' },
+      { id: '3', path: '/events' }, // App route, skip
+      { id: '4', path: '/profile' }, // App route, skip
+      { id: '5', path: 'https://external-domain.com/something' }, // External, skip
+      { id: '6', path: '/ajankohtaista/' }, // Duplicate, skip
+      { id: '7', path: '/home' }, // App home route, skip
+      { id: '8', path: '/search' }, // App search route, skip
+      { id: '9', path: '/articles' }, // Article archive root, skip
+      { id: '10', path: '/articles-info' }, // CMS page containing articles in slug, prefetch as page!
+    ] as unknown as MenuItem[];
+
+    prefetchCmsMenuItems(items, 'fi', mockClient as never);
+
+    expect(mockClient.query).toHaveBeenCalledTimes(3);
+    expect(mockClient.query).toHaveBeenCalledWith({
+      query: PageDocument,
+      variables: { id: '/fi/ajankohtaista' },
+      fetchPolicy: 'cache-first',
+    });
+    expect(mockClient.query).toHaveBeenCalledWith({
+      query: ArticleDocument,
+      variables: { id: '/fi/uusin-juttu' },
+      fetchPolicy: 'cache-first',
+    });
+    expect(mockClient.query).toHaveBeenCalledWith({
+      query: PageDocument,
+      variables: { id: '/fi/articles-info' },
+      fetchPolicy: 'cache-first',
+    });
+  });
+
+  it('safely catches and ignores client query rejection without throwing', () => {
+    const mockClient = {
+      query: vi.fn().mockRejectedValue(new Error('Network error')),
+    };
+
+    const items = [{ id: '1', path: '/ajankohtaista/' }] as unknown as MenuItem[];
+
+    expect(() => {
+      prefetchCmsMenuItems(items, 'fi', mockClient as never);
+    }).not.toThrow();
   });
 });
