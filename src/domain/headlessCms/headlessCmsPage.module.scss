@@ -11,5 +11,9 @@
     -webkit-hyphens: manual;
     hyphens: manual;
     font-size: variables.$fontsize-heading-xl !important;
+
+    @include layout.respond-below(s) {
+      font-size: var(--fontsize-heading-xl-mobile, 2rem) !important;
+    }
   }
 }

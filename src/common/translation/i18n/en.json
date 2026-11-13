@@ -7,6 +7,14 @@
     "errorMessage": "An error occured. Please try again later"
   },
   "appName": "Culture Kids",
+  "article": {
+    "archive": {
+      "title": "Articles"
+    },
+    "error": {
+      "failedToLoad": "Failed to load article"
+    }
+  },
   "auth": {
     "wrongLoginMethod": {
       "description": "It seems like you have registered to the service using another login method. Please log out of the service and try a different login method.",
@@ -101,6 +109,7 @@
     "breadcrumbNavigationLabel": "Breadcrumb navigation",
     "breadcrumbs": {
       "home": "Home",
+      "articles": "Articles",
       "events": "Events",
       "profile": "Culture Kids"
     },
@@ -985,6 +994,9 @@
   },
   "": "Continue",
   "cms": {
+    "error": {
+      "failedToLoadContent": "Failed to load content."
+    },
     "archiveSearch": {
       "title": "News",
       "searchTextPlaceholder": "Search text",
@@ -1045,6 +1057,7 @@
       }
     },
     "cookies": {
+      "apolloCache": "Site navigation and content data are stored in browser memory (local storage) to speed up page loading and prevent visual flicker.",
       "cimode": "Translation tool (CIMODE) state and widget visibility are stored in browser session storage.",
       "matomo": "A cookie of the Matomo statistics system",
       "linkedevents": "A cookie to authorise the retrieval of events",

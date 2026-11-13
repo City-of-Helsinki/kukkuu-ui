@@ -7,6 +7,14 @@
     "errorMessage": "Tapahtui virhe. Yritä myöhemmin uudestaan"
   },
   "appName": "Kulttuurin kummilapset",
+  "article": {
+    "archive": {
+      "title": "Artikkelit"
+    },
+    "error": {
+      "failedToLoad": "Artikkelin lataaminen epäonnistui"
+    }
+  },
   "auth": {
     "wrongLoginMethod": {
       "description": "Vaikuttaisi siltä, että olet käyttänyt eri tunnistautumistapaa rekisteröityessäsi palveluun. Kirjaudu ulos palvelusta ja koita sitten kirjautua uudestaan käyttäen jotain toista tunnistautumistapaa.",
@@ -101,6 +109,7 @@
     "breadcrumbNavigationLabel": "Leivänmurunavigaatio",
     "breadcrumbs": {
       "home": "Etusivu",
+      "articles": "Artikkelit",
       "events": "Tapahtumat",
       "profile": "Kummilapset"
     },
@@ -983,6 +992,9 @@
   },
   "": "Jatka",
   "cms": {
+    "error": {
+      "failedToLoadContent": "Sisällön lataaminen epäonnistui."
+    },
     "archiveSearch": {
       "title": "Ajankohtaista",
       "searchTextPlaceholder": "Hakusana",
@@ -1043,6 +1055,7 @@
       }
     },
     "cookies": {
+      "apolloCache": "Sivuston valikko- ja sisältötietoja tallennetaan selaimen muistiin (local storage) sivujen latautumisen nopeuttamiseksi ja vilkkumisen estämiseksi.",
       "cimode": "Käännöstyökalun (CIMODE) tila ja näkyvyys tallennetaan selaimen istuntomuistiin (session storage).",
       "matomo": "Matomo-tilastointijärjestelmän eväste",
       "linkedevents": "Eväste tapahtumien hakemisen valtuuttamiseen",

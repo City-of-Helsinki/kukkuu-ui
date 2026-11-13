@@ -98,4 +98,30 @@ describe('useCmsBreadcrumbs', () => {
       { title: 'CMS Page', path: null },
     ]);
   });
+
+  it('inserts middleBreadcrumbs into CMS breadcrumbs when archive crumb is missing from CMS response', () => {
+    const article = fakeArticle({
+      title: 'CMS Article',
+      breadcrumbs: [
+        { title: 'Etusivu', uri: '/fi/', __typename: 'Breadcrumb' },
+        { title: 'CMS Article', uri: '/fi/articles/cms-article/', __typename: 'Breadcrumb' },
+      ],
+    });
+
+    const { result } = renderHook(
+      () =>
+        useCmsBreadcrumbs(article, {
+          middleBreadcrumbs: [
+            { title: 'Artikkelit', path: '/fi/articles' },
+          ],
+        }),
+      { wrapper }
+    );
+
+    expect(result.current).toEqual([
+      { title: 'Etusivu', path: '/' },
+      { title: 'Artikkelit', path: '/articles' },
+      { title: 'CMS Article', path: null },
+    ]);
+  });
 });

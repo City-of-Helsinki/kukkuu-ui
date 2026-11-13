@@ -50,13 +50,13 @@ export default function useRHHCConfig(): Config {
       components: {
         ...rhhcDefaultConfig.components,
         A: ({ href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-          <Link to={href ?? ''} {...props} />
+          <Link to={href ?? ''} prefetch="intent" {...props} />
         ),
         Link: ({
           href,
           ...props
         }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-          <Link to={href ?? ''} {...props} />
+          <Link to={href ?? ''} prefetch="intent" {...props} />
         ),
         ArticleCardContent: (props: ArticleDetailsProps) => (
           <ArticleDetails {...props} />

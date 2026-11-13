@@ -7,6 +7,14 @@
     "errorMessage": "Ett fel uppstod. Försök igen senare"
   },
   "appName": "Kulturens fadderbarn",
+  "article": {
+    "archive": {
+      "title": "Artiklar"
+    },
+    "error": {
+      "failedToLoad": "Det gick inte att ladda artikeln"
+    }
+  },
   "auth": {
     "wrongLoginMethod": {
       "description": "Det verkar som om du har använt en annan autentiseringsmetod när du registrerar dig för tjänsten. Logga ut från tjänsten och försök sedan logga in igen med en annan autentiseringsmetod.",
@@ -101,6 +109,7 @@
     "breadcrumbNavigationLabel": "Brödsmulnavigering",
     "breadcrumbs": {
       "home": "Framsida",
+      "articles": "Artiklar",
       "events": "Evenemang",
       "profile": "Fadderbarn"
     },
@@ -983,6 +992,9 @@
   },
   "": "Fortsätta",
   "cms": {
+    "error": {
+      "failedToLoadContent": "Det gick inte att ladda innehållet."
+    },
     "archiveSearch": {
       "title": "Aktuellt",
       "searchTextPlaceholder": "Söktext",
@@ -1043,6 +1055,7 @@
       }
     },
     "cookies": {
+      "apolloCache": "Webbplatsens meny- och innehållsuppgifter sparas i webbläsarens minne (local storage) för att påskynda sidladdningen och förhindra flimmer.",
       "cimode": "Översättningsverktygets (CIMODE) tillstånd och synlighet sparas i webbläsarens sessionsminne (session storage).",
       "matomo": "Kaka för statistiksystemet Matomo",
       "linkedevents": "Kaka för att söka evenemang",

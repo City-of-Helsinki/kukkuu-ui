@@ -78,6 +78,10 @@ describe('<ArticlePage />', () => {
       ).toBeInTheDocument();
     });
     expect(screen.getByText('Artikkelin leipäteksti')).toBeInTheDocument();
+
+    // Verify middle breadcrumbs link to article archive
+    expect(screen.getByRole('link', { name: 'Artikkelit' })).toBeInTheDocument();
+
     await waitFor(() => {
       expect(document.title).toContain(article.seo?.title);
     });
@@ -349,5 +353,61 @@ describe('<ArticlePage />', () => {
       ).toBeInTheDocument();
     });
     expect(screen.queryByText(/404/i)).not.toBeInTheDocument();
+  });
+
+  it('renders accessible skeleton loader while article is loading', async () => {
+    window.history.pushState({}, '', '/fi/articles/latautuva-artikkeli');
+
+    const delayedArticleMock = {
+      request: {
+        query: ArticleDocument,
+        variables: { id: '/fi/latautuva-artikkeli' },
+      },
+      delay: 500,
+      result: {
+        data: {
+          post: fakeArticle({
+            id: 'post-delayed',
+            title: 'Latautuva artikkeli',
+            slug: 'latautuva-artikkeli',
+            uri: '/fi/latautuva-artikkeli/',
+          }),
+        },
+      },
+    };
+
+    render(<ArticlePage />, [
+      delayedArticleMock,
+      {
+        request: {
+          query: CategoriesDocument,
+          variables: {
+            first: 20,
+            language: LanguageCodeFilterEnum.Fi,
+          },
+        },
+        result: {
+          data: {
+            categories: {
+              __typename: 'RootQueryToCategoryConnection',
+              nodes: [],
+            },
+          },
+        },
+      },
+    ]);
+
+    const skeleton = screen.getByTestId('article-page-skeleton');
+    expect(skeleton).toBeInTheDocument();
+    expect(skeleton).toHaveAttribute('aria-busy', 'true');
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Latautuva artikkeli' })
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByTestId('article-page-skeleton')
+    ).not.toBeInTheDocument();
   });
 });
