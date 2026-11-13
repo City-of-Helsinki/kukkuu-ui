@@ -32,7 +32,10 @@ const Home = () => {
   const { profile } = useProfileContext();
   const userHasProfile = !!profile;
   const formRef = useRef<HTMLDivElement>(null);
-  const { data: cmsPageData } = usePageByTemplateQuery(TemplateEnum.FrontPage);
+  const {
+    data: cmsPageData,
+    loading: isCmsLoading,
+  } = usePageByTemplateQuery(TemplateEnum.FrontPage);
   const page = cmsPageData?.pageByTemplate;
 
   const scrollToForm = (formRef: RefObject<HTMLDivElement | null>) => {
@@ -42,6 +45,7 @@ const Home = () => {
   };
 
   const heroImage = page ? getCmsPageImage(page) : undefined;
+  const isHeroLoading = Boolean(isCmsLoading && !cmsPageData);
 
   return (
     <PageWrapper
@@ -61,6 +65,7 @@ const Home = () => {
               : undefined
           }
           image={heroImage}
+          isLoading={isHeroLoading}
           userHasProfile={userHasProfile}
           userIsAuthenticated={isLoggedIn}
           scrollToForm={() => scrollToForm(formRef)}

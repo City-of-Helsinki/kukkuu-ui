@@ -1,0 +1,23 @@
+@use '~styles/variables';
+@use '~styles/layout';
+
+.navigationWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.navSkeletonBar {
+  background-color: var(--color-white, #fff);
+  border-bottom: 1px solid var(--color-black-10, #e6e6e6);
+  width: 100%;
+}
+
+.navSkeletonRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-m, 16px);
+  padding: 0 var(--spacing-m, 16px);
+  height: 3rem;
+  max-width: var(--breakpoint-xl, 1440px);
+  margin: 0 auto;
+}

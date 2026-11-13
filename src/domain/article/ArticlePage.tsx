@@ -1,5 +1,6 @@
 import { useApolloClient } from '@apollo/client';
 import {
+  Collection,
   LanguageCodeFilterEnum,
   Page,
   PageContent,
@@ -12,18 +13,23 @@ import {
   useArticleQuery,
   useCategoriesQuery,
 } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
-import { LoadingSpinner } from 'hds-react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 
 import useGetPathname from '../../common/route/utils/useGetPathname';
 import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
+import {
+  CmsPageSkeleton,
+  SkeletonLoader,
+} from '../../common/components/skeleton/CmsSkeleton';
+import { useCmsLoadingState } from '../../hooks/useCmsLoadingState';
 import usePageByTemplateQuery from '../../hooks/usePageByTemplateQuery';
 import {
+  getArticleUriFromPathname,
   getCmsPageDescription,
   getCmsPageTitle,
-  stripLocaleFromUri,
+  hasCmsCollections,
 } from '../../utils/cmsUtils';
 import AppConfig from '../app/AppConfig';
 import PageMeta from '../app/layout/utilityComponents/PageMeta';
@@ -42,32 +48,6 @@ const languageToFilterEnumMap: Record<string, LanguageCodeFilterEnum> = {
 };
 
 /**
- * Extracts the localized CMS article URI from the current pathname.
- *
- * Compares the stripped pathname against the configured articles context path
- * prefix and extracts the trailing article slug.
- *
- * @param pathname - The browser pathname.
- * @returns Localized CMS article URI, or an empty string if not an article route.
- */
-const getArticleUriFromPathname = (pathname: string): string => {
-  const articlesPrefix = AppConfig.cmsArticlesContextPath.replace(/\/$/, '');
-  const strippedLocale = stripLocaleFromUri(pathname);
-  if (articlesPrefix && (strippedLocale === articlesPrefix || strippedLocale.startsWith(`${articlesPrefix}/`))) {
-    const slug = strippedLocale
-      .slice(articlesPrefix.length)
-      .replace(/^\/+|\/+$/g, '');
-    if (!slug) {
-      return '';
-    }
-    const localeMatch = /^\/(fi|sv|en)(\/.*|$)/i.exec(pathname);
-    const localePrefix = localeMatch ? `/${localeMatch[1].toLowerCase()}` : '';
-    return `${localePrefix}/${slug}`;
-  }
-  return '';
-};
-
-/**
  * Article detail page component for rendering individual CMS articles.
  *
  * Fetches article data by URI, provides middle breadcrumbs, category tag searching,
@@ -82,16 +62,14 @@ const ArticlePage = () => {
   const getPathname = useGetPathname();
 
   const articleUri = getArticleUriFromPathname(location.pathname);
-  const {
-    data: articleData,
-    loading: loadingArticle,
-    error: articleError,
-  } = useArticleQuery({
+  const articleQuery = useArticleQuery({
     variables: {
       id: articleUri,
     },
     skip: !articleUri,
   });
+  const { isInitialLoading } = useCmsLoadingState(articleQuery);
+  const { data: articleData, error: articleError } = articleQuery;
 
   const { data: archivePageData } = usePageByTemplateQuery(
     TemplateEnum.PostsPage
@@ -109,31 +87,25 @@ const ArticlePage = () => {
   const categories = categoriesData?.categories?.nodes ?? [];
 
   const article = articleData?.post;
-  const archiveTitle = getCmsPageTitle(archivePage);
+  const archiveTitle =
+    getCmsPageTitle(archivePage) ||
+    t('common.breadcrumbs.articles', 'Artikkelit');
   const breadcrumbs = useCmsBreadcrumbs(article, {
-    middleBreadcrumbs: archiveTitle
-      ? [
-          {
-            title: archiveTitle,
-            path: getPathname(AppConfig.cmsArticlesContextPath),
-          },
-        ]
-      : [],
+    middleBreadcrumbs: [
+      {
+        title: archiveTitle,
+        path: getPathname(AppConfig.cmsArticlesContextPath),
+      },
+    ],
   });
+
+  const hasCollections = hasCmsCollections(article);
 
   if (!articleUri) {
     return <ArticleArchivePage />;
   }
 
-  if (loadingArticle) {
-    return (
-      <div className={styles.loadingSpinnerContainer}>
-        <LoadingSpinner multicolor />
-      </div>
-    );
-  }
-
-  if (articleError) {
+  if (articleError && !article) {
     return (
       <ErrorMessage
         message={t(
@@ -144,7 +116,7 @@ const ArticlePage = () => {
     );
   }
 
-  if (!article) {
+  if (!isInitialLoading && !article) {
     return <NotFound />;
   }
 
@@ -199,25 +171,41 @@ const ArticlePage = () => {
   };
 
   return (
-    <Page
-      className={styles.articlePageContainer}
-      navigation={undefined}
-      footer={undefined}
-      content={
-        <>
-          <PageMeta
-            title={getCmsPageTitle(article)}
-            description={getCmsPageDescription(article)}
-            page={article}
-          />
-          <PageContent
-            page={article}
-            breadcrumbs={breadcrumbs}
-            onArticlesSearch={handleArticlesSearch}
-          />
-        </>
-      }
-    />
+    <SkeletonLoader
+      isLoading={isInitialLoading}
+      skeleton={<CmsPageSkeleton data-testid="article-page-skeleton" />}
+      as={null}
+    >
+      {() => (
+        <Page
+          className={styles.articlePageContainer}
+          navigation={undefined}
+          footer={undefined}
+          content={
+            <>
+              <PageMeta
+                title={getCmsPageTitle(article)}
+                description={getCmsPageDescription(article)}
+                page={article}
+              />
+              <PageContent
+                page={article}
+                breadcrumbs={breadcrumbs}
+                onArticlesSearch={handleArticlesSearch}
+                collections={
+                  hasCollections
+                    ? undefined
+                    : (() =>
+                        null as unknown as React.ReactElement<
+                          typeof Collection
+                        >[])
+                }
+              />
+            </>
+          }
+        />
+      )}
+    </SkeletonLoader>
   );
 };
 

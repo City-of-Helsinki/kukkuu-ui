@@ -5,6 +5,7 @@ import { useMatomo } from '@jonkoops/matomo-tracker-react';
 
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { MAIN_CONTENT_ID } from '../constants';
+import AppConfig from '../app/AppConfig';
 
 const COOKIE_CONSENT_STORAGE_TYPE = {
   cookie: 1,
@@ -121,6 +122,13 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
             title: localized('consent.groups.essential.title'),
             description: localized('consent.groups.essential.text'),
             cookies: [
+              {
+                name: `${AppConfig.cmsApolloCacheLocalStorageKey}*`,
+                host: globalThis.location.hostname,
+                storageType: COOKIE_CONSENT_STORAGE_TYPE.localStorage,
+                description: localized('consent.cookies.apolloCache'),
+                expiration: localized('consent.expiration.year'),
+              },
               {
                 name: 'city-of-helsinki-cookie-consents',
                 host: globalThis.location.hostname,

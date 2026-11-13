@@ -148,4 +148,17 @@ describe('ProfileHero', () => {
       screen.queryByRole('link', { name: /Etsi tapahtumia/i })
     ).not.toBeInTheDocument();
   });
+
+  it('renders skeleton lines and sets aria-busy="true" when isLoading is true', () => {
+    const { container } = render(
+      <MemoryRouter>
+        <ProfileHero profile={mockProfile} isLoading={true} />
+      </MemoryRouter>
+    );
+
+    const busyWrapper = container.querySelector('[aria-busy="true"]');
+    expect(busyWrapper).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+    expect(screen.getAllByTestId('skeleton-line')).toHaveLength(2);
+  });
 });

@@ -10,6 +10,11 @@ import {
 
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import usePageQuery from '../../../hooks/usePageQuery';
+import { useCmsLoadingState } from '../../../hooks/useCmsLoadingState';
+import {
+  SkeletonLoader,
+  SkeletonText,
+} from '../../../common/components/skeleton/CmsSkeleton';
 import { getCmsPageTitle } from '../../../utils/cmsUtils';
 import AppConfig from '../../app/AppConfig';
 import PageMeta from '../../app/layout/utilityComponents/PageMeta';
@@ -174,7 +179,9 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
   description,
 }) => {
   const { t } = useTranslation();
-  const { data: cmsPageData } = usePageQuery(AppConfig.cmsSearchContextPath);
+  const cmsQueryResult = usePageQuery(AppConfig.cmsSearchContextPath);
+  const { data: cmsPageData } = cmsQueryResult;
+  const { isInitialLoading: isCmsLoading } = useCmsLoadingState(cmsQueryResult);
   const page = cmsPageData?.page;
   const breadcrumbs = useCmsBreadcrumbs(page, {
     fallbackTitle: t('common.breadcrumbs.events'),
@@ -213,6 +220,8 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
             t('profile.common.message.serviceDescription')
           );
 
+  const isHeroLoading = isCmsLoading && (!title || description === undefined);
+
   return (
     <>
       <PageMeta
@@ -237,10 +246,20 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
           className={styles.heroSection}
         >
           <ContentContainer className={styles.heroContentContainer}>
-            <h1 className={styles.heroTitle}>{searchTitle}</h1>
-            {searchDescription && (
-              <p className={styles.heroDescription}>{searchDescription}</p>
-            )}
+            <SkeletonLoader
+              isLoading={isHeroLoading}
+              skeleton={
+                <SkeletonText
+                  titleWidth="50%"
+                  lineWidths={['75%']}
+                />
+              }
+            >
+              <h1 className={styles.heroTitle}>{searchTitle}</h1>
+              {searchDescription && (
+                <p className={styles.heroDescription}>{searchDescription}</p>
+              )}
+            </SkeletonLoader>
           </ContentContainer>
         </PageSection>
 

@@ -58,18 +58,21 @@ export const mapCmsBreadcrumbPath = (
 export type GetCmsBreadcrumbsOptions = {
   locale: string;
   fallbackBreadcrumbs?: BreadcrumbListItem[];
+  middleBreadcrumbs?: BreadcrumbListItem[];
   disableLastLink?: boolean;
 };
 
 /**
  * Extracts, filters, and localizes breadcrumbs from a CMS page or article.
- * Falls back to `fallbackBreadcrumbs` when CMS breadcrumbs are not available.
+ * Falls back to `fallbackBreadcrumbs` when CMS breadcrumbs are not available,
+ * and ensures intermediate breadcrumbs (e.g. article archive) are preserved.
  */
 export const getCmsBreadcrumbs = (
   page: PageType | ArticleType | null | undefined,
   {
     locale,
     fallbackBreadcrumbs = [],
+    middleBreadcrumbs,
     disableLastLink = true,
   }: GetCmsBreadcrumbsOptions
 ): BreadcrumbListItem[] => {
@@ -103,6 +106,21 @@ export const getCmsBreadcrumbs = (
       title: page.title,
       path: page.uri ?? null,
     });
+  }
+
+  if (middleBreadcrumbs && middleBreadcrumbs.length > 0) {
+    const existingPaths = items.map((i) =>
+      i.path ? removeSurroundingSlashes(stripLocaleFromUri(i.path)) : ''
+    );
+    const missingMiddle = middleBreadcrumbs.filter((m) => {
+      const norm = m.path
+        ? removeSurroundingSlashes(stripLocaleFromUri(m.path))
+        : '';
+      return norm && !existingPaths.includes(norm);
+    });
+    if (missingMiddle.length > 0 && items.length > 0) {
+      items.splice(1, 0, ...missingMiddle);
+    }
   }
 
   return items.map((item, index) => {

@@ -77,4 +77,22 @@ describe('<HomeHero />', () => {
       )
     ).not.toBeInTheDocument();
   });
+
+  it('renders accessible skeletons and no h1 or fallback image when isLoading is true', () => {
+    const { container } = render(
+      <HomeHero
+        isLoading={true}
+        userHasProfile={false}
+        userIsAuthenticated={false}
+        scrollToForm={vi.fn()}
+      />
+    );
+
+    const section = container.querySelector('section');
+    expect(section).toHaveAttribute('aria-busy', 'true');
+    expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument();
+    expect(screen.queryByRole('presentation')).not.toBeInTheDocument();
+    expect(screen.getByTestId('hero-image-skeleton')).toBeInTheDocument();
+    expect(screen.getAllByTestId('skeleton-line').length).toBeGreaterThan(0);
+  });
 });

@@ -1,6 +1,7 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
+import useCmsCacheRevalidation from '../../headlessCms/hooks/useCmsCacheRevalidation';
 import Navigation from '../navigation/Navigation';
 import Notification from '../notification/Notification';
 import Footer from '../footer/Footer';
@@ -12,6 +13,7 @@ type PageLayoutProps = { children: React.ReactNode };
 
 function PageLayout({ children }: PageLayoutProps) {
   const { t } = useTranslation();
+  useCmsCacheRevalidation();
 
   return (
     <HelmetProvider>

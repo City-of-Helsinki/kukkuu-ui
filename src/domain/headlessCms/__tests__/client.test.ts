@@ -6,11 +6,17 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client';
+import { toast } from 'react-toastify';
 
 import { server } from '../../../test/msw/server';
 import { fakePage } from '../../../utils/cmsMockDataUtils';
-import { createCmsApolloClient } from '../client';
-import { LogLevel, TimedApolloCachePersistor } from '../persistor';
+import AppConfig from '../../app/AppConfig';
+import { createCmsApolloClient, revalidateStaleCmsCache } from '../client';
+import {
+  LogLevel,
+  PersistedCacheState,
+  TimedApolloCachePersistor,
+} from '../persistor';
 
 let client: ApolloClient<NormalizedCacheObject>;
 const page = fakePage();
@@ -71,10 +77,10 @@ describe('Headless CMS Client', () => {
       client.cache.reset(); // Reset the cache after each test.
     });
 
-    it('clears the local storage on initialization when the persisted cache has expired', async () => {
-      const hasPersistedCacheExpiredSpy = vi
-        .spyOn(TimedApolloCachePersistor.prototype, 'hasPersistedCacheExpired')
-        .mockImplementation(() => true);
+    it('clears the local storage on initialization when the persisted cache is missing', async () => {
+      const getPersistedCacheStateSpy = vi
+        .spyOn(TimedApolloCachePersistor.prototype, 'getPersistedCacheState')
+        .mockReturnValue(PersistedCacheState.Missing);
       const clearLocalStorageSpy = vi.spyOn(
         TimedApolloCachePersistor.prototype,
         'clearLocalStorage'
@@ -83,18 +89,20 @@ describe('Headless CMS Client', () => {
         client.cache as InMemoryCache,
         {
           logLevel: LogLevel.WARN,
-          persistedCacheTimeToLiveMs: 0, // Set TTL to 0 to simulate expiration
+          persistedCacheTimeToLiveMs: 0,
         }
       );
-      expect(cachePersistor.hasPersistedCacheExpired()).toBe(true);
-      expect(hasPersistedCacheExpiredSpy).toHaveBeenCalledTimes(2);
+      expect(cachePersistor.getPersistedCacheState()).toBe(
+        PersistedCacheState.Missing
+      );
+      expect(getPersistedCacheStateSpy).toHaveBeenCalled();
       expect(clearLocalStorageSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('does not clear the local storage when the persisted cache has not expired', async () => {
-      const hasPersistedCacheExpiredSpy = vi
-        .spyOn(TimedApolloCachePersistor.prototype, 'hasPersistedCacheExpired')
-        .mockReturnValue(false);
+    it('does not clear the local storage when the persisted cache is fresh', async () => {
+      const getPersistedCacheStateSpy = vi
+        .spyOn(TimedApolloCachePersistor.prototype, 'getPersistedCacheState')
+        .mockReturnValue(PersistedCacheState.Fresh);
       const clearLocalStorageSpy = vi.spyOn(
         TimedApolloCachePersistor.prototype,
         'clearLocalStorage'
@@ -106,8 +114,32 @@ describe('Headless CMS Client', () => {
           persistedCacheTimeToLiveMs: 10000,
         }
       );
-      expect(cachePersistor.hasPersistedCacheExpired()).toBe(false);
-      expect(hasPersistedCacheExpiredSpy).toHaveBeenCalledTimes(2);
+      expect(cachePersistor.getPersistedCacheState()).toBe(
+        PersistedCacheState.Fresh
+      );
+      expect(getPersistedCacheStateSpy).toHaveBeenCalled();
+      expect(clearLocalStorageSpy).not.toHaveBeenCalled();
+    });
+
+    it('does not clear the local storage when the persisted cache is stale (SWR preservation)', async () => {
+      const getPersistedCacheStateSpy = vi
+        .spyOn(TimedApolloCachePersistor.prototype, 'getPersistedCacheState')
+        .mockReturnValue(PersistedCacheState.Stale);
+      const clearLocalStorageSpy = vi.spyOn(
+        TimedApolloCachePersistor.prototype,
+        'clearLocalStorage'
+      );
+      const cachePersistor = new TimedApolloCachePersistor(
+        client.cache as InMemoryCache,
+        {
+          logLevel: LogLevel.WARN,
+          persistedCacheTimeToLiveMs: 10000,
+        }
+      );
+      expect(cachePersistor.getPersistedCacheState()).toBe(
+        PersistedCacheState.Stale
+      );
+      expect(getPersistedCacheStateSpy).toHaveBeenCalled();
       expect(clearLocalStorageSpy).not.toHaveBeenCalled();
     });
 
@@ -168,8 +200,8 @@ describe('Headless CMS Client', () => {
     it('logs an error and continues when synchronously restoring the persisted cache fails', () => {
       vi.spyOn(
         TimedApolloCachePersistor.prototype,
-        'hasPersistedCacheExpired'
-      ).mockReturnValue(false);
+        'getPersistedCacheState'
+      ).mockReturnValue(PersistedCacheState.Fresh);
       const restoreError = new Error('restore failed');
       vi.spyOn(
         SynchronousCachePersistor.prototype,
@@ -178,7 +210,6 @@ describe('Headless CMS Client', () => {
         throw restoreError;
       });
       const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
       expect(() => createCmsApolloClient()).not.toThrow();
 
@@ -186,32 +217,33 @@ describe('Headless CMS Client', () => {
         'Failed to synchronously restore persisted cache:',
         restoreError
       );
-      expect(warnSpy).not.toHaveBeenCalledWith(
-        'Apollo cache purging failed:',
-        expect.anything()
-      );
     });
 
-    it('logs a warning when purging the expired persisted cache fails', async () => {
-      vi.spyOn(
-        TimedApolloCachePersistor.prototype,
-        'hasPersistedCacheExpired'
-      ).mockReturnValue(true);
-      const purgeError = new Error('purge failed');
-      vi.spyOn(TimedApolloCachePersistor.prototype, 'purge').mockRejectedValue(
-        purgeError
+    it('purges the persisted cache from Apollo cache and localStorage', async () => {
+      const cachePersistor = new TimedApolloCachePersistor(
+        client.cache as InMemoryCache,
+        {
+          logLevel: LogLevel.WARN,
+          persistedCacheTimeToLiveMs: 10000,
+        }
       );
-      vi.spyOn(console, 'info').mockImplementation(() => {});
-      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
-      createCmsApolloClient();
+      await cachePersistor.persist();
+      expect(
+        localStorage.getItem(cachePersistor.persistorLocalStorageKey)
+      ).not.toBeNull();
+      expect(
+        localStorage.getItem(cachePersistor.timePersistedLocalStorageKey)
+      ).not.toBeNull();
 
-      await vi.waitFor(() => {
-        expect(warnSpy).toHaveBeenCalledWith(
-          'Apollo cache purging failed:',
-          purgeError
-        );
-      });
+      await cachePersistor.purge();
+
+      expect(
+        localStorage.getItem(cachePersistor.persistorLocalStorageKey)
+      ).toBeNull();
+      expect(
+        localStorage.getItem(cachePersistor.timePersistedLocalStorageKey)
+      ).toBeNull();
     });
 
     it.each([600000, 10000])(
@@ -237,5 +269,54 @@ describe('Headless CMS Client', () => {
         expect(cachePersistor.hasPersistedCacheExpired()).toBe(true);
       }
     );
+
+    it('revalidates stale CMS cache in background exactly once', async () => {
+      // Simulate stale cache by setting timestamp older than TTL
+      localStorage.setItem(
+        AppConfig.cmsApolloCachePersistedAtLocalStorageKey,
+        (Date.now() - 1000 * 60 * 20).toString()
+      );
+      const staleClient = createCmsApolloClient();
+      const refetchSpy = vi
+        .spyOn(staleClient, 'refetchQueries')
+        .mockResolvedValue([]);
+
+      revalidateStaleCmsCache(staleClient);
+      expect(refetchSpy).toHaveBeenCalledWith({ include: 'active' });
+
+      // Second call should be a no-op
+      refetchSpy.mockClear();
+      revalidateStaleCmsCache(staleClient);
+      expect(refetchSpy).not.toHaveBeenCalled();
+    });
+
+    it('triggers a deduplicated toast error when CMS query fails', async () => {
+      const toastErrorSpy = vi.spyOn(toast, 'error');
+      const link =
+        process.env.VITE_CMS_URI ||
+        'https://kukkuu.app-staging.hkih.hion.dev/graphql';
+      const headlessCms = graphql.link(link);
+      server.use(
+        headlessCms.query('page', () => {
+          return HttpResponse.json(
+            { errors: [{ message: 'Internal server error' }] },
+            { status: 500 }
+          );
+        })
+      );
+
+      await expect(
+        client.query({
+          query: PageDocument,
+          variables: { id: 'error-page', language: 'FI' },
+          fetchPolicy: 'network-only',
+        })
+      ).rejects.toThrow();
+
+      expect(toastErrorSpy).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.objectContaining({ toastId: 'cms-error' })
+      );
+    });
   });
 });

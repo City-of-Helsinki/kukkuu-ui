@@ -396,6 +396,20 @@ class AppConfig {
   }
 
   /**
+   * LocalStorage key for the persisted Apollo CMS cache.
+   */
+  static get cmsApolloCacheLocalStorageKey() {
+    return `kukkuu-ui-cms-${AppConfig.environment}-apollo-cache`;
+  }
+
+  /**
+   * LocalStorage key for the timestamp when the CMS Apollo cache was initialized.
+   */
+  static get cmsApolloCachePersistedAtLocalStorageKey() {
+    return `${AppConfig.cmsApolloCacheLocalStorageKey}-persisted-at`;
+  }
+
+  /**
    * An array of supported locale codes (e.g., ['fi', 'en']).
    */
   static get locales(): readonly string[] {
