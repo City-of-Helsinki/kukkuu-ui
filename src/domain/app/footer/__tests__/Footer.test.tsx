@@ -144,3 +144,25 @@ it('does not render CIMODE button in footer when translationToolEnabled is false
 
   expect(screen.queryByTestId('footer-cimode-button')).not.toBeInTheDocument();
 });
+
+it('renders accessible skeleton pills while footer menu is loading', async () => {
+  const delayedFooterMock = {
+    ...footerMenuMock,
+    delay: 500,
+  };
+
+  render(<Footer />, [delayedFooterMock, languagesMock]);
+
+  const skeletonWrapper = screen.getByTestId('footer-skeleton-wrapper');
+  expect(skeletonWrapper).toBeInTheDocument();
+  expect(skeletonWrapper).toHaveAttribute('aria-busy', 'true');
+  expect(screen.getAllByTestId('footer-pill-skeleton')).toHaveLength(3);
+  expect(
+    screen.queryByText('Saavutettavuusseloste')
+  ).not.toBeInTheDocument();
+
+  await screen.findByText('Saavutettavuusseloste');
+  expect(
+    screen.queryByTestId('footer-skeleton-wrapper')
+  ).not.toBeInTheDocument();
+});

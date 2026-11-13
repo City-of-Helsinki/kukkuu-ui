@@ -127,16 +127,18 @@ exports[`Profile > renders profile correctly 1`] = `
       <div
         class="contentContainer-module_container__jp4mL _contentContainer_4011cb"
       >
-        <h1
-          class="_title_4011cb"
-        >
-          Tili – Hei Test!
-        </h1>
-        <p
-          class="_description_4011cb"
-        >
-          Täällä näet lastesi tulevat tapahtumat ja kutsukirjeet kausittain. Voit perua ilmoittautumisen, muokata lasten ja lähiaikuisen tietoja tai rekisteröidä uuden lapsen.
-        </p>
+        <div>
+          <h1
+            class="_title_4011cb"
+          >
+            Tili – Hei Test!
+          </h1>
+          <p
+            class="_description_4011cb"
+          >
+            Täällä näet lastesi tulevat tapahtumat ja kutsukirjeet kausittain. Voit perua ilmoittautumisen, muokata lasten ja lähiaikuisen tietoja tai rekisteröidä uuden lapsen.
+          </p>
+        </div>
       </div>
     </div>
     <div

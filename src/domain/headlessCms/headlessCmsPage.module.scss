@@ -13,3 +13,30 @@
     font-size: variables.$fontsize-heading-xl !important;
   }
 }
+
+.skeletonContainer {
+  padding: var(--spacing-layout-m, 24px) var(--spacing-m, 16px);
+  max-width: var(--container-width-xl, 1200px);
+  margin: 0 auto;
+
+  .skeletonBreadcrumb {
+    margin-bottom: var(--spacing-l, 24px);
+  }
+
+  .skeletonHero {
+    background-color: var(--color-summer, #ffc61e);
+    padding: var(--spacing-xl, 32px);
+    margin-bottom: var(--spacing-xl, 32px);
+  }
+
+  .skeletonTitle {
+    margin-bottom: var(--spacing-m, 16px);
+  }
+
+  .skeletonBody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-s, 12px);
+    max-width: 48rem;
+  }
+}

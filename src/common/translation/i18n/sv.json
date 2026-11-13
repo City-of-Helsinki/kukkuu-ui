@@ -983,6 +983,9 @@
   },
   "": "Fortsätta",
   "cms": {
+    "error": {
+      "failedToLoadContent": "Det gick inte att ladda innehållet."
+    },
     "archiveSearch": {
       "title": "Aktuellt",
       "searchTextPlaceholder": "Söktext",
@@ -1043,6 +1046,7 @@
       }
     },
     "cookies": {
+      "apolloCache": "Webbplatsens meny- och innehållsuppgifter sparas i webbläsarens minne (local storage) för att påskynda sidladdningen och förhindra flimmer.",
       "cimode": "Översättningsverktygets (CIMODE) tillstånd och synlighet sparas i webbläsarens sessionsminne (session storage).",
       "matomo": "Kaka för statistiksystemet Matomo",
       "linkedevents": "Kaka för att söka evenemang",

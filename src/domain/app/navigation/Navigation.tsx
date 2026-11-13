@@ -1,5 +1,8 @@
 import { useCallback } from 'react';
-import { Navigation as RHHCNavigation } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
+import {
+  Navigation as RHHCNavigation,
+  useMenuQuery,
+} from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 import {
@@ -13,6 +16,9 @@ import { useCmsLanguageOptions } from '../../../hooks/useCmsLanguageOptions';
 import { stripLocaleFromUri } from '../../../utils/cmsUtils';
 import AppConfig from '../AppConfig';
 import { getIsMenuItemActive } from './navigationUtils';
+import { NavPillSkeleton } from '../../../common/components/skeleton/CmsSkeleton';
+import { useCmsLoadingState } from '../../../hooks/useCmsLoadingState';
+import styles from './navigation.module.scss';
 
 function Navigation() {
   const { i18n } = useTranslation();
@@ -59,17 +65,43 @@ function Navigation() {
       i18n.language as keyof typeof AppConfig.cmsHeaderMenuNames
     ] ?? AppConfig.cmsHeaderMenuNames.fi;
 
+  const menuQueryResult = useMenuQuery({
+    variables: {
+      id: headerMenuName,
+      menuIdentifiersOnly: false,
+    },
+  });
+  const { isInitialLoading: isNavLoading } = useCmsLoadingState(menuQueryResult);
+
   return (
-    <RHHCNavigation
-      menuName={headerMenuName}
-      onTitleClick={() => {
-        const rootPath = i18n.language === 'fi' ? '/' : `/${i18n.language}`;
-        navigate(rootPath);
-      }}
-      getPathnameForLanguage={getPathnameForLanguage}
-      getIsItemActive={getIsItemActive}
-      userNavigation={<UserNavigation />}
-    />
+    <div
+      className={styles.navigationWrapper}
+      aria-busy={isNavLoading ? 'true' : undefined}
+    >
+      <RHHCNavigation
+        menuName={headerMenuName}
+        onTitleClick={() => {
+          const rootPath = i18n.language === 'fi' ? '/' : `/${i18n.language}`;
+          navigate(rootPath);
+        }}
+        getPathnameForLanguage={getPathnameForLanguage}
+        getIsItemActive={getIsItemActive}
+        userNavigation={<UserNavigation />}
+      />
+      {isNavLoading && (
+        <div
+          className={styles.navSkeletonBar}
+          data-testid="nav-menu-skeleton"
+          aria-hidden="true"
+        >
+          <div className={styles.navSkeletonRow}>
+            <NavPillSkeleton width="6rem" />
+            <NavPillSkeleton width="7.5rem" />
+            <NavPillSkeleton width="6.5rem" />
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

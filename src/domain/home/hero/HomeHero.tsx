@@ -11,6 +11,11 @@ import {
 import Button from '../../../common/components/button/Button';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import Config from '../../config';
+import {
+  SkeletonLoader,
+  SkeletonText,
+  HeroImageSkeleton,
+} from '../../../common/components/skeleton/CmsSkeleton';
 import styles from './hero.module.scss';
 
 export type HomeHeroImage = {
@@ -26,6 +31,7 @@ export type HomeHeroProps = {
   title?: string;
   description?: string;
   image?: HomeHeroImage;
+  isLoading?: boolean;
 };
 
 const HomeHero = ({
@@ -35,6 +41,7 @@ const HomeHero = ({
   title,
   description,
   image,
+  isLoading = false,
 }: HomeHeroProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -51,12 +58,34 @@ const HomeHero = ({
   const photographerName = image?.photographerName;
 
   return (
-    <section className={styles.heroWrapper}>
+    <section
+      className={styles.heroWrapper}
+      aria-busy={isLoading ? 'true' : undefined}
+    >
       <div className={styles.heroTopSection}>
         <div className={styles.heroContainer}>
           <div className={styles.hero}>
-            <h1>{heroTitle}</h1>
-            {heroDescription && <p className={styles.bodyXl}>{heroDescription}</p>}
+            <SkeletonLoader
+              isLoading={isLoading}
+              skeleton={
+                <SkeletonText
+                  titleHeight="2.5rem"
+                  titleWidth="60%"
+                  titleStyle={{
+                    margin:
+                      'var(--spacing-layout-l, 32px) 0 var(--spacing-m, 16px)',
+                  }}
+                  lines={2}
+                  lineWidths={['90%', '75%']}
+                />
+              }
+              as={null}
+            >
+              <h1>{heroTitle}</h1>
+              {heroDescription && (
+                <p className={styles.bodyXl}>{heroDescription}</p>
+              )}
+            </SkeletonLoader>
             {Config.featureFlagShowCoronaInfo && (
               <>
                 <IconAlertCircle size={IconSize.Large} />
@@ -106,22 +135,28 @@ const HomeHero = ({
         />
       </div>
       <div className={styles.heroImageContainer}>
-        <div className={styles.heroImageWrapper}>
-          <img
-            src={imageUrl}
-            alt={imageAlt}
-            fetchPriority="high"
-            className={styles.heroImage}
-          />
-          {photographerName && (
-            <div className={styles.photographerCredit}>
-              {t('cms:image.photographer', {
-                photographer: photographerName,
-                defaultValue: `Photo: ${photographerName}`,
-              })}
-            </div>
-          )}
-        </div>
+        <SkeletonLoader
+          isLoading={isLoading}
+          skeleton={<HeroImageSkeleton />}
+          as={null}
+        >
+          <div className={styles.heroImageWrapper}>
+            <img
+              src={imageUrl}
+              alt={imageAlt}
+              fetchPriority="high"
+              className={styles.heroImage}
+            />
+            {photographerName && (
+              <div className={styles.photographerCredit}>
+                {t('cms:image.photographer', {
+                  photographer: photographerName,
+                  defaultValue: `Photo: ${photographerName}`,
+                })}
+              </div>
+            )}
+          </div>
+        </SkeletonLoader>
       </div>
     </section>
   );

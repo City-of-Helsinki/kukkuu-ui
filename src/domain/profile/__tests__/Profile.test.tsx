@@ -71,9 +71,11 @@ describe('Profile', () => {
     expect(screen.getByText('Tili')).toBeInTheDocument();
 
     // Hero section
-    expect(
-      screen.getByRole('heading', { level: 1, name: 'Tili – Hei Test!' })
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Tili – Hei Test!' })
+      ).toBeInTheDocument();
+    });
 
     // Children section
     expect(

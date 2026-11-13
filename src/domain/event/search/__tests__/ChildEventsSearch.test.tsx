@@ -964,4 +964,41 @@ describe('ChildEventsSearch', () => {
       screen.queryByText(/CMS Page Body Content That Should Not Appear As Ingress/)
     ).not.toBeInTheDocument();
   });
+
+  it('renders skeleton placeholders and sets aria-busy="true" on hero while CMS search page is loading', async () => {
+    const delayedCmsMock = {
+      request: {
+        query: PageDocument,
+        variables: { id: 'search' },
+      },
+      delay: 500,
+      result: {
+        data: {
+          page: null,
+        },
+      },
+    };
+
+    render(<ChildEventsSearch />, [getSuccessEventsMock(), delayedCmsMock]);
+
+    const heroWrapper = await waitFor(() => {
+      const el = document.querySelector('[aria-busy]');
+      expect(el).toBeInTheDocument();
+      return el!;
+    });
+    expect(heroWrapper).toHaveAttribute('aria-busy', 'true');
+    expect(
+      heroWrapper.querySelectorAll('[aria-hidden="true"]').length
+    ).toBeGreaterThan(0);
+    expect(
+      screen.queryByRole('heading', { level: 1, name: 'Etsi tapahtumia' })
+    ).not.toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Etsi tapahtumia' })
+      ).toBeInTheDocument();
+    });
+    expect(heroWrapper).not.toHaveAttribute('aria-busy');
+  });
 });

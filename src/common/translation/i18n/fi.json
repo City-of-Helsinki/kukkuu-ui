@@ -983,6 +983,9 @@
   },
   "": "Jatka",
   "cms": {
+    "error": {
+      "failedToLoadContent": "Sisällön lataaminen epäonnistui."
+    },
     "archiveSearch": {
       "title": "Ajankohtaista",
       "searchTextPlaceholder": "Hakusana",
@@ -1043,6 +1046,7 @@
       }
     },
     "cookies": {
+      "apolloCache": "Sivuston valikko- ja sisältötietoja tallennetaan selaimen muistiin (local storage) sivujen latautumisen nopeuttamiseksi ja vilkkumisen estämiseksi.",
       "cimode": "Käännöstyökalun (CIMODE) tila ja näkyvyys tallennetaan selaimen istuntomuistiin (session storage).",
       "matomo": "Matomo-tilastointijärjestelmän eväste",
       "linkedevents": "Eväste tapahtumien hakemisen valtuuttamiseen",

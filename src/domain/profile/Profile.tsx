@@ -11,6 +11,7 @@ import ProfileGuardianSection from './guardian/ProfileGuardianSection';
 import { useProfileContext } from './hooks/useProfileContext';
 import useGetPathname from '../../common/route/utils/useGetPathname';
 import usePageQuery from '../../hooks/usePageQuery';
+import { useCmsLoadingState } from '../../hooks/useCmsLoadingState';
 import {
   getCmsPageDescription,
   getCmsPageTitle,
@@ -37,8 +38,9 @@ const Profile = () => {
   } = useProfileContext();
   const { t } = useTranslation();
 
-  const { data: cmsPageData } = usePageQuery(AppConfig.cmsProfileContextPath);
-  const page = cmsPageData?.page;
+  const cmsQueryResult = usePageQuery(AppConfig.cmsProfileContextPath);
+  const { isInitialLoading: isCmsLoading } = useCmsLoadingState(cmsQueryResult);
+  const page = cmsQueryResult.data?.page;
   const breadcrumbs = useCmsBreadcrumbs(page, {
     fallbackTitle: t('profile.breadcrumbs.account', { defaultValue: 'Tili' }),
   });
@@ -113,6 +115,7 @@ const Profile = () => {
           profile={profile}
           title={heroTitle}
           description={profileDescription}
+          isLoading={isCmsLoading}
         />
         <Container role="main" className={styles.mainContainer}>
           <ProfileChildrenList />

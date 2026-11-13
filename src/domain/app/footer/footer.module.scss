@@ -14,6 +14,13 @@
   }
 }
 
+.footerSkeletonWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-m, 16px);
+  padding: var(--spacing-xs, 8px) 0;
+}
+
 .cimodeContainer {
   display: inline-flex;
   align-items: center;

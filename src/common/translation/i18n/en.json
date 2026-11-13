@@ -985,6 +985,9 @@
   },
   "": "Continue",
   "cms": {
+    "error": {
+      "failedToLoadContent": "Failed to load content."
+    },
     "archiveSearch": {
       "title": "News",
       "searchTextPlaceholder": "Search text",
@@ -1045,6 +1048,7 @@
       }
     },
     "cookies": {
+      "apolloCache": "Site navigation and content data are stored in browser memory (local storage) to speed up page loading and prevent visual flicker.",
       "cimode": "Translation tool (CIMODE) state and widget visibility are stored in browser session storage.",
       "matomo": "A cookie of the Matomo statistics system",
       "linkedevents": "A cookie to authorise the retrieval of events",

@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
+import { screen, waitFor } from '@testing-library/react';
 import type { MenuItem } from '@city-of-helsinki/react-helsinki-headless-cms';
 
+import Navigation from '../Navigation';
 import { getIsMenuItemActive } from '../navigationUtils';
+import { headerMenuMock } from '../__mocks__/headerMenuMock';
+import { languagesMock } from '../../footer/__mocks__/languagesMock';
+import { customRender } from '../../../../common/test/customRender';
 
 describe('getIsMenuItemActive', () => {
   const createMenuItem = (path?: string | null): MenuItem =>
@@ -135,5 +140,30 @@ describe('getIsMenuItemActive', () => {
         getIsMenuItemActive(createMenuItem('/pages/test'), '/fi/pages/%E0%A4%A')
       ).toBe(false);
     });
+  });
+});
+
+describe('<Navigation />', () => {
+  it('renders skeleton pills and sets aria-busy="true" while header menu is loading', async () => {
+    const delayedHeaderMock = {
+      ...headerMenuMock,
+      delay: 500,
+    };
+
+    const { container } = customRender(<Navigation />, [
+      delayedHeaderMock,
+      languagesMock,
+    ]);
+
+    const busyWrapper = container.querySelector('[aria-busy="true"]');
+    expect(busyWrapper).toBeInTheDocument();
+    expect(screen.getByTestId('nav-menu-skeleton')).toBeInTheDocument();
+    expect(screen.getAllByTestId('nav-pill-skeleton')).toHaveLength(3);
+
+    await waitFor(() => {
+      expect(screen.getByText('Ajankohtaista')).toBeInTheDocument();
+    });
+    expect(screen.queryByTestId('nav-menu-skeleton')).not.toBeInTheDocument();
+    expect(busyWrapper).not.toHaveAttribute('aria-busy');
   });
 });

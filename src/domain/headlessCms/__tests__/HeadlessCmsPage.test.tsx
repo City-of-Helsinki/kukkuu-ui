@@ -52,4 +52,45 @@ describe('<HeadlessCmsPage />', () => {
     expect(screen.getByText('Ajankohtaista sisältöä')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Etusivu' })).toBeInTheDocument();
   });
+
+  it('renders accessible skeleton without spinner while page is loading', async () => {
+    window.history.pushState({}, '', '/fi/tietoa-meista');
+
+    const delayedPageMock = {
+      request: {
+        query: PageDocument,
+        variables: { id: '/fi/tietoa-meista' },
+      },
+      delay: 500,
+      result: {
+        data: {
+          page: fakePage({
+            title: 'Tietoa meistä',
+            hero: fakeHero({
+              title: 'Tietoa meistä',
+            }),
+            content: '<p>Tietoa meistä sisältöä</p>',
+          }),
+        },
+      },
+    };
+
+    render(<HeadlessCmsPage />, [delayedPageMock]);
+
+    const skeleton = screen.getByTestId('headless-cms-page-skeleton');
+    expect(skeleton).toBeInTheDocument();
+    expect(skeleton).toHaveAttribute('aria-busy', 'true');
+    expect(
+      document.querySelector('#page-content-loading')
+    ).not.toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', { level: 1, name: 'Tietoa meistä' })
+      ).toBeInTheDocument();
+    });
+    expect(
+      screen.queryByTestId('headless-cms-page-skeleton')
+    ).not.toBeInTheDocument();
+  });
 });
