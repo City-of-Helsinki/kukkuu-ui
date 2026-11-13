@@ -401,6 +401,16 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.18.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.18.1...kukkuu-ui-v3.18.2) (2026-11-13)
+
+
+### Bug Fixes
+
+* Add missing runtime environment variables ([6b306a7](https://github.com/City-of-Helsinki/kukkuu-ui/commit/6b306a78c49c99e023812b6936d99c7faec174fa))
+* Move CSP to nginx headers and allow Sentry ingestion ([3da0397](https://github.com/City-of-Helsinki/kukkuu-ui/commit/3da0397edd105119ad2f0d86e8a6bdbe4849b3a5))
+* Sonar reliability fixes ([857d2dc](https://github.com/City-of-Helsinki/kukkuu-ui/commit/857d2dc0497dba1edc0695e757c69a6601486e1e))
+* Update env-config.js script version to v2 ([53c0a8b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/53c0a8b0bf84058ac9cac93a56d4d9cda86242ed))
+
 ## [3.18.1](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.18.0...kukkuu-ui-v3.18.1) (2026-10-30)
 
 
