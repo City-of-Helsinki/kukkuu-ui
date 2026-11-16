@@ -20,6 +20,7 @@
 }
 
 .wrapper {
+  background-color: var(--color-summer-light) !important;
   @include layout.formContainer();
 
   @include layout.respond-below(l) {
