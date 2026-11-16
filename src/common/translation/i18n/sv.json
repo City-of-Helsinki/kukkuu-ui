@@ -1032,7 +1032,9 @@
         "tableHeadingsType": "Typ",
         "storageType1": "Kaka",
         "storageType2": "Lokal lagring",
-        "storageType3": "Session lagring"
+        "storageType3": "Session lagring",
+        "settingsSaved": "Inställningarna har sparats",
+        "notificationAriaLabel": "Meddelande"
       }
     },
     "required": {
