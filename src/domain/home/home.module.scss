@@ -1,14 +1,7 @@
 .home {
-  section {
-    &:nth-child(3),
-    &:nth-child(5) {
-      background-color: var(--color-white);
-    }
-
-    &:nth-child(4),
-    &:nth-child(6) {
-      background: var(--color-black-5);
-    }
+  > section,
+  > div > section {
+    background-color: var(--color-white);
   }
 }
 
@@ -21,5 +14,5 @@
 }
 
 .userHasProfileContainer {
-  background: var(--color-black-5);
+  background-color: var(--color-white);
 }
