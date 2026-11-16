@@ -5,6 +5,11 @@
   background-color: var(--color-white, #fff);
   min-height: 80vh;
   width: 100%;
+  padding-bottom: var(--spacing-layout-l);
+
+  @include layout.respond-above(m) {
+    padding-bottom: var(--spacing-layout-xl);
+  }
 
   .breadcrumbsWrapper {
     width: 100%;

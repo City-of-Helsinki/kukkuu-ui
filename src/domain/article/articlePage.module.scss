@@ -3,7 +3,11 @@
 
 .articlePageContainer {
   --hcrc-color-hero-bg: var(--color-summer);
-  padding-bottom: variables.$spacing-xl;
+  padding-bottom: var(--spacing-layout-l);
+
+  @include layout.respond-above(m) {
+    padding-bottom: var(--spacing-layout-xl);
+  }
 
   h1 {
     overflow-wrap: break-word;

@@ -4,6 +4,11 @@
 .searchPageWrapper {
   background-color: var(--color-summer-light, #fffae6);
   min-height: 80vh;
+  padding-bottom: var(--spacing-layout-l);
+
+  @include layout.respond-above(m) {
+    padding-bottom: var(--spacing-layout-xl);
+  }
 
   .stickyChildHeader {
     position: fixed;
@@ -100,14 +105,14 @@
   color: var(--color-black, #000);
   position: relative;
   box-sizing: border-box;
-  min-height: 14rem;
+  min-height: 20rem;
   padding-top: var(--spacing-2-xl) !important;
-  padding-bottom: calc(85px + var(--spacing-xl)) !important;
+  padding-bottom: var(--spacing-layout-xl) !important;
 
   @include layout.respond-above(m) {
-    min-height: 18rem;
+    min-height: 24rem;
     padding-top: var(--spacing-3-xl) !important;
-    padding-bottom: calc(85px + var(--spacing-2-xl)) !important;
+    padding-bottom: var(--spacing-layout-2-xl) !important;
   }
 }
 
@@ -134,8 +139,13 @@
 }
 
 .mainContentContainer {
-  padding-top: var(--spacing-l);
-  padding-bottom: var(--spacing-3-xl);
+  padding-top: var(--spacing-l) !important;
+  padding-bottom: var(--spacing-layout-l) !important;
+
+  @include layout.respond-above(m) {
+    padding-top: var(--spacing-xl) !important;
+    padding-bottom: var(--spacing-layout-xl) !important;
+  }
 
   .filterFormSection {
     margin-bottom: var(--spacing-2-xl);
