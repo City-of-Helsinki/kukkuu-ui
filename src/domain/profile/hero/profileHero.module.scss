@@ -5,7 +5,16 @@
   background-color: var(--color-summer, #ffc61e);
   color: var(--color-black, #000);
   position: relative;
-  padding-top: var(--spacing-xl);
+  box-sizing: border-box;
+  min-height: 20rem;
+  padding-top: var(--spacing-2-xl) !important;
+  padding-bottom: var(--spacing-layout-xl) !important;
+
+  @include layout.respond-above(m) {
+    min-height: 24rem;
+    padding-top: var(--spacing-3-xl) !important;
+    padding-bottom: var(--spacing-layout-2-xl) !important;
+  }
 }
 
 .heroKoros {

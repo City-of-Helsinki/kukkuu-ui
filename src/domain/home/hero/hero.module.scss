@@ -13,7 +13,14 @@
   background-color: var(--color-summer);
   position: relative;
   width: 100%;
-  padding-bottom: 35px;
+  box-sizing: border-box;
+  min-height: 20rem;
+  padding-bottom: var(--spacing-layout-xl);
+
+  @include layout.respond-above(m) {
+    min-height: 24rem;
+    padding-bottom: var(--spacing-layout-2-xl);
+  }
 }
 
 .heroKoros {
