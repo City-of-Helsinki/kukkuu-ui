@@ -1,6 +1,9 @@
 .loginButtonTemplate {
   span {
-    display: flex;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+
     svg {
       margin-left: var(--spacing-3-xs);
     }
