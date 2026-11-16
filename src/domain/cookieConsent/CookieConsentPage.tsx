@@ -8,8 +8,8 @@ const CookieConsentPage: FunctionComponent = () => {
   const { t } = useTranslation();
 
   return (
-    <PageWrapper>
-      <CookieConsent appName={t('appName')} />
+    <PageWrapper title={t('cookieConsent.title')}>
+      <CookieConsent isPage appName={t('appName')} />
     </PageWrapper>
   );
 };

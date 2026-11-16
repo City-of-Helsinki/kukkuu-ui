@@ -1,4 +1,8 @@
-import { CookieConsentContextProvider, CookieBanner } from 'hds-react';
+import {
+  CookieConsentContextProvider,
+  CookieBanner,
+  CookieSettingsPage,
+} from 'hds-react';
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMatomo } from '@jonkoops/matomo-tracker-react';
@@ -18,9 +22,14 @@ const COOKIE_CONSENT_STORAGE_TYPE = {
 type Props = {
   appName: string;
   allowLanguageSwitch?: boolean;
+  isPage?: boolean;
 };
 
-const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
+const CookieConsent: React.FC<Props> = ({
+  appName,
+  allowLanguageSwitch,
+  isPage = false,
+}) => {
   const { i18n } = useTranslation();
   const locale = getCurrentLanguage(i18n);
   const { pushInstruction } = useMatomo();
@@ -115,6 +124,10 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
           storageType1: localized('consent.texts.ui.storageType1'),
           storageType2: localized('consent.texts.ui.storageType2'),
           storageType3: localized('consent.texts.ui.storageType3'),
+          settingsSaved: localized('consent.texts.ui.settingsSaved'),
+          notificationAriaLabel: localized(
+            'consent.texts.ui.notificationAriaLabel'
+          ),
         },
         requiredGroups: [
           {
@@ -247,11 +260,11 @@ const CookieConsent: React.FC<Props> = ({ appName, allowLanguageSwitch }) => {
     <CookieConsentContextProvider
       siteSettings={siteSettings}
       options={{
-        language
+        language,
       }}
       onChange={handleMatomoUpdate}
     >
-      <CookieBanner />
+      {isPage ? <CookieSettingsPage /> : <CookieBanner />}
     </CookieConsentContextProvider>
   );
 };

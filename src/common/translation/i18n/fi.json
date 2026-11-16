@@ -1032,7 +1032,9 @@
         "tableHeadingsType": "Tyyppi",
         "storageType1": "Eväste",
         "storageType2": "Paikallinen tallennus",
-        "storageType3": "Istunto tallennus"
+        "storageType3": "Istunto tallennus",
+        "settingsSaved": "Asetukset tallennettu",
+        "notificationAriaLabel": "Ilmoitus"
       }
     },
     "required": {
