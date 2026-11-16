@@ -8,6 +8,15 @@
   @include layout.respond-above(m) {
     padding-bottom: var(--spacing-layout-xl);
   }
+
+  [class*='pageContentLayout-module_contentWrapper__'] {
+    padding-top: var(--spacing-layout-s);
+
+    @include layout.respond-above(m) {
+      padding-top: var(--spacing-layout-m);
+    }
+  }
+
   h1 {
     overflow-wrap: break-word;
     -ms-word-break: break-all;
@@ -15,6 +24,8 @@
     -webkit-hyphens: manual;
     hyphens: manual;
     font-size: variables.$fontsize-heading-xl !important;
+    font-weight: 400 !important;
+    line-height: 1.2;
 
     @include layout.respond-below(s) {
       font-size: var(--fontsize-heading-xl-mobile, 2rem) !important;
