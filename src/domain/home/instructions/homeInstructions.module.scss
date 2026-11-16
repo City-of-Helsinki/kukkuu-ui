@@ -1,36 +1,19 @@
-@use '~styles/layout';
 @use '~styles/variables';
 
 .wrapper {
-  text-align: center;
-  padding-bottom: 2 * variables.$largeMargin;
-
+  padding: variables.$largeMargin 0 (2 * variables.$largeMargin);
   display: grid;
   grid-template-columns: 1fr minmax(auto, variables.$containerMaxWidth) 1fr;
 
-  .instructions {
+  .container {
     grid-column: 2;
+  }
 
-    h2 {
-      margin: 0;
-      padding: variables.$largeMargin 0;
-    }
+  .sectionSpacing:not(:first-child) {
+    margin-top: 3 * variables.$baseMargin;
+  }
 
-    .icon {
-      height: variables.$xlargeMargin;
-      width: variables.$xlargeMargin;
-      display: block;
-      margin: 0 auto;
-    }
-
-    .iconContainer {
-      display: grid;
-      padding: 0 variables.$basePadding;
-
-      @include layout.respond-above(m) {
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: variables.$baseMargin;
-      }
-    }
+  .languageButton {
+    min-width: 180px;
   }
 }

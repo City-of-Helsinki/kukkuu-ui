@@ -20,5 +20,11 @@ export const publicSvgIconPaths = {
   envelopeWithStars: `${publicSvgIconDir}/envelopeWithStars.svg`,
   homeKid: `${publicSvgIconDir}/homeKid.svg`,
   homeTheater: `${publicSvgIconDir}/homeTheater.svg`,
+  homeAge: `${publicSvgIconDir}/homeAge.svg`,
+  homeTicket: `${publicSvgIconDir}/homeTicket.svg`,
+  homeGrowth: `${publicSvgIconDir}/homeGrowth.svg`,
+  homeThemes: `${publicSvgIconDir}/homeThemes.svg`,
+  homeFamilies: `${publicSvgIconDir}/homeFamilies.svg`,
+  homeIntro: `${publicSvgIconDir}/homeIntro.svg`,
   tada: `${publicSvgIconDir}/tada.svg`,
 } as const satisfies Record<string, PublicSvgIconPath>;

@@ -637,19 +637,43 @@
     },
     "coronaNotice": "Koronaepidemian vuoksi tapahtumia ei järjestetä toistaiseksi. Tule silti mukaan ja ilmoittaudu kummilapseksi! Lähetämme kaikille kummilapsille tiedon, kun tapahtumia voidaan järjestää turvallisesti.",
     "instructions": {
-      "heading": {
-        "text": "Miten pääset mukaan toimintaan?"
-      },
-      "icon": {
-        "kid": {
-          "text": "Jos lapsi asuu Helsingissä ja on syntynyt vuonna 2020 tai sen jälkeen, voit ilmoittaa hänet kummilapseksi ja rekisteröityä palveluun."
-        },
-        "theater": {
-          "text": "Voit kokea lapsen kanssa hauskoja, yhteisiä hetkiä kulttuurin parissa. Tapahtumat on suunniteltu tukemaan lapsen kehitystä ja hyvinvointia."
-        },
-        "ticket": {
-          "text": "Saat sähköpostiisi kaksi kertaa vuodessa kutsun ja palvelun kautta pääset ilmoittautumaan sinulle parhaiten sopiviin tapahtumiin."
+      "section1": {
+        "heading": "Mitä toiminta tarjoaa?",
+        "cards": {
+          "age": {
+            "title": "0–6-vuotiaille",
+            "text": "Jos lapsi asuu Helsingissä ja on 0–6-vuotias, voit ilmoittaa hänet kulttuurilapseksi ja rekisteröityä mukaan toimintaan."
+          },
+          "ticket": {
+            "title": "Kahdesti vuodessa",
+            "text": "Saat sähköpostiisi kaksi kertaa vuodessa kutsun. Verkkopalvelun kautta pääset ilmoittautumaan sinulle sopivaan tapahtumaan."
+          },
+          "growth": {
+            "title": "Tukea kasvuun",
+            "text": "Voit kokea lapsen kanssa hauskoja, yhteisiä hetkiä kulttuurin parissa. Tapahtumat on suunniteltu tukemaan lapsen kehitystä ja hyvinvointia."
+          }
         }
+      },
+      "section2": {
+        "heading": "Millaisia tapahtumat ovat?",
+        "cards": {
+          "themes": {
+            "title": "Kolme teemapolkua",
+            "text": "Voitte valita tapahtumia kolmesta teemapolusta: Rytmi tarjoaa musiikkia ja tanssia, Tarina teatteria ja sirkusta sekä Jälki visuaalisia taiteita, sanataidetta ja kulttuuriperintöä."
+          },
+          "families": {
+            "title": "Erilaisille perheille",
+            "text": "Suurin osa tapahtumista on tarkoitettu lapselle ja yhdelle aikuiselle. Osaan tapahtumista voit ilmoittaa mukaan myös sisaruksia tai muita läheisiä."
+          },
+          "intro": {
+            "title": "Tutustumistapahtumat",
+            "text": "Voitte tutustua toimintaan myös tutustumistapahtumassa, johon voi osallistua kerran ennen rekisteröitymistä."
+          }
+        }
+      },
+      "moreLanguagesButton": {
+        "text": "Tietoa eri kielillä",
+        "url": "/fi/pages/tietoa-eri-kielilla"
       }
     },
     "moreInfo": {

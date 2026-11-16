@@ -1,0 +1,54 @@
+@use '~styles/variables';
+@use '~styles/fonts';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  h3 {
+    font-size: fonts.$font-size-lg;
+    font-weight: fonts.$font-weight-bold;
+    margin: variables.$baseMargin 0 (0.5 * variables.$baseMargin);
+    color: var(--color-black-90, #1a1a1a);
+  }
+
+  p {
+    margin: 0;
+    line-height: variables.$baseLineHeight;
+    max-width: 320px;
+    color: var(--color-black-90, #1a1a1a);
+  }
+}
+
+.iconWrapper {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.yellow {
+    background-color: var(--color-summer, #ffc61e);
+  }
+
+  &.silver {
+    background-color: var(--color-silver-medium-light, #efeff0);
+  }
+
+  .icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
