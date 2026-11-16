@@ -71,10 +71,7 @@ vi.mock('../form/HomePreliminaryForm', () => ({
   ),
 }));
 
-vi.mock('../moreInfo/HomeMoreInfo', () => ({ default: () => null }));
 vi.mock('../instructions/HomeInstructions', () => ({ default: () => null }));
-vi.mock('../video/HomeVideo', () => ({ default: () => null }));
-vi.mock('../partners/HomePartners', () => ({ default: () => null }));
 vi.mock('../contact/HomeContact', () => ({ default: () => null }));
 
 describe('<Home />', () => {
