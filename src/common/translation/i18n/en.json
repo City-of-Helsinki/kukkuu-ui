@@ -628,15 +628,6 @@
     "cimodeTooltipLabel": "More information about translation tool"
   },
   "home": {
-    "contact": {
-      "heading": {
-        "text": "Contact us"
-      },
-      "service": {
-        "name": "The Culture Kids service",
-        "text": "Contact us to find out more about the service."
-      }
-    },
     "coronaNotice": "All events have been cancelled for the time being, due to the coronavirus. But please don’t let that stop you from joining Culture Kids! We will share more information with everyone who has registered when events can once again be held safely.",
     "instructions": {
       "section1": {
