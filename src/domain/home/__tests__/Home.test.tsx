@@ -72,7 +72,6 @@ vi.mock('../form/HomePreliminaryForm', () => ({
 }));
 
 vi.mock('../instructions/HomeInstructions', () => ({ default: () => null }));
-vi.mock('../contact/HomeContact', () => ({ default: () => null }));
 
 describe('<Home />', () => {
   beforeEach(() => {
@@ -183,5 +182,66 @@ describe('<Home />', () => {
         'https://example.com/hero-bg.jpg'
       );
     });
+  });
+
+  it('renders dynamic CMS content section when content is available from CMS', async () => {
+    const cmsFrontPage = fakePage({
+      title: 'CMS Etusivu',
+      content: '<h2>Tervetuloa kummilapseksi</h2><p>Dynaaminen sisältö</p>',
+    });
+
+    render(<Home />, [
+      {
+        request: {
+          query: PageByTemplateDocument,
+          variables: { template: TemplateEnum.FrontPage, language: 'fi' },
+        },
+        result: {
+          data: {
+            pageByTemplate: cmsFrontPage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: 'Tervetuloa kummilapseksi',
+        })
+      ).toBeInTheDocument();
+      expect(screen.getByText('Dynaaminen sisältö')).toBeInTheDocument();
+    });
+  });
+
+  it('does not render dynamic CMS content section when content is empty', async () => {
+    const cmsFrontPage = fakePage({
+      title: 'CMS Etusivu',
+      hero: fakeHero({ title: 'CMS Etusivu' }),
+      content: '',
+    });
+
+    render(<Home />, [
+      {
+        request: {
+          query: PageByTemplateDocument,
+          variables: { template: TemplateEnum.FrontPage, language: 'fi' },
+        },
+        result: {
+          data: {
+            pageByTemplate: cmsFrontPage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('hero-page-title')).toHaveTextContent(
+        'CMS Etusivu'
+      );
+    });
+
+    expect(screen.queryByTestId('home-cms-content')).not.toBeInTheDocument();
   });
 });

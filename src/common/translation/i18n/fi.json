@@ -626,15 +626,6 @@
     "cimodeTooltipLabel": "Lisätietoa käännöstyökalusta"
   },
   "home": {
-    "contact": {
-      "heading": {
-        "text": "Ota yhteyttä"
-      },
-      "service": {
-        "name": "Kulttuurin kummilapset -palvelu",
-        "text": "Ota yhteyttä, jos haluat lisätietoja tai antaa palautetta verkkopalvelun toiminnasta."
-      }
-    },
     "coronaNotice": "Koronaepidemian vuoksi tapahtumia ei järjestetä toistaiseksi. Tule silti mukaan ja ilmoittaudu kummilapseksi! Lähetämme kaikille kummilapsille tiedon, kun tapahtumia voidaan järjestää turvallisesti.",
     "instructions": {
       "section1": {
