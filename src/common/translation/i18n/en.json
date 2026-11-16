@@ -639,19 +639,43 @@
     },
     "coronaNotice": "All events have been cancelled for the time being, due to the coronavirus. But please don’t let that stop you from joining Culture Kids! We will share more information with everyone who has registered when events can once again be held safely.",
     "instructions": {
-      "heading": {
-        "text": "How can I take part in the activities?"
-      },
-      "icon": {
-        "kid": {
-          "text": "If the child lives in Helsinki and was born in or after 2020, you may sign them up to become a Culture Kid and register with the service."
-        },
-        "theater": {
-          "text": "You can have fun experiencing culture with your child. The events are designed to support your child’s development and well-being."
-        },
-        "ticket": {
-          "text": "You will receive an invitation via e-mail two times a year, and you can use the service to sign up for your preferred events."
+      "section1": {
+        "heading": "What does the activity offer?",
+        "cards": {
+          "age": {
+            "title": "For 0–6-year-olds",
+            "text": "If the child lives in Helsinki and is 0–6 years old, you can sign them up as a Culture Kid and register for the activities."
+          },
+          "ticket": {
+            "title": "Twice a year",
+            "text": "You will receive an invitation to your email twice a year. Through the online service, you can sign up for an event that suits you."
+          },
+          "growth": {
+            "title": "Support for growth",
+            "text": "You can share fun, shared cultural moments with your child. The events are designed to support the child’s development and well-being."
+          }
         }
+      },
+      "section2": {
+        "heading": "What are the events like?",
+        "cards": {
+          "themes": {
+            "title": "Three theme paths",
+            "text": "You can choose events from three theme paths: Rhythm offers music and dance, Story offers theatre and circus, and Trace offers visual arts, literary art, and cultural heritage."
+          },
+          "families": {
+            "title": "For diverse families",
+            "text": "Most events are intended for a child and one adult. For some events, you can also sign up siblings or other close ones."
+          },
+          "intro": {
+            "title": "Introductory events",
+            "text": "You can also get to know the activities at an introductory event, which you can attend once before registering."
+          }
+        }
+      },
+      "moreLanguagesButton": {
+        "text": "Information in different languages",
+        "url": "/en/pages/information-in-different-languages"
       }
     },
     "moreInfo": {

@@ -1,0 +1,31 @@
+@use '~styles/layout';
+@use '~styles/variables';
+@use '~styles/fonts';
+
+.section {
+  padding: 0 variables.$basePadding;
+
+  h2 {
+    margin: 0 0 (2 * variables.$baseMargin);
+    font-size: fonts.$h2-font-size;
+    font-weight: 400;
+    text-align: center;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2 * variables.$baseMargin;
+
+  @include layout.respond-above(m) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5 * variables.$baseMargin;
+  }
+}
+
+.actionWrapper {
+  margin-top: 3 * variables.$baseMargin;
+  display: flex;
+  justify-content: center;
+}
