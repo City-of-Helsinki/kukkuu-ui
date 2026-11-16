@@ -7,6 +7,7 @@ import {
   IconSize,
   Koros,
 } from 'hds-react';
+import { ContentContainer } from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import Button from '../../../common/components/button/Button';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
@@ -63,7 +64,7 @@ const HomeHero = ({
       aria-busy={isLoading ? 'true' : undefined}
     >
       <div className={styles.heroTopSection}>
-        <div className={styles.heroContainer}>
+        <ContentContainer className={styles.heroContainer}>
           <div className={styles.hero}>
             <SkeletonLoader
               isLoading={isLoading}
@@ -126,7 +127,7 @@ const HomeHero = ({
               )}
             </div>
           </div>
-        </div>
+        </ContentContainer>
         <Koros
           type="pulse"
           flipVertical

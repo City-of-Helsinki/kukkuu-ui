@@ -95,14 +95,8 @@ $breakpoints: (
 }
 
 @mixin heroContainer() {
-  display: grid;
-  grid-template-columns: 1fr 10fr 1fr;
-  > * {
-    grid-column: 2;
-  }
-  @include respond-above(l) {
-    grid-template-columns:
-      1fr minmax(auto, variables.$containerFormMaxWidth)
-      1fr;
-  }
+  width: 100%;
+  max-width: var(--container-width-xl, 1200px);
+  margin: 0 auto;
+  box-sizing: border-box;
 }
