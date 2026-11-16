@@ -79,6 +79,7 @@
     margin: variables.$spacing-layout-l 0 variables.$spacing-m;
 
     font-size: variables.$fontsize-heading-l;
+    font-weight: 400;
 
     @include layout.respond-above(m) {
       font-size: variables.$fontsize-heading-xl;

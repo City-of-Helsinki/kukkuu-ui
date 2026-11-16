@@ -17,27 +17,32 @@ li {
   display: none;
 }
 
-// Headless CMS Hero: ensure visible hero has sufficient height
-// when there is no ingress/description, accounting for the bottom Koros wave.
+// Headless CMS Hero: match application hero styles and clean padding
 [class*='hero-module_hero__'] {
   box-sizing: border-box;
 
+  h1 {
+    font-weight: 400 !important;
+    line-height: 1.2;
+  }
+
   &[class*='hero-module_withKoros__'] {
-    min-height: 20rem;
-
-    @media (min-width: 768px) {
-      min-height: 24rem;
-    }
-
     [class*='hero-module_heroInner__'] {
-      padding-top: var(--spacing-2-xl) !important;
-      padding-bottom: var(--spacing-layout-xl) !important;
+      padding-top: var(--spacing-l);
 
       @media (min-width: 768px) {
-        padding-top: var(--spacing-3-xl) !important;
-        padding-bottom: var(--spacing-layout-2-xl) !important;
+        padding-top: var(--spacing-xl);
       }
     }
+  }
+}
+
+// Headless CMS main content: ensure proper spacing on top after hero section and koros wave
+[class*='pageContentLayout-module_contentWrapper__'] {
+  padding-top: var(--spacing-layout-s);
+
+  @media (min-width: 768px) {
+    padding-top: var(--spacing-layout-m);
   }
 }
 
