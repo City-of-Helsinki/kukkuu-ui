@@ -8,10 +8,7 @@ import HomePreliminaryForm from './form/HomePreliminaryForm';
 import PageWrapper from '../app/layout/PageWrapper';
 import HomeHero from './hero/HomeHero';
 import HomeInstructions from './instructions/HomeInstructions';
-import HomePartners from './partners/HomePartners';
-import HomeVideo from './video/HomeVideo';
 import HomeContact from './contact/HomeContact';
-import HomeMoreInfo from './moreInfo/HomeMoreInfo';
 import { useProfileContext } from '../profile/hooks/useProfileContext';
 import usePageByTemplateQuery from '../../hooks/usePageByTemplateQuery';
 import {
@@ -24,7 +21,7 @@ import {
  * Front page component for the Kukkuu service.
  *
  * Integrates WordPress Headless CMS frontpage content, hero section with background image,
- * registration preliminary form, service instructions, partners, video, and contact sections.
+ * registration preliminary form, service instructions, and contact sections.
  */
 const Home = () => {
   const { isAuthenticated } = useOidcClient();
@@ -70,7 +67,6 @@ const Home = () => {
           userIsAuthenticated={isLoggedIn}
           scrollToForm={() => scrollToForm(formRef)}
         />
-        <HomeMoreInfo />
         <HomeInstructions />
         {!userHasProfile && (
           <HomePreliminaryForm
@@ -78,8 +74,6 @@ const Home = () => {
             isAuthenticated={isLoggedIn}
           />
         )}
-        <HomeVideo />
-        <HomePartners />
         <HomeContact />
       </div>
     </PageWrapper>
