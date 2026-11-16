@@ -16,3 +16,36 @@ li {
 #cookie-consent-language-selector-button {
   display: none;
 }
+
+// Headless CMS Hero: ensure visible hero has sufficient height
+// when there is no ingress/description, accounting for the bottom Koros wave.
+[class*='hero-module_hero__'] {
+  box-sizing: border-box;
+
+  &[class*='hero-module_withKoros__'] {
+    min-height: 20rem;
+
+    @media (min-width: 768px) {
+      min-height: 24rem;
+    }
+
+    [class*='hero-module_heroInner__'] {
+      padding-top: var(--spacing-2-xl) !important;
+      padding-bottom: var(--spacing-layout-xl) !important;
+
+      @media (min-width: 768px) {
+        padding-top: var(--spacing-3-xl) !important;
+        padding-bottom: var(--spacing-layout-2-xl) !important;
+      }
+    }
+  }
+}
+
+// Any headless CMS PageSection with bottom koros wave
+[class*='pageSection-module_withKorosBottom__'] {
+  padding-bottom: var(--spacing-layout-xl) !important;
+
+  @media (min-width: 768px) {
+    padding-bottom: var(--spacing-layout-2-xl) !important;
+  }
+}
