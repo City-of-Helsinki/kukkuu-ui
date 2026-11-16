@@ -34,6 +34,6 @@
 
 .callToActionButton {
   margin: 2 * variables.$baseMargin;
-  width: min-content;
+  width: auto;
   max-width: variables.$container-width-s;
 }
