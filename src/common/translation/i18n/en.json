@@ -1034,7 +1034,9 @@
         "tableHeadingsType": "Type",
         "storageType1": "Cookie",
         "storageType2": "Local storage",
-        "storageType3": "Session storage"
+        "storageType3": "Session storage",
+        "settingsSaved": "Settings saved",
+        "notificationAriaLabel": "Notification"
       }
     },
     "required": {
