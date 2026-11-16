@@ -1,0 +1,21 @@
+@use '~styles/layout';
+
+.cmsSection {
+  background-color: var(--color-white);
+  padding: var(--spacing-layout-m) 0;
+
+  @include layout.respond-above(m) {
+    padding: var(--spacing-layout-l) 0;
+  }
+
+  // PageMainContent renders <header><Text as="h1">{title}</Text></header>.
+  // When no title is supplied, hide the empty header to maintain semantic hierarchy.
+  header:has(h1:empty),
+  header:empty {
+    display: none;
+  }
+}
+
+.container {
+  text-align: center;
+}
