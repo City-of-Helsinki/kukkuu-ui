@@ -16,5 +16,7 @@
     -webkit-hyphens: manual;
     hyphens: manual;
     font-size: variables.$fontsize-heading-xl !important;
+    font-weight: 400 !important;
+    line-height: 1.2;
   }
 }
