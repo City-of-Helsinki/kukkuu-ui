@@ -37,7 +37,6 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  background-color: var(--color-black-20, rgba(0, 0, 0, 0.2));
 }
 
 .heroImageWrapper {
@@ -53,10 +52,6 @@
   object-fit: cover;
   object-position: center;
   display: block;
-  opacity: 0.5;
-  transition:
-    opacity 1s,
-    background 1s;
 }
 
 .photographerCredit {
@@ -67,11 +62,8 @@
 }
 
 .heroContainer {
-  display: grid;
   text-align: left;
   padding-bottom: variables.$spacing-2-xl;
-
-  @include layout.heroContainer();
 }
 
 .hero {
@@ -79,7 +71,8 @@
     margin: variables.$spacing-layout-l 0 variables.$spacing-m;
 
     font-size: variables.$fontsize-heading-l;
-    font-weight: 400;
+    font-weight: 700;
+    line-height: 1.2;
 
     @include layout.respond-above(m) {
       font-size: variables.$fontsize-heading-xl;
