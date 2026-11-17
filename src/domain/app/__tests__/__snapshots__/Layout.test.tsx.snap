@@ -200,7 +200,7 @@ exports[`renders without crashing 1`] = `
       id="main_content"
     />
     <footer
-      class="Footer-module_footer__7u3nd _footer_21cae1"
+      class="Footer-module_footer__7u3nd Footer-module_theme-dark__HWHSL _footer_21cae1"
     >
       <div
         class="Koros-module_koros__NeX-o Footer-module_koros__wtlaj"

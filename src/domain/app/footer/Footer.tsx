@@ -46,7 +46,7 @@ const Footer: FunctionComponent = () => {
     footerMenuQuery.data?.menu?.menuItems?.nodes?.filter(isValidMenuItem) ?? [];
 
   return (
-    <HDSFooter title={t('appName')} className={styles.footer}>
+    <HDSFooter title={t('appName')} theme="dark" className={styles.footer}>
       <HDSFooter.Base
         copyrightHolder={t('common.cityOfHelsinki')}
         logo={
