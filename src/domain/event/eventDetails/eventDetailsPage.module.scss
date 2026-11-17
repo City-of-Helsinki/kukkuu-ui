@@ -14,14 +14,10 @@
     background-color: var(--color-white, #fff);
 
     .breadcrumbs {
-      max-width: var(--container-max-width, 1200px);
-      margin: 0 auto;
+      max-width: var(--breakpoint-xl, 1248px);
+      margin: 0 auto !important;
       padding: var(--spacing-xs) var(--spacing-m);
       box-sizing: border-box;
-
-      nav {
-        margin: 0;
-      }
     }
   }
 }
