@@ -874,7 +874,7 @@ describe('ChildEventsSearch', () => {
     expect(screen.getAllByText('Find events CMS')[0]).toBeInTheDocument();
   });
 
-  it('strips HTML tags from CMS hero description and renders plain text ingress', async () => {
+  it('preserves HTML tags in CMS hero description and renders rich ingress', async () => {
     const cmsSearchPage = fakePage({
       title: 'Find events CMS',
       lead: '<p>Lead text</p>',
@@ -911,9 +911,9 @@ describe('ChildEventsSearch', () => {
         screen.getByRole('heading', { level: 1, name: 'HTML Hero Title' })
       ).toBeInTheDocument();
     });
-    expect(
-      screen.getByText('Tämä on lihavoitu ingressi.')
-    ).toBeInTheDocument();
+    const strongElement = screen.getByText('lihavoitu');
+    expect(strongElement).toBeInTheDocument();
+    expect(strongElement.tagName).toBe('STRONG');
   });
 
   it('renders empty ingress without fallback when CMS search page has empty description even with content populated', async () => {

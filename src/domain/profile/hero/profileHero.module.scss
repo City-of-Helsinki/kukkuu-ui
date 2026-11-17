@@ -33,6 +33,7 @@
     margin: 0 0 var(--spacing-m);
     line-height: 1.2;
     color: var(--color-black);
+    white-space: pre-line;
   }
 
   .description {
@@ -41,6 +42,15 @@
     margin: 0 0 var(--spacing-m);
     max-width: 48rem;
     color: var(--color-black-90);
+    white-space: pre-line;
+
+    p {
+      margin: 0 0 var(--spacing-s);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
   .buttonWrapper {
