@@ -72,7 +72,6 @@ export const EventOccurrencesTableSection: React.FC<
       aria-labelledby="occurrences-table"
     >
       <ContentContainer>
-        <hr className={styles.divider} />
         <h2 id="occurrences-table" className={styles.heading}>
           {t('event.occurrencesTable.title')}
         </h2>
