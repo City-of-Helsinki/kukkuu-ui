@@ -119,6 +119,31 @@
   width: 100%;
 }
 
+.breadcrumbSkeleton {
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+}
+
+.breadcrumbSkeletonTrack {
+  display: flex;
+  align-items: center;
+  font-size: var(--fontsize-body-m, 1rem);
+  line-height: var(--lineheight-l, 1.5);
+  color: var(--color-black-90, #1a1a1a);
+}
+
+.breadcrumbSkeletonRoot {
+  color: var(--color-black-90, #1a1a1a);
+  text-decoration: underline;
+}
+
+.breadcrumbSkeletonSeparator {
+  padding: 0 var(--spacing-2-xs, 8px);
+  color: var(--color-black-60, #595959);
+  user-select: none;
+}
+
 .pageSkeletonBreadcrumbContainer {
   width: 100%;
   max-width: var(--container-width-xl, 1200px);

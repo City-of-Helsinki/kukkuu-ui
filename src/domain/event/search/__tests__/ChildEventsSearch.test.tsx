@@ -982,7 +982,9 @@ describe('ChildEventsSearch', () => {
     render(<ChildEventsSearch />, [getSuccessEventsMock(), delayedCmsMock]);
 
     const heroWrapper = await waitFor(() => {
-      const el = document.querySelector('[aria-busy]');
+      const el = document.querySelector(
+        '[class*="heroContentContainer"] [aria-busy]'
+      );
       expect(el).toBeInTheDocument();
       return el!;
     });

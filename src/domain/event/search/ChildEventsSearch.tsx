@@ -12,6 +12,7 @@ import useGetPathname from '../../../common/route/utils/useGetPathname';
 import usePageQuery from '../../../hooks/usePageQuery';
 import { useCmsLoadingState } from '../../../hooks/useCmsLoadingState';
 import {
+  BreadcrumbSkeleton,
   SkeletonLoader,
   SkeletonText,
 } from '../../../common/components/skeleton/CmsSkeleton';
@@ -179,6 +180,7 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
   description,
 }) => {
   const { t } = useTranslation();
+  const getPathname = useGetPathname();
   const cmsQueryResult = usePageQuery(AppConfig.cmsSearchContextPath);
   const { data: cmsPageData } = cmsQueryResult;
   const { isInitialLoading: isCmsLoading } = useCmsLoadingState(cmsQueryResult);
@@ -233,11 +235,25 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
         <StickySearchHeader />
 
         <div className={styles.breadcrumbsWrapper}>
-          <Breadcrumb
-            aria-label={t('common.breadcrumbNavigationLabel')}
-            list={breadcrumbs}
-            className={styles.breadcrumbs}
-          />
+          <SkeletonLoader
+            isLoading={isCmsLoading}
+            skeleton={
+              <BreadcrumbSkeleton
+                rootTitle={t('common.breadcrumbs.home')}
+                rootPath={getPathname('/')}
+                className={styles.breadcrumbs}
+              />
+            }
+            as={null}
+          >
+            {() => (
+              <Breadcrumb
+                aria-label={t('common.breadcrumbNavigationLabel')}
+                list={breadcrumbs}
+                className={styles.breadcrumbs}
+              />
+            )}
+          </SkeletonLoader>
         </div>
 
         <PageSection

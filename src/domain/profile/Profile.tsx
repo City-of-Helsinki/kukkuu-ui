@@ -18,6 +18,10 @@ import {
 } from '../../utils/cmsUtils';
 import AppConfig from '../app/AppConfig';
 import { useCmsBreadcrumbs } from '../headlessCms/breadcrumbUtils';
+import {
+  BreadcrumbSkeleton,
+  SkeletonLoader,
+} from '../../common/components/skeleton/CmsSkeleton';
 import styles from './profile.module.scss';
 
 /**
@@ -105,11 +109,25 @@ const Profile = () => {
       />
       <div className={styles.profilePageWrapper}>
         <div className={styles.breadcrumbsWrapper}>
-          <Breadcrumb
-            aria-label={t('common.breadcrumbNavigationLabel')}
-            list={breadcrumbs}
-            className={styles.breadcrumbs}
-          />
+          <SkeletonLoader
+            isLoading={isCmsLoading}
+            skeleton={
+              <BreadcrumbSkeleton
+                rootTitle={t('common.breadcrumbs.home')}
+                rootPath={getPathname('/')}
+                className={styles.breadcrumbs}
+              />
+            }
+            as={null}
+          >
+            {() => (
+              <Breadcrumb
+                aria-label={t('common.breadcrumbNavigationLabel')}
+                list={breadcrumbs}
+                className={styles.breadcrumbs}
+              />
+            )}
+          </SkeletonLoader>
         </div>
         <ProfileHero
           profile={profile}
