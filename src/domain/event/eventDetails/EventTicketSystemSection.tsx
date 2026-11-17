@@ -281,7 +281,6 @@ export const EventTicketSystemSection: React.FC<
       aria-labelledby="ticket-system-heading"
     >
       <ContentContainer>
-        <hr className={styles.divider} />
         <h2 id="ticket-system-heading" className={styles.heading}>
           {t('eventRedirectPage.title', 'Ilmoittaudu tapahtumaan')}
         </h2>
