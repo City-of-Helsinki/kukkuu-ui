@@ -5,13 +5,6 @@
   background-color: var(--color-white, #fff);
   padding: 0 0 var(--spacing-4-xl) 0;
 
-  .divider {
-    border: none;
-    border-top: 1px solid var(--color-black-10, #e0e0e0);
-    margin: 0 0 var(--spacing-2-xl) 0;
-    width: 100%;
-  }
-
   .heading {
     font-size: var(--fontsize-heading-l, 2rem);
     font-weight: 500;
