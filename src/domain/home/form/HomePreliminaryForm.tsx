@@ -84,7 +84,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
     <section id="register" className={styles.wrapper} ref={forwardRef}>
       <div className={styles.homeForm}>
         <div className={styles.heading}>
-          <h2>{t('registration.heading')}</h2>
+          <h2>{t('home.registration.title')}</h2>
           <p>
             <Trans i18nKey="multiline">{t('home.registration.text')}</Trans>
           </p>
@@ -137,7 +137,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                   className={styles.submitButton}
                   disabled={isSubmitting || !isRegistrationInformationVerified}
                 >
-                  {t('homePage.hero.buttonText')}
+                  {t('home.registration.submitButton')}
                 </Button>
               </Form>
             );

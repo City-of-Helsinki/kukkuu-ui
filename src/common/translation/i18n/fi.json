@@ -728,7 +728,9 @@
       }
     },
     "registration": {
-      "text": "Aloita syöttämällä toimintaan osallistuvan lapsen kotipaikkakunta ja syntymävuosi. Tämän jälkeen pääset kirjautumaan palveluun ja täydentämään lapsesi kummilapsiprofiilin. Tähän menee muutama minuutti."
+      "title": "Rekisteröi lapsi",
+      "text": "Aloita syöttämällä toimintaan osallistuvan lapsen kotipaikkakunta ja syntymävuosi. Tämän jälkeen pääset kirjautumaan palveluun ja antamaan muut tarvittavat tiedot. Tähän menee muutama minuutti.",
+      "submitButton": "Rekisteröi lapsi"
     },
     "video": {
       "youtubeId": "jYteckzo1uA"

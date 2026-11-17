@@ -728,7 +728,9 @@
       }
     },
     "registration": {
-      "text": "Börja med att mata in det deltagande barnets hemort och födelseår. Därefter kan du registrera dig till tjänsten och komplettera ditt barns fadderbarnsprofil. Det tar några minuter."
+      "title": "Registrera barn",
+      "text": "Börja med att mata in det deltagande barnets hemort och födelseår. Därefter kan du logga in i tjänsten och ge övriga nödvändiga uppgifter. Det tar några minuter.",
+      "submitButton": "Registrera barn"
     },
     "video": {
       "youtubeId": "cDB8iN3bVnY"
