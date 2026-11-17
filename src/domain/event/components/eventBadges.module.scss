@@ -1,0 +1,69 @@
+@use '~styles/variables';
+
+.badgeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.badgeItem {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3-xs);
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+  font-size: var(--fontsize-body-s, 0.875rem);
+  font-weight: 500;
+  line-height: 1.25;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.badgeIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.blackBadge {
+  background-color: var(--color-black, #000000);
+  color: var(--color-white, #ffffff);
+}
+
+.themePathBadge {
+  background-color: var(--color-summer-dark, #cc9200);
+  color: var(--color-black, #000000);
+}
+
+.greyBadge {
+  background-color: var(--color-black-10, #e5e5e5);
+  color: var(--color-black-90, #1a1a1a);
+}
+
+.whiteBadge {
+  background-color: var(--color-white, #ffffff);
+  color: var(--color-black-90, #1a1a1a);
+  border: 1px solid var(--color-black-20, #cccccc);
+}
+
+.enrolledBadge {
+  background-color: var(--color-summer, #ffc61e);
+  color: var(--color-black-90, #1a1a1a);
+  font-weight: 600;
+}
+
+.seasonEnrolledBadge {
+  color: var(--color-black-90, #1a1a1a);
+}

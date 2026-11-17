@@ -137,7 +137,8 @@
       "en": "English",
       "fi": "Suomi",
       "sanaton": "Utan tal",
-      "sv": "Svenska"
+      "sv": "Svenska",
+      "zxx": "Utan tal"
     },
     "loading": "Läser in",
     "menu": {
@@ -1204,6 +1205,8 @@
       "badgeExample2": "Exempelmärke 2",
       "enrolledBadge": "Anmäld",
       "alreadyEnrolledSeasonBadge": "Säsongens evenemang valt",
+      "familyEventBadge": "Familjeevenemang",
+      "badgeWithCount": "{{label}} ({{count}})",
       "alreadyEnrolledNotice": "Du har redan anmält dig till detta evenemang.",
       "alreadyEnrolledSeasonNotice": "Du har redan anmält dig till ett annat evenemang denna säsong.",
       "yearlyLimitReachedNotice": "Årliga anmälningskvoten är fylld."

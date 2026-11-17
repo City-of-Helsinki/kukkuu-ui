@@ -17,6 +17,8 @@ export type AvailableOccurrence = Pick<
   '__typename' | 'id' | 'time' | 'remainingCapacity' | 'occurrenceLanguage'
 > & {
   venue?: AvailableVenue | null;
+  /** TODO(backend): Refactor once occurrence accessibilities field lands in GraphQL API */
+  accessibilities?: string[] | null;
 };
 
 export type AvailableEvent = Omit<
@@ -41,6 +43,7 @@ export type AvailableEvent = Omit<
     hasAnyFreePasswords?: boolean | null;
   } | null;
   themePaths?: Array<{ id?: string; slug: string; name?: string } | null> | null;
+  /** TODO(backend): Refactor once event accessibilities field lands in GraphQL API */
   accessibility?: string[] | null;
   occurrences: {
     edges: Array<{ node: AvailableOccurrence | null } | null>;

@@ -4,7 +4,10 @@ import userEvent from '@testing-library/user-event';
 
 import { customRender as render } from '../../../../common/test/customRender';
 import { fakeProfile } from '../../../../utils/eventMockDataUtils';
-import { EnrolmentDeniedReason } from '../../../api/generatedTypes/graphql';
+import {
+  EnrolmentDeniedReason,
+  EventParticipantsPerInvite,
+} from '../../../api/generatedTypes/graphql';
 import EventHero from '../EventHero';
 import * as ProfileContextModule from '../../../profile/hooks/useProfileContext';
 
@@ -47,13 +50,62 @@ describe('EventHero', () => {
     expect(
       screen.getByText('Iloista akrobatiaa perheen pienimmille')
     ).toBeInTheDocument();
-    expect(screen.getByText('Su 4.10.2026, 13:00–14:00')).toBeInTheDocument();
+    expect(
+      screen.getByText('Su 4.10.2026 klo 13:00–14:00')
+    ).toBeInTheDocument();
     expect(
       screen.getByText('Kaapelitehdas, Kaapeliaukio 3')
     ).toBeInTheDocument();
     expect(screen.getByText(/Kieli:\s*Suomi/)).toBeInTheDocument();
-    expect(screen.getByText('Esimerkkimerkki 1')).toBeInTheDocument();
-    expect(screen.getByText('Esimerkkimerkki 2')).toBeInTheDocument();
+    expect(screen.queryByText('Esimerkkimerkki 1')).not.toBeInTheDocument();
+    expect(screen.queryByText('Esimerkkimerkki 2')).not.toBeInTheDocument();
+  });
+
+  it('renders Full, theme path, family event, accessibility, and speechless (zxx) badges with counts', () => {
+    render(
+      <EventHero
+        event={{
+          ...baseEvent,
+          participantsPerInvite: EventParticipantsPerInvite.Family,
+          themePaths: [{ id: 'tp-1', slug: 'tarina', name: 'Tarina' }],
+        }}
+        allOccurrences={[
+          {
+            ...baseOccurrence,
+            id: 'occ-1',
+            remainingCapacity: 0,
+            occurrenceLanguage: 'FI, zxx',
+            accessibilities: ['Aistiherkkyys', 'Kuulemisen tuki'],
+          },
+          {
+            ...baseOccurrence,
+            id: 'occ-2',
+            time: '2026-10-11T10:00:00Z',
+            remainingCapacity: 1,
+            occurrenceLanguage: 'SV',
+            accessibilities: ['Aistiherkkyys'],
+          },
+        ]}
+        childId="child-1"
+      />
+    );
+
+    expect(screen.getByTestId('event-badge-full')).toHaveTextContent('Täynnä');
+    expect(
+      screen.getByTestId('event-badge-theme-path-tarina')
+    ).toHaveTextContent('Teemapolku: Tarina');
+    expect(screen.getByTestId('event-badge-family')).toHaveTextContent(
+      'Perhetapahtuma'
+    );
+    expect(
+      screen.getByTestId('event-badge-accessibility-Aistiherkkyys')
+    ).toHaveTextContent('Aistiherkkyys (2)');
+    expect(
+      screen.getByTestId('event-badge-accessibility-Kuulemisen tuki')
+    ).toHaveTextContent('Kuulemisen tuki (1)');
+    expect(screen.getByTestId('event-badge-speechless')).toHaveTextContent(
+      'Sanaton (1)'
+    );
   });
 
   it('renders image when provided', () => {

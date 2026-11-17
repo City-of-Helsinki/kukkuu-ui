@@ -4,11 +4,9 @@ import {
   ButtonPresetTheme,
   IconArrowDown,
   IconCalendar,
-  IconCheck,
   IconGlobe,
   IconLocation,
   IconTrash,
-  StatusLabel,
 } from 'hds-react';
 import {
   BackgroundImage,
@@ -20,16 +18,18 @@ import PlaceholderImage from '../../../common/components/placeholderImage/Placeh
 import Button from '../../../common/components/button/Button';
 import AnchorButton from '../../../common/components/button/AnchorButton';
 import UnenrolModal from '../modal/UnenrolModal';
+import { EventBadges, type EventBadgesThemePath } from '../components/EventBadges';
 import { useChildEnrolment } from '../hooks/useChildEnrolment';
 import {
-  extractUniqueLanguages,
-  extractUniqueVenues,
   findEnrolledOccurrence,
-  formatEventHeroDateTime,
+  formatEventLanguagesText,
+  formatEventSummaryDateTime,
+  formatEventVenueText,
   shouldAllowUnenrolment,
 } from '../EventUtils';
 import {
   EnrolmentDeniedReason,
+  EventParticipantsPerInvite,
   TicketSystem,
 } from '../../api/generatedTypes/graphql';
 import { externalTicketSystems } from '../constants/ExternalTicketSystemConstants';
@@ -40,6 +40,7 @@ export type EventHeroOccurrence = {
   time: string;
   remainingCapacity?: number | null;
   occurrenceLanguage?: string | null;
+  accessibilities?: string[] | null;
   venue?: {
     id?: string;
     name?: string | null;
@@ -54,11 +55,16 @@ export type EventHeroEvent = {
   image?: string | null;
   imageAltText?: string | null;
   duration?: number | null;
+  participantsPerInvite?: EventParticipantsPerInvite | null;
   enrolmentDeniedReason?: EnrolmentDeniedReason | null;
   registrationOpensAt?: string | null;
+  themePaths?: Array<EventBadgesThemePath | null> | null;
+  accessibility?: string[] | null;
+  accessibilities?: string[] | null;
   ticketSystem?: {
     type: TicketSystem;
     childPassword?: string | null;
+    hasAnyFreePasswords?: boolean | null;
     url?: string | null;
   } | null;
 };
@@ -104,43 +110,22 @@ export const EventHero: React.FC<EventHeroProps> = ({
     ? shouldAllowUnenrolment(enrolledOccurrenceTime)
     : true;
 
-  const formattedDateTime = formatEventHeroDateTime({
+  const formattedDateTime = formatEventSummaryDateTime({
     allOccurrences,
     duration: event.duration,
     locale: i18n.language,
     t,
   });
 
-  const venueText = React.useMemo(() => {
-    const uniqueVenues = extractUniqueVenues(null, allOccurrences);
-    if (uniqueVenues.length === 0) return null;
-    if (uniqueVenues.length === 1) {
-      return (
-        [uniqueVenues[0].name, uniqueVenues[0].address]
-          .filter(Boolean)
-          .join(', ') || null
-      );
-    }
-    return t('event.hero.multipleVenues');
-  }, [allOccurrences, t]);
+  const venueText = React.useMemo(
+    () => formatEventVenueText(allOccurrences, t),
+    [allOccurrences, t]
+  );
 
-  const languageText = React.useMemo(() => {
-    const uniqueLangs = extractUniqueLanguages(null, allOccurrences);
-    if (uniqueLangs.length === 0) return null;
-    const formattedLangs = uniqueLangs
-      .map((lang) => t(`common.language.${lang}`))
-      .join(', ');
-
-    if (uniqueLangs.length === 1) {
-      return t('event.hero.languageSingle', {
-        languages: formattedLangs,
-      });
-    }
-
-    return t('event.hero.languagesMultiple', {
-      languages: formattedLangs,
-    });
-  }, [allOccurrences, t]);
+  const languageText = React.useMemo(
+    () => formatEventLanguagesText(allOccurrences, t),
+    [allOccurrences, t]
+  );
 
   const DateIcon = IconCalendar;
 
@@ -312,33 +297,17 @@ export const EventHero: React.FC<EventHeroProps> = ({
               )}
             </div>
 
-            <div className={styles.badgeList}>
-              {isEnrolled && (
-                <StatusLabel
-                  type="alert"
-                  iconStart={<IconCheck aria-hidden="true" />}
-                  className={styles.enrolledBadge}
-                  data-testid="hero-enrolled-badge"
-                >
-                  {t('event.hero.enrolledBadge')}
-                </StatusLabel>
-              )}
-              {isEnrolledInSeasonSibling && (
-                <StatusLabel
-                  type="neutral"
-                  className={styles.seasonEnrolledBadge}
-                  data-testid="hero-season-enrolled-badge"
-                >
-                  {t('search.card.alreadyEnrolledSeasonBadge')}
-                </StatusLabel>
-              )}
-              <span className={styles.pill}>
-                {t('search.card.badgeExample1')}
-              </span>
-              <span className={styles.pill}>
-                {t('search.card.badgeExample2')}
-              </span>
-            </div>
+            <EventBadges
+              event={event}
+              occurrences={allOccurrences}
+              isEnrolled={isEnrolled}
+              isEnrolledInSeasonSibling={isEnrolledInSeasonSibling}
+              showCount
+              enrolledBadgeText={t('event.hero.enrolledBadge')}
+              enrolledBadgeTestId="hero-enrolled-badge"
+              seasonEnrolledBadgeTestId="hero-season-enrolled-badge"
+              className={styles.badgeList}
+            />
 
             <div className={styles.actionWrapper}>
               {renderHeroActions()}

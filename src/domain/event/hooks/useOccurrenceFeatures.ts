@@ -4,6 +4,24 @@ import type { TFunction } from 'i18next';
 
 export const SPEECHLESS_LANGUAGE = 'sanaton';
 
+/**
+ * Standard ISO 639-2 / ISO 639-3 code for "no linguistic content; not applicable",
+ * used to represent speechless / non-verbal event occurrences.
+ */
+export const SPEECHLESS_LANGUAGE_CODE = 'zxx';
+
+/**
+ * Checks whether a single language string represents a speechless (non-verbal) performance
+ * using either the standard ISO 639-2/639-3 code ("zxx") or "sanaton".
+ */
+export const isSpeechlessLanguageCode = (lang: string): boolean => {
+  const normalized = lang.trim().toLowerCase();
+  return (
+    normalized === SPEECHLESS_LANGUAGE_CODE ||
+    normalized === SPEECHLESS_LANGUAGE
+  );
+};
+
 export type OccurrenceFeatureSource = {
   occurrenceLanguage?: string | null;
   accessibilities?: string[] | null;
@@ -42,12 +60,11 @@ export const getOccurrenceAccessibilities = (
 };
 
 /**
- * Checks whether an occurrence includes "sanaton" (speechless/non-verbal) in its languages.
+ * Checks whether an occurrence includes "zxx" (ISO 639-2/639-3 speechless code)
+ * or "sanaton" (speechless/non-verbal) in its languages.
  */
 export const isSpeechless = (languages: string[]): boolean => {
-  return languages.some(
-    (lang) => lang.trim().toLowerCase() === SPEECHLESS_LANGUAGE
-  );
+  return languages.some(isSpeechlessLanguageCode);
 };
 
 /**

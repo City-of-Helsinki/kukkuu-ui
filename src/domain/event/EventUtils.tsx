@@ -19,10 +19,17 @@ import {
 import {
   EnrolmentDeniedReason,
   EventParticipantsPerInvite as EventParticipantsPerInviteEnum,
+  TicketSystem,
 } from '../api/generatedTypes/graphql';
 import RelayList from '../api/relayList';
 import { OccurrenceNode, Occurrences } from './types/EventQueryTypes';
 import AppConfig from '../app/AppConfig';
+import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
+import {
+  getOccurrenceAccessibilities,
+  getOccurrenceLanguages,
+  isSpeechless,
+} from './hooks/useOccurrenceFeatures';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
 
@@ -277,12 +284,14 @@ export function extractUniqueLanguages<
   occurrences: O[] = []
 ): string[] {
   if (selectedOccurrence?.occurrenceLanguage) {
-    return [selectedOccurrence.occurrenceLanguage.toLowerCase()];
+    return getOccurrenceLanguages(selectedOccurrence).map((lang) =>
+      lang.toLowerCase()
+    );
   }
   const set = new Set<string>();
   for (const occ of occurrences) {
-    if (occ.occurrenceLanguage) {
-      set.add(occ.occurrenceLanguage.toLowerCase());
+    for (const lang of getOccurrenceLanguages(occ)) {
+      set.add(lang.toLowerCase());
     }
   }
   return Array.from(set.values());
@@ -390,6 +399,202 @@ export function formatEventHeroDateTime<T extends { time: string | Date }>({
     });
   }
   return null;
+}
+
+/**
+ * Formats date and time summary text for both `EventSearchCard` and `EventHero`.
+ * - Single occurrence: `"{dateStr} {separator} {timeRange}"` (e.g. `"Su 4.10.2026 klo 13:00–14:00"`).
+ * - Multiple occurrences: `"{dateRange} ({count} tapahtuma-aikaa)"`.
+ */
+export function formatEventSummaryDateTime<T extends { time: string | Date }>({
+  allOccurrences = [],
+  duration,
+  locale = 'fi',
+  t,
+}: Omit<FormatEventHeroDateTimeOptions<T>, 'selectedOccurrence'>):
+  | string
+  | null {
+  const validOccurrences = allOccurrences.filter((o) => Boolean(o?.time));
+  if (validOccurrences.length === 0) {
+    return null;
+  }
+
+  const sortedOccurrences = sortOccurrencesByTime(validOccurrences);
+  const firstOccurrence = sortedOccurrences[0];
+  const lastOccurrence = sortedOccurrences.at(-1);
+  if (!firstOccurrence || !lastOccurrence) {
+    return null;
+  }
+
+  if (sortedOccurrences.length === 1) {
+    const dateStr = formatOccurrenceDateLong(firstOccurrence.time, locale);
+    const timeRange = formatOccurrenceTimeRange(
+      firstOccurrence.time,
+      duration
+    );
+    const separator = t('common.dateTimeSeparator');
+    return dateStr && timeRange
+      ? `${dateStr} ${separator} ${timeRange}`
+      : dateStr || timeRange || null;
+  }
+
+  const dateRange = formatOccurrenceDateRange(
+    firstOccurrence.time,
+    lastOccurrence.time
+  );
+
+  return t('event.hero.dateRangeWithCount', {
+    dateRange,
+    count: sortedOccurrences.length,
+    defaultValue: t('search.card.dateRangeWithCount', {
+      dateRange,
+      count: sortedOccurrences.length,
+    }),
+  });
+}
+
+/**
+ * Formats venue summary text for both `EventSearchCard` and `EventHero`.
+ * - 0 unique venues: `null`
+ * - 1 unique venue: `"<name>, <address>"`
+ * - >1 unique venues: `t('event.hero.multipleVenues')` (`"Useita tapahtumapaikkoja"`)
+ */
+export function formatEventVenueText<T extends { venue?: VenueLike | null }>(
+  occurrences: T[] | undefined,
+  t: TFunction
+): string | null {
+  const uniqueVenues = extractUniqueVenues(null, occurrences ?? []);
+  if (uniqueVenues.length === 0) return null;
+  if (uniqueVenues.length === 1) {
+    const v = uniqueVenues[0];
+    return [v.name, v.address].filter(Boolean).join(', ') || null;
+  }
+  return t('event.hero.multipleVenues');
+}
+
+/**
+ * Formats language summary text for both `EventSearchCard` and `EventHero`.
+ * - 0 unique languages: `null`
+ * - 1 unique language: `t('event.hero.languageSingle', { languages })` (`"Kieli: ..."`)
+ * - >1 unique languages: `t('event.hero.languagesMultiple', { languages })` (`"Kielet: ..."`)
+ */
+export function formatEventLanguagesText<
+  O extends { occurrenceLanguage?: string | null }
+>(occurrences: O[] | undefined, t: TFunction): string | null {
+  const uniqueLangs = extractUniqueLanguages(null, occurrences ?? []);
+  if (uniqueLangs.length === 0) return null;
+  const formattedLangs = uniqueLangs
+    .map((lang) => t(`common.language.${lang}`, lang))
+    .join(', ');
+
+  if (uniqueLangs.length === 1) {
+    return t('event.hero.languageSingle', {
+      languages: formattedLangs,
+    });
+  }
+
+  return t('event.hero.languagesMultiple', {
+    languages: formattedLangs,
+  });
+}
+
+export type EventFullCheckInput = {
+  enrolmentDeniedReason?: EnrolmentDeniedReason | null;
+  ticketSystem?: {
+    type?: TicketSystem | string | null;
+    hasAnyFreePasswords?: boolean | null;
+  } | null;
+};
+
+/**
+ * Determines whether an event as a whole is full across its occurrences or external ticket system.
+ */
+export function isEventFull<
+  O extends { remainingCapacity?: number | null }
+>(event: EventFullCheckInput, occurrences: O[] = []): boolean {
+  if (event.enrolmentDeniedReason === EnrolmentDeniedReason.OccurrenceFull) {
+    return true;
+  }
+
+  const isExternal = Boolean(
+    event.ticketSystem?.type &&
+      externalTicketSystems.includes(event.ticketSystem.type as TicketSystem)
+  );
+  if (isExternal) {
+    return event.ticketSystem?.hasAnyFreePasswords === false;
+  }
+
+  return (
+    occurrences.length > 0 &&
+    occurrences.every((occ) => isOccurrenceFull(occ.remainingCapacity))
+  );
+}
+
+export type AccessibilityBadgeCount = {
+  value: string;
+  count: number;
+};
+
+/**
+ * Aggregates unique accessibility values across occurrences (and optional event-level accessibilities)
+ * with the count of occurrences where each accessibility is present.
+ */
+export function extractEventAccessibilityCounts<
+  O extends { accessibilities?: string[] | null }
+>(
+  event?: {
+    accessibility?: string[] | null;
+    accessibilities?: string[] | null;
+  } | null,
+  occurrences: O[] = []
+): AccessibilityBadgeCount[] {
+  const countsMap = new Map<string, number>();
+
+  for (const occ of occurrences) {
+    const occAccessibilities = Array.from(
+      new Set(
+        getOccurrenceAccessibilities(occ)
+          .map((item) => item.trim())
+          .filter(Boolean)
+      )
+    );
+    for (const acc of occAccessibilities) {
+      countsMap.set(acc, (countsMap.get(acc) ?? 0) + 1);
+    }
+  }
+
+  const eventLevel = [
+    ...(event?.accessibility ?? []),
+    ...(event?.accessibilities ?? []),
+  ]
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  for (const acc of eventLevel) {
+    if (!countsMap.has(acc)) {
+      countsMap.set(acc, occurrences.length);
+    }
+  }
+
+  return Array.from(countsMap.entries()).map(([value, count]) => ({
+    value,
+    count,
+  }));
+}
+
+/**
+ * Counts how many occurrences include a speechless language code ("zxx" or "sanaton").
+ */
+export function getSpeechlessOccurrencesCount<
+  O extends { occurrenceLanguage?: string | null }
+>(occurrences: O[] = []): number {
+  let count = 0;
+  for (const occ of occurrences) {
+    if (isSpeechless(getOccurrenceLanguages(occ))) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 export type VenueWithDetails = {

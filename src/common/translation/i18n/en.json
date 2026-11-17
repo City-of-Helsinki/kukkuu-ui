@@ -137,7 +137,8 @@
       "en": "English",
       "fi": "Suomi",
       "sanaton": "Speechless",
-      "sv": "Svenska"
+      "sv": "Svenska",
+      "zxx": "Speechless"
     },
     "loading": "Loading",
     "menu": {
@@ -1206,6 +1207,8 @@
       "badgeExample2": "Example badge 2",
       "enrolledBadge": "Enrolled",
       "alreadyEnrolledSeasonBadge": "Season event selected",
+      "familyEventBadge": "Family event",
+      "badgeWithCount": "{{label}} ({{count}})",
       "alreadyEnrolledNotice": "You are already enrolled in this event.",
       "alreadyEnrolledSeasonNotice": "You are already enrolled in another event for this season.",
       "yearlyLimitReachedNotice": "Yearly enrolment limit reached."

@@ -54,14 +54,26 @@ describe('eventSearchUtils', () => {
 
   describe('getEventOccurrencesSummary & text getters', () => {
     const mockT = ((key: string, options?: any) => {
-      if (key === 'search.card.dateRangeWithCount') {
+      if (
+        key === 'search.card.dateRangeWithCount' ||
+        key === 'event.hero.dateRangeWithCount'
+      ) {
         return `${options.dateRange} (${options.count} tapahtuma-aikaa)`;
       }
       if (key.startsWith('common.language.')) {
         return key.replace('common.language.', '');
       }
-      if (key === 'search.card.languages') {
+      if (key === 'event.hero.languageSingle') {
+        return `Kieli: ${options.languages}`;
+      }
+      if (
+        key === 'event.hero.languagesMultiple' ||
+        key === 'search.card.languages'
+      ) {
         return `Kielet: ${options.languages}`;
+      }
+      if (key === 'event.hero.multipleVenues') {
+        return 'Useita tapahtumapaikkoja';
       }
       if (key === 'common.dateTimeSeparator') {
         return 'klo';
@@ -148,8 +160,12 @@ describe('eventSearchUtils', () => {
           ],
         },
       };
-      expect(getEventVenueText(singleVenueEvent)).toBe('Venue 1, Street 1');
-      expect(getEventVenueText(multiOccEvent)).toBe('Venue 1, Venue 2');
+      expect(getEventVenueText(singleVenueEvent, mockT)).toBe(
+        'Venue 1, Street 1'
+      );
+      expect(getEventVenueText(multiOccEvent, mockT)).toBe(
+        'Useita tapahtumapaikkoja'
+      );
     });
 
     it('formats unique languages list', () => {
