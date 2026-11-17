@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ButtonPresetTheme, IconSearch } from 'hds-react';
 import {
   ContentContainer,
+  HtmlToReact,
   PageSection,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
@@ -69,7 +70,9 @@ const ProfileHero: React.FC<ProfileHeroProps> = ({
         >
           <h1 className={styles.title}>{title}</h1>
           {description && (
-            <p className={styles.description}>{description}</p>
+            <div className={styles.description}>
+              <HtmlToReact>{description}</HtmlToReact>
+            </div>
           )}
         </SkeletonLoader>
         {hasChildren && (
