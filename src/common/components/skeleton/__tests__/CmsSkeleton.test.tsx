@@ -6,6 +6,7 @@ import {
   HeroImageSkeleton,
   NavPillSkeleton,
   FooterPillSkeleton,
+  BreadcrumbSkeleton,
   CmsPageSkeleton,
 } from '../CmsSkeleton';
 
@@ -73,6 +74,25 @@ describe('CmsSkeleton primitives', () => {
       expect(el).toHaveAttribute('aria-hidden', 'true');
       expect(el).toHaveStyle({ width: '9rem' });
       expect(el.className).toContain('custom-footer-pill');
+    });
+  });
+
+  describe('BreadcrumbSkeleton', () => {
+    it('renders single line placeholder when rootTitle is not provided', () => {
+      render(<BreadcrumbSkeleton />);
+      const nav = screen.getByTestId('breadcrumb-skeleton');
+      expect(nav).toBeInTheDocument();
+      expect(screen.getByTestId('skeleton-line')).toBeInTheDocument();
+    });
+
+    it('renders static rootTitle with leaf skeleton when rootTitle is provided', () => {
+      render(<BreadcrumbSkeleton rootTitle="Etusivu" rootPath="/fi" />);
+      const nav = screen.getByTestId('breadcrumb-skeleton');
+      expect(nav).toBeInTheDocument();
+      const link = screen.getByRole('link', { name: 'Etusivu' });
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', '/fi');
+      expect(screen.getByTestId('skeleton-line')).toBeInTheDocument();
     });
   });
 

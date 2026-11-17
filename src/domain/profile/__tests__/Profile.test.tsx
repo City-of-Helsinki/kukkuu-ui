@@ -68,7 +68,9 @@ describe('Profile', () => {
 
     // Breadcrumbs
     expect(screen.getByRole('link', { name: 'Etusivu' })).toBeInTheDocument();
-    expect(screen.getByText('Tili')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText('Tili')).toBeInTheDocument();
+    });
 
     // Hero section
     await waitFor(() => {

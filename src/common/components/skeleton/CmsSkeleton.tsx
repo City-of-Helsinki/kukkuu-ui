@@ -105,6 +105,51 @@ export const FooterPillSkeleton: React.FC<FooterPillSkeletonProps> = ({
   />
 );
 
+export interface BreadcrumbSkeletonProps {
+  rootTitle?: string;
+  rootPath?: string;
+  className?: string;
+  'data-testid'?: string;
+}
+
+/**
+ * Accessible skeleton placeholder for breadcrumb trails during CMS page loading.
+ *
+ * When rootTitle is supplied (e.g. "Etusivu"), immediately displays the known static root
+ * link with a leaf skeleton placeholder, transitioning to the resolved leaf title without
+ * layout shift or premature fallback text flashing.
+ */
+export const BreadcrumbSkeleton: React.FC<BreadcrumbSkeletonProps> = ({
+  rootTitle,
+  rootPath,
+  className,
+  'data-testid': testId = 'breadcrumb-skeleton',
+}) => (
+  <nav
+    aria-label="Breadcrumb loading"
+    className={classNames(styles.breadcrumbSkeleton, className)}
+    data-testid={testId}
+  >
+    {rootTitle ? (
+      <div className={styles.breadcrumbSkeletonTrack}>
+        {rootPath ? (
+          <a href={rootPath} className={styles.breadcrumbSkeletonRoot}>
+            {rootTitle}
+          </a>
+        ) : (
+          <span className={styles.breadcrumbSkeletonRoot}>{rootTitle}</span>
+        )}
+        <span className={styles.breadcrumbSkeletonSeparator} aria-hidden="true">
+          ›
+        </span>
+        <SkeletonLine width="8rem" height="1.25rem" />
+      </div>
+    ) : (
+      <SkeletonLine width="14rem" height="1.25rem" />
+    )}
+  </nav>
+);
+
 export interface CmsPageSkeletonProps {
   className?: string;
   style?: CSSProperties;
