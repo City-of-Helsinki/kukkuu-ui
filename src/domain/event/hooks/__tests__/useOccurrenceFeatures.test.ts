@@ -53,14 +53,17 @@ describe('useOccurrenceFeatures', () => {
   });
 
   describe('isSpeechless', () => {
-    it('detects "sanaton" case-insensitively', () => {
+    it('detects "zxx" (ISO 639-2/639-3 code) and "sanaton" case-insensitively', () => {
+      expect(isSpeechless(['FI', 'zxx'])).toBe(true);
+      expect(isSpeechless(['ZXX'])).toBe(true);
       expect(isSpeechless(['Suomi', 'sanaton'])).toBe(true);
       expect(isSpeechless(['Sanaton', 'Ruotsi'])).toBe(true);
       expect(isSpeechless(['SANATON'])).toBe(true);
     });
 
-    it('returns false when "sanaton" is not present', () => {
+    it('returns false when neither "zxx" nor "sanaton" is present', () => {
       expect(isSpeechless(['Suomi', 'Ruotsi'])).toBe(false);
+      expect(isSpeechless(['FI', 'SV', 'EN'])).toBe(false);
       expect(isSpeechless([])).toBe(false);
     });
   });

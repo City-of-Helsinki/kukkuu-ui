@@ -166,6 +166,7 @@ $heroHeight: 30.6875rem;
         line-height: 1.5;
         margin: 0 0 var(--spacing-m);
         color: var(--color-black-90);
+        white-space: pre-line;
         overflow-wrap: break-word;
         word-break: break-word;
       }

@@ -1,10 +1,12 @@
 import type { TFunction } from 'i18next';
 
 import {
-  formatOccurrenceDateLong,
-  formatOccurrenceDateRange,
-  formatOccurrenceTimeRange,
-} from '../../../common/time/occurrenceTime';
+  extractUniqueLanguages,
+  extractUniqueVenues,
+  formatEventLanguagesText,
+  formatEventSummaryDateTime,
+  formatEventVenueText,
+} from '../EventUtils';
 import type {
   AvailableEvent,
   AvailableOccurrence,
@@ -158,33 +160,18 @@ export const getEventOccurrencesSummary = (
   event: AvailableEvent
 ): EventOccurrencesSummary => {
   const sorted = getSortedEventOccurrences(event);
-  const venueMap = new Map<string, AvailableVenue>();
-  const languageSet = new Set<string>();
-
-  for (const occ of sorted) {
-    if (occ.venue && (occ.venue.name || occ.venue.address)) {
-      const key = occ.venue.id || `${occ.venue.name}-${occ.venue.address}`;
-      if (!venueMap.has(key)) {
-        venueMap.set(key, occ.venue);
-      }
-    }
-    if (occ.occurrenceLanguage) {
-      languageSet.add(occ.occurrenceLanguage.toLowerCase());
-    }
-  }
-
   return {
     count: sorted.length,
     firstOccurrence: sorted[0] ?? null,
     lastOccurrence: sorted.at(-1) ?? null,
-    uniqueVenues: Array.from(venueMap.values()),
-    uniqueLanguages: Array.from(languageSet.values()),
+    uniqueVenues: extractUniqueVenues(null, sorted),
+    uniqueLanguages: extractUniqueLanguages(null, sorted),
   };
 };
 
 /**
  * Formats a user-friendly date and time string for an event card.
- * For single-occurrence events, returns date and time range (e.g. "Ma 5.10.2026, 10:00–11:00").
+ * For single-occurrence events, returns date and time range (e.g. "Ma 5.10.2026 klo 10:00–11:00").
  * For multi-occurrence events, returns a date range and total occurrence count.
  *
  * @param event - The event to format time for.
@@ -197,54 +184,40 @@ export const getEventTimeText = (
   t: TFunction,
   locale = 'fi'
 ): string | null => {
-  const summary = getEventOccurrencesSummary(event);
-  if (
-    summary.count === 0 ||
-    !summary.firstOccurrence ||
-    !summary.lastOccurrence
-  ) {
-    return null;
-  }
-  if (summary.count === 1) {
-    const dateStr = formatOccurrenceDateLong(
-      summary.firstOccurrence.time,
-      locale
-    );
-    const timeRange = formatOccurrenceTimeRange(
-      summary.firstOccurrence.time,
-      event.duration
-    );
-    const separator = t('common.dateTimeSeparator');
-    return dateStr && timeRange
-      ? `${dateStr} ${separator} ${timeRange}`
-      : dateStr || timeRange;
-  }
-  const dateRange = formatOccurrenceDateRange(
-    summary.firstOccurrence.time,
-    summary.lastOccurrence.time
-  );
-  return t('search.card.dateRangeWithCount', {
-    dateRange,
-    count: summary.count,
+  const sorted = getSortedEventOccurrences(event);
+  return formatEventSummaryDateTime({
+    allOccurrences: sorted,
+    duration: event.duration,
+    locale,
+    t,
   });
 };
 
 /**
  * Formats venue information for an event card.
  * For a single unique venue, combines name and address.
- * For multiple venues, returns comma-separated venue names.
+ * For multiple venues, returns localized "Useita tapahtumapaikkoja"
+ * (or falls back to comma-separated names if `t` is omitted).
  *
  * @param event - The event to format venue information for.
+ * @param t - Optional i18next translation function.
  * @returns Formatted venue string, or null if no venues are associated with the event.
  */
-export const getEventVenueText = (event: AvailableEvent): string | null => {
-  const summary = getEventOccurrencesSummary(event);
-  if (summary.uniqueVenues.length === 0) return null;
-  if (summary.uniqueVenues.length === 1) {
-    const v = summary.uniqueVenues[0];
-    return [v.name, v.address].filter(Boolean).join(', ');
+export const getEventVenueText = (
+  event: AvailableEvent,
+  t?: TFunction
+): string | null => {
+  const sorted = getSortedEventOccurrences(event);
+  if (t) {
+    return formatEventVenueText(sorted, t);
   }
-  return summary.uniqueVenues
+  const uniqueVenues = extractUniqueVenues(null, sorted);
+  if (uniqueVenues.length === 0) return null;
+  if (uniqueVenues.length === 1) {
+    const v = uniqueVenues[0];
+    return [v.name, v.address].filter(Boolean).join(', ') || null;
+  }
+  return uniqueVenues
     .map((v) => v.name || v.address)
     .filter(Boolean)
     .join(', ');
@@ -255,16 +228,12 @@ export const getEventVenueText = (event: AvailableEvent): string | null => {
  *
  * @param event - The event to format language information for.
  * @param t - i18next translation function.
- * @returns Localized languages string (e.g. "Kielet: Suomi, Ruotsi"), or null if no languages found.
+ * @returns Localized languages string (e.g. "Kieli: Suomi" or "Kielet: Suomi, Ruotsi"), or null if no languages found.
  */
 export const getEventLanguageText = (
   event: AvailableEvent,
   t: TFunction
 ): string | null => {
-  const summary = getEventOccurrencesSummary(event);
-  if (summary.uniqueLanguages.length === 0) return null;
-  const translated = summary.uniqueLanguages
-    .map((lang) => t(`common.language.${lang}`))
-    .join(', ');
-  return t('search.card.languages', { languages: translated });
+  const sorted = getSortedEventOccurrences(event);
+  return formatEventLanguagesText(sorted, t);
 };
