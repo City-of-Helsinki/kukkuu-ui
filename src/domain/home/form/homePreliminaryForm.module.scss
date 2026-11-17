@@ -1,5 +1,6 @@
 @use '~styles/variables';
 @use '~styles/layout';
+@use '~styles/fonts';
 
 .homeForm {
   padding: 2 * variables.$largeMargin 0;
@@ -38,9 +39,13 @@
 
 .heading {
   text-align: center;
+
   h2 {
     margin-top: 0;
+    font-size: fonts.$h2-font-size;
+    font-weight: 400;
   }
+
   p {
     margin-bottom: variables.$largeMargin;
   }

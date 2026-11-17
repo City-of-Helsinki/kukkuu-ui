@@ -730,7 +730,9 @@
       }
     },
     "registration": {
-      "text": "Start by entering the hometown and year of birth of the child you want to register. After this you will be able to log in to the service and complete your child’s Culture Kid profile. This should only take a few minutes."
+      "title": "Register child",
+      "text": "Start by entering the hometown and year of birth of the participating child. After this, you will be able to log in to the service and provide other necessary information. This should only take a few minutes.",
+      "submitButton": "Register child"
     },
     "video": {
       "youtubeId": "EyNWdfA4zbM"
