@@ -7,11 +7,6 @@
   overflow: hidden;
   position: relative;
   margin-top: calc(var(--spacing-s) * -1);
-  --footer-background: var(--color-black-10) !important;
-  a,
-  a:visited {
-    color: var(--color-black-60);
-  }
 }
 
 .footerSkeletonWrapper {
@@ -38,7 +33,7 @@
   text-decoration: underline;
 
   &:hover {
-    color: var(--color-black-90);
+    opacity: 0.8;
   }
 
   &:focus-visible {
