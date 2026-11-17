@@ -5,6 +5,7 @@ import { Breadcrumb, ButtonPresetTheme } from 'hds-react';
 import {
   ContentContainer,
   getTextFromHtml,
+  HtmlToReact,
   PageSection,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
@@ -209,18 +210,18 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
     (page && 'hero' in page && page.hero?.description?.trim()) ||
     page?.lead?.trim() ||
     '';
-  const cmsHeroDescription = rawHeroDescription
-    ? getTextFromHtml(rawHeroDescription).trim()
-    : '';
   const searchDescription =
     description !== undefined
       ? description
       : page !== null && page !== undefined
-        ? cmsHeroDescription
+        ? rawHeroDescription
         : t(
             'search.hero.description',
             t('profile.common.message.serviceDescription')
           );
+  const metaDescription = searchDescription
+    ? getTextFromHtml(searchDescription).trim()
+    : '';
 
   const isHeroLoading = isCmsLoading && (!title || description === undefined);
 
@@ -228,7 +229,7 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
     <>
       <PageMeta
         title={searchTitle}
-        description={searchDescription}
+        description={metaDescription}
         page={page}
       />
       <div className={styles.searchPageWrapper}>
@@ -273,7 +274,9 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
             >
               <h1 className={styles.heroTitle}>{searchTitle}</h1>
               {searchDescription && (
-                <p className={styles.heroDescription}>{searchDescription}</p>
+                <div className={styles.heroDescription}>
+                  <HtmlToReact>{searchDescription}</HtmlToReact>
+                </div>
               )}
             </SkeletonLoader>
           </ContentContainer>

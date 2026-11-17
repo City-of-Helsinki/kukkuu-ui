@@ -24,6 +24,7 @@ li {
   h1 {
     font-weight: 400 !important;
     line-height: 1.2;
+    white-space: pre-line;
   }
 
   &[class*='hero-module_withKoros__'] {
@@ -34,6 +35,12 @@ li {
         padding-top: var(--spacing-xl);
       }
     }
+  }
+}
+
+[class*='hero-module_textContents__'] {
+  p {
+    white-space: pre-line;
   }
 }
 
