@@ -8,10 +8,16 @@ import {
 } from '@apollo/client';
 import { toast } from 'react-toastify';
 
+import i18n from '../../../common/translation/i18n/i18nInit';
 import { server } from '../../../test/msw/server';
 import { fakePage } from '../../../utils/cmsMockDataUtils';
 import AppConfig from '../../app/AppConfig';
-import { createCmsApolloClient, revalidateStaleCmsCache } from '../client';
+import {
+  clearCmsClientCache,
+  createCmsApolloClient,
+  revalidateStaleCmsCache,
+  setupCmsLanguageChangeListener,
+} from '../client';
 import {
   LogLevel,
   PersistedCacheState,
@@ -317,6 +323,57 @@ describe('Headless CMS Client', () => {
         expect.any(String),
         expect.objectContaining({ toastId: 'cms-error' })
       );
+    });
+
+    it('clears CMS in-memory cache and localStorage persistence when clearCmsClientCache is called', async () => {
+      const customClient = createCmsApolloClient();
+      const clearStoreSpy = vi
+        .spyOn(customClient, 'clearStore')
+        .mockResolvedValue(undefined as any);
+
+      localStorage.setItem(
+        AppConfig.cmsApolloCacheLocalStorageKey,
+        JSON.stringify({ some: 'cache' })
+      );
+      localStorage.setItem(
+        AppConfig.cmsApolloCachePersistedAtLocalStorageKey,
+        Date.now().toString()
+      );
+
+      await clearCmsClientCache(customClient);
+
+      expect(clearStoreSpy).toHaveBeenCalledTimes(1);
+      expect(
+        localStorage.getItem(AppConfig.cmsApolloCacheLocalStorageKey)
+      ).toBeNull();
+      expect(
+        localStorage.getItem(AppConfig.cmsApolloCachePersistedAtLocalStorageKey)
+      ).toBeNull();
+    });
+
+    it('triggers cache purge automatically on i18n languageChanged event', async () => {
+      const customClient = createCmsApolloClient();
+      const clearStoreSpy = vi
+        .spyOn(customClient, 'clearStore')
+        .mockResolvedValue(undefined as any);
+      const cleanup = setupCmsLanguageChangeListener(customClient);
+
+      localStorage.setItem(
+        AppConfig.cmsApolloCacheLocalStorageKey,
+        JSON.stringify({ some: 'cache' })
+      );
+
+      // Trigger language change to 'sv'
+      i18n.changeLanguage('sv');
+
+      expect(clearStoreSpy).toHaveBeenCalledTimes(1);
+      expect(
+        localStorage.getItem(AppConfig.cmsApolloCacheLocalStorageKey)
+      ).toBeNull();
+
+      cleanup();
+      // Restore default language
+      i18n.changeLanguage('fi');
     });
   });
 });

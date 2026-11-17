@@ -116,10 +116,66 @@ export function createCmsApolloClient() {
     staleClients.add(client);
   }
 
+  clientPersistors.set(client, kukkuuApolloCachePersistor);
+
   return client;
 }
 
+const clientPersistors = new WeakMap<
+  ApolloClient<NormalizedCacheObject>,
+  TimedApolloCachePersistor
+>();
+
 const client = createCmsApolloClient();
+
+/**
+ * Clears the in-memory cache and localStorage persistence of the Headless CMS Apollo Client.
+ *
+ * Used when the application language changes to avoid serving stale content in the previous language.
+ */
+export async function clearCmsClientCache(
+  targetClient: ApolloClient<NormalizedCacheObject> = client
+): Promise<void> {
+  try {
+    const persistor = clientPersistors.get(targetClient);
+    persistor?.clearLocalStorage();
+    await targetClient.clearStore();
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to clear CMS client cache:', e);
+  }
+}
+
+let lastLanguage = i18n.language;
+
+/**
+ * Subscribes to i18n language change events to purge the CMS cache when the user switches language.
+ *
+ * NOTE: If i18n has no language detected when this module is evaluated (e.g. before i18n is initialized),
+ * the initial languageChanged event with a non-empty language resets lastLanguage and clears the cache.
+ * This ensures that on full page reloads or language changes the CMS cache is refreshed cleanly without
+ * serving stale content in a previously persisted language.
+ */
+export function setupCmsLanguageChangeListener(
+  targetClient: ApolloClient<NormalizedCacheObject> = client
+) {
+  let currentLanguage = lastLanguage;
+  const handleLanguageChanged = (newLang: string) => {
+    if (newLang && newLang !== currentLanguage) {
+      currentLanguage = newLang;
+      lastLanguage = newLang;
+      void clearCmsClientCache(targetClient);
+    }
+  };
+
+  i18n.on('languageChanged', handleLanguageChanged);
+
+  return () => {
+    i18n.off('languageChanged', handleLanguageChanged);
+  };
+}
+
+setupCmsLanguageChangeListener(client);
 
 /**
  * Revalidates active CMS queries in the background if the client holds stale persisted cache.
