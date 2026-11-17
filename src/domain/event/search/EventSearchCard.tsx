@@ -1,13 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import type { TFunction } from 'i18next';
 import {
   ButtonPresetTheme,
   IconCalendar,
-  IconCheck,
   IconGlobe,
   IconLocation,
-  StatusLabel,
+  Notification,
+  NotificationSize,
 } from 'hds-react';
 
 import PlaceholderImage from '../../../common/components/placeholderImage/PlaceholderImage';
@@ -17,32 +16,14 @@ import {
   getEventLanguageText,
   getEventTimeText,
   getEventVenueText,
+  getSortedEventOccurrences,
 } from './eventSearchUtils';
 import { getEnrolmentDeniedNotice } from '../EventUtils';
+import { EventBadges } from '../components/EventBadges';
 import { useChildEnrolment } from '../hooks/useChildEnrolment';
-import {
-  EnrolmentDeniedReason,
-  TicketSystem,
-} from '../../api/generatedTypes/graphql';
-import { externalTicketSystems } from '../constants/ExternalTicketSystemConstants';
+import { EnrolmentDeniedReason } from '../../api/generatedTypes/graphql';
 import type { AvailableEvent } from '../types/EventsSearchTypes';
 import styles from './occurrenceCard.module.scss';
-
-/**
- * Resolves the localized display label for an external ticket system provider.
- */
-const getTicketSystemLabel = (type: TicketSystem, t: TFunction): string => {
-  switch (type) {
-    case TicketSystem.Ticketmaster:
-      return t('event.ticketSystem.ticketmaster', 'Ticketmaster');
-    case TicketSystem.Lippupiste:
-      return t('event.ticketSystem.lippupiste', 'Lippupiste');
-    case TicketSystem.Tixly:
-      return t('event.ticketSystem.tixly', 'Tixly');
-    default:
-      return '';
-  }
-};
 
 export type EventSearchCardProps = {
   childId: string;
@@ -61,8 +42,12 @@ export const EventSearchCard: React.FC<EventSearchCardProps> = ({
   const { t, i18n } = useTranslation();
   const getPathname = useGetPathname();
 
+  const sortedOccurrences = React.useMemo(
+    () => getSortedEventOccurrences(event),
+    [event]
+  );
   const formattedTime = getEventTimeText(event, t, i18n.language);
-  const venueText = getEventVenueText(event);
+  const venueText = getEventVenueText(event, t);
   const languageText = getEventLanguageText(event, t);
   const detailsUrl = getPathname(`/profile/child/${childId}/event/${event.id}`);
   const enrolmentInfo = useChildEnrolment(childId, event.id);
@@ -86,15 +71,6 @@ export const EventSearchCard: React.FC<EventSearchCardProps> = ({
     event.enrolmentDeniedReason ===
       EnrolmentDeniedReason.YearlyEnrolmentLimitReached;
 
-  const isExternal = Boolean(
-    event.ticketSystem?.type &&
-      externalTicketSystems.includes(event.ticketSystem.type)
-  );
-  const ticketSystemLabel =
-    isExternal && event.ticketSystem?.type
-      ? getTicketSystemLabel(event.ticketSystem.type, t)
-      : null;
-
   const registrationNotOpenNotice =
     event.enrolmentDeniedReason === EnrolmentDeniedReason.RegistrationNotOpen
       ? getEnrolmentDeniedNotice({
@@ -103,6 +79,8 @@ export const EventSearchCard: React.FC<EventSearchCardProps> = ({
           registrationOpensAt: event.registrationOpensAt,
         })
       : null;
+
+  const notificationAriaLabel = t('consent.texts.ui.notificationAriaLabel');
 
   return (
     <article className={styles.occurrenceCard}>
@@ -151,44 +129,54 @@ export const EventSearchCard: React.FC<EventSearchCardProps> = ({
           )}
         </div>
 
-        <div className={styles.badgeList}>
-          {isEnrolledInThisEvent && (
-            <StatusLabel
-              type="alert"
-              iconStart={<IconCheck aria-hidden="true" />}
-            >
-              {t('search.card.enrolledBadge')}
-            </StatusLabel>
-          )}
-          {isEnrolledInSeasonSibling && (
-            <StatusLabel type="neutral">
-              {t('search.card.alreadyEnrolledSeasonBadge')}
-            </StatusLabel>
-          )}
-          {ticketSystemLabel && (
-            <span className={styles.pill}>
-              {ticketSystemLabel}
-            </span>
-          )}
-        </div>
+        <EventBadges
+          event={event}
+          occurrences={sortedOccurrences}
+          isEnrolled={isEnrolledInThisEvent}
+          isEnrolledInSeasonSibling={isEnrolledInSeasonSibling}
+          showCount={false}
+          className={styles.badgeList}
+        />
 
         {isEnrolledInThisEvent && (
-          <div className={styles.notice}>
+          <Notification
+            type="info"
+            size={NotificationSize.Small}
+            notificationAriaLabel={notificationAriaLabel}
+            className={styles.notice}
+          >
             {t('search.card.alreadyEnrolledNotice')}
-          </div>
+          </Notification>
         )}
         {isEnrolledInSeasonSibling && (
-          <div className={styles.notice}>
+          <Notification
+            type="info"
+            size={NotificationSize.Small}
+            notificationAriaLabel={notificationAriaLabel}
+            className={styles.notice}
+          >
             {t('search.card.alreadyEnrolledSeasonNotice')}
-          </div>
+          </Notification>
         )}
         {isYearlyLimitReached && (
-          <div className={styles.notice}>
+          <Notification
+            type="info"
+            size={NotificationSize.Small}
+            notificationAriaLabel={notificationAriaLabel}
+            className={styles.notice}
+          >
             {t('search.card.yearlyLimitReachedNotice')}
-          </div>
+          </Notification>
         )}
         {registrationNotOpenNotice && (
-          <div className={styles.notice}>{registrationNotOpenNotice}</div>
+          <Notification
+            type="info"
+            size={NotificationSize.Small}
+            notificationAriaLabel={notificationAriaLabel}
+            className={styles.notice}
+          >
+            {registrationNotOpenNotice}
+          </Notification>
         )}
 
         <div className={styles.actions}>

@@ -5,7 +5,12 @@ import { customRender as render } from '../../../../common/test/customRender';
 import i18n from '../../../../common/translation/i18n/i18nInit';
 import EventSearchCard from '../EventSearchCard';
 import type { AvailableEvent } from '../../types/EventsSearchTypes';
-import { EnrolmentDeniedReason, Language, TicketSystem } from '../../../api/generatedTypes/graphql';
+import {
+  EnrolmentDeniedReason,
+  EventParticipantsPerInvite,
+  Language,
+  TicketSystem,
+} from '../../../api/generatedTypes/graphql';
 
 describe('EventSearchCard', () => {
   const baseEvent: AvailableEvent = {
@@ -45,7 +50,7 @@ describe('EventSearchCard', () => {
     ).toBeInTheDocument();
     expect(screen.getByText('Su 4.10.2026 klo 13:00–14:00')).toBeInTheDocument();
     expect(screen.getByText('Annantalo, Annankatu 30')).toBeInTheDocument();
-    expect(screen.getByText(/Kielet:\s*Suomi/)).toBeInTheDocument();
+    expect(screen.getByText(/Kieli:\s*Suomi/)).toBeInTheDocument();
     expect(screen.queryByText('Esimerkkimerkki 1')).not.toBeInTheDocument();
     expect(screen.queryByText('Esimerkkimerkki 2')).not.toBeInTheDocument();
 
@@ -85,8 +90,58 @@ describe('EventSearchCard', () => {
 
     expect(screen.getByText(/4\.10\.2026 – 12\.10\.2026/)).toBeInTheDocument();
     expect(screen.getByText(/2 tapahtuma-aikaa/)).toBeInTheDocument();
-    expect(screen.getByText('Annantalo, Oodi')).toBeInTheDocument();
+    expect(screen.getByText('Useita tapahtumapaikkoja')).toBeInTheDocument();
     expect(screen.getByText(/Kielet:\s*Suomi,\s*Svenska/)).toBeInTheDocument();
+  });
+
+  it('renders Full, theme path, family event, accessibility, and speechless (zxx) badges without counts', () => {
+    const richEvent: AvailableEvent = {
+      ...baseEvent,
+      participantsPerInvite: EventParticipantsPerInvite.Family,
+      themePaths: [{ id: 'tp-1', slug: 'tarina', name: 'Tarina' }],
+      occurrences: {
+        edges: [
+          {
+            node: {
+              id: 'occ-1',
+              time: '2026-10-04T10:00:00Z',
+              remainingCapacity: 0,
+              occurrenceLanguage: 'fi, zxx' as any,
+              accessibilities: ['sensory', 'Kuulemisen tuki'],
+              venue: {
+                id: 'venue-1',
+                name: 'Annantalo',
+                address: 'Annankatu 30',
+              },
+            },
+          },
+        ],
+      },
+    };
+
+    render(<EventSearchCard childId="child-1" event={richEvent} />);
+
+    expect(screen.getByTestId('event-badge-full')).toHaveTextContent('Täynnä');
+    expect(
+      screen.getByTestId('event-badge-theme-path-tarina')
+    ).toHaveTextContent('Teemapolku: Tarina');
+    expect(screen.getByTestId('event-badge-family')).toHaveTextContent(
+      'Perhetapahtuma'
+    );
+    expect(
+      screen.getByTestId('event-badge-accessibility-sensory')
+    ).toHaveTextContent('Aistiyliherkkyydet huomioitu');
+    expect(
+      screen.getByTestId('event-badge-accessibility-Kuulemisen tuki')
+    ).toHaveTextContent('Kuulemisen tuki');
+    expect(screen.getByTestId('event-badge-speechless')).toHaveTextContent(
+      'Sanaton'
+    );
+    expect(
+      screen.queryByText(/Aistiyliherkkyydet huomioitu \(\d+\)/)
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/Sanaton \(\d+\)/)).not.toBeInTheDocument();
+    expect(screen.getByText(/Kielet:\s*Suomi,\s*Sanaton/)).toBeInTheDocument();
   });
 
   it('renders registration opening notice when registration is not open and registrationOpensAt is in future', () => {

@@ -137,7 +137,8 @@
       "en": "English",
       "fi": "Suomi",
       "sanaton": "Sanaton",
-      "sv": "Svenska"
+      "sv": "Svenska",
+      "zxx": "Sanaton"
     },
     "loading": "Lataa",
     "menu": {
@@ -1204,6 +1205,8 @@
       "badgeExample2": "Esimerkkimerkki 2",
       "enrolledBadge": "Ilmoittautunut",
       "alreadyEnrolledSeasonBadge": "Kauden tapahtuma valittu",
+      "familyEventBadge": "Perhetapahtuma",
+      "badgeWithCount": "{{label}} ({{count}})",
       "alreadyEnrolledNotice": "Olet jo ilmoittautunut tähän tapahtumaan.",
       "alreadyEnrolledSeasonNotice": "Olet jo ilmoittautunut toiseen tämän kauden tapahtumaan.",
       "yearlyLimitReachedNotice": "Vuosittainen ilmoittautumiskiintiö on täynnä."

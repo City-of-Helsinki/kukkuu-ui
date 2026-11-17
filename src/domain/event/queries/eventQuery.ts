@@ -59,6 +59,11 @@ const eventQuery = gql`
       capacityPerOccurrence
       enrolmentDeniedReason(childId: $childId)
       registrationOpensAt
+      themePaths {
+        id
+        slug
+        name
+      }
       eventGroup {
         id
       }
@@ -72,14 +77,17 @@ const eventQuery = gql`
         type
         ... on TicketmasterEventTicketSystem {
           childPassword(childId: $childId)
+          hasAnyFreePasswords
           url
         }
         ... on LippupisteEventTicketSystem {
           childPassword(childId: $childId)
+          hasAnyFreePasswords
           url
         }
         ... on TixlyEventTicketSystem {
           childPassword(childId: $childId)
+          hasAnyFreePasswords
           url
         }
       }
