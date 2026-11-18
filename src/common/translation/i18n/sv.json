@@ -106,6 +106,7 @@
       "label": "Tillbaka"
     },
     "breadcrumbListLabel": "Brödsmulor",
+    "breadcrumbLoadingLabel": "Laddar brödsmulnavigering",
     "breadcrumbNavigationLabel": "Brödsmulnavigering",
     "breadcrumbs": {
       "home": "Framsida",
