@@ -1,4 +1,5 @@
 import { createBrowserRouter, type RouteObject } from 'react-router';
+import trim from 'lodash/trim';
 
 import AppConfig from '../AppConfig';
 import { cmsArticleLoader, cmsPageLoader } from './cmsLoaders';
@@ -245,13 +246,16 @@ export const getAppRoutes = (): RouteObject[] => [
       },
       {
         // Configured via AppConfig.cmsPagesContextPath (originally set to '/pages')
-        path: `${AppConfig.cmsPagesContextPath.replace(/^\/+|\/+$/g, '')}/*`,
+        path: (() => {
+          const prefix = trim(AppConfig.cmsPagesContextPath, '/');
+          return prefix ? `${prefix}/*` : '*';
+        })(),
         Component: HeadlessCmsPage,
         loader: cmsPageLoader,
       },
       ...getLegacyCmsPageRedirectRoutes(),
       {
-        path: AppConfig.cmsArticlesContextPath.replace(/^\/+|\/+$/g, ''),
+        path: trim(AppConfig.cmsArticlesContextPath, '/'),
         children: [
           {
             index: true,

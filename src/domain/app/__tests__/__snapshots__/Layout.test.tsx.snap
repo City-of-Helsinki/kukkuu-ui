@@ -19,7 +19,7 @@ exports[`renders without crashing 1`] = `
           >
             <a
               class="SkipLink-module_skipLink__6PN15"
-              href="#main-content"
+              href="#main_content"
             >
               <span
                 class="SkipLink-module_skipLinkLabel__-13Ba"
@@ -36,7 +36,7 @@ exports[`renders without crashing 1`] = `
                 <a
                   aria-label="Helsingin kaupunki"
                   class="HeaderActionBar-module_titleAndLogoContainer__q4Awq HeaderActionBar-module_logo__tOoSx"
-                  href="#"
+                  href="/"
                   role="link"
                 >
                   <span
@@ -51,7 +51,7 @@ exports[`renders without crashing 1`] = `
                 </a>
                 <a
                   class="HeaderActionBar-module_titleAndLogoContainer__q4Awq HeaderActionBar-module_title__bLL5z HeaderActionBar-module_normal__kh4pL"
-                  href="#"
+                  href="/"
                 >
                   <span
                     class="HeaderActionBar-module_title__bLL5z"
@@ -67,7 +67,38 @@ exports[`renders without crashing 1`] = `
                   >
                     <div
                       class="HeaderLanguageSelector-module_languageNodes__LXQ2h"
-                    />
+                    >
+                      <button
+                        aria-current="true"
+                        class="HeaderLanguageSelector-module_item__1Q-m0 HeaderLanguageSelector-module_activeItem__KlpC1"
+                        lang="fi"
+                        type="button"
+                      >
+                        <span>
+                          Suomi
+                        </span>
+                      </button>
+                      <button
+                        aria-current="false"
+                        class="HeaderLanguageSelector-module_item__1Q-m0"
+                        lang="sv"
+                        type="button"
+                      >
+                        <span>
+                          Svenska
+                        </span>
+                      </button>
+                      <button
+                        aria-current="false"
+                        class="HeaderLanguageSelector-module_item__1Q-m0"
+                        lang="en"
+                        type="button"
+                      >
+                        <span>
+                          English
+                        </span>
+                      </button>
+                    </div>
                   </div>
                   <hr
                     aria-hidden="true"
@@ -148,46 +179,99 @@ exports[`renders without crashing 1`] = `
               </div>
             </div>
             <div
+              aria-hidden="true"
+              class="_navSkeletonBar_474e34"
+              data-testid="nav-menu-skeleton"
+            >
+              <div
+                class="_navSkeletonRow_474e34"
+              >
+                <div
+                  aria-hidden="true"
+                  class="_pill_a06a2b"
+                  data-testid="nav-pill-skeleton"
+                  style="width: 6rem;"
+                />
+                <div
+                  aria-hidden="true"
+                  class="_pill_a06a2b"
+                  data-testid="nav-pill-skeleton"
+                  style="width: 7.5rem;"
+                />
+                <div
+                  aria-hidden="true"
+                  class="_pill_a06a2b"
+                  data-testid="nav-pill-skeleton"
+                  style="width: 6.5rem;"
+                />
+              </div>
+            </div>
+            <div
               class="HeaderNavigationMenu-module_headerNavigationMenuContainer__ZIb-h"
             >
               <nav
-                class="HeaderNavigationMenu-module_headerNavigationMenu__YRpgY"
+                class="HeaderNavigationMenu-module_headerNavigationMenu__YRpgY _navMenuHiddenOnDesktop_474e34"
               >
                 <ul
                   class="HeaderNavigationMenu-module_headerNavigationMenuList__eybgp"
-                />
+                >
+                  <li>
+                    <span
+                      class="HeaderNavigationMenu-module_headerNavigationMenuLinkContent__2SjZT"
+                    >
+                      <div
+                        aria-hidden="true"
+                        class="_mobileNavSkeleton_074ea4 HeaderNavigationMenu-module_headerNavigationMenuLink__bjuzK"
+                        data-testid="mobile-nav-skeleton"
+                      >
+                        <div
+                          class="_mobileNavSkeletonItem_074ea4"
+                        >
+                          <div
+                            aria-hidden="true"
+                            class="_line_a06a2b"
+                            data-testid="skeleton-line"
+                            style="width: 65%; height: 1.5rem;"
+                          />
+                        </div>
+                        <div
+                          class="_mobileNavSkeletonItem_074ea4"
+                        >
+                          <div
+                            aria-hidden="true"
+                            class="_line_a06a2b"
+                            data-testid="skeleton-line"
+                            style="width: 80%; height: 1.5rem;"
+                          />
+                        </div>
+                        <div
+                          class="_mobileNavSkeletonItem_074ea4"
+                        >
+                          <div
+                            aria-hidden="true"
+                            class="_line_a06a2b"
+                            data-testid="skeleton-line"
+                            style="width: 55%; height: 1.5rem;"
+                          />
+                        </div>
+                        <div
+                          class="_mobileNavSkeletonItem_074ea4"
+                        >
+                          <div
+                            aria-hidden="true"
+                            class="_line_a06a2b"
+                            data-testid="skeleton-line"
+                            style="width: 70%; height: 1.5rem;"
+                          />
+                        </div>
+                      </div>
+                    </span>
+                  </li>
+                </ul>
               </nav>
             </div>
           </div>
         </header>
-        <div
-          aria-hidden="true"
-          class="_navSkeletonBar_474e34"
-          data-testid="nav-menu-skeleton"
-        >
-          <div
-            class="_navSkeletonRow_474e34"
-          >
-            <div
-              aria-hidden="true"
-              class="_pill_a06a2b"
-              data-testid="nav-pill-skeleton"
-              style="width: 6rem;"
-            />
-            <div
-              aria-hidden="true"
-              class="_pill_a06a2b"
-              data-testid="nav-pill-skeleton"
-              style="width: 7.5rem;"
-            />
-            <div
-              aria-hidden="true"
-              class="_pill_a06a2b"
-              data-testid="nav-pill-skeleton"
-              style="width: 6.5rem;"
-            />
-          </div>
-        </div>
       </div>
     </div>
     <div

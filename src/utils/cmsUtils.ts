@@ -158,7 +158,10 @@ export const withCmsPagesContextPath = (uri: string): string => {
   if (!stripped || stripped === '/') {
     return uri;
   }
-  if (stripped.startsWith(contextPath)) {
+  const isPrefixed =
+    contextPath &&
+    (stripped === contextPath || stripped.startsWith(`${contextPath}/`));
+  if (isPrefixed) {
     return uri;
   }
   const localeMatch = uri.match(/^\/(en|sv|fi)(?![a-z0-9])/i);
