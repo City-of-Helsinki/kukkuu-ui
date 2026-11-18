@@ -1,14 +1,36 @@
-@use '~styles/layout';
+.signInActionBarItem {
+  display: flex !important;
 
-.hideBelowSmall {
-  @include layout.respond-below(s) {
-    display: none;
+  &[class*='HeaderActionBarItem-module_fullWidth__'] {
+    background-color: var(--color-black-5);
   }
 }
 
-.userLink {
-  display: flex !important;
-  justify-content: start !important;
-  --outline-gutter: 0 !important;
+.userDropdownActionBarItem {
+  &[class*='HeaderActionBarItem-module_fullWidth__'] {
+    background-color: var(--color-black-5);
+  }
+}
+
+.userDropdown {
+  &[class*='HeaderActionBarItem-module_fullWidth__'] {
+    background-color: var(--color-black-5);
+  }
+}
+
+.mobileNavSkeleton {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  padding: var(--spacing-m) var(--spacing-s);
+  box-sizing: border-box;
+  background-color: var(--color-white);
+}
+
+.mobileNavSkeletonItem {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-s) 0;
+  width: 100%;
+  border-bottom: 1px solid var(--header-divider-color, var(--color-black-20));
 }

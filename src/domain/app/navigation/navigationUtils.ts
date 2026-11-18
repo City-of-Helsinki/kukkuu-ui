@@ -8,6 +8,7 @@ import {
 } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
 import headlessCmsClient from '../../headlessCms/client';
+import type { ProfileType } from '../../profile/ProfileContext';
 import AppConfig from '../AppConfig';
 import {
   getArticleUriFromPathname,
@@ -15,28 +16,96 @@ import {
   stripLocaleFromUri,
 } from '../../../utils/cmsUtils';
 
+export type OidcProfileLike = {
+  given_name?: string;
+  family_name?: string;
+  name?: string;
+  email?: string;
+} | null;
+
+/**
+ * Resolves the user's full display name and uppercase initials.
+ *
+ * Prioritizes the Kukkuu Guardian profile (`firstName`, `lastName`) and falls back
+ * to the OIDC user profile (`given_name`, `family_name`, `name`, `email`).
+ */
+export const getUserDisplayInfo = (
+  profile: ProfileType,
+  oidcProfile?: OidcProfileLike
+): { fullName: string; initials: string } => {
+  const firstName =
+    profile?.firstName?.trim() || oidcProfile?.given_name?.trim() || '';
+  const lastName =
+    profile?.lastName?.trim() || oidcProfile?.family_name?.trim() || '';
+
+  const combinedName = [firstName, lastName].filter(Boolean).join(' ');
+  const fullName =
+    combinedName ||
+    oidcProfile?.name?.trim() ||
+    profile?.email?.trim() ||
+    oidcProfile?.email?.trim() ||
+    '';
+
+  const nameParts = combinedName
+    ? [firstName, lastName].filter(Boolean)
+    : (oidcProfile?.name?.trim() || '').split(/\s+/).filter(Boolean);
+
+  const initialsFromParts = nameParts
+    .slice(0, 2)
+    .map((part) => part.substring(0, 1))
+    .join('')
+    .toUpperCase();
+
+  const fallbackEmail =
+    profile?.email?.trim() || oidcProfile?.email?.trim() || '';
+  const initials =
+    initialsFromParts || fallbackEmail.substring(0, 1).toUpperCase();
+
+  return { fullName, initials };
+};
+
+/**
+ * Closes the HDS mobile menu drawer if currently open.
+ */
+export const closeMobileMenu = () => {
+  if (typeof document === 'undefined') {
+    return;
+  }
+  const menuButton = document.getElementById('Menu');
+  if (menuButton?.getAttribute('aria-expanded') === 'true') {
+    menuButton.click();
+  }
+};
+
 /**
  * Determines whether a given navigation menu item matches the current pathname.
  *
- * Normalizes both menu item and current path by decoding URI components and stripping
- * locale prefixes. The frontpage menu item ('/') is strictly matched to the frontpage route.
- * Handles malformed percent-encoded paths by returning `false`.
+ * Resolves the menu item's routed href using `getRoutedInternalHref`, strips locale prefixes,
+ * and checks if the current URL matches the item's target path.
  *
  * @param menuItem - The CMS navigation menu item.
  * @param currentPathname - The current browser pathname.
+ * @param language - Current application language.
  * @returns `true` if the menu item should be considered active, `false` otherwise.
  */
 export const getIsMenuItemActive = (
   menuItem: MenuItem,
-  currentPathname: string
+  currentPathname: string,
+  language = 'fi'
 ): boolean => {
   if (!menuItem.path || !menuItem.path.trim()) {
     return false;
   }
 
   try {
-    const rawItemPath = decodeURIComponent(menuItem.path).replace(/\/$/, '');
-    const itemPath = stripLocaleFromUri(rawItemPath).replace(/\/$/, '');
+    const routedHref = getRoutedInternalHref(
+      menuItem.path,
+      undefined,
+      language
+    );
+    const itemPath = stripLocaleFromUri(
+      decodeURIComponent(routedHref)
+    ).replace(/\/$/, '');
     const currentPath = stripLocaleFromUri(
       decodeURIComponent(currentPathname || '')
     ).replace(/\/$/, '');
