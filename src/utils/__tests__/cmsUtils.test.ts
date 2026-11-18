@@ -1,6 +1,8 @@
 import {
   getArticleUriFromPathname,
   hasCmsCollections,
+  isCmsArticlePath,
+  isCmsPagePath,
   removeSurroundingSlashes,
 } from '../cmsUtils';
 
@@ -85,5 +87,41 @@ describe('getArticleUriFromPathname', () => {
     expect(getArticleUriFromPathname('/fi/pages/tietoa-meista')).toBe('');
     expect(getArticleUriFromPathname('/fi/events')).toBe('');
     expect(getArticleUriFromPathname('')).toBe('');
+  });
+});
+
+describe('isCmsPagePath', () => {
+  it('returns true when pathname points to a dynamic CMS page under /pages', () => {
+    expect(isCmsPagePath('/fi/pages/tietoa-meista')).toBe(true);
+    expect(isCmsPagePath('/sv/pages/om-oss')).toBe(true);
+    expect(isCmsPagePath('/pages/about')).toBe(true);
+    expect(isCmsPagePath('/fi/pages/sub/nested')).toBe(true);
+  });
+
+  it('returns false for non-page routes or root pages path', () => {
+    expect(isCmsPagePath('/fi/pages')).toBe(false);
+    expect(isCmsPagePath('/fi/pages/')).toBe(false);
+    expect(isCmsPagePath('/fi/events')).toBe(false);
+    expect(isCmsPagePath('/fi/articles/ensimmainen-artikkeli')).toBe(false);
+    expect(isCmsPagePath('/fi/profile')).toBe(false);
+    expect(isCmsPagePath('/fi/ajankohtaista')).toBe(false);
+    expect(isCmsPagePath('')).toBe(false);
+  });
+});
+
+describe('isCmsArticlePath', () => {
+  it('returns true when pathname points to an individual CMS article', () => {
+    expect(isCmsArticlePath('/fi/articles/ensimmainen-artikkeli')).toBe(true);
+    expect(isCmsArticlePath('/sv/articles/forsta-artikeln/')).toBe(true);
+    expect(isCmsArticlePath('/articles/first-article')).toBe(true);
+  });
+
+  it('returns false for article archive or non-article routes', () => {
+    expect(isCmsArticlePath('/fi/articles')).toBe(false);
+    expect(isCmsArticlePath('/fi/articles/')).toBe(false);
+    expect(isCmsArticlePath('/fi/articles-info')).toBe(false);
+    expect(isCmsArticlePath('/fi/pages/tietoa-meista')).toBe(false);
+    expect(isCmsArticlePath('/fi/events')).toBe(false);
+    expect(isCmsArticlePath('')).toBe(false);
   });
 });

@@ -7,6 +7,9 @@ import {
 
 import ArticleArchivePage from '../../../article/ArticleArchivePage';
 import ArticlePage from '../../../article/ArticlePage';
+import NotFound from '../../notFound/NotFound';
+import LegacyCmsPageRedirect from '../LegacyCmsPageRedirect';
+import { LEGACY_CMS_PAGE_SLUGS } from '../legacyCmsRedirectRoutes';
 import headlessCmsClient from '../../../headlessCms/client';
 import {
   cmsArticleLoader,
@@ -141,7 +144,7 @@ describe('browserRouter loaders', () => {
   });
 
   describe('route loader assignments', () => {
-    it('assigns loaders to CMS pages, articles, and catch-all routes', () => {
+    it('assigns loaders to CMS pages and articles, while catch-all renders NotFound without loader', () => {
       const routes = getAppRoutes();
       const pageMatches = matchRoutes(routes, '/fi/pages/tietoa-meista');
       const articleMatches = matchRoutes(routes, '/fi/articles/artikkeli');
@@ -149,8 +152,20 @@ describe('browserRouter loaders', () => {
 
       expect(pageMatches?.at(-1)?.route.loader).toBe(cmsPageLoader);
       expect(articleMatches?.at(-1)?.route.loader).toBe(cmsArticleLoader);
-      expect(catchAllMatches?.at(-1)?.route.loader).toBe(cmsPageLoader);
+      expect(catchAllMatches?.at(-1)?.route.Component).toBe(NotFound);
+      expect(catchAllMatches?.at(-1)?.route.loader).toBeUndefined();
     });
+  });
+
+  describe('legacy CMS page redirects', () => {
+    it.each(LEGACY_CMS_PAGE_SLUGS)(
+      'matches legacy CMS page slug "%s" with LegacyCmsPageRedirect component',
+      (slug) => {
+        const routes = getAppRoutes();
+        const matches = matchRoutes(routes, `/fi/${slug}`);
+        expect(matches?.at(-1)?.route.Component).toBe(LegacyCmsPageRedirect);
+      }
+    );
   });
 });
 
