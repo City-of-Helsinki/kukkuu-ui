@@ -9,16 +9,13 @@
 .navSkeletonBar {
   display: none;
 
-  @include layout.respond-above(m) {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: var(--spacing-layout-l, 4rem);
+  @include layout.respond-above(l) {
     display: flex;
     align-items: center;
-    pointer-events: none;
-    z-index: 1;
+    width: 100%;
+    min-height: var(--spacing-layout-l, 4rem);
+    background-color: var(--color-white, #fff);
+    border-bottom: 1px solid var(--header-divider-color, var(--color-black-20));
   }
 }
 
@@ -26,8 +23,8 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-l, 2rem);
-  padding: 0 var(--spacing-m, 16px);
+  padding: 0 var(--header-margin, var(--spacing-m, 16px));
   width: 100%;
-  max-width: var(--breakpoint-xl, 1248px);
+  max-width: var(--header-max-width, var(--breakpoint-xl, 1248px));
   margin: 0 auto;
 }

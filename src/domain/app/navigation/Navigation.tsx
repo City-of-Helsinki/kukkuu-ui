@@ -17,6 +17,7 @@ import { useCmsLanguageOptions } from '../../../hooks/useCmsLanguageOptions';
 import { stripLocaleFromUri } from '../../../utils/cmsUtils';
 import AppConfig from '../AppConfig';
 import {
+  closeMobileMenu,
   getIsMenuItemActive,
   prefetchCmsMenuItems,
   scheduleIdle,
@@ -47,9 +48,8 @@ function Navigation() {
         return `/${language.toLowerCase()}${strippedPathname}`;
       }
 
-      return `/${language.toLowerCase()}${
-        strippedPathname ? stripLocaleFromUri(nav?.uri ?? '') : ''
-      }`;
+      return `/${language.toLowerCase()}${strippedPathname ? stripLocaleFromUri(nav?.uri ?? '') : ''
+        }`;
     },
     [cmsLanguageOptions, location.pathname]
   );
@@ -67,7 +67,7 @@ function Navigation() {
 
   const headerMenuName =
     AppConfig.cmsHeaderMenuNames[
-      i18n.language as keyof typeof AppConfig.cmsHeaderMenuNames
+    i18n.language as keyof typeof AppConfig.cmsHeaderMenuNames
     ] ?? AppConfig.cmsHeaderMenuNames.fi;
 
   const menuQueryResult = useMenuQuery({
@@ -91,6 +91,32 @@ function Navigation() {
     return cancelIdle;
   }, [menuItems, i18n.language]);
 
+  useEffect(() => {
+    closeMobileMenu();
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleDocumentClick = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      const link = target?.closest('a');
+      // HDS renders the mobile drawer's frontpage item with href="#".
+      // Intercept it to navigate to the localized frontpage instead of appending "#".
+      if (
+        link?.getAttribute('href') === '#' &&
+        link.closest('#hds-mobile-menu')
+      ) {
+        event.preventDefault();
+        const rootPath = i18n.language === 'fi' ? '/' : `/${i18n.language}`;
+        navigate(rootPath);
+      }
+    };
+
+    document.addEventListener('click', handleDocumentClick);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, [i18n.language, navigate]);
+
   return (
     <div
       className={styles.navigationWrapper}
@@ -98,13 +124,19 @@ function Navigation() {
     >
       <RHHCNavigation
         menuName={headerMenuName}
-        onTitleClick={() => {
+        onTitleClick={(event?: React.MouseEvent) => {
+          event?.preventDefault();
           const rootPath = i18n.language === 'fi' ? '/' : `/${i18n.language}`;
           navigate(rootPath);
         }}
         getPathnameForLanguage={getPathnameForLanguage}
         getIsItemActive={getIsItemActive}
-        userNavigation={<UserNavigation />}
+        userNavigation={
+          <UserNavigation
+            fixedRightPosition
+            isNavLoading={isNavLoading}
+          />
+        }
       />
       {isNavLoading && (
         <div

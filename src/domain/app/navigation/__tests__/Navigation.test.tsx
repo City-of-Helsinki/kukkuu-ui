@@ -1,5 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi, afterEach } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import * as HdsReact from 'hds-react';
+import * as ReactRouter from 'react-router';
 import type { MenuItem } from '@city-of-helsinki/react-helsinki-headless-cms';
 import {
   ArticleDocument,
@@ -7,16 +10,30 @@ import {
 } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
 import Navigation from '../Navigation';
+import UserNavigation from '../UserNavigation';
 import {
   extractMenuItems,
   getIsMenuItemActive,
+  getUserDisplayInfo,
   prefetchCmsMenuItems,
   scheduleIdle,
 } from '../navigationUtils';
 import headlessCmsClient from '../../../headlessCms/client';
+import AppConfig from '../../AppConfig';
+import * as ProfileContext from '../../../profile/hooks/useProfileContext';
+import * as UseLogoutModule from '../../../auth/useLogout';
+import { Language } from '../../../api/generatedTypes/graphql';
+import type { MyProfile } from '../../../profile/types/ProfileQueryTypes';
 import { headerMenuMock } from '../__mocks__/headerMenuMock';
 import { languagesMock } from '../../footer/__mocks__/languagesMock';
 import { customRender } from '../../../../common/test/customRender';
+
+vi.mock('react-router', async (importOriginal: () => Promise<object>) => {
+  const mod = await importOriginal();
+  return {
+    ...mod,
+  };
+});
 
 describe('getIsMenuItemActive', () => {
   const createMenuItem = (path?: string | null): MenuItem =>
@@ -337,5 +354,210 @@ describe('prefetchCmsMenuItems', () => {
     expect(() => {
       prefetchCmsMenuItems(items, 'fi', mockClient as never);
     }).not.toThrow();
+  });
+});
+
+describe('getUserDisplayInfo', () => {
+  const guardianProfileMock: MyProfile = {
+    id: 'guardian-1',
+    firstName: 'Maija',
+    lastName: 'Meikäläinen',
+    email: 'maija@example.com',
+    phoneNumber: '+358401234567',
+    language: Language.Fi,
+    hasAcceptedCommunication: true,
+    children: { edges: [] },
+    languagesSpokenAtHome: { edges: [] },
+  };
+
+  it('prioritizes Kukkuu Guardian profile firstName and lastName for fullName and initials', () => {
+    expect(
+      getUserDisplayInfo(guardianProfileMock, {
+        given_name: 'OidcFirst',
+        family_name: 'OidcLast',
+        email: 'oidc@example.com',
+      })
+    ).toEqual({
+      fullName: 'Maija Meikäläinen',
+      initials: 'MM',
+    });
+  });
+
+  it('falls back to OIDC user profile given_name and family_name when Guardian profile is null', () => {
+    expect(
+      getUserDisplayInfo(null, {
+        given_name: 'Matti',
+        family_name: 'Meikäläinen',
+        email: 'matti@example.com',
+      })
+    ).toEqual({
+      fullName: 'Matti Meikäläinen',
+      initials: 'MM',
+    });
+  });
+
+  it('falls back to OIDC name or email when given_name and family_name are missing', () => {
+    expect(
+      getUserDisplayInfo(null, {
+        name: 'Liisa Virtanen',
+      })
+    ).toEqual({
+      fullName: 'Liisa Virtanen',
+      initials: 'LV',
+    });
+
+    expect(
+      getUserDisplayInfo(null, {
+        email: 'test@hel.fi',
+      })
+    ).toEqual({
+      fullName: 'test@hel.fi',
+      initials: 'T',
+    });
+  });
+
+  it('returns empty strings when both profiles are empty', () => {
+    expect(getUserDisplayInfo(null, null)).toEqual({
+      fullName: '',
+      initials: '',
+    });
+  });
+});
+
+describe('<UserNavigation />', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it('renders login button when unauthenticated and calls login on click', async () => {
+    const user = userEvent.setup();
+    const loginMock = vi.fn().mockResolvedValue(undefined);
+    vi.spyOn(HdsReact, 'useOidcClient').mockReturnValue({
+      isAuthenticated: () => false,
+      isRenewing: () => false,
+      login: loginMock,
+    } as never);
+
+    customRender(
+      <HdsReact.Header>
+        <HdsReact.Header.ActionBar
+          title="Kulttuurin kummilapset"
+          frontPageLabel="Kulttuurin kummilapset"
+          titleHref="#"
+          logo={<HdsReact.Logo src="dummy" alt="Helsinki" />}
+        >
+          <UserNavigation fixedRightPosition />
+        </HdsReact.Header.ActionBar>
+      </HdsReact.Header>
+    );
+
+    const signInContainer = document.getElementById('signinButton');
+    expect(signInContainer).toBeInTheDocument();
+
+    const signInButton = signInContainer?.querySelector('button');
+    expect(signInButton).toBeInTheDocument();
+    expect(signInButton).toHaveTextContent('Kirjaudu');
+
+    await user.click(signInButton!);
+    expect(loginMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders initials avatar, full name, and profile dropdown items when authenticated', async () => {
+    const user = userEvent.setup();
+    const logoutMock = vi.fn();
+    const navigateMock = vi.fn().mockResolvedValue(undefined);
+    const windowOpenSpy = vi
+      .spyOn(globalThis.window, 'open')
+      .mockImplementation(() => null);
+    vi.spyOn(AppConfig, 'helsinkiProfileUrl', 'get').mockReturnValue(
+      'https://profiili.test.hel.ninja'
+    );
+
+    vi.spyOn(ReactRouter, 'useNavigate').mockReturnValue(navigateMock);
+    vi.spyOn(UseLogoutModule, 'default').mockReturnValue(logoutMock);
+    vi.spyOn(HdsReact, 'useOidcClient').mockReturnValue({
+      isAuthenticated: () => true,
+      isRenewing: () => false,
+      login: vi.fn(),
+    } as never);
+    vi.spyOn(HdsReact, 'useAuthenticatedUser').mockReturnValue({
+      profile: {
+        given_name: 'Maija',
+        family_name: 'Meikäläinen',
+      },
+    } as never);
+    vi.spyOn(ProfileContext, 'useProfileContext').mockReturnValue({
+      profile: {
+        id: 'guardian-1',
+        firstName: 'Maija',
+        lastName: 'Meikäläinen',
+        email: 'maija@example.com',
+        phoneNumber: '+358401234567',
+        language: Language.Fi,
+        hasAcceptedCommunication: true,
+        children: { edges: [] },
+        languagesSpokenAtHome: { edges: [] },
+      },
+      isLoading: false,
+      isFetchCalled: true,
+      clearProfile: vi.fn(),
+      updateProfile: vi.fn(),
+      refetchProfile: vi.fn(),
+    });
+
+    customRender(
+      <HdsReact.Header>
+        <HdsReact.Header.ActionBar
+          title="Kulttuurin kummilapset"
+          frontPageLabel="Kulttuurin kummilapset"
+          titleHref="#"
+          logo={<HdsReact.Logo src="dummy" alt="Helsinki" />}
+        >
+          <UserNavigation fixedRightPosition />
+        </HdsReact.Header.ActionBar>
+      </HdsReact.Header>
+    );
+
+    const userDropdownContainer = document.getElementById('userDropdownButton');
+    expect(userDropdownContainer).toBeInTheDocument();
+    expect(screen.getByText('MM')).toBeInTheDocument();
+
+    const toggleButton = userDropdownContainer?.querySelector('button');
+    expect(toggleButton).toHaveAttribute('aria-label', 'Maija Meikäläinen');
+
+    await user.click(toggleButton!);
+
+    // Full name heading is rendered inside the opened dropdown
+    expect(
+      screen.getByRole('heading', { name: 'Maija Meikäläinen' })
+    ).toBeInTheDocument();
+
+    const profileItem = screen.getByRole('button', {
+      name: 'Kulttuurilapset-profiili',
+    });
+    expect(profileItem).toBeInTheDocument();
+
+    const helsinkiProfileButton = screen.getByRole('button', {
+      name: /Helsinki-profiili/i,
+    });
+    expect(helsinkiProfileButton).toBeInTheDocument();
+
+    const logoutItem = screen.getByRole('button', {
+      name: 'Kirjaudu ulos',
+    });
+    expect(logoutItem).toBeInTheDocument();
+
+    await user.click(helsinkiProfileButton);
+    expect(windowOpenSpy).toHaveBeenCalledWith(
+      'https://profiili.test.hel.ninja',
+      '_blank',
+      'noopener,noreferrer'
+    );
+
+    await user.click(profileItem);
+    expect(navigateMock).toHaveBeenCalledWith('/profile');
+
+    await user.click(logoutItem);
+    expect(logoutMock).toHaveBeenCalledTimes(1);
   });
 });

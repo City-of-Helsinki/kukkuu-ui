@@ -69,15 +69,18 @@ exports[`renders without crashing 1`] = `
                       class="HeaderLanguageSelector-module_languageNodes__LXQ2h"
                     />
                   </div>
+                  <hr
+                    aria-hidden="true"
+                  />
                   <div
-                    class="HeaderActionBarItem-module_container__6F--R _list_074ea4 HeaderActionBarItem-module_hasContent__9gdAB"
+                    class="HeaderActionBarItem-module_container__6F--R _signInActionBarItem_074ea4 HeaderActionBarItem-module_hasContent__9gdAB"
                     id="signinButton"
                   >
                     <button
                       aria-controls="signinButton-dropdown"
                       aria-expanded="false"
-                      aria-label="[object Object]"
-                      class="HeaderActionBarItemButton-module_actionBarItemButton__5WYgl HeaderActionBarItem-module_icon__ZgvEN"
+                      aria-label="Kirjaudu"
+                      class="HeaderActionBarItemButton-module_actionBarItemButton__5WYgl HeaderActionBarItem-module_icon__ZgvEN HeaderActionBarItemButton-module_fixedRightPosition__nDnNx"
                       type="button"
                     >
                       <div
@@ -106,11 +109,7 @@ exports[`renders without crashing 1`] = `
                           <span
                             class="HeaderActionBarItemButton-module_actionBarItemButtonLabel__SVUhV"
                           >
-                            <span
-                              class="_hideBelowSmall_074ea4"
-                            >
-                              Kirjaudu
-                            </span>
+                            Kirjaudu
                           </span>
                         </span>
                         <div
@@ -139,11 +138,7 @@ exports[`renders without crashing 1`] = `
                             aria-hidden="true"
                             class="HeaderActionBarItemButton-module_actionBarItemButtonLabel__SVUhV"
                           >
-                            <span
-                              class="_hideBelowSmall_074ea4"
-                            >
-                              Kirjaudu
-                            </span>
+                            Kirjaudu
                           </span>
                         </div>
                       </div>
