@@ -8,7 +8,7 @@ import HeadlessCmsPage from '../HeadlessCmsPage';
 
 describe('<HeadlessCmsPage />', () => {
   it('renders CMS subpage title, content, and breadcrumbs', async () => {
-    window.history.pushState({}, '', '/fi/ajankohtaista');
+    window.history.pushState({}, '', '/fi/pages/ajankohtaista');
 
     const cmsPage = fakePage({
       title: 'Ajankohtaista',
@@ -24,7 +24,7 @@ describe('<HeadlessCmsPage />', () => {
         },
         {
           title: 'Ajankohtaista',
-          uri: '/fi/ajankohtaista/',
+          uri: '/fi/pages/ajankohtaista/',
           __typename: 'Breadcrumb',
         },
       ],
@@ -34,7 +34,7 @@ describe('<HeadlessCmsPage />', () => {
       {
         request: {
           query: PageDocument,
-          variables: { id: '/fi/ajankohtaista' },
+          variables: { id: '/fi/pages/ajankohtaista' },
         },
         result: {
           data: {
@@ -54,7 +54,7 @@ describe('<HeadlessCmsPage />', () => {
   });
 
   it('falls back to page.title and page.lead when hero fields are empty and does not duplicate h1', async () => {
-    window.history.pushState({}, '', '/fi/ohjeita-ja-ukk');
+    window.history.pushState({}, '', '/fi/pages/ohjeita-ja-ukk');
 
     const cmsPage = fakePage({
       title: 'Ohjeita ja UKK',
@@ -76,7 +76,7 @@ describe('<HeadlessCmsPage />', () => {
       {
         request: {
           query: PageDocument,
-          variables: { id: '/fi/ohjeita-ja-ukk' },
+          variables: { id: '/fi/pages/ohjeita-ja-ukk' },
         },
         result: {
           data: {
@@ -111,13 +111,13 @@ describe('<HeadlessCmsPage />', () => {
   });
 
   it('renders NotFound component when CMS returns no page for the given route', async () => {
-    window.history.pushState({}, '', '/fi/tuntematon-sivu');
+    window.history.pushState({}, '', '/fi/pages/tuntematon-sivu');
 
     render(<HeadlessCmsPage />, [
       {
         request: {
           query: PageDocument,
-          variables: { id: '/fi/tuntematon-sivu' },
+          variables: { id: '/fi/pages/tuntematon-sivu' },
         },
         result: {
           data: {
@@ -138,12 +138,12 @@ describe('<HeadlessCmsPage />', () => {
   });
 
   it('renders accessible skeleton without spinner while page is loading', async () => {
-    window.history.pushState({}, '', '/fi/tietoa-meista');
+    window.history.pushState({}, '', '/fi/pages/tietoa-meista');
 
     const delayedPageMock = {
       request: {
         query: PageDocument,
-        variables: { id: '/fi/tietoa-meista' },
+        variables: { id: '/fi/pages/tietoa-meista' },
       },
       delay: 500,
       result: {
