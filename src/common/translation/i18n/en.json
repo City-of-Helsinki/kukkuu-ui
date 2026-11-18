@@ -106,6 +106,7 @@
       "label": "Back"
     },
     "breadcrumbListLabel": "Breadcrumbs",
+    "breadcrumbLoadingLabel": "Loading breadcrumbs",
     "breadcrumbNavigationLabel": "Breadcrumb navigation",
     "breadcrumbs": {
       "home": "Home",

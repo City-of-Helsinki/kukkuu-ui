@@ -37,7 +37,8 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-coat-of-arms);
+    outline: 2px solid
+      var(--footer-focus-outline-color, var(--color-coat-of-arms));
     outline-offset: 2px;
   }
 }

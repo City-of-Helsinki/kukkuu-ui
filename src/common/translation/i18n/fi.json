@@ -106,6 +106,7 @@
       "label": "Palaa"
     },
     "breadcrumbListLabel": "Leivänmurut",
+    "breadcrumbLoadingLabel": "Ladataan murupolkua",
     "breadcrumbNavigationLabel": "Leivänmurunavigaatio",
     "breadcrumbs": {
       "home": "Etusivu",

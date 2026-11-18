@@ -68,7 +68,9 @@ describe('CmsSkeleton primitives', () => {
 
   describe('FooterPillSkeleton', () => {
     it('renders with aria-hidden="true" and custom width', () => {
-      render(<FooterPillSkeleton width="9rem" className="custom-footer-pill" />);
+      render(
+        <FooterPillSkeleton width="9rem" className="custom-footer-pill" />
+      );
       const el = screen.getByTestId('footer-pill-skeleton');
       expect(el).toBeInTheDocument();
       expect(el).toHaveAttribute('aria-hidden', 'true');
@@ -78,10 +80,11 @@ describe('CmsSkeleton primitives', () => {
   });
 
   describe('BreadcrumbSkeleton', () => {
-    it('renders single line placeholder when rootTitle is not provided', () => {
+    it('renders single line placeholder when rootTitle is not provided with localized loading aria-label', () => {
       render(<BreadcrumbSkeleton />);
       const nav = screen.getByTestId('breadcrumb-skeleton');
       expect(nav).toBeInTheDocument();
+      expect(nav).toHaveAttribute('aria-label', 'Ladataan murupolkua');
       expect(screen.getByTestId('skeleton-line')).toBeInTheDocument();
     });
 
@@ -89,10 +92,27 @@ describe('CmsSkeleton primitives', () => {
       render(<BreadcrumbSkeleton rootTitle="Etusivu" rootPath="/fi" />);
       const nav = screen.getByTestId('breadcrumb-skeleton');
       expect(nav).toBeInTheDocument();
+      expect(nav).toHaveAttribute('aria-label', 'Ladataan murupolkua');
       const link = screen.getByRole('link', { name: 'Etusivu' });
       expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute('href', '/fi');
       expect(screen.getByTestId('skeleton-line')).toBeInTheDocument();
+    });
+
+    it('accepts custom aria-label and ariaLabel override props', () => {
+      const { rerender } = render(
+        <BreadcrumbSkeleton aria-label="Custom breadcrumb label" />
+      );
+      expect(screen.getByTestId('breadcrumb-skeleton')).toHaveAttribute(
+        'aria-label',
+        'Custom breadcrumb label'
+      );
+
+      rerender(<BreadcrumbSkeleton ariaLabel="Another custom label" />);
+      expect(screen.getByTestId('breadcrumb-skeleton')).toHaveAttribute(
+        'aria-label',
+        'Another custom label'
+      );
     });
   });
 
