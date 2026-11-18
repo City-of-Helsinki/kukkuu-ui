@@ -4,6 +4,7 @@ import {
   isCmsArticlePath,
   isCmsPagePath,
   removeSurroundingSlashes,
+  withCmsPagesContextPath,
 } from '../cmsUtils';
 
 describe('hasCmsCollections', () => {
@@ -123,5 +124,37 @@ describe('isCmsArticlePath', () => {
     expect(isCmsArticlePath('/fi/pages/tietoa-meista')).toBe(false);
     expect(isCmsArticlePath('/fi/events')).toBe(false);
     expect(isCmsArticlePath('')).toBe(false);
+  });
+});
+
+describe('withCmsPagesContextPath', () => {
+  it('returns uri unchanged for root or empty path', () => {
+    expect(withCmsPagesContextPath('/')).toBe('/');
+    expect(withCmsPagesContextPath('')).toBe('');
+    expect(withCmsPagesContextPath('/fi')).toBe('/fi');
+    expect(withCmsPagesContextPath('/fi/')).toBe('/fi/');
+  });
+
+  it('returns uri unchanged when already prefixed with context path', () => {
+    expect(withCmsPagesContextPath('/fi/pages/tietoa-meista')).toBe(
+      '/fi/pages/tietoa-meista'
+    );
+    expect(withCmsPagesContextPath('/pages/about')).toBe('/pages/about');
+    expect(withCmsPagesContextPath('/fi/pages')).toBe('/fi/pages');
+  });
+
+  it('prefixes legacy slugs that merely share the prefix with context path', () => {
+    expect(withCmsPagesContextPath('/fi/pages-info')).toBe(
+      '/fi/pages/pages-info'
+    );
+    expect(withCmsPagesContextPath('/pages-faq')).toBe('/pages/pages-faq');
+  });
+
+  it('prefixes standard unprefixed CMS slugs', () => {
+    expect(withCmsPagesContextPath('/fi/tietoa-meista')).toBe(
+      '/fi/pages/tietoa-meista'
+    );
+    expect(withCmsPagesContextPath('/sv/om-oss')).toBe('/sv/pages/om-oss');
+    expect(withCmsPagesContextPath('/about')).toBe('/pages/about');
   });
 });

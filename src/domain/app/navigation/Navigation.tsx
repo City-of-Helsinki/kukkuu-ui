@@ -1,8 +1,5 @@
 import { useCallback, useEffect } from 'react';
-import {
-  Navigation as RHHCNavigation,
-  useMenuQuery,
-} from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
+import { useMenuQuery } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 import {
@@ -18,12 +15,15 @@ import { stripLocaleFromUri } from '../../../utils/cmsUtils';
 import AppConfig from '../AppConfig';
 import {
   closeMobileMenu,
+  closeUserDropdown,
   getIsMenuItemActive,
   prefetchCmsMenuItems,
   scheduleIdle,
 } from './navigationUtils';
-import { NavPillSkeleton } from '../../../common/components/skeleton/CmsSkeleton';
 import { useCmsLoadingState } from '../../../hooks/useCmsLoadingState';
+import { HeaderNavigation } from './HeaderNavigation';
+import { DEFAULT_LANGUAGE } from '../../../common/translation/TranslationConstants';
+import { HARDCODED_CMS_LANGUAGES } from '../../languages/constants';
 import styles from './navigation.module.scss';
 
 function Navigation() {
@@ -48,8 +48,9 @@ function Navigation() {
         return `/${language.toLowerCase()}${strippedPathname}`;
       }
 
-      return `/${language.toLowerCase()}${strippedPathname ? stripLocaleFromUri(nav?.uri ?? '') : ''
-        }`;
+      return `/${language.toLowerCase()}${
+        strippedPathname ? stripLocaleFromUri(nav?.uri ?? '') : ''
+      }`;
     },
     [cmsLanguageOptions, location.pathname]
   );
@@ -67,7 +68,7 @@ function Navigation() {
 
   const headerMenuName =
     AppConfig.cmsHeaderMenuNames[
-    i18n.language as keyof typeof AppConfig.cmsHeaderMenuNames
+      i18n.language as keyof typeof AppConfig.cmsHeaderMenuNames
     ] ?? AppConfig.cmsHeaderMenuNames.fi;
 
   const menuQueryResult = useMenuQuery({
@@ -92,65 +93,36 @@ function Navigation() {
   }, [menuItems, i18n.language]);
 
   useEffect(() => {
-    closeMobileMenu();
+    closeUserDropdown();
   }, [location.pathname]);
 
-  useEffect(() => {
-    const handleDocumentClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
-      const link = target?.closest('a');
-      // HDS renders the mobile drawer's frontpage item with href="#".
-      // Intercept it to navigate to the localized frontpage instead of appending "#".
-      if (
-        link?.getAttribute('href') === '#' &&
-        link.closest('#hds-mobile-menu')
-      ) {
-        event.preventDefault();
-        const rootPath = i18n.language === 'fi' ? '/' : `/${i18n.language}`;
-        navigate(rootPath);
-      }
-    };
-
-    document.addEventListener('click', handleDocumentClick);
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-    };
-  }, [i18n.language, navigate]);
+  const handleTitleClick = (event?: React.MouseEvent) => {
+    event?.preventDefault();
+    closeMobileMenu();
+    closeUserDropdown();
+    const rootPath =
+      i18n.language === DEFAULT_LANGUAGE.toString() ? '/' : `/${i18n.language}`;
+    navigate(rootPath);
+  };
 
   return (
     <div
       className={styles.navigationWrapper}
       aria-busy={isNavLoading ? 'true' : undefined}
     >
-      <RHHCNavigation
-        menuName={headerMenuName}
-        onTitleClick={(event?: React.MouseEvent) => {
-          event?.preventDefault();
-          const rootPath = i18n.language === 'fi' ? '/' : `/${i18n.language}`;
-          navigate(rootPath);
-        }}
+      <HeaderNavigation
+        menu={menuQueryResult.data?.menu}
+        languages={[...HARDCODED_CMS_LANGUAGES]}
         getPathnameForLanguage={getPathnameForLanguage}
         getIsItemActive={getIsItemActive}
+        onTitleClick={handleTitleClick}
+        isLoading={isNavLoading}
         userNavigation={
           <UserNavigation
             fixedRightPosition
-            isNavLoading={isNavLoading}
           />
         }
       />
-      {isNavLoading && (
-        <div
-          className={styles.navSkeletonBar}
-          data-testid="nav-menu-skeleton"
-          aria-hidden="true"
-        >
-          <div className={styles.navSkeletonRow}>
-            <NavPillSkeleton width="6rem" />
-            <NavPillSkeleton width="7.5rem" />
-            <NavPillSkeleton width="6.5rem" />
-          </div>
-        </div>
-      )}
     </div>
   );
 }

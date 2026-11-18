@@ -1,19 +1,45 @@
 import type { ApolloClient, NormalizedCacheObject } from '@apollo/client';
+import { Header, type LanguageOption } from 'hds-react';
 import { type LoaderFunctionArgs } from 'react-router';
 import {
+  isNonEmptyLanguage,
+  languageSorter,
   MenuItem,
   ModuleItemTypeEnum,
+  toPrimaryLanguageOption,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import type { ProfileType } from '../../profile/ProfileContext';
 import AppConfig from '../AppConfig';
 import { cmsArticleLoader, cmsPageLoader } from '../routes/cmsLoaders';
+import { HARDCODED_CMS_LANGUAGES } from '../../languages/constants';
 import {
   getRoutedInternalHref,
   isCmsArticlePath,
   isCmsPagePath,
   stripLocaleFromUri,
 } from '../../../utils/cmsUtils';
+
+type HeaderLinkProps = React.ComponentProps<typeof Header.Link>;
+
+export type NavigationItem = Omit<
+  MenuItem,
+  'children' | 'label' | 'path'
+> &
+  Pick<HeaderLinkProps, 'label' | 'active' | 'onClick'> & {
+    path: string;
+    children?: NavigationItem[];
+  };
+
+/**
+ * Pre-configured navigation language options derived from the CMS language configuration.
+ */
+export const DEFAULT_LANGUAGE_OPTIONS: LanguageOption[] = [
+  ...HARDCODED_CMS_LANGUAGES,
+]
+  .filter(isNonEmptyLanguage)
+  .sort(languageSorter)
+  .map((language) => toPrimaryLanguageOption(language));
 
 export type OidcProfileLike = {
   given_name?: string;
@@ -70,10 +96,41 @@ export const closeMobileMenu = () => {
   if (typeof document === 'undefined') {
     return;
   }
-  const menuButton = document.getElementById('Menu');
+  const menuElement = document.getElementById('Menu');
+  const menuButton =
+    menuElement?.tagName.toLowerCase() === 'button'
+      ? (menuElement as HTMLButtonElement)
+      : menuElement?.querySelector<HTMLButtonElement>('button');
+
   if (menuButton?.getAttribute('aria-expanded') === 'true') {
     menuButton.click();
   }
+};
+
+/**
+ * Closes the HDS user dropdown menu if currently open.
+ */
+export const closeUserDropdown = () => {
+  if (typeof document === 'undefined') {
+    return;
+  }
+  const userDropdownElement = document.getElementById('userDropdownButton');
+  const userButton =
+    userDropdownElement?.tagName.toLowerCase() === 'button'
+      ? (userDropdownElement as HTMLButtonElement)
+      : userDropdownElement?.querySelector<HTMLButtonElement>('button');
+
+  if (userButton?.getAttribute('aria-expanded') === 'true') {
+    userButton.click();
+  }
+};
+
+/**
+ * Closes all open navigation menus (mobile drawer and user dropdown).
+ */
+export const closeNavigationMenu = () => {
+  closeUserDropdown();
+  closeMobileMenu();
 };
 
 /**

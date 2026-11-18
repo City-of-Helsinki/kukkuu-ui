@@ -12,6 +12,9 @@ import {
 import Navigation from '../Navigation';
 import UserNavigation from '../UserNavigation';
 import {
+  closeMobileMenu,
+  closeNavigationMenu,
+  closeUserDropdown,
   extractMenuItems,
   getIsMenuItemActive,
   getUserDisplayInfo,
@@ -452,14 +455,10 @@ describe('<UserNavigation />', () => {
       </HdsReact.Header>
     );
 
-    const signInContainer = document.getElementById('signinButton');
-    expect(signInContainer).toBeInTheDocument();
-
-    const signInButton = signInContainer?.querySelector('button');
+    const signInButton = screen.getByRole('button', { name: 'Kirjaudu' });
     expect(signInButton).toBeInTheDocument();
-    expect(signInButton).toHaveTextContent('Kirjaudu');
 
-    await user.click(signInButton!);
+    await user.click(signInButton);
     expect(loginMock).toHaveBeenCalledTimes(1);
   });
 
@@ -519,24 +518,19 @@ describe('<UserNavigation />', () => {
       </HdsReact.Header>
     );
 
-    const userDropdownContainer = document.getElementById('userDropdownButton');
-    expect(userDropdownContainer).toBeInTheDocument();
     expect(screen.getByText('MM')).toBeInTheDocument();
 
-    const toggleButton = userDropdownContainer?.querySelector('button');
-    expect(toggleButton).toHaveAttribute('aria-label', 'Maija Meikäläinen');
+    const toggleButton = screen.getByRole('button', {
+      name: 'Maija Meikäläinen',
+    });
+    expect(toggleButton).toBeInTheDocument();
 
-    await user.click(toggleButton!);
+    await user.click(toggleButton);
 
     // Full name heading is rendered inside the opened dropdown
     expect(
       screen.getByRole('heading', { name: 'Maija Meikäläinen' })
     ).toBeInTheDocument();
-
-    const profileItem = screen.getByRole('button', {
-      name: 'Kulttuurilapset-profiili',
-    });
-    expect(profileItem).toBeInTheDocument();
 
     const helsinkiProfileButton = screen.getByRole('button', {
       name: /Helsinki-profiili/i,
@@ -554,11 +548,103 @@ describe('<UserNavigation />', () => {
       '_blank',
       'noopener,noreferrer'
     );
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'false');
 
+    // Reopen dropdown and query profile button afresh before clicking
+    await user.click(toggleButton);
+    const profileItem = screen.getByRole('button', {
+      name: 'Kulttuurilapset-profiili',
+    });
+    expect(profileItem).toBeInTheDocument();
     await user.click(profileItem);
     expect(navigateMock).toHaveBeenCalledWith('/profile');
+    // Ensure clicking profile button closes the user dropdown menu
+    expect(toggleButton).toHaveAttribute('aria-expanded', 'false');
 
-    await user.click(logoutItem);
+    // Re-open for testing logout
+    await user.click(toggleButton!);
+    const updatedLogoutItem = screen.getByRole('button', {
+      name: 'Kirjaudu ulos',
+    });
+    await user.click(updatedLogoutItem);
     expect(logoutMock).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('navigation menu close helpers', () => {
+  it('closeUserDropdown clicks toggle button when open', () => {
+    const container = document.createElement('div');
+    container.id = 'userDropdownButton';
+    const button = document.createElement('button');
+    button.setAttribute('aria-expanded', 'true');
+    const clickSpy = vi.fn();
+    button.addEventListener('click', clickSpy);
+    container.appendChild(button);
+    document.body.appendChild(container);
+
+    closeUserDropdown();
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+
+    document.body.removeChild(container);
+  });
+
+  it('closeUserDropdown does nothing when toggle button is closed', () => {
+    const container = document.createElement('div');
+    container.id = 'userDropdownButton';
+    const button = document.createElement('button');
+    button.setAttribute('aria-expanded', 'false');
+    const clickSpy = vi.fn();
+    button.addEventListener('click', clickSpy);
+    container.appendChild(button);
+    document.body.appendChild(container);
+
+    closeUserDropdown();
+    expect(clickSpy).not.toHaveBeenCalled();
+
+    document.body.removeChild(container);
+  });
+
+  it('closeMobileMenu clicks mobile menu button when open', () => {
+    const container = document.createElement('div');
+    container.id = 'Menu';
+    const button = document.createElement('button');
+    button.setAttribute('aria-expanded', 'true');
+    const clickSpy = vi.fn();
+    button.addEventListener('click', clickSpy);
+    container.appendChild(button);
+    document.body.appendChild(container);
+
+    closeMobileMenu();
+    expect(clickSpy).toHaveBeenCalledTimes(1);
+
+    document.body.removeChild(container);
+  });
+
+  it('closeNavigationMenu closes both user dropdown and mobile menu', () => {
+    const userContainer = document.createElement('div');
+    userContainer.id = 'userDropdownButton';
+    const userBtn = document.createElement('button');
+    userBtn.setAttribute('aria-expanded', 'true');
+    const userClickSpy = vi.fn();
+    userBtn.addEventListener('click', userClickSpy);
+    userContainer.appendChild(userBtn);
+
+    const mobileContainer = document.createElement('div');
+    mobileContainer.id = 'Menu';
+    const mobileBtn = document.createElement('button');
+    mobileBtn.setAttribute('aria-expanded', 'true');
+    const mobileClickSpy = vi.fn();
+    mobileBtn.addEventListener('click', mobileClickSpy);
+    mobileContainer.appendChild(mobileBtn);
+
+    document.body.appendChild(userContainer);
+    document.body.appendChild(mobileContainer);
+
+    closeNavigationMenu();
+    expect(userClickSpy).toHaveBeenCalledTimes(1);
+    expect(mobileClickSpy).toHaveBeenCalledTimes(1);
+
+    document.body.removeChild(userContainer);
+    document.body.removeChild(mobileContainer);
   });
 });

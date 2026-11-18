@@ -28,3 +28,15 @@
   max-width: var(--header-max-width, var(--breakpoint-xl, 1248px));
   margin: 0 auto;
 }
+
+.navMenuHiddenOnDesktop {
+  @include layout.respond-above(l) {
+    display: none !important;
+  }
+}
+
+div:has(> nav.navMenuHiddenOnDesktop) {
+  @include layout.respond-above(l) {
+    display: none !important;
+  }
+}
