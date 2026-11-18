@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react';
 import classNames from 'classnames';
 import { Koros } from 'hds-react';
+import { useTranslation } from 'react-i18next';
 
 import styles from './cmsSkeleton.module.scss';
 
@@ -109,6 +110,8 @@ export interface BreadcrumbSkeletonProps {
   rootTitle?: string;
   rootPath?: string;
   className?: string;
+  'aria-label'?: string;
+  ariaLabel?: string;
   'data-testid'?: string;
 }
 
@@ -123,32 +126,45 @@ export const BreadcrumbSkeleton: React.FC<BreadcrumbSkeletonProps> = ({
   rootTitle,
   rootPath,
   className,
+  'aria-label': ariaLabelProp,
+  ariaLabel,
   'data-testid': testId = 'breadcrumb-skeleton',
-}) => (
-  <nav
-    aria-label="Breadcrumb loading"
-    className={classNames(styles.breadcrumbSkeleton, className)}
-    data-testid={testId}
-  >
-    {rootTitle ? (
-      <div className={styles.breadcrumbSkeletonTrack}>
-        {rootPath ? (
-          <a href={rootPath} className={styles.breadcrumbSkeletonRoot}>
-            {rootTitle}
-          </a>
-        ) : (
-          <span className={styles.breadcrumbSkeletonRoot}>{rootTitle}</span>
-        )}
-        <span className={styles.breadcrumbSkeletonSeparator} aria-hidden="true">
-          ›
-        </span>
-        <SkeletonLine width="8rem" height="1.25rem" />
-      </div>
-    ) : (
-      <SkeletonLine width="14rem" height="1.25rem" />
-    )}
-  </nav>
-);
+}) => {
+  const { t } = useTranslation();
+  const label =
+    ariaLabelProp ??
+    ariaLabel ??
+    t('common.breadcrumbLoadingLabel', 'Ladataan murupolkua');
+
+  return (
+    <nav
+      aria-label={label}
+      className={classNames(styles.breadcrumbSkeleton, className)}
+      data-testid={testId}
+    >
+      {rootTitle ? (
+        <div className={styles.breadcrumbSkeletonTrack}>
+          {rootPath ? (
+            <a href={rootPath} className={styles.breadcrumbSkeletonRoot}>
+              {rootTitle}
+            </a>
+          ) : (
+            <span className={styles.breadcrumbSkeletonRoot}>{rootTitle}</span>
+          )}
+          <span
+            className={styles.breadcrumbSkeletonSeparator}
+            aria-hidden="true"
+          >
+            ›
+          </span>
+          <SkeletonLine width="8rem" height="1.25rem" />
+        </div>
+      ) : (
+        <SkeletonLine width="14rem" height="1.25rem" />
+      )}
+    </nav>
+  );
+};
 
 export interface CmsPageSkeletonProps {
   className?: string;
@@ -255,4 +271,3 @@ export { default as SkeletonLoader } from './SkeletonLoader';
 export type { SkeletonLoaderProps } from './SkeletonLoader';
 export { default as SkeletonText } from './SkeletonText';
 export type { SkeletonTextProps } from './SkeletonText';
-

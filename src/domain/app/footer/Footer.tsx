@@ -2,7 +2,13 @@ import { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MenuItem } from '@city-of-helsinki/react-helsinki-headless-cms';
 import { useMenuQuery } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
-import { Logo, Footer as HDSFooter, logoSv, logoFi, LogoSize } from 'hds-react';
+import {
+  Logo,
+  Footer as HDSFooter,
+  logoSvDark,
+  logoFiDark,
+  LogoSize,
+} from 'hds-react';
 
 import styles from './footer.module.scss';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
@@ -51,7 +57,7 @@ const Footer: FunctionComponent = () => {
         copyrightHolder={t('common.cityOfHelsinki')}
         logo={
           <Logo
-            src={currentLocale === 'sv' ? logoSv : logoFi}
+            src={currentLocale === 'sv' ? logoSvDark : logoFiDark}
             size={LogoSize.Medium}
             alt={t('common.cityOfHelsinki')}
           />

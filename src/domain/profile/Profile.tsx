@@ -12,10 +12,7 @@ import { useProfileContext } from './hooks/useProfileContext';
 import useGetPathname from '../../common/route/utils/useGetPathname';
 import usePageQuery from '../../hooks/usePageQuery';
 import { useCmsLoadingState } from '../../hooks/useCmsLoadingState';
-import {
-  getCmsPageDescription,
-  getCmsPageTitle,
-} from '../../utils/cmsUtils';
+import { getCmsPageDescription, getCmsPageTitle } from '../../utils/cmsUtils';
 import AppConfig from '../app/AppConfig';
 import { useCmsBreadcrumbs } from '../headlessCms/breadcrumbUtils';
 import {
@@ -100,6 +97,16 @@ const Profile = () => {
       ? getCmsPageDescription(page)
       : t('profile.hero.description');
 
+  const rawHeroDescription =
+    (page && 'hero' in page && page.hero?.description?.trim()) ||
+    page?.lead?.trim() ||
+    page?.content?.trim() ||
+    '';
+  const heroDescription =
+    page !== null && page !== undefined
+      ? rawHeroDescription
+      : t('profile.hero.description');
+
   return (
     <>
       <PageMeta
@@ -132,7 +139,7 @@ const Profile = () => {
         <ProfileHero
           profile={profile}
           title={heroTitle}
-          description={profileDescription}
+          description={heroDescription}
           isLoading={isCmsLoading}
         />
         <Container role="main" className={styles.mainContainer}>

@@ -266,4 +266,73 @@ describe('Profile', () => {
       )
     ).not.toBeInTheDocument();
   });
+
+  it('renders rich HTML CMS description in ProfileHero while keeping PageMeta plain-text', async () => {
+    vi.spyOn(HdsReact, 'useOidcClient').mockImplementation(
+      () =>
+        ({
+          isAuthenticated: () => true,
+          isRenewing: () => false,
+        }) as any
+    );
+    vi.spyOn(ProfileContext, 'useProfileContext').mockImplementation(
+      () =>
+        ({
+          profile: profileMock,
+          isLoading: false,
+          isFetchCalled: true,
+        }) as any
+    );
+
+    const cmsProfilePage = fakePage({
+      title: 'Kulttuurilapset-profiili CMS',
+      seo: {
+        description: '',
+      },
+      hero: fakeHero({
+        title: 'Kulttuurilapset-profiili CMS',
+        description:
+          '<p>Tervetuloa <strong>kulttuurilapset</strong> profiiliin!</p>',
+      }),
+      breadcrumbs: [
+        { title: 'Etusivu CMS', uri: '/' },
+        { title: 'Kulttuurilapset-profiili CMS', uri: '/profile' },
+      ],
+    });
+
+    render(<Profile />, [
+      {
+        request: {
+          query: PageDocument,
+          variables: { id: 'profile' },
+        },
+        result: {
+          data: {
+            page: cmsProfilePage,
+          },
+        },
+      },
+    ]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('heading', {
+          level: 1,
+          name: 'Kulttuurilapset-profiili CMS',
+        })
+      ).toBeInTheDocument();
+    });
+
+    // Verify ProfileHero rendered rich HTML tag (<strong>)
+    const strongElement = screen.getByText('kulttuurilapset');
+    expect(strongElement.tagName).toBe('STRONG');
+
+    // Verify PageMeta received plain-text description (no HTML tags)
+    await waitFor(() => {
+      const metaDescription = document
+        .querySelector('meta[name="description"]')
+        ?.getAttribute('content');
+      expect(metaDescription).toBe('Tervetuloa kulttuurilapset profiiliin!');
+    });
+  });
 });
