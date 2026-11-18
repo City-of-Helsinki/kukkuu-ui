@@ -251,6 +251,29 @@ export const getRoutedInternalHref = (
 };
 
 /**
+ * Checks whether a pathname points to a dynamic CMS page under `AppConfig.cmsPagesContextPath` (e.g. `/fi/pages/...`).
+ *
+ * @param pathname - The pathname to check.
+ * @returns `true` if the path is under the configured CMS pages context path.
+ */
+export const isCmsPagePath = (pathname: string): boolean => {
+  const pagesPrefix = AppConfig.cmsPagesContextPath.replace(/\/$/, '');
+  const stripped = stripLocaleFromUri(pathname).replace(/\/$/, '');
+  return Boolean(pagesPrefix && stripped.startsWith(`${pagesPrefix}/`));
+};
+
+/**
+ * Checks whether a pathname points to an individual CMS article under `AppConfig.cmsArticlesContextPath`
+ * (e.g. `/fi/articles/...`).
+ *
+ * @param pathname - The pathname to check.
+ * @returns `true` if the path resolves to a CMS article URI.
+ */
+export const isCmsArticlePath = (pathname: string): boolean => {
+  return Boolean(getArticleUriFromPathname(pathname));
+};
+
+/**
  * Extracts the localized CMS article URI from the current pathname.
  *
  * Compares the stripped pathname against the configured articles context path

@@ -1,18 +1,17 @@
+import type { ApolloClient, NormalizedCacheObject } from '@apollo/client';
+import { type LoaderFunctionArgs } from 'react-router';
 import {
   MenuItem,
   ModuleItemTypeEnum,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
-import {
-  ArticleDocument,
-  PageDocument,
-} from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 
-import headlessCmsClient from '../../headlessCms/client';
 import type { ProfileType } from '../../profile/ProfileContext';
 import AppConfig from '../AppConfig';
+import { cmsArticleLoader, cmsPageLoader } from '../routes/cmsLoaders';
 import {
-  getArticleUriFromPathname,
   getRoutedInternalHref,
+  isCmsArticlePath,
+  isCmsPagePath,
   stripLocaleFromUri,
 } from '../../../utils/cmsUtils';
 
@@ -199,7 +198,7 @@ export const extractMenuItems = (
 export const prefetchCmsMenuItems = (
   menuItems: (MenuItem | null | undefined)[],
   language: string,
-  client = headlessCmsClient
+  client?: ApolloClient<NormalizedCacheObject>
 ) => {
   const allItems = extractMenuItems(menuItems);
   const visited = new Set<string>();
@@ -215,14 +214,7 @@ export const prefetchCmsMenuItems = (
       continue;
     }
 
-    const articlesPrefix = AppConfig.cmsArticlesContextPath.replace(/\/$/, '');
-    const strippedRawPath = stripLocaleFromUri(rawPath).replace(/\/$/, '');
-    const isArticle =
-      node?.__typename === 'Post' ||
-      Boolean(
-        articlesPrefix &&
-          strippedRawPath.startsWith(`${articlesPrefix}/`)
-      );
+    const isArticle = node?.__typename === 'Post' || isCmsArticlePath(rawPath);
 
     const routedPath = getRoutedInternalHref(
       rawPath,
@@ -239,48 +231,16 @@ export const prefetchCmsMenuItems = (
     }
     visited.add(routedPath);
 
-    const stripped = stripLocaleFromUri(routedPath).replace(/\/$/, '');
-    if (
-      stripped === '' ||
-      stripped === '/home' ||
-      stripped === '/events' ||
-      stripped === '/search' ||
-      stripped === AppConfig.cmsSearchContextPath ||
-      stripped === '/profile' ||
-      stripped === AppConfig.cmsProfileContextPath ||
-      stripped === articlesPrefix ||
-      stripped.startsWith('/registration') ||
-      stripped.startsWith('/auth') ||
-      stripped === '/cookie-consent' ||
-      stripped === '/unauthorized' ||
-      stripped === '/wrong-login-method'
-    ) {
-      continue;
-    }
+    const loaderArgs = {
+      request: new Request(new URL(routedPath, AppConfig.origin)),
+      params: {},
+      context: undefined,
+    } as unknown as LoaderFunctionArgs;
 
-    if (isArticle) {
-      const articleUri = getArticleUriFromPathname(routedPath);
-      if (articleUri) {
-        client
-          .query({
-            query: ArticleDocument,
-            variables: { id: articleUri },
-            fetchPolicy: 'cache-first',
-          })
-          .catch(() => {
-            // Ignore prefetch error
-          });
-      }
-    } else {
-      client
-        .query({
-          query: PageDocument,
-          variables: { id: routedPath },
-          fetchPolicy: 'cache-first',
-        })
-        .catch(() => {
-          // Ignore prefetch error
-        });
+    if (isCmsArticlePath(routedPath)) {
+      void cmsArticleLoader(loaderArgs, undefined, client);
+    } else if (isCmsPagePath(routedPath)) {
+      void cmsPageLoader(loaderArgs, undefined, client);
     }
   }
 };

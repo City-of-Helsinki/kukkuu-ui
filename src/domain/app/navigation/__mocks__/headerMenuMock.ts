@@ -20,7 +20,7 @@ export const headerMenuQueryResponse = {
             order: 1,
             target: null,
             title: null,
-            path: '/ajankohtaista/',
+            path: '/pages/ajankohtaista/',
             label: 'Ajankohtaista',
             connectedNode: {
               node: {
@@ -28,8 +28,8 @@ export const headerMenuQueryResponse = {
                 content: '<p>Kirjautuminen palveluun on muuttunut</p>',
                 slug: 'ajankohtaista',
                 title: 'Ajankohtaista',
-                uri: '/ajankohtaista/',
-                link: 'https://kukkuu.content.api.hel.fi/ajankohtaista/',
+                uri: '/pages/ajankohtaista/',
+                link: 'https://kukkuu.content.api.hel.fi/pages/ajankohtaista/',
                 lead: '',
                 seo: {
                   title: 'Ajankohtaista &#x2d; Kukkuu',

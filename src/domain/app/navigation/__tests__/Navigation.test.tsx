@@ -209,7 +209,7 @@ describe('<Navigation />', () => {
       expect(querySpy).toHaveBeenCalledWith(
         expect.objectContaining({
           query: PageDocument,
-          variables: { id: '/fi/ajankohtaista' },
+          variables: { id: '/fi/pages/ajankohtaista' },
           fetchPolicy: 'cache-first',
         })
       );
@@ -312,16 +312,17 @@ describe('prefetchCmsMenuItems', () => {
     };
 
     const items = [
-      { id: '1', path: '/ajankohtaista/' },
+      { id: '1', path: '/pages/ajankohtaista/' },
       { id: '2', path: '/articles/uusin-juttu' },
       { id: '3', path: '/events' }, // App route, skip
       { id: '4', path: '/profile' }, // App route, skip
       { id: '5', path: 'https://external-domain.com/something' }, // External, skip
-      { id: '6', path: '/ajankohtaista/' }, // Duplicate, skip
+      { id: '6', path: '/pages/ajankohtaista/' }, // Duplicate, skip
       { id: '7', path: '/home' }, // App home route, skip
       { id: '8', path: '/search' }, // App search route, skip
       { id: '9', path: '/articles' }, // Article archive root, skip
-      { id: '10', path: '/articles-info' }, // CMS page containing articles in slug, prefetch as page!
+      { id: '10', path: '/articles-info' }, // Top-level non-pages slug, skip
+      { id: '11', path: '/pages/tietoa-meista' }, // Valid CMS page
     ] as unknown as MenuItem[];
 
     prefetchCmsMenuItems(items, 'fi', mockClient as never);
@@ -329,7 +330,7 @@ describe('prefetchCmsMenuItems', () => {
     expect(mockClient.query).toHaveBeenCalledTimes(3);
     expect(mockClient.query).toHaveBeenCalledWith({
       query: PageDocument,
-      variables: { id: '/fi/ajankohtaista' },
+      variables: { id: '/fi/pages/ajankohtaista' },
       fetchPolicy: 'cache-first',
     });
     expect(mockClient.query).toHaveBeenCalledWith({
@@ -339,7 +340,7 @@ describe('prefetchCmsMenuItems', () => {
     });
     expect(mockClient.query).toHaveBeenCalledWith({
       query: PageDocument,
-      variables: { id: '/fi/articles-info' },
+      variables: { id: '/fi/pages/tietoa-meista' },
       fetchPolicy: 'cache-first',
     });
   });
@@ -349,7 +350,7 @@ describe('prefetchCmsMenuItems', () => {
       query: vi.fn().mockRejectedValue(new Error('Network error')),
     };
 
-    const items = [{ id: '1', path: '/ajankohtaista/' }] as unknown as MenuItem[];
+    const items = [{ id: '1', path: '/pages/ajankohtaista/' }] as unknown as MenuItem[];
 
     expect(() => {
       prefetchCmsMenuItems(items, 'fi', mockClient as never);

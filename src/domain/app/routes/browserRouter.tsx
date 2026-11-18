@@ -1,16 +1,8 @@
-import {
-  createBrowserRouter,
-  type LoaderFunctionArgs,
-  type RouteObject,
-} from 'react-router';
-import {
-  ArticleDocument,
-  PageDocument,
-} from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
+import { createBrowserRouter, type RouteObject } from 'react-router';
 
-import headlessCmsClient from '../../headlessCms/client';
-import { getArticleUriFromPathname } from '../../../utils/cmsUtils';
 import AppConfig from '../AppConfig';
+import { cmsArticleLoader, cmsPageLoader } from './cmsLoaders';
+import { getLegacyCmsPageRedirectRoutes } from './legacyCmsRedirectRoutes';
 import { NavigateToLocalePath } from './NavigateToLocalePath';
 import AppRoute from '../AppRoute';
 import Layout from '../Layout';
@@ -40,48 +32,7 @@ import KukkuuHDSLoginCallbackHandler from '../../auth/KukkuuHDSLoginCallbackHand
 import SilentRenewRedirect from './SilentRenewRedirect';
 import ApplicationError from '../errorElement/ApplicationError';
 
-/**
- * Route loader for headless CMS pages.
- *
- * Preloads the CMS page into Apollo Client cache so content is readily available
- * when the page component mounts. Catches any errors so prefetch failures never
- * break client-side navigation.
- */
-export const cmsPageLoader = async ({ request }: LoaderFunctionArgs) => {
-  try {
-    const url = new URL(request.url);
-    return await headlessCmsClient.query({
-      query: PageDocument,
-      variables: { id: url.pathname },
-      fetchPolicy: 'cache-first',
-    });
-  } catch {
-    return null;
-  }
-};
-
-/**
- * Route loader for headless CMS articles.
- *
- * Preloads the CMS article into Apollo Client cache so article content is readily available
- * when ArticlePage mounts. Catches any errors so prefetch failures never break client-side navigation.
- */
-export const cmsArticleLoader = async ({ request }: LoaderFunctionArgs) => {
-  try {
-    const url = new URL(request.url);
-    const articleUri = getArticleUriFromPathname(url.pathname);
-    if (!articleUri) {
-      return null;
-    }
-    return await headlessCmsClient.query({
-      query: ArticleDocument,
-      variables: { id: articleUri },
-      fetchPolicy: 'cache-first',
-    });
-  } catch {
-    return null;
-  }
-};
+export { cmsArticleLoader, cmsPageLoader };
 
 /**
  * Generates the application route hierarchy.
@@ -293,10 +244,12 @@ export const getAppRoutes = (): RouteObject[] => [
         ],
       },
       {
-        path: 'pages/*',
+        // Configured via AppConfig.cmsPagesContextPath (originally set to '/pages')
+        path: `${AppConfig.cmsPagesContextPath.replace(/^\/+|\/+$/g, '')}/*`,
         Component: HeadlessCmsPage,
         loader: cmsPageLoader,
       },
+      ...getLegacyCmsPageRedirectRoutes(),
       {
         path: AppConfig.cmsArticlesContextPath.replace(/^\/+|\/+$/g, ''),
         children: [
@@ -311,11 +264,9 @@ export const getAppRoutes = (): RouteObject[] => [
           },
         ],
       },
-      // All the rest of the localised routes should be handled as CMS pages
       {
         path: '*',
-        Component: HeadlessCmsPage,
-        loader: cmsPageLoader,
+        Component: NotFound,
       },
     ],
   },
