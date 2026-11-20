@@ -50,7 +50,7 @@ describe('<HeadlessCmsPage />', () => {
       ).toBeInTheDocument();
     });
     expect(screen.getByText('Ajankohtaista sisältöä')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Etusivu' })).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: 'Etusivu' })[0]).toBeInTheDocument();
   });
 
   it('falls back to page.title and page.lead when hero fields are empty and does not duplicate h1', async () => {

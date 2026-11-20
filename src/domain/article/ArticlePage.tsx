@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 
 import useGetPathname from '../../common/route/utils/useGetPathname';
+import Breadcrumb from '../../common/components/breadcrumb/Breadcrumb';
 import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import {
@@ -188,9 +189,14 @@ const ArticlePage = () => {
                 description={getCmsPageDescription(article)}
                 page={article}
               />
+              <Breadcrumb
+                contained
+                aria-label={t('common.breadcrumbNavigationLabel')}
+                list={breadcrumbs}
+              />
               <PageContent
                 page={article}
-                breadcrumbs={breadcrumbs}
+                breadcrumbs={undefined}
                 onArticlesSearch={handleArticlesSearch}
                 collections={
                   hasCollections

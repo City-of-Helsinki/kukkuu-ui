@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
 
 import useGetPathname from '../../common/route/utils/useGetPathname';
+import Breadcrumb from '../../common/components/breadcrumb/Breadcrumb';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import {
   CmsPageSkeleton,
@@ -109,9 +110,14 @@ const HeadlessCmsPage = () => {
                 description={getCmsPageDescription(enhancedPage)}
                 page={enhancedPage}
               />
+              <Breadcrumb
+                contained
+                aria-label={t('common.breadcrumbNavigationLabel')}
+                list={breadcrumbs}
+              />
               <PageContent
                 page={enhancedPage}
-                breadcrumbs={breadcrumbs}
+                breadcrumbs={undefined}
                 collections={
                   hasCollections
                     ? undefined

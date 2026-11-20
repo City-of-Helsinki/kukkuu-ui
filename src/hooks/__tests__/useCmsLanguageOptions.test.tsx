@@ -35,7 +35,7 @@ describe('useCmsLanguageOptions', () => {
           {
             request: {
               query: PageDocument,
-              variables: { id: 'search+events.item' },
+              variables: { id: '/fi/search+events.item' },
             },
             result: {
               data: {

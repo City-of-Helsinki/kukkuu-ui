@@ -5,8 +5,8 @@ import {
   LanguageCodeEnum,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
 
+import Link from '../common/components/link/Link';
 import headlessCmsClient from '../domain/headlessCms/client';
 import { SUPPORT_LANGUAGES } from '../common/translation/TranslationConstants';
 import PageMeta from '../domain/app/layout/utilityComponents/PageMeta';
@@ -50,13 +50,13 @@ export default function useRHHCConfig(): Config {
       components: {
         ...rhhcDefaultConfig.components,
         A: ({ href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-          <Link to={href ?? ''} prefetch="intent" {...props} />
+          <Link href={href} to={href ?? ''} prefetch="intent" {...props} />
         ),
         Link: ({
           href,
           ...props
         }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-          <Link to={href ?? ''} prefetch="intent" {...props} />
+          <Link href={href} to={href ?? ''} prefetch="intent" {...props} />
         ),
         ArticleCardContent: (props: ArticleDetailsProps) => (
           <ArticleDetails {...props} />

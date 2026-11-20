@@ -37,6 +37,56 @@ export const normalizeCmsUri = (uri: string) => {
   return decodeURIComponent(removeSurroundingSlashes(stripLocaleFromUri(uri)));
 };
 
+const LOCALE_PREFIX_REGEX = /^\/(en|sv|fi)(?:\/(.*)|$)/i;
+
+/**
+ * Removes all leading and trailing `/` characters from a string in linear time.
+ *
+ * @param value - Input path or slug.
+ * @returns Trimmed string without leading or trailing slashes.
+ */
+export const trimSlashes = (value: string): string => {
+  let start = 0;
+  let end = value.length;
+  while (start < end && value[start] === '/') {
+    start += 1;
+  }
+  while (end > start && value[end - 1] === '/') {
+    end -= 1;
+  }
+  return value.slice(start, end);
+};
+
+/**
+ * Normalizes a CMS URI while preserving an explicit locale prefix or
+ * prefixing `fallbackLocale` when no locale prefix is present.
+ *
+ * @param uri - The raw CMS URI or slug.
+ * @param fallbackLocale - Active UI locale to prefix when `uri` is unlocalized.
+ * @returns Normalized, locale-prefixed CMS URI.
+ */
+export const localizeCmsUri = (uri: string, fallbackLocale: string): string => {
+  // e.g. uri = " /en/search/ " -> trimmed = "/en/search/"
+  const trimmed = uri.trim();
+  if (!trimmed) {
+    return '';
+  }
+  // Strip surrounding slashes: "/en/search/" -> "en/search"
+  const clean = trimSlashes(trimmed);
+  if (!clean) {
+    return `/${fallbackLocale}`;
+  }
+  const localeMatch = LOCALE_PREFIX_REGEX.exec(`/${clean}`);
+  if (localeMatch) {
+    // e.g. "/EN/pages/about/" -> locale = "en", rest = "pages/about" -> "/en/pages/about"
+    const locale = localeMatch[1].toLowerCase();
+    const rest = trimSlashes(localeMatch[2] ?? '');
+    return rest ? `/${locale}/${rest}` : `/${locale}`;
+  }
+  // No locale in uri: e.g. "/search" with fallbackLocale = "en" -> "/en/search"
+  return `/${fallbackLocale}/${clean}`;
+};
+
 /**
  * Replaces HTML entity `&#x2d;` with a standard dash `-`.
  *
