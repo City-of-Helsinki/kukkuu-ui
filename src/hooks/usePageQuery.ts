@@ -1,24 +1,30 @@
 import { usePageQuery as useOriginalPageQuery } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
+import { useTranslation } from 'react-i18next';
 
-import { normalizeCmsUri } from '../utils/cmsUtils';
+import { getCurrentLanguage } from '../common/translation/TranslationUtils';
+import { localizeCmsUri } from '../utils/cmsUtils';
 
 /**
- * Hook to query a CMS page by its URI.
+ * Hook to query a CMS page by its URI in the active locale.
  *
- * Normalizes the URI by removing surrounding slashes to maximize cache hits.
- * Uses the ApolloClient configured in RHHC ConfigProvider.
+ * Preserves any explicit locale prefix on the URI or prefixes the current UI
+ * language when omitted (e.g. `/search` -> `/en/search`), while normalizing
+ * surrounding slashes for consistent Apollo cache hits.
  *
  * @param uri - The CMS page URI or slug.
  * @param options - Query options including `skip`.
  * @returns Query result object containing page data, loading, and error states.
  */
 const usePageQuery = (uri: string, { skip }: { skip?: boolean } = {}) => {
-  const normalizedUri = normalizeCmsUri(uri);
+  const { i18n } = useTranslation();
+  const currentLocale = getCurrentLanguage(i18n);
+  const localizedUri = localizeCmsUri(uri, currentLocale);
+
   return useOriginalPageQuery({
     variables: {
-      id: normalizedUri,
+      id: localizedUri,
     },
-    skip: Boolean(skip || !normalizedUri),
+    skip: Boolean(skip || !localizedUri),
   });
 };
 

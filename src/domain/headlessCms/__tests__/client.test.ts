@@ -351,10 +351,10 @@ describe('Headless CMS Client', () => {
       ).toBeNull();
     });
 
-    it('triggers cache purge automatically on i18n languageChanged event', async () => {
+    it('triggers cache purge automatically on i18n languageChanged event only when switching supported languages', async () => {
       const customClient = createCmsApolloClient();
-      const clearStoreSpy = vi
-        .spyOn(customClient, 'clearStore')
+      const resetStoreSpy = vi
+        .spyOn(customClient, 'resetStore')
         .mockResolvedValue(undefined as any);
       const cleanup = setupCmsLanguageChangeListener(customClient);
 
@@ -363,17 +363,23 @@ describe('Headless CMS Client', () => {
         JSON.stringify({ some: 'cache' })
       );
 
-      // Trigger language change to 'sv'
-      i18n.changeLanguage('sv');
+      // Emitting undefined, empty string, or unsupported language does NOT reset store
+      i18n.emit('languageChanged', undefined as any);
+      i18n.emit('languageChanged', '');
+      i18n.emit('languageChanged', 'fr');
+      expect(resetStoreSpy).not.toHaveBeenCalled();
 
-      expect(clearStoreSpy).toHaveBeenCalledTimes(1);
+      // Trigger supported language change to 'sv'
+      await i18n.changeLanguage('sv');
+
+      expect(resetStoreSpy).toHaveBeenCalledTimes(1);
       expect(
         localStorage.getItem(AppConfig.cmsApolloCacheLocalStorageKey)
       ).toBeNull();
 
       cleanup();
       // Restore default language
-      i18n.changeLanguage('fi');
+      await i18n.changeLanguage('fi');
     });
   });
 });

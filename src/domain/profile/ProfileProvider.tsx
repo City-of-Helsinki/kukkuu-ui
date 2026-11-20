@@ -3,7 +3,6 @@ import * as Sentry from '@sentry/browser';
 
 import { ProfileContext, ProfileType } from './ProfileContext';
 import useProfileFetcher from './hooks/useProfileFetcher';
-import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 
 export default function ProfileProvider({
   children,
@@ -56,19 +55,6 @@ export default function ProfileProvider({
       refetchProfile,
     ]
   );
-
-  // The profile provider might load the children
-  // while the profile fetching is still on going
-  // and won't refresh the children when it is;
-  // This situation needs to be waited.
-  // FIXME: Get rid of this loading spinner and sync issue.
-  if (!isFetchCalled && isProfileFetcherLoading) {
-    // eslint-disable-next-line no-console
-    console.info(
-      'Using a loading spinner to wait for profile to be fully fetched from the Kukkuu API.'
-    );
-    return <LoadingSpinner isLoading={true} />;
-  }
 
   return (
     <ProfileContext.Provider value={contextValue}>
