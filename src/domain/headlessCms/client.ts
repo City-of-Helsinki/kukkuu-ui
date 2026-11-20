@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import i18n from '../../common/translation/i18n/i18nInit';
 import AppConfig from '../app/AppConfig';
 import { getEnvValue } from '../../common/utils/envUtils';
+import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import {
   createApolloCache,
   isConfiguredQueryPolicy,
@@ -134,37 +135,57 @@ const client = createCmsApolloClient();
  * Used when the application language changes to avoid serving stale content in the previous language.
  */
 export async function clearCmsClientCache(
-  targetClient: ApolloClient<NormalizedCacheObject> = client
+  targetClient: ApolloClient<NormalizedCacheObject> = client,
+  { refetch = false }: { refetch?: boolean } = {}
 ): Promise<void> {
   try {
     const persistor = clientPersistors.get(targetClient);
     persistor?.clearLocalStorage();
-    await targetClient.clearStore();
+    if (refetch) {
+      await targetClient.resetStore();
+    } else {
+      await targetClient.clearStore();
+    }
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error('Failed to clear CMS client cache:', e);
   }
 }
 
-let lastLanguage = i18n.language;
+type SupportedLanguage = (typeof SUPPORT_LANGUAGES)[keyof typeof SUPPORT_LANGUAGES];
+
+const isSupportedLanguage = (lang?: string): lang is SupportedLanguage =>
+  Boolean(
+    lang && Object.values(SUPPORT_LANGUAGES).includes(lang as SupportedLanguage)
+  );
+
+let lastLanguage = isSupportedLanguage(i18n.language)
+  ? i18n.language
+  : undefined;
 
 /**
  * Subscribes to i18n language change events to purge the CMS cache when the user switches language.
  *
- * NOTE: If i18n has no language detected when this module is evaluated (e.g. before i18n is initialized),
- * the initial languageChanged event with a non-empty language resets lastLanguage and clears the cache.
- * This ensures that on full page reloads or language changes the CMS cache is refreshed cleanly without
- * serving stale content in a previously persisted language.
+ * NOTE: Initial language events establish the baseline language without clearing the cache.
+ * The cache is purged only when explicitly switching from one supported language to another.
  */
 export function setupCmsLanguageChangeListener(
   targetClient: ApolloClient<NormalizedCacheObject> = client
 ) {
   let currentLanguage = lastLanguage;
   const handleLanguageChanged = (newLang: string) => {
-    if (newLang && newLang !== currentLanguage) {
+    if (!isSupportedLanguage(newLang)) {
+      return;
+    }
+    if (!currentLanguage) {
       currentLanguage = newLang;
       lastLanguage = newLang;
-      void clearCmsClientCache(targetClient);
+      return;
+    }
+    if (newLang !== currentLanguage) {
+      currentLanguage = newLang;
+      lastLanguage = newLang;
+      void clearCmsClientCache(targetClient, { refetch: true });
     }
   };
 

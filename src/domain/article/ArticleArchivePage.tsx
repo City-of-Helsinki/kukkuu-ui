@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router';
 
 import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
+import Breadcrumb from '../../common/components/breadcrumb/Breadcrumb';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import ErrorMessage from '../../common/components/error/Error';
 import usePageByTemplateQuery from '../../hooks/usePageByTemplateQuery';
@@ -168,8 +169,13 @@ const ArticleArchivePage = () => {
             description={archiveDescription}
             page={page}
           />
+          <Breadcrumb
+            contained
+            aria-label={t('common.breadcrumbNavigationLabel')}
+            list={breadcrumbs}
+          />
           <SearchPageContent
-            breadcrumbs={breadcrumbs}
+            breadcrumbs={undefined}
             page={page ?? (fallbackPage as unknown as PageType)}
             isLoading={isLoading || isLoadingMore}
             noResults={!isLoading && !postsError && articles.length === 0}

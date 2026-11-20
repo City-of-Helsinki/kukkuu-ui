@@ -80,7 +80,7 @@ describe('<ArticlePage />', () => {
     expect(screen.getByText('Artikkelin leipäteksti')).toBeInTheDocument();
 
     // Verify middle breadcrumbs link to article archive
-    expect(screen.getByRole('link', { name: 'Artikkelit' })).toBeInTheDocument();
+    expect(screen.getAllByRole('link', { name: 'Artikkelit' })[0]).toBeInTheDocument();
 
     await waitFor(() => {
       expect(document.title).toContain(article.seo?.title);

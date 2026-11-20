@@ -12,6 +12,7 @@ import {
 } from 'hds-react';
 
 import i18n from '../../common/translation/i18n/i18nInit';
+import { SUPPORT_LANGUAGES } from '../../common/translation/TranslationConstants';
 import { getCurrentLanguage } from '../../common/translation/TranslationUtils';
 import { getKukkuuApiTokenFromStorage } from '../auth/kukkuuApiUtils';
 import { flushAllState } from '../auth/reduxState/utils';
@@ -73,5 +74,51 @@ const client = new ApolloClient({
   link: ApolloLink.from([errorLink, authLink, httpLink]),
   cache: createApolloCache(),
 });
+
+type SupportedLanguage =
+  (typeof SUPPORT_LANGUAGES)[keyof typeof SUPPORT_LANGUAGES];
+
+const isSupportedLanguage = (lang?: string): lang is SupportedLanguage =>
+  Boolean(
+    lang && Object.values(SUPPORT_LANGUAGES).includes(lang as SupportedLanguage)
+  );
+
+let lastLanguage = isSupportedLanguage(i18n.language)
+  ? i18n.language
+  : undefined;
+
+/**
+ * Subscribes to i18n language change events to reset the Kukkuu API Apollo store
+ * when switching between supported languages, so localized fields refetch with
+ * the updated `accept-language` header.
+ */
+export function setupApiLanguageChangeListener(targetClient = client) {
+  let currentLanguage = lastLanguage;
+  const handleLanguageChanged = (newLang: string) => {
+    if (!isSupportedLanguage(newLang)) {
+      return;
+    }
+    if (!currentLanguage) {
+      currentLanguage = newLang;
+      lastLanguage = newLang;
+      return;
+    }
+    if (newLang !== currentLanguage) {
+      currentLanguage = newLang;
+      lastLanguage = newLang;
+      void targetClient.resetStore().catch(() => {
+        // Ignore resetStore errors (e.g. cancelled in-flight queries)
+      });
+    }
+  };
+
+  i18n.on('languageChanged', handleLanguageChanged);
+
+  return () => {
+    i18n.off('languageChanged', handleLanguageChanged);
+  };
+}
+
+setupApiLanguageChangeListener(client);
 
 export default client;

@@ -41,19 +41,25 @@ function useReduxProfileState() {
     }
   }, [isAuthenticated, reduxStorageProfile?.id]);
 
-  const onSuccess = (data: ProfileQuery) => {
-    // Sync data to redux. Note that the redux state won't be updated
-    // when apollo re-fetches queries based on refetchQueries. It's
-    // better to source data from Apollo instead.
-    dispatch(saveProfile(data?.myProfile || defaultProfileData));
-    dispatch(clearEvent());
-    dispatch(saveChildrenEvents(data?.myProfile?.children || undefined));
-  };
+  const onSuccess = React.useCallback(
+    (data: ProfileQuery) => {
+      // Sync data to redux. Note that the redux state won't be updated
+      // when apollo re-fetches queries based on refetchQueries. It's
+      // better to source data from Apollo instead.
+      dispatch(saveProfile(data?.myProfile || defaultProfileData));
+      dispatch(clearEvent());
+      dispatch(saveChildrenEvents(data?.myProfile?.children || undefined));
+    },
+    [dispatch]
+  );
 
-  const onError = (error: ApolloError) => {
-    Sentry.captureException(error);
-    dispatch(clearProfile());
-  };
+  const onError = React.useCallback(
+    (error: ApolloError) => {
+      Sentry.captureException(error);
+      dispatch(clearProfile());
+    },
+    [dispatch]
+  );
 
   return { onSuccess, onError };
 }

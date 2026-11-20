@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
-import { Breadcrumb, ButtonPresetTheme } from 'hds-react';
+import { ButtonPresetTheme } from 'hds-react';
 import {
   ContentContainer,
   getTextFromHtml,
@@ -9,6 +9,7 @@ import {
   PageSection,
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
+import Breadcrumb from '../../../common/components/breadcrumb/Breadcrumb';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import usePageQuery from '../../../hooks/usePageQuery';
 import { useCmsLoadingState } from '../../../hooks/useCmsLoadingState';

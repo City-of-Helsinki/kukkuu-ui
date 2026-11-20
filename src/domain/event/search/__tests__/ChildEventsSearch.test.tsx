@@ -854,7 +854,7 @@ describe('ChildEventsSearch', () => {
       {
         request: {
           query: PageDocument,
-          variables: { id: 'search' },
+          variables: { id: '/fi/search' },
         },
         result: {
           data: {
@@ -896,7 +896,7 @@ describe('ChildEventsSearch', () => {
       {
         request: {
           query: PageDocument,
-          variables: { id: 'search' },
+          variables: { id: '/fi/search' },
         },
         result: {
           data: {
@@ -942,7 +942,7 @@ describe('ChildEventsSearch', () => {
       {
         request: {
           query: PageDocument,
-          variables: { id: 'search' },
+          variables: { id: '/fi/search' },
         },
         result: {
           data: {
@@ -969,7 +969,7 @@ describe('ChildEventsSearch', () => {
     const delayedCmsMock = {
       request: {
         query: PageDocument,
-        variables: { id: 'search' },
+        variables: { id: '/fi/search' },
       },
       delay: 500,
       result: {
