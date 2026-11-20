@@ -48,9 +48,13 @@ import {
 } from '../../../child/types/ChildByIdQueryTypes';
 import { MyProfileChild } from '../../types/ProfileQueryTypes';
 import { useProfileContext } from '../../hooks/useProfileContext';
+import InvitationLetterModal, {
+  InvitationLetterEventGroup,
+} from './modal/InvitationLetterModal';
 import ProfileChildDetailEditModal from './modal/ProfileChildDetailEditModal';
 import ProfileChildSkeleton from '../skeleton/ProfileChildSkeleton';
 import ProfileEnrolledEventCard from './ProfileEnrolledEventCard';
+import ProfileEventGroupCard from './ProfileEventGroupCard';
 import type { ChildDetailEditModalPayload } from './types';
 import graphqlClient from '../../../api/client';
 import styles from './profileChildAccordionItem.module.scss';
@@ -68,6 +72,8 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
   const getPathname = useGetPathname();
   const { refetchProfile } = useProfileContext();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [invitationLetterEventGroup, setInvitationLetterEventGroup] =
+    useState<InvitationLetterEventGroup | null>(null);
 
   const { data, loading: isChildLoading } = useQuery<ChildByIdQuery>(
     childByIdQuery,
@@ -168,6 +174,7 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
         imageAltText: null,
         enrolmentDeniedReason: null,
         publishedAt: evGroup.publishedAt ?? null,
+        invitationMessage: evGroup.invitationMessage ?? null,
         events: { edges: [] },
       });
     }
@@ -354,76 +361,16 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
                 </div>
               )}
 
-              {publishedEventGroupsWithEvents.map((eventGroup) => {
-                const groupEnrolments = getGroupEnrolments(eventGroup);
-
-                if (groupEnrolments.length > 0) {
-                  return (
-                    <div
-                      key={eventGroup.id}
-                      className={styles.searchPromptCard}
-                      data-testid={`event-group-box-${eventGroup.id}`}
-                    >
-                      {eventGroup.name && (
-                        <h5 className={styles.eventGroupHeading}>
-                          {eventGroup.name}
-                        </h5>
-                      )}
-                      <div className={styles.groupEnrolledList}>
-                        {groupEnrolments.map((enrolment) => (
-                          <ProfileEnrolledEventCard
-                            key={enrolment.id}
-                            childId={child.id}
-                            enrolment={enrolment}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
-                const publishedEvents = getPublishedGroupEvents(eventGroup);
-                const promptText =
-                  eventGroup.enrolmentDeniedReason ===
-                  EnrolmentDeniedReason.RegistrationNotOpen
-                    ? getEnrolmentDeniedNotice({
-                        t,
-                        enrolmentDeniedReason: eventGroup.enrolmentDeniedReason,
-                        registrationOpensAt:
-                          getEarliestRegistrationOpensAt(publishedEvents),
-                      })
-                    : t('profile.events.searchPrompt');
-
-                return (
-                  <div
-                    key={eventGroup.id}
-                    className={styles.searchPromptCard}
-                    data-testid={`event-group-box-${eventGroup.id}`}
-                  >
-                    {eventGroup.name && (
-                      <h5 className={styles.eventGroupHeading}>
-                        {eventGroup.name}
-                      </h5>
-                    )}
-                    <div className={styles.searchPromptDashedBox}>
-                      <div className={styles.searchPromptIcon} aria-hidden="true">
-                        <IconCalendarEvent size={IconSize.Large} />
-                      </div>
-                      <p className={styles.searchPromptText}>
-                        {promptText}
-                      </p>
-                      <LinkButton
-                        to={`${getPathname('/events')}?child=${encodeURIComponent(child.id)}`}
-                        variant="primary"
-                        theme={ButtonPresetTheme.Black}
-                        iconStart={<IconSearch aria-hidden="true" />}
-                      >
-                        {t('profile.events.searchButton')}
-                      </LinkButton>
-                    </div>
-                  </div>
-                );
-              })}
+              {publishedEventGroupsWithEvents.map((eventGroup) => (
+                <ProfileEventGroupCard
+                  key={eventGroup.id}
+                  childId={child.id}
+                  eventGroup={eventGroup}
+                  groupEnrolments={getGroupEnrolments(eventGroup)}
+                  publishedEvents={getPublishedGroupEvents(eventGroup)}
+                  onReadInvitationLetter={setInvitationLetterEventGroup}
+                />
+              ))}
 
               {availableStandaloneEvents.length > 0 && (
                 <div
@@ -538,6 +485,11 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
           }}
         />
       )}
+      <InvitationLetterModal
+        isOpen={Boolean(invitationLetterEventGroup)}
+        onClose={() => setInvitationLetterEventGroup(null)}
+        eventGroup={invitationLetterEventGroup}
+      />
     </Accordion>
   );
 };

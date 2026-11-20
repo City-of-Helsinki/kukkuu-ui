@@ -109,6 +109,8 @@ const mockChildByIdData = {
                 id: 'eg-1',
                 name: 'Syksy 2026',
                 publishedAt: '2026-08-01T10:00:00.000Z',
+                invitationMessage:
+                  'Kutsu kulttuurin kummilapselle!\nHei Kulttuurin kummilapsi!\nTervetuloa syksyn 2026 tapahtumiin.',
               },
             },
           },
@@ -888,5 +890,136 @@ describe('ProfileChildAccordionItem', () => {
     await user.click(pastAccordionBtn);
 
     expect(screen.getByText('Ei menneitä tapahtumia')).toBeInTheDocument();
+  });
+
+  it('opens and closes the invitation letter modal with API content when "Lue kutsukirje" is clicked on an enrolled event group box', async () => {
+    const user = userEvent.setup();
+
+    render(
+      <ProfileChildAccordionItem child={mockChild} initiallyOpen={true} />,
+      [childByIdMock]
+    );
+
+    const readLetterBtn = await screen.findByRole('button', {
+      name: /lue kauden syksy 2026 kutsukirje/i,
+    });
+    expect(readLetterBtn).toBeEnabled();
+    expect(readLetterBtn).toHaveAttribute('aria-haspopup', 'dialog');
+
+    await user.click(readLetterBtn);
+
+    expect(
+      await screen.findByRole('heading', {
+        name: 'Kutsukirje: Syksy 2026',
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', {
+        level: 3,
+        name: 'Kutsu kulttuurin kummilapselle!',
+      })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Hei Kulttuurin kummilapsi!')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Tervetuloa syksyn 2026 tapahtumiin.')
+    ).toBeInTheDocument();
+
+    const closeButtons = screen.getAllByRole('button', { name: 'Sulje' });
+    await user.click(closeButtons[closeButtons.length - 1]);
+
+    await waitFor(() => {
+      expect(
+        screen.queryByRole('heading', { name: 'Kutsukirje: Syksy 2026' })
+      ).not.toBeInTheDocument();
+    });
+    expect(readLetterBtn).toHaveFocus();
+  });
+
+  it('disables "Lue kutsukirje" button and shows missing tooltip when invitationMessage is null', async () => {
+    const missingInvitationMock = {
+      request: {
+        query: childByIdQuery,
+        variables: { id: 'child-1' },
+      },
+      result: {
+        data: {
+          child: {
+            ...mockChildByIdData,
+            activeInternalAndTicketSystemEnrolments: {
+              __typename: 'InternalOrTicketSystemEnrolmentConnection' as const,
+              edges: [],
+            },
+            upcomingEventsAndEventGroups: {
+              __typename: 'EventOrEventGroupConnection' as const,
+              edges: [
+                {
+                  __typename: 'EventOrEventGroupEdge' as const,
+                  node: {
+                    __typename: 'EventGroupNode' as const,
+                    id: 'eg-spring-open',
+                    name: 'Kevät 2026',
+                    shortDescription: 'Kevään tapahtumat',
+                    image: '',
+                    imageAltText: null,
+                    publishedAt: '2026-01-15T10:00:00.000Z',
+                    invitationMessage: null,
+                    enrolmentDeniedReason: null,
+                    events: {
+                      __typename: 'EventNodeConnection' as const,
+                      edges: [
+                        {
+                          __typename: 'EventNodeEdge' as const,
+                          node: {
+                            __typename: 'EventNode' as const,
+                            id: 'upcoming-ev-1',
+                            name: 'Kevään teatteri',
+                            publishedAt: '2026-01-15T10:00:00.000Z',
+                            enrolmentDeniedReason: null,
+                            registrationOpensAt: null,
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      },
+    };
+
+    render(
+      <ProfileChildAccordionItem child={mockChild} initiallyOpen={true} />,
+      [missingInvitationMock]
+    );
+
+    const readLetterBtn = await screen.findByRole('button', {
+      name: /lue kauden kevät 2026 kutsukirje/i,
+    });
+    expect(readLetterBtn).toBeDisabled();
+    expect(readLetterBtn).toHaveAttribute('aria-describedby');
+
+    const tooltip = screen.getByRole('tooltip', { hidden: true });
+    expect(tooltip).toHaveTextContent(
+      'Kutsukirjettä ei ole vielä saatavilla.'
+    );
+    expect(readLetterBtn.getAttribute('aria-describedby')).toBe(tooltip.id);
+
+    const wrapper = tooltip.parentElement;
+    expect(wrapper).toHaveAttribute(
+      'title',
+      'Kutsukirjettä ei ole vielä saatavilla.'
+    );
+    expect(wrapper).toHaveAttribute('tabindex', '0');
+    expect(wrapper).toHaveAttribute('aria-describedby', tooltip.id);
+
+    wrapper?.focus();
+    expect(wrapper).toHaveFocus();
+    expect(wrapper).toHaveAccessibleDescription(
+      'Kutsukirjettä ei ole vielä saatavilla.'
+    );
   });
 });

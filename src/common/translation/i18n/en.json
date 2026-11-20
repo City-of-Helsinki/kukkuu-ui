@@ -297,6 +297,16 @@
       "invitations": {
         "heading": "Event invitations"
       },
+      "invitationLetter": {
+        "readButton": "Read invitation letter",
+        "readButtonAriaLabel": "Read invitation letter for season {{eventGroupName}}. Opens a dialog.",
+        "missingTooltip": "The invitation letter is not available yet.",
+        "modal": {
+          "title": "Invitation letter: {{eventGroupName}}",
+          "titleDefault": "Invitation letter",
+          "closeButton": "Close"
+        }
+      },
       "past": {
         "heading": "Past events",
         "empty": "No past events"

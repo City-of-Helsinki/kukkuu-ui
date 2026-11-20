@@ -5,6 +5,7 @@ export const childByIdQuery = gql`
     id
     name
     publishedAt
+    invitationMessage(format: HTML)
   }
 
   fragment EnrolmentEventFields on EventNode {
@@ -151,6 +152,7 @@ export const childByIdQuery = gql`
     image
     imageAltText
     publishedAt
+    invitationMessage(format: HTML)
     enrolmentDeniedReason(childId: $id)
     events(upcoming: true) {
       edges {

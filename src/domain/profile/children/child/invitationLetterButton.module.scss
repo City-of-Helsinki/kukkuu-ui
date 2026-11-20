@@ -1,0 +1,50 @@
+.invitationLetterButton {
+  margin-left: auto;
+
+  > div {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    height: auto;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+.disabledTooltipWrapper {
+  position: relative;
+  display: inline-flex;
+  margin-left: auto;
+
+  .invitationLetterButton {
+    margin-left: 0;
+    pointer-events: none;
+  }
+
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: calc(100% + var(--spacing-2-xs));
+    right: 0;
+    z-index: 10;
+    width: max-content;
+    max-width: 240px;
+    padding: var(--spacing-2-xs) var(--spacing-xs);
+    background-color: var(--color-black-90, #1a1a1a);
+    color: var(--color-white, #fff);
+    font-size: var(--fontsize-body-s, 0.875rem);
+    line-height: 1.4;
+    border-radius: 2px;
+    pointer-events: none;
+    transition: opacity 0.15s ease-in-out;
+  }
+
+  &:hover .tooltip,
+  &:focus-within .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+}

@@ -297,6 +297,16 @@
       "invitations": {
         "heading": "Tapahtumakutsut"
       },
+      "invitationLetter": {
+        "readButton": "Lue kutsukirje",
+        "readButtonAriaLabel": "Lue kauden {{eventGroupName}} kutsukirje. Avaa valintaikkunan.",
+        "missingTooltip": "Kutsukirjettä ei ole vielä saatavilla.",
+        "modal": {
+          "title": "Kutsukirje: {{eventGroupName}}",
+          "titleDefault": "Kutsukirje",
+          "closeButton": "Sulje"
+        }
+      },
       "past": {
         "heading": "Menneet tapahtumat",
         "empty": "Ei menneitä tapahtumia"
