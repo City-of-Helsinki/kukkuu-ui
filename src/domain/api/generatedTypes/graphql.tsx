@@ -33,6 +33,43 @@ export type Scalars = {
   Upload: { input: any; output: any };
 };
 
+export type AccessibilityNode = Node & {
+  __typename?: 'AccessibilityNode';
+  description: Scalars['String']['output'];
+  /** The ID of the object */
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  /** Stable identifier of the tag. Use lowercase letters and underscores. */
+  slug: Scalars['String']['output'];
+  /** Tags without a sort order are listed last. */
+  sortOrder: Maybe<Scalars['Int']['output']>;
+  translations: Array<AccessibilityTranslationType>;
+};
+
+export type AccessibilityNodeConnection = {
+  __typename?: 'AccessibilityNodeConnection';
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<AccessibilityNodeEdge>>;
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+};
+
+/** A Relay edge containing a `AccessibilityNode` and its cursor. */
+export type AccessibilityNodeEdge = {
+  __typename?: 'AccessibilityNodeEdge';
+  /** A cursor for use in pagination */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge */
+  node: Maybe<AccessibilityNode>;
+};
+
+export type AccessibilityTranslationType = {
+  __typename?: 'AccessibilityTranslationType';
+  description: Scalars['String']['output'];
+  languageCode: Language;
+  name: Scalars['String']['output'];
+};
+
 export type AddChildMutationInput = {
   birthyear: Scalars['Int']['input'];
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
@@ -85,7 +122,6 @@ export type AddEventMutationPayload = {
 };
 
 export type AddEventTicketSystemInput = {
-  endTime?: InputMaybe<Scalars['String']['input']>;
   type: TicketSystem;
   url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -110,6 +146,8 @@ export type AddMessageMutationPayload = {
 };
 
 export type AddOccurrenceMutationInput = {
+  /** Accessibilities of the occurrence. Omit for none. */
+  accessibilityIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   capacityOverride?: InputMaybe<Scalars['Int']['input']>;
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   eventId: Scalars['ID']['input'];
@@ -560,6 +598,8 @@ export type EventGroupNode = Node & {
   id: Scalars['ID']['output'];
   image: Scalars['String']['output'];
   imageAltText: Maybe<Scalars['String']['output']>;
+  /** Invitation letter for the event group in the active language, without email footer/unsubscribe notes. */
+  invitationMessage: Maybe<Scalars['String']['output']>;
   name: Maybe<Scalars['String']['output']>;
   project: ProjectNode;
   publishedAt: Maybe<Scalars['DateTime']['output']>;
@@ -577,15 +617,26 @@ export type EventGroupNodeEnrolmentDeniedReasonArgs = {
 };
 
 export type EventGroupNodeEventsArgs = {
+  accessibility: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   availableForChild: InputMaybe<Scalars['String']['input']>;
+  availableOnly: InputMaybe<Scalars['Boolean']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
+  childId: InputMaybe<Scalars['ID']['input']>;
+  familyOnly: InputMaybe<Scalars['Boolean']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
+  startDate: InputMaybe<Scalars['Date']['input']>;
   themePath: InputMaybe<Scalars['String']['input']>;
+  themePaths: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   upcoming: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type EventGroupNodeInvitationMessageArgs = {
+  format?: InputMaybe<InvitationMessageFormat>;
 };
 
 export type EventGroupNodeConnection = {
@@ -641,7 +692,7 @@ export type EventNode = Node & {
   imageAltText: Maybe<Scalars['String']['output']>;
   messages: MessageNodeConnection;
   name: Maybe<Scalars['String']['output']>;
-  occurrences: OccurrenceNodeConnection;
+  occurrences: Maybe<OccurrenceNodeConnection>;
   organisation: Maybe<OrganisationNode>;
   participantsPerInvite: EventParticipantsPerInvite;
   project: ProjectNode;
@@ -694,6 +745,7 @@ export type EventNodeOccurrencesArgs = {
 
 export type EventNodeConnection = {
   __typename?: 'EventNodeConnection';
+  count: Scalars['Int']['output'];
   /** Contains the nodes in this connection. */
   edges: Array<Maybe<EventNodeEdge>>;
   /** Pagination data for this connection. */
@@ -911,6 +963,12 @@ export type InternalOrTicketSystemEnrolmentUnion =
   | TixlyEnrolmentNode;
 
 /** An enumeration. */
+export enum InvitationMessageFormat {
+  Html = 'HTML',
+  Text = 'TEXT',
+}
+
+/** An enumeration. */
 export enum Language {
   En = 'EN',
   Fi = 'FI',
@@ -971,6 +1029,7 @@ export type LippupisteEnrolmentNode = Node & {
 export type LippupisteEventTicketSystem = EventTicketSystem & {
   __typename?: 'LippupisteEventTicketSystem';
   childPassword: Maybe<Scalars['String']['output']>;
+  /** @deprecated Deprecated in favor of the event's single occurrence time. */
   endTime: Maybe<Scalars['DateTime']['output']>;
   freePasswordCount: Scalars['Int']['output'];
   hasAnyFreePasswords: Scalars['Boolean']['output'];
@@ -1303,6 +1362,7 @@ export type OccurrenceArrivalStatusNode = {
 
 export type OccurrenceNode = Node & {
   __typename?: 'OccurrenceNode';
+  accessibilities: Array<AccessibilityNode>;
   attendedEnrolmentCount: Scalars['Int']['output'];
   capacity: Maybe<Scalars['Int']['output']>;
   /** Override total physical seat capacity. Each enrolment takes at least 2 seats (1 child + 1 guardian). */
@@ -1501,6 +1561,8 @@ export type PublishEventMutationPayload = {
 
 export type Query = {
   __typename?: 'Query';
+  accessibilities: Maybe<AccessibilityNodeConnection>;
+  accessibility: Maybe<AccessibilityNode>;
   child: Maybe<ChildNode>;
   childNotes: Maybe<ChildNotesNode>;
   children: Maybe<ChildNodeConnection>;
@@ -1528,6 +1590,18 @@ export type Query = {
   venue: Maybe<VenueNode>;
   venues: Maybe<VenueNodeConnection>;
   verifyTicket: Maybe<TicketVerificationNode>;
+};
+
+export type QueryAccessibilitiesArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  offset: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type QueryAccessibilityArgs = {
+  id: Scalars['ID']['input'];
 };
 
 export type QueryChildArgs = {
@@ -1566,14 +1640,21 @@ export type QueryEventGroupsArgs = {
 };
 
 export type QueryEventsArgs = {
+  accessibility: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   availableForChild: InputMaybe<Scalars['String']['input']>;
+  availableOnly: InputMaybe<Scalars['Boolean']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
+  childId: InputMaybe<Scalars['ID']['input']>;
+  familyOnly: InputMaybe<Scalars['Boolean']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
+  startDate: InputMaybe<Scalars['Date']['input']>;
   themePath: InputMaybe<Scalars['String']['input']>;
+  themePaths: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   upcoming: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1693,6 +1774,7 @@ export type QueryVenuesArgs = {
   before: InputMaybe<Scalars['String']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
   last: InputMaybe<Scalars['Int']['input']>;
+  name: InputMaybe<Scalars['String']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['ID']['input']>;
 };
@@ -1882,6 +1964,7 @@ export type TicketmasterEnrolmentNode = Node & {
 export type TicketmasterEventTicketSystem = EventTicketSystem & {
   __typename?: 'TicketmasterEventTicketSystem';
   childPassword: Maybe<Scalars['String']['output']>;
+  /** @deprecated Deprecated in favor of the event's single occurrence time. */
   endTime: Maybe<Scalars['DateTime']['output']>;
   freePasswordCount: Scalars['Int']['output'];
   hasAnyFreePasswords: Scalars['Boolean']['output'];
@@ -1913,6 +1996,7 @@ export type TixlyEnrolmentNode = Node & {
 export type TixlyEventTicketSystem = EventTicketSystem & {
   __typename?: 'TixlyEventTicketSystem';
   childPassword: Maybe<Scalars['String']['output']>;
+  /** @deprecated Deprecated in favor of the event's single occurrence time. */
   endTime: Maybe<Scalars['DateTime']['output']>;
   freePasswordCount: Scalars['Int']['output'];
   hasAnyFreePasswords: Scalars['Boolean']['output'];
@@ -2049,7 +2133,6 @@ export type UpdateEventMutationPayload = {
 };
 
 export type UpdateEventTicketSystemInput = {
-  endTime?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -2113,6 +2196,8 @@ export type UpdateMyProfileMutationPayload = {
 };
 
 export type UpdateOccurrenceMutationInput = {
+  /** Omit to keep the current accessibilities. If given, replaces them. An empty list removes them all. */
+  accessibilityIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   capacityOverride?: InputMaybe<Scalars['Int']['input']>;
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   eventId?: InputMaybe<Scalars['ID']['input']>;
@@ -2164,9 +2249,10 @@ export type VenueNode = Node & {
   description: Maybe<Scalars['String']['output']>;
   /** The ID of the object */
   id: Scalars['ID']['output'];
+  isSystem: Scalars['Boolean']['output'];
   name: Maybe<Scalars['String']['output']>;
   occurrences: OccurrenceNodeConnection;
-  project: ProjectNode;
+  project: Maybe<ProjectNode>;
   translations: Array<VenueTranslationType>;
   updatedAt: Scalars['DateTime']['output'];
   wcAndFacilities: Maybe<Scalars['String']['output']>;
@@ -2411,6 +2497,7 @@ export type EnrolmentEventGroupFieldsFragment = {
   id: string;
   name: string | null;
   publishedAt: any | null;
+  invitationMessage: string | null;
 };
 
 export type EnrolmentEventFieldsFragment = {
@@ -2427,6 +2514,7 @@ export type EnrolmentEventFieldsFragment = {
     id: string;
     name: string | null;
     publishedAt: any | null;
+    invitationMessage: string | null;
   } | null;
 };
 
@@ -2458,7 +2546,7 @@ export type PastEventFieldsFragment = {
       __typename?: 'OccurrenceNodeEdge';
       node: { __typename?: 'OccurrenceNode'; id: string; time: any } | null;
     } | null>;
-  };
+  } | null;
 };
 
 export type PastEventsFieldsFragment = {
@@ -2479,7 +2567,7 @@ export type PastEventsFieldsFragment = {
           __typename?: 'OccurrenceNodeEdge';
           node: { __typename?: 'OccurrenceNode'; id: string; time: any } | null;
         } | null>;
-      };
+      } | null;
     } | null;
   } | null>;
 };
@@ -2516,6 +2604,7 @@ export type EnrolmentOccurrenceFieldsFragment = {
       id: string;
       name: string | null;
       publishedAt: any | null;
+      invitationMessage: string | null;
     } | null;
   };
 };
@@ -2549,6 +2638,7 @@ export type ActiveInternalEnrolmentFieldsFragment = {
         id: string;
         name: string | null;
         publishedAt: any | null;
+        invitationMessage: string | null;
       } | null;
     };
   };
@@ -2571,6 +2661,7 @@ export type ActiveTicketmasterEnrolmentFieldsFragment = {
       id: string;
       name: string | null;
       publishedAt: any | null;
+      invitationMessage: string | null;
     } | null;
   };
 };
@@ -2592,6 +2683,7 @@ export type ActiveLippupisteEnrolmentFieldsFragment = {
       id: string;
       name: string | null;
       publishedAt: any | null;
+      invitationMessage: string | null;
     } | null;
   };
 };
@@ -2613,6 +2705,7 @@ export type ActiveTixlyEnrolmentFieldsFragment = {
       id: string;
       name: string | null;
       publishedAt: any | null;
+      invitationMessage: string | null;
     } | null;
   };
 };
@@ -2651,6 +2744,7 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
                 id: string;
                 name: string | null;
                 publishedAt: any | null;
+                invitationMessage: string | null;
               } | null;
             };
           };
@@ -2672,6 +2766,7 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
               id: string;
               name: string | null;
               publishedAt: any | null;
+              invitationMessage: string | null;
             } | null;
           };
         }
@@ -2692,6 +2787,7 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
               id: string;
               name: string | null;
               publishedAt: any | null;
+              invitationMessage: string | null;
             } | null;
           };
         }
@@ -2712,6 +2808,7 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
               id: string;
               name: string | null;
               publishedAt: any | null;
+              invitationMessage: string | null;
             } | null;
           };
         }
@@ -2748,6 +2845,7 @@ export type UpcomingEventGroupFieldsFragment = {
   image: string;
   imageAltText: string | null;
   publishedAt: any | null;
+  invitationMessage: string | null;
   enrolmentDeniedReason: EnrolmentDeniedReason | null;
   events: {
     __typename?: 'EventNodeConnection';
@@ -2778,6 +2876,7 @@ export type UpcomingEventsAndEventGroupsFieldsFragment = {
           image: string;
           imageAltText: string | null;
           publishedAt: any | null;
+          invitationMessage: string | null;
           enrolmentDeniedReason: EnrolmentDeniedReason | null;
           events: {
             __typename?: 'EventNodeConnection';
@@ -2880,6 +2979,7 @@ export type ChildByIdQueryFieldsFragment = {
                   id: string;
                   name: string | null;
                   publishedAt: any | null;
+                  invitationMessage: string | null;
                 } | null;
               };
             };
@@ -2901,6 +3001,7 @@ export type ChildByIdQueryFieldsFragment = {
                 id: string;
                 name: string | null;
                 publishedAt: any | null;
+                invitationMessage: string | null;
               } | null;
             };
           }
@@ -2921,6 +3022,7 @@ export type ChildByIdQueryFieldsFragment = {
                 id: string;
                 name: string | null;
                 publishedAt: any | null;
+                invitationMessage: string | null;
               } | null;
             };
           }
@@ -2941,6 +3043,7 @@ export type ChildByIdQueryFieldsFragment = {
                 id: string;
                 name: string | null;
                 publishedAt: any | null;
+                invitationMessage: string | null;
               } | null;
             };
           }
@@ -2960,6 +3063,7 @@ export type ChildByIdQueryFieldsFragment = {
             image: string;
             imageAltText: string | null;
             publishedAt: any | null;
+            invitationMessage: string | null;
             enrolmentDeniedReason: EnrolmentDeniedReason | null;
             events: {
               __typename?: 'EventNodeConnection';
@@ -3012,7 +3116,7 @@ export type ChildByIdQueryFieldsFragment = {
               time: any;
             } | null;
           } | null>;
-        };
+        } | null;
       } | null;
     } | null>;
   } | null;
@@ -3081,6 +3185,7 @@ export type ChildByIdQuery = {
                     id: string;
                     name: string | null;
                     publishedAt: any | null;
+                    invitationMessage: string | null;
                   } | null;
                 };
               };
@@ -3102,6 +3207,7 @@ export type ChildByIdQuery = {
                   id: string;
                   name: string | null;
                   publishedAt: any | null;
+                  invitationMessage: string | null;
                 } | null;
               };
             }
@@ -3122,6 +3228,7 @@ export type ChildByIdQuery = {
                   id: string;
                   name: string | null;
                   publishedAt: any | null;
+                  invitationMessage: string | null;
                 } | null;
               };
             }
@@ -3142,6 +3249,7 @@ export type ChildByIdQuery = {
                   id: string;
                   name: string | null;
                   publishedAt: any | null;
+                  invitationMessage: string | null;
                 } | null;
               };
             }
@@ -3161,6 +3269,7 @@ export type ChildByIdQuery = {
               image: string;
               imageAltText: string | null;
               publishedAt: any | null;
+              invitationMessage: string | null;
               enrolmentDeniedReason: EnrolmentDeniedReason | null;
               events: {
                 __typename?: 'EventNodeConnection';
@@ -3213,7 +3322,7 @@ export type ChildByIdQuery = {
                 time: any;
               } | null;
             } | null>;
-          };
+          } | null;
         } | null;
       } | null>;
     } | null;
@@ -3744,6 +3853,12 @@ export type EventQuery = {
     capacityPerOccurrence: number | null;
     enrolmentDeniedReason: EnrolmentDeniedReason | null;
     registrationOpensAt: any | null;
+    themePaths: Array<{
+      __typename?: 'ThemePathNode';
+      id: string;
+      slug: string;
+      name: string;
+    }>;
     eventGroup: { __typename?: 'EventGroupNode'; id: string } | null;
     occurrences: {
       __typename?: 'OccurrenceNodeConnection';
@@ -3796,7 +3911,7 @@ export type EventQuery = {
             | null;
         } | null;
       } | null>;
-    };
+    } | null;
     allOccurrences: {
       __typename?: 'OccurrenceNodeConnection';
       edges: Array<{
@@ -3848,24 +3963,27 @@ export type EventQuery = {
             | null;
         } | null;
       } | null>;
-    };
+    } | null;
     ticketSystem:
       | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
       | {
           __typename?: 'LippupisteEventTicketSystem';
           childPassword: string | null;
+          hasAnyFreePasswords: boolean;
           url: string | null;
           type: TicketSystem;
         }
       | {
           __typename?: 'TicketmasterEventTicketSystem';
           childPassword: string | null;
+          hasAnyFreePasswords: boolean;
           url: string | null;
           type: TicketSystem;
         }
       | {
           __typename?: 'TixlyEventTicketSystem';
           childPassword: string | null;
+          hasAnyFreePasswords: boolean;
           url: string | null;
           type: TicketSystem;
         }
@@ -3989,7 +4107,7 @@ export type ExternalTicketSystemEventFieldsFragment = {
           | null;
       } | null;
     } | null>;
-  };
+  } | null;
   ticketSystem:
     | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
     | {
@@ -4058,7 +4176,7 @@ export type ExternalTicketSystemEventQuery = {
             | null;
         } | null;
       } | null>;
-    };
+    } | null;
     ticketSystem:
       | { __typename?: 'InternalEventTicketSystem'; type: TicketSystem }
       | {
@@ -5129,6 +5247,7 @@ export const EnrolmentEventGroupFieldsFragmentDoc = gql`
     id
     name
     publishedAt
+    invitationMessage(format: HTML)
   }
 `;
 export const EnrolmentEventFieldsFragmentDoc = gql`
@@ -5257,6 +5376,7 @@ export const UpcomingEventGroupFieldsFragmentDoc = gql`
     image
     imageAltText
     publishedAt
+    invitationMessage(format: HTML)
     enrolmentDeniedReason(childId: $id)
     events(upcoming: true) {
       edges {
@@ -6154,6 +6274,11 @@ export const EventQueryDocument = gql`
       capacityPerOccurrence
       enrolmentDeniedReason(childId: $childId)
       registrationOpensAt
+      themePaths {
+        id
+        slug
+        name
+      }
       eventGroup {
         id
       }
@@ -6167,14 +6292,17 @@ export const EventQueryDocument = gql`
         type
         ... on TicketmasterEventTicketSystem {
           childPassword(childId: $childId)
+          hasAnyFreePasswords
           url
         }
         ... on LippupisteEventTicketSystem {
           childPassword(childId: $childId)
+          hasAnyFreePasswords
           url
         }
         ... on TixlyEventTicketSystem {
           childPassword(childId: $childId)
+          hasAnyFreePasswords
           url
         }
       }

@@ -115,6 +115,19 @@
   line-height: 1.3;
 }
 
+.eventGroupHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-m);
+
+  .eventGroupHeading {
+    margin-bottom: 0;
+  }
+}
+
 .eventGroupHeading {
   font-size: var(--fontsize-heading-s, 1.25rem);
   font-weight: 700;
@@ -222,8 +235,6 @@
 }
 
 .pastEventsList {
-  list-style: none;
-  padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;

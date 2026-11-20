@@ -47,6 +47,7 @@ export type EnrolmentEventGroup = {
   id: string;
   name?: string | null;
   publishedAt?: string | null;
+  invitationMessage?: string | null;
 };
 
 export type UpcomingEventGroupEvent = UpcomingEventGroupEventFieldsFragment;
