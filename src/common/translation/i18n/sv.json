@@ -297,6 +297,16 @@
       "invitations": {
         "heading": "Evenemangsinbjudningar"
       },
+      "invitationLetter": {
+        "readButton": "Läs inbjudningsbrevet",
+        "readButtonAriaLabel": "Läs inbjudningsbrevet för säsongen {{eventGroupName}}. Öppnar en dialogruta.",
+        "missingTooltip": "Inbjudningsbrevet är inte tillgängligt ännu.",
+        "modal": {
+          "title": "Inbjudningsbrev: {{eventGroupName}}",
+          "titleDefault": "Inbjudningsbrev",
+          "closeButton": "Stäng"
+        }
+      },
       "past": {
         "heading": "Gångna evenemang",
         "empty": "Inga tidigare evenemang"

@@ -38,7 +38,7 @@ describe('eventMockDataUtils', () => {
         },
       });
 
-      expect(eventNode.occurrences.edges).toEqual([]);
+      expect(eventNode.occurrences?.edges).toEqual([]);
       expect(eventNode.allOccurrences?.edges).toEqual([]);
     });
 
@@ -49,7 +49,7 @@ describe('eventMockDataUtils', () => {
 
       expect(eventNode.capacityPerOccurrence).toBe(50);
       expect(eventNode.duration).toBe(60);
-      expect(eventNode.occurrences.edges.length).toBe(1);
+      expect(eventNode.occurrences?.edges.length).toBe(1);
     });
   });
 });
