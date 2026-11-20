@@ -166,7 +166,7 @@ describe('EventDetailsPage', () => {
         {
           request: {
             query: PageDocument,
-            variables: { id: 'search' },
+            variables: { id: '/fi/search' },
           },
           result: {
             data: {
@@ -179,7 +179,7 @@ describe('EventDetailsPage', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByRole('link', { name: 'Löydä tapahtumia CMS' })
+        screen.getAllByRole('link', { name: 'Löydä tapahtumia CMS' })[0]
       ).toHaveAttribute('href', '/events?child=child-1');
     });
   });

@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
+import { MemoryRouter } from 'react-router';
 
 import {
   SkeletonLine,
@@ -97,6 +98,17 @@ describe('CmsSkeleton primitives', () => {
       expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute('href', '/fi');
       expect(screen.getByTestId('skeleton-line')).toBeInTheDocument();
+    });
+
+    it('renders router link when rendered within router context', () => {
+      render(
+        <MemoryRouter>
+          <BreadcrumbSkeleton rootTitle="Etusivu" rootPath="/fi" />
+        </MemoryRouter>
+      );
+      const link = screen.getByRole('link', { name: 'Etusivu' });
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', '/fi');
     });
 
     it('accepts custom aria-label and ariaLabel override props', () => {

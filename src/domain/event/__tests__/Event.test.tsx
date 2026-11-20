@@ -189,7 +189,7 @@ describe('Event', () => {
         screen.getByRole('navigation', { name: /Leivänmurunavigaatio/i })
       ).toBeInTheDocument();
       expect(
-        screen.getByRole('link', { name: 'Tapahtumat' })
+        screen.getAllByRole('link', { name: 'Tapahtumat' })[0]
       ).toHaveAttribute('href', '/events?child=child-123');
 
       expect(screen.getByText('Osallistujat')).toBeInTheDocument();

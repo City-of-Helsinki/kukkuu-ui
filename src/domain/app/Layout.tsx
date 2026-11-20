@@ -8,6 +8,9 @@ import { ScrollToTop } from '../../common/route/RouteUtils';
 import AppConfig from './AppConfig';
 import CimodeIndicator from '../../common/translation/cimode/CimodeIndicator';
 import useCimodeSync from '../../common/translation/cimode/useCimodeSync';
+import WithProfileChildRouteAuthorization from './routes/WithProfileChildRouteAuthorization';
+
+const ProtectedOutlet = WithProfileChildRouteAuthorization(Outlet);
 
 const Layout = () => {
   useHashAnchorLinks();
@@ -18,7 +21,7 @@ const Layout = () => {
       <ScrollToTop />
       <PageLayout>
         <AppTitleAnnouncer />
-        <Outlet />
+        <ProtectedOutlet />
       </PageLayout>
       {AppConfig.translationToolEnabled && <CimodeIndicator />}
     </>

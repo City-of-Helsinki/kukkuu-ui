@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { useLocation } from 'react-router';
 import {
   ConfigProvider,
   defaultConfig,
@@ -191,10 +192,15 @@ describe('<HeaderNavigation />', () => {
     expect(titleLink.closest('a')).toHaveAttribute('href', '/sv');
   });
 
-  it('triggers onDidChangeLanguage and calls redirectToUrl when selecting a language', async () => {
+  it('triggers onDidChangeLanguage and navigates via router for internal URLs without calling redirectToUrl', async () => {
     const user = userEvent.setup();
     const redirectToUrlMock = vi.fn();
     const getPathnameForLanguageMock = vi.fn().mockReturnValue('/sv/events');
+
+    const LocationDisplay = () => {
+      const { pathname } = useLocation();
+      return <div data-testid="location-pathname">{pathname}</div>;
+    };
 
     const customConfig = {
       ...defaultConfig,
@@ -213,6 +219,7 @@ describe('<HeaderNavigation />', () => {
           languages={[...HARDCODED_CMS_LANGUAGES]}
           getPathnameForLanguage={getPathnameForLanguageMock}
         />
+        <LocationDisplay />
       </ConfigProvider>
     );
 
@@ -224,6 +231,9 @@ describe('<HeaderNavigation />', () => {
     await user.click(svOption);
 
     expect(getPathnameForLanguageMock).toHaveBeenCalled();
-    expect(redirectToUrlMock).toHaveBeenCalledWith('/sv/events');
+    expect(redirectToUrlMock).not.toHaveBeenCalled();
+    expect(screen.getByTestId('location-pathname')).toHaveTextContent(
+      '/sv/events'
+    );
   });
 });

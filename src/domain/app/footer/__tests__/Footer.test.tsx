@@ -63,7 +63,11 @@ vi.mock('hds-react', async () => {
     [key: string]: unknown;
   }) => {
     if (typeof Component !== 'string') {
-      return <Component {...props} />;
+      return (
+        <Component href={href} {...props}>
+          {(props.children as React.ReactNode) ?? label}
+        </Component>
+      );
     }
     if (Component === 'button') {
       return (
