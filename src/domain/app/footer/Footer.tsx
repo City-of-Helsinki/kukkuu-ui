@@ -13,6 +13,8 @@ import {
 import styles from './footer.module.scss';
 import { getCurrentLanguage } from '../../../common/translation/TranslationUtils';
 import { RESET_FOCUS_ID } from '../../../common/components/resetFocus/constants';
+import Link from '../../../common/components/link/Link';
+import { isInternalHref } from '../../../common/route/utils/isInternalHref';
 import {
   FooterPillSkeleton,
   SkeletonLoader,
@@ -85,6 +87,7 @@ const Footer: FunctionComponent = () => {
               key={footerLink.id}
               href={footerLink.path}
               label={footerLink.label}
+              {...(isInternalHref(footerLink.path) && { as: Link })}
             />
           ))}
         </SkeletonLoader>

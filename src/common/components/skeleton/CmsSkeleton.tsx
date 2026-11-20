@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { Koros } from 'hds-react';
 import { useTranslation } from 'react-i18next';
 
+import Link from '../link/Link';
 import styles from './cmsSkeleton.module.scss';
 
 export interface SkeletonLineProps {
@@ -145,9 +146,9 @@ export const BreadcrumbSkeleton: React.FC<BreadcrumbSkeletonProps> = ({
       {rootTitle ? (
         <div className={styles.breadcrumbSkeletonTrack}>
           {rootPath ? (
-            <a href={rootPath} className={styles.breadcrumbSkeletonRoot}>
+            <Link href={rootPath} className={styles.breadcrumbSkeletonRoot}>
               {rootTitle}
-            </a>
+            </Link>
           ) : (
             <span className={styles.breadcrumbSkeletonRoot}>{rootTitle}</span>
           )}

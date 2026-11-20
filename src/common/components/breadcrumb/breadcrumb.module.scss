@@ -1,0 +1,11 @@
+.breadcrumbsWrapper {
+  width: 100%;
+  background-color: var(--color-white, #fff);
+}
+
+.breadcrumbs {
+  max-width: var(--breakpoint-xl, 1248px);
+  margin: 0 auto !important;
+  padding: var(--spacing-xs) var(--spacing-m);
+  box-sizing: border-box;
+}

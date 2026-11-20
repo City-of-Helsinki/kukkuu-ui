@@ -24,12 +24,12 @@ export const useLocaleRouteNavigate = () => {
   const { i18n } = useTranslation();
 
   React.useEffect(() => {
-    if (isSupportedLocale(locale)) {
+    if (isSupportedLocale(locale) && locale !== currentLocale) {
       // eslint-disable-next-line no-console
       console.info('Change current language to', locale);
       i18n.changeLanguage(locale);
     }
-  }, [i18n, locale]);
+  }, [i18n, locale, currentLocale]);
 
   React.useEffect(() => {
     const shouldPrefixPathnameWithLocale =

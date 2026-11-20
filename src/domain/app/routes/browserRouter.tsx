@@ -17,7 +17,6 @@ import WithLocaleRoute from './WithLocaleRoute';
 import HeadlessCmsPage from '../../headlessCms/HeadlessCmsPage';
 import ArticleArchivePage from '../../article/ArticleArchivePage';
 import ArticlePage from '../../article/ArticlePage';
-import WithProfileChildRouteAuthorization from './WithProfileChildRouteAuthorization';
 import ProfileChildRedirect from './ProfileChildRedirect';
 import ProfileChildEventsRedirect from './ProfileChildEventsRedirect';
 import SearchRedirect from './SearchRedirect';
@@ -62,7 +61,7 @@ export const getAppRoutes = (): RouteObject[] => [
   },
   {
     path: '/:locale/*',
-    Component: WithProfileChildRouteAuthorization(WithLocaleRoute(Layout)),
+    Component: WithLocaleRoute(Layout),
     errorElement: <ApplicationError />,
     children: [
       {
