@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Breadcrumb, Container, useOidcClient } from 'hds-react';
+import { Container, useOidcClient } from 'hds-react';
 import { useNavigate } from 'react-router';
 
+import Breadcrumb from '../../common/components/breadcrumb/Breadcrumb';
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import PageMeta from '../app/layout/utilityComponents/PageMeta';
 import ProfileHero from './hero/ProfileHero';

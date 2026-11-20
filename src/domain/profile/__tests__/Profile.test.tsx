@@ -183,7 +183,7 @@ describe('Profile', () => {
       {
         request: {
           query: PageDocument,
-          variables: { id: 'profile' },
+          variables: { id: '/fi/profile' },
         },
         result: {
           data: {
@@ -242,7 +242,7 @@ describe('Profile', () => {
       {
         request: {
           query: PageDocument,
-          variables: { id: 'profile' },
+          variables: { id: '/fi/profile' },
         },
         result: {
           data: {
@@ -304,7 +304,7 @@ describe('Profile', () => {
       {
         request: {
           query: PageDocument,
-          variables: { id: 'profile' },
+          variables: { id: '/fi/profile' },
         },
         result: {
           data: {

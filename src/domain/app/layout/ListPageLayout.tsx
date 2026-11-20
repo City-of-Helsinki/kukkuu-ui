@@ -1,9 +1,11 @@
 import { ReactNode } from 'react';
-import { Breadcrumb, Container, IconArrowLeft, IconSize } from 'hds-react';
-import type { BreadcrumbListItem } from 'hds-react';
+import { Container, IconArrowLeft, IconSize } from 'hds-react';
 import { Link, LinkProps } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
+import Breadcrumb, {
+  BreadcrumbListItem,
+} from '../../../common/components/breadcrumb/Breadcrumb';
 import Text from '../../../common/components/text/Text';
 import PageMeta from './utilityComponents/PageMeta';
 import styles from './listPageLayout.module.scss';

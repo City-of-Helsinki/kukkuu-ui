@@ -109,7 +109,7 @@ export const useProfileChildRouteAuthorization = () => {
   ]);
 
   return {
-    loading: loadingIsAuthorized,
+    loading: loadingIsAuthorized || (Boolean(childId) && isProfileLoading),
     isAuthorized,
   };
 };

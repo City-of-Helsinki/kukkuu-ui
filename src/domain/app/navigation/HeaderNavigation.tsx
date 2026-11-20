@@ -35,6 +35,7 @@
 
 import React from 'react';
 import groupBy from 'lodash/groupBy';
+import { useInRouterContext, useNavigate } from 'react-router';
 import type { LanguageOption } from 'hds-react';
 import { Header, Logo, LogoSize, logoFi, logoSv } from 'hds-react';
 import {
@@ -53,6 +54,7 @@ import {
 } from '@city-of-helsinki/react-helsinki-headless-cms';
 
 import { DEFAULT_LANGUAGE } from '../../../common/translation/TranslationConstants';
+import { toInternalRoute } from '../../../common/route/utils/isInternalHref';
 import { HARDCODED_CMS_LANGUAGES } from '../../languages/constants';
 import { MAIN_CONTENT_ID } from '../../constants';
 import { NavMenuSkeleton } from './NavMenuSkeleton';
@@ -164,6 +166,9 @@ export function HeaderNavigation({
     fallbackTranslations,
   } = useConfig();
 
+  const inRouter = useInRouterContext();
+  const navigate = useNavigate();
+
   const defaultLanguage = DEFAULT_LANGUAGE.toString();
   const languagesData: Language[] =
     languages && languages.length > 0 ? languages : [...HARDCODED_CMS_LANGUAGES];
@@ -190,7 +195,12 @@ export function HeaderNavigation({
         ? getPathnameForLanguage(newLanguage, currentLanguage, languagesData)
         : fallbackPath;
     if (url) {
-      redirectToUrl(url);
+      const internalRoute = toInternalRoute(url);
+      if (inRouter && internalRoute !== null) {
+        navigate(internalRoute);
+      } else {
+        redirectToUrl(url);
+      }
     }
   };
 

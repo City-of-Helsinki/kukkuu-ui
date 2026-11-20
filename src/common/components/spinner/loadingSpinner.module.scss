@@ -6,8 +6,10 @@
   align-items: center;
   justify-content: center;
 
+  min-height: 50dvh;
   height: 100%;
   width: 100%;
+  padding: var(--spacing-xl) 0;
 }
 
 .spinner {

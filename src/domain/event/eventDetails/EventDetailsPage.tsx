@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Breadcrumb } from 'hds-react';
-import type { BreadcrumbListItem } from 'hds-react';
 
+import Breadcrumb, {
+  BreadcrumbListItem,
+} from '../../../common/components/breadcrumb/Breadcrumb';
 import useGetPathname from '../../../common/route/utils/useGetPathname';
 import usePageQuery from '../../../hooks/usePageQuery';
 import { getCmsPageTitle } from '../../../utils/cmsUtils';

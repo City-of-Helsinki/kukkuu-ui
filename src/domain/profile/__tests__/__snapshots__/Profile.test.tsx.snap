@@ -10,23 +10,24 @@ exports[`Profile > renders profile correctly 1`] = `
     >
       <nav
         aria-label="Leivänmurunavigaatio"
-        class="Breadcrumb-module_breadcrumb__ZyU0k _breadcrumbs_0a90d5"
+        class="hds-breadcrumb _breadcrumbs_0a90d5"
       >
         <ol
-          class="Breadcrumb-module_list__OCIF5 breadcrumb_hds-breadcrumb__list__BO5kj Breadcrumb-module_desktopList__Zca5d breadcrumb_hds-breadcrumb__list--desktop__3tzvg"
+          class="hds-breadcrumb__list hds-breadcrumb__list--desktop"
         >
           <li
-            class="Breadcrumb-module_listItem__jt-AB breadcrumb_hds-breadcrumb__list-item__x5LfD"
+            class="hds-breadcrumb__list-item"
           >
             <a
-              class="Link-module_link__8XuKE link_hds-link__MZCD0 Breadcrumb-module_link__wWMWR breadcrumb_hds-breadcrumb__link__mrCFF"
+              class="hds-link hds-breadcrumb__link"
+              data-discover="true"
               href="/"
             >
               Etusivu
             </a>
             <span
               aria-hidden="true"
-              class="Breadcrumb-module_separator__Y3mAo breadcrumb_hds-breadcrumb__separator__03dHt"
+              class="hds-breadcrumb__separator"
             >
               <svg
                 aria-hidden="true"
@@ -46,22 +47,22 @@ exports[`Profile > renders profile correctly 1`] = `
             </span>
           </li>
           <li
-            class="Breadcrumb-module_listItem__jt-AB breadcrumb_hds-breadcrumb__list-item__x5LfD"
+            class="hds-breadcrumb__list-item"
           >
             <span
-              aria-current="true"
-              class="Breadcrumb-module_activeListItem__w0t-q breadcrumb_hds-breadcrumb__list-item--active__9hvUB"
+              aria-current="page"
+              class="hds-breadcrumb__list-item--active"
             >
               Tili
             </span>
           </li>
         </ol>
         <div
-          class="Breadcrumb-module_list__OCIF5 breadcrumb_hds-breadcrumb__list__BO5kj Breadcrumb-module_mobileList__E-72Q breadcrumb_hds-breadcrumb__list--mobile__AHxAJ"
+          class="hds-breadcrumb__list hds-breadcrumb__list--mobile"
         >
           <span
             aria-hidden="true"
-            class="Breadcrumb-module_backArrow__4qrwp breadcrumb_hds-breadcrumb__back-arrow__GUXMy"
+            class="hds-breadcrumb__back-arrow"
           >
             <svg
               aria-hidden="true"
@@ -80,7 +81,8 @@ exports[`Profile > renders profile correctly 1`] = `
             </svg>
           </span>
           <a
-            class="Link-module_link__8XuKE link_hds-link__MZCD0 Breadcrumb-module_link__wWMWR breadcrumb_hds-breadcrumb__link__mrCFF"
+            class="hds-link hds-breadcrumb__link"
+            data-discover="true"
             href="/"
           >
             Etusivu

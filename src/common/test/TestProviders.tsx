@@ -30,27 +30,27 @@ type Props = {
 };
 
 const defaultCmsMocks: MockedResponse[] = [
-  {
-    request: {
-      query: PageDocument,
-      variables: { id: 'search' },
-    },
-    maxUsageCount: Infinity,
-    result: {
-      data: { page: null },
-    },
-  },
-  {
-    request: {
-      query: PageDocument,
-      variables: { id: 'profile' },
-    },
-    maxUsageCount: Infinity,
-    result: {
-      data: { page: null },
-    },
-  },
   ...Object.values(SUPPORT_LANGUAGES).flatMap((language) => [
+    {
+      request: {
+        query: PageDocument,
+        variables: { id: `/${language}/search` },
+      },
+      maxUsageCount: Infinity,
+      result: {
+        data: { page: null },
+      },
+    },
+    {
+      request: {
+        query: PageDocument,
+        variables: { id: `/${language}/profile` },
+      },
+      maxUsageCount: Infinity,
+      result: {
+        data: { page: null },
+      },
+    },
     {
       request: {
         query: PageByTemplateDocument,
