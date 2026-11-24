@@ -4,6 +4,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 
 import { customRender as render } from '../../../../common/test/customRender';
+import { publicSvgIconPaths } from '../../../../public_files';
 import EventCard from '../EventCard';
 
 const defaultProps = {};
@@ -60,7 +61,11 @@ describe('<EventCard />', () => {
     renderEventCard({
       event: {},
     });
-    expect(screen.queryAllByRole('img', { hidden: true }).length).toEqual(2);
+    // Decorative placeholder image (alt="") has the presentation role
+    expect(screen.getByRole('presentation')).toHaveAttribute(
+      'src',
+      publicSvgIconPaths.homeTheater
+    );
   });
 
   it('should gives highest priority to custom imageElement', () => {
