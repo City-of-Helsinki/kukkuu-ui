@@ -99,7 +99,7 @@
     "globals": "^15.15.0",
     "hds-core": "6.0.2",
     "hds-react": "6.0.2",
-    "i18next": "^24.2.2",
+    "i18next": "^26.3.4",
     "i18next-browser-languagedetector": "^8.0.2",
     "jsdom": "^26.1.0",
     "jsonwebtoken": "^9.0.3",
