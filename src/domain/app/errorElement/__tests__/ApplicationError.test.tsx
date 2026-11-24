@@ -21,7 +21,8 @@ describe('ApplicationError', () => {
     const returnLink = screen.getByRole('link', { name: 'Etusivulle' });
     expect(returnLink).toHaveAttribute('href', '/');
 
-    const icon = screen.getByRole('img');
+    // Decorative image (alt="") has the presentation role
+    const icon = screen.getByRole('presentation');
     expect(icon).toHaveAttribute('src', publicSvgIconPaths.adultFace);
   });
 });
