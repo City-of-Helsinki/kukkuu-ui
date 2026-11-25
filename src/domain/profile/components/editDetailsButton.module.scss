@@ -1,0 +1,24 @@
+.editButton.editButton {
+  --icon-size: var(--spacing-m, 24px);
+  --padding-vertical: var(--spacing-s);
+  --padding-horizontal: var(--spacing-l);
+  margin-top: var(--spacing-s);
+  white-space: nowrap;
+  column-gap: var(--spacing-3-xs);
+  display: inline-flex;
+  align-items: center;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    padding: 0;
+  }
+
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+    width: var(--icon-size);
+    height: var(--icon-size);
+  }
+}

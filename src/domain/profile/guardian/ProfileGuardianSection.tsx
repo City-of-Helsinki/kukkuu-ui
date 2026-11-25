@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ButtonPresetTheme, Card, IconPen, IconUser, IconSize } from 'hds-react';
+import { Card, IconUser, IconSize } from 'hds-react';
 
-import Button from '../../../common/components/button/Button';
+import EditDetailsButton from '../components/EditDetailsButton';
 import EditProfileModal from '../modal/EditProfileModal';
 import { MyProfile } from '../types/ProfileQueryTypes';
 import styles from './profileGuardianSection.module.scss';
@@ -40,17 +40,11 @@ const ProfileGuardianSection: React.FC<ProfileGuardianSectionProps> = ({
           <p className={styles.phone}>p. {profile.phoneNumber}</p>
         )}
         {profile.email && <p className={styles.email}>{profile.email}</p>}
-        <Button
-          variant="supplementary"
-          theme={ButtonPresetTheme.Black}
-          iconStart={<IconPen aria-hidden="true" />}
-          className={styles.editButton}
+        <EditDetailsButton
           onClick={() => setIsEditModalOpen(true)}
-          aria-haspopup="dialog"
-          aria-label={t('profile.guardian.edit.ariaLabel')}
-        >
-          {t('profile.guardian.edit.buttonText')}
-        </Button>
+          ariaLabel={t('profile.guardian.edit.ariaLabel')}
+          label={t('profile.guardian.edit.buttonText')}
+        />
       </Card>
       {isEditModalOpen && (
         <EditProfileModal
