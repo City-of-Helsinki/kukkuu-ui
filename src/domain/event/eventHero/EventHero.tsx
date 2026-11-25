@@ -86,7 +86,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
 
   const isExternal = Boolean(
     event.ticketSystem?.type &&
-      externalTicketSystems.includes(event.ticketSystem.type)
+    externalTicketSystems.includes(event.ticketSystem.type)
   );
   const isEnrolled = isExternal
     ? Boolean(event.ticketSystem?.childPassword)
@@ -97,7 +97,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
     (event.enrolmentDeniedReason ===
       EnrolmentDeniedReason.AlreadyJoinedEventGroup ||
       event.enrolmentDeniedReason ===
-        EnrolmentDeniedReason.AlreadyHasPasswordToEventGroup);
+      EnrolmentDeniedReason.AlreadyHasPasswordToEventGroup);
 
   const enrolledOccurrence = findEnrolledOccurrence(
     enrolmentInfo.enrolledOccurrenceId,
@@ -303,6 +303,7 @@ export const EventHero: React.FC<EventHeroProps> = ({
               isEnrolled={isEnrolled}
               isEnrolledInSeasonSibling={isEnrolledInSeasonSibling}
               showCount
+              whiteTags
               enrolledBadgeText={t('event.hero.enrolledBadge')}
               enrolledBadgeTestId="hero-enrolled-badge"
               seasonEnrolledBadgeTestId="hero-season-enrolled-badge"
