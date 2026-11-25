@@ -99,6 +99,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
               <Form noValidate id="homePageForm">
                 <div className={styles.inputWrapper}>
                   <FormikTextInput
+                    className={styles.inputField}
                     type="number"
                     name="child.birthyear"
                     id="child.birthyear"
@@ -111,6 +112,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                     )}
                   />
                   <FormikTextInput
+                    className={styles.inputField}
                     name="child.homeCity"
                     id="child.homeCity"
                     label={t(
@@ -123,6 +125,7 @@ const HomePreliminaryForm: FunctionComponent<Props> = ({
                   />
                 </div>
                 <CheckboxField
+                  className={styles.checkboxField}
                   name="verifyInformation"
                   id="verifyInformation"
                   label={t(

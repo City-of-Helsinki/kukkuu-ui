@@ -13,10 +13,19 @@
   .inputWrapper {
     display: grid;
     align-items: baseline;
+    gap: variables.$baseMargin;
     @include layout.respond-above(l) {
       grid-template-columns: 1fr 1fr;
       gap: 0 variables.$baseMargin;
     }
+  }
+
+  .inputField {
+    padding-bottom: 0;
+  }
+
+  .checkboxField {
+    margin: 0;
   }
 }
 
@@ -31,9 +40,10 @@
 
 .submitButton {
   justify-self: center;
-  width: 80%;
+  margin-top: variables.$baseMargin;
+  width: 100%;
   @include layout.respond-above(m) {
-    width: 60%;
+    width: auto;
   }
 }
 

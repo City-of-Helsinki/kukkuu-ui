@@ -90,3 +90,19 @@ li {
     padding-bottom: var(--spacing-layout-2-xl) !important;
   }
 }
+
+// Headless CMS LinkBase: vertically align link icons (mailto, tel, external) with text
+[class*='LinkBase-module_link__'] {
+  [class*='LinkBase-module_iconLeft__'],
+  [class*='LinkBase-module_iconRight__'],
+  [class*='LinkBase-module_externalWrapper__'] {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+
+    svg {
+      margin-top: 0;
+      vertical-align: middle;
+    }
+  }
+}
