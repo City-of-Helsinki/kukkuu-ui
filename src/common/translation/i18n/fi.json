@@ -1180,7 +1180,7 @@
         "sv": "Ruotsi",
         "en": "Englanti"
       },
-      "availableOnlyLabel": "Näytä vain ne, joissa on tilaa",
+      "availableOnlyLabel": "Näytä vain tapahtumat, joissa on tilaa",
       "familyOnlyLabel": "Näytä vain perhetapahtumat",
       "submitButton": "Etsi tapahtumia",
       "clearButton": "Tyhjennä valinnat",

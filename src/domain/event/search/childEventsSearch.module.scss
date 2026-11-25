@@ -258,7 +258,10 @@
         align-items: center;
 
         .filterBadge {
-          background-color: var(--color-black-10, #e6e6e6);
+          --background-color: var(--color-white, #ffffff);
+          --background-color-hover: var(--color-black-5, #f2f2f2);
+          --border-color-action: var(--color-black, #000000);
+          --color: var(--color-black, #000000);
         }
       }
 

@@ -674,7 +674,7 @@ describe('ChildEventsSearch', () => {
     expect(screen.getByText('Varattu tapahtuma')).toBeInTheDocument();
 
     const checkbox = screen.getByRole('checkbox', {
-      name: 'Näytä vain ne, joissa on tilaa',
+      name: 'Näytä vain tapahtumat, joissa on tilaa',
     });
     expect(checkbox).not.toBeChecked();
 
@@ -684,7 +684,7 @@ describe('ChildEventsSearch', () => {
     expect(mockNavigate).not.toHaveBeenCalled();
     expect(
       screen.queryByRole('button', {
-        name: /Poista valinta: Näytä vain ne, joissa on tilaa/,
+        name: /Poista valinta: Näytä vain tapahtumat, joissa on tilaa/,
       })
     ).not.toBeInTheDocument();
     expect(
@@ -708,7 +708,7 @@ describe('ChildEventsSearch', () => {
     expect(screen.queryByText('Varattu tapahtuma')).not.toBeInTheDocument();
 
     const removeBadgeBtn = screen.getByRole('button', {
-      name: /Poista valinta: Näytä vain ne, joissa on tilaa/,
+      name: /Poista valinta: Näytä vain tapahtumat, joissa on tilaa/,
     });
     expect(removeBadgeBtn).toBeInTheDocument();
     expect(
@@ -730,7 +730,7 @@ describe('ChildEventsSearch', () => {
     expect(screen.getByText('Varattu tapahtuma')).toBeInTheDocument();
     expect(
       screen.queryByRole('button', {
-        name: /Poista valinta: Näytä vain ne, joissa on tilaa/,
+        name: /Poista valinta: Näytä vain tapahtumat, joissa on tilaa/,
       })
     ).not.toBeInTheDocument();
     expect(
@@ -738,7 +738,7 @@ describe('ChildEventsSearch', () => {
     ).not.toBeInTheDocument();
     expect(
       screen.getByRole('checkbox', {
-        name: 'Näytä vain ne, joissa on tilaa',
+        name: 'Näytä vain tapahtumat, joissa on tilaa',
       })
     ).not.toBeChecked();
   });
@@ -763,7 +763,7 @@ describe('ChildEventsSearch', () => {
     });
     expect(
       screen.getByRole('button', {
-        name: /Poista valinta: Näytä vain ne, joissa on tilaa/i,
+        name: /Poista valinta: Näytä vain tapahtumat, joissa on tilaa/i,
       })
     ).toBeInTheDocument();
 
@@ -779,7 +779,7 @@ describe('ChildEventsSearch', () => {
     });
     expect(
       screen.queryByRole('button', {
-        name: /Poista valinta: Näytä vain ne, joissa on tilaa/i,
+        name: /Poista valinta: Näytä vain tapahtumat, joissa on tilaa/i,
       })
     ).not.toBeInTheDocument();
   });
