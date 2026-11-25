@@ -225,14 +225,13 @@ export const EventBadges: React.FC<EventBadgesProps> = ({
     items.push({
       key: 'enrolled',
       node: (
-        <StatusLabel
-          type="alert"
-          iconStart={<IconCheck aria-hidden="true" />}
-          className={styles.enrolledBadge}
+        <span
+          className={classNames(styles.badge, styles.enrolledBadge)}
           data-testid={enrolledBadgeTestId}
         >
-          {enrolledBadgeText || t('search.card.enrolledBadge')}
-        </StatusLabel>
+          <IconCheck aria-hidden="true" className={styles.badgeIcon} />
+          <span>{enrolledBadgeText || t('search.card.enrolledBadge')}</span>
+        </span>
       ),
     });
   }

@@ -179,8 +179,9 @@ $heroHeight: 30.6875rem;
 
         .metaRow {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           font-size: var(--fontsize-body-m, 1rem);
+          line-height: 1.5;
           color: var(--color-black-90);
           min-width: 0;
           overflow-wrap: break-word;
@@ -213,8 +214,8 @@ $heroHeight: 30.6875rem;
         }
 
         .enrolledBadge {
-          background-color: var(--color-summer, #ffc61e);
-          color: var(--color-black-90, #1a1a1a);
+          background-color: var(--color-copper-light, #cffaf1);
+          color: var(--color-black, #000000);
           font-weight: 600;
         }
       }
