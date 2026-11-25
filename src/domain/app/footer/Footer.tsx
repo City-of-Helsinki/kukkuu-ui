@@ -15,10 +15,7 @@ import { getCurrentLanguage } from '../../../common/translation/TranslationUtils
 import { RESET_FOCUS_ID } from '../../../common/components/resetFocus/constants';
 import Link from '../../../common/components/link/Link';
 import { isInternalHref } from '../../../common/route/utils/isInternalHref';
-import {
-  FooterPillSkeleton,
-  SkeletonLoader,
-} from '../../../common/components/skeleton/CmsSkeleton';
+import { FooterPillSkeleton } from '../../../common/components/skeleton/CmsSkeleton';
 import { useCmsLoadingState } from '../../../hooks/useCmsLoadingState';
 import AppConfig from '../AppConfig';
 import CimodeToggle from './CimodeToggle';
@@ -67,30 +64,28 @@ const Footer: FunctionComponent = () => {
         backToTopLabel={t('footer.backToTop')}
         onBackToTopClick={handleBackToTop}
       >
-        <SkeletonLoader
-          isLoading={isFooterLoading}
-          skeleton={
-            <div
-              className={styles.footerSkeletonWrapper}
-              aria-busy="true"
-              data-testid="footer-skeleton-wrapper"
-            >
-              <FooterPillSkeleton width="6rem" />
-              <FooterPillSkeleton width="8rem" />
-              <FooterPillSkeleton width="7rem" />
-            </div>
-          }
-          as={null}
-        >
-          {footerLinks.map((footerLink) => (
+        {/* HDS Footer.Base adds a separator per direct child, so links must be
+            direct (flat) children rather than nested inside a wrapper. */}
+        {isFooterLoading ? (
+          <div
+            className={styles.footerSkeletonWrapper}
+            aria-busy="true"
+            data-testid="footer-skeleton-wrapper"
+          >
+            <FooterPillSkeleton width="6rem" />
+            <FooterPillSkeleton width="8rem" />
+            <FooterPillSkeleton width="7rem" />
+          </div>
+        ) : (
+          footerLinks.map((footerLink) => (
             <HDSFooter.Link
               key={footerLink.id}
               href={footerLink.path}
               label={footerLink.label}
               {...(isInternalHref(footerLink.path) && { as: Link })}
             />
-          ))}
-        </SkeletonLoader>
+          ))
+        )}
         {AppConfig.translationToolEnabled && (
           <HDSFooter.Link as={CimodeToggle} />
         )}

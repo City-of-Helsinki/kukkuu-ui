@@ -371,6 +371,7 @@ exports[`renders without crashing 1`] = `
                   aria-busy="true"
                   class="_footerSkeletonWrapper_21cae1"
                   data-testid="footer-skeleton-wrapper"
+                  variant="base"
                 >
                   <div
                     aria-hidden="true"

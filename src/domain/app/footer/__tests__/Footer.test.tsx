@@ -29,6 +29,13 @@ vi.mock('hds-react', async () => {
     </footer>
   );
 
+  const flattenChildren = (node: React.ReactNode): React.ReactNode[] => {
+    if (Array.isArray(node)) {
+      return node.flatMap(flattenChildren);
+    }
+    return node ? [node] : [];
+  };
+
   const MockFooterBase = ({
     children,
     backToTopLabel,
@@ -45,7 +52,15 @@ vi.mock('hds-react', async () => {
         {backToTopLabel}
       </button>
       <span>{copyrightHolder}</span>
-      {children}
+      {/* Mimic HDS: one separator per direct child (arrays are flattened) */}
+      {flattenChildren(children).map((child, index) => (
+        <React.Fragment key={index}>
+          <span data-testid="footer-separator" aria-hidden>
+            |
+          </span>
+          {child}
+        </React.Fragment>
+      ))}
     </div>
   );
 
@@ -111,12 +126,26 @@ it('Footer matches snapshot', async () => {
   expect(footerElement).toMatchSnapshot();
 });
 
+it('renders a separator before each CMS footer link', async () => {
+  const spy = vi
+    .spyOn(AppConfig, 'translationToolEnabled', 'get')
+    .mockReturnValue(false);
+
+  render(<Footer />, mocks);
+  await screen.findByText('Saavutettavuusseloste');
+
+  // footerMenuMock contains two links
+  expect(screen.getAllByTestId('footer-separator')).toHaveLength(2);
+  spy.mockRestore();
+});
+
 it('toggles CIMODE indicator when clicking CIMODE button in footer', async () => {
   const user = userEvent.setup();
   window.sessionStorage.clear();
   setCimodeIndicatorRequested(false);
 
   render(<Footer />, mocks);
+  await screen.findByText('Saavutettavuusseloste');
   const cimodeButton = screen.getByTestId('footer-cimode-button');
   expect(cimodeButton).toHaveTextContent('Käännöstyökalu');
   expect(cimodeButton).toHaveAttribute(
