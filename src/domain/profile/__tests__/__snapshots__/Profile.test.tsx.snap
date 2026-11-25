@@ -285,7 +285,7 @@ exports[`Profile > renders profile correctly 1`] = `
           <button
             aria-haspopup="dialog"
             aria-label="Muokkaa lähiaikuisen tietoja. Avaa valintaikkunan."
-            class="Button-module_button__P7hTI Button-module_supplementary__uEAdn Button-module_theme-black__fKE1n _editButton_251fdc"
+            class="Button-module_button__P7hTI Button-module_supplementary__uEAdn Button-module_theme-black__fKE1n _editButton_69ddc7"
             type="button"
           >
             <div

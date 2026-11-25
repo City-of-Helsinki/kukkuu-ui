@@ -7,7 +7,6 @@ import {
   AccordionSize,
   ButtonPresetTheme,
   IconCalendarEvent,
-  IconPen,
   IconSearch,
   IconSize,
   Notification,
@@ -16,7 +15,7 @@ import {
 import { toast } from 'react-toastify';
 import * as Sentry from '@sentry/browser';
 
-import Button from '../../../../common/components/button/Button';
+import EditDetailsButton from '../../components/EditDetailsButton';
 import LinkButton from '../../../../common/components/button/LinkButton';
 import Icon from '../../../../common/components/icon/Icon';
 import { publicSvgIconPaths } from '../../../../public_files';
@@ -322,17 +321,11 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
             <p className={styles.themePath}>
               {t('profile.child.themePath', { themePath: '–' })}
             </p>
-            <Button
-              variant="supplementary"
-              theme={ButtonPresetTheme.Black}
-              iconStart={<IconPen aria-hidden="true" />}
-              className={styles.editButton}
+            <EditDetailsButton
               onClick={() => setIsEditModalOpen(true)}
-              aria-haspopup="dialog"
-              aria-label={t('profile.child.edit.ariaLabel', { name: childName })}
-            >
-              {t('profile.child.edit.buttonText')}
-            </Button>
+              ariaLabel={t('profile.child.edit.ariaLabel', { name: childName })}
+              label={t('profile.child.edit.buttonText')}
+            />
           </div>
 
           {/* Right Column: Events */}
