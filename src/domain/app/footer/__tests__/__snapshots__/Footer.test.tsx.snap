@@ -14,16 +14,34 @@ exports[`Footer matches snapshot 1`] = `
     <span>
       Helsingin kaupunki
     </span>
+    <span
+      aria-hidden="true"
+      data-testid="footer-separator"
+    >
+      |
+    </span>
     <a
       href="https://kukkuu.fi/fi"
     >
       Kulttuurin kummilapset
     </a>
+    <span
+      aria-hidden="true"
+      data-testid="footer-separator"
+    >
+      |
+    </span>
     <a
       href="https://hkih.production.geniem.io/saavutettavuusseloste"
     >
       Saavutettavuusseloste
     </a>
+    <span
+      aria-hidden="true"
+      data-testid="footer-separator"
+    >
+      |
+    </span>
     <div
       class="_cimodeContainer_21cae1"
     >
