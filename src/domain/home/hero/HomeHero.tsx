@@ -129,7 +129,7 @@ const HomeHero = ({
           </div>
         </ContentContainer>
         <Koros
-          type="pulse"
+          type="basic"
           flipVertical
           className={styles.heroKoros}
           style={{ fill: 'var(--color-summer)' }}
