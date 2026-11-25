@@ -176,6 +176,7 @@ export type EventBadgesProps = {
   isEnrolled?: boolean;
   isEnrolledInSeasonSibling?: boolean;
   showCount?: boolean;
+  whiteTags?: boolean;
   enrolledBadgeText?: string;
   enrolledBadgeTestId?: string;
   seasonEnrolledBadgeTestId?: string;
@@ -193,6 +194,7 @@ export const EventBadges: React.FC<EventBadgesProps> = ({
   isEnrolled = false,
   isEnrolledInSeasonSibling = false,
   showCount = false,
+  whiteTags = false,
   enrolledBadgeText,
   enrolledBadgeTestId,
   seasonEnrolledBadgeTestId,
@@ -331,7 +333,14 @@ export const EventBadges: React.FC<EventBadgesProps> = ({
 
   return (
     // eslint-disable-next-line jsx-a11y/no-redundant-roles
-    <ul role="list" className={classNames(styles.badgeList, className)}>
+    <ul
+      role="list"
+      className={classNames(
+        styles.badgeList,
+        { [styles.whiteTags]: whiteTags },
+        className
+      )}
+    >
       {items.map((item) => (
         <li key={item.key} className={styles.badgeItem}>
           {item.node}
