@@ -1,8 +1,24 @@
 @use '~styles/variables';
 @use '~styles/layout';
 
+.modal {
+  @include layout.respond-above(l) {
+    width: 600px;
+  }
+}
+
 .formField {
   padding-bottom: variables.$basePadding;
+  width: 100%;
+
+  // Double class specificity to override HDS Select's injected max-width: 420px
+  &.formField {
+    max-width: none;
+  }
+}
+
+.checkboxField {
+  margin-left: 0;
 }
 
 .email {
@@ -56,14 +72,6 @@
   width: 100%;
   @include layout.respond-below(m) {
     grid-row: 1;
-  }
-}
-
-.profileName {
-  @include layout.respond-above(m) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: variables.$baseMargin;
   }
 }
 

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Modal from '../../../common/components/modal/Modal';
 import { Child } from '../types/ChildInputTypes';
 import ChildForm from '../form/ChildForm';
+import styles from '../form/childForm.module.scss';
 import NavigationConfirm from '../../../common/components/confirm/NavigationConfirm';
 import { ChildFormType } from '../enums';
 
@@ -43,6 +44,8 @@ const ChildFormModal: FunctionComponent<ChildFormModalProps> = ({
       <Modal
         isOpen={isOpen}
         label={label}
+        modalClassName={styles.modal}
+        showLabelIcon={false}
         toggleModal={(value: boolean) => {
           setIsOpen(value);
         }}

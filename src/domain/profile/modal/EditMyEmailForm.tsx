@@ -118,7 +118,7 @@ export default function EditMyEmailForm({
               className={styles.formField}
               id="email"
               name="email"
-              disabled={!isChangingEmail}
+              readOnly={!isChangingEmail}
               label={t('registration.form.guardian.email.input.label')}
             />
             {!isChangingEmail && (
@@ -158,16 +158,6 @@ export default function EditMyEmailForm({
 
                 <div className={styles.buttonsWrapper}>
                   <Button
-                    onClick={() => setIsChangingEmail(false)}
-                    variant="secondary"
-                    theme={ButtonPresetTheme.Black}
-                    type="button"
-                    className={styles.cancelButton}
-                  >
-                    {t('common.modal.cancel.text')}
-                  </Button>
-
-                  <Button
                     type="submit"
                     theme={ButtonPresetTheme.Black}
                     className={styles.submitButton}
@@ -178,6 +168,16 @@ export default function EditMyEmailForm({
                         'registration.form.guardian.email.input.label'
                       ),
                     })}
+                  </Button>
+
+                  <Button
+                    onClick={() => setIsChangingEmail(false)}
+                    variant="secondary"
+                    theme={ButtonPresetTheme.Black}
+                    type="button"
+                    className={styles.cancelButton}
+                  >
+                    {t('common.modal.cancel.text')}
                   </Button>
                 </div>
               </>

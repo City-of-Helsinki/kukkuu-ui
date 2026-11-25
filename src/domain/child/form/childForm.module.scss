@@ -2,45 +2,32 @@
 @use '~styles/layout';
 @use '~styles/fonts';
 
-.childName,
-.childInfo {
-  @include layout.respond-above(l) {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: variables.$baseMargin;
-  }
-}
-
-.birthyearField {
-  display: flex;
-  flex-direction: column;
-
-  label {
-    font-size: fonts.$font-size-sm;
-    margin-bottom: variables.$baseMargin * 0.25;
-    font-weight: fonts.$font-weight-bold;
-  }
-
-  p {
-    padding: 0;
-    margin: 0;
-  }
-}
-
 .deleteChildButton {
   margin-bottom: variables.$largeMargin;
-  // Ensure that text is correctly left aligned despite HDS
-  // extra whitespace
-  transform: translateX(calc(var(--spacing-m) * -1));
   padding-left: 0;
+
+  // Triple class specificity to override HDS Button's 2-class theme+variant selector
+  &.deleteChildButton.deleteChildButton {
+    --color: var(--color-error);
+    --color-hover: var(--color-error-dark);
+    --background-color-hover: var(--color-error-light);
+    color: var(--color-error);
+  }
 }
 
 .deleteChildButtonText {
   text-decoration: underline;
+  color: inherit;
 }
 
 .formField {
   padding-bottom: variables.$basePadding;
+  width: 100%;
+
+  // Double class specificity to override HDS Select's injected max-width: 420px
+  &.formField {
+    max-width: none;
+  }
 }
 
 .buttonGroup {
@@ -75,23 +62,8 @@
   }
 }
 
-.addChildButtons {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.submitButton {
-  width: 80%;
-  @include layout.respond-above(m) {
-    width: 60%;
-  }
-}
-
 .modal {
-  h2 {
-    width: 100%;
-    text-align: center;
-    margin-top: 0;
+  @include layout.respond-above(l) {
+    width: 600px;
   }
 }

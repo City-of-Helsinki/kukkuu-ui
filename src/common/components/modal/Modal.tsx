@@ -18,6 +18,7 @@ interface ModalProps {
   showLabelIcon?: boolean;
   showHeading?: boolean;
   className?: string;
+  modalClassName?: string;
   icon?: string;
   showMandatoryFieldLegend?: boolean;
   children?: React.ReactNode;
@@ -31,6 +32,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
   setFormIsFilling,
   showLabelIcon = true,
   className,
+  modalClassName,
   showHeading = true,
   icon = publicSvgIconPaths['childFaceHappy'],
   showMandatoryFieldLegend = true,
@@ -51,7 +53,7 @@ const Modal: React.FunctionComponent<ModalProps> = ({
           isOpen={isOpen}
           onRequestClose={onClose}
           contentLabel={label}
-          className={styles.modal}
+          className={classNames(styles.modal, modalClassName)}
           overlayClassName={styles.overlay}
           shouldCloseOnOverlayClick={false}
         >

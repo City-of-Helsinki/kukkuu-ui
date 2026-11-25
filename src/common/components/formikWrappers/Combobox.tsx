@@ -2,6 +2,7 @@ import { Select as HDSSelect, SupportedLanguage } from 'hds-react';
 import type { ComponentProps } from 'react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 import { Option } from './types';
 import styles from './formikInputs.module.scss';
@@ -17,6 +18,7 @@ type SelectProps = Omit<
   placeholder?: string;
   helperText?: string;
   catchEscapeKey?: boolean;
+  className?: string;
 };
 
 export type ComboboxProps = SelectProps & {
@@ -31,6 +33,7 @@ function Combobox({
   label,
   placeholder,
   helperText,
+  className,
   ...rest
 }: ComboboxProps) {
   const { t, i18n } = useTranslation();
@@ -58,7 +61,7 @@ function Combobox({
   return (
     <HDSSelect
       {...field}
-      className={styles.formField}
+      className={classNames(styles.formField, className)}
       invalid={meta.touched && Boolean(meta.error)}
       onBlur={handleBlur}
       onChange={handleChange}
