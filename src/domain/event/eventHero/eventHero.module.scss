@@ -17,7 +17,7 @@ $heroHeight: 30.6875rem;
   padding-bottom: calc(85px + var(--spacing-3-xl)) !important;
 
   @include layout.respond-above(m) {
-    padding-top: var(--spacing-xl);
+    padding-top: var(--spacing-2-xl);
     padding-bottom: calc(85px + var(--spacing-5-xl)) !important;
   }
 }
@@ -109,7 +109,7 @@ $heroHeight: 30.6875rem;
         .image {
           width: 100%;
           height: 100%;
-          border: 8px solid var(--color-white, #fff);
+          border: 12px solid var(--color-white, #fff);
           box-sizing: border-box;
           background-position: center;
           background-size: cover;
@@ -122,12 +122,12 @@ $heroHeight: 30.6875rem;
           object-fit: cover;
           object-position: center;
           display: block;
-          border: 8px solid var(--color-white, #fff);
+          border: 12px solid var(--color-white, #fff);
           box-sizing: border-box;
         }
 
         :global(.placeholderImage) {
-          border: 8px solid var(--color-white, #fff);
+          border: 12px solid var(--color-white, #fff);
           box-sizing: border-box;
         }
       }
