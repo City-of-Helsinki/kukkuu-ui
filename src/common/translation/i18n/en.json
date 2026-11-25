@@ -1146,7 +1146,7 @@
       "greeting": "Hello {{name}}!",
       "description": "We are delighted that you are involved in Culture Kids! Here you can view event invitations and register for events. All Culture Kids are welcome to attend two events per year, one event in the spring and one in the autumn. Sometimes there may be more events available, in which case we will announce it separately. We are looking forward to seeing you!",
       "selectChild": "Child",
-      "selectChildRequired": "Child *",
+      "selectChildRequired": "Child",
       "selectChildPlaceholder": "Select child",
       "childAge": "{{age}} years"
     },
