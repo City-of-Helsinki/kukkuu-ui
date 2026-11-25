@@ -33,14 +33,14 @@
       font: inherit;
       cursor: pointer;
       text-align: left;
-      color: var(--color-bus, #0000bf);
+      color: var(--color-black, #000000);
       text-decoration: underline;
       margin-top: var(--spacing-2-xs);
       font-weight: 500;
       line-height: 1.4;
 
       &:hover {
-        color: var(--color-bus-dark, #0000a0);
+        color: var(--color-black-80, #333333);
       }
     }
 
@@ -48,13 +48,13 @@
       display: inline-flex;
       align-items: center;
       gap: var(--spacing-3-xs);
-      color: var(--color-bus, #0000bf);
+      color: var(--color-black, #000000);
       text-decoration: underline;
       margin-top: var(--spacing-2-xs);
       font-weight: 500;
 
       &:hover {
-        color: var(--color-bus-dark, #0000a0);
+        color: var(--color-black-80, #333333);
       }
 
       .linkIcon {
@@ -64,14 +64,14 @@
 
     .eventLink {
       display: inline-block;
-      color: var(--color-bus, #0000bf);
+      color: var(--color-black, #000000);
       text-decoration: underline;
       font-size: var(--fontsize-body-m, 1rem);
       line-height: 1.4;
       font-weight: 500;
 
       &:hover {
-        color: var(--color-bus-dark, #0000a0);
+        color: var(--color-black-80, #333333);
       }
     }
   }
@@ -88,13 +88,13 @@
       margin: 0;
 
       .otherTimeLink {
-        color: var(--color-bus, #0000bf);
+        color: var(--color-black, #000000);
         text-decoration: underline;
         font-size: var(--fontsize-body-m, 1rem);
         line-height: 1.4;
 
         &:hover {
-          color: var(--color-bus-dark, #0000a0);
+          color: var(--color-black-80, #333333);
         }
       }
     }
