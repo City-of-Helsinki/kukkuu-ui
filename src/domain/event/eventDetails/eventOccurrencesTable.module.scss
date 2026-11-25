@@ -23,12 +23,13 @@
   }
 
   .table {
+    --header-background-color: var(--color-summer, #ffc61e);
     width: 100%;
     border-collapse: collapse;
     text-align: left;
 
     .headerRow {
-      background-color: var(--color-gold, #ffc61e);
+      background-color: var(--header-background-color);
 
       th {
         padding: var(--spacing-s) var(--spacing-m);
@@ -48,7 +49,7 @@
       transition: background-color 0.15s ease-in-out;
 
       td {
-        padding: var(--spacing-m);
+        padding: var(--spacing-s) var(--spacing-m);
         font-size: var(--fontsize-body-m, 1rem);
         color: var(--color-black-90, #1a1a1a);
         vertical-align: middle;
