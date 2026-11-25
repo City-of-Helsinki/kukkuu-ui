@@ -14,9 +14,9 @@
 }
 
 .enrolmentCard {
-  background-color: var(--color-gold-light, #fef4cf);
+  background-color: var(--color-summer-light, #fff4d4);
   border: 2px solid var(--color-summer, #ffc61e);
-  border-radius: var(--spacing-2-xs, 4px);
+  border-radius: 0;
   padding: var(--spacing-m);
   margin-bottom: var(--spacing-m);
 }
@@ -58,22 +58,24 @@
 
 .metaRow {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: var(--spacing-xs);
   font-size: var(--fontsize-body-m, 1rem);
+  line-height: 1.5;
   color: var(--color-black-90, #1a1a1a);
 
   .icon {
     flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
+    margin-top: 2px;
     color: var(--color-black-90, #1a1a1a);
   }
 
   .timeGroup {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--spacing-xs);
     margin-left: var(--spacing-s);
   }

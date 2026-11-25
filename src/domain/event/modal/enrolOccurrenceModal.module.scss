@@ -6,9 +6,9 @@
 }
 
 .eventCard {
-  background-color: var(--color-gold-light, #fef4cf);
+  background-color: var(--color-summer-light, #fff4d4);
   border: 1px solid var(--color-summer, #ffc61e);
-  border-radius: var(--spacing-2-xs, 4px);
+  border-radius: 0;
   padding: var(--spacing-m);
   margin-bottom: var(--spacing-m);
 }
@@ -49,15 +49,16 @@
 
 .detailRow {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: var(--spacing-m);
   font-size: var(--fontsize-body-m, 1rem);
+  line-height: 1.5;
   color: var(--color-black-90, #1a1a1a);
 
   .metaInline {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     gap: var(--spacing-2-xs);
   }
 
@@ -65,6 +66,7 @@
     flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
+    margin-top: 2px;
     color: var(--color-black-70, #4a4a4a);
   }
 }
