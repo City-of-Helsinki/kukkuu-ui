@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Checkbox, CheckboxProps } from 'hds-react';
 import { useField } from 'formik';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 import styles from './checkboxField.module.scss';
 
@@ -9,7 +10,7 @@ type Props = {
   name: string;
 } & CheckboxProps;
 
-function CheckboxField({ name, onChange, ...rest }: Props) {
+function CheckboxField({ name, onChange, className, ...rest }: Props) {
   const { t } = useTranslation();
   const [field, meta] = useField({ name });
 
@@ -28,7 +29,7 @@ function CheckboxField({ name, onChange, ...rest }: Props) {
       <Checkbox
         {...rest}
         {...field}
-        className={styles.checkboxField}
+        className={classNames(styles.checkboxField, className)}
         type="checkbox"
         checked={Boolean(field.value)}
         onChange={onChangeHandler}

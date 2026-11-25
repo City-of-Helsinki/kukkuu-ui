@@ -137,3 +137,18 @@ it('should allow all fields to be filled', async () => {
     ).toContain('Suomi');
   });
 }, 10_000);
+
+it('renders email as readOnly initially and places Save before Cancel', () => {
+  initModal();
+  render(<EditProfileModal {...defaultProps} />, mocks);
+
+  const emailInput = screen.getByLabelText(/sähköpostiosoite/i);
+  expect(emailInput).toHaveAttribute('readonly');
+
+  const saveButton = screen.getByRole('button', { name: 'Tallenna' });
+  const cancelButton = screen.getByRole('button', { name: 'Peruuta' });
+  expect(
+    saveButton.compareDocumentPosition(cancelButton) &
+      Node.DOCUMENT_POSITION_FOLLOWING
+  ).toBeTruthy();
+});

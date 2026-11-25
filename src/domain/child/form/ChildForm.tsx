@@ -77,61 +77,56 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
     >
       {({ isSubmitting, values }: FormikProps<Child>) => (
         <Form id="childForm" data-testid={CHILD_FORM_TEST_ID} noValidate>
-          {isImmutable ? (
-            <div className={styles.birthyearField}>
-              <label>{`${t(
-                'homePage.preliminaryForm.childBirthyear.input.label'
-              )}*`}</label>
-              <p className={styles.immutableField}>{values.birthyear}</p>
-            </div>
-          ) : (
+          <FormikTextInput
+            className={styles.formField}
+            type="number"
+            name="birthyear"
+            id="birthyear"
+            readOnly={isImmutable}
+            label={t(
+              isImmutable
+                ? 'homePage.preliminaryForm.childBirthyear.input.label'
+                : 'homePage.preliminaryForm.childBirthyear.input.year.placeholder'
+            )}
+            required={true}
+            placeholder={
+              isImmutable
+                ? undefined
+                : t(
+                    'homePage.preliminaryForm.childBirthyear.input.year.placeholder'
+                  )
+            }
+          />
+
+          {!isEditForm && (
             <FormikTextInput
-              type="number"
-              name="birthyear"
-              id="birthyear"
-              label={t(
-                'homePage.preliminaryForm.childBirthyear.input.year.placeholder'
-              )}
+              id="homeCity"
+              name="homeCity"
+              label={t('homePage.preliminaryForm.childHomeCity.input.label')}
               required={true}
               placeholder={t(
-                'homePage.preliminaryForm.childBirthyear.input.year.placeholder'
+                'homePage.preliminaryForm.childHomeCity.input.placeholder'
               )}
             />
           )}
-
-          <div className={styles.childInfo}>
-            {!isEditForm && (
-              <FormikTextInput
-                id="homeCity"
-                name="homeCity"
-                label={t('homePage.preliminaryForm.childHomeCity.input.label')}
-                required={true}
-                placeholder={t(
-                  'homePage.preliminaryForm.childHomeCity.input.placeholder'
-                )}
-              />
+          <FormikTextInput
+            className={styles.formField}
+            id="postalCode"
+            name="postalCode"
+            required={true}
+            label={t('registration.form.child.postalCode.input.label')}
+            placeholder={t(
+              'registration.form.child.postalCode.input.placeholder'
             )}
-            <FormikTextInput
-              className={styles.formField}
-              id="postalCode"
-              name="postalCode"
-              required={true}
-              label={t('registration.form.child.postalCode.input.label')}
-              placeholder={t(
-                'registration.form.child.postalCode.input.placeholder'
-              )}
-            />
-          </div>
-          <div className={styles.childName}>
-            <FormikTextInput
-              className={styles.formField}
-              id="name"
-              name="name"
-              label={t('registration.form.child.name.input.label')}
-              autoComplete="new-password"
-              placeholder={t('registration.form.child.name.input.placeholder')}
-            />
-          </div>
+          />
+          <FormikTextInput
+            className={styles.formField}
+            id="name"
+            name="name"
+            label={t('registration.form.child.name.input.label')}
+            autoComplete="new-password"
+            placeholder={t('registration.form.child.name.input.placeholder')}
+          />
           <FormikDropdown
             className={styles.formField}
             id="relationship.type"
@@ -143,21 +138,8 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             placeholder={t('common.select.default.text')}
           />
           <div
-            className={classnames(
-              styles.buttonGroup,
-              isEditForm ? styles.editChildButtons : styles.addChildButtons
-            )}
+            className={classnames(styles.buttonGroup, styles.editChildButtons)}
           >
-            {isEditForm && (
-              <Button
-                variant="secondary"
-                theme={ButtonPresetTheme.Black}
-                className={styles.cancelButton}
-                onClick={onCancel}
-              >
-                {t('common.modal.cancel.text')}
-              </Button>
-            )}
             <Button
               type="submit"
               theme={ButtonPresetTheme.Black}
@@ -169,6 +151,14 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
                   ? 'common.modal.save.text'
                   : 'child.form.modal.add.label'
               )}
+            </Button>
+            <Button
+              variant="secondary"
+              theme={ButtonPresetTheme.Black}
+              className={styles.cancelButton}
+              onClick={onCancel}
+            >
+              {t('common.modal.cancel.text')}
             </Button>
           </div>
           {isEditForm && (

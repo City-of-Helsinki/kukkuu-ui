@@ -149,30 +149,28 @@ export default function EditMyProfileForm({
               'registration.form.guardian.phoneNumber.input.placeholder'
             )}
           />
-          <div className={styles.profileName}>
-            <FormikTextInput
-              className={styles.formField}
-              type="text"
-              required={true}
-              id="firstName"
-              name="firstName"
-              label={t('registration.form.guardian.firstName.input.label')}
-              placeholder={t(
-                'registration.form.guardian.firstName.input.placeholder'
-              )}
-            />
-            <FormikTextInput
-              className={styles.formField}
-              type="text"
-              required={true}
-              id="lastName"
-              name="lastName"
-              label={t('registration.form.guardian.lastName.input.label')}
-              placeholder={t(
-                'registration.form.guardian.lastName.input.placeholder'
-              )}
-            />
-          </div>
+          <FormikTextInput
+            className={styles.formField}
+            type="text"
+            required={true}
+            id="firstName"
+            name="firstName"
+            label={t('registration.form.guardian.firstName.input.label')}
+            placeholder={t(
+              'registration.form.guardian.firstName.input.placeholder'
+            )}
+          />
+          <FormikTextInput
+            className={styles.formField}
+            type="text"
+            required={true}
+            id="lastName"
+            name="lastName"
+            label={t('registration.form.guardian.lastName.input.label')}
+            placeholder={t(
+              'registration.form.guardian.lastName.input.placeholder'
+            )}
+          />
           <FormikDropdown
             className={styles.formField}
             id="language"
@@ -198,6 +196,7 @@ export default function EditMyProfileForm({
             )}
           />
           <LanguagesCombobox
+            className={styles.formField}
             helperText={t(
               'registration.form.child.languagesSpokenAtHome.input.helper'
             )}
@@ -210,6 +209,7 @@ export default function EditMyProfileForm({
             catchEscapeKey
           />
           <CheckboxField
+            className={styles.checkboxField}
             id={'hasAcceptedCommunication'}
             name={'hasAcceptedCommunication'}
             label={t(
@@ -217,6 +217,15 @@ export default function EditMyProfileForm({
             )}
           />
           <div className={styles.buttonsWrapper}>
+            <Button
+              type="submit"
+              theme={ButtonPresetTheme.Black}
+              className={styles.submitButton}
+              disabled={isSubmitting}
+            >
+              {t('common.modal.save.text')}
+            </Button>
+
             <Button
               onClick={() => {
                 setIsOpen(false);
@@ -227,15 +236,6 @@ export default function EditMyProfileForm({
               className={styles.cancelButton}
             >
               {t('common.modal.cancel.text')}
-            </Button>
-
-            <Button
-              type="submit"
-              theme={ButtonPresetTheme.Black}
-              className={styles.submitButton}
-              disabled={isSubmitting}
-            >
-              {t('common.modal.save.text')}
             </Button>
           </div>
         </Form>

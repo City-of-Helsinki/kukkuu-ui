@@ -23,6 +23,29 @@ describe('<ChildForm />', () => {
     expect(screen.queryByLabelText('Lapsen kotipaikkakunta')).toBeFalsy();
   });
 
+  it('renders birthyear as readOnly and places Save before Cancel when editing', () => {
+    renderChildForm({
+      formType: ChildFormType.EDIT,
+      initialValues: {
+        birthyear: 2022,
+        homeCity: 'Helsinki',
+        postalCode: '00100',
+        name: 'Muksu',
+        relationship: { type: 'PARENT' },
+      },
+    });
+
+    const birthyearInput = screen.getByLabelText(/lapsen syntymävuosi/i);
+    expect(birthyearInput).toHaveAttribute('readonly');
+
+    const saveButton = screen.getByRole('button', { name: 'Tallenna' });
+    const cancelButton = screen.getByRole('button', { name: 'Peruuta' });
+    expect(
+      saveButton.compareDocumentPosition(cancelButton) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
+  });
+
   describe('implementation details', () => {
     it('the form should have the noValidate prop so that browser validation is not used', async () => {
       renderChildForm();
