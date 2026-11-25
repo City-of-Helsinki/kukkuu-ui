@@ -152,3 +152,27 @@ it('renders email as readOnly initially and places Save before Cancel', () => {
       Node.DOCUMENT_POSITION_FOLLOWING
   ).toBeTruthy();
 });
+
+it('keeps email readOnly on blur and enables editing only via change button', async () => {
+  const user = userEvent.setup();
+  initModal();
+  render(<EditProfileModal {...defaultProps} />, mocks);
+
+  const emailInput = screen.getByLabelText(/sähköpostiosoite/i);
+  const firstNameInput = screen.getByRole('textbox', { name: 'Etunimi *' });
+  const changeEmailButton = screen.getByRole('button', {
+    name: 'Vaihda sähköposti',
+  });
+
+  await user.click(emailInput);
+  await user.click(firstNameInput);
+
+  expect(emailInput).toHaveAttribute('readonly');
+  expect(firstNameInput).toHaveFocus();
+  expect(changeEmailButton).toBeInTheDocument();
+
+  await user.click(changeEmailButton);
+
+  expect(emailInput).not.toHaveAttribute('readonly');
+  expect(emailInput).toHaveFocus();
+});

@@ -77,10 +77,6 @@ export default function EditMyEmailForm({
   };
 
   const validate = ({ email }: UpdateMyEmailMutationInput) => {
-    if (!isChangingEmail) {
-      setIsChangingEmail(true);
-    }
-
     const errors: FormikErrors<UpdateMyEmailMutationInput> = {};
 
     if (email === originalEmail) {
