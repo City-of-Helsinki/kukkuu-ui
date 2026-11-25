@@ -24,19 +24,41 @@ li {
   h1 {
     font-weight: 400 !important;
     line-height: 1.2;
+    margin-top: 0;
     margin-bottom: var(--spacing-m);
     white-space: pre-line;
   }
 
+  header:last-child h1,
+  h1:last-child {
+    margin-bottom: 0;
+  }
+
   &[class*='hero-module_withKoros__'] {
     [class*='hero-module_heroInner__'] {
-      padding-top: var(--spacing-l);
-      padding-bottom: var(--spacing-layout-l);
+      padding-top: var(--spacing-2-xl);
+      padding-bottom: calc(20px + var(--spacing-2-xl));
 
       @media (min-width: 768px) {
-        padding-top: var(--spacing-xl);
-        padding-bottom: var(--spacing-layout-xl);
+        padding-top: var(--spacing-4-xl);
+        padding-bottom: calc(20px + var(--spacing-4-xl));
       }
+    }
+  }
+}
+
+// Headless CMS Hero with featured image: title is rendered as a sibling after the hero
+[class*='hero-module_hero__']:not([class*='hero-module_withKoros__']) + * {
+  [class*='hero-module_textContents__'] {
+    padding-top: var(--spacing-layout-m);
+
+    @media (min-width: 768px) {
+      padding-top: var(--spacing-layout-l);
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
 }
@@ -48,18 +70,26 @@ li {
 }
 
 // Headless CMS main content: ensure proper spacing on top after hero section and koros wave
-[class*='pageContentLayout-module_contentWrapper__'] {
-  padding-top: var(--spacing-layout-s);
+[class*='pageSection-module_pageSection__'][class*='pageContentLayout-module_contentWrapper__'] {
+  padding-top: var(--spacing-layout-xl) !important;
+}
+
+// When featured image hero already renders the page title above contentWrapper, keep title-to-content spacing tight
+[class*='hero-module_hero__']:not([class*='hero-module_withKoros__'])
+  + *
+  + [class*='pageSection-module_pageSection__'][class*='pageContentLayout-module_contentWrapper__'] {
+  padding-top: var(--spacing-m) !important;
 
   @media (min-width: 768px) {
-    padding-top: var(--spacing-layout-m);
+    padding-top: var(--spacing-l) !important;
   }
 }
 
 // Headless CMS PageMainContent: normalize heading and content spacing when H1 is rendered in content
 [class*='pageMainContent-module_mainContent__'] {
   header:has(h1:empty),
-  header:empty {
+  header:empty,
+  [class*='pageMainContent-module_articleData__']:empty {
     display: none;
   }
 
