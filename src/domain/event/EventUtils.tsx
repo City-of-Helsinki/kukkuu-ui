@@ -26,9 +26,11 @@ import { OccurrenceNode, Occurrences } from './types/EventQueryTypes';
 import AppConfig from '../app/AppConfig';
 import { externalTicketSystems } from './constants/ExternalTicketSystemConstants';
 import {
-  getOccurrenceAccessibilities,
+  compareAccessibilities,
+  getOccurrenceAccessibilityNodes,
   getOccurrenceLanguages,
   isSpeechless,
+  type OccurrenceAccessibilityNode,
   type OccurrenceFeatureSource,
 } from './hooks/useOccurrenceFeatures';
 
@@ -483,8 +485,18 @@ export function formatEventLanguagesText<
 >(occurrences: O[] | undefined, t: TFunction): string | null {
   const uniqueLangs = extractUniqueLanguages(null, occurrences ?? []);
   if (uniqueLangs.length === 0) return null;
+  const languageNames = new Map<string, string>();
+  for (const occ of occurrences ?? []) {
+    for (const lang of occ.languages ?? []) {
+      if (lang?.alpha3Code && lang.name) {
+        languageNames.set(lang.alpha3Code.toLowerCase(), lang.name);
+      }
+    }
+  }
   const formattedLangs = uniqueLangs
-    .map((lang) => t(`common.language.${lang}`, lang))
+    .map((lang) =>
+      t(`common.language.${lang}`, languageNames.get(lang) ?? lang)
+    )
     .join(', ');
 
   if (uniqueLangs.length === 1) {
@@ -531,55 +543,43 @@ export function isEventFull<
 }
 
 export type AccessibilityBadgeCount = {
-  value: string;
+  slug: string;
+  label: string;
+  sortOrder: number | null;
   count: number;
 };
 
 /**
- * Aggregates unique accessibility values across occurrences (and optional event-level accessibilities)
- * with the count of occurrences where each accessibility is present.
+ * Aggregates unique accessibility tags across occurrences with the count of
+ * occurrences where each accessibility is present, sorted by backend `sortOrder`
+ * (nulls last) then `slug`.
  */
 export function extractEventAccessibilityCounts<
-  O extends { accessibilities?: string[] | null }
->(
-  event?: {
-    accessibility?: string[] | null;
-    accessibilities?: string[] | null;
-  } | null,
-  occurrences: O[] = []
-): AccessibilityBadgeCount[] {
-  const countsMap = new Map<string, number>();
+  O extends { accessibilities?: Array<OccurrenceAccessibilityNode | null> | null }
+>(occurrences: O[] = []): AccessibilityBadgeCount[] {
+  const countsMap = new Map<string, AccessibilityBadgeCount>();
 
   for (const occ of occurrences) {
-    const occAccessibilities = Array.from(
-      new Set(
-        getOccurrenceAccessibilities(occ)
-          .map((item) => item.trim())
-          .filter(Boolean)
-      )
-    );
+    const occAccessibilities = getOccurrenceAccessibilityNodes(occ);
     for (const acc of occAccessibilities) {
-      countsMap.set(acc, (countsMap.get(acc) ?? 0) + 1);
+      const existing = countsMap.get(acc.slug);
+      if (existing) {
+        existing.count += 1;
+        if (existing.sortOrder == null && acc.sortOrder != null) {
+          existing.sortOrder = acc.sortOrder;
+        }
+      } else {
+        countsMap.set(acc.slug, {
+          slug: acc.slug,
+          label: acc.name,
+          sortOrder: acc.sortOrder,
+          count: 1,
+        });
+      }
     }
   }
 
-  const eventLevel = [
-    ...(event?.accessibility ?? []),
-    ...(event?.accessibilities ?? []),
-  ]
-    .map((item) => item.trim())
-    .filter(Boolean);
-
-  for (const acc of eventLevel) {
-    if (!countsMap.has(acc)) {
-      countsMap.set(acc, occurrences.length);
-    }
-  }
-
-  return Array.from(countsMap.entries()).map(([value, count]) => ({
-    value,
-    count,
-  }));
+  return Array.from(countsMap.values()).sort(compareAccessibilities);
 }
 
 /**

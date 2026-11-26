@@ -21,6 +21,7 @@ describe('searchFilterUrlConfig', () => {
     'startDate',
     'date',
     'accessibility',
+    'accessibilities',
     'language',
     'languages',
     'availableOnly',
@@ -89,8 +90,10 @@ describe('searchFilterUrlConfig', () => {
   describe('accessibility', () => {
     const config = FILTER_URL_CONFIG.accessibility;
 
-    it('parses accessibility items from URL', () => {
-      const params = new URLSearchParams('accessibility=wheelchair,audio-guide');
+    it('parses accessibility items from URL including accessibilities alias', () => {
+      const params = new URLSearchParams(
+        'accessibility=wheelchair&accessibilities=audio-guide'
+      );
       expect(config.parseFromUrl(params)).toEqual(['wheelchair', 'audio-guide']);
     });
 
@@ -102,10 +105,11 @@ describe('searchFilterUrlConfig', () => {
       expect(result).toEqual(['wheelchair']);
     });
 
-    it('writes repeated accessibility parameters', () => {
-      const params = new URLSearchParams();
+    it('writes repeated accessibility parameters and deletes alias', () => {
+      const params = new URLSearchParams('accessibilities=old');
       config.writeToUrl(params, ['wheelchair', 'elevator']);
       expect(params.getAll('accessibility')).toEqual(['wheelchair', 'elevator']);
+      expect(params.get('accessibilities')).toBeNull();
     });
   });
 

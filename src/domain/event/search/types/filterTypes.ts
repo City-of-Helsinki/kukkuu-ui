@@ -1,6 +1,7 @@
 export type FilterOption = {
   label: string;
   value: string;
+  description?: string;
 };
 
 export type FilterOptionsHookResult = {

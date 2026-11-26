@@ -1171,23 +1171,10 @@
       "dateFilterBadge": "From {{date}}",
       "accessibilityLabel": "Accessibility",
       "accessibilityPlaceholder": "Select",
-      "accessibility": {
-        "mobility": "Mobility needs accommodated",
-        "sensory": "Sensory sensitivities accommodated",
-        "neurodiversity": "Neurodiversity needs accommodated",
-        "vision": "Visual needs accommodated",
-        "hearing": "Hearing needs accommodated"
-      },
+      "accessibilityTooltipButtonLabel": "Show more information about accessibility",
+      "accessibilityTooltipLabel": "More information about accessibility",
       "languageLabel": "Language",
       "languagePlaceholder": "Select language",
-      "languages": {
-        "fi": "Finnish",
-        "fin": "Finnish",
-        "sv": "Swedish",
-        "swe": "Swedish",
-        "en": "English",
-        "eng": "English"
-      },
       "availableOnlyLabel": "Show only events with available spots",
       "familyOnlyLabel": "Show only family events",
       "submitButton": "Search events",

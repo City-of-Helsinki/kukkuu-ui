@@ -3,6 +3,11 @@ import { within } from '@testing-library/react';
 
 import { customRender as render } from '../../../common/test/customRender';
 import {
+  fakeAvailableVenue,
+  fakeOccurrenceAccessibility,
+  fakeOccurrenceLanguage,
+} from '../../../utils/eventMockDataUtils';
+import {
   EnrolmentDeniedReason,
   EventParticipantsPerInvite,
 } from '../../api/generatedTypes/graphql';
@@ -17,27 +22,47 @@ describe('EventSearchCard and EventHero synchronization', () => {
       time: '2026-10-04T10:00:00Z',
       remainingCapacity: 0,
       languages: [
-        { alpha3Code: 'fin', name: 'suomi' },
-        { alpha3Code: 'zxx', name: 'Sanaton' },
+        fakeOccurrenceLanguage({ alpha3Code: 'fin', name: 'suomi' }),
+        fakeOccurrenceLanguage({ alpha3Code: 'zxx', name: 'Sanaton' }),
       ],
-      accessibilities: ['sensory', 'Kuulemisen tuki'],
-      venue: {
+      accessibilities: [
+        fakeOccurrenceAccessibility({
+          id: 'acc-1',
+          slug: 'sensory_sensitivity',
+          name: 'Aistiherkkyys',
+          sortOrder: 1,
+        }),
+        fakeOccurrenceAccessibility({
+          id: 'acc-2',
+          slug: 'hearing',
+          name: 'Kuulemisen tuki',
+          sortOrder: 4,
+        }),
+      ],
+      venue: fakeAvailableVenue({
         id: 'venue-1',
         name: 'Annantalo',
         address: 'Annankatu 30',
-      },
+      }),
     },
     {
       id: 'occ-2',
       time: '2026-10-18T12:00:00Z',
       remainingCapacity: 1,
-      languages: [{ alpha3Code: 'swe', name: 'ruotsi' }],
-      accessibilities: ['sensory'],
-      venue: {
+      languages: [fakeOccurrenceLanguage({ alpha3Code: 'swe', name: 'ruotsi' })],
+      accessibilities: [
+        fakeOccurrenceAccessibility({
+          id: 'acc-1',
+          slug: 'sensory_sensitivity',
+          name: 'Aistiherkkyys',
+          sortOrder: 1,
+        }),
+      ],
+      venue: fakeAvailableVenue({
         id: 'venue-2',
         name: 'Kaapelitehdas',
         address: 'Kaapeliaukio 3',
-      },
+      }),
     },
   ];
 
@@ -137,17 +162,17 @@ describe('EventSearchCard and EventHero synchronization', () => {
 
     // Accessibility & speechless badges: Card shows label without count, Hero shows label with count
     expect(
-      cardScope.getByTestId('event-badge-accessibility-sensory')
-    ).toHaveTextContent('Aistiyliherkkyydet huomioitu');
+      cardScope.getByTestId('event-badge-accessibility-sensory_sensitivity')
+    ).toHaveTextContent('Aistiherkkyys');
     expect(
-      heroScope.getByTestId('event-badge-accessibility-sensory')
-    ).toHaveTextContent('Aistiyliherkkyydet huomioitu (2)');
+      heroScope.getByTestId('event-badge-accessibility-sensory_sensitivity')
+    ).toHaveTextContent('Aistiherkkyys (2)');
 
     expect(
-      cardScope.getByTestId('event-badge-accessibility-Kuulemisen tuki')
+      cardScope.getByTestId('event-badge-accessibility-hearing')
     ).toHaveTextContent('Kuulemisen tuki');
     expect(
-      heroScope.getByTestId('event-badge-accessibility-Kuulemisen tuki')
+      heroScope.getByTestId('event-badge-accessibility-hearing')
     ).toHaveTextContent('Kuulemisen tuki (1)');
 
     expect(cardScope.getByTestId('event-badge-speechless')).toHaveTextContent(
@@ -164,12 +189,12 @@ describe('EventSearchCard and EventHero synchronization', () => {
         id: 'occ-single',
         time: '2026-10-04T10:00:00Z',
         remainingCapacity: 10,
-        languages: [{ alpha3Code: 'fin', name: 'suomi' }],
-        venue: {
+        languages: [fakeOccurrenceLanguage({ alpha3Code: 'fin', name: 'suomi' })],
+        venue: fakeAvailableVenue({
           id: 'venue-1',
           name: 'Annantalo',
           address: 'Annankatu 30',
-        },
+        }),
       },
     ];
 

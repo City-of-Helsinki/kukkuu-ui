@@ -9,6 +9,12 @@ const eventQueryFragments = gql`
       alpha3Code
       name
     }
+    accessibilities {
+      id
+      slug
+      name
+      sortOrder
+    }
     event {
       id
       name

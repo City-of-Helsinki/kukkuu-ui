@@ -20,6 +20,7 @@ import AnchorButton from '../../../common/components/button/AnchorButton';
 import UnenrolModal from '../modal/UnenrolModal';
 import { EventBadges, type EventBadgesThemePath } from '../components/EventBadges';
 import { useChildEnrolment } from '../hooks/useChildEnrolment';
+import type { OccurrenceAccessibilityNode } from '../hooks/useOccurrenceFeatures';
 import {
   findEnrolledOccurrence,
   formatEventLanguagesText,
@@ -40,7 +41,7 @@ export type EventHeroOccurrence = {
   time: string;
   remainingCapacity?: number | null;
   languages?: Array<{ alpha3Code: string; name?: string | null } | null> | null;
-  accessibilities?: string[] | null;
+  accessibilities?: Array<OccurrenceAccessibilityNode | null> | null;
   venue?: {
     id?: string;
     name?: string | null;
@@ -59,8 +60,6 @@ export type EventHeroEvent = {
   enrolmentDeniedReason?: EnrolmentDeniedReason | null;
   registrationOpensAt?: string | null;
   themePaths?: Array<EventBadgesThemePath | null> | null;
-  accessibility?: string[] | null;
-  accessibilities?: string[] | null;
   ticketSystem?: {
     type: TicketSystem;
     childPassword?: string | null;

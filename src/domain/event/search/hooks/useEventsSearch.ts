@@ -73,7 +73,7 @@ export const useEventsSearch = ({
         filters?.themePaths && filters.themePaths.length > 0
           ? filters.themePaths
           : undefined,
-      accessibility:
+      accessibilities:
         filters?.accessibility && filters.accessibility.length > 0
           ? filters.accessibility
           : undefined,

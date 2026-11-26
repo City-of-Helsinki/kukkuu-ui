@@ -35,6 +35,12 @@ const occurrenceQuery = gql`
       alpha3Code
       name
     }
+    accessibilities {
+      id
+      slug
+      name
+      sortOrder
+    }
     event {
       ...OccurrenceEventFields
     }

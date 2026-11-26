@@ -14,12 +14,15 @@ import {
   fakePage,
 } from '../../../../utils/cmsMockDataUtils';
 import {
+  fakeAccessibilityNode,
   fakeAvailableEvent,
   fakeAvailableOccurrence,
 } from '../../../../utils/eventMockDataUtils';
 import ChildEventsSearch from '../ChildEventsSearch';
 import { eventsSearchQuery } from '../../queries/eventsSearchQuery';
 import { themePathsQuery } from '../../queries/themePathsQuery';
+import { accessibilitiesQuery } from '../../queries/accessibilitiesQuery';
+import { occurrenceLanguagesQuery } from '../../queries/occurrenceLanguagesQuery';
 
 const getThemePathsMock = (): MockedResponse => ({
   request: {
@@ -60,11 +63,95 @@ const getThemePathsMock = (): MockedResponse => ({
   },
 });
 
+const getAccessibilitiesMock = (): MockedResponse => ({
+  request: {
+    query: accessibilitiesQuery,
+  },
+  maxUsageCount: Infinity,
+  result: {
+    data: {
+      accessibilities: {
+        edges: [
+          {
+            node: fakeAccessibilityNode({
+              id: 'acc-1',
+              slug: 'sensory_sensitivity',
+            }),
+          },
+          {
+            node: fakeAccessibilityNode({
+              id: 'acc-2',
+              slug: 'hearing',
+            }),
+          },
+        ],
+      },
+    },
+  },
+});
+
+const getOccurrenceLanguagesMock = (): MockedResponse => ({
+  request: {
+    query: occurrenceLanguagesQuery,
+  },
+  maxUsageCount: Infinity,
+  result: {
+    data: {
+      languages: {
+        edges: [
+          {
+            node: {
+              __typename: 'LanguageNode',
+              id: 'lang-1',
+              alpha3Code: 'fin',
+              name: 'Suomi',
+            },
+          },
+          {
+            node: {
+              __typename: 'LanguageNode',
+              id: 'lang-2',
+              alpha3Code: 'swe',
+              name: 'Ruotsi',
+            },
+          },
+          {
+            node: {
+              __typename: 'LanguageNode',
+              id: 'lang-3',
+              alpha3Code: 'eng',
+              name: 'Englanti',
+            },
+          },
+          {
+            node: {
+              __typename: 'LanguageNode',
+              id: 'lang-4',
+              alpha3Code: 'zxx',
+              name: 'Sanaton',
+            },
+          },
+        ],
+      },
+    },
+  },
+});
+
 const render = (
   ui: ReactElement,
   mocks: MockedResponse[] = [],
   options?: RenderOptions
-) => customRender(ui, [getThemePathsMock(), ...mocks], options);
+) =>
+  customRender(
+    ui,
+    [
+      getThemePathsMock(),
+      getAccessibilitiesMock(),
+      getOccurrenceLanguagesMock(),
+      ...mocks,
+    ],
+    options
+  );
 
 vi.mock('@sentry/browser', () => ({
   captureException: vi.fn(),
@@ -143,7 +230,7 @@ const defaultSearchVars = (overrides: Record<string, unknown> = {}) => ({
   startDate: undefined,
   languages: undefined,
   themePaths: undefined,
-  accessibility: undefined,
+  accessibilities: undefined,
   familyOnly: undefined,
   hasFreeSpots: undefined,
   ...overrides,
@@ -355,6 +442,7 @@ describe('ChildEventsSearch', () => {
                   time: `2026-10-${String(i + 1).padStart(2, '0')}T10:00:00Z`,
                   remainingCapacity: 5,
                   languages: [{ alpha3Code: 'fin', name: 'suomi' }],
+                  accessibilities: [],
                   venue: {
                     id: 'v-1',
                     name: 'Lastenkulttuurikeskus',
@@ -1058,5 +1146,66 @@ describe('ChildEventsSearch', () => {
     await waitFor(() => {
       expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
     });
+  });
+
+  it('enables accessibility filter with dynamic tooltip from API and submits accessibilities variable', async () => {
+    const user = userEvent.setup();
+    const filteredMock = getSuccessEventsMock({
+      accessibilities: ['sensory_sensitivity'],
+    });
+
+    render(<ChildEventsSearch />, [getSuccessEventsMock(), filteredMock]);
+
+    await waitFor(() => {
+      expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
+    });
+
+    // Accessibility select combobox should be enabled
+    const accessibilityToggle = screen.getByRole('combobox', {
+      name: /Saavutettavuus/i,
+    });
+    expect(accessibilityToggle).toBeEnabled();
+
+    // Dynamic tooltip built from API names and descriptions
+    const accessibilityTooltipButton = await screen.findByRole('button', {
+      name: 'Näytä lisätietoja saavutettavuudesta',
+    });
+    await user.click(accessibilityTooltipButton);
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('region', { name: 'Lisätietoa saavutettavuudesta' })
+      ).toBeInTheDocument();
+      expect(screen.getByText('Aistiherkkyys huomioitu')).toBeInTheDocument();
+      expect(
+        screen.getByText('Kuulemisen tuen tarve huomioitu')
+      ).toBeInTheDocument();
+    });
+
+    // Select an accessibility option and submit search
+    await user.click(accessibilityToggle);
+    const sensoryOption = await screen.findByRole('option', {
+      name: 'Aistiherkkyys',
+    });
+    await user.click(sensoryOption);
+
+    await user.click(
+      screen.getByRole('button', { name: 'Etsi tapahtumia' })
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('button', {
+          name: /Poista valinta: Aistiherkkyys/i,
+        })
+      ).toBeInTheDocument();
+    });
+
+    // Verify dynamic occurrence languages (including Sanaton) appear in Language select
+    const languageToggle = screen.getByRole('combobox', { name: /Kieli/i });
+    await user.click(languageToggle);
+    expect(
+      await screen.findByRole('option', { name: 'Sanaton' })
+    ).toBeInTheDocument();
   });
 });

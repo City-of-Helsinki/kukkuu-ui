@@ -50,11 +50,17 @@ describe('useOccurrenceFeatures', () => {
       );
     });
 
-    it('returns accessibilities list when present', () => {
-      const items = ['Yliaistiherkkyys', 'Lorem ipsum'];
-      expect(getOccurrenceAccessibilities({ accessibilities: items })).toEqual(
-        items
-      );
+    it('returns sorted accessibility names from AccessibilityNode items', () => {
+      const items = [
+        { id: 'acc-3', slug: 'mobility', name: 'Liikkumisrajoitteet', sortOrder: null },
+        { id: 'acc-2', slug: 'hearing', name: 'Kuulemisen tuki', sortOrder: 4 },
+        { id: 'acc-1', slug: 'sensory_sensitivity', name: 'Aistiherkkyys', sortOrder: 1 },
+      ];
+      expect(getOccurrenceAccessibilities({ accessibilities: items })).toEqual([
+        'Aistiherkkyys',
+        'Kuulemisen tuki',
+        'Liikkumisrajoitteet',
+      ]);
     });
   });
 
@@ -102,7 +108,14 @@ describe('useOccurrenceFeatures', () => {
             { alpha3Code: 'fin', name: 'suomi' },
             { alpha3Code: 'zxx', name: 'Sanaton' },
           ],
-          accessibilities: ['Pyörätuoliystävällinen'],
+          accessibilities: [
+            {
+              id: 'acc-1',
+              slug: 'mobility',
+              name: 'Pyörätuoliystävällinen',
+              sortOrder: 1,
+            },
+          ],
         })
       );
 

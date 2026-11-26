@@ -99,16 +99,21 @@ export const FILTER_URL_CONFIG: {
 
   accessibility: {
     paramName: 'accessibility',
+    aliases: ['accessibilities'],
     defaultValue: [],
     isActive: (v) => v.length > 0,
     parseFromUrl: (params, ctx) => {
-      const raw = extractUrlParamValues(params, ['accessibility']);
+      const raw = extractUrlParamValues(params, [
+        'accessibility',
+        'accessibilities',
+      ]);
       if (!ctx?.accessibility) return raw;
       const allowed = new Set(ctx.accessibility);
       return raw.filter((item) => allowed.has(item));
     },
     writeToUrl: (params, values) => {
       params.delete('accessibility');
+      params.delete('accessibilities');
       for (const acc of values) {
         params.append('accessibility', acc);
       }

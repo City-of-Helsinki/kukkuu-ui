@@ -1169,23 +1169,10 @@
       "dateFilterBadge": "{{date}} alkaen",
       "accessibilityLabel": "Saavutettavuus",
       "accessibilityPlaceholder": "Valitse",
-      "accessibility": {
-        "mobility": "Liikkumisen rajoitteet huomioitu",
-        "sensory": "Aistiyliherkkyydet huomioitu",
-        "neurodiversity": "Neurokirjon tarpeet huomioitu",
-        "vision": "Näkemiseen liittyvät tarpeet huomioitu",
-        "hearing": "Kuulemiseen liittyvät tarpeet huomioitu"
-      },
+      "accessibilityTooltipButtonLabel": "Näytä lisätietoja saavutettavuudesta",
+      "accessibilityTooltipLabel": "Lisätietoa saavutettavuudesta",
       "languageLabel": "Kieli",
       "languagePlaceholder": "Valitse kieli",
-      "languages": {
-        "fi": "Suomi",
-        "fin": "Suomi",
-        "sv": "Ruotsi",
-        "swe": "Ruotsi",
-        "en": "Englanti",
-        "eng": "Englanti"
-      },
       "availableOnlyLabel": "Näytä vain tapahtumat, joissa on tilaa",
       "familyOnlyLabel": "Näytä vain perhetapahtumat",
       "submitButton": "Etsi tapahtumia",
