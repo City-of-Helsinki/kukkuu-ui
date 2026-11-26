@@ -5,7 +5,6 @@ import mergeWith from 'lodash/mergeWith';
 import {
   EventParticipantsPerInvite,
   EventQuery,
-  Language,
   ProfileQuery,
 } from '../domain/api/generatedTypes/graphql';
 import {
@@ -45,7 +44,7 @@ export const fakeAvailableOccurrence = (
       id: faker.string.uuid(),
       time: faker.date.future().toISOString(),
       remainingCapacity: faker.number.int({ min: 1, max: 20 }),
-      occurrenceLanguage: Language.Fi,
+      languages: [{ alpha3Code: 'fin', name: 'suomi' }],
       venue: fakeAvailableVenue(),
     },
     overrides
@@ -86,7 +85,9 @@ export const fakeOccurrenceNode = (
       id: faker.string.uuid(),
       time: faker.date.future().toISOString(),
       remainingCapacity: faker.number.int({ min: 1, max: 20 }),
-      occurrenceLanguage: 'FI',
+      languages: [
+        { __typename: 'LanguageNode', alpha3Code: 'fin', name: 'suomi' },
+      ],
       ticketSystem: null,
       childHasFreeSpotNotificationSubscription: false,
       event: {

@@ -63,7 +63,10 @@ export const childByIdQuery = gql`
   fragment EnrolmentOccurrenceFields on OccurrenceNode {
     id
     time
-    occurrenceLanguage
+    languages {
+      alpha3Code
+      name
+    }
     venue {
       ...EnrolmentVenueFields
     }

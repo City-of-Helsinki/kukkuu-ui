@@ -5,7 +5,10 @@ const eventQueryFragments = gql`
     id
     time
     remainingCapacity
-    occurrenceLanguage
+    languages {
+      alpha3Code
+      name
+    }
     event {
       id
       name

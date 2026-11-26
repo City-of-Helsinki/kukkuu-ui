@@ -29,6 +29,7 @@ import {
   getOccurrenceAccessibilities,
   getOccurrenceLanguages,
   isSpeechless,
+  type OccurrenceFeatureSource,
 } from './hooks/useOccurrenceFeatures';
 
 const OccurrenceList = RelayList<OccurrenceNode>();
@@ -278,15 +279,14 @@ export function extractUniqueVenues<T extends { venue?: VenueLike | null }>(
  * @returns An array of unique lowercase language codes.
  */
 export function extractUniqueLanguages<
-  O extends { occurrenceLanguage?: string | null }
+  O extends OccurrenceFeatureSource
 >(
   selectedOccurrence?: O | null,
   occurrences: O[] = []
 ): string[] {
-  if (selectedOccurrence?.occurrenceLanguage) {
-    return getOccurrenceLanguages(selectedOccurrence).map((lang) =>
-      lang.toLowerCase()
-    );
+  const selectedLanguages = getOccurrenceLanguages(selectedOccurrence);
+  if (selectedLanguages.length > 0) {
+    return selectedLanguages.map((lang) => lang.toLowerCase());
   }
   const set = new Set<string>();
   for (const occ of occurrences) {
@@ -479,7 +479,7 @@ export function formatEventVenueText<T extends { venue?: VenueLike | null }>(
  * - >1 unique languages: `t('event.hero.languagesMultiple', { languages })` (`"Kielet: ..."`)
  */
 export function formatEventLanguagesText<
-  O extends { occurrenceLanguage?: string | null }
+  O extends OccurrenceFeatureSource
 >(occurrences: O[] | undefined, t: TFunction): string | null {
   const uniqueLangs = extractUniqueLanguages(null, occurrences ?? []);
   if (uniqueLangs.length === 0) return null;
@@ -586,7 +586,7 @@ export function extractEventAccessibilityCounts<
  * Counts how many occurrences include a speechless language code ("zxx" or "sanaton").
  */
 export function getSpeechlessOccurrencesCount<
-  O extends { occurrenceLanguage?: string | null }
+  O extends OccurrenceFeatureSource
 >(occurrences: O[] = []): number {
   let count = 0;
   for (const occ of occurrences) {

@@ -22,26 +22,26 @@ export const isSpeechlessLanguageCode = (lang: string): boolean => {
   );
 };
 
+export type OccurrenceLanguageNode = {
+  alpha3Code: string;
+  name?: string | null;
+};
+
 export type OccurrenceFeatureSource = {
-  occurrenceLanguage?: string | null;
+  languages?: Array<OccurrenceLanguageNode | null> | null;
   accessibilities?: string[] | null;
 };
 
 /**
- * Returns the languages configured for an occurrence.
- *
- * TODO(backend): Refactor to use the official occurrence languages field
- * once multi-language support lands in the GraphQL API.
+ * Returns the ISO 639-3 language codes configured for an occurrence.
  */
 export const getOccurrenceLanguages = (
   occurrence?: OccurrenceFeatureSource | null
 ): string[] => {
-  if (!occurrence || !occurrence.occurrenceLanguage) return [];
-  // Split comma-separated string if multiple languages are provided
-  return occurrence.occurrenceLanguage
-    .split(',')
-    .map((lang) => lang.trim())
-    .filter(Boolean);
+  if (!occurrence?.languages) return [];
+  return occurrence.languages
+    .map((lang) => lang?.alpha3Code?.trim())
+    .filter((code): code is string => Boolean(code));
 };
 
 /**
@@ -72,13 +72,15 @@ export const isSpeechless = (languages: string[]): boolean => {
  */
 export const formatOccurrenceLanguages = (
   languages: string[],
-  t: TFunction
+  t: TFunction,
+  languageNames?: Map<string, string>
 ): string => {
   if (languages.length === 0) return '–';
   return languages
     .map((lang) => {
-      const key = `common.language.${lang.toLowerCase()}`;
-      return t(key, lang);
+      const normalized = lang.toLowerCase();
+      const key = `common.language.${normalized}`;
+      return t(key, languageNames?.get(normalized) ?? lang);
     })
     .join(', ');
 };
@@ -96,6 +98,16 @@ export function useOccurrenceFeatures(
     [occurrence]
   );
 
+  const languageNames = useMemo(() => {
+    const names = new Map<string, string>();
+    for (const lang of occurrence?.languages ?? []) {
+      if (lang?.alpha3Code && lang.name) {
+        names.set(lang.alpha3Code.toLowerCase(), lang.name);
+      }
+    }
+    return names;
+  }, [occurrence?.languages]);
+
   const accessibilities = useMemo(
     () => getOccurrenceAccessibilities(occurrence),
     [occurrence]
@@ -107,8 +119,8 @@ export function useOccurrenceFeatures(
   );
 
   const languageText = useMemo(
-    () => formatOccurrenceLanguages(languages, t),
-    [languages, t]
+    () => formatOccurrenceLanguages(languages, t, languageNames),
+    [languages, t, languageNames]
   );
 
   return {

@@ -226,18 +226,18 @@ describe('EventUtils', () => {
 
   describe('extractUniqueLanguages', () => {
     test('returns selected occurrence language in lowercase when present', () => {
-      const selected = { occurrenceLanguage: 'FI' };
-      const others = [{ occurrenceLanguage: 'SV' }];
-      expect(extractUniqueLanguages(selected, others)).toEqual(['fi']);
+      const selected = { languages: [{ alpha3Code: 'FIN', name: 'suomi' }] };
+      const others = [{ languages: [{ alpha3Code: 'SWE', name: 'ruotsi' }] }];
+      expect(extractUniqueLanguages(selected, others)).toEqual(['fin']);
     });
 
     test('deduplicates language codes across occurrences list', () => {
       const occurrences = [
-        { occurrenceLanguage: 'FI' },
-        { occurrenceLanguage: 'fi' },
-        { occurrenceLanguage: 'SV' },
+        { languages: [{ alpha3Code: 'FIN', name: 'suomi' }] },
+        { languages: [{ alpha3Code: 'fin', name: 'suomi' }] },
+        { languages: [{ alpha3Code: 'SWE', name: 'ruotsi' }] },
       ];
-      expect(extractUniqueLanguages(null, occurrences)).toEqual(['fi', 'sv']);
+      expect(extractUniqueLanguages(null, occurrences)).toEqual(['fin', 'swe']);
     });
   });
 

@@ -37,7 +37,10 @@ export const eventsSearchQuery = gql`
           id
           time
           remainingCapacity
-          occurrenceLanguage
+          languages {
+            alpha3Code
+            name
+          }
           venue {
             id
             name

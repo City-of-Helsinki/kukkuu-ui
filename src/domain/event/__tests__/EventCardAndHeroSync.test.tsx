@@ -5,7 +5,6 @@ import { customRender as render } from '../../../common/test/customRender';
 import {
   EnrolmentDeniedReason,
   EventParticipantsPerInvite,
-  Language,
 } from '../../api/generatedTypes/graphql';
 import EventSearchCard from '../search/EventSearchCard';
 import EventHero from '../eventHero/EventHero';
@@ -17,7 +16,10 @@ describe('EventSearchCard and EventHero synchronization', () => {
       id: 'occ-1',
       time: '2026-10-04T10:00:00Z',
       remainingCapacity: 0,
-      occurrenceLanguage: 'FI, zxx' as Language,
+      languages: [
+        { alpha3Code: 'fin', name: 'suomi' },
+        { alpha3Code: 'zxx', name: 'Sanaton' },
+      ],
       accessibilities: ['sensory', 'Kuulemisen tuki'],
       venue: {
         id: 'venue-1',
@@ -29,7 +31,7 @@ describe('EventSearchCard and EventHero synchronization', () => {
       id: 'occ-2',
       time: '2026-10-18T12:00:00Z',
       remainingCapacity: 1,
-      occurrenceLanguage: Language.Sv,
+      languages: [{ alpha3Code: 'swe', name: 'ruotsi' }],
       accessibilities: ['sensory'],
       venue: {
         id: 'venue-2',
@@ -162,7 +164,7 @@ describe('EventSearchCard and EventHero synchronization', () => {
         id: 'occ-single',
         time: '2026-10-04T10:00:00Z',
         remainingCapacity: 10,
-        occurrenceLanguage: Language.Fi,
+        languages: [{ alpha3Code: 'fin', name: 'suomi' }],
         venue: {
           id: 'venue-1',
           name: 'Annantalo',

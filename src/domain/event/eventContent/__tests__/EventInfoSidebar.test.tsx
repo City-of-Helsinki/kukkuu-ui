@@ -20,7 +20,7 @@ describe('EventInfoSidebar', () => {
     {
       id: 'occ-1',
       time: '2026-10-04T10:00:00Z',
-      occurrenceLanguage: 'FI',
+      languages: [{ alpha3Code: 'fin', name: 'suomi' }],
       venue: {
         id: 'venue-1',
         name: 'Oodi Lastenmaailma',
@@ -40,7 +40,7 @@ describe('EventInfoSidebar', () => {
     {
       id: 'occ-3',
       time: '2026-10-18T12:00:00Z',
-      occurrenceLanguage: 'SV',
+      languages: [{ alpha3Code: 'swe', name: 'ruotsi' }],
       venue: {
         id: 'venue-1',
         name: 'Oodi Lastenmaailma',
@@ -155,7 +155,7 @@ describe('EventInfoSidebar', () => {
       {
         id: 'occ-diff-venue',
         time: '2026-10-10T12:00:00Z',
-        occurrenceLanguage: 'FI',
+        languages: [{ alpha3Code: 'fin', name: 'suomi' }],
         venue: {
           id: 'venue-annantalo',
           name: 'Annantalo',

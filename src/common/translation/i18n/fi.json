@@ -135,9 +135,12 @@
     },
     "language": {
       "en": "English",
+      "eng": "English",
       "fi": "Suomi",
+      "fin": "Suomi",
       "sanaton": "Sanaton",
       "sv": "Svenska",
+      "swe": "Svenska",
       "zxx": "Sanaton"
     },
     "loading": "Lataa",
@@ -1177,8 +1180,11 @@
       "languagePlaceholder": "Valitse kieli",
       "languages": {
         "fi": "Suomi",
+        "fin": "Suomi",
         "sv": "Ruotsi",
-        "en": "Englanti"
+        "swe": "Ruotsi",
+        "en": "Englanti",
+        "eng": "Englanti"
       },
       "availableOnlyLabel": "Näytä vain tapahtumat, joissa on tilaa",
       "familyOnlyLabel": "Näytä vain perhetapahtumat",

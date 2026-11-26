@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
 import { customRender as render } from '../../../../../common/test/customRender';
-import { Language } from '../../../../api/generatedTypes/graphql';
 import ProfileEnrolledEventCard from '../ProfileEnrolledEventCard';
 import * as EventUtils from '../../../../event/EventUtils';
 
@@ -24,7 +23,7 @@ const mockInternalEnrolment = {
     __typename: 'OccurrenceNode' as const,
     id: 'occ-1',
     time: '2026-09-12T10:00:00.000Z',
-    occurrenceLanguage: Language.Fi,
+    languages: [{ __typename: 'LanguageNode' as const, alpha3Code: 'fin', name: 'suomi' }],
     venue: {
       __typename: 'VenueNode' as const,
       id: 'venue-1',

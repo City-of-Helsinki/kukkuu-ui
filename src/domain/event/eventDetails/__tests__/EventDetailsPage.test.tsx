@@ -23,7 +23,7 @@ const mockOccurrences: EventDetailsPageOccurrence[] = [
     id: 'occ-1',
     time: '2026-09-14T15:30:00Z',
     remainingCapacity: 20,
-    occurrenceLanguage: 'FI',
+    languages: [{ alpha3Code: 'fin', name: 'suomi' }],
     venue: {
       id: 'venue-1',
       name: 'Music Centre',

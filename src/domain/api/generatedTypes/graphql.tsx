@@ -151,7 +151,8 @@ export type AddOccurrenceMutationInput = {
   capacityOverride?: InputMaybe<Scalars['Int']['input']>;
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   eventId: Scalars['ID']['input'];
-  occurrenceLanguage?: InputMaybe<Language>;
+  /** Languages of the occurrence. At least one is required. */
+  languageIds: Array<Scalars['ID']['input']>;
   ticketSystem?: InputMaybe<OccurrenceTicketSystemInput>;
   time: Scalars['DateTime']['input'];
   venueId: Scalars['ID']['input'];
@@ -324,8 +325,8 @@ export type ChildNodeOccurrencesArgs = {
   date: InputMaybe<Scalars['Date']['input']>;
   eventId: InputMaybe<Scalars['String']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
-  occurrenceLanguage: InputMaybe<Scalars['String']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['String']['input']>;
   time: InputMaybe<Scalars['Time']['input']>;
@@ -520,18 +521,28 @@ export enum EnrolmentDeniedReason {
 
 export type EnrolmentNode = Node & {
   __typename?: 'EnrolmentNode';
+  arrivedChildrenCount: Maybe<Scalars['Int']['output']>;
+  arrivedGuardiansCount: Maybe<Scalars['Int']['output']>;
+  /** Total arrived physical seats recorded for this enrolment (arrivedChildrenCount + arrivedGuardiansCount, or totalSeats fallback if attended=True without explicit counts). */
+  arrivedSeats: Scalars['Int']['output'];
+  /** Indicates whether the ticket has been handled and someone with the ticket has attended: true if handled and at least one participant attended, false if handled and no one attended, or null if not yet handled. */
   attended: Maybe<Scalars['Boolean']['output']>;
+  /** Read-only number of children booked on this enrolment (1 + extraChildrenCount). */
+  bookedChildrenCount: Scalars['Int']['output'];
+  /** Read-only number of adults/guardians booked on this enrolment (1 + extraGuardiansCount). */
+  bookedGuardiansCount: Scalars['Int']['output'];
   child: Maybe<ChildNode>;
   createdAt: Scalars['DateTime']['output'];
-  /** NULL means a legacy enrolment, which counts as 1 seat. */
+  /** Additional children beyond the enrolled child (empty/NULL means 0). */
   extraChildrenCount: Maybe<Scalars['Int']['output']>;
-  /** NULL means a legacy enrolment, which counts as 1 seat. */
+  /** Additional adults/guardians beyond the accompanying adult (empty/NULL means 0). */
   extraGuardiansCount: Maybe<Scalars['Int']['output']>;
   /** The ID of the object */
   id: Scalars['ID']['output'];
   occurrence: OccurrenceNode;
   /** An unique encoded reference id */
   referenceId: Maybe<Scalars['String']['output']>;
+  /** Total physical seats reserved by this enrolment (2 + extraChildrenCount + extraGuardiansCount). */
   totalSeats: Scalars['Int']['output'];
   updatedAt: Scalars['DateTime']['output'];
 };
@@ -619,12 +630,11 @@ export type EventGroupNodeEnrolmentDeniedReasonArgs = {
 export type EventGroupNodeEventsArgs = {
   accessibility: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
-  availableForChild: InputMaybe<Scalars['String']['input']>;
-  availableOnly: InputMaybe<Scalars['Boolean']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   childId: InputMaybe<Scalars['ID']['input']>;
   familyOnly: InputMaybe<Scalars['Boolean']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  hasFreeSpots: InputMaybe<Scalars['Boolean']['input']>;
   languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
@@ -732,8 +742,8 @@ export type EventNodeOccurrencesArgs = {
   date: InputMaybe<Scalars['Date']['input']>;
   eventId: InputMaybe<Scalars['String']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
-  occurrenceLanguage: InputMaybe<Scalars['String']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['String']['input']>;
   time: InputMaybe<Scalars['Time']['input']>;
@@ -883,6 +893,8 @@ export type GuardianNodeChildrenArgs = {
 export type GuardianNodeLanguagesSpokenAtHomeArgs = {
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
+  canBeOccurrenceLanguage: InputMaybe<Scalars['Boolean']['input']>;
+  canBeSpokenAtHome: InputMaybe<Scalars['Boolean']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
   last: InputMaybe<Scalars['Int']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
@@ -977,8 +989,8 @@ export enum Language {
 
 export type LanguageNode = Node & {
   __typename?: 'LanguageNode';
-  /** ISO 639-3 (language) or ISO 639-5 (language family) alpha-3 code */
-  alpha3Code: Maybe<Scalars['String']['output']>;
+  /** ISO 639-3 alpha-3 code */
+  alpha3Code: Scalars['String']['output'];
   /** The ID of the object */
   id: Scalars['ID']['output'];
   name: Maybe<Scalars['String']['output']>;
@@ -1074,8 +1086,8 @@ export type MessageNodeOccurrencesArgs = {
   date: InputMaybe<Scalars['Date']['input']>;
   eventId: InputMaybe<Scalars['String']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
-  occurrenceLanguage: InputMaybe<Scalars['String']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['String']['input']>;
   time: InputMaybe<Scalars['Time']['input']>;
@@ -1354,16 +1366,56 @@ export type OccurrenceArrivalStatusNode = {
    */
   attendedEnrolmentCount: Scalars['Int']['output'];
   /**
+   * **DEPRECATED:** Effective count of arrived physical seats (using the arrival count override when set) for this occurrence.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
+   */
+  attendedSeats: Scalars['Int']['output'];
+  /**
+   * **DEPRECATED:** Total physical seat capacity for this occurrence.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
+   */
+  capacity: Maybe<Scalars['Int']['output']>;
+  /**
    * **DEPRECATED:** Total number of enrolments for this occurrence.
    * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
    */
   enrolmentCount: Scalars['Int']['output'];
+  /**
+   * **DEPRECATED:** Number of enrolments whose attendance has been processed (arrived or absent) for this occurrence.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
+   */
+  handledEnrolmentCount: Scalars['Int']['output'];
+  /**
+   * **DEPRECATED:** Booked physical seats belonging to enrolled tickets whose attendance has not been processed yet.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
+   */
+  pendingArrivalSeats: Scalars['Int']['output'];
+  /**
+   * **DEPRECATED:** Total physical seats currently unoccupied in this occurrence (capacity minus arrived seats), or null if capacity is unset.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
+   */
+  remainingEmptySeats: Maybe<Scalars['Int']['output']>;
+  /**
+   * **DEPRECATED:** Total reserved physical seats for this occurrence.
+   * @deprecated This field exposes potentially sensitive data and will be removed in a future release. Consider using a more secure method to access this information.
+   */
+  reservedSeats: Scalars['Int']['output'];
 };
 
 export type OccurrenceNode = Node & {
   __typename?: 'OccurrenceNode';
   accessibilities: Array<AccessibilityNode>;
+  /** Manual override for arrived adults. Set together with attendedChildrenCountOverride, or both null. */
+  attendedAdultsCountOverride: Maybe<Scalars['Int']['output']>;
+  /** Manual override for arrived children. Set together with attendedAdultsCountOverride, or both null. */
+  attendedChildrenCountOverride: Maybe<Scalars['Int']['output']>;
+  /** Read-only total (children + adults) of the manual arrival override, or null when no override is set. When set, reports and Admin UI use it instead of calculatedAttendedSeats. */
+  attendedCountOverride: Maybe<Scalars['Int']['output']>;
   attendedEnrolmentCount: Scalars['Int']['output'];
+  /** Effective arrived physical seats (children and adults), using the arrival count override (attendedCountOverride) when set. */
+  attendedSeats: Scalars['Int']['output'];
+  /** Sum of arrived physical seats calculated from enrolments, ignoring the arrival count override. */
+  calculatedAttendedSeats: Scalars['Int']['output'];
   capacity: Maybe<Scalars['Int']['output']>;
   /** Override total physical seat capacity. Each enrolment takes at least 2 seats (1 child + 1 guardian). */
   capacityOverride: Maybe<Scalars['Int']['output']>;
@@ -1375,10 +1427,16 @@ export type OccurrenceNode = Node & {
   event: EventNode;
   freeSpotNotificationSubscriptionCount: Scalars['Int']['output'];
   freeSpotNotificationSubscriptions: FreeSpotNotificationSubscriptionNodeConnection;
+  /** Number of enrolments whose attendance has been handled (marked arrived or absent). */
+  handledEnrolmentCount: Scalars['Int']['output'];
   /** The ID of the object */
   id: Scalars['ID']['output'];
-  occurrenceLanguage: Language;
+  languages: Array<LanguageNode>;
+  /** Booked physical seats belonging to enrolled tickets not yet marked arrived or absent. */
+  pendingArrivalSeats: Scalars['Int']['output'];
   remainingCapacity: Maybe<Scalars['Int']['output']>;
+  /** Total physical seats currently unoccupied in the occurrence (capacity minus attendedSeats), or null if capacity is unset. */
+  remainingEmptySeats: Maybe<Scalars['Int']['output']>;
   seatCount: Scalars['Int']['output'];
   /** @deprecated There is no need for this because the only field ticketSystemUrl has been moved to EventNode.ticketSystem. */
   ticketSystem: Maybe<OccurrenceTicketSystem>;
@@ -1642,12 +1700,11 @@ export type QueryEventGroupsArgs = {
 export type QueryEventsArgs = {
   accessibility: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
-  availableForChild: InputMaybe<Scalars['String']['input']>;
-  availableOnly: InputMaybe<Scalars['Boolean']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   childId: InputMaybe<Scalars['ID']['input']>;
   familyOnly: InputMaybe<Scalars['Boolean']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  hasFreeSpots: InputMaybe<Scalars['Boolean']['input']>;
   languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
@@ -1682,6 +1739,8 @@ export type QueryLanguageArgs = {
 export type QueryLanguagesArgs = {
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
+  canBeOccurrenceLanguage: InputMaybe<Scalars['Boolean']['input']>;
+  canBeSpokenAtHome: InputMaybe<Scalars['Boolean']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
   last: InputMaybe<Scalars['Int']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
@@ -1718,8 +1777,8 @@ export type QueryOccurrencesArgs = {
   date: InputMaybe<Scalars['Date']['input']>;
   eventId: InputMaybe<Scalars['String']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
-  occurrenceLanguage: InputMaybe<Scalars['String']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['String']['input']>;
   time: InputMaybe<Scalars['Time']['input']>;
@@ -1852,7 +1911,11 @@ export type SendMessageMutationPayload = {
 };
 
 export type SetEnrolmentAttendanceMutationInput = {
-  /** This field is required (but it can be null). */
+  /** Number of arrived children (0 to bookedChildrenCount). */
+  arrivedChildrenCount?: InputMaybe<Scalars['Int']['input']>;
+  /** Number of arrived adults/guardians (0 to bookedGuardiansCount). */
+  arrivedGuardiansCount?: InputMaybe<Scalars['Int']['input']>;
+  /** Indicates whether the ticket has been handled and someone with the ticket has attended: true if handled and at least one participant attended, false if handled and no one attended, or null if not yet handled. Optional when arrived counts are given. */
   attended?: InputMaybe<Scalars['Boolean']['input']>;
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   enrolmentId: Scalars['ID']['input'];
@@ -1937,8 +2000,16 @@ export enum TicketSystem {
 
 export type TicketVerificationNode = {
   __typename?: 'TicketVerificationNode';
-  /** Indicates whether the ticket holder has arrived. If null, the status is unset. */
+  /** Number of arrived children recorded for this ticket, or null if unset. */
+  arrivedChildrenCount: Maybe<Scalars['Int']['output']>;
+  /** Number of arrived adults/guardians recorded for this ticket, or null if unset. */
+  arrivedGuardiansCount: Maybe<Scalars['Int']['output']>;
+  /** Indicates whether the ticket has been handled and someone with the ticket has attended: true if handled and at least one participant attended, false if handled and no one attended, or null if not yet handled. */
   attended: Maybe<Scalars['Boolean']['output']>;
+  /** Read-only number of children booked on this ticket. */
+  bookedChildrenCount: Scalars['Int']['output'];
+  /** Read-only number of adults/guardians booked on this ticket. */
+  bookedGuardiansCount: Scalars['Int']['output'];
   /** The name of the event */
   eventName: Scalars['String']['output'];
   /**
@@ -2198,11 +2269,14 @@ export type UpdateMyProfileMutationPayload = {
 export type UpdateOccurrenceMutationInput = {
   /** Omit to keep the current accessibilities. If given, replaces them. An empty list removes them all. */
   accessibilityIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  attendedAdultsCountOverride?: InputMaybe<Scalars['Int']['input']>;
+  attendedChildrenCountOverride?: InputMaybe<Scalars['Int']['input']>;
   capacityOverride?: InputMaybe<Scalars['Int']['input']>;
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   eventId?: InputMaybe<Scalars['ID']['input']>;
   id: Scalars['ID']['input'];
-  occurrenceLanguage?: InputMaybe<Language>;
+  /** Omit to keep the current languages. If given, replaces them. At least one is required. */
+  languageIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   ticketSystem?: InputMaybe<OccurrenceTicketSystemInput>;
   time?: InputMaybe<Scalars['DateTime']['input']>;
   venueId?: InputMaybe<Scalars['ID']['input']>;
@@ -2215,7 +2289,8 @@ export type UpdateOccurrenceMutationPayload = {
 };
 
 export type UpdateTicketAttendedMutationInput = {
-  attended: Scalars['Boolean']['input'];
+  arrivedChildrenCount: Scalars['Int']['input'];
+  arrivedGuardiansCount: Scalars['Int']['input'];
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
   referenceId: Scalars['String']['input'];
 };
@@ -2265,8 +2340,8 @@ export type VenueNodeOccurrencesArgs = {
   date: InputMaybe<Scalars['Date']['input']>;
   eventId: InputMaybe<Scalars['String']['input']>;
   first: InputMaybe<Scalars['Int']['input']>;
+  languages: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   last: InputMaybe<Scalars['Int']['input']>;
-  occurrenceLanguage: InputMaybe<Scalars['String']['input']>;
   offset: InputMaybe<Scalars['Int']['input']>;
   projectId: InputMaybe<Scalars['String']['input']>;
   time: InputMaybe<Scalars['Time']['input']>;
@@ -2583,7 +2658,11 @@ export type EnrolmentOccurrenceFieldsFragment = {
   __typename?: 'OccurrenceNode';
   id: string;
   time: any;
-  occurrenceLanguage: Language;
+  languages: Array<{
+    __typename?: 'LanguageNode';
+    alpha3Code: string;
+    name: string | null;
+  }>;
   venue: {
     __typename?: 'VenueNode';
     id: string;
@@ -2617,7 +2696,11 @@ export type ActiveInternalEnrolmentFieldsFragment = {
     __typename?: 'OccurrenceNode';
     id: string;
     time: any;
-    occurrenceLanguage: Language;
+    languages: Array<{
+      __typename?: 'LanguageNode';
+      alpha3Code: string;
+      name: string | null;
+    }>;
     venue: {
       __typename?: 'VenueNode';
       id: string;
@@ -2723,7 +2806,11 @@ export type ActiveInternalAndTicketSystemEnrolmentsFieldsFragment = {
             __typename?: 'OccurrenceNode';
             id: string;
             time: any;
-            occurrenceLanguage: Language;
+            languages: Array<{
+              __typename?: 'LanguageNode';
+              alpha3Code: string;
+              name: string | null;
+            }>;
             venue: {
               __typename?: 'VenueNode';
               id: string;
@@ -2958,7 +3045,11 @@ export type ChildByIdQueryFieldsFragment = {
               __typename?: 'OccurrenceNode';
               id: string;
               time: any;
-              occurrenceLanguage: Language;
+              languages: Array<{
+                __typename?: 'LanguageNode';
+                alpha3Code: string;
+                name: string | null;
+              }>;
               venue: {
                 __typename?: 'VenueNode';
                 id: string;
@@ -3164,7 +3255,11 @@ export type ChildByIdQuery = {
                 __typename?: 'OccurrenceNode';
                 id: string;
                 time: any;
-                occurrenceLanguage: Language;
+                languages: Array<{
+                  __typename?: 'LanguageNode';
+                  alpha3Code: string;
+                  name: string | null;
+                }>;
                 venue: {
                   __typename?: 'VenueNode';
                   id: string;
@@ -3742,8 +3837,12 @@ export type EventOccurrenceFieldsFragment = {
   id: string;
   time: any;
   remainingCapacity: number | null;
-  occurrenceLanguage: Language;
   childHasFreeSpotNotificationSubscription: boolean | null;
+  languages: Array<{
+    __typename?: 'LanguageNode';
+    alpha3Code: string;
+    name: string | null;
+  }>;
   event: {
     __typename?: 'EventNode';
     id: string;
@@ -3790,8 +3889,12 @@ export type EventOccurrencesFieldsFragment = {
       id: string;
       time: any;
       remainingCapacity: number | null;
-      occurrenceLanguage: Language;
       childHasFreeSpotNotificationSubscription: boolean | null;
+      languages: Array<{
+        __typename?: 'LanguageNode';
+        alpha3Code: string;
+        name: string | null;
+      }>;
       event: {
         __typename?: 'EventNode';
         id: string;
@@ -3869,8 +3972,12 @@ export type EventQuery = {
           id: string;
           time: any;
           remainingCapacity: number | null;
-          occurrenceLanguage: Language;
           childHasFreeSpotNotificationSubscription: boolean | null;
+          languages: Array<{
+            __typename?: 'LanguageNode';
+            alpha3Code: string;
+            name: string | null;
+          }>;
           event: {
             __typename?: 'EventNode';
             id: string;
@@ -3921,8 +4028,12 @@ export type EventQuery = {
           id: string;
           time: any;
           remainingCapacity: number | null;
-          occurrenceLanguage: Language;
           childHasFreeSpotNotificationSubscription: boolean | null;
+          languages: Array<{
+            __typename?: 'LanguageNode';
+            alpha3Code: string;
+            name: string | null;
+          }>;
           event: {
             __typename?: 'EventNode';
             id: string;
@@ -4232,8 +4343,12 @@ export type OccurrenceFieldsFragment = {
   id: string;
   time: any;
   remainingCapacity: number | null;
-  occurrenceLanguage: Language;
   childHasFreeSpotNotificationSubscription: boolean | null;
+  languages: Array<{
+    __typename?: 'LanguageNode';
+    alpha3Code: string;
+    name: string | null;
+  }>;
   event: {
     __typename?: 'EventNode';
     id: string;
@@ -4272,8 +4387,12 @@ export type OccurrenceQuery = {
     id: string;
     time: any;
     remainingCapacity: number | null;
-    occurrenceLanguage: Language;
     childHasFreeSpotNotificationSubscription: boolean | null;
+    languages: Array<{
+      __typename?: 'LanguageNode';
+      alpha3Code: string;
+      name: string | null;
+    }>;
     event: {
       __typename?: 'EventNode';
       id: string;
@@ -5269,7 +5388,10 @@ export const EnrolmentOccurrenceFieldsFragmentDoc = gql`
   fragment EnrolmentOccurrenceFields on OccurrenceNode {
     id
     time
-    occurrenceLanguage
+    languages {
+      alpha3Code
+      name
+    }
     venue {
       ...EnrolmentVenueFields
     }
@@ -5633,7 +5755,10 @@ export const EventOccurrenceFieldsFragmentDoc = gql`
     id
     time
     remainingCapacity
-    occurrenceLanguage
+    languages {
+      alpha3Code
+      name
+    }
     event {
       id
       name
@@ -5769,7 +5894,10 @@ export const OccurrenceFieldsFragmentDoc = gql`
     id
     time
     remainingCapacity
-    occurrenceLanguage
+    languages {
+      alpha3Code
+      name
+    }
     event {
       ...OccurrenceEventFields
     }

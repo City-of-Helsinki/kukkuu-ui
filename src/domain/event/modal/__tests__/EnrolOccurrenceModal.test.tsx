@@ -83,7 +83,7 @@ const defaultProps: EnrolOccurrenceModalProps = {
     id: 'occ-1',
     time: '2026-10-04T10:00:00Z',
     remainingCapacity: 8,
-    occurrenceLanguage: 'FI',
+    languages: [{ alpha3Code: 'fin', name: 'suomi' }],
     venue: {
       name: 'Annantalo',
       address: 'Annankatu 30',

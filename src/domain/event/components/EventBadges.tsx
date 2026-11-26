@@ -151,7 +151,7 @@ export type EventBadgesThemePath = {
 export type EventBadgesOccurrence = {
   id?: string;
   remainingCapacity?: number | null;
-  occurrenceLanguage?: string | null;
+  languages?: Array<{ alpha3Code: string; name?: string | null } | null> | null;
   /** TODO(backend): Refactor once occurrence accessibilities field lands in GraphQL API */
   accessibilities?: string[] | null;
 };
