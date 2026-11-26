@@ -77,5 +77,5 @@ export type EventsSearchQueryVariables = {
   themePaths?: string[];
   accessibility?: string[];
   familyOnly?: boolean;
-  availableOnly?: boolean;
+  hasFreeSpots?: boolean;
 };

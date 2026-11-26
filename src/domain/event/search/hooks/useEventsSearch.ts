@@ -78,7 +78,7 @@ export const useEventsSearch = ({
           ? filters.accessibility
           : undefined,
       familyOnly: filters?.familyOnly ? true : undefined,
-      availableOnly:
+      hasFreeSpots:
         (filters?.availableOnly ?? availableOnly) ? true : undefined,
     };
   }, [childId, pageSize, filters, availableOnly]);

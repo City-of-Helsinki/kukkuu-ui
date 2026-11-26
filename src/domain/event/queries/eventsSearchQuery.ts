@@ -60,7 +60,7 @@ export const eventsSearchQuery = gql`
     $themePaths: [String]
     $accessibility: [String]
     $familyOnly: Boolean
-    $availableOnly: Boolean
+    $hasFreeSpots: Boolean
   ) {
     child(id: $childId) {
       id
@@ -76,7 +76,7 @@ export const eventsSearchQuery = gql`
       themePaths: $themePaths
       accessibility: $accessibility
       familyOnly: $familyOnly
-      availableOnly: $availableOnly
+      hasFreeSpots: $hasFreeSpots
     ) {
       count
       pageInfo {

@@ -145,7 +145,7 @@ const defaultSearchVars = (overrides: Record<string, unknown> = {}) => ({
   themePaths: undefined,
   accessibility: undefined,
   familyOnly: undefined,
-  availableOnly: undefined,
+  hasFreeSpots: undefined,
   ...overrides,
 });
 
@@ -634,7 +634,7 @@ describe('ChildEventsSearch', () => {
     const availableOnlyMock = {
       request: {
         query: eventsSearchQuery,
-        variables: defaultSearchVars({ availableOnly: true }),
+        variables: defaultSearchVars({ hasFreeSpots: true }),
       },
       maxUsageCount: Infinity,
       result: {
@@ -757,7 +757,7 @@ describe('ChildEventsSearch', () => {
     );
 
     render(<ChildEventsSearch />, [
-      getSuccessEventsMock({ themePaths: ['rytmi'], availableOnly: true }),
+      getSuccessEventsMock({ themePaths: ['rytmi'], hasFreeSpots: true }),
       getSuccessEventsMock(),
     ]);
 
