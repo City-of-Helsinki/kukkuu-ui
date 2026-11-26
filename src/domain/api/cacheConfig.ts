@@ -11,7 +11,7 @@ export const EVENTS_PAGINATION_KEY_ARGS = [
   'childId',
   'themePaths',
   'startDate',
-  'accessibility',
+  'accessibilities',
   'languages',
   'hasFreeSpots',
   'familyOnly',

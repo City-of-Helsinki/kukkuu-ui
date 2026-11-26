@@ -27,9 +27,42 @@ export type OccurrenceLanguageNode = {
   name?: string | null;
 };
 
+export type OccurrenceAccessibilityNode = {
+  id?: string | null;
+  slug: string;
+  name?: string | null;
+  sortOrder?: number | null;
+};
+
+export type NormalizedOccurrenceAccessibility = {
+  slug: string;
+  name: string;
+  sortOrder: number | null;
+};
+
 export type OccurrenceFeatureSource = {
   languages?: Array<OccurrenceLanguageNode | null> | null;
-  accessibilities?: string[] | null;
+  accessibilities?: Array<OccurrenceAccessibilityNode | null> | null;
+};
+
+/**
+ * Comparator matching backend `Tag.Meta.ordering = ["sort_order", "slug"]`,
+ * placing entries without a `sortOrder` last.
+ */
+export const compareAccessibilities = (
+  a: { sortOrder: number | null; slug: string },
+  b: { sortOrder: number | null; slug: string }
+): number => {
+  if (a.sortOrder != null && b.sortOrder != null) {
+    if (a.sortOrder !== b.sortOrder) {
+      return a.sortOrder - b.sortOrder;
+    }
+  } else if (a.sortOrder != null) {
+    return -1;
+  } else if (b.sortOrder != null) {
+    return 1;
+  }
+  return a.slug.localeCompare(b.slug);
 };
 
 /**
@@ -45,18 +78,35 @@ export const getOccurrenceLanguages = (
 };
 
 /**
- * Returns the accessibilities configured for an occurrence.
- *
- * TODO(backend): Refactor to use the official occurrence accessibilities field
- * once accessibilities support lands in the GraphQL API.
+ * Returns deduplicated, sorted accessibility nodes configured for an occurrence.
+ */
+export const getOccurrenceAccessibilityNodes = (
+  occurrence?: OccurrenceFeatureSource | null
+): NormalizedOccurrenceAccessibility[] => {
+  if (!occurrence?.accessibilities) {
+    return [];
+  }
+
+  const bySlug = new Map<string, NormalizedOccurrenceAccessibility>();
+  for (const acc of occurrence.accessibilities) {
+    const slug = acc?.slug?.trim();
+    if (!slug || bySlug.has(slug)) continue;
+    const name = acc?.name?.trim() || slug;
+    const sortOrder = acc?.sortOrder ?? null;
+    bySlug.set(slug, { slug, name, sortOrder });
+  }
+
+  return Array.from(bySlug.values()).sort(compareAccessibilities);
+};
+
+/**
+ * Returns localized accessibility labels configured for an occurrence,
+ * sorted by backend `sortOrder` (nulls last) then `slug`.
  */
 export const getOccurrenceAccessibilities = (
   occurrence?: OccurrenceFeatureSource | null
 ): string[] => {
-  if (!occurrence || !occurrence.accessibilities) {
-    return [];
-  }
-  return occurrence.accessibilities;
+  return getOccurrenceAccessibilityNodes(occurrence).map((acc) => acc.name);
 };
 
 /**

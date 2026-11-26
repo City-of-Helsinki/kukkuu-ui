@@ -1,59 +1,66 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { FilterOption, FilterOptionsHookResult } from '../types/filterTypes';
+import useQuery from '../../../api/useQuery';
+import RelayList from '../../../api/relayList';
+import type {
+  AccessibilitiesQuery,
+  AccessibilityFieldsFragment,
+} from '../../../api/generatedTypes/graphql';
+import { getCurrentLanguage } from '../../../../common/translation/TranslationUtils';
+import { accessibilitiesQuery } from '../../queries/accessibilitiesQuery';
+import type {
+  FilterOption,
+  FilterOptionsHookResult,
+} from '../types/filterTypes';
+
+const AccessibilityList = RelayList<AccessibilityFieldsFragment>();
 
 /**
- * Dedicated hook returning available options for the "Saavutettavuus" (Accessibility) filter.
- * 1st-iteration defaults: 5 accessibility accommodations.
+ * Dedicated hook returning available options for the "Saavutettavuus" (Accessibility) filter,
+ * including localized descriptions for the filter tooltip.
  */
 export function useAccessibilityOptions(): FilterOptionsHookResult {
-  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const currentLanguage = getCurrentLanguage(i18n);
+  const previousLanguageRef = useRef(currentLanguage);
 
-  // TODO: Fetch accessibility options dynamically from GraphQL API
-  // once the backend accessibility endpoint is integrated.
-  const options = useMemo<FilterOption[]>(
-    () => [
-      {
-        value: 'mobility',
-        label: t(
-          'search.filter.accessibility.mobility',
-          'Liikkumisen rajoitteet huomioitu'
-        ),
+  const { data, loading, refetch } = useQuery<AccessibilitiesQuery>(
+    accessibilitiesQuery,
+    {
+      useDefaultErrorHandling: true,
+      fetchPolicy: 'cache-and-network',
+      context: {
+        headers: {
+          'accept-language': currentLanguage,
+        },
       },
-      {
-        value: 'sensory',
-        label: t(
-          'search.filter.accessibility.sensory',
-          'Aistiyliherkkyydet huomioitu'
-        ),
-      },
-      {
-        value: 'neurodiversity',
-        label: t(
-          'search.filter.accessibility.neurodiversity',
-          'Neurokirjon tarpeet huomioitu'
-        ),
-      },
-      {
-        value: 'vision',
-        label: t(
-          'search.filter.accessibility.vision',
-          'Näkemiseen liittyvät tarpeet huomioitu'
-        ),
-      },
-      {
-        value: 'hearing',
-        label: t(
-          'search.filter.accessibility.hearing',
-          'Kuulemiseen liittyvät tarpeet huomioitu'
-        ),
-      },
-    ],
-    [t]
+    }
   );
 
-  return { options, loading: false };
+  useEffect(() => {
+    if (previousLanguageRef.current !== currentLanguage) {
+      previousLanguageRef.current = currentLanguage;
+      void refetch();
+    }
+  }, [currentLanguage, refetch]);
+
+  const options = useMemo<FilterOption[]>(
+    () =>
+      AccessibilityList(data?.accessibilities)
+        .items.filter((node) => Boolean(node.slug))
+        .map((node) => {
+          const description = node.description?.trim();
+          return {
+            value: node.slug,
+            label: node.name || node.slug,
+            ...(description ? { description } : {}),
+          };
+        }),
+    [data?.accessibilities]
+  );
+
+  return { options, loading };
 }
 
 export default useAccessibilityOptions;

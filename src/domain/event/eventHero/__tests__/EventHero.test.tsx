@@ -78,7 +78,20 @@ describe('EventHero', () => {
               { alpha3Code: 'fin', name: 'suomi' },
               { alpha3Code: 'zxx', name: 'Sanaton' },
             ],
-            accessibilities: ['Aistiherkkyys', 'Kuulemisen tuki'],
+            accessibilities: [
+              {
+                id: 'acc-2',
+                slug: 'hearing',
+                name: 'Kuulemisen tuki',
+                sortOrder: 4,
+              },
+              {
+                id: 'acc-1',
+                slug: 'sensory_sensitivity',
+                name: 'Aistiherkkyys',
+                sortOrder: 1,
+              },
+            ],
           },
           {
             ...baseOccurrence,
@@ -86,7 +99,14 @@ describe('EventHero', () => {
             time: '2026-10-11T10:00:00Z',
             remainingCapacity: 1,
             languages: [{ alpha3Code: 'swe', name: 'ruotsi' }],
-            accessibilities: ['Aistiherkkyys'],
+            accessibilities: [
+              {
+                id: 'acc-1',
+                slug: 'sensory_sensitivity',
+                name: 'Aistiherkkyys',
+                sortOrder: 1,
+              },
+            ],
           },
         ]}
         childId="child-1"
@@ -100,12 +120,21 @@ describe('EventHero', () => {
     expect(screen.getByTestId('event-badge-family')).toHaveTextContent(
       'Perhetapahtuma'
     );
+    const sensoryBadge = screen.getByTestId(
+      'event-badge-accessibility-sensory_sensitivity'
+    );
+    const hearingBadge = screen.getByTestId(
+      'event-badge-accessibility-hearing'
+    );
+    expect(sensoryBadge).toHaveTextContent('Aistiherkkyys (2)');
+    expect(hearingBadge).toHaveTextContent('Kuulemisen tuki (1)');
+    // Verify badges are ordered by backend sortOrder (1 before 4)
     expect(
-      screen.getByTestId('event-badge-accessibility-Aistiherkkyys')
-    ).toHaveTextContent('Aistiherkkyys (2)');
-    expect(
-      screen.getByTestId('event-badge-accessibility-Kuulemisen tuki')
-    ).toHaveTextContent('Kuulemisen tuki (1)');
+      Boolean(
+        sensoryBadge.compareDocumentPosition(hearingBadge) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      )
+    ).toBe(true);
     expect(screen.getByTestId('event-badge-speechless')).toHaveTextContent(
       'Sanaton (1)'
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconPersonWheelchair, Select } from 'hds-react';
+import { IconPersonWheelchair, Select, Tooltip } from 'hds-react';
 import type { Option } from 'hds-react';
 
 import { getCurrentLanguage } from '../../../../common/translation/TranslationUtils';
@@ -8,7 +8,8 @@ import { useEventSearchFormContext } from '../context/EventSearchFormContext';
 import styles from '../childEventsSearch.module.scss';
 
 /**
- * Renders the accessibility options multi-select filter field.
+ * Renders the accessibility options multi-select filter field with a dynamic
+ * tooltip built from the fetched accessibility names and descriptions.
  */
 export const AccessibilityFilterField: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -18,6 +19,10 @@ export const AccessibilityFilterField: React.FC = () => {
 
   const selectedOptions = accessibilityOptions.filter((opt) =>
     draftFilters.accessibility.includes(opt.value)
+  );
+
+  const tooltipItems = accessibilityOptions.filter((opt) =>
+    Boolean(opt.description?.trim())
   );
 
   const handleAccessibilityChange = (selected: Option | Option[]) => {
@@ -37,7 +42,6 @@ export const AccessibilityFilterField: React.FC = () => {
         multiSelect
         noTags
         clearable={false}
-        disabled
         icon={<IconPersonWheelchair aria-hidden="true" />}
         options={accessibilityOptions}
         value={selectedOptions}
@@ -47,6 +51,23 @@ export const AccessibilityFilterField: React.FC = () => {
           placeholder: t('search.filter.accessibilityPlaceholder'),
           language: currentLang,
         }}
+        tooltip={
+          tooltipItems.length > 0 ? (
+            <Tooltip
+              placement="top"
+              buttonLabel={t('search.filter.accessibilityTooltipButtonLabel')}
+              tooltipLabel={t('search.filter.accessibilityTooltipLabel')}
+            >
+              <ul className={styles.accessibilityTooltipList}>
+                {tooltipItems.map((item) => (
+                  <li key={item.value}>
+                    <strong>{item.label}:</strong> {item.description}
+                  </li>
+                ))}
+              </ul>
+            </Tooltip>
+          ) : undefined
+        }
         className={styles.filterSelect}
       />
     </div>

@@ -22,15 +22,8 @@ import {
   isEventFull,
   type AccessibilityBadgeCount,
 } from '../EventUtils';
+import type { OccurrenceAccessibilityNode } from '../hooks/useOccurrenceFeatures';
 import styles from './eventBadges.module.scss';
-
-const KNOWN_ACCESSIBILITY_KEYS = new Set([
-  'mobility',
-  'sensory',
-  'neurodiversity',
-  'vision',
-  'hearing',
-]);
 
 /**
  * Resolves the localized display label for an external ticket system provider.
@@ -64,14 +57,6 @@ const getTicketSystemBadgeLabel = (
   return getTicketSystemLabel(type, t);
 };
 
-const resolveAccessibilityLabel = (rawValue: string, t: TFunction): string => {
-  const normalized = rawValue.trim().toLowerCase();
-  if (KNOWN_ACCESSIBILITY_KEYS.has(normalized)) {
-    return t(`search.filter.accessibility.${normalized}`);
-  }
-  return rawValue;
-};
-
 /**
  * Builds badge items for unique accessibility features.
  */
@@ -81,21 +66,20 @@ const buildAccessibilityBadgeItems = (
   t: TFunction
 ): Array<{ key: string; node: React.ReactNode }> =>
   accessibilityCounts.map((acc) => {
-    const baseLabel = resolveAccessibilityLabel(acc.value, t);
     const labelText =
       showCount && acc.count > 0
         ? t('search.card.badgeWithCount', {
-            label: baseLabel,
+            label: acc.label,
             count: acc.count,
           })
-        : baseLabel;
+        : acc.label;
 
     return {
-      key: `accessibility-${acc.value}`,
+      key: `accessibility-${acc.slug}`,
       node: (
         <span
           className={classNames(styles.badge, styles.whiteBadge)}
-          data-testid={`event-badge-accessibility-${acc.value}`}
+          data-testid={`event-badge-accessibility-${acc.slug}`}
         >
           <IconUniversalAccess
             aria-hidden="true"
@@ -152,8 +136,7 @@ export type EventBadgesOccurrence = {
   id?: string;
   remainingCapacity?: number | null;
   languages?: Array<{ alpha3Code: string; name?: string | null } | null> | null;
-  /** TODO(backend): Refactor once occurrence accessibilities field lands in GraphQL API */
-  accessibilities?: string[] | null;
+  accessibilities?: Array<OccurrenceAccessibilityNode | null> | null;
 };
 
 export type EventBadgesEvent = {
@@ -161,9 +144,6 @@ export type EventBadgesEvent = {
   participantsPerInvite?: EventParticipantsPerInvite | null;
   enrolmentDeniedReason?: EnrolmentDeniedReason | null;
   themePaths?: Array<EventBadgesThemePath | null> | null;
-  /** TODO(backend): Refactor once event accessibilities field lands in GraphQL API */
-  accessibility?: string[] | null;
-  accessibilities?: string[] | null;
   ticketSystem?: {
     type?: TicketSystem | string | null;
     hasAnyFreePasswords?: boolean | null;
@@ -214,10 +194,7 @@ export const EventBadges: React.FC<EventBadgesProps> = ({
   const isFamilyEvent =
     event.participantsPerInvite === EventParticipantsPerInvite.Family;
 
-  const accessibilityCounts = extractEventAccessibilityCounts(
-    event,
-    occurrences
-  );
+  const accessibilityCounts = extractEventAccessibilityCounts(occurrences);
 
   const speechlessCount = getSpeechlessOccurrencesCount(occurrences);
 

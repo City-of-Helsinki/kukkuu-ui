@@ -1169,23 +1169,10 @@
       "dateFilterBadge": "Från {{date}}",
       "accessibilityLabel": "Tillgänglighet",
       "accessibilityPlaceholder": "Välj",
-      "accessibility": {
-        "mobility": "Hänsyn tagen till rörelsehinder",
-        "sensory": "Hänsyn tagen till sensorisk överkänslighet",
-        "neurodiversity": "Hänsyn tagen till neuropsykiatriska behov",
-        "vision": "Hänsyn tagen till synbehov",
-        "hearing": "Hänsyn tagen till hörselbehov"
-      },
+      "accessibilityTooltipButtonLabel": "Visa mer information om tillgänglighet",
+      "accessibilityTooltipLabel": "Mer information om tillgänglighet",
       "languageLabel": "Språk",
       "languagePlaceholder": "Välj språk",
-      "languages": {
-        "fi": "Finska",
-        "fin": "Finska",
-        "sv": "Svenska",
-        "swe": "Svenska",
-        "en": "Engelska",
-        "eng": "Engelska"
-      },
       "availableOnlyLabel": "Visa endast lediga platser",
       "familyOnlyLabel": "Visa endast familjeevenemang",
       "submitButton": "Sök evenemang",

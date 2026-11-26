@@ -109,7 +109,20 @@ describe('EventSearchCard', () => {
                 { alpha3Code: 'fin', name: 'suomi' },
                 { alpha3Code: 'zxx', name: 'Sanaton' },
               ],
-              accessibilities: ['sensory', 'Kuulemisen tuki'],
+              accessibilities: [
+                {
+                  id: 'acc-2',
+                  slug: 'hearing',
+                  name: 'Kuulemisen tuki',
+                  sortOrder: 4,
+                },
+                {
+                  id: 'acc-1',
+                  slug: 'sensory_sensitivity',
+                  name: 'Aistiherkkyys',
+                  sortOrder: 1,
+                },
+              ],
               venue: {
                 id: 'venue-1',
                 name: 'Annantalo',
@@ -130,17 +143,25 @@ describe('EventSearchCard', () => {
     expect(screen.getByTestId('event-badge-family')).toHaveTextContent(
       'Perhetapahtuma'
     );
+    const sensoryBadge = screen.getByTestId(
+      'event-badge-accessibility-sensory_sensitivity'
+    );
+    const hearingBadge = screen.getByTestId(
+      'event-badge-accessibility-hearing'
+    );
+    expect(sensoryBadge).toHaveTextContent('Aistiherkkyys');
+    expect(hearingBadge).toHaveTextContent('Kuulemisen tuki');
     expect(
-      screen.getByTestId('event-badge-accessibility-sensory')
-    ).toHaveTextContent('Aistiyliherkkyydet huomioitu');
-    expect(
-      screen.getByTestId('event-badge-accessibility-Kuulemisen tuki')
-    ).toHaveTextContent('Kuulemisen tuki');
+      Boolean(
+        sensoryBadge.compareDocumentPosition(hearingBadge) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      )
+    ).toBe(true);
     expect(screen.getByTestId('event-badge-speechless')).toHaveTextContent(
       'Sanaton'
     );
     expect(
-      screen.queryByText(/Aistiyliherkkyydet huomioitu \(\d+\)/)
+      screen.queryByText(/Aistiherkkyys \(\d+\)/)
     ).not.toBeInTheDocument();
     expect(screen.queryByText(/Sanaton \(\d+\)/)).not.toBeInTheDocument();
     expect(screen.getByText(/Kielet:\s*Suomi,\s*Sanaton/)).toBeInTheDocument();

@@ -11,6 +11,7 @@ export const occurrenceData = {
   id: testOccurrenceId,
   time: '2025-05-15T10:00:00+00:00',
   remainingCapacity: 10,
+  accessibilities: [],
   event: {
     __typename: 'EventNode' as const,
     id: testOccurrenceEventId,

@@ -4,6 +4,7 @@ import { useMediaQueryLessThan } from 'hds-react';
 
 import { sortOccurrencesByTime } from '../EventUtils';
 import { useOccurrenceCapacityText } from '../hooks/useOccurrenceCapacityText';
+import type { OccurrenceAccessibilityNode } from '../hooks/useOccurrenceFeatures';
 import {
   EnrolmentDeniedReason,
   TicketSystem,
@@ -25,7 +26,7 @@ export type EventOccurrencesTableOccurrence = {
   time: string;
   remainingCapacity?: number | null;
   languages?: Array<{ alpha3Code: string; name?: string | null } | null> | null;
-  accessibilities?: string[] | null;
+  accessibilities?: Array<OccurrenceAccessibilityNode | null> | null;
   childHasFreeSpotNotificationSubscription?: boolean | null;
   venue?: {
     id?: string;

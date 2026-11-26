@@ -599,4 +599,47 @@ describe('EventOccurrencesTable', () => {
       useMediaQueryLessThanMock.mockReturnValue(false);
     }
   });
+
+  it('renders accessibility icon with sorted tooltip items for occurrences with AccessibilityNode entries', async () => {
+    const user = userEvent.setup();
+    const occurrenceWithAccessibilities: EventOccurrencesTableOccurrence = {
+      ...baseOccurrences[0],
+      accessibilities: [
+        {
+          id: 'acc-2',
+          slug: 'hearing',
+          name: 'Kuulemisen tuki',
+          sortOrder: 4,
+        },
+        {
+          id: 'acc-1',
+          slug: 'sensory_sensitivity',
+          name: 'Aistiherkkyys',
+          sortOrder: 1,
+        },
+      ],
+    };
+
+    render(
+      <EventOccurrencesTable
+        event={baseEvent}
+        occurrences={[occurrenceWithAccessibilities]}
+        childId="child-1"
+        onEnrol={vi.fn()}
+        onSubscribe={vi.fn()}
+        onUnsubscribe={vi.fn()}
+      />
+    );
+
+    const accessibilityButton = screen.getByRole('button', {
+      name: 'Näytä saavutettavuustiedot',
+    });
+    await user.click(accessibilityButton);
+
+    const tooltip = await screen.findByRole('tooltip');
+    const items = Array.from(tooltip.querySelectorAll('li')).map(
+      (li) => li.textContent
+    );
+    expect(items).toEqual(['Aistiherkkyys', 'Kuulemisen tuki']);
+  });
 });

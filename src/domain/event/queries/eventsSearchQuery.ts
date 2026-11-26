@@ -41,6 +41,12 @@ export const eventsSearchQuery = gql`
             alpha3Code
             name
           }
+          accessibilities {
+            id
+            slug
+            name
+            sortOrder
+          }
           venue {
             id
             name
@@ -58,7 +64,7 @@ export const eventsSearchQuery = gql`
     $startDate: Date
     $languages: [String]
     $themePaths: [String]
-    $accessibility: [String]
+    $accessibilities: [String]
     $familyOnly: Boolean
     $hasFreeSpots: Boolean
   ) {
@@ -74,7 +80,7 @@ export const eventsSearchQuery = gql`
       startDate: $startDate
       languages: $languages
       themePaths: $themePaths
-      accessibility: $accessibility
+      accessibilities: $accessibilities
       familyOnly: $familyOnly
       hasFreeSpots: $hasFreeSpots
     ) {

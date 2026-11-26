@@ -320,6 +320,7 @@ export type ChildNodeLanguagesSpokenAtHomeArgs = {
 };
 
 export type ChildNodeOccurrencesArgs = {
+  accessibilities: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   date: InputMaybe<Scalars['Date']['input']>;
@@ -628,7 +629,7 @@ export type EventGroupNodeEnrolmentDeniedReasonArgs = {
 };
 
 export type EventGroupNodeEventsArgs = {
-  accessibility: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  accessibilities: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   childId: InputMaybe<Scalars['ID']['input']>;
@@ -737,6 +738,7 @@ export type EventNodeMessagesArgs = {
 };
 
 export type EventNodeOccurrencesArgs = {
+  accessibilities: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   date: InputMaybe<Scalars['Date']['input']>;
@@ -1081,6 +1083,7 @@ export type MessageNode = Node & {
 };
 
 export type MessageNodeOccurrencesArgs = {
+  accessibilities: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   date: InputMaybe<Scalars['Date']['input']>;
@@ -1698,7 +1701,7 @@ export type QueryEventGroupsArgs = {
 };
 
 export type QueryEventsArgs = {
-  accessibility: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  accessibilities: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   childId: InputMaybe<Scalars['ID']['input']>;
@@ -1772,6 +1775,7 @@ export type QueryOccurrenceArgs = {
 };
 
 export type QueryOccurrencesArgs = {
+  accessibilities: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   date: InputMaybe<Scalars['Date']['input']>;
@@ -2335,6 +2339,7 @@ export type VenueNode = Node & {
 };
 
 export type VenueNodeOccurrencesArgs = {
+  accessibilities: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   after: InputMaybe<Scalars['String']['input']>;
   before: InputMaybe<Scalars['String']['input']>;
   date: InputMaybe<Scalars['Date']['input']>;
@@ -3832,6 +3837,35 @@ export type UnsubscribeFromFreeSpotNotificationMutation = {
   } | null;
 };
 
+export type AccessibilityFieldsFragment = {
+  __typename?: 'AccessibilityNode';
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  sortOrder: number | null;
+};
+
+export type AccessibilitiesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type AccessibilitiesQuery = {
+  __typename?: 'Query';
+  accessibilities: {
+    __typename?: 'AccessibilityNodeConnection';
+    edges: Array<{
+      __typename?: 'AccessibilityNodeEdge';
+      node: {
+        __typename?: 'AccessibilityNode';
+        id: string;
+        slug: string;
+        name: string;
+        description: string;
+        sortOrder: number | null;
+      } | null;
+    } | null>;
+  } | null;
+};
+
 export type EventOccurrenceFieldsFragment = {
   __typename?: 'OccurrenceNode';
   id: string;
@@ -3842,6 +3876,13 @@ export type EventOccurrenceFieldsFragment = {
     __typename?: 'LanguageNode';
     alpha3Code: string;
     name: string | null;
+  }>;
+  accessibilities: Array<{
+    __typename?: 'AccessibilityNode';
+    id: string;
+    slug: string;
+    name: string;
+    sortOrder: number | null;
   }>;
   event: {
     __typename?: 'EventNode';
@@ -3894,6 +3935,13 @@ export type EventOccurrencesFieldsFragment = {
         __typename?: 'LanguageNode';
         alpha3Code: string;
         name: string | null;
+      }>;
+      accessibilities: Array<{
+        __typename?: 'AccessibilityNode';
+        id: string;
+        slug: string;
+        name: string;
+        sortOrder: number | null;
       }>;
       event: {
         __typename?: 'EventNode';
@@ -3978,6 +4026,13 @@ export type EventQuery = {
             alpha3Code: string;
             name: string | null;
           }>;
+          accessibilities: Array<{
+            __typename?: 'AccessibilityNode';
+            id: string;
+            slug: string;
+            name: string;
+            sortOrder: number | null;
+          }>;
           event: {
             __typename?: 'EventNode';
             id: string;
@@ -4033,6 +4088,13 @@ export type EventQuery = {
             __typename?: 'LanguageNode';
             alpha3Code: string;
             name: string | null;
+          }>;
+          accessibilities: Array<{
+            __typename?: 'AccessibilityNode';
+            id: string;
+            slug: string;
+            name: string;
+            sortOrder: number | null;
           }>;
           event: {
             __typename?: 'EventNode';
@@ -4312,6 +4374,31 @@ export type ExternalTicketSystemEventQuery = {
   } | null;
 };
 
+export type OccurrenceLanguageFieldsFragment = {
+  __typename?: 'LanguageNode';
+  id: string;
+  alpha3Code: string;
+  name: string | null;
+};
+
+export type OccurrenceLanguagesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type OccurrenceLanguagesQuery = {
+  __typename?: 'Query';
+  languages: {
+    __typename?: 'LanguageNodeConnection';
+    edges: Array<{
+      __typename?: 'LanguageNodeEdge';
+      node: {
+        __typename?: 'LanguageNode';
+        id: string;
+        alpha3Code: string;
+        name: string | null;
+      } | null;
+    } | null>;
+  } | null;
+};
+
 export type OccurrenceEventFieldsFragment = {
   __typename?: 'EventNode';
   id: string;
@@ -4348,6 +4435,13 @@ export type OccurrenceFieldsFragment = {
     __typename?: 'LanguageNode';
     alpha3Code: string;
     name: string | null;
+  }>;
+  accessibilities: Array<{
+    __typename?: 'AccessibilityNode';
+    id: string;
+    slug: string;
+    name: string;
+    sortOrder: number | null;
   }>;
   event: {
     __typename?: 'EventNode';
@@ -4392,6 +4486,13 @@ export type OccurrenceQuery = {
       __typename?: 'LanguageNode';
       alpha3Code: string;
       name: string | null;
+    }>;
+    accessibilities: Array<{
+      __typename?: 'AccessibilityNode';
+      id: string;
+      slug: string;
+      name: string;
+      sortOrder: number | null;
     }>;
     event: {
       __typename?: 'EventNode';
@@ -5750,6 +5851,15 @@ export const UnenrolOccurrenceMutationPayloadFieldsFragmentDoc = gql`
   }
   ${UnenrolOccurrencesFieldsFragmentDoc}
 `;
+export const AccessibilityFieldsFragmentDoc = gql`
+  fragment AccessibilityFields on AccessibilityNode {
+    id
+    slug
+    name
+    description
+    sortOrder
+  }
+`;
 export const EventOccurrenceFieldsFragmentDoc = gql`
   fragment EventOccurrenceFields on OccurrenceNode {
     id
@@ -5758,6 +5868,12 @@ export const EventOccurrenceFieldsFragmentDoc = gql`
     languages {
       alpha3Code
       name
+    }
+    accessibilities {
+      id
+      slug
+      name
+      sortOrder
     }
     event {
       id
@@ -5861,6 +5977,13 @@ export const ExternalTicketSystemEventFieldsFragmentDoc = gql`
   ${LippupisteEventFieldsFragmentDoc}
   ${TixlyEventFieldsFragmentDoc}
 `;
+export const OccurrenceLanguageFieldsFragmentDoc = gql`
+  fragment OccurrenceLanguageFields on LanguageNode {
+    id
+    alpha3Code
+    name
+  }
+`;
 export const OccurrenceEventFieldsFragmentDoc = gql`
   fragment OccurrenceEventFields on EventNode {
     id
@@ -5897,6 +6020,12 @@ export const OccurrenceFieldsFragmentDoc = gql`
     languages {
       alpha3Code
       name
+    }
+    accessibilities {
+      id
+      slug
+      name
+      sortOrder
     }
     event {
       ...OccurrenceEventFields
@@ -6388,6 +6517,22 @@ export type UnsubscribeFromFreeSpotNotificationMutationMutationOptions =
     UnsubscribeFromFreeSpotNotificationMutation,
     UnsubscribeFromFreeSpotNotificationMutationVariables
   >;
+export const AccessibilitiesQueryDocument = gql`
+  query accessibilitiesQuery {
+    accessibilities {
+      edges {
+        node {
+          ...AccessibilityFields
+        }
+      }
+    }
+  }
+  ${AccessibilityFieldsFragmentDoc}
+`;
+export type AccessibilitiesQueryQueryResult = Apollo.QueryResult<
+  AccessibilitiesQuery,
+  AccessibilitiesQueryVariables
+>;
 export const EventQueryDocument = gql`
   query eventQuery($id: ID!, $date: Date, $time: Time, $childId: ID!) {
     event(id: $id) {
@@ -6502,6 +6647,22 @@ export const ExternalTicketSystemEventQueryDocument = gql`
 export type ExternalTicketSystemEventQueryQueryResult = Apollo.QueryResult<
   ExternalTicketSystemEventQuery,
   ExternalTicketSystemEventQueryVariables
+>;
+export const OccurrenceLanguagesQueryDocument = gql`
+  query occurrenceLanguagesQuery {
+    languages(canBeOccurrenceLanguage: true) {
+      edges {
+        node {
+          ...OccurrenceLanguageFields
+        }
+      }
+    }
+  }
+  ${OccurrenceLanguageFieldsFragmentDoc}
+`;
+export type OccurrenceLanguagesQueryQueryResult = Apollo.QueryResult<
+  OccurrenceLanguagesQuery,
+  OccurrenceLanguagesQueryVariables
 >;
 export const OccurrenceQueryDocument = gql`
   query occurrenceQuery($id: ID!, $childId: ID) {

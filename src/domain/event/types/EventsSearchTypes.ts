@@ -17,9 +17,13 @@ export type AvailableOccurrence = Pick<
   '__typename' | 'id' | 'time' | 'remainingCapacity'
 > & {
   languages?: Array<{ alpha3Code: string; name?: string | null } | null> | null;
+  accessibilities?: Array<{
+    id?: string | null;
+    slug: string;
+    name?: string | null;
+    sortOrder?: number | null;
+  } | null> | null;
   venue?: AvailableVenue | null;
-  /** TODO(backend): Refactor once occurrence accessibilities field lands in GraphQL API */
-  accessibilities?: string[] | null;
 };
 
 export type AvailableEvent = Omit<
@@ -44,8 +48,6 @@ export type AvailableEvent = Omit<
     hasAnyFreePasswords?: boolean | null;
   } | null;
   themePaths?: Array<{ id?: string; slug: string; name?: string } | null> | null;
-  /** TODO(backend): Refactor once event accessibilities field lands in GraphQL API */
-  accessibility?: string[] | null;
   occurrences: {
     edges: Array<{ node: AvailableOccurrence | null } | null>;
   };
@@ -75,7 +77,7 @@ export type EventsSearchQueryVariables = {
   startDate?: string | null;
   languages?: string[];
   themePaths?: string[];
-  accessibility?: string[];
+  accessibilities?: string[];
   familyOnly?: boolean;
   hasFreeSpots?: boolean;
 };

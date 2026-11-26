@@ -216,6 +216,23 @@
               & > div {
                 margin-bottom: 0 !important;
               }
+
+              /* Global `span { line-height: 1.6 }` in main.scss makes option spans
+               * taller than HDS Select's label container (`1.5 * font-size + 1px`),
+               * breaking HDS overflow detection (+N indicator & lastVisible comma). */
+              [class*='Select-module_labels__'] span,
+              [class*='Select-module_count__'] span {
+                line-height: var(--lineheight-l, 1.5);
+              }
+            }
+
+            .accessibilityTooltipList {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              flex-direction: column;
+              gap: var(--spacing-2-xs);
             }
 
             .checkbox {
