@@ -29,7 +29,7 @@ describe('EventHero', () => {
     id: 'occ-1',
     time: '2026-10-04T10:00:00Z',
     remainingCapacity: 5,
-    occurrenceLanguage: 'FI',
+    languages: [{ alpha3Code: 'fin', name: 'suomi' }],
     venue: {
       id: 'venue-1',
       name: 'Kaapelitehdas',
@@ -74,7 +74,10 @@ describe('EventHero', () => {
             ...baseOccurrence,
             id: 'occ-1',
             remainingCapacity: 0,
-            occurrenceLanguage: 'FI, zxx',
+            languages: [
+              { alpha3Code: 'fin', name: 'suomi' },
+              { alpha3Code: 'zxx', name: 'Sanaton' },
+            ],
             accessibilities: ['Aistiherkkyys', 'Kuulemisen tuki'],
           },
           {
@@ -82,7 +85,7 @@ describe('EventHero', () => {
             id: 'occ-2',
             time: '2026-10-11T10:00:00Z',
             remainingCapacity: 1,
-            occurrenceLanguage: 'SV',
+            languages: [{ alpha3Code: 'swe', name: 'ruotsi' }],
             accessibilities: ['Aistiherkkyys'],
           },
         ]}
@@ -349,7 +352,7 @@ describe('EventHero', () => {
       {
         id: 'occ-2',
         time: '2026-10-10T12:00:00Z',
-        occurrenceLanguage: 'SV',
+        languages: [{ alpha3Code: 'swe', name: 'ruotsi' }],
         venue: {
           id: 'venue-2',
           name: 'Annantalo',

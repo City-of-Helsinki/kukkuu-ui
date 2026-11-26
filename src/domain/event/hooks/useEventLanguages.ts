@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { extractUniqueLanguages } from '../EventUtils';
+import type { OccurrenceFeatureSource } from './useOccurrenceFeatures';
 
 /**
  * Hook to retrieve unique language codes and their comma-separated localized string representation
@@ -12,7 +13,7 @@ import { extractUniqueLanguages } from '../EventUtils';
  * @returns An object containing `uniqueLanguages` array and `languageText` string or null.
  */
 export function useEventLanguages<
-  O extends { occurrenceLanguage?: string | null }
+  O extends OccurrenceFeatureSource
 >(selectedOccurrence?: O | null, occurrences: O[] = []) {
   const { t } = useTranslation();
 

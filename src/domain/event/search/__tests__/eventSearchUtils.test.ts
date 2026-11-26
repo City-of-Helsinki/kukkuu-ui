@@ -91,7 +91,7 @@ describe('eventSearchUtils', () => {
               id: 'occ-1',
               time: '2026-10-05T10:00:00Z',
               remainingCapacity: 5,
-              occurrenceLanguage: 'FI' as any,
+              languages: [{ alpha3Code: 'fin', name: 'suomi' }],
               venue: { id: 'v1', name: 'Venue 1', address: 'Street 1' },
             }),
           },
@@ -100,7 +100,7 @@ describe('eventSearchUtils', () => {
               id: 'occ-2',
               time: '2026-10-12T12:00:00Z',
               remainingCapacity: 2,
-              occurrenceLanguage: 'SV' as any,
+              languages: [{ alpha3Code: 'swe', name: 'ruotsi' }],
               venue: { id: 'v2', name: 'Venue 2', address: 'Street 2' },
             }),
           },
@@ -114,7 +114,7 @@ describe('eventSearchUtils', () => {
       expect(summary.firstOccurrence?.id).toBe('occ-1');
       expect(summary.lastOccurrence?.id).toBe('occ-2');
       expect(summary.uniqueVenues).toHaveLength(2);
-      expect(summary.uniqueLanguages).toEqual(['fi', 'sv']);
+      expect(summary.uniqueLanguages).toEqual(['fin', 'swe']);
     });
 
     it('formats date range with count for multiple occurrences', () => {
@@ -169,7 +169,9 @@ describe('eventSearchUtils', () => {
     });
 
     it('formats unique languages list', () => {
-      expect(getEventLanguageText(multiOccEvent, mockT)).toBe('Kielet: fi, sv');
+      expect(getEventLanguageText(multiOccEvent, mockT)).toBe(
+        'Kielet: fin, swe'
+      );
     });
   });
 

@@ -135,9 +135,12 @@
     },
     "language": {
       "en": "English",
+      "eng": "English",
       "fi": "Suomi",
+      "fin": "Suomi",
       "sanaton": "Utan tal",
       "sv": "Svenska",
+      "swe": "Svenska",
       "zxx": "Utan tal"
     },
     "loading": "Läser in",
@@ -1177,8 +1180,11 @@
       "languagePlaceholder": "Välj språk",
       "languages": {
         "fi": "Finska",
+        "fin": "Finska",
         "sv": "Svenska",
-        "en": "Engelska"
+        "swe": "Svenska",
+        "en": "Engelska",
+        "eng": "Engelska"
       },
       "availableOnlyLabel": "Visa endast lediga platser",
       "familyOnlyLabel": "Visa endast familjeevenemang",

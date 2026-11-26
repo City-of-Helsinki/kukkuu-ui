@@ -8,7 +8,6 @@ import type { AvailableEvent } from '../../types/EventsSearchTypes';
 import {
   EnrolmentDeniedReason,
   EventParticipantsPerInvite,
-  Language,
   TicketSystem,
 } from '../../../api/generatedTypes/graphql';
 
@@ -29,7 +28,7 @@ describe('EventSearchCard', () => {
             id: 'occ-1',
             time: '2026-10-04T10:00:00Z',
             remainingCapacity: 10,
-            occurrenceLanguage: Language.Fi,
+            languages: [{ alpha3Code: 'fin', name: 'suomi' }],
             venue: {
               id: 'venue-1',
               name: 'Annantalo',
@@ -74,7 +73,7 @@ describe('EventSearchCard', () => {
               id: 'occ-2',
               time: '2026-10-12T10:00:00Z',
               remainingCapacity: 5,
-              occurrenceLanguage: Language.Sv,
+              languages: [{ alpha3Code: 'swe', name: 'ruotsi' }],
               venue: {
                 id: 'venue-2',
                 name: 'Oodi',
@@ -106,7 +105,10 @@ describe('EventSearchCard', () => {
               id: 'occ-1',
               time: '2026-10-04T10:00:00Z',
               remainingCapacity: 0,
-              occurrenceLanguage: 'fi, zxx' as any,
+              languages: [
+                { alpha3Code: 'fin', name: 'suomi' },
+                { alpha3Code: 'zxx', name: 'Sanaton' },
+              ],
               accessibilities: ['sensory', 'Kuulemisen tuki'],
               venue: {
                 id: 'venue-1',

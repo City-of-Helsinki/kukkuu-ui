@@ -20,6 +20,7 @@ import {
   formatOccurrenceTimeRange,
 } from '../../../../common/time/occurrenceTime';
 import { shouldAllowUnenrolment } from '../../../event/EventUtils';
+import { useOccurrenceFeatures } from '../../../event/hooks/useOccurrenceFeatures';
 import UnenrolModal from '../../../event/modal/UnenrolModal';
 import useGetPathname from '../../../../common/route/utils/useGetPathname';
 import { InternalOrTicketSystemEnrolment } from '../../../child/types/ChildByIdQueryTypes';
@@ -50,18 +51,6 @@ const getVenueText = (
 ) => {
   if (!venue) return '';
   return [venue.name, venue.address].filter(Boolean).join(', ');
-};
-
-const getLanguageText = (
-  occurrenceLanguage: string | null | undefined,
-  t: (key: string, options?: { defaultValue?: string }) => string
-) => {
-  if (occurrenceLanguage) {
-    return t(`common.language.${occurrenceLanguage.toLowerCase()}`, {
-      defaultValue: occurrenceLanguage,
-    });
-  }
-  return null;
 };
 
 const EnrolledEventMetadata: React.FC<{
@@ -124,7 +113,9 @@ const ProfileEnrolledEventCard: React.FC<ProfileEnrolledEventCardProps> = ({
   );
 
   const venueText = getVenueText(occurrence?.venue);
-  const languageText = getLanguageText(occurrence?.occurrenceLanguage, t);
+  const { languages, languageText: formattedLanguages } =
+    useOccurrenceFeatures(occurrence);
+  const languageText = languages.length > 0 ? formattedLanguages : null;
   const canUnenrol = occurrence ? shouldAllowUnenrolment(occurrence.time) : false;
 
   const readMoreUrl = getPathname(

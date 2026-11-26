@@ -34,7 +34,7 @@ export type EventSidebarVenue = {
 export type EventSidebarOccurrence = {
   id: string;
   time: string;
-  occurrenceLanguage?: string | null;
+  languages?: Array<{ alpha3Code: string; name?: string | null } | null> | null;
   venue?: EventSidebarVenue | null;
 };
 

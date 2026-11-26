@@ -135,9 +135,12 @@
     },
     "language": {
       "en": "English",
+      "eng": "English",
       "fi": "Suomi",
+      "fin": "Suomi",
       "sanaton": "Speechless",
       "sv": "Svenska",
+      "swe": "Svenska",
       "zxx": "Speechless"
     },
     "loading": "Loading",
@@ -1179,8 +1182,11 @@
       "languagePlaceholder": "Select language",
       "languages": {
         "fi": "Finnish",
+        "fin": "Finnish",
         "sv": "Swedish",
-        "en": "English"
+        "swe": "Swedish",
+        "en": "English",
+        "eng": "English"
       },
       "availableOnlyLabel": "Show only events with available spots",
       "familyOnlyLabel": "Show only family events",

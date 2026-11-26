@@ -15,7 +15,6 @@ import {
   fakeAvailableEvent,
   fakeAvailableOccurrence,
 } from '../../../../utils/eventMockDataUtils';
-import { Language } from '../../../api/generatedTypes/graphql';
 import ChildEventsSearch from '../ChildEventsSearch';
 import { eventsSearchQuery } from '../../queries/eventsSearchQuery';
 import { themePathsQuery } from '../../queries/themePathsQuery';
@@ -170,7 +169,7 @@ describe('ChildEventsSearch', () => {
             id: 'occ-1',
             time: '2026-10-04T10:00:00Z',
             remainingCapacity: 5,
-            occurrenceLanguage: Language.Fi,
+            languages: [{ alpha3Code: 'fin', name: 'suomi' }],
             venue: {
               id: 'v-1',
               name: 'Lastenkulttuurikeskus',
@@ -349,7 +348,7 @@ describe('ChildEventsSearch', () => {
                   id: `occ-${i + 1}`,
                   time: `2026-10-${String(i + 1).padStart(2, '0')}T10:00:00Z`,
                   remainingCapacity: 5,
-                  occurrenceLanguage: Language.Fi,
+                  languages: [{ alpha3Code: 'fin', name: 'suomi' }],
                   venue: {
                     id: 'v-1',
                     name: 'Lastenkulttuurikeskus',

@@ -14,8 +14,9 @@ export type AvailableVenue = Pick<
 
 export type AvailableOccurrence = Pick<
   OccurrenceNode,
-  '__typename' | 'id' | 'time' | 'remainingCapacity' | 'occurrenceLanguage'
+  '__typename' | 'id' | 'time' | 'remainingCapacity'
 > & {
+  languages?: Array<{ alpha3Code: string; name?: string | null } | null> | null;
   venue?: AvailableVenue | null;
   /** TODO(backend): Refactor once occurrence accessibilities field lands in GraphQL API */
   accessibilities?: string[] | null;

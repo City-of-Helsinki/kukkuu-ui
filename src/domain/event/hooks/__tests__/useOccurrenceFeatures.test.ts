@@ -16,18 +16,24 @@ describe('useOccurrenceFeatures', () => {
       expect(getOccurrenceLanguages(undefined)).toEqual([]);
     });
 
-    it('returns occurrenceLanguage parsed as an array', () => {
+    it('returns language codes from languages array', () => {
       expect(
         getOccurrenceLanguages({
-          occurrenceLanguage: 'FI, SV, EN',
+          languages: [
+            { alpha3Code: 'fin', name: 'suomi' },
+            { alpha3Code: 'swe', name: 'ruotsi' },
+            { alpha3Code: 'eng', name: 'englanti' },
+          ],
         })
-      ).toEqual(['FI', 'SV', 'EN']);
+      ).toEqual(['fin', 'swe', 'eng']);
     });
 
-    it('falls back to single occurrenceLanguage wrapped in an array', () => {
-      expect(getOccurrenceLanguages({ occurrenceLanguage: 'FI' })).toEqual([
-        'FI',
-      ]);
+    it('falls back to single language wrapped in an array', () => {
+      expect(
+        getOccurrenceLanguages({
+          languages: [{ alpha3Code: 'fin', name: 'suomi' }],
+        })
+      ).toEqual(['fin']);
     });
 
     it('returns empty array if no languages are present', () => {
@@ -92,12 +98,15 @@ describe('useOccurrenceFeatures', () => {
     it('returns resolved features for an occurrence', () => {
       const { result } = renderHook(() =>
         useOccurrenceFeatures({
-          occurrenceLanguage: 'FI, sanaton',
+          languages: [
+            { alpha3Code: 'fin', name: 'suomi' },
+            { alpha3Code: 'zxx', name: 'Sanaton' },
+          ],
           accessibilities: ['Pyörätuoliystävällinen'],
         })
       );
 
-      expect(result.current.languages).toEqual(['FI', 'sanaton']);
+      expect(result.current.languages).toEqual(['fin', 'zxx']);
       expect(result.current.isSpeechless).toBe(true);
       expect(result.current.accessibilities).toEqual([
         'Pyörätuoliystävällinen',

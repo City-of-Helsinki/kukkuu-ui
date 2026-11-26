@@ -42,7 +42,7 @@ export type EnrolOccurrenceModalOccurrence = {
   id: string;
   time: string;
   remainingCapacity?: number | null;
-  occurrenceLanguage?: string | null;
+  languages?: Array<{ alpha3Code: string; name?: string | null } | null> | null;
   venue?: EnrolOccurrenceModalVenue | null;
 };
 
