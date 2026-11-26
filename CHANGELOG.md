@@ -401,6 +401,18 @@ See https://github.com/City-of-Helsinki/kukkuu-ui/milestone/6?closed=1
 - [#158](https://github.com/City-of-Helsinki/kukkuu-ui/pull/158) Add production NODE_ENV to Travis CI to equivalent with Docker infra build
 - [#151](https://github.com/City-of-Helsinki/kukkuu-ui/pull/151) Enhance authentication flow, reduce token fetched on every route changes.
 
+## [3.18.3](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.18.2...kukkuu-ui-v3.18.3) (2026-11-26)
+
+
+### Bug Fixes
+
+* Update img role queries for testing-library/dom 10 ([c60a41b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/c60a41b3e1fa6fddc30d1474ae8661d06a5eb1c8))
+
+
+### Dependencies
+
+* Bump i18next from 24.2.2 to 26.3.4 ([cf6ac7b](https://github.com/City-of-Helsinki/kukkuu-ui/commit/cf6ac7b36bac4c0bb774d82207d8689cf5287998))
+
 ## [3.18.2](https://github.com/City-of-Helsinki/kukkuu-ui/compare/kukkuu-ui-v3.18.1...kukkuu-ui-v3.18.2) (2026-11-13)
 
 
