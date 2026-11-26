@@ -39,7 +39,7 @@ export const fakeAvailableVenue = (
 export const fakeAvailableOccurrence = (
   overrides?: Partial<AvailableOccurrence>
 ): AvailableOccurrence => {
-  return merge<AvailableOccurrence, typeof overrides>(
+  return mergeWith(
     {
       id: faker.string.uuid(),
       time: faker.date.future().toISOString(),
@@ -47,7 +47,8 @@ export const fakeAvailableOccurrence = (
       languages: [{ alpha3Code: 'fin', name: 'suomi' }],
       venue: fakeAvailableVenue(),
     },
-    overrides
+    overrides,
+    replaceArrayCustomizer
   );
 };
 
@@ -79,7 +80,7 @@ export const fakeAvailableEvent = (
 export const fakeOccurrenceNode = (
   overrides?: Partial<OccurrenceNode>
 ): OccurrenceNode => {
-  return merge<OccurrenceNode, typeof overrides>(
+  return mergeWith(
     {
       __typename: 'OccurrenceNode',
       id: faker.string.uuid(),
@@ -111,7 +112,8 @@ export const fakeOccurrenceNode = (
         wwwUrl: null,
       },
     } as unknown as OccurrenceNode,
-    overrides
+    overrides,
+    replaceArrayCustomizer
   );
 };
 

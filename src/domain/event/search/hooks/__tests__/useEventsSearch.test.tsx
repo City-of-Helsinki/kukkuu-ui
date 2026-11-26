@@ -61,7 +61,7 @@ describe('useEventsSearch', () => {
         themePaths: undefined,
         accessibility: undefined,
         familyOnly: undefined,
-        availableOnly: undefined,
+        hasFreeSpots: undefined,
       },
     },
     result: {
@@ -98,7 +98,7 @@ describe('useEventsSearch', () => {
         themePaths: undefined,
         accessibility: undefined,
         familyOnly: undefined,
-        availableOnly: undefined,
+        hasFreeSpots: undefined,
       },
     },
     result: {
@@ -187,7 +187,7 @@ describe('useEventsSearch', () => {
           themePaths: ['rytmi'],
           accessibility: ['sensory'],
           familyOnly: true,
-          availableOnly: true,
+          hasFreeSpots: true,
         },
       },
       result: {

@@ -1,7 +1,6 @@
 import { InMemoryCache } from '@apollo/client';
 import { relayStylePagination } from '@apollo/client/utilities';
 
-import { EVENT_SEARCH_FILTER_KEYS } from '../event/search/types/filterTypes';
 import type { EventsSearchQueryVariables } from '../event/types/EventsSearchTypes';
 
 /**
@@ -10,7 +9,12 @@ import type { EventsSearchQueryVariables } from '../event/types/EventsSearchType
  */
 export const EVENTS_PAGINATION_KEY_ARGS = [
   'childId',
-  ...EVENT_SEARCH_FILTER_KEYS,
+  'themePaths',
+  'startDate',
+  'accessibility',
+  'languages',
+  'hasFreeSpots',
+  'familyOnly',
 ] as const satisfies readonly Exclude<
   keyof EventsSearchQueryVariables,
   'first' | 'after'
