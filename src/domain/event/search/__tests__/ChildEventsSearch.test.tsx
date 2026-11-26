@@ -2,6 +2,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { screen, waitFor, type RenderOptions } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toast } from 'react-toastify';
+import * as Sentry from '@sentry/browser';
+import { GraphQLError } from 'graphql';
 import { PageDocument } from '@city-of-helsinki/react-helsinki-headless-cms/apollo';
 import type { MockedResponse } from '@apollo/client/testing';
 import type { ReactElement } from 'react';
@@ -63,6 +65,10 @@ const render = (
   mocks: MockedResponse[] = [],
   options?: RenderOptions
 ) => customRender(ui, [getThemePathsMock(), ...mocks], options);
+
+vi.mock('@sentry/browser', () => ({
+  captureException: vi.fn(),
+}));
 
 const mockNavigate = vi.hoisted(() => vi.fn());
 let mockParams: Record<string, string> = {};
@@ -1001,5 +1007,56 @@ describe('ChildEventsSearch', () => {
       ).toBeInTheDocument();
     });
     expect(heroWrapper).not.toHaveAttribute('aria-busy');
+  });
+
+  it('renders an inline HDS error notification with retry and profile link when eventsSearchQuery fails, and logs to Sentry', async () => {
+    const user = userEvent.setup();
+    const errorMock: MockedResponse = {
+      request: {
+        query: eventsSearchQuery,
+        variables: defaultSearchVars(),
+      },
+      result: {
+        errors: [
+          new GraphQLError(
+            "Cannot query field 'occurrenceLanguage' on type 'OccurrenceNode'."
+          ),
+        ],
+      },
+    };
+
+    render(<ChildEventsSearch />, [errorMock, getSuccessEventsMock()]);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Tapahtumien lataaminen epäonnistui')
+      ).toBeInTheDocument();
+    });
+
+    expect(
+      screen.getByText(
+        'Tapahtumahakua ei voitu suorittaa teknisen virheen vuoksi. Yritä hetken kuluttua uudelleen.'
+      )
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText('search.error.failedToLoadEvents')
+    ).not.toBeInTheDocument();
+
+    // Hero and filter form remain visible
+    expect(
+      screen.getByRole('heading', { level: 1, name: 'Etsi tapahtumia' })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', { name: 'Palaa profiiliin' })
+    ).toHaveAttribute('href', '/profile');
+
+    expect(Sentry.captureException).toHaveBeenCalled();
+
+    // Clicking retry re-fetches and recovers when the next response succeeds
+    await user.click(screen.getByRole('button', { name: 'Yritä uudelleen' }));
+
+    await waitFor(() => {
+      expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
+    });
   });
 });

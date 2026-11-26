@@ -14,6 +14,7 @@ export type EventSearchResultsUiContextType = {
   remainingCount: number;
   hasMore: boolean;
   loadMore: () => void;
+  retry: () => void;
   isLoading: boolean;
   error?: ApolloError;
   isSticky: boolean;

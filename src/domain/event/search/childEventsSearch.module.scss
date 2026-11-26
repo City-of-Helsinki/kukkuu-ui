@@ -377,5 +377,30 @@
         margin: 0;
       }
     }
+
+    .searchErrorNotification {
+      margin-top: var(--spacing-m);
+
+      p {
+        margin: 0 0 var(--spacing-m);
+      }
+
+      .searchErrorActions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--spacing-m);
+      }
+
+      .searchErrorLink {
+        color: var(--color-black);
+        font-weight: 500;
+        text-decoration: underline;
+
+        &:hover {
+          color: var(--color-black-90);
+        }
+      }
+    }
   }
 }
