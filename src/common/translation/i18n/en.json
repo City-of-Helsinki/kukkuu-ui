@@ -1228,6 +1228,12 @@
       "alreadyEnrolledNotice": "You are already enrolled in this event.",
       "alreadyEnrolledSeasonNotice": "You are already enrolled in another event for this season.",
       "yearlyLimitReachedNotice": "Yearly enrolment limit reached."
+    },
+    "error": {
+      "title": "Failed to load events",
+      "failedToLoadEvents": "The event search could not be completed due to a technical error. Please try again in a moment.",
+      "retryButton": "Try again",
+      "returnToProfile": "Return to profile"
     }
   }
 }

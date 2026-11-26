@@ -1226,6 +1226,12 @@
       "alreadyEnrolledNotice": "Du har redan anmält dig till detta evenemang.",
       "alreadyEnrolledSeasonNotice": "Du har redan anmält dig till ett annat evenemang denna säsong.",
       "yearlyLimitReachedNotice": "Årliga anmälningskvoten är fylld."
+    },
+    "error": {
+      "title": "Det gick inte att ladda evenemang",
+      "failedToLoadEvents": "Evenemangssökningen kunde inte slutföras på grund av ett tekniskt fel. Försök igen om en stund.",
+      "retryButton": "Försök igen",
+      "returnToProfile": "Återgå till profilen"
     }
   }
 }

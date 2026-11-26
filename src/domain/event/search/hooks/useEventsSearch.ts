@@ -1,10 +1,11 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   ApolloError,
   NetworkStatus,
   useQuery,
   type WatchQueryFetchPolicy,
 } from '@apollo/client';
+import * as Sentry from '@sentry/browser';
 
 import useDefaultErrorHandler from '../../../api/useDefaultErrorHandler';
 import { eventsSearchQuery } from '../../queries/eventsSearchQuery';
@@ -36,6 +37,7 @@ export type UseEventsSearchResult = {
   remainingCount: number;
   hasMore: boolean;
   loadMore: () => void;
+  retry: () => void;
   loading: boolean;
   error?: ApolloError;
 };
@@ -87,6 +89,7 @@ export const useEventsSearch = ({
     networkStatus,
     error,
     fetchMore,
+    refetch,
   } = useQuery<
     EventsSearchQuery,
     EventsSearchQueryVariables
@@ -96,6 +99,12 @@ export const useEventsSearch = ({
     fetchPolicy,
     notifyOnNetworkStatusChange: true,
   });
+
+  useEffect(() => {
+    if (error) {
+      Sentry.captureException(error);
+    }
+  }, [error]);
 
   const loading = queryLoading && networkStatus !== NetworkStatus.fetchMore;
 
@@ -127,6 +136,12 @@ export const useEventsSearch = ({
       });
   }, [hasMore, endCursor, queryLoading, fetchMore, handleError]);
 
+  const retry = useCallback(() => {
+    void refetch().catch((err: unknown) => {
+      Sentry.captureException(err);
+    });
+  }, [refetch]);
+
   return {
     child: data?.child ?? null,
     events,
@@ -134,6 +149,7 @@ export const useEventsSearch = ({
     remainingCount,
     hasMore,
     loadMore,
+    retry,
     loading,
     error,
   };

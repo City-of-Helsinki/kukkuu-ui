@@ -24,7 +24,6 @@ import PageMeta from '../../app/layout/utilityComponents/PageMeta';
 import { useCmsBreadcrumbs } from '../../headlessCms/breadcrumbUtils';
 import Button from '../../../common/components/button/Button';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
-import ErrorMessage from '../../../common/components/error/Error';
 import { useProfileContext } from '../../profile/hooks/useProfileContext';
 import EventSearchProviders from './context/EventSearchProviders';
 import { useEventSearchUrlContext } from './context/EventSearchUrlContext';
@@ -33,6 +32,7 @@ import StickySearchHeader from './StickySearchHeader';
 import EventSearchFilterForm from './EventSearchFilterForm';
 import ChildThemePathNotification from './ChildThemePathNotification';
 import EventSearchEmptyResults from './EventSearchEmptyResults';
+import EventSearchError from './EventSearchError';
 import EventSearchCard from './EventSearchCard';
 import styles from './childEventsSearch.module.scss';
 
@@ -109,8 +109,13 @@ const ChildEventsSearchResults: React.FC = () => {
     remainingCount,
     hasMore,
     loadMore,
+    error,
     resultsAnnouncement,
   } = useEventSearchResultsUiContext();
+
+  if (error) {
+    return <EventSearchError />;
+  }
 
   return (
     <section
@@ -192,15 +197,10 @@ export const ChildEventsSearchView: React.FC<ChildEventsSearchViewProps> = ({
   });
   const { isLoading: isRedirectLoading, hasChildren } =
     useChildEventsSearchRedirect();
-  const { isLoading: isEventsLoading, error } =
-    useEventSearchResultsUiContext();
+  const { isLoading: isEventsLoading } = useEventSearchResultsUiContext();
 
   if (isRedirectLoading || (hasChildren && isEventsLoading)) {
     return <LoadingSpinner isLoading />;
-  }
-
-  if (error) {
-    return <ErrorMessage message={t('search.error.failedToLoadEvents')} />;
   }
 
   const searchTitle =

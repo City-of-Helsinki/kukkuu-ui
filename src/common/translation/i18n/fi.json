@@ -1226,6 +1226,12 @@
       "alreadyEnrolledNotice": "Olet jo ilmoittautunut tähän tapahtumaan.",
       "alreadyEnrolledSeasonNotice": "Olet jo ilmoittautunut toiseen tämän kauden tapahtumaan.",
       "yearlyLimitReachedNotice": "Vuosittainen ilmoittautumiskiintiö on täynnä."
+    },
+    "error": {
+      "title": "Tapahtumien lataaminen epäonnistui",
+      "failedToLoadEvents": "Tapahtumahakua ei voitu suorittaa teknisen virheen vuoksi. Yritä hetken kuluttua uudelleen.",
+      "retryButton": "Yritä uudelleen",
+      "returnToProfile": "Palaa profiiliin"
     }
   }
 }

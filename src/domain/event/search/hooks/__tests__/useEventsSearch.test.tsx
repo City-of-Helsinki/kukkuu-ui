@@ -293,4 +293,45 @@ describe('useEventsSearch', () => {
       expect(result.current.events).toHaveLength(20);
     });
   });
+
+  it('captures initial query error to Sentry without showing a toast and supports retry', async () => {
+    vi.mocked(toast.error).mockClear();
+    vi.mocked(Sentry.captureException).mockClear();
+
+    const queryErrorMock = {
+      request: page1Mock.request,
+      error: new Error('GraphQL error: Cannot query field occurrenceLanguage'),
+    };
+
+    const { result } = renderHook(
+      () =>
+        useEventsSearch({
+          childId: 'child-1',
+        }),
+      {
+        wrapper: ({ children }) => (
+          <TestProviders mocks={[queryErrorMock, page1Mock]}>
+            {children}
+          </TestProviders>
+        ),
+      }
+    );
+
+    await waitFor(() => {
+      expect(result.current.loading).toBe(false);
+    });
+
+    expect(result.current.error).toBeDefined();
+    expect(Sentry.captureException).toHaveBeenCalledWith(result.current.error);
+    expect(toast.error).not.toHaveBeenCalled();
+
+    act(() => {
+      result.current.retry();
+    });
+
+    await waitFor(() => {
+      expect(result.current.error).toBeUndefined();
+      expect(result.current.events).toHaveLength(15);
+    });
+  });
 });
