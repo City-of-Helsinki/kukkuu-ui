@@ -303,7 +303,6 @@ export const EventHero: React.FC<EventHeroProps> = ({
               isEnrolled={isEnrolled}
               isEnrolledInSeasonSibling={isEnrolledInSeasonSibling}
               showCount
-              whiteTags
               enrolledBadgeText={t('event.hero.enrolledBadge')}
               enrolledBadgeTestId="hero-enrolled-badge"
               seasonEnrolledBadgeTestId="hero-season-enrolled-badge"
