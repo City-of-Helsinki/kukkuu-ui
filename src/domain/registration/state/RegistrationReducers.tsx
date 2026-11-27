@@ -16,6 +16,7 @@ export const defaultRegistrationData: RegistrationData = {
         name: '',
         homeCity: '',
         postalCode: '',
+        themePathId: '',
         relationship: { type: null },
       },
     ],

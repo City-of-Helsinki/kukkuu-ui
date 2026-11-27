@@ -853,8 +853,8 @@
         },
         "name": {
           "input": {
-            "label": "Child’s name",
-            "placeholder": "Enter child's name"
+            "label": "Child’s first name",
+            "placeholder": "Enter child's first name"
           }
         },
         "homeCity": {

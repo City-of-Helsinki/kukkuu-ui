@@ -46,7 +46,7 @@ describe('AddNewChildFormModal', () => {
 
     expect(screen.getByRole('heading', { name: 'Lisää lapsi' })).toBeInTheDocument();
     expect(getAddButton()).toBeInTheDocument();
-    expect(screen.getByLabelText(/Lapsen nimi/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Lapsen etunimi/i)).toBeInTheDocument();
     expect(
       screen.getByLabelText(/Lapsen kotipaikkakunta/i)
     ).toBeInTheDocument();

@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 
 import { customRender as render } from '../../../../../common/test/customRender';
+import { fakeThemePath } from '../../../../../utils/eventMockDataUtils';
 import ProfileChildAccordionItem from '../ProfileChildAccordionItem';
 import { childByIdQuery } from '../../../../child/queries/ChildQueries';
 import * as ProfileContextModule from '../../../hooks/useProfileContext';
@@ -36,6 +37,7 @@ const mockChild = {
   name: 'Elias',
   birthyear: 2024,
   postalCode: '00100',
+  themePath: fakeThemePath({ slug: 'story', name: 'Tarina' }),
   project: {
     __typename: 'ProjectNode' as const,
     id: 'project-1',
@@ -66,6 +68,7 @@ const mockChildByIdData = {
   name: 'Elias',
   birthyear: 2024,
   postalCode: '00100',
+  themePath: fakeThemePath({ slug: 'story', name: 'Tarina' }),
   project: {
     __typename: 'ProjectNode' as const,
     id: 'project-1',
@@ -194,7 +197,7 @@ describe('ProfileChildAccordionItem', () => {
 
     // Left column identity
     await waitFor(() => {
-      expect(screen.getByText('Teemapolku: –')).toBeInTheDocument();
+      expect(screen.getByText('Teemapolku: Tarina')).toBeInTheDocument();
     });
 
     const editBtn = screen.getByRole('button', {
@@ -880,7 +883,7 @@ describe('ProfileChildAccordionItem', () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText('Teemapolku: –')).toBeInTheDocument();
+      expect(screen.getByText('Teemapolku: Tarina')).toBeInTheDocument();
     });
 
     const user = userEvent.setup();
@@ -1021,5 +1024,24 @@ describe('ProfileChildAccordionItem', () => {
     expect(wrapper).toHaveAccessibleDescription(
       'Kutsukirjettä ei ole vielä saatavilla.'
     );
+  });
+
+  it('displays a dash when the child has no default theme path', async () => {
+    const childWithoutThemePath = {
+      ...mockChild,
+      themePath: null,
+    };
+
+    render(
+      <ProfileChildAccordionItem
+        child={childWithoutThemePath}
+        initiallyOpen={true}
+      />,
+      [childByIdMock]
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('Teemapolku: –')).toBeInTheDocument();
+    });
   });
 });

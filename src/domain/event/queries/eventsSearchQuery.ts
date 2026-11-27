@@ -72,6 +72,11 @@ export const eventsSearchQuery = gql`
       id
       name
       birthyear
+      themePath {
+        id
+        slug
+        name
+      }
     }
     events(
       childId: $childId

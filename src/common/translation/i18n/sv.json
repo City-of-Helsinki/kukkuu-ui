@@ -851,8 +851,8 @@
         },
         "name": {
           "input": {
-            "label": "Barnets namn",
-            "placeholder": "Ange barnets namn"
+            "label": "Barnets förnamn",
+            "placeholder": "Ange barnets förnamn"
           }
         },
         "homeCity": {

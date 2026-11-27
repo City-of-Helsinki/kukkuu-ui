@@ -7,6 +7,7 @@ import TestProviders from '../../../../../common/test/TestProviders';
 import {
   fakeAvailableEvent,
   fakeAvailableOccurrence,
+  fakeThemePath,
 } from '../../../../../utils/eventMockDataUtils';
 import { eventsSearchQuery } from '../../../queries/eventsSearchQuery';
 import { useEventsSearch } from '../useEventsSearch';
@@ -71,6 +72,7 @@ describe('useEventsSearch', () => {
           id: 'child-1',
           name: 'Malla Mallikas',
           birthyear: 2020,
+          themePath: fakeThemePath(),
         },
         events: {
           __typename: 'EventsConnection',
@@ -108,6 +110,7 @@ describe('useEventsSearch', () => {
           id: 'child-1',
           name: 'Malla Mallikas',
           birthyear: 2020,
+          themePath: fakeThemePath(),
         },
         events: {
           __typename: 'EventsConnection',
@@ -197,6 +200,7 @@ describe('useEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: fakeThemePath(),
           },
           events: {
             __typename: 'EventsConnection',

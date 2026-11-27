@@ -14,6 +14,7 @@ import FormikTextInput from '../../../common/components/formikWrappers/FormikTex
 import { SUPPORTED_START_BIRTH_YEAR } from '../../../common/time/TimeConstants';
 import { CHILD_FORM_TEST_ID } from './constants';
 import { ChildFormType } from '../enums';
+import { useThemePathOptions } from '../../event/search/hooks/useThemePathOptions';
 
 const schema = yup.object().shape({
   homeCity: yup.string().required('validation.general.required'),
@@ -67,6 +68,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
   };
 
   const relationshipOptions = getTranslatedRelationshipOptions(t);
+  const { options: themePathOptions } = useThemePathOptions('id');
   const isImmutable = isFieldImmutable('birthyear');
 
   return (
@@ -83,11 +85,7 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
             name="birthyear"
             id="birthyear"
             readOnly={isImmutable}
-            label={t(
-              isImmutable
-                ? 'homePage.preliminaryForm.childBirthyear.input.label'
-                : 'homePage.preliminaryForm.childBirthyear.input.year.placeholder'
-            )}
+            label={t('homePage.preliminaryForm.childBirthyear.input.label')}
             required={true}
             placeholder={
               isImmutable
@@ -97,7 +95,15 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
                   )
             }
           />
-
+          <FormikTextInput
+            className={styles.formField}
+            id="name"
+            name="name"
+            required={true}
+            label={t('registration.form.child.name.input.label')}
+            autoComplete="new-password"
+            placeholder={t('registration.form.child.name.input.placeholder')}
+          />
           {!isEditForm && (
             <FormikTextInput
               id="homeCity"
@@ -119,13 +125,16 @@ const ChildForm: FunctionComponent<ChildFormProps> = ({
               'registration.form.child.postalCode.input.placeholder'
             )}
           />
-          <FormikTextInput
+          <FormikDropdown
             className={styles.formField}
-            id="name"
-            name="name"
-            label={t('registration.form.child.name.input.label')}
-            autoComplete="new-password"
-            placeholder={t('registration.form.child.name.input.placeholder')}
+            id="themePathId"
+            name="themePathId"
+            value={values.themePathId || ''}
+            label={t('search.filter.themePathLabel')}
+            required={false}
+            clearable={true}
+            options={themePathOptions}
+            placeholder={t('search.filter.themePathPlaceholder')}
           />
           <FormikDropdown
             className={styles.formField}

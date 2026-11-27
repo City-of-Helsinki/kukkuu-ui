@@ -317,9 +317,10 @@ const ProfileChildAccordionItem: React.FC<ProfileChildAccordionItemProps> = ({
             <p className={styles.age}>
               {t('search.hero.childAge', { age: childAge })}
             </p>
-            {/* TODO: Populate child's themePath from GraphQL once ChildNode.themePath is implemented in backend */}
             <p className={styles.themePath}>
-              {t('profile.child.themePath', { themePath: '–' })}
+              {t('profile.child.themePath', {
+                themePath: child.themePath?.name || '–',
+              })}
             </p>
             <EditDetailsButton
               onClick={() => setIsEditModalOpen(true)}

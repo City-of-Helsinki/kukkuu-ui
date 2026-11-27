@@ -7,6 +7,7 @@ import {
   EventParticipantsPerInvite,
   EventQuery,
   ProfileQuery,
+  ThemePathFieldsFragment,
   VenueNode,
 } from '../domain/api/generatedTypes/graphql';
 import {
@@ -62,6 +63,52 @@ const pickDatabaseAccessibility = (slug?: string) => {
     ? DATABASE_ACCESSIBILITIES.find((acc) => acc.slug === slug)
     : undefined;
   return matched ?? faker.helpers.arrayElement(DATABASE_ACCESSIBILITIES);
+};
+
+// Realistic sample theme paths for tests; does not need to stay synced with the database.
+const DATABASE_THEME_PATHS = [
+  {
+    slug: 'rhythm',
+    name: 'Rytmi',
+    description: 'Rytmi-teemapolku koostuu musiikista ja tanssista.',
+    sortOrder: 1,
+  },
+  {
+    slug: 'story',
+    name: 'Tarina',
+    description: 'Tarina-teemapolku tarjoaa teatteria ja sirkusta.',
+    sortOrder: 2,
+  },
+  {
+    slug: 'trace',
+    name: 'Jälki',
+    description:
+      'Jälki-teemapolku sisältää visuaalisia taiteita, kulttuuriperintöä ja sanataidetta.',
+    sortOrder: 3,
+  },
+] as const;
+
+const pickDatabaseThemePath = (slug?: string) => {
+  const matched = slug
+    ? DATABASE_THEME_PATHS.find((tp) => tp.slug === slug)
+    : undefined;
+  return matched ?? faker.helpers.arrayElement(DATABASE_THEME_PATHS);
+};
+
+export const fakeThemePath = (
+  overrides?: Partial<ThemePathFieldsFragment>
+): ThemePathFieldsFragment => {
+  const { slug, name } = pickDatabaseThemePath(overrides?.slug);
+
+  return merge<ThemePathFieldsFragment, typeof overrides>(
+    {
+      __typename: 'ThemePathNode',
+      id: faker.string.uuid(),
+      slug,
+      name,
+    },
+    overrides
+  );
 };
 
 const replaceArrayCustomizer = (_objValue: unknown, srcValue: unknown) => {

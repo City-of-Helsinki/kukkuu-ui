@@ -53,7 +53,13 @@ export type AvailableEvent = Omit<
   };
 };
 
-export type EventsSearchChild = Pick<ChildNode, 'id' | 'name' | 'birthyear'>;
+export type EventsSearchChild = Pick<ChildNode, 'id' | 'name' | 'birthyear'> & {
+  themePath?: {
+    id: string;
+    slug: string;
+    name: string;
+  } | null;
+};
 
 export type EventsSearchQuery = {
   child?: EventsSearchChild | null;

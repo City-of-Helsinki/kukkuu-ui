@@ -204,7 +204,11 @@ export const childByIdQuery = gql`
     name
     birthyear
     postalCode
-    # TODO: Query themePath on ChildNode once implemented in backend
+    themePath {
+      id
+      slug
+      name
+    }
     project {
       ...ChildByIdQueryProjectFields
     }
