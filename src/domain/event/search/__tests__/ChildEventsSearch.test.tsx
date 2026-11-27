@@ -1165,6 +1165,11 @@ describe('ChildEventsSearch', () => {
       name: /Saavutettavuus/i,
     });
     expect(accessibilityToggle).toBeEnabled();
+    expect(
+      accessibilityToggle
+        .closest('#search-filter-accessibility')
+        ?.querySelector('svg[aria-label="universal-access"]')
+    ).toBeInTheDocument();
 
     // Dynamic tooltip built from API names and descriptions
     const accessibilityTooltipButton = await screen.findByRole('button', {

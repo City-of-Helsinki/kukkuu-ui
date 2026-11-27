@@ -5,6 +5,7 @@ import {
   IconAlertCircleFill,
   IconCheck,
   IconFamily,
+  IconSpeechless,
   IconUniversalAccess,
   StatusLabel,
 } from 'hds-react';
@@ -116,7 +117,7 @@ const buildSpeechlessBadgeItem = (
         className={classNames(styles.badge, styles.whiteBadge)}
         data-testid="event-badge-speechless"
       >
-        <IconUniversalAccess
+        <IconSpeechless
           aria-hidden="true"
           className={styles.badgeIcon}
         />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconPersonWheelchair, Select, Tooltip } from 'hds-react';
+import { IconUniversalAccess, Select, Tooltip } from 'hds-react';
 import type { Option } from 'hds-react';
 
 import { getCurrentLanguage } from '../../../../common/translation/TranslationUtils';
@@ -42,7 +42,7 @@ export const AccessibilityFilterField: React.FC = () => {
         multiSelect
         noTags
         clearable={false}
-        icon={<IconPersonWheelchair aria-hidden="true" />}
+        icon={<IconUniversalAccess aria-hidden="true" />}
         options={accessibilityOptions}
         value={selectedOptions}
         onChange={handleAccessibilityChange}

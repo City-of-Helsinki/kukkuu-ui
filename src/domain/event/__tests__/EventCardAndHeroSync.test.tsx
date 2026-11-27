@@ -172,15 +172,29 @@ describe('EventSearchCard and EventHero synchronization', () => {
       cardScope.getByTestId('event-badge-accessibility-hearing')
     ).toHaveTextContent('Kuulemisen tuki');
     expect(
+      cardScope
+        .getByTestId('event-badge-accessibility-hearing')
+        .querySelector('svg[aria-label="universal-access"]')
+    ).toBeInTheDocument();
+    expect(
       heroScope.getByTestId('event-badge-accessibility-hearing')
     ).toHaveTextContent('Kuulemisen tuki (1)');
+    expect(
+      heroScope
+        .getByTestId('event-badge-accessibility-hearing')
+        .querySelector('svg[aria-label="universal-access"]')
+    ).toBeInTheDocument();
 
-    expect(cardScope.getByTestId('event-badge-speechless')).toHaveTextContent(
-      'Sanaton'
-    );
-    expect(heroScope.getByTestId('event-badge-speechless')).toHaveTextContent(
-      'Sanaton (1)'
-    );
+    const cardSpeechlessBadge = cardScope.getByTestId('event-badge-speechless');
+    const heroSpeechlessBadge = heroScope.getByTestId('event-badge-speechless');
+    expect(cardSpeechlessBadge).toHaveTextContent('Sanaton');
+    expect(
+      cardSpeechlessBadge.querySelector('svg[aria-label="speechless"]')
+    ).toBeInTheDocument();
+    expect(heroSpeechlessBadge).toHaveTextContent('Sanaton (1)');
+    expect(
+      heroSpeechlessBadge.querySelector('svg[aria-label="speechless"]')
+    ).toBeInTheDocument();
   });
 
   it('renders identical single-occurrence date/time, single-venue address, and single-language text in both Card and Hero', () => {
