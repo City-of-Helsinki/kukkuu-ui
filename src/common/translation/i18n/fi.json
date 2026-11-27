@@ -851,8 +851,8 @@
         },
         "name": {
           "input": {
-            "label": "Lapsen nimi",
-            "placeholder": "Lisää lapsen nimi"
+            "label": "Lapsen etunimi",
+            "placeholder": "Lisää lapsen etunimi"
           }
         },
         "homeCity": {

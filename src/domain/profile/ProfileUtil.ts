@@ -11,17 +11,17 @@ import { Project, MyProfileChildren } from './types/ProfileQueryTypes';
 export const normalizeProfileChild = (
   profileChild: ChildByIdResponse
 ): Omit<Child, 'languagesSpokenAtHome'> => {
-  const { relationships, ...childWithoutRelationships } = profileChild;
+  const { relationships, themePath, ...childWithoutRelationships } =
+    profileChild;
   const defaultHomeCity = capitalize(getEligibleCities()[0]);
 
   return {
     ...childWithoutRelationships,
-    ...{
-      relationship: {
-        type: relationships.edges[0]?.node?.type,
-      },
-      homeCity: defaultHomeCity,
+    themePathId: themePath?.id ?? '',
+    relationship: {
+      type: relationships.edges[0]?.node?.type,
     },
+    homeCity: defaultHomeCity,
   };
 };
 

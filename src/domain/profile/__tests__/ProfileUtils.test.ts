@@ -3,17 +3,20 @@ import {
   RelationshipTypeEnum,
   ChildByIdQuery,
 } from '../../api/generatedTypes/graphql';
+import { fakeThemePath } from '../../../utils/eventMockDataUtils';
 
 type ChildByIdResponse = ChildByIdQuery['child'];
 
 describe('ProfileUtils', () => {
   describe('normalizeProfileChild', () => {
     test('input a fetched child and return a child for mutation', () => {
-      const child: ChildByIdResponse = {
+      const themePath = fakeThemePath({ slug: 'story', name: 'Tarina' });
+      const child: NonNullable<ChildByIdResponse> = {
         id: 'foo',
         name: 'foo bar',
         birthyear: 2020,
         postalCode: '00100',
+        themePath,
         project: {
           id: '1',
           year: 2020,
@@ -46,6 +49,7 @@ describe('ProfileUtils', () => {
         activeInternalAndTicketSystemEnrolments: null,
         birthyear: 2020,
         postalCode: '00100',
+        themePathId: themePath.id,
         project: { id: '1', name: 'Project name', year: 2020 },
         upcomingEventsAndEventGroups: { edges: [] },
         pastEvents: { edges: [] },

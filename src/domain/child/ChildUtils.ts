@@ -12,6 +12,7 @@ const RESTRICTED_COMMON_CHILD_FIELDS = [
   'availableEvents',
   'enrolments',
   'pastEvents',
+  'themePath',
   '__typename',
 ];
 
@@ -55,7 +56,11 @@ export const getSupportedChildData = (
   if (isEdit) {
     fields.push('birthyear');
   }
-  return omit(child, fields);
+  const cleaned = omit(child, fields);
+  return {
+    ...cleaned,
+    themePathId: cleaned.themePathId || null,
+  };
 };
 
 export const getChildFormModalValues = (child: Child) => {
@@ -64,6 +69,7 @@ export const getChildFormModalValues = (child: Child) => {
     'birthyear',
     'homeCity',
     'postalCode',
+    'themePathId',
     'relationship',
   ]);
 };

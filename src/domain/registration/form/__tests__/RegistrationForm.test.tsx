@@ -156,7 +156,7 @@ describe('RegistrationForm', () => {
       await screen.findByTestId(FORM_TESTID);
       expect(screen.getByLabelText(/Sähköpostiosoite/i)).toBeInTheDocument();
       expect(screen.getByLabelText(/Puhelinnumero/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/Etunimi/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/^Etunimi/i)).toBeInTheDocument();
       expect(screen.getByLabelText(/Sukunimi/i)).toBeInTheDocument();
     });
 
@@ -276,6 +276,7 @@ describe('RegistrationForm', () => {
                 languagesSpokenAtHome: [],
                 birthyear: 2020,
                 postalCode: '00100',
+                themePathId: null,
                 relationship: { type: RelationshipTypeEnum.Parent },
               },
             ],

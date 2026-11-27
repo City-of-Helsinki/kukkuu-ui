@@ -13,6 +13,7 @@ import Button from '../../../../common/components/button/Button';
 import FormikTextInput from '../../../../common/components/formikWrappers/FormikTextInput';
 import MandatoryFieldLegend from '../../../../common/components/mandatoryFieldLegend/MandatoryFieldLegend';
 import { publicSvgIconPaths } from '../../../../public_files';
+import { useThemePathOptions } from '../../../event/search/hooks/useThemePathOptions';
 
 type ChildFormFieldProps = {
   child: Child;
@@ -30,6 +31,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
   arrayHelpers,
 }) => {
   const { t } = useTranslation();
+  const { options: themePathOptions } = useThemePathOptions('id');
 
   return (
     <div className={styles.childFields} key={childIndex}>
@@ -73,6 +75,7 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           <FormikTextInput
             id={`children[${childIndex}].name`}
             name={`children[${childIndex}].name`}
+            required={true}
             label={t('registration.form.child.name.input.label')}
             autoComplete="new-password"
             placeholder={t('registration.form.child.name.input.placeholder')}
@@ -87,6 +90,17 @@ const ChildFormFields: React.FunctionComponent<ChildFormFieldProps> = ({
           placeholder={t(
             'registration.form.child.postalCode.input.placeholder'
           )}
+        />
+
+        <FormikDropdown
+          id={`children[${childIndex}].themePathId`}
+          name={`children[${childIndex}].themePathId`}
+          value={child.themePathId || ''}
+          label={t('search.filter.themePathLabel')}
+          required={false}
+          clearable={true}
+          options={themePathOptions}
+          placeholder={t('search.filter.themePathPlaceholder')}
         />
 
         <FormikDropdown

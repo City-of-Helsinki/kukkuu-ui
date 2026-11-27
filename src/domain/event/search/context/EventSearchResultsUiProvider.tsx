@@ -42,9 +42,8 @@ export const EventSearchResultsUiProvider: React.FC<
   const { searchFormRef, isSticky, focusChildSelector } = useSearchFormSticky();
 
   // Predefined theme path notification state and dismissal
-  // (ChildNode.themePath is not yet exposed by the backend schema; passes undefined until supported)
   const { visibleChildThemePath, dismissThemePathNotice } =
-    useChildThemePathNotice(undefined);
+    useChildThemePathNotice(eventsSearch.child?.themePath);
 
   // Accessible aria-live screen reader announcement
   const resultsAnnouncement = useMemo(() => {

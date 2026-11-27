@@ -40,6 +40,11 @@ const profileQuery = gql`
     name
     birthyear
     postalCode
+    themePath {
+      id
+      slug
+      name
+    }
     project {
       ...MyProfileChildProjectFields
     }

@@ -17,9 +17,11 @@ import type {
 const ThemePathList = RelayList<ThemePathFieldsFragment>();
 
 /**
- * Dedicated hook returning available options for the "Teemapolku" (Theme path) filter.
+ * Dedicated hook returning available options for the "Teemapolku" (Theme path) filter or child form.
  */
-export function useThemePathOptions(): FilterOptionsHookResult {
+export function useThemePathOptions(
+  valueKey: 'slug' | 'id' = 'slug'
+): FilterOptionsHookResult {
   const { i18n } = useTranslation();
   const currentLanguage = getCurrentLanguage(i18n);
   const previousLanguageRef = useRef(currentLanguage);
@@ -47,12 +49,12 @@ export function useThemePathOptions(): FilterOptionsHookResult {
   const options = useMemo<FilterOption[]>(
     () =>
       ThemePathList(data?.themePaths)
-        .items.filter((node) => Boolean(node.slug))
+        .items.filter((node) => Boolean(node[valueKey]))
         .map((node) => ({
-          value: node.slug,
+          value: node[valueKey],
           label: node.name || node.slug,
         })),
-    [data?.themePaths]
+    [data?.themePaths, valueKey]
   );
 
   return { options, loading };

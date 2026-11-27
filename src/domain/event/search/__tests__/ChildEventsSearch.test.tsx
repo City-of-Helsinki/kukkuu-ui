@@ -17,6 +17,7 @@ import {
   fakeAccessibilityNode,
   fakeAvailableEvent,
   fakeAvailableOccurrence,
+  fakeThemePath,
 } from '../../../../utils/eventMockDataUtils';
 import ChildEventsSearch from '../ChildEventsSearch';
 import { eventsSearchQuery } from '../../queries/eventsSearchQuery';
@@ -287,6 +288,7 @@ describe('ChildEventsSearch', () => {
           id: 'child-1',
           name: 'Malla Mallikas',
           birthyear: 2020,
+          themePath: null,
         },
         events: {
           __typename: 'EventsConnection',
@@ -380,6 +382,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: null,
           },
           events: {
             __typename: 'EventsConnection',
@@ -468,6 +471,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: null,
           },
           events: {
             __typename: 'EventsConnection',
@@ -495,6 +499,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: null,
           },
           events: {
             __typename: 'EventsConnection',
@@ -687,6 +692,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: null,
           },
           events: {
             __typename: 'EventsConnection',
@@ -732,6 +738,7 @@ describe('ChildEventsSearch', () => {
             id: 'child-1',
             name: 'Malla Mallikas',
             birthyear: 2020,
+            themePath: null,
           },
           events: {
             __typename: 'EventsConnection',
@@ -1212,5 +1219,152 @@ describe('ChildEventsSearch', () => {
     expect(
       await screen.findByRole('option', { name: 'Sanaton' })
     ).toBeInTheDocument();
+  });
+
+  it('shows ChildThemePathNotification when child has a default themePath and applies filter on click', async () => {
+    const user = userEvent.setup();
+    const themePath = fakeThemePath({ slug: 'rytmi', name: 'Rytmi' });
+    const childWithThemePathMock: MockedResponse = {
+      request: {
+        query: eventsSearchQuery,
+        variables: defaultSearchVars(),
+      },
+      maxUsageCount: Infinity,
+      result: {
+        data: {
+          child: {
+            __typename: 'ChildNode',
+            id: 'child-1',
+            name: 'Malla Mallikas',
+            birthyear: 2020,
+            themePath,
+          },
+          events: {
+            __typename: 'EventsConnection',
+            count: 1,
+            pageInfo: {
+              __typename: 'PageInfo',
+              hasNextPage: false,
+              endCursor: 'cursor-1',
+            },
+            edges: [
+              {
+                __typename: 'EventEdge',
+                cursor: 'cursor-1',
+                node: fakeAvailableEvent({
+                  id: 'ev-1',
+                  name: 'Rytmitapahtuma',
+                }),
+              },
+            ],
+          },
+        },
+      },
+    };
+
+    const filteredMock = getSuccessEventsMock({
+      themePaths: [themePath.slug],
+    });
+
+    render(<ChildEventsSearch />, [
+      childWithThemePathMock,
+      filteredMock,
+    ]);
+
+    const applyButton = await screen.findByRole('button', {
+      name: `Näytä vain ${themePath.name}-tapahtumat`,
+    });
+    expect(
+      screen.getByText(
+        new RegExp(
+          `Lapselle Malla Mallikas on valittu ${themePath.name}-teemapolku`,
+          'i'
+        )
+      )
+    ).toBeInTheDocument();
+
+    await user.click(applyButton);
+
+    await waitFor(() => {
+      expect(
+        screen.queryByRole('button', {
+          name: `Näytä vain ${themePath.name}-tapahtumat`,
+        })
+      ).not.toBeInTheDocument();
+      expect(
+        screen.getByRole('button', {
+          name: new RegExp(`Poista valinta: ${themePath.name}`, 'i'),
+        })
+      ).toBeInTheDocument();
+      expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
+    });
+  });
+
+  it('queries backend with themePaths when Teemapolku filter is selected and search is submitted', async () => {
+    const user = userEvent.setup();
+    const initialMock = getSuccessEventsMock();
+    const tarinaFilteredMock: MockedResponse = {
+      request: {
+        query: eventsSearchQuery,
+        variables: defaultSearchVars({ themePaths: ['tarina'] }),
+      },
+      maxUsageCount: Infinity,
+      result: {
+        data: {
+          child: {
+            __typename: 'ChildNode',
+            id: 'child-1',
+            name: 'Malla Mallikas',
+            birthyear: 2020,
+            themePath: null,
+          },
+          events: {
+            __typename: 'EventsConnection',
+            count: 1,
+            pageInfo: {
+              __typename: 'PageInfo',
+              hasNextPage: false,
+              endCursor: 'cursor-1',
+            },
+            edges: [
+              {
+                __typename: 'EventEdge',
+                cursor: 'cursor-1',
+                node: {
+                  __typename: 'EventNode',
+                  ...testEventNode,
+                  id: 'ev-tarina',
+                  name: 'Tarinatuokio',
+                },
+              },
+            ],
+          },
+        },
+      },
+    };
+
+    render(<ChildEventsSearch />, [initialMock, tarinaFilteredMock]);
+
+    await waitFor(() => {
+      expect(screen.getByText('Kulttuuriseikkailu')).toBeInTheDocument();
+    });
+
+    const themePathToggle = screen.getByRole('combobox', {
+      name: /Teemapolku/i,
+    });
+    await user.click(themePathToggle);
+    const tarinaOption = await screen.findByRole('option', { name: 'Tarina' });
+    await user.click(tarinaOption);
+
+    await user.click(
+      screen.getByRole('button', { name: 'Etsi tapahtumia' })
+    );
+
+    await waitFor(() => {
+      expect(
+        screen.getByRole('button', { name: /Poista valinta: Tarina/i })
+      ).toBeInTheDocument();
+      expect(screen.getByText('Tarinatuokio')).toBeInTheDocument();
+    });
   });
 });

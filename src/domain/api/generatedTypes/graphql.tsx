@@ -77,6 +77,7 @@ export type AddChildMutationInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   postalCode: Scalars['String']['input'];
   relationship?: InputMaybe<RelationshipInput>;
+  themePathId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type AddChildMutationPayload = {
@@ -227,6 +228,7 @@ export type ChildInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   postalCode: Scalars['String']['input'];
   relationship?: InputMaybe<RelationshipInput>;
+  themePathId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type ChildNode = Node & {
@@ -255,6 +257,7 @@ export type ChildNode = Node & {
   postalCode: Scalars['String']['output'];
   project: ProjectNode;
   relationships: RelationshipNodeConnection;
+  themePath: Maybe<ThemePathNode>;
   /** All upcoming events and event groups for the child's project. NOTE: Does NOT take yearly enrolment limits into account. */
   upcomingEventsAndEventGroups: Maybe<EventOrEventGroupConnection>;
   updatedAt: Scalars['DateTime']['output'];
@@ -2150,6 +2153,7 @@ export type UpdateChildMutationInput = {
   name?: InputMaybe<Scalars['String']['input']>;
   postalCode?: InputMaybe<Scalars['String']['input']>;
   relationship?: InputMaybe<RelationshipInput>;
+  themePathId?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type UpdateChildMutationPayload = {
@@ -2412,6 +2416,12 @@ export type AddNewChildMutation = {
       name: string;
       birthyear: number;
       postalCode: string;
+      themePath: {
+        __typename?: 'ThemePathNode';
+        id: string;
+        slug: string;
+        name: string;
+      } | null;
       project: {
         __typename?: 'ProjectNode';
         id: string;
@@ -2447,6 +2457,12 @@ export type UpdateChildMutationPayloadFieldsFragment = {
     name: string;
     birthyear: number;
     postalCode: string;
+    themePath: {
+      __typename?: 'ThemePathNode';
+      id: string;
+      slug: string;
+      name: string;
+    } | null;
     project: {
       __typename?: 'ProjectNode';
       id: string;
@@ -2481,6 +2497,12 @@ export type UpdateChildMutation = {
       name: string;
       birthyear: number;
       postalCode: string;
+      themePath: {
+        __typename?: 'ThemePathNode';
+        id: string;
+        slug: string;
+        name: string;
+      } | null;
       project: {
         __typename?: 'ProjectNode';
         id: string;
@@ -3031,6 +3053,12 @@ export type ChildByIdQueryFieldsFragment = {
   name: string;
   birthyear: number;
   postalCode: string;
+  themePath: {
+    __typename?: 'ThemePathNode';
+    id: string;
+    slug: string;
+    name: string;
+  } | null;
   project: {
     __typename?: 'ProjectNode';
     id: string;
@@ -3241,6 +3269,12 @@ export type ChildByIdQuery = {
     name: string;
     birthyear: number;
     postalCode: string;
+    themePath: {
+      __typename?: 'ThemePathNode';
+      id: string;
+      slug: string;
+      name: string;
+    } | null;
     project: {
       __typename?: 'ProjectNode';
       id: string;
@@ -4863,6 +4897,12 @@ export type MyProfileChildFieldsFragment = {
   name: string;
   birthyear: number;
   postalCode: string;
+  themePath: {
+    __typename?: 'ThemePathNode';
+    id: string;
+    slug: string;
+    name: string;
+  } | null;
   project: {
     __typename?: 'ProjectNode';
     id: string;
@@ -4949,6 +4989,12 @@ export type MyProfileChildrenFieldsFragment = {
       name: string;
       birthyear: number;
       postalCode: string;
+      themePath: {
+        __typename?: 'ThemePathNode';
+        id: string;
+        slug: string;
+        name: string;
+      } | null;
       project: {
         __typename?: 'ProjectNode';
         id: string;
@@ -5063,6 +5109,12 @@ export type MyProfileFieldsFragment = {
         name: string;
         birthyear: number;
         postalCode: string;
+        themePath: {
+          __typename?: 'ThemePathNode';
+          id: string;
+          slug: string;
+          name: string;
+        } | null;
         project: {
           __typename?: 'ProjectNode';
           id: string;
@@ -5180,6 +5232,12 @@ export type ProfileQuery = {
           name: string;
           birthyear: number;
           postalCode: string;
+          themePath: {
+            __typename?: 'ThemePathNode';
+            id: string;
+            slug: string;
+            name: string;
+          } | null;
           project: {
             __typename?: 'ProjectNode';
             id: string;
@@ -5294,6 +5352,12 @@ export type SubmitGuardianFieldsFragment = {
         name: string;
         birthyear: number;
         postalCode: string;
+        themePath: {
+          __typename?: 'ThemePathNode';
+          id: string;
+          slug: string;
+          name: string;
+        } | null;
         project: {
           __typename?: 'ProjectNode';
           id: string;
@@ -5337,6 +5401,12 @@ export type SubmitChildrenAndGuardianMutationPayloadFieldsFragment = {
           name: string;
           birthyear: number;
           postalCode: string;
+          themePath: {
+            __typename?: 'ThemePathNode';
+            id: string;
+            slug: string;
+            name: string;
+          } | null;
           project: {
             __typename?: 'ProjectNode';
             id: string;
@@ -5388,6 +5458,12 @@ export type SubmitChildrenAndGuardianMutation = {
             name: string;
             birthyear: number;
             postalCode: string;
+            themePath: {
+              __typename?: 'ThemePathNode';
+              id: string;
+              slug: string;
+              name: string;
+            } | null;
             project: {
               __typename?: 'ProjectNode';
               id: string;
@@ -5424,6 +5500,11 @@ export const UpdateChildMutationPayloadFieldsFragmentDoc = gql`
       name
       birthyear
       postalCode
+      themePath {
+        id
+        slug
+        name
+      }
       project {
         id
         name
@@ -5690,6 +5771,11 @@ export const ChildByIdQueryFieldsFragmentDoc = gql`
     name
     birthyear
     postalCode
+    themePath {
+      id
+      slug
+      name
+    }
     project {
       ...ChildByIdQueryProjectFields
     }
@@ -6138,6 +6224,11 @@ export const MyProfileChildFieldsFragmentDoc = gql`
     name
     birthyear
     postalCode
+    themePath {
+      id
+      slug
+      name
+    }
     project {
       ...MyProfileChildProjectFields
     }
@@ -6244,6 +6335,11 @@ export const SubmitGuardianFieldsFragmentDoc = gql`
           name
           birthyear
           postalCode
+          themePath {
+            id
+            slug
+            name
+          }
           project {
             id
             name
@@ -6278,6 +6374,11 @@ export const AddNewChildDocument = gql`
         name
         birthyear
         postalCode
+        themePath {
+          id
+          slug
+          name
+        }
         project {
           id
           name

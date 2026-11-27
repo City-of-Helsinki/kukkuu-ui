@@ -8,6 +8,11 @@ export const addChildMutation = gql`
         name
         birthyear
         postalCode
+        themePath {
+          id
+          slug
+          name
+        }
         project {
           id
           name
@@ -37,6 +42,11 @@ export const editChildMutation = gql`
       name
       birthyear
       postalCode
+      themePath {
+        id
+        slug
+        name
+      }
       project {
         id
         name

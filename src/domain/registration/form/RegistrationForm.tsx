@@ -183,6 +183,7 @@ const RegistrationForm = () => {
                   languagesSpokenAtHome: child.languagesSpokenAtHome,
                   birthyear: child.birthyear,
                   postalCode: child.postalCode,
+                  themePathId: child.themePathId || null,
                   relationship: child.relationship,
                 };
               });

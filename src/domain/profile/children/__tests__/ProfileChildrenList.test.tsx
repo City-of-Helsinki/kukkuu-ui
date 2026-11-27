@@ -14,11 +14,8 @@ import {
   RelationshipTypeEnum,
 } from '../../../api/generatedTypes/graphql';
 import { childByIdQuery } from '../../../child/queries/ChildQueries';
-import { store } from '../../../app/state/AppStore';
-import {
-  setFormValues,
-  resetFormValues,
-} from '../../../registration/state/RegistrationActions';
+import { themePathsQuery } from '../../../event/queries/themePathsQuery';
+import { fakeThemePath } from '../../../../utils/eventMockDataUtils';
 import type { MyProfile } from '../../types/ProfileQueryTypes';
 
 vi.mock('react-toastify', () => ({
@@ -42,22 +39,40 @@ vi.mock('@jonkoops/matomo-tracker-react', () => ({
 
 const mockRefetchProfile = vi.fn();
 
-const prefillStore = () => {
-  store.dispatch(
-    setFormValues({
-      ...store.getState().registration.formValues,
-      children: [
-        {
-          birthyear: 2022,
-          name: 'Testi Lapsi',
-          homeCity: 'Helsinki',
-          postalCode: '00100',
-          relationship: { type: RelationshipTypeEnum.Parent },
-        },
-      ],
+async function fillChildForm(
+  user: ReturnType<typeof userEvent.setup>,
+  dialog: HTMLElement,
+  { themePathName }: { themePathName?: string } = {}
+) {
+  const birthyearInput = within(dialog).getByLabelText(/lapsen syntymävuosi/i);
+  await user.clear(birthyearInput);
+  await user.type(birthyearInput, '2022');
+  await user.type(
+    within(dialog).getByLabelText(/lapsen etunimi/i),
+    'Testi Lapsi'
+  );
+  await user.type(
+    within(dialog).getByLabelText(/lapsen kotipaikkakunta/i),
+    'Helsinki'
+  );
+  await user.type(within(dialog).getByLabelText(/postinumero/i), '00100');
+
+  if (themePathName) {
+    await user.click(
+      within(dialog).getByRole('combobox', { name: /teemapolku/i })
+    );
+    await user.click(
+      await screen.findByRole('option', { name: themePathName })
+    );
+  }
+
+  await user.click(
+    within(dialog).getByRole('combobox', {
+      name: /ilmoittajan suhde lapseen/i,
     })
   );
-};
+  await user.click(await screen.findByRole('option', { name: 'Vanhempi' }));
+}
 
 const baseProfile: MyProfile = {
   id: 'guardian-1',
@@ -85,6 +100,7 @@ const childProfile: MyProfile = {
           name: 'Testi Lapsi',
           birthyear: 2020,
           postalCode: '00100',
+          themePath: fakeThemePath({ slug: 'story', name: 'Tarina' }),
           project: { __typename: 'ProjectNode', id: 'proj-1', name: 'Testiorganisaatio', year: 2020 },
           upcomingEventsAndEventGroups: { __typename: 'EventOrEventGroupConnection', edges: [] },
           occurrences: { __typename: 'OccurrenceNodeConnection', edges: [] },
@@ -125,6 +141,7 @@ const childByIdMock: MockedResponse = {
         name: 'Testi Lapsi',
         birthyear: 2020,
         postalCode: '00100',
+        themePath: fakeThemePath({ slug: 'story', name: 'Tarina' }),
         project: {
           __typename: 'ProjectNode',
           id: 'proj-1',
@@ -171,7 +188,6 @@ describe('ProfileChildrenList', () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
-    store.dispatch(resetFormValues());
   });
 
   describe('rendering', () => {
@@ -211,6 +227,29 @@ describe('ProfileChildrenList', () => {
       render(<ProfileChildrenList />, [childByIdMock]);
 
       expect(screen.getByText('Testi Lapsi')).toBeInTheDocument();
+    });
+
+    it('renders child accordion card with set themePath when child has one', async () => {
+      const themePath = fakeThemePath({ slug: 'story', name: 'Tarina' });
+      const profileWithThemePath: MyProfile = {
+        ...baseProfile,
+        children: {
+          __typename: 'ChildNodeConnection',
+          edges: [
+            {
+              __typename: 'ChildNodeEdge',
+              node: {
+                ...childProfile.children.edges[0]!.node!,
+                themePath,
+              },
+            },
+          ],
+        },
+      };
+      mockProfile(profileWithThemePath);
+      render(<ProfileChildrenList />, [childByIdMock]);
+
+      expect(await screen.findByText('Teemapolku: Tarina')).toBeInTheDocument();
     });
 
     it('opens the accordion item matching the child search param', () => {
@@ -260,7 +299,6 @@ describe('ProfileChildrenList', () => {
     it('calls addChild mutation and trackEvent on successful child submission', async () => {
       mockProfile(baseProfile);
       vi.spyOn(NotEligibleUtils, 'isChildEligible').mockReturnValue(true);
-      prefillStore();
 
       // getSupportedChildData strips homeCity, so variables won't have it
       const addChildMock: MockedResponse = {
@@ -271,6 +309,7 @@ describe('ProfileChildrenList', () => {
               name: 'Testi Lapsi',
               birthyear: 2022,
               postalCode: '00100',
+              themePathId: null,
               relationship: { type: RelationshipTypeEnum.Parent },
 
             },
@@ -284,6 +323,82 @@ describe('ProfileChildrenList', () => {
                 name: 'Testi Lapsi',
                 birthyear: 2022,
                 postalCode: '00100',
+                themePath: null,
+                project: {
+                  id: 'proj-1',
+                  name: 'Testiorganisaatio',
+                  year: 2022,
+                },
+              },
+            },
+          },
+        },
+      };
+
+      const themePathsMock: MockedResponse = {
+        request: { query: themePathsQuery },
+        result: { data: { themePaths: { edges: [] } } },
+      };
+
+      const user = userEvent.setup();
+      render(<ProfileChildrenList />, [
+        addChildMock,
+        profileRefetchMock,
+        themePathsMock,
+      ]);
+
+      await user.click(getAddChildButton());
+      const dialog = await screen.findByRole('dialog');
+      await fillChildForm(user, dialog);
+      await user.click(within(dialog).getByRole('button', { name: 'Lisää lapsi' }));
+
+      await waitFor(() =>
+        expect(mockRefetchProfile).toHaveBeenCalledTimes(1)
+      );
+      expect(mockTrackEvent).toHaveBeenCalledWith({
+        category: 'action',
+        action: 'Add child',
+      });
+    });
+
+    it('submits selected themePathId when adding a child with a theme path', async () => {
+      mockProfile(baseProfile);
+      vi.spyOn(NotEligibleUtils, 'isChildEligible').mockReturnValue(true);
+      const themePath = fakeThemePath({ slug: 'story', name: 'Tarina' });
+
+      const themePathsMock: MockedResponse = {
+        request: { query: themePathsQuery },
+        result: {
+          data: {
+            themePaths: {
+              edges: [{ node: themePath }],
+            },
+          },
+        },
+      };
+
+      const addChildWithThemeMock: MockedResponse = {
+        request: {
+          query: addChildMutation,
+          variables: {
+            input: {
+              name: 'Testi Lapsi',
+              birthyear: 2022,
+              postalCode: '00100',
+              themePathId: themePath.id,
+              relationship: { type: RelationshipTypeEnum.Parent },
+            },
+          },
+        },
+        result: {
+          data: {
+            addChild: {
+              child: {
+                id: 'new-child-2',
+                name: 'Testi Lapsi',
+                birthyear: 2022,
+                postalCode: '00100',
+                themePath,
                 project: {
                   id: 'proj-1',
                   name: 'Testiorganisaatio',
@@ -296,10 +411,15 @@ describe('ProfileChildrenList', () => {
       };
 
       const user = userEvent.setup();
-      render(<ProfileChildrenList />, [addChildMock, profileRefetchMock]);
+      render(<ProfileChildrenList />, [
+        themePathsMock,
+        addChildWithThemeMock,
+        profileRefetchMock,
+      ]);
 
       await user.click(getAddChildButton());
       const dialog = await screen.findByRole('dialog');
+      await fillChildForm(user, dialog, { themePathName: themePath.name });
       await user.click(within(dialog).getByRole('button', { name: 'Lisää lapsi' }));
 
       await waitFor(() =>
@@ -314,7 +434,6 @@ describe('ProfileChildrenList', () => {
     it('shows an error toast and captures exception when addChild mutation fails', async () => {
       mockProfile(baseProfile);
       vi.spyOn(NotEligibleUtils, 'isChildEligible').mockReturnValue(true);
-      prefillStore();
 
       const failingMock: MockedResponse = {
         request: {
@@ -324,6 +443,7 @@ describe('ProfileChildrenList', () => {
               name: 'Testi Lapsi',
               birthyear: 2022,
               postalCode: '00100',
+              themePathId: null,
               relationship: { type: RelationshipTypeEnum.Parent },
 
             },
@@ -332,11 +452,17 @@ describe('ProfileChildrenList', () => {
         error: new Error('Network error'),
       };
 
+      const themePathsMock: MockedResponse = {
+        request: { query: themePathsQuery },
+        result: { data: { themePaths: { edges: [] } } },
+      };
+
       const user = userEvent.setup();
-      render(<ProfileChildrenList />, [failingMock]);
+      render(<ProfileChildrenList />, [failingMock, themePathsMock]);
 
       await user.click(getAddChildButton());
       const dialog = await screen.findByRole('dialog');
+      await fillChildForm(user, dialog);
       await user.click(within(dialog).getByRole('button', { name: 'Lisää lapsi' }));
 
       await waitFor(() =>
